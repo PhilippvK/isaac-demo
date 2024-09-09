@@ -19,3 +19,6 @@
 [submodule "seal5"]
 	path = seal5
 	url = git@github.com:tum-ei-eda/seal5.git
+[submodule "mgclient"]
+	path = mgclient
+	url = https://github.com/memgraph/mgclient.git

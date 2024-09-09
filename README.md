@@ -8,13 +8,11 @@ This repository demonstrates the usage and setup of the ISAAC (ISA Automated Cus
 
 ### Common
 
-Clone submodules!
+Make sure to clone all submodules!
 
-Setup virtual Python environment
-Do not forget to activate!
-
-Install all required packages!
-
+```sh
+git submodule update --init --recursive
+```
 
 ### OS Packages
 
@@ -23,7 +21,21 @@ This demo is supposed to be run on an Ubuntu/Debia-like operating system. WSL2 s
 In addition to the default development packages (CMake, build-essential,...), the following SW is required to run this demo:
 
 - Docker (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
+- Python v3.10
 
+### Python
+
+Setup virtual Python environment. The following script will also automatically install the packages listed in `requirements.txt`.
+
+```sh
+./scripts/setup_python.sh
+```
+
+Before using the flow, make sure to source the environment script:
+
+```sh
+. scripts/env.sh
+```
 
 ### Memgraph
 
@@ -32,7 +44,7 @@ A memgraph database is used to store the CDFGs of the software compiled by LLVM.
 First, the memgraph platform itself (database, lab (GUI),...) can be launched using docker:
 
 ```sh
-
+docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
 ```
 
 Further, we need the `mgclient` libraries to interface with the platform.
