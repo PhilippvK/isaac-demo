@@ -19,9 +19,11 @@ source $VENV_DIR/bin/activate
 export ETISS_ARCH_DIR=${TOP_DIR}/etiss_arch_riscv
 export ISAAC_DIR=${TOP_DIR}/isaac-toolkit
 export SEAL5_DIR=${TOP_DIR}/seal5
+export MLONMCU_DIR=${TOP_DIR}/mlonmcu
 export MEMGRAPH_PY_DIR=${TOP_DIR}/memgraph_experiments
 export M2ISAR_DIR=${TOP_DIR}/M2-ISA-R
-export PYTHONPATH=${ISAAC_DIR}:${MEMGRAPH_PY_DIR}:${M2ISAR_DIR}:${SEAL5_DIR}:$PYTHONPATH
+export PYTHONPATH=${ISAAC_DIR}:${MEMGRAPH_PY_DIR}:${M2ISAR_DIR}:${SEAL5_DIR}:${MLONMCU_DIR}:$PYTHONPATH
+export MLONMCU_HOME=$INSTALL_DIR/mlonmcu
 
 export MGCLIENT_LIB_DIR=$INSTALL_DIR/mgclient/lib
 export LD_LIBRARY_PATH=${MGCLIENT_LIB_DIR}:$LD_LIBRARY_PATH
