@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+TOP_DIR=$(dirname $SCRIPT_DIR)
+INSTALL_DIR=$TOP_DIR/install
+ETISS_DIR=$TOP_DIR/etiss
+ETISS_BUILD_DIR=$ETISS_DIR/build
+ETISS_INSTALL_DIR=$INSTALL_DIR/etiss
+CMAKE_BUILD_TYPE=Release
+
+mkdir -p $ETISS_BUILD_DIR
+
+cmake -B $ETISS_BUILD_DIR -S $ETISS_DIR -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DCMAKE_INSTALL_PREFIX:PATH=$ETISS_INSTALL_DIR
+
+cmake --build $ETISS_BUILD_DIR -j$NPROC
+cmake --install $ETISS_BUILD_DIR
