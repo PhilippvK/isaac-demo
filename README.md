@@ -85,6 +85,12 @@ Finally, the ISAAC toolkit itself deserves some words. ISAAC is fully-written in
 
 ### MLonMCU (ETISS RV64 + CoreMark)
 
+0. Define common settings.
+
+```sh
+LABEL=aaaaaaaaaaaaaa
+```
+
 1. First, we run a baseline benchmark without ISAAC extensions.
 
 ```sh
@@ -94,19 +100,19 @@ python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optio
 2. Now, we re-run the same experiment with tracing features enabled.
 
 ```sh
-python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=aaaaaaaaaaaaaa -c mlif.num_threads=1
+python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=$LABEL -c mlif.num_threads=1
 
 ```
 
 3. We setup an ISAAC session and load all relevant files
 
 ```sh
-python3 -m isaac_toolkit.session.create --session sess --force
+python3 -m isaac_toolkit.session.create --session sess
 
 python3 -m isaac_toolkit.frontend.elf.riscv install/mlonmcu/temp/sessions/latest/runs/latest/generic_mlonmcu --session sess
-python3 -m isaac_toolkit.frontend.linker_map install/mlonmcu/temp/sessions/latest/runs/latest/mlif/generic/linker.map --session sess --force
+python3 -m isaac_toolkit.frontend.linker_map install/mlonmcu/temp/sessions/latest/runs/latest/mlif/generic/linker.map --session sess
 python3 -m isaac_toolkit.frontend.instr_trace.etiss install/mlonmcu/temp/sessions/latest/runs/latest/etiss_instrs.log --session sess
-python3 -m isaac_toolkit.frontend.memgraph.llvm_mir_cdfg --session sess --label aaaaaaaaaaaaaa
+python3 -m isaac_toolkit.frontend.memgraph.llvm_mir_cdfg --session sess --label $LABEL
 
 ```
 
@@ -121,40 +127,58 @@ python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session sess
 python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess sess
 python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess sess
 python3 -m isaac_toolkit.analysis.dynamic.trace.basic_blocks --session sess
+python3 -m isaac_toolkit.analysis.dynamic.trace.map_llvm_bbs_new --session sess
+python3 -m isaac_toolkit.analysis.dynamic.trace.track_unused_functions --session sess
+python3 -m isaac_toolkit.backend.memgraph.annotate_bb_weights --session sess --label $LABEL
 ```
-        analyze_basic_blocks(sess, force=force)
-        # map_llvm_bbs(sess, force=force)
-        map_llvm_bbs_new(sess, force=force)
-        track_unused_functions(sess, force=force)
-        analyze_instr_operands(sess, force=force)
-        annotate_bb_weights(sess, label=memgraph_session, force=force)
 
 5. Investigate and plot the ISAAC artifacts.
 
 ```sh
-
+tree sess/table
+# ...
+python3 -m isaac_toolkit.visualize.pie.runtime --sess ./sess --legend
+python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess ./sess --legend
+ls sess/plots
+# ...
 ```
 
 6. Continue with the automatic generation of ISAX candidates
 
 ```sh
+python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold ? --min-weight ? --max-num ?
+python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess sess --workdir ? --label $LABEL --stage ?
+
 
 ```
 
 7. Combine candidates into ETISS core.
 
 ```sh
+python3 -m isaac_toolkit.generate.ise.generate_etiss_core  workdir=workdir,
+            core_name=core_name,
+            set_name=set_name,
+            xlen=xlen,
+            ignore_etiss=ignore_etiss,
+            semihosting=semihosting,
+            base_extensions=base_extensions,
+            auto_encoding=auto_encoding,
+            split=split,
+            base_dir=etiss_arch_dir / "rv_base",
+            tum_dir=etiss_arch_dir
 
 ```
 
 8. Perform the retargeting of ETISS/LLVM.
 
 ```sh
-
+# TODO:
+# patch_llvm
+# patch_etiss
 ```
 
 9. Test if everything still works?
 
 ```sh
-
+# TODO: !
 ```
