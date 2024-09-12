@@ -88,28 +88,48 @@ Finally, the ISAAC toolkit itself deserves some words. ISAAC is fully-written in
 1. First, we run a baseline benchmark without ISAAC extensions.
 
 ```sh
-
+python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm
 ```
 
-2. Now, we re-ru n the same experiment with tracing features enabled.
+2. Now, we re-run the same experiment with tracing features enabled.
 
 ```sh
+python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=aaaaaaaaaaaaaa -c mlif.num_threads=1
 
 ```
 
 3. We setup an ISAAC session and load all relevant files
 
 ```sh
+python3 -m isaac_toolkit.session.create --session sess --force
+
+python3 -m isaac_toolkit.frontend.elf.riscv install/mlonmcu/temp/sessions/latest/runs/latest/generic_mlonmcu --session sess
+python3 -m isaac_toolkit.frontend.linker_map install/mlonmcu/temp/sessions/latest/runs/latest/mlif/generic/linker.map --session sess --force
+python3 -m isaac_toolkit.frontend.instr_trace.etiss install/mlonmcu/temp/sessions/latest/runs/latest/etiss_instrs.log --session sess
+python3 -m isaac_toolkit.frontend.memgraph.llvm_mir_cdfg --session sess --label aaaaaaaaaaaaaa
 
 ```
 
 4. Run the analysis and transform steps in ISAAC.
 
 ```sh
-
+python3 -m isaac_toolkit.analysis.static.dwarf --session sess
+python3 -m isaac_toolkit.analysis.static.llvm_bbs --session sess
+python3 -m isaac_toolkit.analysis.static.mem_footprint --session sess
+python3 -m isaac_toolkit.analysis.static.linker_map --session sess
+python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session sess
+python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess sess
+python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess sess
+python3 -m isaac_toolkit.analysis.dynamic.trace.basic_blocks --session sess
 ```
+        analyze_basic_blocks(sess, force=force)
+        # map_llvm_bbs(sess, force=force)
+        map_llvm_bbs_new(sess, force=force)
+        track_unused_functions(sess, force=force)
+        analyze_instr_operands(sess, force=force)
+        annotate_bb_weights(sess, label=memgraph_session, force=force)
 
-5. Investigate the ISAAC artifacts.
+5. Investigate and plot the ISAAC artifacts.
 
 ```sh
 
