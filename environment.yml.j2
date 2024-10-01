@@ -33,9 +33,8 @@ repos:
     url: "https://github.com/tensorflow/tflite-micro.git"
     ref: 93d4b1ccc6e0d1a9062acb1d79f21505daf9d940
   tvm:
-    url: "https://github.com/apache/tvm.git"
-    # ref: de6d8067754d746d88262c530b5241b5577b9aae
-    ref: a9fcac1a47f4b57c1d9d828c7ed1d77452b02cc5
+    url: "https://github.com/PhilippvK/tvm.git"
+    ref: isaac
     options:
       recursive: true
   tvm_extensions:
@@ -65,7 +64,7 @@ repos:
     ref: 040da18234b597867bd54d736ca4ceae545b2853
   mlif:
     url: "https://github.com/tum-ei-eda/mlonmcu-sw.git"
-    ref: d0a79d92b5a8e767b947b214bda8743ec6318741
+    ref: feature-memgraph
   espidf:
     url: "https://github.com/espressif/esp-idf.git"
     ref: release/v4.4  # TODO: v5.2
@@ -89,6 +88,12 @@ repos:
   dtc:
     url: "https://github.com/dgibson/dtc.git"
     ref: main
+  embench:
+    url: "https://github.com/embench/embench-iot.git"
+    ref: master
+  taclebench:
+    url: "https://github.com/tacle/tacle-bench.git"
+    ref: master
 # Here all supported frameworks with their specific features are defined
 # Optionally disable unwanted or incomatible backends or features here
 # The configured defaults are used if no backend was specified in the command line options
@@ -167,6 +172,14 @@ frontends:
   paddle:
     enabled: true
   layergen:
+    enabled: true
+  coremark:
+    enabled: true
+  dhrystone:
+    enabled: true
+  embench:
+    enabled: true
+  taclebench:
     enabled: true
   # TODO: saved_model (TF->TFLITE), ipynb (IPYNB->?)
 # Some targets/platforms support multiple toolchains
