@@ -1,1 +1,27 @@
--r mlonmcu/requirements.txt
+jinja2>=3.1.3
+xdg
+GitPython
+humanize
+pyelftools
+pyyaml
+pandas
+numpy
+psutil
+tqdm
+filelock
+dacite
+pyyaml
+pyelftools
+pandas
+# black~=24.4.2
+dacite
+networkx<3.0.0,>=2.5.1
+gqlalchemy
+pygraphviz
+neo4j>=5.8.0
+matplotlib
+m2isar @ git+https://github.com/tum-ei-eda/M2-ISA-R.git@custom_insns
+leb128
+fastparquet
+pyarrow
+mapfile-parser
