@@ -88,6 +88,7 @@ Finally, the ISAAC toolkit itself deserves some words. ISAAC is fully-written in
 0. Define common settings.
 
 ```sh
+# export MLONMCU_HOME=... (if not already done via . scripts/env.sh)
 LABEL=aaaaaaaaaaaaaa
 ```
 
@@ -155,18 +156,7 @@ python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess sess --wor
 7. Combine candidates into ETISS core.
 
 ```sh
-python3 -m isaac_toolkit.generate.ise.generate_etiss_core  workdir=workdir,
-            core_name=core_name,
-            set_name=set_name,
-            xlen=xlen,
-            ignore_etiss=ignore_etiss,
-            semihosting=semihosting,
-            base_extensions=base_extensions,
-            auto_encoding=auto_encoding,
-            split=split,
-            base_dir=etiss_arch_dir / "rv_base",
-            tum_dir=etiss_arch_dir
-
+python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir ? --core-name ? --set-name ? --xlen ? --ignore-etiss ? --semihosting ? --base-extensions ? --auto-encoding ? --split ? --base-dir etiss_arch_riscv/rv_base/ --tum-dir etiss_arch_riscv/
 ```
 
 8. Perform the retargeting of ETISS/LLVM.
