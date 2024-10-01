@@ -16,3 +16,5 @@ cmake -B $MGCLIENT_BUILD_DIR -S $MGCLIENT_DIR -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TY
 
 cmake --build $MGCLIENT_BUILD_DIR -j$(nproc)
 cmake --install $MGCLIENT_BUILD_DIR
+
+test -f /usr/local/lib/libmgclient.so || sudo ln -s $MGCLIENT_INSTALL_DIR/lib/libmgclient.so /usr/local/lib/libmgclient.so
