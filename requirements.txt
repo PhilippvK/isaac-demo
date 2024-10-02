@@ -25,3 +25,17 @@ leb128
 fastparquet
 pyarrow
 mapfile-parser
+networkx<3.0.0,>=2.5.1
+gqlalchemy
+pygraphviz
+neo4j>=5.8.0
+matplotlib
+anytree
+plotly
+kaleido
+black
+pandas
+numpy
+flake8
+tqdm
+pyyaml
