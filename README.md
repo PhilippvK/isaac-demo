@@ -89,7 +89,8 @@ Finally, the ISAAC toolkit itself deserves some words. ISAAC is fully-written in
 
 ```sh
 # export MLONMCU_HOME=... (if not already done via . scripts/env.sh)
-LABEL=aaaaaaaaaaaaaa
+LABEL=isaac-demo-$(date +%Y%m%dT%H%M%S)
+STAGE=32  # 32 -> post finalizeisel/expandpseudos
 ```
 
 1. First, we run a baseline benchmark without ISAAC extensions.
@@ -101,11 +102,15 @@ python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optio
 2. Now, we re-run the same experiment with tracing features enabled.
 
 ```sh
-python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=$LABEL -c mlif.num_threads=1
+python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=$LABEL -c memgraph_llvm_cdfg.stage=$STAGE -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=1
 
 ```
 
 3. We setup an ISAAC session and load all relevant files
+
+Hints:
+- If a ISAAC session already exists, either remove the `sess` dir first or add an `--force` to each of the remaining commands.
+- Make sure that the Memgraph Container hosting the graph database is up and running: `docker ps`
 
 ```sh
 python3 -m isaac_toolkit.session.create --session sess
@@ -129,7 +134,7 @@ python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess sess
 python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess sess
 python3 -m isaac_toolkit.analysis.dynamic.trace.basic_blocks --session sess
 python3 -m isaac_toolkit.analysis.dynamic.trace.map_llvm_bbs_new --session sess
-python3 -m isaac_toolkit.analysis.dynamic.trace.track_unused_functions --session sess
+python3 -m isaac_toolkit.analysis.dynamic.trace.track_used_functions --session sess
 python3 -m isaac_toolkit.backend.memgraph.annotate_bb_weights --session sess --label $LABEL
 ```
 
@@ -138,8 +143,8 @@ python3 -m isaac_toolkit.backend.memgraph.annotate_bb_weights --session sess --l
 ```sh
 tree sess/table
 # ...
-python3 -m isaac_toolkit.visualize.pie.runtime --sess ./sess --legend
-python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess ./sess --legend
+python3 -m isaac_toolkit.visualize.pie.runtime --sess sess --legend
+python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess sess --legend
 ls sess/plots
 # ...
 ```
@@ -147,10 +152,29 @@ ls sess/plots
 6. Continue with the automatic generation of ISAX candidates
 
 ```sh
-python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold ? --min-weight ? --max-num ?
-python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess sess --workdir ? --label $LABEL --stage ?
+# Create workdir
+mkdir -p work
 
+# Make choices (func_name + bb_name)
+python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold 0.9 --min-weight 0.05 --max-num 10 --force
 
+# Look at choices
+python3 -m isaac_toolkit.utils.pickle_printer sess/table/choices.pkl
+
+# Generate candidates for custom instructions
+python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess sess --workdir work --label $LABEL --stage $STAGE
+
+# Check number of selected candidates per function
+# cat work/crcu16_%bb.0_0/pie.csv
+# ...
+
+# Investigate properties of selected candidates
+# less work/combined_index.yml
+
+# Lookup generated CDSL/Flat code
+# cat work/gen/name1.core_desc
+# cat work/gen/name1.flat
+# cat work/gen/name1.fuse_core_desc
 ```
 
 7. Combine candidates into ETISS core.
