@@ -102,7 +102,7 @@ python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optio
 2. Now, we re-run the same experiment with tracing features enabled.
 
 ```sh
-python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=$LABEL -c memgraph_llvm_cdfg.stage=$STAGE -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=1
+python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=$LABEL -c memgraph_llvm_cdfg.stage=$STAGE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=1
 
 ```
 
@@ -156,7 +156,7 @@ ls sess/plots
 mkdir -p work
 
 # Make choices (func_name + bb_name)
-python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold 0.9 --min-weight 0.05 --max-num 10 --force
+python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold 0.9 --min-weight 0.10 --max-num 10 --force
 
 # Look at choices
 python3 -m isaac_toolkit.utils.pickle_printer sess/table/choices.pkl
@@ -180,7 +180,10 @@ python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess sess --wor
 7. Combine candidates into ETISS core.
 
 ```sh
-python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir ? --core-name ? --set-name ? --xlen ? --ignore-etiss ? --semihosting ? --base-extensions ? --auto-encoding ? --split ? --base-dir etiss_arch_riscv/rv_base/ --tum-dir etiss_arch_riscv/
+python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir work --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zifencei" --auto-encoding --split --base-dir etiss_arch_riscv/rv_base/ --tum-dir etiss_arch_riscv
+
+# Investigate generated instruction set
+# cat work/XIsaac.core_desc
 ```
 
 8. Perform the retargeting of ETISS/LLVM.
