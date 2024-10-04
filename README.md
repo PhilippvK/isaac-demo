@@ -156,7 +156,7 @@ ls sess/plots
 mkdir -p work
 
 # Make choices (func_name + bb_name)
-python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold 0.9 --min-weight 0.10 --max-num 10 --force
+python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold 0.9 --min-weight 0.05 --max-num 3 --force
 
 # Look at choices
 python3 -m isaac_toolkit.utils.pickle_printer sess/table/choices.pkl
