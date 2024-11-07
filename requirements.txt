@@ -3,7 +3,6 @@ xdg
 GitPython
 humanize
 pyelftools
-pyyaml
 pandas
 numpy
 psutil
@@ -39,3 +38,4 @@ numpy
 flake8
 tqdm
 pyyaml
+tables
