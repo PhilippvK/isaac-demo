@@ -117,7 +117,7 @@ python3 -m isaac_toolkit.session.create --session sess
 
 python3 -m isaac_toolkit.frontend.elf.riscv install/mlonmcu/temp/sessions/latest/runs/latest/generic_mlonmcu --session sess
 python3 -m isaac_toolkit.frontend.linker_map install/mlonmcu/temp/sessions/latest/runs/latest/mlif/generic/linker.map --session sess
-python3 -m isaac_toolkit.frontend.instr_trace.etiss install/mlonmcu/temp/sessions/latest/runs/latest/etiss_instrs.log --session sess
+python3 -m isaac_toolkit.frontend.instr_trace.etiss install/mlonmcu/temp/sessions/latest/runs/latest/etiss_instrs.log --session sess --operands
 python3 -m isaac_toolkit.frontend.memgraph.llvm_mir_cdfg --session sess --label $LABEL
 
 ```
@@ -129,7 +129,7 @@ python3 -m isaac_toolkit.analysis.static.dwarf --session sess
 python3 -m isaac_toolkit.analysis.static.llvm_bbs --session sess
 python3 -m isaac_toolkit.analysis.static.mem_footprint --session sess
 python3 -m isaac_toolkit.analysis.static.linker_map --session sess
-python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session sess
+python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session sess --imm-only
 python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess sess
 python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess sess
 python3 -m isaac_toolkit.analysis.dynamic.trace.basic_blocks --session sess
@@ -180,7 +180,7 @@ python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess sess --wor
 7. Combine candidates into ETISS core.
 
 ```sh
-python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir work --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zifencei" --auto-encoding --split --base-dir etiss_arch_riscv/rv_base/ --tum-dir etiss_arch_riscv
+python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir work --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zifencei" --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv
 
 # Investigate generated instruction set
 # cat work/XIsaac.core_desc
@@ -191,8 +191,44 @@ python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir 
 ```sh
 # TODO:
 # patch_llvm
+
+# locally (TODO)
+# TODO: prepare/build docker image
+
+# via docker (WIP)
+# TODO: replace hardcoded cfg paths
+mkdir work/docker/
+docker run -it --rm -v $(pwd):$(pwd) seal5-quickstart:minimal2 $(pwd)/work/docker/ $(pwd)/work/XIsaac.core_desc $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml
+
+
 # patch_etiss
+docker run -it --rm -v $(pwd):$(pwd) --entrypoint /work/etiss_script.sh seal5-quickstart:minimal2 $(pwd)/work/docker/ $(pwd)/work/XIsaacCore.core_desc
+
+
+# hls flow
+mkdir $(pwd)/work/docker/hls/
+sudo chmod 777 -R work/docker/hls
+mkdir $(pwd)/work/docker/hls/output
+docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) jhvjkcyyfdxghjk/isax-tools-integration-env "date && cd /isax-tools/nailgun && CONFIG_PATH=/work/git/isaac-demo/work/docker/hls/.config OUTPUT_PATH=/work/git/isaac-demo/work/docker/hls/output ISAXES=SQRT_STALL SIM_EN=n TB_PATH=/isax-tools/nailgun/../custom_tbs/sqrt.cpp TB_EXPECTED_PATH=/isax-tools/nailgun/../custom_tbs/sqrt_expected.txt CORE=VEX_4S SKIP_AWESOME_LLVM=y make ci"
+python3 collect_hls_metrics.py work/docker/hls/output --output work/docker/hls/hls_metrics.csv --print
+python3
+
+# synthesis flow
+# starting at 25 MHz (40ns period) clk
+cp work/docker/hls/output/ISAX_sqrt_stall.sv work/docker/hls/output/VexRiscv_4s
+docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) jhvjkcyyfdxghjk/isax-tools-integration-env "date && cd /isax-tools && volare enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af && python3 dse.py /work/git/isaac-demo/work/docker/hls/output/VexRiscv_4s/ /work/git/isaac-demo/work/docker/hls/syn_dir prj LEGACY 40 20 top clk"
+# TODO: pick best prj?
+PRJ="prj_LEGACY_38.46153846153847ns_30.0%"
+python3 collect_syn_metrics.py work/docker/hls/syn_dir/$PRJ --output work/docker/hls/syn_metrics.csv --print --min --rename
+# TODO: cleanup old!
 ```
+
+TODO: analyze seal5 reports
+TODO: run etiss tests
+TODO: collect hls metrics
+TODO: openlane flow
+TODO: cost/benefit analysis
+TODO: rtl sim (verilator)
 
 9. Test if everything still works?
 
