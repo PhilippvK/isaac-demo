@@ -1,4 +1,6 @@
 venv/
 install/
-sess/
-work/
+sess*/
+work*/
+run*/
+.ipynb_checkpoints/
