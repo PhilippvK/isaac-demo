@@ -39,3 +39,4 @@ flake8
 tqdm
 pyyaml
 tables
+jupyter
