@@ -36,6 +36,7 @@ MAPPING = {
     "period_ns": "Clock Period [ns]",
     "fclk_hz": "Clock Freq [Hz]",
     "fclk_mhz": "Clock Freq [MHz]",
+    "util": "FP Util",
 }
 
 parser = argparse.ArgumentParser(description="Collect metrics from High-level-Synthesis")
@@ -73,6 +74,7 @@ def parse_properties(name):
         "period_ns": period_ns,
         "fclk_hz": fclk_hz,
         "fclk_mhz": fclk_mhz,
+        "util": util,
     }
     return ret
 
