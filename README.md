@@ -85,25 +85,36 @@ Finally, the ISAAC toolkit itself deserves some words. ISAAC is fully-written in
 
 ### MLonMCU (ETISS RV64 + CoreMark)
 
-0. Define common settings.
+0. Define common settings and paths.
 
 ```sh
 # export MLONMCU_HOME=... (if not already done via . scripts/env.sh)
-LABEL=isaac-demo-$(date +%Y%m%dT%H%M%S)
+BENCH=coremark
+DATE=$(date +%Y%m%dT%H%M%S)
+LABEL=isaac-demo-$BENCH-$DATE
 STAGE=32  # 32 -> post finalizeisel/expandpseudos
+
+OUT_DIR_BASE=$(pwd)/out
+OUT_DIR=out/$BENCH/$DATE
+mkdir -p $OUT_DIR
+
+RUN=$OUT_DIR/run
+SESS=$OUT_DIR/sess
+WORK=$OUT_DIR/work
 ```
 
 1. First, we run a baseline benchmark without ISAAC extensions.
 
 ```sh
-python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm
+python3 -m mlonmcu.cli.main flow run $BENCH --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm --label $LABEL-baseline
 ```
 
 2. Now, we re-run the same experiment with tracing features enabled.
 
 ```sh
-python3 -m mlonmcu.cli.main flow run coremark --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=$LABEL -c memgraph_llvm_cdfg.stage=$STAGE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=1
+python3 -m mlonmcu.cli.main flow run $BENCH --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -f memgraph_llvm_cdfg -c memgraph_llvm_cdfg.session=$LABEL -c memgraph_llvm_cdfg.stage=$STAGE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=1 --label $LABEL-trace
 
+python3 -m mlonmcu.cli.main export --run -- $RUN
 ```
 
 3. We setup an ISAAC session and load all relevant files
@@ -113,39 +124,39 @@ Hints:
 - Make sure that the Memgraph Container hosting the graph database is up and running: `docker ps`
 
 ```sh
-python3 -m isaac_toolkit.session.create --session sess
+python3 -m isaac_toolkit.session.create --session $SESS
 
-python3 -m isaac_toolkit.frontend.elf.riscv install/mlonmcu/temp/sessions/latest/runs/latest/generic_mlonmcu --session sess
-python3 -m isaac_toolkit.frontend.linker_map install/mlonmcu/temp/sessions/latest/runs/latest/mlif/generic/linker.map --session sess
-python3 -m isaac_toolkit.frontend.instr_trace.etiss install/mlonmcu/temp/sessions/latest/runs/latest/etiss_instrs.log --session sess --operands
-python3 -m isaac_toolkit.frontend.memgraph.llvm_mir_cdfg --session sess --label $LABEL
+python3 -m isaac_toolkit.frontend.elf.riscv $RUN/generic_mlonmcu --session $SESS
+python3 -m isaac_toolkit.frontend.linker_map $RUN/mlif/generic/linker.map --session $SESS
+python3 -m isaac_toolkit.frontend.instr_trace.etiss $RUN/etiss_instrs.log --session $SESS --operands
+python3 -m isaac_toolkit.frontend.memgraph.llvm_mir_cdfg --session $SESS --label $LABEL
 
 ```
 
 4. Run the analysis and transform steps in ISAAC.
 
 ```sh
-python3 -m isaac_toolkit.analysis.static.dwarf --session sess
-python3 -m isaac_toolkit.analysis.static.llvm_bbs --session sess
-python3 -m isaac_toolkit.analysis.static.mem_footprint --session sess
-python3 -m isaac_toolkit.analysis.static.linker_map --session sess
-python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session sess --imm-only
-python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess sess
-python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess sess
-python3 -m isaac_toolkit.analysis.dynamic.trace.basic_blocks --session sess
-python3 -m isaac_toolkit.analysis.dynamic.trace.map_llvm_bbs_new --session sess
-python3 -m isaac_toolkit.analysis.dynamic.trace.track_used_functions --session sess
-python3 -m isaac_toolkit.backend.memgraph.annotate_bb_weights --session sess --label $LABEL
+python3 -m isaac_toolkit.analysis.static.dwarf --session $SESS
+python3 -m isaac_toolkit.analysis.static.llvm_bbs --session $SESS
+python3 -m isaac_toolkit.analysis.static.mem_footprint --session $SESS
+python3 -m isaac_toolkit.analysis.static.linker_map --session $SESS
+python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session $SESS --imm-only
+python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess $SESS
+python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess $SESS
+python3 -m isaac_toolkit.analysis.dynamic.trace.basic_blocks --session $SESS
+python3 -m isaac_toolkit.analysis.dynamic.trace.map_llvm_bbs_new --session $SESS
+python3 -m isaac_toolkit.analysis.dynamic.trace.track_used_functions --session $SESS
+python3 -m isaac_toolkit.backend.memgraph.annotate_bb_weights --session $SESS --label $LABEL
 ```
 
 5. Investigate and plot the ISAAC artifacts.
 
 ```sh
-tree sess/table
+tree $SESS/table
 # ...
-python3 -m isaac_toolkit.visualize.pie.runtime --sess sess --legend
-python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess sess --legend
-ls sess/plots
+python3 -m isaac_toolkit.visualize.pie.runtime --sess $SESS --legend
+python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess $SESS --legend
+ls $SESS/plots
 # ...
 ```
 
@@ -153,37 +164,37 @@ ls sess/plots
 
 ```sh
 # Create workdir
-mkdir -p work
+mkdir -p $WORK
 
 # Make choices (func_name + bb_name)
-python3 -m isaac_toolkit.generate.ise.choose_bbs --sess sess --threshold 0.9 --min-weight 0.05 --max-num 3 --force
+python3 -m isaac_toolkit.generate.ise.choose_bbs --sess $SESS --threshold 0.9 --min-weight 0.05 --max-num 3 --force
 
 # Look at choices
-python3 -m isaac_toolkit.utils.pickle_printer sess/table/choices.pkl
+python3 -m isaac_toolkit.utils.pickle_printer $SESS/table/choices.pkl
 
 # Generate candidates for custom instructions
-python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess sess --workdir work --label $LABEL --stage $STAGE
+python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess $SESS --workdir $WORK --label $LABEL --stage $STAGE
 
 # Check number of selected candidates per function
-# cat work/crcu16_%bb.0_0/pie.csv
+# cat $WORK/crcu16_%bb.0_0/pie.csv
 # ...
 
 # Investigate properties of selected candidates
-# less work/combined_index.yml
+# less $WORK/combined_index.yml
 
 # Lookup generated CDSL/Flat code
-# cat work/gen/name1.core_desc
-# cat work/gen/name1.flat
-# cat work/gen/name1.fuse_core_desc
+# cat $WORK/gen/name1.core_desc
+# cat $WORK/gen/name1.flat
+# cat $WORK/gen/name1.fuse_core_desc
 ```
 
 7. Combine candidates into ETISS core.
 
 ```sh
-python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir work --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zifencei" --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv
+python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess $SESS --workdir $WORK --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zicsr,zifencei" --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv
 
 # Investigate generated instruction set
-# cat work/XIsaac.core_desc
+# cat $WORK/XIsaac.core_desc
 ```
 
 8. Perform the retargeting of ETISS/LLVM.
@@ -197,29 +208,40 @@ python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess sess --workdir 
 
 # via docker (WIP)
 # TODO: replace hardcoded cfg paths
-mkdir work/docker/
-docker run -it --rm -v $(pwd):$(pwd) seal5-quickstart:minimal2 $(pwd)/work/docker/ $(pwd)/work/XIsaac.core_desc $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml
-
+mkdir -p $WORK/docker/
+docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $WORK/docker/ $WORK/XIsaac.core_desc $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
 
 # patch_etiss
-docker run -it --rm -v $(pwd):$(pwd) --entrypoint /work/etiss_script.sh seal5-quickstart:minimal2 $(pwd)/work/docker/ $(pwd)/work/XIsaacCore.core_desc
+docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-etiss:latest $WORK/docker/ $WORK/XIsaacCore.core_desc
+
+# TODO: fix or run etiss in docker?
+# rebuild etiss on host (due to libbost incompatibility in docker)
+# mkdir -p $WORK/docker/etiss_source
+# cd $WORK/docker/etiss_source
+# zip ../etiss_source.zip
+# cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$(pwd)/install
+# cmake --build build/ -j `nproc`
+# cmake --install build
+# cd -
 
 
 # hls flow
-mkdir $(pwd)/work/docker/hls/
-sudo chmod 777 -R work/docker/hls
-mkdir $(pwd)/work/docker/hls/output
-docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) jhvjkcyyfdxghjk/isax-tools-integration-env "date && cd /isax-tools/nailgun && CONFIG_PATH=/work/git/isaac-demo/work/docker/hls/.config OUTPUT_PATH=/work/git/isaac-demo/work/docker/hls/output ISAXES=SQRT_STALL SIM_EN=n TB_PATH=/isax-tools/nailgun/../custom_tbs/sqrt.cpp TB_EXPECTED_PATH=/isax-tools/nailgun/../custom_tbs/sqrt_expected.txt CORE=VEX_4S SKIP_AWESOME_LLVM=y make ci"
-python3 collect_hls_metrics.py work/docker/hls/output --output work/docker/hls/hls_metrics.csv --print
+cp $WORK/XIsaac.hls.core_desc /work/git/tuda/isax-tools-integration/nailgun/isaxes/isaac.core_desc  # TODO: do not hardcode
+# TODO: allow running the flow for multiple isaxes in parallel
+mkdir -p $WORK/docker/hls/
+sudo chmod 777 -R $WORK/docker/hls
+mkdir -p $WORK/docker/hls/output
+docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools/nailgun && CONFIG_PATH=$WORK/docker/hls/.config OUTPUT_PATH=$WORK/docker/hls/output ISAXES=ISAAC SIM_EN=n CORE=VEX_4S SKIP_AWESOME_LLVM=y make gen_config ci"
+python3 collect_hls_metrics.py $WORK/docker/hls/output --output $WORK/docker/hls/hls_metrics.csv --print
 python3
 
 # synthesis flow
 # starting at 25 MHz (40ns period) clk
-cp work/docker/hls/output/ISAX_sqrt_stall.sv work/docker/hls/output/VexRiscv_4s
-docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) jhvjkcyyfdxghjk/isax-tools-integration-env "date && cd /isax-tools && volare enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af && python3 dse.py /work/git/isaac-demo/work/docker/hls/output/VexRiscv_4s/ /work/git/isaac-demo/work/docker/hls/syn_dir prj LEGACY 40 20 top clk"
+cp $WORK/docker/hls/output/ISAX_sqrt_stall.sv $WORK/docker/hls/output/VexRiscv_4s
+docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools && volare enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af && python3 dse.py $WORK/docker/hls/output/VexRiscv_4s/ $WORK/docker/hls/syn_dir prj LEGACY 40 20 top clk"
 # TODO: pick best prj?
 PRJ="prj_LEGACY_38.46153846153847ns_30.0%"
-python3 collect_syn_metrics.py work/docker/hls/syn_dir/$PRJ --output work/docker/hls/syn_metrics.csv --print --min --rename
+python3 collect_syn_metrics.py $WORK/docker/hls/syn_dir/$PRJ --output $WORK/docker/hls/syn_metrics.csv --print --min --rename
 # TODO: cleanup old!
 ```
 
@@ -233,5 +255,8 @@ TODO: rtl sim (verilator)
 9. Test if everything still works?
 
 ```sh
-# TODO: !
+# python3 -m mlonmcu.cli.main flow run $BENCH --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm --label $LABEL-isaacnew -c etissvp.script=$WORK/docker/etiss_install/bin/run_helper.sh -c etiss.cpu_arch=XIsaacCore -c etiss.print_outputs=1 -c llvm.install_dir=$WORK/docker/llvm_source/build --config-gen _ --config-gen etiss.arch=rv32imfd_xisaac
+python3 -m mlonmcu.cli.main flow run $BENCH --target etiss -c run.export_optional=1 -c etiss.compressed=0 -c etiss.atomic=0 -c etiss.fpu=double -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm --label $LABEL-isaacnew -c etissvp.script=$WORK/docker/etiss_install/bin/run_helper.sh -c etiss.cpu_arch=XIsaacCore -c etiss.print_outputs=1 -c llvm.install_dir=$WORK/docker/llvm_install --config-gen _ --config-gen etiss.arch=rv32imfd_xisaac --post config2cols -c config2cols.limit=etiss.arch --post rename_cols -c rename_cols.mapping="{'config_etiss.arch': 'Arch'}"
+python3 -m mlonmcu.cli.main export --session -- ${RUN}_compare
+# TODO: -f global_isel
 ```
