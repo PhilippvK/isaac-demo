@@ -2,7 +2,7 @@
 
 set -e
 
-DIR=$1
+DIR=$(readlink -f $1)
 DATE=$(basename $DIR)
 BENCH=$(basename $(dirname $DIR))
 LABEL=isaac-demo-$BENCH-$DATE

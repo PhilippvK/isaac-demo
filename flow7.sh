@@ -15,4 +15,12 @@ SESS=$DIR/sess
 WORK=$DIR/work
 
 mkdir -p $WORK/docker/
-docker run -it --rm -v $(pwd):$(pwd) --entrypoint /work/etiss_script.sh seal5-quickstart:minimal2 $WORK/docker/ $WORK/XIsaacCore.core_desc
+docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-etiss:latest $WORK/docker/ $WORK/XIsaacCore.core_desc
+
+# mkdir -p $WORK/docker/etiss_source
+# cd $WORK/docker/etiss_source
+# unzip ../etiss_source.zip
+# cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$(pwd)/install
+# cmake --build build/ -j `nproc`
+# cmake --install build
+# cd -
