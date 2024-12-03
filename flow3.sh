@@ -14,9 +14,6 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
-python3 -m isaac_toolkit.visualize.pie.runtime --sess $SESS --legend
-python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess $SESS --legend
-
 # Create workdir
 mkdir -p $WORK
 
