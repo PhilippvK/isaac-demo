@@ -24,3 +24,5 @@ docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-etiss:latest $WORK/docker/
 # cmake --build build/ -j `nproc`
 # cmake --install build
 # cd -
+
+python3 scripts/locs_helper.py --seal5-diff-csv $WORK/docker/seal5_reports/diff.csv --etiss-patch-stat $WORK/docker/etiss_patch.stat --output $WORK/combined_locs.csv

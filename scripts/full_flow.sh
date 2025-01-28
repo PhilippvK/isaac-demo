@@ -86,37 +86,37 @@ measure_times() {
 }
 
 ### echo "RUN: flow.sh"
-### measure_times trace_0 $TIMES_FILE ./flow.sh $OUT_DIR
+### measure_times trace_0 $TIMES_FILE ./scripts/flow.sh $OUT_DIR
 ### # TODO split bench to different file
 ###
 ###
 ### echo "RUN: flow2.sh"
-### measure_times isaac_0_load $TIMES_FILE ./flow2.sh $OUT_DIR
+### measure_times isaac_0_load $TIMES_FILE ./scripts/flow2.sh $OUT_DIR
 ### # TODO split analyze to different file
 ###
 ### echo "RUN: flow3.sh"
-### measure_times isaac_0_pick $TIMES_FILE ./flow3.sh $OUT_DIR
-
-echo "RUN: flow4.sh"
-measure_times isaac_0_query $TIMES_FILE ./flow4.sh $OUT_DIR
-
+### measure_times isaac_0_pick $TIMES_FILE ./scripts/flow3.sh $OUT_DIR
+###
+### echo "RUN: flow4.sh"
+### measure_times isaac_0_query $TIMES_FILE ./scripts/flow4.sh $OUT_DIR
+###
 ### echo "RUN: flow5.sh"
-### measure_times isaac_0_etiss $TIMES_FILE ./flow5.sh $OUT_DIR
+### measure_times isaac_0_etiss $TIMES_FILE ./scripts/flow5.sh $OUT_DIR
 ###
 ### echo "RUN: flow6.sh"
-### measure_times seal5_0 $TIMES_FILE ./flow6.sh $OUT_DIR
+### measure_times seal5_0 $TIMES_FILE ./scripts/flow6.sh $OUT_DIR
 ###
 ### echo "RUN: flow7.sh"
-### measure_times m2isar_0 $TIMES_FILE ./flow7.sh $OUT_DIR
+### measure_times m2isar_0 $TIMES_FILE ./scripts/flow7.sh $OUT_DIR
 ###
 ### echo "RUN: flow8.sh"
-### measure_times hls_0 $TIMES_FILE ./flow8.sh $OUT_DIR
+measure_times hls_0 $TIMES_FILE ./scripts/flow8.sh $OUT_DIR
 ###
 ### echo "RUN: flow9.sh"
-### # measure_times syn_0 $TIMES_FILE ./flow9.sh $OUT_DIR
+### # measure_times syn_0 $TIMES_FILE ./scripts/flow9.sh $OUT_DIR
 ###
 ### echo "RUN: flow10.sh"
-### measure_times compare_0 $TIMES_FILE ./flow10.sh $OUT_DIR
+### measure_times compare_0 $TIMES_FILE ./scripts/flow10.sh $OUT_DIR
 ###
 ### echo "RUN: flow11.sh"
-### measure_times retrace_0 $TIMES_FILE ./flow11.sh $OUT_DIR
+### measure_times retrace_0 $TIMES_FILE ./scripts/flow11.sh $OUT_DIR

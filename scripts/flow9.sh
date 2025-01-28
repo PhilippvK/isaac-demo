@@ -29,4 +29,4 @@ PERIOD_NS=$(cat $WORK/docker/hls/syn_dir/best.csv | tail -1 | cut -d, -f2)
 FP_UTIL=$(cat $WORK/docker/hls/syn_dir/best.csv | tail -1 | cut -d, -f3)
 echo "PERIOD_NS=${PERIOD_NS}ns FP_UTIL=${FP_UTIL}%"
 PRJ="prj_LEGACY_${PERIOD_NS}ns_${FP_UTIL}%"
-python3 collect_syn_metrics.py $WORK/docker/hls/syn_dir/$PRJ --output $WORK/docker/hls/syn_metrics.csv --print --min --rename
+python3 scripts/collect_syn_metrics.py $WORK/docker/hls/syn_dir/$PRJ --output $WORK/docker/hls/syn_metrics.csv --print --min --rename

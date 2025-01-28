@@ -24,5 +24,6 @@ mkdir -p $WORK/docker/hls/
 sudo chmod 777 -R $WORK/docker/hls
 mkdir -p $WORK/docker/hls/output
 docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools/nailgun && CONFIG_PATH=$WORK/docker/hls/.config OUTPUT_PATH=$WORK/docker/hls/output ISAXES=ISAAC SIM_EN=n CORE=$CORE_NAME SKIP_AWESOME_LLVM=y make gen_config ci"
-python3 collect_hls_metrics.py $WORK/docker/hls/output --output $WORK/docker/hls/hls_metrics.csv --print
+python3 scripts/collect_hls_metrics.py $WORK/docker/hls/output --output $WORK/docker/hls/hls_metrics.csv --print
+python3 scripts/locs_helper.py --seal5-diff-csv $WORK/docker/seal5_reports/diff.csv --etiss-patch-stat $WORK/docker/etiss_patch.stat --hls-metrics-csv $WORK/docker/hls/hls_metrics.csv --output $WORK/combined_locs.csv
 sudo chmod 777 -R $WORK/docker/hls

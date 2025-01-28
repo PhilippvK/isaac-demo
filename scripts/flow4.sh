@@ -15,3 +15,5 @@ SESS=$DIR/sess
 WORK=$DIR/work
 
 python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess $SESS --workdir $WORK --label $LABEL --stage $STAGE
+
+python3 scripts/names_helper.py $WORK/combined_index.yml --output $WORK/names.csv
