@@ -40,3 +40,4 @@ tqdm
 pyyaml
 tables
 jupyter
+capstone
