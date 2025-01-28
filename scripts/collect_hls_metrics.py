@@ -29,6 +29,14 @@ if isax == "auto":
     yaml_file = yaml_files[0]
     isax = yaml_file.stem.split("_", 1)[-1]
 
+sv_file = directory / f"ISAX_{isax}.sv"
+assert sv_file.is_file()
+
+# print("sv_file", sv_file)
+
+with open(sv_file, "r") as file:
+    locs = file.read().count("\n")
+
 yaml_file = directory / f"ISAX_{isax}.yaml"
 assert yaml_file.is_file()
 
@@ -76,6 +84,7 @@ df = pd.DataFrame(yaml_data)
 instrs = df["instruction"].dropna().unique()
 df["latency"] = None
 
+
 for instr in instrs:
     stats_file = directory / f"PARAMS_{instr}_II_1.dot.stats"
     print("stats_file", stats_file)
@@ -98,12 +107,14 @@ for instr in instrs:
             instr2lat[cur_instr] = lat
             cur_instr = None
     # print("instr2lat", instr2lat)
-    
+
     for instr, lat in instr2lat.items():
         df.loc[df["instruction"] == instr, "latency"] = lat
 
 df.drop(columns=["last stage"], inplace=True)
 df.dropna(axis="rows", inplace=True)
+locs_df = pd.DataFrame([{"locs": locs}])
+df = pd.concat([df, locs_df])
 
 assert args.print_df or args.output is not None
 
