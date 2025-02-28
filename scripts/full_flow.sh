@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 set -e
 
 NOW=$(date +%Y%m%dT%H%M%S)
@@ -52,13 +53,22 @@ then
     exit 1
 fi
 
-echo "STEPS=$STEPS"
 
-if [[ "$STEPS" != "all" ]]
+if [[ "$STEPS" == "all" ]]
 then
-    echo "STEPS!=all not implemented"
-    exit 1
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_etiss;seal5_0;etiss_0;hls_0;syn_0;compare_0;compare_others_0;retrace_0;reanalyze_0"
+elif [[ "$STEPS" == "until_isaac" ]]
+then
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_etiss"
+elif [[ "$STEPS" == "all_skip_hls" ]]
+then
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_etiss;seal5_0;etiss_0;compare_0;compare_others_0;retrace_0;reanalyze_0"
+elif [[ "$STEPS" == "all_skip_syn" ]]
+then
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_etiss;seal5_0;etiss_0;hls_0;compare_0;compare_others_0;retrace_0;reanalyze_0"
 fi
+STEPS=($(echo $STEPS | tr ';' ' '|tr -s ' '))
+echo "STEPS=${STEPS[@]}"
 
 set -e
 
@@ -66,10 +76,12 @@ measure_times() {
     LABEL=$1
     OUT_FILE=$2
     shift 2
-    t0=$(printf "%f" $(($(date +%s%N)/1000000000)))
+    echo Executing: $@
+    t0=$(printf "%f" $(echo "scale=3; $(date +%s%N)/1000000000" | bc))
     "$@"
-    t1=$(printf "%f" $(($(date +%s%N)/1000000000)))
-    td=$(echo "$t1-$t0" | bc -l)
+    t1=$(printf "%f" $(echo "scale=2; $(date +%s%N)/1000000000" | bc))
+    # td=$(echo "$t1-$t0" | bc -l)
+    td=$(echo "scale=2; $t1-$t0" | bc)
     if [[ "$OUT_FILE" == "-" ]]
     then
         echo "label=$LABEL"
@@ -85,38 +97,72 @@ measure_times() {
     fi
 }
 
-### echo "RUN: flow.sh"
-### measure_times trace_0 $TIMES_FILE ./scripts/flow.sh $OUT_DIR
-### # TODO split bench to different file
-###
-###
-### echo "RUN: flow2.sh"
-### measure_times isaac_0_load $TIMES_FILE ./scripts/flow2.sh $OUT_DIR
-### # TODO split analyze to different file
-###
-### echo "RUN: flow3.sh"
-### measure_times isaac_0_pick $TIMES_FILE ./scripts/flow3.sh $OUT_DIR
-###
-### echo "RUN: flow4.sh"
-### measure_times isaac_0_query $TIMES_FILE ./scripts/flow4.sh $OUT_DIR
-###
-### echo "RUN: flow5.sh"
-### measure_times isaac_0_etiss $TIMES_FILE ./scripts/flow5.sh $OUT_DIR
-###
-### echo "RUN: flow6.sh"
-### measure_times seal5_0 $TIMES_FILE ./scripts/flow6.sh $OUT_DIR
-###
-### echo "RUN: flow7.sh"
-### measure_times m2isar_0 $TIMES_FILE ./scripts/flow7.sh $OUT_DIR
-###
-### echo "RUN: flow8.sh"
-measure_times hls_0 $TIMES_FILE ./scripts/flow8.sh $OUT_DIR
-###
-### echo "RUN: flow9.sh"
-### # measure_times syn_0 $TIMES_FILE ./scripts/flow9.sh $OUT_DIR
-###
-### echo "RUN: flow10.sh"
-### measure_times compare_0 $TIMES_FILE ./scripts/flow10.sh $OUT_DIR
-###
-### echo "RUN: flow11.sh"
-### measure_times retrace_0 $TIMES_FILE ./scripts/flow11.sh $OUT_DIR
+lookup_script() {
+    STEP=$1
+    if [[ "$STEP" == "bench_0" ]]
+    then
+        echo -n "./scripts/flow0.sh"
+    elif [[ "$STEP" == "trace_0" ]]
+    then
+        echo -n "./scripts/flow1.sh"
+    elif [[ "$STEP" == "isaac_0_load" ]]
+    then
+        echo -n "./scripts/flow2.sh"
+    elif [[ "$STEP" == "isaac_0_analyze" ]]
+    then
+        echo -n "./scripts/flow2_.sh"
+    elif [[ "$STEP" == "isaac_0_visualize" ]]
+    then
+        echo -n "./scripts/flow2_viz.sh"
+    elif [[ "$STEP" == "isaac_0_pick" ]]
+    then
+        echo -n "./scripts/flow3.sh"
+    elif [[ "$STEP" == "isaac_0_cdfg" ]]
+    then
+        echo -n "./scripts/flow3_.sh"
+    elif [[ "$STEP" == "isaac_0_query" ]]
+    then
+        echo -n "./scripts/flow4.sh"
+    elif [[ "$STEP" == "isaac_0_etiss" ]]
+    then
+        echo -n "./scripts/flow5.sh"
+    elif [[ "$STEP" == "seal5_0" ]]
+    then
+        echo -n "./scripts/flow6.sh"
+    elif [[ "$STEP" == "etiss_0" ]]
+    then
+        echo -n "./scripts/flow7.sh"
+    elif [[ "$STEP" == "hls_0" ]]
+    then
+        echo -n "./scripts/flow8.sh"
+    elif [[ "$STEP" == "syn_0" ]]
+    then
+        echo -n "./scripts/flow9.sh"
+    elif [[ "$STEP" == "compare_0" ]]
+    then
+        echo -n "./scripts/flow10.sh"
+    elif [[ "$STEP" == "compare_others_0" ]]
+    then
+        echo -n "./scripts/flow10_.sh"
+    elif [[ "$STEP" == "retrace_0" ]]
+    then
+        echo -n "./scripts/flow11.sh"
+    elif [[ "$STEP" == "reanalyze_0" ]]
+    then
+        echo -n "./scripts/flow12.sh"
+    elif [[ "$STEP" == "cleanup_0" ]]
+    then
+        echo -n "./scripts/flow13.sh"
+    else
+        echo "Lookup failed for step: $STEP" >&2
+        exit 1
+    fi
+
+}
+
+for step in "${STEPS[@]}"
+do
+   echo "Running step: $step"
+   script=$(lookup_script $step)
+   measure_times $step $TIMES_FILE $script $OUT_DIR
+done

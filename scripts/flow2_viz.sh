@@ -5,8 +5,6 @@ set -e
 DIR=$(readlink -f $1)
 DATE=$(basename $DIR)
 BENCH=$(basename $(dirname $DIR))
-LABEL=isaac-demo-$BENCH-$DATE
-STAGE=32  # 32 -> post finalizeisel/expandpseudos
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
@@ -22,5 +20,6 @@ then
     FORCE_ARGS="--force"
 fi
 
-# Make choices (func_name + bb_name)
-python3 -m isaac_toolkit.generate.ise.choose_bbs --sess $SESS --threshold 0.9 --min-weight 0.05 --max-num 10 $FORCE_ARGS
+python3 -m isaac_toolkit.visualize.pie.runtime --sess $SESS --legend $FORCE_ARGS
+python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess $SESS --legend $FORCE_ARGS
+python3 -m isaac_toolkit.visualize.pie.disass_counts --sess $SESS --legend $FORCE_ARGS
