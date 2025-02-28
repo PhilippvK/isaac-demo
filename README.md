@@ -16,12 +16,13 @@ git submodule update --init --recursive
 
 ### OS Packages
 
-This demo is supposed to be run on an Ubuntu/Debia-like operating system. WSL2 should work but was not tested!
+This demo is supposed to be run on an Ubuntu/Debian-like operating system. WSL2 should work but was not tested!
 
 In addition to the default development packages (CMake, build-essential,...), the following SW is required to run this demo:
 
 - Docker (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
 - Python v3.10
+- `poppler-utils` (for pdfunite command)
 
 ### Python
 
@@ -55,7 +56,7 @@ Executing `scripts/setup_mgclient.sh` should to perform all required steps.
 
 Our patched version of LLVM depends on the `mgclient` lib, hence that library has to be installed ion the previous step.
 
-We provide the `scripts/setup_llvm.sh` scrip[t which should allow you to install LLVM. This step will take a long time depending on your machine!
+We provide the `scripts/setup_llvm.sh` script which should allow you to install LLVM. This step will take a long time depending on your machine!
 
 ### ETISS
 
