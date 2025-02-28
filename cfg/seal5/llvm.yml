@@ -1,6 +1,5 @@
 llvm:
   ninja: true
-  num_threads: -1
   default_config: release
   state:
     version:
