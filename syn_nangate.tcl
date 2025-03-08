@@ -1,4 +1,4 @@
-# set ROOT_PATH      $env(ROOT_PATH)
+set ROOT_PATH      $env(ROOT_PATH)
 # set DESIGN_RTL_DIR $ROOT_PATH/rtl
 # set RISCV_PATH     $ROOT_PATH
 # set LONGNAIL_RTL_DIR /work/git/isaac-demo/out/nettle-aes/20241111T162222/work/docker/hls/syn_dir/prj_LEGACY_50.00000000000001ns_55.0%/src/
@@ -22,7 +22,7 @@ set_app_var template_parameter_style ""
 set search_path [ join "$TECHLIB_PATH $search_path" ]
 
 set synthetic_library dw_foundation.sldb
-source NangateOpenCell.dc_setup_synthesis.tcl
+source $ROOT_PATH/NangateOpenCell.dc_setup_synthesis.tcl
 set link_library [list $target_library $synthetic_library]
 
 # analyze -format sverilog -work work ${TECHLIB_PATH}/NangateOpenCellLibrary_cv32e40p_clock_gate.sv

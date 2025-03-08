@@ -1,56 +1,68 @@
+import os
 import argparse
 import tempfile
 import subprocess
 import threading
-import csv
+
+# import csv
 from queue import Queue
 from math import ceil
 from pathlib import Path
 import pandas as pd
 
+DIR = os.path.dirname(os.path.realpath(__file__))
+
 
 def run_asip_flow(clock_speed, core, pdk, rtl_src):
     """Invokes the ASIP design flow and returns the chip area or None if the frequency is too high."""
-    try:
-        # args = ["./fake_metrics.sh", str(clock_speed)]  # Adjust command as needed
-        with tempfile.TemporaryDirectory() as tmpdirname:
-            out_file = Path(tmpdirname) / "report.csv"
-            clock_period = 1000.0 / clock_speed
+    # args = ["./fake_metrics.sh", str(clock_speed)]  # Adjust command as needed
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        out_file = Path(tmpdirname) / "report.csv"
+        clock_period = 1000.0 / clock_speed
 
-            args = [
-                "./asip_syn_script.sh",
-                str(out_file),
-                str(rtl_src),
-                core,
-                pdk,
-                str(clock_period),
-            ]  # Adjust command as needed
-            print(">", " ".join(args))
-            # input(">>>")
-            # result = subprocess.run(
-            _ = subprocess.run(
-                args,
-                capture_output=True,
-                text=True,
-                check=True,
-                cwd=tmpdirname,
-            )
-            # output = result.stdout.strip()
-            # chip_area = float(output)  # Assuming the script returns the chip area as a float
-            df = pd.read_csv(out_file)
-            print("df", df)
-            assert len(df) == 1
-            total_cell_area = df["total_cell_area"].iloc[0]
-            isax_area = df["isax_area"].iloc[0]
-            isax_area_rel = df["isax_area_rel"].iloc[0]
-            status = df["status"].iloc[0]
-            # if status != "MET":
-            #     return None, None
-            # slack = df["slack"]
-            return total_cell_area, isax_area, isax_area_rel, status
-    except subprocess.CalledProcessError as e:
-        # raise e
-        return None, None, None, "ERROR"
+        args = [
+            f"{DIR}/asip_syn_script.sh",
+            str(out_file),
+            str(rtl_src),
+            core,
+            pdk,
+            str(clock_period),
+        ]  # Adjust command as needed
+        print(">", " ".join(args))
+        # print("cwd", tmpdirname)
+        # input(">>>")
+        # result = subprocess.run(
+        try:
+            MAX_TRIES = 3
+            n_tries = MAX_TRIES
+            with open(Path(tmpdirname) / "out.log", "wb") as stdout, open(Path(tmpdirname) / "err.log", "wb") as stderr:
+                _ = subprocess.run(
+                    args,
+                    # capture_output=True,
+                    # text=True,
+                    check=True,
+                    stdout=stdout,
+                    stderr=stderr,
+                    cwd=tmpdirname,
+                )
+        except subprocess.CalledProcessError as e:
+            print("ERR", tmpdirname)
+            input("!!!")
+            # raise e
+            return None, None, None, "ERROR"
+        # output = result.stdout.strip()
+        # chip_area = float(output)  # Assuming the script returns the chip area as a float
+        df = pd.read_csv(out_file)
+        print("df", df)
+        assert len(df) == 1
+        total_cell_area = df["total_cell_area"].iloc[0]
+        isax_area = df["isax_area"].iloc[0]
+        isax_area_rel = df["isax_area_rel"].iloc[0]
+        status = df["status"].iloc[0]
+        # if status != "MET":
+        #     return None, None
+        # slack = df["slack"]
+    return total_cell_area, isax_area, isax_area_rel, status
 
 
 def evaluate_frequency(freq, core, pdk, rtl_src, queue, log_data):

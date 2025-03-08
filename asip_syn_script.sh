@@ -28,6 +28,8 @@ fi
 TEMP_DIR=$(mktemp -d)
 echo TEMP_DIR=$TEMP_DIR
 
+
+export ROOT_PATH=$ROOT_DIR
 export TECHLIB=${PDK}
 export TECHLIB_PATH=/work/git/syn/test_longnail_syn/syn/techlib
 export LONGNAIL_RTL_DIR=${RTL_DIR}
@@ -40,8 +42,10 @@ mkdir $LOG_DIR
 
 cp $CONSTRAINTS_FILE_DEFAULT $CONSTRAINTS_FILE
 
-dc_shell -f syn_nangate.tcl | tee $LOG_DIR/syn_nangate.log
+cd $TEMP_DIR
+dc_shell -f $ROOT_DIR/syn_nangate.tcl | tee $LOG_DIR/syn_nangate.log
+cd -
 
-python3 parse_area_report.py $LOG_DIR/report_area_hier.log > $TEMP_DIR/area.csv
-python3 parse_timing_report.py $LOG_DIR/report_timing.log > $TEMP_DIR/timing.csv
+python3 $ROOT_DIR/parse_area_report.py $LOG_DIR/report_area_hier.log > $TEMP_DIR/area.csv
+python3 $ROOT_DIR/parse_timing_report.py $LOG_DIR/report_timing.log > $TEMP_DIR/timing.csv
 paste -d"," $TEMP_DIR/area.csv $TEMP_DIR/timing.csv > $OUT_FILE
