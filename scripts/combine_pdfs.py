@@ -32,9 +32,7 @@ def main():
         for candidate_data in combined_index_data["candidates"]
     ]
     for i, pdf_file in enumerate(pdf_files):
-        print(i, pdf_file)
         if not pdf_file.is_file():
-            print("if")
             dot_file = dot_files[i]
             assert dot_file.is_file()
             dot2pdf_helper(dot_file, pdf_file)
