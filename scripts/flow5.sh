@@ -14,4 +14,6 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
-python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess $SESS --workdir $WORK --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zicsr,zifencei" --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv
+# python3 -m isaac_toolkit.generate.iss.generate_etiss_core --sess $SESS --workdir $WORK --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zicsr,zifencei" --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv
+# SESS currently unused
+python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --core-name XIsaacCore --set-name XIsaac --xlen 32 --semihosting --base-extensions "i,m,a,f,d,c,zicsr,zifencei" --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv
