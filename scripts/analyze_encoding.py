@@ -1,7 +1,9 @@
+import argparse
 from typing import Dict, Optional
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import yaml
 
 
 def enc_helper(enc_size, used_space):
@@ -178,3 +180,32 @@ def get_enc_score_df(enc_weights_df):
         lambda x: -1 if x["footprint"] > 1.0 else (1.0 - x["weight"]), axis=1
     )
     return score_df
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Extract dot files from index and merge graphs into single pdf")
+    parser.add_argument("index", help="Index yaml file")
+    parser.add_argument("-o", "--output", required=True, help="Output CSV file")
+    parser.add_argument("--enc-size", default=32, help="Encoding Size")
+    parser.add_argument("--score", default=None, help="Encoding Score output CSV file")
+    args = parser.parse_args()
+
+    with open(args.index, "r") as f:
+        combined_index_data = yaml.safe_load(f)
+
+    total_weight, weight_per_instr, footprint_per_instr, rest_weight, bits_per_instr = collect_weights(
+        combined_index_data, enc_size=args.enc_size
+    )
+    total_enc_metrics_data = {"total_weight": total_weight}
+    total_enc_metrics_df = pd.DataFrame([total_enc_metrics_data])
+    assert args.output is not None
+    total_enc_metrics_df.to_csv(args.output, index=False)
+
+    if args.score is not None:
+        enc_weights_df = get_enc_weights_df(total_weight, weight_per_instr, bits_per_instr, footprint_per_instr)
+        enc_score_df = get_enc_score_df(enc_weights_df)
+        enc_score_df.to_csv(args.score, index=False)
+
+
+if __name__ == "__main__":
+    main()
