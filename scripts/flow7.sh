@@ -25,4 +25,17 @@ docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-etiss:latest $WORK/docker/
 # cmake --install build
 # cd -
 
-python3 scripts/locs_helper.py --seal5-diff-csv $WORK/docker/seal5_reports/diff.csv --etiss-patch-stat $WORK/docker/etiss_patch.stat --output $WORK/combined_locs.csv
+ARGS=""
+if [[ -f $WORK/docker/seal5_reports/diff.csv ]]
+then
+    ARGS="$ARGS --seal5-diff-csv $WORK/docker/seal5_reports/diff.csv"
+fi
+if [[ -f $WORK/docker/etiss_patch.stat ]]
+then
+    ARGS="$ARGS --etiss-patch-stat $WORK/docker/etiss_patch.stat"
+fi
+if [[ -f $WORK/docker/hls_metrics.csv ]]
+then
+    ARGS="$ARGS --hls-metrics-csv $WORK/docker/hls_metrics.csv"
+fi
+python3 scripts/locs_helper.py $ARGS --output $WORK/combined_locs.csv

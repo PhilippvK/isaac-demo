@@ -19,4 +19,17 @@ docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $WORK/docker/
 
 python3 scripts/seal5_score.py --output $WORK/seal5_score.csv --seal5-status-csv $WORK/docker/seal5_reports/status.csv --seal5-status-compact-csv $WORK/docker/seal5_reports/status_compact.csv
 
-python3 scripts/locs_helper.py --seal5-diff-csv $WORK/docker/seal5_reports/diff.csv --output $WORK/combined_locs.csv
+ARGS=""
+if [[ -f $WORK/docker/seal5_reports/diff.csv ]]
+then
+    ARGS="$ARGS --seal5-diff-csv $WORK/docker/seal5_reports/diff.csv"
+fi
+if [[ -f $WORK/docker/etiss_patch.stat ]]
+then
+    ARGS="$ARGS --etiss-patch-stat $WORK/docker/etiss_patch.stat"
+fi
+if [[ -f $WORK/docker/hls_metrics.csv ]]
+then
+    ARGS="$ARGS --hls-metrics-csv $WORK/docker/hls_metrics.csv"
+fi
+python3 scripts/locs_helper.py $ARGS --output $WORK/combined_locs.csv
