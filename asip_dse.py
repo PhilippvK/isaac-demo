@@ -2,7 +2,7 @@ import os
 import argparse
 import tempfile
 import subprocess
-import threading
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 # import csv
 from queue import Queue
@@ -11,6 +11,12 @@ from pathlib import Path
 import pandas as pd
 
 DIR = os.path.dirname(os.path.realpath(__file__))
+
+TIMEOUT = 60 * 10
+NUM_LICENSES = 16
+
+OLD_STEP_MULT = 1.5
+# OLD_STEP_MULT = 1.0
 
 
 def run_asip_flow(clock_speed, core, pdk, rtl_src):
@@ -33,8 +39,6 @@ def run_asip_flow(clock_speed, core, pdk, rtl_src):
         # input(">>>")
         # result = subprocess.run(
         try:
-            MAX_TRIES = 3
-            n_tries = MAX_TRIES
             with open(Path(tmpdirname) / "out.log", "wb") as stdout, open(Path(tmpdirname) / "err.log", "wb") as stderr:
                 _ = subprocess.run(
                     args,
@@ -46,8 +50,20 @@ def run_asip_flow(clock_speed, core, pdk, rtl_src):
                     cwd=tmpdirname,
                 )
         except subprocess.CalledProcessError as e:
-            print("ERR", tmpdirname)
-            input("!!!")
+            # print("ERR", tmpdirname)
+            # input("!!!")
+            # TODO: detect license limit
+            with open(Path(tmpdirname) / "out.log", "r") as f:
+                content = f.read()
+            # print("tmpdirname", tmpdirname)
+            # print("content", content)
+            if "Error: All 'Design-Compiler' licenses are in use. (SEC-50)" in content:
+                return None, None, None, "LIMIT"
+            print("content", content)
+            with open(Path(tmpdirname) / "err.log", "r") as f:
+                content2 = f.read()
+            print("content2", content2)
+            input("!")
             # raise e
             return None, None, None, "ERROR"
         # output = result.stdout.strip()
@@ -65,12 +81,10 @@ def run_asip_flow(clock_speed, core, pdk, rtl_src):
     return total_cell_area, isax_area, isax_area_rel, status
 
 
-def evaluate_frequency(freq, core, pdk, rtl_src, queue, log_data):
+def evaluate_frequency(freq, core, pdk, rtl_src):
     """Runs the ASIP flow for a single frequency and logs the result."""
     total_area, isax_area, isax_area_rel, status = run_asip_flow(freq, core, pdk, rtl_src)
-    log_data.append((freq, total_area, isax_area, isax_area_rel, status))
-    if status == "MET":
-        queue.put(freq)  # Store valid frequency
+    return total_area, isax_area, isax_area_rel, status
 
 
 def hierarchical_search(min_freq, max_freq, resolution, max_threads, log_data, core, pdk, rtl_src):
@@ -85,22 +99,53 @@ def hierarchical_search(min_freq, max_freq, resolution, max_threads, log_data, c
     known_freqs = set()
 
     while (step * max_threads) >= resolution:
-        threads = []
-        local_log = []  # Store local logs to avoid race conditions
-        for i in range(max_threads):
-            test_freq = min_freq_ + i * step
-            test_freq = min(test_freq, max_freq)
-            if test_freq in known_freqs:
-                continue
-            known_freqs.add(test_freq)
-            thread = threading.Thread(target=evaluate_frequency, args=(test_freq, core, pdk, rtl_src, queue, local_log))
-            threads.append(thread)
-            thread.start()
+        with ThreadPoolExecutor(max_threads) as executor:
+            freqs = []
+            for i in range(max_threads):
+                test_freq = min_freq_ + i * step
+                test_freq = min(test_freq, max_freq)
+                if test_freq in known_freqs:
+                    continue
+                known_freqs.add(test_freq)
+                freqs.append(test_freq)
+            print("freqs", freqs)
 
-        for thread in threads:
-            thread.join()
+            max_tries = 4
+            tries = 0
+            while len(freqs) > 0 and tries <= max_tries:
+                futures = {}
+                tries += 1
+                print("tries", tries)
+                for test_freq in freqs:
+                    future = executor.submit(evaluate_frequency, *(test_freq, core, pdk, rtl_src))
+                    futures[test_freq] = future
+                freqs = []
 
-        log_data.extend(local_log)  # Merge logs from all threads
+                for freq, future in futures.items():
+                    print("freq", freq)
+                    try:
+                        result = future.result(timeout=TIMEOUT)
+                        print("result", result)
+                        total_area, isax_area, isax_area_rel, status = result
+                        log_data.append((freq, total_area, isax_area, isax_area_rel, status))
+                        print("status", status)
+                        if status == "LIMIT":
+                            freqs.append(freq)
+                        elif status == "ERROR":
+                            pass
+                            # freqs.append(freq)
+                        elif status == "MET":
+                            queue.put(freq)  # Store valid frequency
+                    except TimeoutError:
+                        log_data.append((freq, None, None, None, "TIMEOUT"))
+                        continue
+                    if future.exception():
+                        print("exep")
+                        freqs.append(freq)
+                    # else:
+                    #     assert False, "not handled"
+                if len(freqs) > 0:
+                    print(f"RETRY {len(freqs)} runs: {freqs}")
 
         # Find the highest valid frequency from this level
         best_freqs = [queue.get() for _ in range(queue.qsize())]
@@ -110,7 +155,9 @@ def hierarchical_search(min_freq, max_freq, resolution, max_threads, log_data, c
         best_freq = max(best_freqs)
 
         min_freq_ = best_freq  # Continue searching in the highest valid region
-        max_freq_ = min_freq_ + step  # Narrow down the range
+        # new_step = step
+        new_step = step * OLD_STEP_MULT
+        max_freq_ = min_freq_ + new_step  # Narrow down the range
         min_freq_ = (min_freq_ // resolution) * resolution
         min_freq_ += resolution
         max_freq_ -= resolution
@@ -148,6 +195,9 @@ def main():
     parser.add_argument("--core", type=str, default="VEX_5S", help="RTL core")
     parser.add_argument("--pdk", type=str, default="NangateOpenCellLibrary", help="PDK techlib")
     args = parser.parse_args()
+
+    if args.threads > NUM_LICENSES:
+        print(f"WARNING: using more threads ({args.threads}) than available licenses ({NUM_LICENSES})!")
 
     log_data = []
     max_feasible_clock = hierarchical_search(

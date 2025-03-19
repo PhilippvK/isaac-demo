@@ -46,6 +46,16 @@ cd $TEMP_DIR
 dc_shell -f $ROOT_DIR/syn_nangate.tcl | tee $LOG_DIR/syn_nangate.log
 cd -
 
+if [[ ! -f $LOG_DIR/report_area_hier.log ]]
+then
+    echo "Could not find: $LOG_DIR/report_area_hier.log"
+    exit 3
+elif [[ ! -f $LOG_DIR/report_timing.log ]]
+then
+    echo "Could not find: $LOG_DIR/report_timing.log"
+    exit 4
+fi
+
 python3 $ROOT_DIR/parse_area_report.py $LOG_DIR/report_area_hier.log > $TEMP_DIR/area.csv
 python3 $ROOT_DIR/parse_timing_report.py $LOG_DIR/report_timing.log > $TEMP_DIR/timing.csv
 paste -d"," $TEMP_DIR/area.csv $TEMP_DIR/timing.csv > $OUT_FILE
