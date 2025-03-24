@@ -16,6 +16,8 @@ WORK=$DIR/work
 
 mkdir -p $WORK/docker/
 docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-etiss:latest $WORK/docker/ $WORK/XIsaacCore.core_desc
+# NEW:
+# python3 -m isaac_toolkit.retargeting.iss.etiss --sess $SESS --workdir $WORK --core-name XIsaacCore --docker
 
 # mkdir -p $WORK/docker/etiss_source
 # cd $WORK/docker/etiss_source

@@ -30,3 +30,6 @@ FP_UTIL=$(cat $WORK/docker/hls/syn_dir/best.csv | tail -1 | cut -d, -f3)
 echo "PERIOD_NS=${PERIOD_NS}ns FP_UTIL=${FP_UTIL}%"
 PRJ="prj_LEGACY_${PERIOD_NS}ns_${FP_UTIL}%"
 python3 scripts/collect_syn_metrics.py $WORK/docker/hls/syn_dir/$PRJ --output $WORK/docker/hls/syn_metrics.csv --print --min --rename
+# NEW:
+# python3 -m isaac_toolkit.eval.ise.asip_syn.ol2 --sess $SESS --workdir $WORK --set-name XIsaac --docker --core $CORE_NAME --pdk sky130
+# python3 -m isaac_toolkit.eval.ise.asip_syn.synopsys --sess $SESS --workdir $WORK --set-name XIsaac --docker --core $CORE_NAME --pdk nangate45

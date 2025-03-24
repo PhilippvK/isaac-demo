@@ -41,6 +41,8 @@ python3 -m isaac_toolkit.analysis.static.dwarf --session $SESS2 $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.static.llvm_bbs --session $SESS2 $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.static.mem_footprint --session $SESS2 $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.static.linker_map --session $SESS2 $FORCE_ARGS
+python3 -m isaac_toolkit.analysis.dynamic.trace.trunc_trace --session $SESS2 --start-func mlonmcu_run $FORCE_ARGS
+python3 -m isaac_toolkit.analysis.dynamic.trace.trunc_trace --session $SESS2 --end-func stop_bench $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session $SESS2 --imm-only $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess $SESS2 $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess $SESS2 $FORCE_ARGS
@@ -53,3 +55,10 @@ python3 -m isaac_toolkit.analysis.dynamic.trace.track_used_functions --session $
 python3 -m isaac_toolkit.visualize.pie.runtime --sess $SESS2 --legend $FORCE_ARGS
 python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess $SESS2 --legend $FORCE_ARGS
 python3 -m isaac_toolkit.visualize.pie.disass_counts --sess $SESS2 --legend $FORCE_ARGS
+
+# NEW:
+python3 -m isaac_toolkit.eval.ise.util --sess $SESS2 --names-csv $WORK/names.csv $FORCE_ARGS
+python3 -m isaac_toolkit.eval.ise.compare_bench --sess $SESS --report $REPORT_COMPARE --mem-report $REPORT_COMPARE_MEM $FORCE_ARGS
+python3 -m isaac_toolkit.eval.ise.compare_sess --sess $SESS2 --with $SESS $FORCE_ARGS
+# python3 -m isaac_toolkit.eval.ise.score.total --sess $SESS2
+# python3 -m isaac_toolkit.eval.ise.summary --sess $SESS2  # -> combine all data into single table/plot/pdf?
