@@ -4,9 +4,9 @@ then
     exit 1
 fi
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-# TOP_DIR=$(dirname $SCRIPT_DIR)
-TOP_DIR=$SCRIPT_DIR
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/scripts
+TOP_DIR=$(dirname $SCRIPT_DIR)
+# TOP_DIR=$SCRIPT_DIR
 export VENV_DIR=$TOP_DIR/venv
 export INSTALL_DIR=$TOP_DIR/install
 export GNU_DIR=$INSTALL_DIR/gnu
@@ -28,3 +28,6 @@ export MLONMCU_HOME=$INSTALL_DIR/mlonmcu
 export MGCLIENT_LIB_DIR=$INSTALL_DIR/mgclient/lib
 export LD_LIBRARY_PATH=${MGCLIENT_LIB_DIR}:$LD_LIBRARY_PATH
 export PATH=$GNU_DIR/bin:$LLVM_INSTALL_DIR/bin:$ETISS_INSTALL_DIR/bin:$PATH
+
+DEFAULTS_FILE=$SCRIPT_DIR/defaults.env
+source $DEFAULTS_FILE
