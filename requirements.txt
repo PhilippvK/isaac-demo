@@ -41,3 +41,4 @@ pyyaml
 tables
 jupyter
 capstone
+kconfiglib
