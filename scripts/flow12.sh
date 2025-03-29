@@ -6,7 +6,6 @@ DIR=$(readlink -f $1)
 DATE=$(basename $DIR)
 BENCH=$(basename $(dirname $DIR))
 LABEL=isaac-demo-$BENCH-$DATE
-STAGE=32  # 32 -> post finalizeisel/expandpseudos
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
@@ -14,11 +13,13 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
-# echo "$WORK/docker/llvm_install"
-# sleep 10
-
 RUN2=${RUN}_new
 SESS2=${SESS}_new
+
+RUN_COMPARE=${RUN}_compare
+RUN_COMPARE_MEM=${RUN}_compare_mem
+REPORT_COMPARE=$RUN_COMPARE/report.csv
+REPORT_COMPARE_MEM=$RUN_COMPARE_MEM/report.csv
 
 echo "!=$RUN2/generic_mlonmcu"
 

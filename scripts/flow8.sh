@@ -6,7 +6,6 @@ DIR=$(readlink -f $1)
 DATE=$(basename $DIR)
 BENCH=$(basename $(dirname $DIR))
 LABEL=isaac-demo-$BENCH-$DATE
-STAGE=32  # 32 -> post finalizeisel/expandpseudos
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 

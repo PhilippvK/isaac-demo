@@ -6,10 +6,6 @@ DIR=$(readlink -f $1)
 DATE=$(basename $DIR)
 BENCH=$(basename $(dirname $DIR))
 LABEL=isaac-demo-$BENCH-$DATE
-STAGE=32  # 32 -> post finalizeisel/expandpseudos
-# STAGE=64  # 64 -> pre/post regalloc
-# STAGE=128  # 64 -> post machine-sink
-# STAGE=256  # 64 -> pre virtregrewriter
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
@@ -20,7 +16,9 @@ WORK=$DIR/work
 # Create workdir
 mkdir -p $WORK
 
-PURGE_DB=${FORCE_PURGE_DB:-0}
+STAGE=${CDFG_STAGE:-32}
+# PURGE_DB=${FORCE_PURGE_DB:-0}
+PURGE_DB=0
 
 # Make choices (func_name + bb_name)
 if [[ "$PURGE_DB" == "1" ]]

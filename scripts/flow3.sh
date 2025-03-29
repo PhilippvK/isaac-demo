@@ -6,7 +6,6 @@ DIR=$(readlink -f $1)
 DATE=$(basename $DIR)
 BENCH=$(basename $(dirname $DIR))
 LABEL=isaac-demo-$BENCH-$DATE
-STAGE=32  # 32 -> post finalizeisel/expandpseudos
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
@@ -15,6 +14,12 @@ SESS=$DIR/sess
 WORK=$DIR/work
 
 FORCE_ARGS=""
+
+MIN_SUPPORTED=${CHECK_POTENTIAL_MIN_SUPPORTED:-0.15}
+
+THRESHOLD=${CHOOSE_BB_THRESHOLD:-0.9}
+MIN_WEIGHT=${CHOOSE_BB_MIN_WEIGHT:-0.05}
+MAX_NUM=${CHOOSE_BB_MAX_NUM:-10}
 
 FORCE=1
 if [[ "$FORCE" == "1" ]]
