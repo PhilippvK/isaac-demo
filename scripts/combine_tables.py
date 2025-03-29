@@ -1,102 +1,420 @@
 # TODO
 
+import ast
 import argparse
+import configparser
 from pathlib import Path
 
+import yaml
 import pandas as pd
 
 parser = argparse.ArgumentParser(description="Generate Summary for multiple experiments")
-parser.add_argument("sess_dir", nargs="+", help="Report CSV file")
+parser.add_argument("experiment", nargs="+", help="Experiment directories")
 parser.add_argument("-o", "--output", default=None, help="Output file")
 parser.add_argument("--print-df", action="store_true", help="Print DataFrame")
 args = parser.parse_args()
 
-sess_dirs = args.sess_dir
+exp_dirs = args.experiment
 
 
-def create_sess_df(sess_dir):
-    sess_name = sess_dir.name
+def get_status(is_incomplete: bool, is_failing: bool, is_skipped: bool, is_unsuitable: bool, is_empty: bool):
+    if is_skipped:
+        return "skipped"
+    if is_unsuitable:
+        return "unsuitable"
+    if is_empty:
+        return "empty"
+    if is_failing:
+        return "failing"
+    if is_incomplete:
+        return "incomplete"
+    return "ok"
+
+
+def read_experiment_ini(experiment_ini: Path):
+    config = configparser.ConfigParser()
+    config.read(experiment_ini)
+    experiments = config.sections()
+    assert len(experiments) > 0, f"No experiments found: {experiment_ini}"
+    assert len(experiments) == 1, f"Multiple experiments found: {experiment_ini}"
+    exp = experiments[0]
+    exp_config = config[exp]
+    # print("exp_config", exp_config, dict(exp_config))
+    bench_name = exp_config["benchmark"]
+    datetime = exp_config["datetime"]
+    comment = exp_config.get("comment", "").lstrip('"').rstrip('"').lstrip("'").rstrip("'")
+    ignore = exp_config.get("ignore", False)
+    if not isinstance(ignore, bool):
+        ignore = str(ignore).strip().lower()
+        if ignore in ["true", "yes", "y", "t", "1", "on"]:
+            ignore = True
+        elif ignore in ["false", "no", "n", "f", "0", "off"]:
+            ignore = False
+        else:
+            raise ValueError(f"Unhandled: {ignore}")
+    return exp, bench_name, datetime, comment, ignore
+
+
+def read_env_file(env_file: Path):
+    with open(env_file, "r") as f:
+        content = f.read()
+    cfg = {}
+    for line in content.splitlines():
+        line = line.strip()
+        if "=" not in line:
+            continue
+        key, val = line.split("=", 1)
+        cfg[key] = val
+    return cfg
+
+
+def create_exp_df(exp_dir):
+    experiment_ini = exp_dir / "experiment.ini"
+    experiment, bench_name, datetime, comment, is_ignored = read_experiment_ini(experiment_ini)
+    if is_ignored:
+        return None
+    env_file = exp_dir / "vars.env"
+    cfg = read_env_file(env_file)
+    # sess_name = exp_dir.name
     # print("sess_name", sess_name)
     # TODO: fix this (put name in sess dir!)
-    bench_name = str(sess_dir.parent).split("out/", 1)[-1]
+    # bench_name = str(exp_dir.parent).split("out/", 1)[-1]
     # print("bench_name", bench_name)
-    ret = pd.DataFrame([{"benchmark": bench_name, "session": sess_name}])
-
-    times_csv = sess_dir / "times.csv"
-    times_df = pd.read_csv(times_csv)
-    # print("times_df", times_df)
-    times_row = times_df.groupby("label")["td"].last().to_frame("x").T.reset_index().add_prefix("time_")
-    # print("times_row", times_row)
-    ret = pd.concat([ret, times_row], axis=1)
-
-    compare_csv = sess_dir / "run" / "compare.csv"  # TODO: move!
-    compare_df = pd.read_csv(compare_csv)
-    # print("compare_df", compare_df)
-    base_row = compare_df.iloc[0]
-    isaac_row = compare_df.iloc[1]
-    base_run_instrs = base_row["Run Instructions"]
-    isaac_run_instrs = isaac_row["Run Instructions"]
-    rel_run_instrs = isaac_row["Run Instructions (rel.)"]
-    base_rom_code = base_row["ROM code"]
-    isaac_rom_code = isaac_row["ROM code"]
-    rel_rom_code = isaac_row["ROM code (rel.)"]
-    compare_row = pd.DataFrame(
+    ret = pd.DataFrame(
         [
             {
-                "base_run_instrs": base_run_instrs,
-                "isaac_run_instrs": isaac_run_instrs,
-                "rel_run_instrs": rel_run_instrs,
-                "base_rom_code": base_rom_code,
-                "isaac_run_code": isaac_rom_code,
-                "rel_run_code": rel_rom_code,
+                "benchmark": bench_name,
+                "datetime": datetime,
+                "experiment": experiment,
+                "cfg": cfg,
+                "comment": comment,
+                "status": "unknown",
+                "missing": "",
             }
         ]
     )
-    ret = pd.concat([ret, compare_row], axis=1)
+    missing_files = set()
 
-    # TODO: choices metrics
-    # TODO: query metrics
-    # TODO: index metrics
-    # TODO: encoding metrics
+    is_skipped = False
+    if (exp_dir / "skip.txt").is_file():
+        is_skipped = True
+    is_unsuitable = False
+    if (exp_dir / "unsuitable.txt").is_file():
+        is_unsuitable = True
+    if (exp_dir / "unsuitable2.txt").is_file():
+        is_unsuitable = True
+    is_empty = False
+    if (exp_dir / "empty.txt").is_file():
+        is_empty = True
+    is_failing = False
+    if (exp_dir / "failing.txt").is_file():
+        is_failing = True
 
-    ise_util_pkl = sess_dir / "sess_new" / "table" / "ise_util.pkl"
-    ise_util_df = pd.read_pickle(ise_util_pkl)
-    # print("ise_util_df", ise_util_df)
-    agg_ise_util_df = ise_util_df[pd.isna(ise_util_df["instr"])].iloc[0]
-    # print("agg_ise_util_df", agg_ise_util_df)
-    n_ise_instrs = agg_ise_util_df["n_total"]
-    n_ise_used_static = agg_ise_util_df["n_used_static"]
-    n_ise_used_static_rel = agg_ise_util_df["n_used_static_rel"]
-    n_ise_used_dynamic = agg_ise_util_df["n_used_dynamic"]
-    n_ise_used_dynamic_rel = agg_ise_util_df["n_used_dynamic_rel"]
-    util_row = pd.DataFrame(
-        [
-            {
-                "n_ise_instrs": n_ise_instrs,
-                "n_ise_used_static": n_ise_used_static,
-                "n_ise_used_static_rel": n_ise_used_static_rel,
-                "n_ise_used_dynamic": n_ise_used_dynamic,
-                "n_ise_used_dynamic_rel": n_ise_used_dynamic_rel,
-            }
-        ]
+    if not is_skipped:
+        times_csv = exp_dir / "times.csv"
+        if times_csv.is_file():
+            times_df = pd.read_csv(times_csv)
+            # print("times_df", times_df)
+            times_row = times_df.groupby("label")["td"].last().to_frame("x").T.reset_index().add_prefix("time_")
+            # print("times_row", times_row, times_row.columns)
+            times_row.drop(columns=["time_index"], inplace=True)
+            time_total = times_row.sum(axis=1).iloc[0]
+            times_row["time_total"] = time_total
+            # print("time_total", time_total)
+            # input("!")
+            ret = pd.concat([ret, times_row], axis=1)
+            # print("ret", ret, ret.columns)
+        else:
+            missing_files.add(times_csv)
+
+        compare_csv = exp_dir / "compare.csv"
+        if compare_csv.is_file():
+            compare_df = pd.read_csv(compare_csv)
+            # print("compare_df", compare_df)
+            base_row = compare_df.iloc[0]
+            isaac_row = compare_df.iloc[1]
+            base_run_instrs = base_row["Run Instructions"]
+            isaac_run_instrs = isaac_row["Run Instructions"]
+            rel_run_instrs = isaac_row["Run Instructions (rel.)"]
+            base_rom_code = base_row["ROM code"]
+            isaac_rom_code = isaac_row["ROM code"]
+            rel_rom_code = isaac_row["ROM code (rel.)"]
+            compare_row = pd.DataFrame(
+                [
+                    {
+                        "base_run_instrs": base_run_instrs,
+                        "isaac_run_instrs": isaac_run_instrs,
+                        "rel_run_instrs": rel_run_instrs,
+                        "base_rom_code": base_rom_code,
+                        "isaac_run_code": isaac_rom_code,
+                        "rel_run_code": rel_rom_code,  # TODO: -> rel_rom_code
+                    }
+                ]
+            )
+            ret = pd.concat([ret, compare_row], axis=1)
+        else:
+            missing_files.add(compare_csv)
+
+        ise_potential_pkl = exp_dir / "sess" / "table" / "ise_potential.pkl"
+        if ise_potential_pkl.is_file():
+            ise_potential_df = pd.read_pickle(ise_potential_pkl)
+            assert len(ise_potential_df) == 1
+
+            supported_opcodes_rel_count = ise_potential_df["supported_rel_count"].iloc[0]
+            unsupported_opcodes_rel_count = ise_potential_df["unsupported_rel_count"].iloc[0]
+            ise_potential_row = pd.DataFrame(
+                [
+                    {
+                        "supported_opcodes_rel_count": supported_opcodes_rel_count,
+                        "unsupported_opcodes_rel_count": unsupported_opcodes_rel_count,
+                    }
+                ]
+            )
+            ret = pd.concat([ret, ise_potential_row], axis=1)
+        else:
+            missing_files.add(ise_potential_pkl)
+
+        choices_pkl = exp_dir / "sess" / "table" / "choices.pkl"
+        if choices_pkl.is_file():
+            choices_df = pd.read_pickle(choices_pkl)
+            num_choices = len(choices_df)
+            if num_choices > 0:
+                choices_sum_weights = choices_df["rel_weight"].sum()
+                choices_sum_num_instrs = choices_df["num_instrs"].sum()
+                max_num_instrs = choices_df["num_instrs"].max()
+                max_allowed_bb_size = 200
+                choices_too_large_df = choices_df[choices_df["num_instrs"] > max_allowed_bb_size]
+                num_too_large_bbs = len(choices_too_large_df)
+                choices_num_left = num_choices - num_too_large_bbs
+            else:
+                choices_sum_weights = 0
+                choices_sum_num_instrs = 0
+                max_num_instrs = 0
+                num_too_large_bbs = 0
+                choices_num_left = 0
+
+            choices_row = pd.DataFrame(
+                [
+                    {
+                        "choices_count": num_choices,
+                        "choices_sum_weights": choices_sum_weights,
+                        "choices_sum_num_instrs": choices_sum_num_instrs,
+                        "choices_max_num_instrs": max_num_instrs,
+                        "choices_num_too_large_bbs": num_too_large_bbs,
+                        "choices_num_left": choices_num_left,
+                    }
+                ]
+            )
+            ret = pd.concat([ret, choices_row], axis=1)
+        else:
+            missing_files.add(choices_pkl)
+
+        combined_query_metrics_csv = exp_dir / "work" / "combined_query_metrics.csv"
+        # TODO: consider max_results
+        if combined_query_metrics_csv.is_file():
+            try:
+                combined_query_metrics_df = pd.read_csv(combined_query_metrics_csv)
+                query_num_rows_sum = combined_query_metrics_df["num_rows"].sum()
+                query_num_rows_max = combined_query_metrics_df["num_rows"].max()
+                query_num_nodes_sum = combined_query_metrics_df["num_nodes"].sum()
+                query_num_nodes_max = combined_query_metrics_df["num_nodes"].max()
+                query_num_edges_sum = combined_query_metrics_df["num_edges"].sum()
+                query_num_edges_max = combined_query_metrics_df["num_edges"].max()
+            except pd.errors.EmptyDataError:
+                query_num_rows_sum = 0
+                query_num_rows_max = 0
+                query_num_nodes_sum = 0
+                query_num_nodes_max = 0
+                query_num_edges_sum = 0
+                query_num_edges_max = 0
+            query_row = pd.DataFrame(
+                [
+                    {
+                        "query_num_rows_sum": query_num_rows_sum,
+                        "query_num_rows_max": query_num_rows_max,
+                        "query_num_nodes_sum": query_num_nodes_sum,
+                        "query_num_nodes_max": query_num_nodes_max,
+                        "query_num_edges_sum": query_num_edges_sum,
+                        "query_num_edges_max": query_num_edges_max,
+                    }
+                ]
+            )
+            ret = pd.concat([ret, query_row], axis=1)
+        else:
+            missing_files.add(combined_query_metrics_csv)
+
+        # overlaps metrics
+        overlaps_csv = exp_dir / "work" / "overlaps.csv"
+        if overlaps_csv.is_file():
+            try:
+                overlaps_df = pd.read_csv(overlaps_csv)
+                overlaps_df = overlaps_df[overlaps_df["nodes"] != "set()"]
+
+                overlaps_df["nodes"] = overlaps_df["nodes"].apply(ast.literal_eval)
+                # print("overlaps_df", overlaps_df)
+                # input(">>>")
+                duplicate_candidates = set().union(*overlaps_df["nodes"].values)
+                # print("duplicates", duplicate_candidates)
+                num_duplicate_candidates = len(duplicate_candidates)
+                # duplicates = "?"
+            except pd.errors.EmptyDataError:
+                num_duplicate_candidates = 0
+                pass
+            overlaps_row = pd.DataFrame([{"num_duplicate_candidates": num_duplicate_candidates}])
+            ret = pd.concat([ret, overlaps_row], axis=1)
+        else:
+            missing_files.add(overlaps_csv)
+
+        # TODO: index metrics
+        combined_index_yaml = exp_dir / "work" / "combined_index.yml"
+        num_combined_candidates = None
+        if combined_index_yaml.is_file():
+            with open(combined_index_yaml, "r") as f:
+                combined_index_data = yaml.safe_load(f)
+            temp = combined_index_data["global"]["properties"]
+            filtered = list(filter(lambda x: x["candidate_count"] > 0, temp))
+            func_bbs_with_candidates = [(x["func"], x["bb"]) for x in filtered]
+            func_bbs_with_candidates_weights = [
+                choices_df.where((choices_df["func_name"] == x[0]) & (choices_df["bb_name"] == x[1]))
+                .dropna()["rel_weight"]
+                .sum()
+                for x in func_bbs_with_candidates
+            ]
+            used_bbs_count = len(filtered)
+            used_bbs_weights_sum = sum(func_bbs_with_candidates_weights)
+            candidates = combined_index_data["candidates"]
+            num_combined_candidates = len(candidates)
+            num_total_candidates = num_combined_candidates + num_duplicate_candidates
+            num_duplicate_candidates_rel = (
+                num_duplicate_candidates / num_total_candidates if num_total_candidates > 0 else None
+            )
+            index_row = pd.DataFrame(
+                [
+                    {
+                        "num_duplicate_candidates_rel": num_duplicate_candidates_rel,
+                        "num_total_candidates": num_total_candidates,
+                        "num_combined_candidates": num_combined_candidates,
+                        "used_bbs_count": used_bbs_count,
+                        "used_bbs_weights_sum": used_bbs_weights_sum,
+                    }
+                ]
+            )
+            ret = pd.concat([ret, index_row], axis=1)
+        else:
+            missing_files.add(combined_index_yaml)
+
+        # TODO: encoding metrics
+
+        ise_util_pkl = exp_dir / "sess_new" / "table" / "ise_util.pkl"
+        if ise_util_pkl.is_file():
+            ise_util_df = pd.read_pickle(ise_util_pkl)
+            # print("ise_util_df", ise_util_df)
+            agg_ise_util_df = ise_util_df[pd.isna(ise_util_df["instr"])].iloc[0]
+            # print("agg_ise_util_df", agg_ise_util_df)
+            n_ise_instrs = agg_ise_util_df["n_total"]
+            n_ise_used_static = agg_ise_util_df["n_used_static"]
+            n_ise_used_static_rel = agg_ise_util_df["n_used_static_rel"]
+            n_ise_used_dynamic = agg_ise_util_df["n_used_dynamic"]
+            n_ise_used_dynamic_rel = agg_ise_util_df["n_used_dynamic_rel"]
+            util_row = pd.DataFrame(
+                [
+                    {
+                        "n_ise_instrs": n_ise_instrs,
+                        "n_ise_used_static": n_ise_used_static,
+                        "n_ise_used_static_rel": n_ise_used_static_rel,
+                        "n_ise_used_dynamic": n_ise_used_dynamic,
+                        "n_ise_used_dynamic_rel": n_ise_used_dynamic_rel,
+                    }
+                ]
+            )
+            ret = pd.concat([ret, util_row], axis=1)
+        else:
+            missing_files.add(ise_util_pkl)
+
+        enc_metrics_csv = exp_dir / "work" / "total_encoding_metrics.csv"
+        if enc_metrics_csv.is_file():
+            enc_metrics_df = pd.read_csv(enc_metrics_csv)
+            assert len(enc_metrics_df) == 1
+            total_weight = enc_metrics_df["total_weight"].iloc[0]
+            avg_weight = total_weight / num_combined_candidates if num_combined_candidates is not None else None
+            enc_row = pd.DataFrame(
+                [
+                    {
+                        "enc_total_weight": total_weight,
+                        "enc_avg_weight": avg_weight,
+                    }
+                ]
+            )
+            ret = pd.concat([ret, enc_row], axis=1)
+        else:
+            missing_files.add(enc_metrics_csv)
+
+        compare_others_csv = exp_dir / "run_compare_others.csv"
+        if compare_others_csv.is_file():
+            compare_others_df = pd.read_csv(compare_others_csv)
+            assert len(compare_others_df) == 1
+            compare_others_df = compare_others_df.iloc[0]
+            num_progs = compare_others_df["num_progs"]
+            num_isax_progs = compare_others_df["num_isax_progs"]
+            num_isax_progs_rel = compare_others_df["num_isax_progs_rel"]
+            num_isax_progs_good = compare_others_df["num_isax_progs_good"]
+            num_isax_progs_good_rel = compare_others_df["num_isax_progs_good_rel"]
+            num_isax_progs_bad = compare_others_df["num_isax_progs_bad"]
+            num_isax_progs_bad_rel = compare_others_df["num_isax_progs_bad_rel"]
+            total_speedup = compare_others_df["total_speedup"]
+            avg_speedup = compare_others_df["avg_speedup"]
+            max_speedup = compare_others_df["max_speedup"]
+            compare_others_row = pd.DataFrame(
+                [
+                    {
+                        "compare_others_num_progs": num_progs,
+                        "compare_others_num_isax_progs": num_isax_progs,
+                        "compare_others_num_isax_progs_rel": num_isax_progs_rel,
+                        "compare_others_num_isax_progs_good": num_isax_progs_good,
+                        "compare_others_num_isax_progs_good_rel": num_isax_progs_good_rel,
+                        "compare_others_num_isax_progs_bad": num_isax_progs_bad,
+                        "compare_others_num_isax_progs_bad_rel": num_isax_progs_bad_rel,
+                        "compare_others_total_speedup": total_speedup,
+                        "compare_others_avg_speedup": avg_speedup,
+                        "compare_others_max_speedup": max_speedup,
+                    }
+                ]
+            )
+            ret = pd.concat([ret, compare_others_row], axis=1)
+        else:
+            missing_files.add(compare_others_csv)
+
+    is_incomplete = len(missing_files) > 0
+    status = get_status(
+        is_incomplete=is_incomplete,
+        is_empty=is_empty,
+        is_failing=is_failing,
+        is_skipped=is_skipped,
+        is_unsuitable=is_unsuitable,
     )
-    ret = pd.concat([ret, util_row], axis=1)
-
-    # TODO: encoding scores
+    ret["status"] = status
+    ret["missing"] = ";".join(map(lambda x: str(Path(x).name), missing_files))
 
     return ret
 
 
 rows = []
-for sess_dir in sess_dirs:
-    sess_dir = Path(sess_dir)
-    assert sess_dir.is_dir()
-    sess_df = create_sess_df(sess_dir)
-    rows.append(sess_df)
+for exp_dir in exp_dirs:
+    exp_dir = Path(exp_dir)
+    assert exp_dir.is_dir(), f"Not a directory: {exp_dir}"
+    exp_df = create_exp_df(exp_dir)
+    if exp_df is None:
+        continue
+    rows.append(exp_df)
 
 
 full_df = pd.concat(rows)
 
+assert args.print_df or args.output
+
 if args.print_df:
     with pd.option_context("display.max_rows", None, "display.max_columns", None):
-        print(sess_df)
+        print(full_df)
+
+if args.output:
+    full_df.to_csv(args.output, index=False)
