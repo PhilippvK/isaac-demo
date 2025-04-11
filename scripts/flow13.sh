@@ -17,11 +17,14 @@ RUN_COMPARE=${RUN}_compare
 RUN_COMPARE_MEM=${RUN}_compare_mem
 RUN_COMPARE_OTHERS=${RUN}_compare_others
 RUN_COMPARE_OTHERS_MEM=${RUN}_compare_others_mem
+LOGS_DIR=$DIR/logs
 SESS=$DIR/sess
 SESS_NEW=${SESS}_new
 WORK=$DIR/work
 DOCKER=$WORK/docker
 
+# TODO: move artifacts out of docker dir!
+test -d $LOGS_DIR && rm -rf $LOGS_DIR || echo "Skipping logs dir removal"
 test -d $DOCKER && rm -rf $DOCKER || echo "Skipping docker dir removal"
 test -d $RUN && rm -rf $RUN || echo "Skipping run dir removal"
 test -d $RUN_NEW && rm -rf $RUN_NEW || echo "Skipping run_new dir removal"

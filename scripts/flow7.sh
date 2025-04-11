@@ -13,10 +13,39 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
+DOCKER_DIR=$WORK/docker/
+mkdir -p $DOCKER_DIR
+
+SPLITTED=${SPLITTED:-0}
+PRELIM=${PRELIM:-0}
+FILTERED=${FILTERED:-0}
+FINAL=${FINAL:-0}
+
+
+if [[ "$FINAL" == "1" ]]
+then
+    GEN_DIR=$WORK/gen_final/
+    DEST_DIR=$DOCKER_DIR/etiss_final/
+elif [[ "$PRELIM" == "1" ]]
+then
+    GEN_DIR=$WORK/gen_prelim/
+    DEST_DIR=$DOCKER_DIR/etiss_prelim/
+elif [[ "$FILTERED" == "1" ]]
+then
+    GEN_DIR=$WORK/gen_filtered/
+    DEST_DIR=$DOCKER_DIR/etiss_filtered/
+else
+    GEN_DIR=$WORK/gen/
+    DEST_DIR=$DOCKER_DIR/etiss/
+fi
+
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 
-mkdir -p $WORK/docker/
-docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-etiss:latest $WORK/docker/ $WORK/$CORE_NAME.core_desc
+IMAGE=isaac-quickstart-etiss:latest
+
+mkdir -p $DEST_DIR
+
+docker run -it --rm -v $(pwd):$(pwd) $IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_desc
 # NEW:
 # python3 -m isaac_toolkit.retargeting.iss.etiss --sess $SESS --workdir $WORK --core-name $CORE_NAME --docker
 

@@ -18,7 +18,7 @@ mkdir -p $WORK
 
 STAGE=${CDFG_STAGE:-32}
 # PURGE_DB=${FORCE_PURGE_DB:-0}
-PURGE_DB=0
+PURGE_DB=0  # TODO: comment in
 
 # Make choices (func_name + bb_name)
 if [[ "$PURGE_DB" == "1" ]]

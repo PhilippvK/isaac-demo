@@ -22,5 +22,6 @@ UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 ARCH=${ARCH:-rv32imfd}
 ABI=${ABI:-ilp32d}
+GLOBAL_ISEL=${GLOBAL_ISEL:-0}
 
-python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm --label $LABEL-baseline -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE
+python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm --label $LABEL-baseline -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL

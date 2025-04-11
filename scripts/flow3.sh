@@ -27,5 +27,24 @@ then
     FORCE_ARGS="--force"
 fi
 
+python3 -m isaac_toolkit.generate.ise.check_ise_potential --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS
+
+SUITABLE=$(python3 -c "import pandas as pd; print(1 if pd.read_pickle('$SESS/table/ise_potential.pkl')['has_potential'].all() else 0, end='')")
+
+if [[ $SUITABLE == "0" ]]
+then
+    touch $DIR/unsuitable.txt
+    exit 1
+fi
+
 # Make choices (func_name + bb_name)
-python3 -m isaac_toolkit.generate.ise.choose_bbs --sess $SESS --threshold 0.9 --min-weight 0.05 --max-num 10 $FORCE_ARGS
+python3 -m isaac_toolkit.generate.ise.choose_bbs --sess $SESS --threshold $THRESHOLD --min-weight $MIN_WEIGHT --max-num $MAX_NUM $FORCE_ARGS
+
+NUM_CHOICES=$(python3 -c "import pandas as pd; print(len(pd.read_pickle('$SESS/table/choices.pkl')), end='')")
+echo "NUM_CHOICES=$NUM_CHOICES"
+
+if [[ $NUM_CHOICES -eq 0 ]]
+then
+    touch $DIR/unsuitable2.txt
+    exit 1
+fi
