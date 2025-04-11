@@ -86,9 +86,12 @@ df["latency"] = None
 
 
 for instr in instrs:
-    stats_file = directory / f"PARAMS_{instr}_II_1.dot.stats"
+    # TODO: support sharing groups! (iter over all *.stats files to get mapping. Also parse the schedule selection!)
+    stats_file = directory / f"PARAMS_{instr}_II_1.dot.stats"  # TODO: do not hardcode II
     print("stats_file", stats_file)
-    assert stats_file.is_file()
+    # assert stats_file.is_file()
+    if not stats_file.is_file():
+        continue
     with open(stats_file, "r") as file:
         lines = file.readlines()
         # stats_data = yaml.safe_load(file)
