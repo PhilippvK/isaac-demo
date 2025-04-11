@@ -20,16 +20,16 @@ COMMON_COLS = list(set(COLS) & set(MEM_COLS))
 report_file = Path(args.report)
 assert report_file.is_file()
 report_df = pd.read_csv(report_file)[COLS]
-print(report_df, report_df.columns)
+# print(report_df, report_df.columns)
 
 if args.mem_report:
     mem_report_file = Path(args.mem_report)
     assert mem_report_file.is_file()
     mem_report_df = pd.read_csv(mem_report_file)[MEM_COLS]
-    print(mem_report_df, mem_report_df.columns)
+    # print(mem_report_df, mem_report_df.columns)
     report_df = report_df.merge(mem_report_df, on=COMMON_COLS)
 
-print(report_df, report_df.columns)
+# print(report_df, report_df.columns)
 
 df = report_df
 
