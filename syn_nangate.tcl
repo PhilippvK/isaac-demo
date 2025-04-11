@@ -2,13 +2,14 @@ set ROOT_PATH      $env(ROOT_PATH)
 # set DESIGN_RTL_DIR $ROOT_PATH/rtl
 # set RISCV_PATH     $ROOT_PATH
 # set LONGNAIL_RTL_DIR /work/git/isaac-demo/out/nettle-aes/20241111T162222/work/docker/hls/syn_dir/prj_LEGACY_50.00000000000001ns_55.0%/src/
-set LONGNAIL_RTL_DIR $env(LONGNAIL_RTL_DIR)
+# set LONGNAIL_RTL_DIR $env(LONGNAIL_RTL_DIR)
+set FILES_TXT $env(FILES_TXT)
 # set CONSTRAINTS_FILE $ROOT_PATH/constraints/top.sdc
 set CONSTRAINTS_FILE $env(CONSTRAINTS_FILE)
-set GATE_PATH      $env(OUT_DIR)
+set GATE_PATH      $env(GATE_DIR)
 set LOG_PATH       $env(LOG_DIR)
 set TECHLIB_PATH   $env(TECHLIB_PATH)
-set TOPLEVEL       top
+set TOPLEVEL       $env(TOPLEVEL)
 
 set_app_var template_naming_style    "%s"
 set_app_var template_parameter_style ""
@@ -65,10 +66,31 @@ set link_library [list $target_library $synthetic_library]
 # analyze -format sverilog -work work ${DESIGN_RTL_DIR}/cv32e40p_sleep_unit.sv
 # analyze -format sverilog -work work ${DESIGN_RTL_DIR}/cv32e40p_core.sv
 # analyze -format sverilog -work work ${DESIGN_RTL_DIR}/cv32e40p_top.sv
-analyze -format sverilog -work work ${LONGNAIL_RTL_DIR}/CommonLogicModule.sv
-analyze -format sverilog -work work ${LONGNAIL_RTL_DIR}/ISAX_XIsaac.sv
-analyze -format sverilog -work work ${LONGNAIL_RTL_DIR}/VexRiscv.v
-analyze -format sverilog -work work ${LONGNAIL_RTL_DIR}/Vex_top.sv
+# foreach file [glob ${LONGNAIL_RTL_DIR}/*.sv] {
+#     analyze -format sverilog -work work $file
+# }
+# foreach file [glob ${LONGNAIL_RTL_DIR}/*.v] {
+#     analyze -format verilog -work work $file
+# }
+# analyze -format sverilog -work work ${LONGNAIL_RTL_DIR}/ISAX_XIsaac.sv
+# analyze -format sverilog -work work ${LONGNAIL_RTL_DIR}/VexRiscv.v
+# analyze -format sverilog -work work ${LONGNAIL_RTL_DIR}/Vex_top.sv
+# Open the files.txt and read file paths
+set file_handle [open ${FILES_TXT} r]
+set file_list [read $file_handle]
+close $file_handle
+
+set parent_dir [file dirname ${FILES_TXT}]
+
+# Iterate through each file and analyze it
+foreach file [split $file_list "\n"] {
+    # Skip empty lines
+    if {[string length $file] == 0} {
+        continue
+    }
+    puts "Analyzing: $file"
+    analyze -format sverilog -work work $parent_dir/$file
+}
 
 
 
@@ -101,6 +123,7 @@ elaborate $TOPLEVEL -work work
 link
 uniquify
 check_design
+report_lib
 
 # source $ROOT_PATH/constraints/cv32e40p_core.sdc
 # source $ROOT_PATH/constraints/top.sdc
@@ -119,8 +142,11 @@ uniquify -force
 # set_dont_touch core_i/if_stage_i/prefetch_buffer_i/prefetch_buffer_i_0/instr_req_o
 # set_dont_touch core_i/if_stage_i/prefetch_buffer_i/prefetch_buffer_i_1/instr_req_o
 # set_dont_touch core_i/if_stage_i/prefetch_buffer_i/prefetch_buffer_i_2/instr_req_o
+set_host_options -max_cores 16
 compile_ultra -no_autoungroup
+# compile
 
+report_design
 report_timing > ${LOG_PATH}/report_timing.log
 report_area -hierarchy > ${LOG_PATH}/report_area_hier.log
 change_names -hierarchy -rules verilog
