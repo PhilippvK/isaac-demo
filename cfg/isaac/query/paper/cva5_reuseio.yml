@@ -1,0 +1,33 @@
+# enable_variation_reuse_io: false
+enable_variation_reuse_io: true
+filters:
+  allowed_enc_sizes:
+  - 32
+  instr_predicates: 511
+  allowed_reg_classes: 3
+  max_branches: 1
+  max_enc_footprint: 1.0
+  max_enc_weight: 1.0
+  max_inputs: 4
+  max_in_operands: 2
+  max_loads: 1
+  max_mems: 0
+  max_nodes: 1000
+  max_outputs: 2
+  max_out_operands: 1
+  max_inout_operands: 1
+  max_stores: 1
+  min_enc_bits_left: 5
+  min_inputs: 1
+  # min_iso_weight: 0.01846986704880185
+  min_nodes: 1
+  min_outputs: 1
+halt_on_error: true
+memgraph:
+  host: localhost
+  port: 7687
+query:
+  limit_results: null
+  max_path_len: 9
+  max_path_width: 2
+  min_path_len: 1
