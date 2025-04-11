@@ -1,0 +1,36 @@
+- operator: comb.mul
+  latency: 1
+  # limit: 2
+  limit: 20
+# - operator: comb.add
+#   latency: 1
+#   # limit: 1
+#   limit: 20
+# - operator: comb.sub
+#   latency: 1
+#   # limit: 1
+#   limit: 20
+- operator: comb.divu
+  latency: 1
+  # limit: 1
+  limit: 20
+- operator: comb.divs
+  latency: 1
+  # limit: 1
+  limit: 20
+- operator: comb.modu
+  latency: 1
+  # limit: 1
+  limit: 20
+- operator: comb.mods
+  latency: 1
+  # limit: 1
+  limit: 20
+# - operator: comb.xor
+#   latency: 1
+#   # limit: 1
+#   limit: 20
+# - operator: comb.shl
+#   latency: 1
+#   # limit: 1
+#   limit: 20
