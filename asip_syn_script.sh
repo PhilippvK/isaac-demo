@@ -10,39 +10,65 @@ then
     exit 1
 fi
 
-OUT_FILE=$1
+OUT_DIR=$1
 RTL_DIR=$2
 CORE=${3:-VEX_5S}
 PDK=${4:-NangateOpenCellLibrary}
 CLK_SPEED=${5:-20.0}
+CONSTRAINTS_FILE=${6}
 
-TOP=top
-CONSTRAINTS_FILE_DEFAULT=$ROOT_DIR/constraints/$CORE/$TOP.sdc
+echo CORE=$CORE
 
-if [[ ! -f $CONSTRAINTS_FILE_DEFAULT ]]
+# TEMP_DIR=$(mktemp -d)
+# echo TEMP_DIR=$TEMP_DIR
+
+TOP_NAME=top
+
+if [[ "$CORE" == "CVA5" ]]
 then
-    echo "Constraints file not found: $CONSTRAINTS_FILE_DEFAULT"
+    TOP_NAME=cva5_top
+fi
+CONSTRAINTS_FILE_DEFAULT=$ROOT_DIR/constraints/$CORE/$TOP_NAME.sdc
+
+if [[ -z $CONSTRAINTS_FILE ]]
+then
+    CONSTRAINTS_FILE=$CONSTRAINTS_FILE_DEFAULT
+fi
+
+if [[ ! -f $CONSTRAINTS_FILE ]]
+then
+    echo "Constraints file not found: $CONSTRAINTS_FILE"
     exit 2
 fi
 
-TEMP_DIR=$(mktemp -d)
-echo TEMP_DIR=$TEMP_DIR
+if [[ ! -f $RTL_DIR/files.txt ]]
+then
+    echo "Missing: $RTL_DIR/files.txt"
+    exit 2
+fi
+
+
+
+mkdir -p $OUT_DIR
 
 
 export ROOT_PATH=$ROOT_DIR
 export TECHLIB=${PDK}
 export TECHLIB_PATH=/work/git/syn/test_longnail_syn/syn/techlib
-export LONGNAIL_RTL_DIR=${RTL_DIR}
-export OUT_DIR=${TEMP_DIR}/out
-export LOG_DIR=${TEMP_DIR}/log
+# export LONGNAIL_RTL_DIR=$(readlink -f $RTL_DIR)
+export FILES_TXT=$(readlink -f $RTL_DIR/files.txt)
+export GATE_DIR=${OUT_DIR}/out
+export LOG_DIR=${OUT_DIR}/log
 export CLOCK_PERIOD=${CLK_SPEED}
-export CONSTRAINTS_FILE=$TEMP_DIR/constraints.sdc
-mkdir $OUT_DIR
-mkdir $LOG_DIR
+# export CONSTRAINTS_FILE=$OUT_DIR/constraints.sdc
+export CONSTRAINTS_FILE=$(readlink -f $CONSTRAINTS_FILE)
+export TOPLEVEL=$TOP_NAME
+mkdir -p $GATE_DIR
+mkdir -p $LOG_DIR
 
-cp $CONSTRAINTS_FILE_DEFAULT $CONSTRAINTS_FILE
+# cp $CONSTRAINTS_FILE_DEFAULT $CONSTRAINTS_FILE
 
-cd $TEMP_DIR
+cd $OUT_DIR
 dc_shell -f $ROOT_DIR/syn_nangate.tcl | tee $LOG_DIR/syn_nangate.log
 cd -
 
@@ -56,6 +82,6 @@ then
     exit 4
 fi
 
-python3 $ROOT_DIR/parse_area_report.py $LOG_DIR/report_area_hier.log > $TEMP_DIR/area.csv
-python3 $ROOT_DIR/parse_timing_report.py $LOG_DIR/report_timing.log > $TEMP_DIR/timing.csv
-paste -d"," $TEMP_DIR/area.csv $TEMP_DIR/timing.csv > $OUT_FILE
+python3 $ROOT_DIR/parse_area_report.py $LOG_DIR/report_area_hier.log > $OUT_DIR/area.csv
+python3 $ROOT_DIR/parse_timing_report.py $LOG_DIR/report_timing.log > $OUT_DIR/timing.csv
+paste -d"," $OUT_DIR/area.csv $OUT_DIR/timing.csv > $OUT_DIR/metrics.csv
