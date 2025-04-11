@@ -6,12 +6,12 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
 INSTALL_DIR=$TOP_DIR/install
 GNU_DIR=$INSTALL_DIR/gnu
-GNU_NAME=riscv64-unknown-elf
+GNU_NAME=${GNU_NAME:-riscv64-unknown-elf}
 
 echo "SCRIPT_DIR=${SCRIPT_DIR}"
 echo "TOP_DIR=${TOP_DIR}"
 
-DL_URL=https://syncandshare.lrz.de/dl/fiWBtDLWz17RBc1Yd4VDW7/GCC/default/2023.11.27/Ubuntu/20.04/rv64imfd_lp64d_medany.tar.xz
+DL_URL=${GNU_URL:-https://syncandshare.lrz.de/dl/fiWBtDLWz17RBc1Yd4VDW7/GCC/default/2023.11.27/Ubuntu/20.04/rv64imfd_lp64d_medany.tar.xz}
 # DL_ARCHIVE=rv64imfd_lp64d.tar.xz
 
 if [[ -d "$GNU_DIR/$GNU_NAME" ]]
