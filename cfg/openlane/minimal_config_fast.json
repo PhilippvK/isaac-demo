@@ -1,0 +1,22 @@
+{
+"DESIGN_NAME": "{{DESIGN_NAME}}",
+"VERILOG_FILES": "{{SRC_FILES}}",
+"VERILOG_DEFINES": "{{VERILOG_DEFINES}}",
+"VERILOG_INCLUDE_DIRS": "{{VERILOG_INCLUDE_DIRS}}",
+"CLOCK_PORT": "{{CLK_NAME}}",
+"CLOCK_NET": "{{CLK_NAME}}",
+"DESIGN_IS_CORE": false,
+"CLOCK_PERIOD": "{{CLK_PERIOD}}",
+"FP_CORE_UTIL": "{{FP_UTIL}}",
+"QUIT_ON_SYNTH_CHECKS": 0,
+"RUN_DRC": false,
+"RUN_KLAYOUT_XOR": false,
+"RUN_KLAYOUT_DRC": false,
+"RUN_MAGIC_DRC": false,
+"RUN_LVS": false,
+"RUN_MAGIC_WRITE_LEF": false,
+"pdk::sky130*": {
+    "DIE_AREA": "0 0 5840 7040",
+    "FP_SIZING": "absolute"
+}
+}
