@@ -70,7 +70,8 @@ def get_combined_locs_df(
         }
         combined_locs_data.append(rtl_locs_data)
     combined_locs_df = pd.DataFrame(combined_locs_data)
-    combined_locs_df["n_insertions"] = combined_locs_df["n_insertions"].astype(int)
+    if "n_insertions" in combined_locs_df.columns:
+        combined_locs_df["n_insertions"] = combined_locs_df["n_insertions"].astype(int)
     return combined_locs_df
 
 
