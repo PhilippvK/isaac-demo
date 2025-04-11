@@ -15,7 +15,7 @@ report_file = Path(args.report)
 
 COL = "Run Instructions (rel.)" if not args.mem else "ROM code (rel.)"
 
-assert report_file.is_file()
+assert report_file.is_file(), f"File not found: {report_file}"
 
 report_df = pd.read_csv(report_file)
 
