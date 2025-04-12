@@ -44,7 +44,7 @@ def main():
             ],
             "dyn_custom_count": 0,
             "dyn_custom_count_rel": 0,
-            "used_instr_names": set(),
+            "used_instrs": set(),
         }
         for prog_name in prog_names
     }
@@ -75,8 +75,11 @@ def main():
         for prog in prog_names:
             sess_prog = sess_base / prog
             # print("sess_prog", sess_prog)
-            assert sess_prog.is_dir()
+            if not sess_prog.is_dir():
+                continue
             ise_util_pkl = sess_prog / "table" / "ise_util.pkl"
+            if not ise_util_pkl.is_file():
+                continue
             ise_util_df = pd.read_pickle(ise_util_pkl)
             # print("ise_util_df", ise_util_df)
             agg_util_df = ise_util_df[pd.isna(ise_util_df["instr"])]
@@ -87,7 +90,7 @@ def main():
             used_instr_names = set(used_instrs_df["instr"].unique())
             for instr_name in used_instr_names:
                 instrs_metrics[instr_name]["used_by_progs"].add(prog)
-            progs_metrics[prog]["used_instr_names"].update(used_instr_names)
+            progs_metrics[prog]["used_instrs"].update(used_instr_names)
 
             dynamic_counts_custom_pkl = sess_prog / "table" / "dynamic_counts_custom.pkl"
             dynamic_counts_custom_df = pd.read_pickle(dynamic_counts_custom_pkl)
@@ -107,26 +110,27 @@ def main():
                 instrs_metrics[instr_name]["dyn_count"] += dyn_count
                 instrs_metrics[instr_name]["dyn_count_rel"] += dyn_count_rel
 
-            break
+            # break
 
         for prog in prog_names:
-            progs_metrics[prog]["n_used_instr_names"] = len(progs_metrics[prog]["used_instr_names"])
-            progs_metrics[prog]["n_used_instr_names_rel"] = progs_metrics[prog]["n_used_instr_names"] / num_instrs
+            progs_metrics[prog]["n_used_instrs"] = len(progs_metrics[prog]["used_instrs"])
+            progs_metrics[prog]["n_used_instrs_rel"] = progs_metrics[prog]["n_used_instrs"] / num_instrs
 
         for instr in instr_names:
             instrs_metrics[instr]["n_used_by_progs"] = len(instrs_metrics[instr]["used_by_progs"])
             instrs_metrics[instr]["n_used_by_progs_rel"] = instrs_metrics[instr]["n_used_by_progs"] / num_progs
 
-        progs_df = pd.DataFrame(progs_metrics).T.sort_values("n_used_instr_names", ascending=False)
+        progs_df = pd.DataFrame(progs_metrics).T.sort_values("n_used_instrs", ascending=False)
         progs_agg_data = {
             "runtime_reduction": progs_df["runtime_reduction"].sum(),
             "dyn_custom_count": progs_df["dyn_custom_count"].sum(),
             "dyn_custom_count_rel": progs_df["dyn_custom_count_rel"].sum(),
-            "used_instr_names": set.union(*list(progs_df["used_instr_names"].values)),
-            "n_used_instr_names": len(set.union(*list(progs_df["used_instr_names"].values))),
-            "n_used_instr_names_rel": len(set.union(*list(progs_df["used_instr_names"].values))) / num_instrs,
+            "used_instrs": set.union(*list(progs_df["used_instrs"].values)),
+            "n_used_instrs": len(set.union(*list(progs_df["used_instrs"].values))),
+            "n_used_instrs_rel": len(set.union(*list(progs_df["used_instrs"].values))) / num_instrs,
         }
         progs_agg_df = pd.DataFrame({None: progs_agg_data}).T
+        progs_agg_df["avg_n_used_instrs"] = progs_df["n_used_instrs"].mean()
         progs_df = pd.concat([progs_agg_df, progs_df])
 
         instrs_df = pd.DataFrame(instrs_metrics).T.sort_values("n_used_by_progs", ascending=False)
@@ -138,13 +142,141 @@ def main():
             "n_used_by_progs_rel": len(set.union(*list(instrs_df["used_by_progs"].values))) / num_progs,
         }
         instrs_agg_df = pd.DataFrame({None: instrs_agg_data}).T
+        val_counts = (
+            instrs_df["n_used_by_progs"]
+            .value_counts()
+            .reset_index()
+            .sort_values("n_used_by_progs", ascending=False)
+            .set_index("n_used_by_progs")
+        )
+        instrs_agg_df["avg_n_used_by_progs"] = instrs_df["n_used_by_progs"].mean()
+        num_instrs_used_by_multiple_progs = len(instrs_df[instrs_df["n_used_by_progs"] > 1])
+        instrs_agg_df["chance_used_by_multiple"] = num_instrs_used_by_multiple_progs / num_instrs
         instrs_df = pd.concat([instrs_agg_df, instrs_df])
+        print("val_counts", val_counts)
 
         with pd.option_context("display.max_rows", None, "display.max_columns", None, "display.width", 0):
             print("progs_metrics")
             print(progs_df)
+            TOPK = 20
+            print(
+                "\n".join(
+                    map(
+                        lambda x: f"{x} \\\\",
+                        progs_df.rename_axis("prog")
+                        .reset_index()
+                        .iloc[:TOPK][["prog", "n_used_instrs"]]
+                        .dropna()
+                        .to_csv(sep="&", index=False)
+                        .replace("&", " & ")
+                        .splitlines(),
+                    )
+                ).replace("embench/", "")
+            )
+            print(",".join(progs_df.iloc[:TOPK].index.dropna()).replace("embench/", ""))
+            progs_df = progs_df.sort_values("runtime_reduction", ascending=False)
+            TOPK = 20
+            print(
+                "\n".join(
+                    map(
+                        lambda x: f"{x} \\\\",
+                        progs_df.rename_axis("prog")
+                        .reset_index()
+                        .iloc[:TOPK][["prog", "runtime_reduction"]]
+                        .dropna()
+                        .to_csv(sep="&", index=False)
+                        .replace("&", " & ")
+                        .splitlines(),
+                    )
+                ).replace("embench/", "")
+            )
+            print(",".join(progs_df.iloc[:TOPK].index.dropna()).replace("embench/", ""))
+            progs_df = progs_df.sort_values("dyn_custom_count_rel", ascending=False)
+            TOPK = 20
+            print(
+                "\n".join(
+                    map(
+                        lambda x: f"{x} \\\\",
+                        progs_df.rename_axis("prog")
+                        .reset_index()
+                        .iloc[:TOPK][["prog", "dyn_custom_count_rel"]]
+                        .dropna()
+                        .to_csv(sep="&", index=False)
+                        .replace("&", " & ")
+                        .splitlines(),
+                    )
+                ).replace("embench/", "")
+            )
+            print(",".join(progs_df.iloc[:TOPK].index.dropna()).replace("embench/", ""))
+            progs_df = progs_df.sort_values("dyn_custom_count", ascending=False)
+            TOPK = 20
+            print(
+                "\n".join(
+                    map(
+                        lambda x: f"{x} \\\\",
+                        progs_df.rename_axis("prog")
+                        .reset_index()
+                        .iloc[:TOPK][["prog", "dyn_custom_count"]]
+                        .dropna()
+                        .to_csv(sep="&", index=False)
+                        .replace("&", " & ")
+                        .splitlines(),
+                    )
+                ).replace("embench/", "")
+            )
+            print(",".join(progs_df.iloc[:TOPK].index.dropna()).replace("embench/", ""))
             print("instrs_metrics")
             print(instrs_df)
+            TOPK = 10
+            print(
+                "\n".join(
+                    map(
+                        lambda x: f"{x} \\\\",
+                        instrs_df.rename_axis("instr")
+                        .reset_index()
+                        .iloc[:TOPK][["instr", "n_used_by_progs"]]
+                        .dropna()
+                        .to_csv(sep="&", index=False)
+                        .replace("&", " & ")
+                        .splitlines(),
+                    )
+                )
+            )
+            print(",".join(instrs_df.iloc[:TOPK].index.dropna()))
+            instrs_df = instrs_df.sort_values("dyn_count_rel", ascending=False)
+            TOPK = 10
+            print(
+                "\n".join(
+                    map(
+                        lambda x: f"{x} \\\\",
+                        instrs_df.rename_axis("instr")
+                        .reset_index()
+                        .iloc[:TOPK][["instr", "dyn_count_rel"]]
+                        .dropna()
+                        .to_csv(sep="&", index=False)
+                        .replace("&", " & ")
+                        .splitlines(),
+                    )
+                )
+            )
+            print(",".join(instrs_df.iloc[:TOPK].index.dropna()))
+            instrs_df = instrs_df.sort_values("dyn_count", ascending=False)
+            TOPK = 10
+            print(
+                "\n".join(
+                    map(
+                        lambda x: f"{x} \\\\",
+                        instrs_df.rename_axis("instr")
+                        .reset_index()
+                        .iloc[:TOPK][["instr", "dyn_count"]]
+                        .dropna()
+                        .to_csv(sep="&", index=False)
+                        .replace("&", " & ")
+                        .splitlines(),
+                    )
+                )
+            )
+            print(",".join(instrs_df.iloc[:TOPK].index.dropna()))
 
     if args.output:
         out_df.to_csv(args.output, index=False)

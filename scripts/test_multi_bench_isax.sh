@@ -23,7 +23,7 @@ LABEL=foobar
 INDEX_FILE=$DIR/dropped_index.yml
 
 # Define benchmarks
-BENCHMARKS=(embench/aha-mont64 embench/crc32 embench/edn embench/huffbench embench/matmult-int embench/md5sum embench/nbody embench/nettle-aes embench/nettle-sha256 embench/picojpeg embench/primecount embench/qrduino embench/tarfind embench/ud embench/wikisort)
+BENCHMARKS=(embench/aha-mont64 embench/crc32 embench/edn embench/huffbench embench/matmult-int embench/md5sum embench/nbody embench/nettle-aes embench/nettle-sha256 embench/picojpeg embench/primecount embench/qrduino embench/st embench/tarfind embench/ud embench/wikisort)
 
 # Define dirs & vars
 WORK=$DIR/work
@@ -41,22 +41,22 @@ mkdir -p $DOCKER_DIR
 
 # Create dummy session
 FORCE_ARGS="--force"
-### python3 -m isaac_toolkit.session.create --session $SESS $FORCE_ARGS
+python3 -m isaac_toolkit.session.create --session $SESS $FORCE_ARGS
 
 # isaac_0_generate
 
 ENC_SCORE_CSV=$WORK/encoding_score${SUFFIX}.csv
 
-### python3 scripts/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${SUFFIX}.csv --score $ENC_SCORE_CSV
+python3 scripts/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${SUFFIX}.csv --score $ENC_SCORE_CSV
 
 NAMES_CSV=$WORK/names${SUFFIX}.csv
 ISE_INSTRS_PKL=$WORK/ise_instrs.pkl
 python3 scripts/assign_names.py $INDEX_FILE --inplace --csv $NAMES_CSV --pkl $ISE_INSTRS_PKL
-### python3 -m isaac_toolkit.generate.ise.generate_cdsl --sess $SESS --workdir $WORK --gen-dir $GEN_DIR --index $INDEX_FILE $FORCE_ARGS
+python3 -m isaac_toolkit.generate.ise.generate_cdsl --sess $SESS --workdir $WORK --gen-dir $GEN_DIR --index $INDEX_FILE $FORCE_ARGS
 
 # assign_0_enc
 
-### python3 scripts/annotate_enc_score.py $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
+python3 scripts/annotate_enc_score.py $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
 
 # isaac_0_etiss
 XLEN=${XLEN:-32}
@@ -64,7 +64,7 @@ BASE_EXTENSIONS=${ISAAC_BASE_EXTENSIONS:-"i,m,a,f,d,c,zicsr,zifencei"}
 ETISS_CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 SET_NAME=${ISAAC_SET_NAME:-XIsaac}
 
-### python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $ISAAC_CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv --index $INDEX_FILE
+python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $ISAAC_CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $(pwd)/etiss_arch_riscv/rv_base/ --tum-dir $(pwd)/etiss_arch_riscv --index $INDEX_FILE
 
 
 # seal5_0_splitted
@@ -76,15 +76,15 @@ mkdir -p $SEAL5_DEST_DIR
 
 SEAL5_IMAGE=isaac-quickstart-seal5:latest
 
-### docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $SEAL5_DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
+docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $SEAL5_DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
 
 SEAL5_SCORE_CSV=$SEAL5_DEST_DIR/seal5_score.csv
 
-### python3 scripts/seal5_score.py --output $SEAL5_SCORE_CSV --seal5-status-csv $SEAL5_DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $SEAL5_DEST_DIR/seal5_reports/status_compact.csv
+python3 scripts/seal5_score.py --output $SEAL5_SCORE_CSV --seal5-status-csv $SEAL5_DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $SEAL5_DEST_DIR/seal5_reports/status_compact.csv
 
 # assign_0_seal5
 
-### python3 scripts/annotate_seal5_score.py $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
+python3 scripts/annotate_seal5_score.py $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
 
 # etiss_0
 
@@ -95,7 +95,7 @@ ETISS_IMAGE=isaac-quickstart-etiss:latest
 
 mkdir -p $ETISS_DEST_DIR
 
-### docker run -it --rm -v $(pwd):$(pwd) $ETISS_IMAGE $ETISS_DEST_DIR $GEN_DIR/$ETISS_CORE_NAME.core_desc
+docker run -it --rm -v $(pwd):$(pwd) $ETISS_IMAGE $ETISS_DEST_DIR $GEN_DIR/$ETISS_CORE_NAME.core_desc
 
 # compare_multi_0
 
@@ -131,7 +131,7 @@ python3 scripts/analyze_reuse.py ${RUN}_compare_multi_mem${SUFFIX}/report.csv --
 
 # compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0_filtered;assign_0_compare_filtered;compare_others_0_filtered;assign_0_compare_others_filtered
 
-# retrace_multi_0 + reanalyze_multi_0
+# trace_multi_0 + reanalyze_multi_0
 
 for bench in "${BENCHMARKS[@]}"
 do
@@ -167,7 +167,7 @@ do
     python3 -m isaac_toolkit.analysis.static.linker_map --session $SESS2 $FORCE_ARGS
     python3 -m isaac_toolkit.analysis.dynamic.trace.trunc_trace --session $SESS2 --start-func mlonmcu_run $FORCE_ARGS
     python3 -m isaac_toolkit.analysis.dynamic.trace.trunc_trace --session $SESS2 --end-func stop_bench $FORCE_ARGS
-    python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session $SESS2 --imm-only $FORCE_ARGS
+    # python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session $SESS2 --imm-only $FORCE_ARGS
     python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess $SESS2 $FORCE_ARGS
     python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess $SESS2 $FORCE_ARGS
     python3 -m isaac_toolkit.analysis.static.histogram.disass_instr --sess $SESS2 $FORCE_ARGS
