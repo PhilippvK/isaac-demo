@@ -447,8 +447,9 @@ def create_exp_df(exp_dir):
         if hls_default_metrics_csv.is_file():
             hls_default_metrics_df = pd.read_csv(hls_default_metrics_csv)
             assert len(hls_default_metrics_df) == 1
+            hls_default_metrics_df = hls_default_metrics_df.iloc[0]
             # TODO: check area with lifetimes?
-            hls_default_estimated_area_isax_only = hls_default_metrics_df["total_area_estimate"].iloc[0]
+            hls_default_estimated_area_isax_only = hls_default_metrics_df["total_area_estimate"]
             hls_row = pd.DataFrame(
                 [
                     {

@@ -13,6 +13,7 @@ def main():
     parser.add_argument("index", help="Index yaml file")
     parser.add_argument("-o", "--output", default=None, help="Output yaml file")
     parser.add_argument("--inplace", action="store_true", help="TODO")
+    parser.add_argument("--keep-ids", action="store_true", help="TODO")
     parser.add_argument("--sankey", default=None, help="TODO")
     parser.add_argument("--topk", type=int, default=None, help="TODO")
     args = parser.parse_args()
@@ -21,18 +22,22 @@ def main():
         combined_index_data = yaml.safe_load(f)
     candidates = combined_index_data["candidates"]
     num_candidates = len(candidates)
-    print("candidates", candidates)
+    print("candidates", candidates, len(candidates))
 
     if args.topk is not None:
         selected_candidates = [candidate for i, candidate in enumerate(candidates) if i < args.topk]
     else:
         selected_candidates = candidates
+    print("selected_candidates", selected_candidates, len(selected_candidates))
+    if not args.keep_ids:
+        for i, candidate in enumerate(selected_candidates):
+            candidate["id"] = i
 
     num_selected = len(selected_candidates)
     num_dropped = num_candidates - num_selected
     # TODO: logging
     # TODO: assign new names?
-    combined_index_data["candidates"] = candidates
+    combined_index_data["candidates"] = selected_candidates
 
     if args.inplace:
         assert args.output is None

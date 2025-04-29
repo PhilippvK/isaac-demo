@@ -23,6 +23,8 @@ fi
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
+FILTERED2=${FILTERED2:-0}
+SELECTED=${SELECTED:-0}
 BUILD_ARCH=${BUILD_ARCH:-0}
 
 if [[ "$FINAL" == "1" ]]
@@ -31,6 +33,15 @@ then
 elif [[ "$PRELIM" == "1" ]]
 then
     SUFFIX="_prelim"
+elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
+then
+    SUFFIX="_filtered2_selected"
+elif [[ "$FILTERED2" == "1" ]]
+then
+    SUFFIX="_filtered2"
+elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
+then
+    SUFFIX="_filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
     SUFFIX="_filtered"

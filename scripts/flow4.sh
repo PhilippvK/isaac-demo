@@ -110,7 +110,7 @@ then
     EXTRA_ARGS="$EXTRA_ARGS --partition-with-maxmiso $ISAAC_PARTITION_WITH_MAXMISO"
 fi
 
-python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess $SESS --workdir $WORK --label $LABEL --stage $STAGE $EXTRA_ARGS $FORCE_ARGS
+python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess $SESS --workdir $WORK --label $LABEL --stage $STAGE $EXTRA_ARGS $FORCE_ARGS --progress
 
 # python3 scripts/names_helper.py $WORK/combined_index.yml --output $WORK/names.csv
 

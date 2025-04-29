@@ -26,26 +26,30 @@ if [[ "$FINAL" == "1" ]]
 then
     GEN_DIR=$WORK/gen_final/
     DEST_DIR=$DOCKER_DIR/etiss_final/
+    INDEX_FILE=$WORK/final_index.yml
 elif [[ "$PRELIM" == "1" ]]
 then
     GEN_DIR=$WORK/gen_prelim/
     DEST_DIR=$DOCKER_DIR/etiss_prelim/
+    INDEX_FILE=$WORK/prelim_index.yml
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
     DEST_DIR=$DOCKER_DIR/etiss_filtered/
+    INDEX_FILE=$WORK/filtered_index.yml
 else
     GEN_DIR=$WORK/gen/
     DEST_DIR=$DOCKER_DIR/etiss/
+    INDEX_FILE=$WORK/combined_index.yml
 fi
 
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
+ETISS_IMAGE=${ETISS_IMAGE:-isaac-quickstart-etiss:latest}
 
-IMAGE=isaac-quickstart-etiss:latest
 
 mkdir -p $DEST_DIR
 
-docker run -it --rm -v $(pwd):$(pwd) $IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_desc
+docker run -it --rm -v $(pwd):$(pwd) $ETISS_IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_desc
 # NEW:
 # python3 -m isaac_toolkit.retargeting.iss.etiss --sess $SESS --workdir $WORK --core-name $CORE_NAME --docker
 
@@ -56,6 +60,7 @@ docker run -it --rm -v $(pwd):$(pwd) $IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_d
 # cmake --build build/ -j `nproc`
 # cmake --install build
 # cd -
+python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$DEST_DIR/etiss_install
 
 ARGS=""
 if [[ -f $WORK/docker/seal5_reports/diff.csv ]]

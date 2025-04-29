@@ -26,6 +26,8 @@ GLOBAL_ISEL=${GLOBAL_ISEL:-0}
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
+FILTERED2=${FILTERED2:-0}
+SELECTED=${SELECTED:-0}
 BUILD_ARCH=${BUILD_ARCH:-0}
 
 DOCKER_DIR=$WORK/docker
@@ -40,6 +42,27 @@ then
     ETISS_INSTALL_DIR=$DOCKER_DIR/etiss_prelim/etiss_install
     LLVM_INSTALL_DIR=$DOCKER_DIR/seal5_prelim/llvm_install
     SUFFIX="_prelim"
+elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
+then
+    ETISS_INSTALL_DIR=$DOCKER_DIR/etiss_filtered2_selected/etiss_install
+    LLVM_INSTALL_DIR=$DOCKER_DIR/seal5_filtered2_selected/llvm_install
+    SUFFIX="_filtered2_selected"
+elif [[ "$FILTERED2" == "1" ]]
+then
+    ETISS_INSTALL_DIR=$DOCKER_DIR/etiss_filtered2/etiss_install
+    LLVM_INSTALL_DIR=$DOCKER_DIR/seal5_filtered2/llvm_install
+    SUFFIX="_filtered2"
+elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
+then
+    if [[ "$BUILD_ARCH" == 1 ]]
+    then
+        ETISS_INSTALL_DIR=$DOCKER_DIR/etiss/etiss_install
+        LLVM_INSTALL_DIR=$DOCKER_DIR/seal5/llvm_install
+    else
+        ETISS_INSTALL_DIR=$DOCKER_DIR/etiss_filtered_selected/etiss_install
+        LLVM_INSTALL_DIR=$DOCKER_DIR/seal5_filtered_selected/llvm_install
+    fi
+    SUFFIX="_filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
     if [[ "$BUILD_ARCH" == 1 ]]

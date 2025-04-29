@@ -22,29 +22,39 @@ MIN_UTIL_SCORE=${MIN_UTIL_SCORE:-0.005}
 
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
-PRELIM_FILTERED=${PRELIM_FILTERED:-0}
 FILTERED=${FILTERED:-0}
 FILTERED2=${FILTERED2:-0}
+SELECTED=${SELECTED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
     echo "Filter FINAL unsupported!"
     exit 1
-elif [[ "$PRELIM_FILTERED" == "1" ]]
-then
-    echo "Filter PRELIM_FILTERED unsupported!"
-    exit 1
 elif [[ "$PRELIM" == "1" ]]
 then
-    INDEX_FILE=$WORK/prelim_index.yml
-    OUT_FILE=$WORK/prelim_filtered_index.yml
-    # PREFIX="prelim_"
-    SUFFIX="_prelim"
-    FILTER_ARGS=""
+    echo "Filter PRELIM unsupported!"
+    exit 1
+#     INDEX_FILE=$WORK/prelim_index.yml
+#     OUT_FILE=$WORK/prelim_filtered_index.yml
+#     # PREFIX="prelim_"
+#     SUFFIX="_prelim"
+#     FILTER_ARGS=""
+elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
+then
+    # echo "Filter FILTERED2&SELECTED unsupported!"
+    echo "Filter FILTERED2&SELECTED skipped!"
+    exit 0
 elif [[ "$FILTERED2" == "1" ]]
 then
-    echo "Filter FILTERED2 unsupported!"
-    exit 1
+    # echo "Filter FILTERED2 unsupported!"
+    echo "Filter FILTERED2 skipped!"
+    exit 0
+elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
+then
+    INDEX_FILE=$WORK/filtered_selected_index.yml
+    OUT_FILE=$WORK/filtered2_index.yml
+    SUFFIX="_filtered2"
+    FILTER_ARGS="--min-util-score ${MIN_UTIL_SCORE}"
 elif [[ "$FILTERED" == "1" ]]
 then
     INDEX_FILE=$WORK/filtered_index.yml
@@ -76,4 +86,4 @@ fi
 python3 scripts/filter_index.py $INDEX_FILE --out $OUT_FILE $FILTER_ARGS --sankey $WORK/sankey${SUFFIX}.md
 
 # TODO: names?
-python3 scripts/names_helper.py $WORK/filtered_index.yml --output $WORK/names${SUFFIX}.csv
+python3 scripts/names_helper.py $OUT_FILE --output $WORK/names${SUFFIX}.csv

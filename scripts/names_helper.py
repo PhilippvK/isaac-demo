@@ -17,6 +17,7 @@ def main():
             candidate["properties"].get("InstrName", f"CUSTOM{i}")
             for i, candidate in enumerate(combined_index_data["candidates"])
         ]
+        print("names", names)
         # num_candidates = len(names)
         names_df = pd.DataFrame({"instr": names})
         names_df["instr_lower"] = names_df["instr"].apply(lambda x: x.lower())

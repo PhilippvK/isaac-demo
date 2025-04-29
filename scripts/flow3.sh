@@ -19,6 +19,7 @@ MIN_SUPPORTED=${CHECK_POTENTIAL_MIN_SUPPORTED:-0.15}
 
 THRESHOLD=${CHOOSE_BB_THRESHOLD:-0.9}
 MIN_WEIGHT=${CHOOSE_BB_MIN_WEIGHT:-0.05}
+MIN_SUPPORTED_WEIGHT=${CHOOSE_BB_MIN_SUPPORTED_WEIGHT:-0.02}
 MAX_NUM=${CHOOSE_BB_MAX_NUM:-10}
 
 FORCE=1
@@ -27,7 +28,9 @@ then
     FORCE_ARGS="--force"
 fi
 
+python3 -m isaac_toolkit.generate.ise.check_ise_potential_per_llvm_bb --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS
 python3 -m isaac_toolkit.generate.ise.check_ise_potential --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS
+# TODO: do not allow compressed?
 
 SUITABLE=$(python3 -c "import pandas as pd; print(1 if pd.read_pickle('$SESS/table/ise_potential.pkl')['has_potential'].all() else 0, end='')")
 
@@ -38,7 +41,7 @@ then
 fi
 
 # Make choices (func_name + bb_name)
-python3 -m isaac_toolkit.generate.ise.choose_bbs --sess $SESS --threshold $THRESHOLD --min-weight $MIN_WEIGHT --max-num $MAX_NUM $FORCE_ARGS
+python3 -m isaac_toolkit.generate.ise.choose_bbs --sess $SESS --threshold $THRESHOLD --min-weight $MIN_WEIGHT --min-supported-weight $MIN_SUPPORTED_WEIGHT --max-num $MAX_NUM $FORCE_ARGS
 
 NUM_CHOICES=$(python3 -c "import pandas as pd; print(len(pd.read_pickle('$SESS/table/choices.pkl')), end='')")
 echo "NUM_CHOICES=$NUM_CHOICES"

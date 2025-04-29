@@ -117,6 +117,9 @@ FPGA_SYN_VIVADO_CORE_NAME=${FPGA_SYN_VIVADO_CORE_NAME}
 ISAAC_QUERY_CONFIG_YAML=${ISAAC_QUERY_CONFIG_YAML}
 EOT
 
+# TODO:
+# CHOOSE_BB_MIN_SUPPORTED_WEIGHT=...
+
     cat <<EOT > $INI_FILE
 [$LABEL]
 benchmark=$BENCH
@@ -132,7 +135,8 @@ then
     STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;isaac_0_etiss;seal5_0;etiss_0;hls_0;syn_0;compare_0;compare_others_0;retrace_0;reanalyze_0"
 elif [[ "$STEPS" == "all_new" ]]
 then
-    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0_filtered;assign_0_compare_filtered;compare_others_0_filtered;assign_0_compare_others_filtered;retrace_0_filtered;reanalyze_0_filtered;assign_0_util_filtered;filter_0_filtered;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_prelim;isaac_0_etiss_prelim;hls_0_prelim;assign_0_hls_prelim;syn_0_prelim;assign_0_syn_prelim;filter_0_prelim;score_0_prelim;sort_0_prelim;select_0_prelim;isaac_0_generate_final;isaac_0_etiss_final;seal5_0_final;etiss_0_final;compare_0_final;compare_others_0_final;retrace_0_final;reanalyze_0_final"
+    # STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0_filtered;assign_0_compare_filtered;compare_others_0_filtered;assign_0_compare_others_filtered;retrace_0_filtered;reanalyze_0_filtered;assign_0_util_filtered;filter_0_filtered;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_prelim;isaac_0_etiss_prelim;hls_0_prelim;assign_0_hls_prelim;syn_0_prelim;assign_0_syn_prelim;filter_0_prelim;score_0_prelim;sort_0_prelim;select_0_prelim;isaac_0_generate_final;isaac_0_etiss_final;seal5_0_final;etiss_0_final;compare_0_final;compare_others_0_final;retrace_0_final;reanalyze_0_final"
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;spec_0_filtered;select_0_filtered;compare_0_filtered_selected;assign_0_compare_filtered_selected;compare_others_0_filtered_selected;assign_0_compare_others_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;filter_0_filtered_selected;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_filtered2_selected;isaac_0_etiss_filtered2_selected;hls_0_filtered2_selected;assign_0_hls_filtered2_selected;syn_0_filtered2_selected;assign_0_syn_filtered2_selected;filter_0_filtered2_selected;score_0_filtered2_selected;sort_0_filtered2_selected;select_0_filtered2_selected;isaac_0_generate_final;isaac_0_etiss_final;seal5_0_final;etiss_0_final;compare_0_final;compare_others_0_final;retrace_0_final;reanalyze_0_final"
     # STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0;assign_0_compare;compare_others_0;assign_0_compare_others;retrace_0;reanalyze_0;assign_0_util;filter_0_prelim;score_0_prelim;sort_0_prelim;select_0_prelim;isaac_0_etiss_filtered;hls_0;assign_0_hls;syn_0;assign_0_syn"
 elif [[ "$STEPS" == "until_isaac" ]]
 then
@@ -228,6 +232,10 @@ lookup_script() {
     then
         # echo -n "./scripts/flow4.sh"
         echo -n "PRELIM=1 ./scripts/flow_isaac_generate.sh"
+    elif [[ "$STEP" == "isaac_0_generate_filtered2_selected" ]]
+    then
+        # echo -n "./scripts/flow4.sh"
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_isaac_generate.sh"
     elif [[ "$STEP" == "isaac_0_generate_final" ]]
     then
         # echo -n "./scripts/flow4.sh"
@@ -243,6 +251,9 @@ lookup_script() {
     elif [[ "$STEP" == "isaac_0_etiss_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_isaac_etiss.sh"
+    elif [[ "$STEP" == "isaac_0_etiss_filtered2_selected" ]]
+    then
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_isaac_etiss.sh"
     elif [[ "$STEP" == "isaac_0_etiss_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_isaac_etiss.sh"
@@ -272,6 +283,10 @@ lookup_script() {
     then
         # echo -n "./scripts/flow8.sh"
         echo -n "PRELIM=1 ./scripts/flow_hls.sh"
+    elif [[ "$STEP" == "hls_0_filtered2_selected" ]]
+    then
+        # echo -n "./scripts/flow8.sh"
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_hls.sh"
     elif [[ "$STEP" == "syn_0" ]]
     then
         # echo -n "./scripts/flow9.sh"
@@ -280,6 +295,10 @@ lookup_script() {
     then
         # echo -n "./scripts/flow9.sh"
         echo -n "PRELIM=1 ./scripts/flow_syn.sh"
+    elif [[ "$STEP" == "syn_0_filtered2_selected" ]]
+    then
+        # echo -n "./scripts/flow9.sh"
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_syn.sh"
     elif [[ "$STEP" == "compare_0" ]]
     then
         # echo -n "./scripts/flow10.sh"
@@ -288,6 +307,10 @@ lookup_script() {
     then
         # echo -n "./scripts/flow10.sh"
         echo -n "FILTERED=1 BUILD_ARCH=1 ./scripts/flow_compare.sh"
+    elif [[ "$STEP" == "compare_0_filtered_selected" ]]
+    then
+        # echo -n "./scripts/flow10.sh"
+        echo -n "FILTERED=1 SELECTED=1 BUILD_ARCH=1 ./scripts/flow_compare.sh"
     elif [[ "$STEP" == "compare_0_per_instr" ]]
     then
         # echo -n "./scripts/flow10_per_instr.sh"
@@ -300,9 +323,16 @@ lookup_script() {
     then
         # echo -n "./scripts/flow10_filter.sh"
         echo -n "FILTERED=1 ./scripts/flow_filter.sh"
+    elif [[ "$STEP" == "filter_0_filtered_selected" ]]
+    then
+        # echo -n "./scripts/flow10_filter.sh"
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_filter.sh"
     elif [[ "$STEP" == "filter_0_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_filter.sh"
+    elif [[ "$STEP" == "filter_0_filtered2_selected" ]]
+    then
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_filter.sh"
     elif [[ "$STEP" == "compare_others_0" ]]
     then
         # echo -n "./scripts/flow10_.sh"
@@ -311,6 +341,10 @@ lookup_script() {
     then
         # echo -n "./scripts/flow10_.sh"
         echo -n "FILTERED=1 BUILD_ARCH=1 ./scripts/flow_compare_others.sh"
+    elif [[ "$STEP" == "compare_others_0_filtered_selected" ]]
+    then
+        # echo -n "./scripts/flow10_.sh"
+        echo -n "FILTERED=1 SELECTED=1 BUILD_ARCH=1 ./scripts/flow_compare_others.sh"
     elif [[ "$STEP" == "retrace_0" ]]
     then
         # echo -n "./scripts/flow11.sh"
@@ -319,10 +353,18 @@ lookup_script() {
     then
         # echo -n "./scripts/flow11.sh"
         echo -n "FILTERED=1 BUILD_ARCH=1 ./scripts/flow_retrace.sh"
+    elif [[ "$STEP" == "retrace_0_filtered_selected" ]]
+    then
+        # echo -n "./scripts/flow11.sh"
+        echo -n "FILTERED=1 SELECTED=1 BUILD_ARCH=1 ./scripts/flow_retrace.sh"
     elif [[ "$STEP" == "retrace_0_prelim" ]]
     then
         # echo -n "./scripts/flow11.sh"
         echo -n "PRELIM=1 ./scripts/flow_retrace.sh"
+    elif [[ "$STEP" == "retrace_0_filtered2_selected" ]]
+    then
+        # echo -n "./scripts/flow11.sh"
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_retrace.sh"
     elif [[ "$STEP" == "retrace_0_final" ]]
     then
         # echo -n "./scripts/flow11.sh"
@@ -335,10 +377,18 @@ lookup_script() {
     then
         # echo -n "./scripts/flow12.sh"
         echo -n "FILTERED=1 ./scripts/flow_reanalyze.sh"
+    elif [[ "$STEP" == "reanalyze_0_filtered_selected" ]]
+    then
+        # echo -n "./scripts/flow12.sh"
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_reanalyze.sh"
     elif [[ "$STEP" == "reanalyze_0_prelim" ]]
     then
         # echo -n "./scripts/flow12.sh"
         echo -n "PRELIM=1 ./scripts/flow_reanalyze.sh"
+    elif [[ "$STEP" == "reanalyze_0_filtered2_selected" ]]
+    then
+        # echo -n "./scripts/flow12.sh"
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_reanalyze.sh"
     elif [[ "$STEP" == "reanalyze_0_final" ]]
     then
         # echo -n "./scripts/flow12.sh"
@@ -362,18 +412,27 @@ lookup_script() {
     elif [[ "$STEP" == "assign_0_compare_filtered" ]]
     then
         echo -n "FILTERED=1 ./scripts/flow_assign_compare.sh"
+    elif [[ "$STEP" == "assign_0_compare_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare.sh"
     elif [[ "$STEP" == "assign_0_compare_others" ]]
     then
         echo -n "./scripts/flow_assign_compare_others.sh"
     elif [[ "$STEP" == "assign_0_compare_others_filtered" ]]
     then
         echo -n "FILTERED=1 ./scripts/flow_assign_compare_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_others_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare_others.sh"
     elif [[ "$STEP" == "assign_0_util" ]]
     then
         echo -n "./scripts/flow_assign_util.sh"
     elif [[ "$STEP" == "assign_0_util_filtered" ]]
     then
         echo -n "FILTERED=1 ./scripts/flow_assign_util.sh"
+    elif [[ "$STEP" == "assign_0_util_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_util.sh"
     elif [[ "$STEP" == "assign_0" ]]
     then
         echo -n "./scripts/flow_assign_hls.sh"
@@ -383,6 +442,9 @@ lookup_script() {
     elif [[ "$STEP" == "assign_0_hls_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_assign_hls.sh"
+    elif [[ "$STEP" == "assign_0_hls_filtered2_selected" ]]
+    then
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_assign_hls.sh"
     elif [[ "$STEP" == "assign_0_syn" ]]
     then
         echo -n "./scripts/flow_assign_syn.sh"
@@ -392,30 +454,48 @@ lookup_script() {
     elif [[ "$STEP" == "assign_0_syn_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_assign_syn.sh"
+    elif [[ "$STEP" == "assign_0_syn_filtered2_selected" ]]
+    then
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_assign_syn.sh"
     elif [[ "$STEP" == "score_0" ]]
     then
         echo -n "./scripts/flow_score.sh"
     elif [[ "$STEP" == "score_0_filtered" ]]
     then
         echo -n "FILTERED=1 ./scripts/flow_score.sh"
+    elif [[ "$STEP" == "score_0_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_score.sh"
     elif [[ "$STEP" == "score_0_filtered2" ]]
     then
         echo -n "FILTERED2=1 ./scripts/flow_score.sh"
     elif [[ "$STEP" == "score_0_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_score.sh"
+    elif [[ "$STEP" == "score_0_filtered2_selected" ]]
+    then
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_score.sh"
     elif [[ "$STEP" == "sort_0_filtered" ]]
     then
         echo -n "FILTERED=1 ./scripts/flow_sort.sh"
+    elif [[ "$STEP" == "sort_0_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_sort.sh"
     elif [[ "$STEP" == "sort_0_filtered2" ]]
     then
         echo -n "FILTERED2=1 ./scripts/flow_sort.sh"
     elif [[ "$STEP" == "sort_0_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_sort.sh"
+    elif [[ "$STEP" == "sort_0_filtered2_selected" ]]
+    then
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_sort.sh"
     elif [[ "$STEP" == "sort_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_sort.sh"
+    elif [[ "$STEP" == "spec_0_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_spec.sh"
     elif [[ "$STEP" == "select_0_filtered" ]]
     then
         echo -n "FILTERED=1 ./scripts/flow_select.sh"
@@ -425,6 +505,9 @@ lookup_script() {
     elif [[ "$STEP" == "select_0_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_select.sh"
+    elif [[ "$STEP" == "select_0_filtered2_selected" ]]
+    then
+        echo -n "FILTERED2=1 SELECTED=1 ./scripts/flow_select.sh"
     elif [[ "$STEP" == "select_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_select.sh"
@@ -457,6 +540,6 @@ do
    echo "Running step: $step"
    script=$(lookup_script $step)
    set -o pipefail
-   measure_times $step $TIMES_FILE $script $OUT_DIR 2>&1 | tee $LOG_FILE
+   measure_times $step $TIMES_FILE $script $OUT_DIR 2>&1 | tee -a $LOG_FILE
    set +o pipefail
 done

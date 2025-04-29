@@ -29,6 +29,7 @@ python3 -m isaac_toolkit.analysis.dynamic.trace.trunc_trace --session $SESS --st
 python3 -m isaac_toolkit.analysis.dynamic.trace.trunc_trace --session $SESS --end-func stop_bench $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.trace.instr_operands --session $SESS --imm-only $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode --sess $SESS $FORCE_ARGS
+python3 -m isaac_toolkit.analysis.dynamic.histogram.opcode_per_llvm_bb --sess $SESS $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.histogram.instr --sess $SESS $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.static.histogram.disass_instr --sess $SESS $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.static.histogram.disass_opcode --sess $SESS $FORCE_ARGS

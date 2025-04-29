@@ -11,8 +11,8 @@ def main():
     parser.add_argument("index", help="Index yaml file")
     parser.add_argument("-o", "--output", default=None, help="Output yaml file")
     parser.add_argument("--inplace", action="store_true", help="TODO")
-    parser.add_argument("--util-score-csv", required=True, help="TODO")
-    parser.add_argument("--in-prefix", default="", help="TODO")
+    parser.add_argument("--counts-csv", required=True, help="TODO")
+    # parser.add_argument("--in-prefix", default="", help="TODO")
     parser.add_argument("--out-prefix", default="", help="TODO")
     args = parser.parse_args()
 
@@ -21,7 +21,7 @@ def main():
     candidates = combined_index_data["candidates"]
     print("candidates", candidates)
 
-    scores_df = pd.read_csv(args.util_score_csv)
+    scores_df = pd.read_csv(args.counts_csv)
     print("scores_df", scores_df)
     # assert len(candidates) == len(scores_df)
 
@@ -29,12 +29,12 @@ def main():
         print("i", i)
         name = candidate["properties"]["InstrName"]
         instr_row = scores_df[scores_df["instr"] == name]
-        print("instr_row", instr_row)
         assert len(instr_row) == 1
-        util_score = float(instr_row[f"{args.in_prefix}util_score"].iloc[0])
+        util_score = float(instr_row["estimated_reduction_rel"].iloc[0])
+        # TODO: add other cols
         metrics = candidate.get("metrics", {})
         print("metrics", metrics)
-        metrics[f"{args.out_prefix}util_score"] = util_score
+        metrics[f"{args.out_prefix}estimated_reduction_rel"] = util_score
         print("metrics2", metrics)
         candidate["metrics"] = metrics
 

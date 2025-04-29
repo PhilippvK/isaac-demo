@@ -15,7 +15,7 @@ WORK=$DIR/work
 
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
-PRELIM_FILTERED=${PRELIM_FILTERED-0}
+# PRELIM_FILTERED=${PRELIM_FILTERED-0}
 FILTERED=${FILTERED:-0}
 FILTERED2=${FILTERED2:-0}
 
@@ -23,47 +23,70 @@ SELECT_TOPK=${SELECT_TOPK:-0}
 SELECT_FILTERED_TOPK=${SELECT_FILTERED_TOPK:-0}
 SELECT_FILTERED2_TOPK=${SELECT_FILTERED2_TOPK:-0}
 SELECT_PRELIM_TOPK=${SELECT_PRELIM_TOPK:-0}
-SELECT_PRELIM_FILTERED_TOPK=${SELECT_PRELIM_FILTERED_TOPK:-0}
+# SELECT_PRELIM_FILTERED_TOPK=${SELECT_PRELIM_FILTERED_TOPK:-0}
 SELECT_FINAL_TOPK=${SELECT_FINAL_TOPK:-0}
 
+EXTRA_ARGS=""
+
+SCRIPT=scripts/select_candidates.py
+KEEP_NAMES=1
 if [[ "$FINAL" == "1" ]]
 then
     echo "Select unsupported for FINAL"
-elif [[ "$PRELIM_FILTERED" == "1" ]]
-then
-    INDEX_FILE=$WORK/prelim_filtered_index.yml
-    OUT_FILE=$WORK/final_index.yml
-    TOPK=$SELECT_PRELIM_FILTERED_TOPK
-    NEW_SUFFIX="_final"
+# elif [[ "$PRELIM_FILTERED" == "1" ]]
+# then
+#     INDEX_FILE=$WORK/prelim_filtered_index.yml
+#     OUT_FILE=$WORK/final_index.yml
+#     TOPK=$SELECT_PRELIM_FILTERED_TOPK
+#     NEW_SUFFIX="_final"
 elif [[ "$PRELIM" == "1" ]]
 then
     INDEX_FILE=$WORK/prelim_index.yml
     OUT_FILE=$WORK/final_index.yml
     TOPK=$SELECT_PRELIM_TOPK
     NEW_SUFFIX="_final"
+    KEEP_NAMES=0
+elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
+then
+    INDEX_FILE=$WORK/filtered2_selected_index.yml
+    OUT_FILE=$WORK/final_index.yml
+    TOPK=$SELECT_PRELIM_TOPK
+    NEW_SUFFIX="_final"
 elif [[ "$FILTERED2" == "1" ]]
 then
     INDEX_FILE=$WORK/filtered2_index.yml
-    OUT_FILE=$WORK/prelim_index.yml
+    OUT_FILE=$WORK/filtered2_selected_index.yml
     TOPK=$SELECT_FILTERED2_TOPK
-    NEW_SUFFIX="_prelim"
+    NEW_SUFFIX="_filtered2_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
-    echo "Select unsupported for FILTERED"
+    INDEX_FILE=$WORK/filtered_index.yml
+    OUT_FILE=$WORK/filtered_selected_index.yml
+    TOPK=$SELECT_FILTERED_TOPK
+    NEW_SUFFIX="_filtered_selected"
+    SPEC_GRAPH=$WORK/spec_graph_filtered.pkl
+    SCRIPT=scripts/selection_algo.py
+    BENCH_FULL=$(cat $DIR/experiment.ini | grep "benchmark=" | cut -d= -f2)
+    MAX_COST=0.25  # encoding footprint
+    # STOP_BENEFIT=""
+    EXTRA_ARGS="$EXTRA_ARGS --spec-graph $SPEC_GRAPH --benchmark $BENCH_FULL --use-mlonmcu --max-cost $MAX_COST"
 else
     echo "Select unsupported"
 fi
-
-
-EXTRA_ARGS=""
 
 if [[ "$TOPK" != "0" ]]
 then
     EXTRA_ARGS="$EXTRA_ARGS --topk $TOPK"
 fi
 
-python3 scripts/select_candidates.py $INDEX_FILE --out $OUT_FILE $EXTRA_ARGS --sankey $WORK/sankey${NEW_SUFFIX}.md
+python3 $SCRIPT $INDEX_FILE --out $OUT_FILE $EXTRA_ARGS --sankey $WORK/sankey${NEW_SUFFIX}.md
 
 NAMES_CSV=$WORK/names${NEW_SUFFIX}.csv
 
-python3 scripts/assign_names.py $OUT_FILE --inplace --csv $NAMES_CSV
+# TODO expose KEEP_NAMES
+if [[ "$KEEP_NAMES" == "1" ]]
+then
+    python3 scripts/names_helper.py $OUT_FILE --output $NAMES_CSV
+else
+    python3 scripts/assign_names.py $OUT_FILE --inplace --csv $NAMES_CSV
+fi

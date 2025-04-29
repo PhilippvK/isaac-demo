@@ -1,5 +1,4 @@
 import argparse
-from pathlib import Path
 from typing import Dict, Optional
 
 import matplotlib.pyplot as plt
@@ -12,19 +11,21 @@ def main():
     parser.add_argument("index", help="Index yaml file")
     parser.add_argument("-o", "--output", default=None, help="Output yaml file")
     parser.add_argument("--inplace", action="store_true", help="TODO")
-    parser.add_argument("--ascending", action="store_true", help="TODO")
-    parser.add_argument("--by", required=True, help="Metric used for sorting")
-    parser.add_argument("--by2", default=None, help="Metric used for sorting 2nd level")
+    parser.add_argument("--data", action="append", help="TODO")
     args = parser.parse_args()
+
+    print("data", args.data)
+    mapping = dict([tuple(x.split("=", 1)) for x in args.data])
+    print("mapping", mapping)
 
     with open(args.index, "r") as f:
         combined_index_data = yaml.safe_load(f)
-    candidates = combined_index_data["candidates"]
-    print("candidates", candidates)
-
-    candidates = sorted(candidates, key=lambda x: (x["metrics"].get(args.by, 0.0), x["metrics"].get(args.by2, 0.0)), reverse=not args.ascending)
-    combined_index_data["candidates"] = candidates
-    print("sorted_candidates", candidates)
+    # candidates = combined_index_data["candidates"]
+    # print("candidates", candidates)
+    if isinstance(combined_index_data["global"]["artifacts"], list):
+        assert len(combined_index_data["global"]["artifacts"]) == 0
+        combined_index_data["global"]["artifacts"] = {}
+    combined_index_data["global"]["artifacts"].update(mapping)
 
     if args.inplace:
         assert args.output is None

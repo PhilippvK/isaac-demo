@@ -31,3 +31,7 @@ export PATH=$GNU_DIR/bin:$LLVM_INSTALL_DIR/bin:$ETISS_INSTALL_DIR/bin:$PATH
 
 DEFAULTS_FILE=$SCRIPT_DIR/defaults.env
 source $DEFAULTS_FILE
+
+# TODO: move elsewhere
+export PATH=/nfs/tools/synopsys/syn/T-2022.03-SP5/linux64/syn/bin/:$PATH
+export PATH=/nfs/tools/xilinx/Vivado/2024.1/bin:$PATH

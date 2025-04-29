@@ -1,11 +1,30 @@
+import pickle
 import argparse
 from pathlib import Path
-from typing import Dict, Optional
-from collections import defaultdict
 
-import matplotlib.pyplot as plt
+import networkx as nx
+from networkx.drawing.nx_agraph import write_dot
 import pandas as pd
-import yaml
+
+
+def graph_to_file(graph, dest, fmt="auto"):
+    if not isinstance(dest, Path):
+        dest = Path(dest)
+    if fmt == "auto":
+        fmt = dest.suffix[1:].upper()
+    prog = "dot"
+    # TODO: support pkl
+    if fmt == "PKL":
+        with open(dest, "wb") as f:
+            pickle.dump(graph, f)
+    elif fmt == "DOT":
+        write_dot(graph, dest)
+    elif fmt in ["PDF", "PNG"]:
+        graph = nx.nx_agraph.to_agraph(graph)
+        graph.draw(str(dest), prog=prog)
+        graph.close()
+    else:
+        raise ValueError(f"Unsupported fmt: {fmt}")
 
 
 def main():
@@ -13,6 +32,7 @@ def main():
     parser.add_argument("report", help="Report CSV file")
     parser.add_argument("--names-csv", default=None, help="ISAX names CSV")
     parser.add_argument("--sess-dir", default=None, help="Sessions base dir")
+    parser.add_argument("--progs-graph", default=None, help="TODO")
     parser.add_argument("-o", "--output", default=None, help="Output csv file")
     args = parser.parse_args()
 
@@ -277,6 +297,64 @@ def main():
                 )
             )
             print(",".join(instrs_df.iloc[:TOPK].index.dropna()))
+
+    if args.progs_graph is not None:
+        graph = nx.MultiGraph()
+        for i, prog in enumerate(prog_names):
+            graph.add_node(i, label=prog)
+        from collections import defaultdict
+
+        counts = defaultdict(int)
+        for instr, row in instrs_df.iterrows():
+            if instr is None:
+                continue
+            # print("instr", instr)
+            used_by_progs = row["used_by_progs"]
+            # print("used_by_progs", used_by_progs)
+            import itertools
+
+            combs = itertools.combinations(used_by_progs, 2)
+            # print("combs", list(combs))
+            # print("A", len(combs))
+            for prog, prog_ in combs:
+                i = prog_names.index(prog)
+                j = prog_names.index(prog_)
+                # print("i,j", i, j)
+                graph.add_edge(i, j, label=instr)
+                counts[(i, j)] += 1
+            # print("counts", counts)
+        multi_graph = graph
+        MULTI = False
+        # MULTI = True
+        if not MULTI:
+            graph_ = nx.Graph()
+            graph_.add_nodes_from(graph.nodes)
+            temp = [(*key, count) for key, count in counts.items()]
+            graph_.add_weighted_edges_from(temp, "label")
+            graph = graph_
+        colors = ["red", "blue", "green", "orange", "yellow"]
+        c = nx.community.greedy_modularity_communities(graph, weight="label" if not MULTI else None)
+        # c = nx.connected_components(graph)
+        c = [[prog_names[x] for x in y] for y in c]
+        assert len(c) <= len(colors)
+        print("c", c, len(c))
+        c_instrs = [{instr for prog in comm for instr in progs_metrics[prog]["used_instrs"]} for comm in c]
+        print("c_instrs", c_instrs, len(c_instrs))
+        c_instrs_overlaps = {
+            (i, j): instrs & instrs_
+            for i, instrs in enumerate(c_instrs)
+            for j, instrs_ in enumerate(c_instrs)
+            if j > i and len(instrs & instrs_) > 0
+        }
+        print("c_instrs_overlaps", c_instrs_overlaps)
+        for i, comm in enumerate(c):
+            color = colors[i]
+            for prog in comm:
+                node = prog_names.index(prog)
+                graph.nodes[node].update({"style": "filled", "fillcolor": color})
+
+        print("graph", graph, graph.nodes, graph.edges)
+        graph_to_file(graph, args.progs_graph)
 
     if args.output:
         out_df.to_csv(args.output, index=False)

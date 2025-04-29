@@ -49,6 +49,6 @@ else
     SUFFIX=""
 fi
 
-ENC_SCORE_CSV=$WORK/encoding_score${SUFFIX}.csv
+SPEC_GRAPH=$WORK/spec_graph${SUFFIX}.pkl
 
-python3 scripts/annotate_enc_score.py $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
+python3 -m tool.detect_specializations $INDEX_FILE --graph $SPEC_GRAPH --noop

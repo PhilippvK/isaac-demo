@@ -22,6 +22,8 @@ fi
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
+FILTERED2=${FILTERED2:-0}
+SELECTED=${SELECTED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
@@ -33,6 +35,21 @@ then
     GEN_DIR=$WORK/gen_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
     SUFFIX="_prelim"
+elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
+then
+    GEN_DIR=$WORK/gen_filtered2_selected/
+    INDEX_FILE=$WORK/filtered2_selected_index.yml
+    SUFFIX="_filtered2_selected"
+elif [[ "$FILTERED2" == "1" ]]
+then
+    GEN_DIR=$WORK/gen_filtered2/
+    INDEX_FILE=$WORK/filtered2_index.yml
+    SUFFIX="_filtered2"
+elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
+then
+    GEN_DIR=$WORK/gen_filtered_selected/
+    INDEX_FILE=$WORK/filtered_selected_index.yml
+    SUFFIX="_filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/

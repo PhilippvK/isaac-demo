@@ -18,6 +18,7 @@ def main():
     parser.add_argument("--min-util-score", type=float, default=None, help="TODO")
     parser.add_argument("--min-runtime-reduction-rel", type=float, default=None, help="TODO")
     parser.add_argument("--min-code-size-reduction-rel", type=float, default=None, help="TODO")
+    parser.add_argument("--min-estimated-reduction", type=float, default=None, help="TODO")  # TODO: rename
     args = parser.parse_args()
 
     with open(args.index, "r") as f:
@@ -59,6 +60,13 @@ def main():
                 if code_size_reduction_rel < args.min_code_size_reduction_rel:
                     to_drop.add(i)
                     reasons_dropped["min_code_size_reduction_rel"].add(i)
+                    continue
+        if args.min_estimated_reduction is not None:
+            estimated_reduction_rel = metrics.get("estimated_reduction_rel")
+            if estimated_reduction_rel is not None:
+                if estimated_reduction_rel < args.min_estimated_reduction:
+                    to_drop.add(i)
+                    reasons_dropped["min_estimated_reduction"].add(i)
                     continue
     print("to_drop", to_drop)
     num_drop = len(to_drop)
