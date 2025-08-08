@@ -21,26 +21,37 @@ PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
 FINAL=${FINAL:-0}
 
+FORCE_ARGS=""
+
+FORCE=1
+if [[ "$FORCE" == "1" ]]
+then
+    FORCE_ARGS="--force"
+fi
 
 if [[ "$FINAL" == "1" ]]
 then
     GEN_DIR=$WORK/gen_final/
     DEST_DIR=$DOCKER_DIR/etiss_final/
     INDEX_FILE=$WORK/final_index.yml
+    SUFFIX="final"
 elif [[ "$PRELIM" == "1" ]]
 then
     GEN_DIR=$WORK/gen_prelim/
     DEST_DIR=$DOCKER_DIR/etiss_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
+    SUFFIX="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
     DEST_DIR=$DOCKER_DIR/etiss_filtered/
     INDEX_FILE=$WORK/filtered_index.yml
+    SUFFIX="filtered"
 else
     GEN_DIR=$WORK/gen/
     DEST_DIR=$DOCKER_DIR/etiss/
     INDEX_FILE=$WORK/combined_index.yml
+    SUFFIX=""
 fi
 
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
@@ -49,9 +60,16 @@ ETISS_IMAGE=${ETISS_IMAGE:-isaac-quickstart-etiss:latest}
 
 mkdir -p $DEST_DIR
 
-docker run -it --rm -v $(pwd):$(pwd) $ETISS_IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_desc
+# OLD:
+# docker run -it --rm -v $(pwd):$(pwd) $ETISS_IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_desc
 # NEW:
 # python3 -m isaac_toolkit.retargeting.iss.etiss --sess $SESS --workdir $WORK --core-name $CORE_NAME --docker
+EXTRA_ARGS=""
+if [[ "$SUFFIX" != "" ]]
+then
+    EXTRA_ARGS="--label $SUFFIX"
+fi
+python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS
 
 # mkdir -p $WORK/docker/etiss_source
 # cd $WORK/docker/etiss_source

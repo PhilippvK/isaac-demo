@@ -136,7 +136,7 @@ then
 elif [[ "$STEPS" == "all_new" ]]
 then
     # STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0_filtered;assign_0_compare_filtered;compare_others_0_filtered;assign_0_compare_others_filtered;retrace_0_filtered;reanalyze_0_filtered;assign_0_util_filtered;filter_0_filtered;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_prelim;isaac_0_etiss_prelim;hls_0_prelim;assign_0_hls_prelim;syn_0_prelim;assign_0_syn_prelim;filter_0_prelim;score_0_prelim;sort_0_prelim;select_0_prelim;isaac_0_generate_final;isaac_0_etiss_final;seal5_0_final;etiss_0_final;compare_0_final;compare_others_0_final;retrace_0_final;reanalyze_0_final"
-    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;spec_0_filtered;select_0_filtered;compare_0_filtered_selected;assign_0_compare_filtered_selected;compare_others_0_filtered_selected;assign_0_compare_others_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;filter_0_filtered_selected;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_filtered2_selected;isaac_0_etiss_filtered2_selected;hls_0_filtered2_selected;assign_0_hls_filtered2_selected;syn_0_filtered2_selected;assign_0_syn_filtered2_selected;filter_0_filtered2_selected;score_0_filtered2_selected;sort_0_filtered2_selected;select_0_filtered2_selected;isaac_0_generate_final;isaac_0_etiss_final;seal5_0_final;etiss_0_final;compare_0_final;compare_others_0_final;retrace_0_final;reanalyze_0_final"
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;spec_0_filtered;isaac_0_generate_filtered;isaac_0_etiss_filtered;hls_0_filtered;assign_0_hls_filtered;select_0_filtered;compare_0_filtered_selected;assign_0_compare_filtered_selected;compare_others_0_filtered_selected;assign_0_compare_others_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;filter_0_filtered_selected;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_filtered2_selected;isaac_0_etiss_filtered2_selected;hls_0_filtered2_selected;assign_0_hls_filtered2_selected;syn_0_filtered2_selected;assign_0_syn_filtered2_selected;filter_0_filtered2_selected;score_0_filtered2_selected;sort_0_filtered2_selected;select_0_filtered2_selected;isaac_0_generate_final;isaac_0_etiss_final;seal5_0_final;etiss_0_final;compare_0_final;compare_others_0_final;retrace_0_final;reanalyze_0_final"
     # STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0;assign_0_compare;compare_others_0;assign_0_compare_others;retrace_0;reanalyze_0;assign_0_util;filter_0_prelim;score_0_prelim;sort_0_prelim;select_0_prelim;isaac_0_etiss_filtered;hls_0;assign_0_hls;syn_0;assign_0_syn"
 elif [[ "$STEPS" == "until_isaac" ]]
 then
@@ -228,6 +228,9 @@ lookup_script() {
     then
         # echo -n "./scripts/flow4.sh"
         echo -n "./scripts/flow_isaac_generate.sh"
+    elif [[ "$STEP" == "isaac_0_generate_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_isaac_generate.sh"
     elif [[ "$STEP" == "isaac_0_generate_prelim" ]]
     then
         # echo -n "./scripts/flow4.sh"
@@ -279,6 +282,9 @@ lookup_script() {
     then
         # echo -n "./scripts/flow8.sh"
         echo -n "./scripts/flow_hls.sh"
+    elif [[ "$STEP" == "hls_0_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_hls.sh"
     elif [[ "$STEP" == "hls_0_prelim" ]]
     then
         # echo -n "./scripts/flow8.sh"
@@ -400,6 +406,9 @@ lookup_script() {
     elif [[ "$STEP" == "assign_0_enc" ]]
     then
         echo -n "FILTERED=0 ./scripts/flow_assign_enc.sh"
+    elif [[ "$STEP" == "assign_0_enc_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_assign_enc.sh"
     elif [[ "$STEP" == "assign_0_seal5" ]]
     then
         echo -n "FILTERED=0 ./scripts/flow_assign_seal5.sh"

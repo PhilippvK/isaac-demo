@@ -24,26 +24,36 @@ PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
 FINAL=${FINAL:-0}
 
+FORCE=1
+if [[ "$FORCE" == "1" ]]
+then
+    FORCE_ARGS="--force"
+fi
+
 
 if [[ "$FINAL" == "1" ]]
 then
     GEN_DIR=$WORK/gen_final/
     DEST_DIR=$DOCKER_DIR/seal5_final/
     INDEX_FILE=$WORK/final_index.yml
+    SUFFIX="final"
 elif [[ "$PRELIM" == "1" ]]
 then
     GEN_DIR=$WORK/gen_prelim/
     DEST_DIR=$DOCKER_DIR/seal5_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
+    SUFFIX="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
     DEST_DIR=$DOCKER_DIR/seal5_filtered/
     INDEX_FILE=$WORK/filtered_index.yml
+    SUFFIX="filtered"
 else
     GEN_DIR=$WORK/gen/
     DEST_DIR=$DOCKER_DIR/seal5/
     INDEX_FILE=$WORK/combined_index.yml
+    SUFFIX=""
 fi
 
 CDSL_FILES=""
@@ -64,9 +74,19 @@ done
 mkdir -p $DEST_DIR
 
 # docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
+# OLD:
 docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
 # NEW:
-# python3 -m isaac_toolkit.retargeting.llvm.seal5 --sess $SESS --workdir $WORK --set-name $SET_NAME --xlen 32 --docker
+# EXTRA_ARGS=""
+# if [[ "$SUFFIX" != "" ]]
+# then
+#     EXTRA_ARGS="$EXTRA_ARGS --label $SUFFIX"
+# fi
+# if [[ "$SPLITTED" == "1" ]]
+# then
+#     EXTRA_ARGS="$EXTRA_ARGS --splitted"
+# fi
+# python3 -m isaac_toolkit.flow.demo.stage.retargeting.llvm --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS $CFG_FILES
 
 python3 scripts/seal5_score.py --output $DEST_DIR/seal5_score.csv --seal5-status-csv $DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $DEST_DIR/seal5_reports/status_compact.csv
 python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$DEST_DIR/llvm_install

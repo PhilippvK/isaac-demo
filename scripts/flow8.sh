@@ -136,7 +136,7 @@ then
         cp $GEN_DIR/$set_name.hls.core_desc $TOOLS_PATH/nailgun/isaxes/$set_name_lower.core_desc  # TODO: do not hardcode
     done
     echo ISAXES=$ISAXES
-    read -n 1
+    # read -n 1
     # TODO: allow running the flow for multiple isaxes in parallel
     mkdir -p $WORK/docker/hls/
     sudo chmod 777 -R $WORK/docker/hls

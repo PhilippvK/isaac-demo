@@ -67,9 +67,15 @@ then
     SPEC_GRAPH=$WORK/spec_graph_filtered.pkl
     SCRIPT=scripts/selection_algo.py
     BENCH_FULL=$(cat $DIR/experiment.ini | grep "benchmark=" | cut -d= -f2)
-    MAX_COST=0.25  # encoding footprint
+    # MAX_COST=0.25  # encoding footprint
+    TOTAL_BENEFIT_FUNC="speedup"
+    INSTR_BENEFIT_FUNC="speedup_per_instr"
+    INSTR_COST_FUNC="hls_area_per_instr"
+    TOTAL_COST_FUNC="hls_area_per_instr_sum"
     # STOP_BENEFIT=""
-    EXTRA_ARGS="$EXTRA_ARGS --spec-graph $SPEC_GRAPH --benchmark $BENCH_FULL --use-mlonmcu --max-cost $MAX_COST"
+    # STRATEGY=""
+    # EXTRA_ARGS="$EXTRA_ARGS --spec-graph $SPEC_GRAPH --benchmark $BENCH_FULL --use-mlonmcu --max-cost $MAX_COST --instr-cost-func $INSTR_COST_FUNC --total-cost-func $TOTAL_COST_FUNC --instr-benefit-func $INSTR_BENEFIT_FUNC --total-benefit-func $TOTAL_BENEFIT_FUNC"
+    EXTRA_ARGS="$EXTRA_ARGS --spec-graph $SPEC_GRAPH --benchmark $BENCH_FULL --use-mlonmcu --instr-cost-func $INSTR_COST_FUNC --total-cost-func $TOTAL_COST_FUNC --instr-benefit-func $INSTR_BENEFIT_FUNC --total-benefit-func $TOTAL_BENEFIT_FUNC"
 else
     echo "Select unsupported"
 fi
