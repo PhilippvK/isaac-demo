@@ -45,6 +45,7 @@ FPGA_SYN_SKIP_SHARED=${FPGA_SYN_SKIP_SHARED:-0}
 
 ASIP_SYN_ENABLE=${ASIP_SYN_ENABLE:-1}
 ASIP_SYN_TOOL=${ASIP_SYN_TOOL:-synopsys}
+ASIP_SYN_SEARCH_FMAX=${ASIP_SYN_SEARCH_FMAX:-0}
 
 FPGA_SYN_ENABLE=${FPGA_SYN_ENABLE:-1}
 FPGA_SYN_TOOL=${FPGA_SYN_TOOL:-vivado}
@@ -56,11 +57,13 @@ ASIP_SYN_SYNOPSYS_PDK=${ASIP_SYN_SYNOPSYS_PDK:-nangate45}
 FPGA_SYN_VIVADO_CORE_NAME=${FPGA_SYN_VIVADO_CORE_NAME:-CVA5}
 FPGA_SYN_VIVADO_CLK_PERIOD=${FPGA_SYN_VIVADO_CLK_PERIOD:-50.0}
 FPGA_SYN_VIVADO_PART=${FPGA_SYN_VIVADO_PART:-xc7a200tffv1156-1}
+FPGA_SYN_SEARCH_FMAX=${FPGA_SYN_SEARCH_FMAX:-0}
 
 HLS_TOOL=${HLS_TOOL:-1}
 HLS_NAILGUN_SHARE_RESOURCES=${HLS_NAILGUN_SHARE_RESOURCES:-1}
 
 COLLECT_ASIP_ARGS=""
+COLLECT_ASIP_FMAX_ARGS=""
 if [[ "$ASIP_SYN_ENABLE" == 1 ]]
 then
     if [[ "$ASIP_SYN_SKIP_BASELINE" == 0 ]]
@@ -75,11 +78,24 @@ then
                     exit 1
                 fi
                 COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --baseline-dir $ASIP_SYN_BASELINE_USE"
+                if [[ "$ASIP_SYN_SEARCH_FMAX" == "1" ]]
+                then
+                    COLLECT_ASIP_FMAX_ARGS="$COLLECT_ASIP_FMAX_ARGS --baseline-dir $(realpath -s $ASIP_SYN_BASELINE_USE)_fmax"
+                fi
             else
                 mkdir -p $WORK/docker/asip_syn/baseline/rtl
                 cp $WORK/docker/hls/baseline/rtl/* $WORK/docker/asip_syn/baseline/rtl
                 ./asip_syn_script.sh $WORK/docker/asip_syn/baseline/ $WORK/docker/asip_syn/baseline/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/baseline/constraints.sdc
                 COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --baseline-dir $WORK/docker/asip_syn/baseline/"
+                if [[ "$ASIP_SYN_SEARCH_FMAX" == "1" ]]
+                then
+                    echo "TODO"
+                    DSE_DIR=$WORK/docker/asip_syn/baseline_dse
+                    FMAX_DIR=$WORK/docker/asip_syn/baseline_fmax
+                    # TODO: copy fmax dir
+                    # TODO: cleanup dse dir
+                    COLLECT_ASIP_FMAX_ARGS="$COLLECT_ASIP_FMAX_ARGS --baseline-dir $FMAX_DIR"
+                fi
            fi
         elif [[ "$ASIP_SYN_TOOL" == "ol2" ]]
         then
@@ -98,6 +114,15 @@ then
             cp $WORK/docker/hls/default/rtl/* $WORK/docker/asip_syn/default/rtl
             ./asip_syn_script.sh $WORK/docker/asip_syn/default $WORK/docker/asip_syn/default/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/default/constraints.sdc
             COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --default-dir $WORK/docker/asip_syn/default/"
+            if [[ "$ASIP_SYN_SEARCH_FMAX" == "1" ]]
+            then
+                echo "TODO"
+                DSE_DIR=$WORK/docker/asip_syn/default_dse
+                FMAX_DIR=$WORK/docker/asip_syn/default_fmax
+                # TODO: copy fmax dir
+                # TODO: cleanup dse dir
+                COLLECT_ASIP_FMAX_ARGS="$COLLECT_ASIP_FMAX_ARGS --default-dir $FMAX_DIR"
+            fi
         elif [[ "$ASIP_SYN_TOOL" == "ol2" ]]
         then
             echo "Unimplemented ASIP_SYN_TOOL: $ASIP_SYN_TOOL"
@@ -115,6 +140,15 @@ then
             cp $WORK/docker/hls/shared/rtl/* $WORK/docker/asip_syn/shared/rtl
             ./asip_syn_script.sh $WORK/docker/asip_syn/shared $WORK/docker/asip_syn/shared/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/shared/constraints.sdc
             COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --shared-dir $WORK/docker/asip_syn/shared/"
+            if [[ "$ASIP_SYN_SEARCH_FMAX" == "1" ]]
+            then
+                echo "TODO"
+                DSE_DIR=$WORK/docker/asip_syn/shared_dse
+                FMAX_DIR=$WORK/docker/asip_syn/shared_fmax
+                # TODO: copy fmax dir
+                # TODO: cleanup dse dir
+                COLLECT_ASIP_FMAX_ARGS="$COLLECT_ASIP_FMAX_ARGS --shared-dir $FMAX_DIR"
+            fi
         elif [[ "$ASIP_SYN_TOOL" == "ol2" ]]
         then
             echo "Unimplemented ASIP_SYN_TOOL: $ASIP_SYN_TOOL"
@@ -128,6 +162,10 @@ fi
 if [[ "$COLLECT_ASIP_ARGS" != "" ]]
 then
     python3 scripts/collect_asip_syn_metrics.py $COLLECT_ASIP_ARGS --out $WORK/docker/asip_syn/metrics.csv
+fi
+if [[ "$COLLECT_ASIP_FMAX_ARGS" != "" ]]
+then
+    python3 scripts/collect_asip_syn_metrics.py $COLLECT_ASIP_FMAX_ARGS --out $WORK/docker/asip_syn/metrics_fmax.csv
 fi
 
 COLLECT_FPGA_ARGS=""
@@ -145,9 +183,22 @@ then
                     exit 1
                 fi
                 COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --baseline-dir $FPGA_SYN_BASELINE_USE"
+                if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
+                then
+                    COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --baseline-dir $(realpath -s $FPGA_SYN_BASELINE_USE)_fmax"
+                fi
             else
                 ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/baseline/ $WORK/docker/hls/baseline/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
                 COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --baseline-dir $WORK/docker/fpga_syn/baseline/"
+                if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
+                then
+                    echo "TODO"
+                    DSE_DIR=$WORK/docker/asip_syn/baseline_dse
+                    FMAX_DIR=$WORK/docker/asip_syn/baseline_fmax
+                    # TODO: copy fmax dir
+                    # TODO: cleanup dse dir
+                    COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --baseline-dir $FMAX_DIR"
+                fi
             fi
         else
             echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
@@ -160,6 +211,15 @@ then
         then
             ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/default/ $WORK/docker/hls/default/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
             COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --default-dir $WORK/docker/fpga_syn/default/"
+            if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
+            then
+                echo "TODO"
+                DSE_DIR=$WORK/docker/asip_syn/default_dse
+                FMAX_DIR=$WORK/docker/asip_syn/default_fmax
+                # TODO: copy fmax dir
+                # TODO: cleanup dse dir
+                COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --default-dir $FMAX_DIR"
+            fi
         else
             echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
             exit 1
@@ -171,6 +231,15 @@ then
         then
             ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/shared/ $WORK/docker/hls/shared/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
             COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --shared-dir $WORK/docker/fpga_syn/shared/"
+            if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
+            then
+                echo "TODO"
+                DSE_DIR=$WORK/docker/asip_syn/shared_dse
+                FMAX_DIR=$WORK/docker/asip_syn/shared_fmax
+                # TODO: copy fmax dir
+                # TODO: cleanup dse dir
+                COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --shared-dir $FMAX_DIR"
+            fi
         else
             echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
             exit 1
@@ -181,4 +250,8 @@ fi
 if [[ "$COLLECT_FPGA_ARGS" != "" ]]
 then
     python3 scripts/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn/metrics.csv
+fi
+if [[ "$COLLECT_FPGA_FMAX_ARGS" != "" ]]
+then
+    python3 scripts/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn_fmax/metrics.csv
 fi
