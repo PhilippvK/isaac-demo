@@ -12,7 +12,8 @@ WORK=$DIR/work
 
 # TODO: expose
 SET_NAME=${ISAAX_SET_NAME:-XIsaac}
-TOOLS_PATH=${TUDA_TOOLS_PATH:-/work/git/tuda/isax-tools-integration5}
+# TOOLS_PATH=${TUDA_TOOLS_PATH:-/work/git/tuda/isax-tools-integration5}
+TOOLS_PATH=/work/git/tuda/isax-tools-integration-july2025
 HLS_IMAGE=${HLS_IMAGE:-isax-tools-integration-env:latest}
 
 if [[ ! -d "$TOOLS_PATH" ]]
@@ -27,8 +28,10 @@ fi
 # Load config
 HLS_ENABLE=${HLS_ENABLE:-1}
 HLS_BASELINE_USE=${HLS_BASELINE_USE:-""}
+HLS_DEFAULT_USE=${HLS_DEFAULT_USE:-""}
 HLS_SKIP_BASELINE=${HLS_SKIP_BASELINE:-0}
 HLS_SKIP_DEFAULT=${HLS_SKIP_DEFAULT:-0}
+HLS_SKIP_CUSTOM=${HLS_SKIP_CUSTOM:-0}  # WIP: II>1
 HLS_SKIP_SHARED=${HLS_SKIP_SHARED:-0}
 HLS_TOOL=${HLS_TOOL:-nailgun}
 HLS_NAILGUN_CORE_NAME=${HLS_NAILGUN_CORE_NAME:-CVA5}
@@ -168,7 +171,7 @@ then
             OUTPUT_DIR=$WORK/docker/hls/baseline/output
             test -d $OUTPUT_DIR && rm -r $OUTPUT_DIR || :
             mkdir -p $OUTPUT_DIR
-            docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR NO_ISAX=y SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL make gen_config ci"
+            docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR NO_ISAX=y SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL make gen_config ci"
             sudo chmod 777 -R $WORK/docker/hls
         fi
 
@@ -192,7 +195,8 @@ then
     then
         test -d $WORK/docker/hls/default/output && rm -r $WORK/docker/hls/default/output || :
         mkdir -p $WORK/docker/hls/default/output
-        docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$WORK/docker/hls/default/output/.config OUTPUT_PATH=$WORK/docker/hls/default/output ISAXES=$ISAXES SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=$HLS_NAILGUN_ILP_SOLVER USE_OL2_MODEL=$USE_OL2_MODEL CELL_LIBRARY=$HLS_NAILGUN_CELL_LIBRARY CLOCK_TIME=$HLS_NAILGUN_CLOCK_NS SCHEDULE_TIMEOUT=$HLS_NAILGUN_SCHEDULE_TIMEOUT REFINE_TIMEOUT=$HLS_NAILGUN_REFINE_TIMEOUT SCHED_ALGO_MS=$HLS_NAILGUN_SCHED_ALGO_MS SCHED_ALGO_PA=$HLS_NAILGUN_SCHED_ALGO_PA SCHED_ALGO_RA=$HLS_NAILGUN_SCHED_ALGO_RA SCHED_ALGO_MI=$HLS_NAILGUN_SCHED_ALGO_MI OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL make gen_config ci"
+        docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$WORK/docker/hls/default/output/.config OUTPUT_PATH=$WORK/docker/hls/default/output ISAXES=$ISAXES SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=$HLS_NAILGUN_ILP_SOLVER USE_OL2_MODEL=$USE_OL2_MODEL CELL_LIBRARY=$HLS_NAILGUN_CELL_LIBRARY CLOCK_TIME=$HLS_NAILGUN_CLOCK_NS SCHEDULE_TIMEOUT=$HLS_NAILGUN_SCHEDULE_TIMEOUT REFINE_TIMEOUT=$HLS_NAILGUN_REFINE_TIMEOUT SCHED_ALGO_MS=$HLS_NAILGUN_SCHED_ALGO_MS SCHED_ALGO_PA=$HLS_NAILGUN_SCHED_ALGO_PA SCHED_ALGO_RA=$HLS_NAILGUN_SCHED_ALGO_RA SCHED_ALGO_MI=$HLS_NAILGUN_SCHED_ALGO_MI OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL make gen_config ci"
+        # read -n 1
         sudo chmod 777 -R $WORK/docker/hls
 
         # TODO: make sure that dir is empty?
@@ -224,12 +228,69 @@ then
         python3 scripts/get_selected_schedule_metrics.py $WORK/docker/hls/default/hls_schedules.csv $WORK/docker/hls/default/output/selected_solutions.yaml $WORK/docker/hls/default/hls_selected_schedule_metrics.csv
     fi
 
+    if [[ "$HLS_SKIP_CUSTOM" == 0 ]]
+    then
+        if [[ "$HLS_DEFAULT_USE" != "" ]]
+        then
+            if [[ ! -d "$HLS_DEFAULT_USE" ]]
+            then
+                echo "Missing: $HLS_DEFAULT_USE"
+                exit 1
+            fi
+            SCHEDULES_CSV=$HLS_DEFAULT_USE/hls_schedules.csv
+        else
+            SCHEDULES_CSV=$WORK/docker/hls/default/hls_schedules.csv
+        fi
+        if [[ ! -f "$SCHEDULES_CSV" ]]
+        then
+            echo "Missing: $SCHEDULES_CSV"
+            exit 1
+        fi
+        test -d $WORK/docker/hls/custom/output && rm -r $WORK/docker/hls/custom/output || :
+        mkdir -p $WORK/docker/hls/custom/output
+        SELECTED_SOLUTIONS_YAML=$WORK/docker/hls/custom/output/selected_solutions.yaml
+        python3 scripts/select_hls_schedules.py $SCHEDULES_CSV --output $SELECTED_SOLUTIONS_YAML --prefer-ii 2 3 4 5 6 7 8 1
+
+        docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$WORK/docker/hls/custom/output/.config OUTPUT_PATH=$WORK/docker/hls/custom/output ISAXES=$ISAXES SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=$HLS_NAILGUN_ILP_SOLVER USE_OL2_MODEL=$USE_OL2_MODEL CELL_LIBRARY=$HLS_NAILGUN_CELL_LIBRARY CLOCK_TIME=$HLS_NAILGUN_CLOCK_NS SCHEDULE_TIMEOUT=$HLS_NAILGUN_SCHEDULE_TIMEOUT REFINE_TIMEOUT=$HLS_NAILGUN_REFINE_TIMEOUT SCHED_ALGO_MS=$HLS_NAILGUN_SCHED_ALGO_MS SCHED_ALGO_PA=$HLS_NAILGUN_SCHED_ALGO_PA SCHED_ALGO_RA=$HLS_NAILGUN_SCHED_ALGO_RA SCHED_ALGO_MI=$HLS_NAILGUN_SCHED_ALGO_MI OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL LN_PREDEFINED_SOLUTION_SELECTION=$SELECTED_SOLUTIONS_YAML make gen_config ci"
+        # read -n 1
+        sudo chmod 777 -R $WORK/docker/hls
+
+        # TODO: make sure that dir is empty?
+        mkdir -p $WORK/docker/hls/custom/rtl
+        # cp $WORK/docker/hls/custom/output/$HLS_NAILGUN_CORE_NAME/*.v $WORK/docker/hls/custom/rtl/ || :
+        # cp $WORK/docker/hls/custom/output/$HLS_NAILGUN_CORE_NAME/*.sv $WORK/docker/hls/custom/rtl/ || :
+        cp $WORK/docker/hls/custom/output/ISAX_$SET_NAME_OUT.sv $WORK/docker/hls/custom/rtl/
+        ./scripts/copy_rtl_files.sh $WORK/docker/hls/custom/output/$HLS_NAILGUN_CORE_NAME2/files.txt $WORK/docker/hls/custom/rtl
+        echo -e "\nISAX_$SET_NAME_OUT.sv" >> $WORK/docker/hls/custom/rtl/files.txt
+        (git diff --no-index $WORK/docker/hls/baseline/rtl $WORK/docker/hls/custom/rtl || : ) > $WORK/docker/hls/custom/rtl.patch
+        (git diff --no-index $WORK/docker/hls/baseline/rtl $WORK/docker/hls/custom/rtl --shortstat || : ) > $WORK/docker/hls/custom/rtl.patch.stat
+        # python3 scripts/stat2locs.py $WORK/docker/hls/custom/rtl.patch.stat $WORK/docker/hls/custom/rtl.csv
+        if [[ "$HLS_NAILGUN_OL2_ENABLE" == "y" ]]
+        then
+            # SDC_PATH=$(ls $WORK/docker/hls/custom/output/hw_syn/runs/*/*-openroad-floorplan/*.sdc)
+            SDC_PATH=$(ls $WORK/docker/hls/custom/output/hw_syn/runs/*/final/sdc/*.sdc)
+            echo "SDC_PATH=$SDC_PATH"
+            mkdir -p $WORK/docker/asip_syn/custom
+            grep -v "set_driving_cell" $SDC_PATH > $WORK/docker/asip_syn/custom/constraints.sdc
+
+            # mkdir -p $WORK/docker/asip_syn/rtl
+            # python3 scripts/get_rtl_files.py $WORK/docker/hls/custom/output/hw_syn/config.json > $WORK/docker/hls/custom/output/hw_syn/files.txt
+            # ./scripts/copy_rtl_files.sh $WORK/docker/hls/custom/output/hw_syn/files.txt $WORK/docker/asip_syn/rtl
+        fi
+
+
+        python3 scripts/collect_hls_metrics.py $WORK/docker/hls/custom/output --output $WORK/docker/hls/custom/hls_metrics.csv --print
+        python3 scripts/parse_kconfig.py $WORK/docker/hls/custom/output/Kconfig $WORK/docker/hls/custom/hls_schedules.csv
+        python3 scripts/get_selected_schedule_metrics.py $WORK/docker/hls/custom/hls_schedules.csv $WORK/docker/hls/custom/output/selected_solutions.yaml $WORK/docker/hls/custom/hls_selected_schedule_metrics.csv
+        # TODO: CUSTOM_SHARED?
+    fi
+
     if [[ "$HLS_SKIP_SHARED" == 0 && $HLS_NAILGUN_SHARE_RESOURCES == "1" ]]
     then
         test -d $WORK/docker/hls/shared/output && rm -r $WORK/docker/hls/shared/output || :
         mkdir -p $WORK/docker/hls/shared/output
-        sed -e "s/lil.enc_immediates/lil.sharing_group = 1, lil.enc_immediates/g" $WORK/docker/hls/default/output/mlir/ISAX_ISAAC_EN.mlir > $WORK/docker/hls/ISAX_ISAAC_EN_shared.mlir
-        docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$WORK/docker/hls/shared/output/.config OUTPUT_PATH=$WORK/docker/hls/shared/output SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=$HLS_NAILGUN_ILP_SOLVER USE_OL2_MODEL=$USE_OL2_MODEL CELL_LIBRARY=$HLS_NAILGUN_CELL_LIBRARY CLOCK_TIME=$HLS_NAILGUN_CLOCK_NS SCHEDULE_TIMEOUT=$HLS_NAILGUN_SCHEDULE_TIMEOUT REFINE_TIMEOUT=$HLS_NAILGUN_REFINE_TIMEOUT SCHED_ALGO_MS=$HLS_NAILGUN_SCHED_ALGO_MS SCHED_ALGO_PA=$HLS_NAILGUN_SCHED_ALGO_PA SCHED_ALGO_RA=$HLS_NAILGUN_SCHED_ALGO_RA SCHED_ALGO_MI=$HLS_NAILGUN_SCHED_ALGO_MI MLIR_ENTRY_POINT_PATH=$WORK/docker/hls/ISAX_ISAAC_EN_shared.mlir OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL make gen_config ci"
+        sed -e "s/lil.enc_immediates/lil.sharing_group = 1, lil.enc_immediates/g" $WORK/docker/hls/default/output/mlir/ISAX_XISAAC_EN.mlir > $WORK/docker/hls/ISAX_XISAAC_EN_shared.mlir
+        docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$WORK/docker/hls/shared/output/.config OUTPUT_PATH=$WORK/docker/hls/shared/output SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=$HLS_NAILGUN_ILP_SOLVER USE_OL2_MODEL=$USE_OL2_MODEL CELL_LIBRARY=$HLS_NAILGUN_CELL_LIBRARY CLOCK_TIME=$HLS_NAILGUN_CLOCK_NS SCHEDULE_TIMEOUT=$HLS_NAILGUN_SCHEDULE_TIMEOUT REFINE_TIMEOUT=$HLS_NAILGUN_REFINE_TIMEOUT SCHED_ALGO_MS=$HLS_NAILGUN_SCHED_ALGO_MS SCHED_ALGO_PA=$HLS_NAILGUN_SCHED_ALGO_PA SCHED_ALGO_RA=$HLS_NAILGUN_SCHED_ALGO_RA SCHED_ALGO_MI=$HLS_NAILGUN_SCHED_ALGO_MI MLIR_ENTRY_POINT_PATH=$WORK/docker/hls/ISAX_XISAAC_EN_shared.mlir OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL make gen_config ci"
         sudo chmod 777 -R $WORK/docker/hls
 
         # TODO: make sure that dir is empty?
