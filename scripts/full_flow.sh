@@ -549,6 +549,11 @@ do
    echo "Running step: $step"
    script=$(lookup_script $step)
    set -o pipefail
-   measure_times $step $TIMES_FILE $script $OUT_DIR 2>&1 | tee -a $LOG_FILE
+   if [[ "$QUIET" == "1" ]]
+   then
+      measure_times $step $TIMES_FILE $script $OUT_DIR 2>&1 > $LOG_FILE
+   else
+      measure_times $step $TIMES_FILE $script $OUT_DIR 2>&1 | tee -a $LOG_FILE
+   fi
    set +o pipefail
 done

@@ -105,6 +105,14 @@ fi
 
 ETISS_SCRIPT=$ETISS_INSTALL_DIR/bin/run_helper.sh
 
-python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 --label $LABEL-trace2${SUFFIX} -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$CORE_NAME -c llvm.install_dir=$LLVM_INSTALL_DIR -c $TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL
+VERBOSE=${VERBOSE:-0}
+VERBOSE_ARGS=""
+
+if [[ "$VERBOSE" == "1" ]]
+then
+    VERBOSE_ARGS="-v"
+fi
+
+python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 --label $LABEL-trace2${SUFFIX} -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$CORE_NAME -c llvm.install_dir=$LLVM_INSTALL_DIR -c $TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL
 
 python3 -m mlonmcu.cli.main export --run -f -- $RUN2
