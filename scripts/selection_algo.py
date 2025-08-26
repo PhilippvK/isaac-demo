@@ -27,7 +27,7 @@ def get_arch(nodes, spec_graph):
     return "_".join(archs)
 
 
-def run_mlonmcu(progs, archs, global_artifacts):
+def run_mlonmcu(progs, archs, global_artifacts, verbose: bool = False):
     all_metrics = {}
     pending_archs = []
     # pending_progs = []
@@ -59,10 +59,17 @@ def run_mlonmcu(progs, archs, global_artifacts):
             "MEM_ONLY": str(0),
             "ARCHS_FILE": archs_file,
         }
+        # print("mlonmcu_wrapper_env", mlonmcu_wrapper_env)
         env = os.environ.copy()
         env.update(mlonmcu_wrapper_env)
         mlonmcu_wrapper_args = [MLONMCU_WRAPPER_SCRIPT, temp_dir, *progs]
-        subprocess.run(mlonmcu_wrapper_args, check=True, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # print("mlonmcu_wrapper_args", " ".join(map(str, mlonmcu_wrapper_args)))
+        # input("!!!")
+        kwargs = {}
+        if not verbose:
+            kwargs["stdout"] = subprocess.DEVNULL
+            kwargs["stderr"] = subprocess.DEVNULL
+        subprocess.run(mlonmcu_wrapper_args, check=True, env=env, **kwargs)
         # subprocess.run(mlonmcu_wrapper_args, check=True, env=env)
         report_file = temp_dir / "report.csv"
         report_df = pd.read_csv(report_file)
