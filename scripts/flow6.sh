@@ -13,11 +13,22 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
-DOCKER_DIR=$WORK/docker/
-mkdir -p $DOCKER_DIR
+# USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-0}
+USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
+if [[ "$USE_SEAL5_DOCKER" == "1" ]]
+then
+  DEST_DIR=$WORK/docker/
+else
+  DEST_DIR=$WORK/local/
+  TEMP_DIR=$WORK/local/temp
+fi
+
+mkdir -p $DEST_DIR
 
 SET_NAME=${ISAAC_SET_NAME:-XIsaac}
 SEAL5_IMAGE=${SEAL5_IMAGE:-isaac-quickstart-seal5:latest}
+ENABLE_CDFG_PASS=${ENABLE_CDFG_PASS:-1}
+
 
 SPLITTED=${SPLITTED:-0}
 PRELIM=${PRELIM:-0}
@@ -34,24 +45,24 @@ fi
 if [[ "$FINAL" == "1" ]]
 then
     GEN_DIR=$WORK/gen_final/
-    DEST_DIR=$DOCKER_DIR/seal5_final/
+    DEST_DIR=$DEST_DIR/seal5_final/
     INDEX_FILE=$WORK/final_index.yml
     SUFFIX="final"
 elif [[ "$PRELIM" == "1" ]]
 then
     GEN_DIR=$WORK/gen_prelim/
-    DEST_DIR=$DOCKER_DIR/seal5_prelim/
+    DEST_DIR=$DEST_DIR/seal5_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
     SUFFIX="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
-    DEST_DIR=$DOCKER_DIR/seal5_filtered/
+    DEST_DIR=$DEST_DIR/seal5_filtered/
     INDEX_FILE=$WORK/filtered_index.yml
     SUFFIX="filtered"
 else
     GEN_DIR=$WORK/gen/
-    DEST_DIR=$DOCKER_DIR/seal5/
+    DEST_DIR=$DEST_DIR/seal5/
     INDEX_FILE=$WORK/combined_index.yml
     SUFFIX=""
 fi
@@ -75,7 +86,14 @@ mkdir -p $DEST_DIR
 
 # docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
 # OLD:
-docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
+if [[ "$USE_SEAL5_DOCKER" == "1" ]]
+then
+  docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
+else
+  TEMP_SEAL5_HOME=$TEMP_DIR/seal5_llvm
+  MGCLIENT_ROOT=$MGCLIENT_INSTALL_DIR ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS SEAL5_HOME=$TEMP_SEAL5_HOME CCACHE=$CCACHE CCACHE_DIR=$CCACHE_DIR SEAL5_CFG_DIR=$CONFIG_DIR/seal5 SEAL5_DIR=$SEAL5_DIR LLVM_REPO=$LLVM_DIR LLVM_REF=isaacnew-base-3 CLONE_DEPTH=2 $DOCKER_DIR/seal5_script_local.sh $DEST_DIR $CDSL_FILES $CFG_FILES
+  # TODO: cleanup?
+fi
 # NEW:
 # EXTRA_ARGS=""
 # if [[ "$SUFFIX" != "" ]]
