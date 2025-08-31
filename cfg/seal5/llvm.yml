@@ -13,6 +13,7 @@ llvm:
         LLVM_OPTIMIZED_TABLEGEN: true
         LLVM_ENABLE_PROJECTS: [clang, lld]
         LLVM_TARGETS_TO_BUILD: [X86, RISCV]
+        LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
     release_assertions:
       options:
         CMAKE_BUILD_TYPE: Release
@@ -21,6 +22,7 @@ llvm:
         LLVM_OPTIMIZED_TABLEGEN: true
         LLVM_ENABLE_PROJECTS: [clang, lld]
         LLVM_TARGETS_TO_BUILD: [X86, RISCV]
+        LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
     debug:
       options:
         CMAKE_BUILD_TYPE: Debug
@@ -31,3 +33,4 @@ llvm:
         LLVM_TARGETS_TO_BUILD: [X86, RISCV]
         LLVM_PARALLEL_LINK_JOBS: 8
         # LLVM_USE_LINKER: lld
+        LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
