@@ -27,6 +27,7 @@ echo "TOP_NAME=$TOP_NAME"
 CORE_NAME=$TOP_NAME  # TODO: pass via arg?
 echo "CORE_NAME=$CORE_NAME"
 SET_NAME=XIsaac  # TODO: muktiple sets?
+CLEANUP=${CLEANUP:-0}
 
 source /work/venv/bin/activate
 
@@ -37,9 +38,13 @@ git clone https://github.com/PhilippvK/etiss.git --branch print_instr_to_file /w
 
 set -e
 
-echo "HELLO WORLD"
+# TODO: use custom (temp) location for metamodel to not conflict with parallel runs
+
+# echo "HELLO WORLD"
 python3 -m m2isar.frontends.coredsl2.parser $TOP_CDSL_FILE
 python -m m2isar.backends.etiss.writer $TOP_DIR/gen_model/$TOP_NAME.m2isarmodel --separate --static-scalars
+chmod -R 777 $TOP_DIR/gen_model
+chmod -R 777 $TOP_DIR/gen_output
 
 cd /work/etiss
 git status
@@ -64,4 +69,11 @@ cmake --build build -j$(nproc)
 cmake --install build
 # TODO prebuild etiss in docker
 # TODO build etiss
-echo "BYE WORLD"
+if [[ "$CLEANUP" == "1" ]]
+then
+    rm -rf $ETISS_HOME
+    rm -rf $TOP_DIR/gen_model
+    rm -rf $TOP_DIR/gen_output
+fi
+
+chmod -R 777 $DEST
