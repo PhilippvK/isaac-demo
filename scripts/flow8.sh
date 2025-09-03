@@ -8,19 +8,15 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-WORK=$DIR/work
-
 # TODO: expose
 SET_NAME=${ISAAX_SET_NAME:-XIsaac}
 # TOOLS_PATH=${TUDA_TOOLS_PATH:-/work/git/tuda/isax-tools-integration5}
 TOOLS_PATH=/work/git/tuda/isax-tools-integration-july2025
-HLS_IMAGE=${HLS_IMAGE:-isax-tools-integration-env:latest}
+# HLS_IMAGE=${HLS_IMAGE:-isax-tools-integration-env:latest}
+HLS_IMAGE=${HLS_IMAGE:-philippvk/isaac-quickstart-hls:latest}
 
-if [[ ! -d "$TOOLS_PATH" ]]
-then
-    echo "Tools path does not exist: $TOOLS_PATH"
-    exit 1
-fi
+GUROBI_LIC=${GUROBI_LIC:-""}
+HLS_DIR=${HLS_DIR:=/path/to/isax-tools-integration}
 
 # IMAGE=isaac-quickstart-hls:latest
 # IMAGE=jhvjkcyyfdxghjk/isax-tools-integration-env
@@ -83,32 +79,55 @@ then
     exit 0
 fi
 
+
 if [[ "$FINAL" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_final/
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_prelim/
+    STAGE="prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered2_selected/
+    STAGE="filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered2/
+    STAGE="filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered_selected/
+    STAGE="filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered/
+    STAGE="filtered"
 else
-    GEN_DIR=$WORK/gen/
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
+
+WORK=$STAGE_DIR/work
+GEN_DIR=$WORK/gen
 
 # CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 
 if [[ $HLS_TOOL == "nailgun" ]]
 then
+
+    if [[ "$USE_HLS_DOCKER" == "1" ]]
+    then
+        if [[ "$HLS_DOCKER_LEGACY" == "1" ]]
+        then
+            if [[ ! -d "$TOOLS_PATH" ]]
+            then
+                echo "Tools path does not exist: $TOOLS_PATH"
+                exit 1
+            fi
+        fi
+    else
+        if [[ ! -d "$HLS_DIR" ]]
+        then
+            echo "HLS_DIR does not exist: $HLS_DIR"
+            exit 1
+        fi
+    fi
 
     if [[ $HLS_NAILGUN_RESOURCE_MODEL == "none" ]]
     then
@@ -145,19 +164,19 @@ then
         if [[ "$ISAXES" == "" ]]
         then
             SET_NAME_OUT=$set_name
-            ISAXES=$set_name_upper
+            ISAXES=${set_name_upper}.HLS
         else
             # For 2+ sets the name is always 'merged'
             SET_NAME_OUT=merged
-            ISAXES=$ISAXES,$set_name_upper
+            ISAXES=$ISAXES,${set_name_upper}.HLS
         fi
-        cp $GEN_DIR/$set_name.hls.core_desc $TOOLS_PATH/nailgun/isaxes/$set_name_lower.core_desc  # TODO: do not hardcode
+        # cp $GEN_DIR/$set_name.hls.core_desc $TOOLS_PATH/nailgun/isaxes/$set_name_lower.core_desc  # TODO: do not hardcode
     done
     echo ISAXES=$ISAXES
     # read -n 1
     # TODO: allow running the flow for multiple isaxes in parallel
-    mkdir -p $WORK/docker/hls/
-    sudo chmod 777 -R $WORK/docker/hls
+    mkdir -p $DEST_DIR
+    # sudo chmod 777 -R $WORK/docker/hls
 
 
     if [[ $ILP_SOLVER == "GUROBI" ]]
@@ -183,11 +202,35 @@ then
                 exit 1
             fi
         else
-            OUTPUT_DIR=$WORK/docker/hls/baseline/output
+            OUTPUT_DIR=$DEST_DIR/baseline/output
             test -d $OUTPUT_DIR && rm -r $OUTPUT_DIR || :
             mkdir -p $OUTPUT_DIR
-            docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR NO_ISAX=y SIM_EN=n CORE=$HLS_NAILGUN_CORE_NAME SKIP_AWESOME_LLVM=y OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL make gen_config ci"
-            sudo chmod 777 -R $WORK/docker/hls
+	    HLS_ARGS="SKIP_AWESOME_LLVM=y OL2_ENABLE=$HLS_NAILGUN_OL2_ENABLE OL2_CONFIG_TEMPLATE=$HLS_NAILGUN_OL2_CONFIG_TEMPLATE OL2_UNTIL_STEP=$HLS_NAILGUN_OL2_UNTIL_STEP OL2_TARGET_FREQ=$HLS_NAILGUN_OL2_TARGET_FREQ OL2_TARGET_UTIL=$HLS_NAILGUN_OL2_TARGET_UTIL SIM_EN=n NO_ISAX=y SIM_EN=n ISAXES="$ISAXES" CORE=$HLS_NAILGUN_CORE_NAME"
+	    DOCKER_ENV_ARGS=""
+	    DOCKER_MOUNT_ARGS="$(pwd):$(pwd)"
+	    if [[ "$GUROBI_LIC" != "" ]]
+            then
+		GUROBI_LIC_DIR=$(dirname $GUROBI_LIC)
+	        DOCKER_MOUNT_ARGS="$DOCKER_MOUNT_ARGS -v $GUROBI_LIC_DIR:$GUROBI_LIC_DIR"
+	    	DOCKER_ENV_ARGS="$DOCKER_ENV_ARGS -e GUROBI_LIC=$GUROBI_LIC"
+	    fi
+
+	    if [[ "$USE_HLS_DOCKER" == "1" ]]
+            then
+		# python3 -m isaac_toolkit.retargeting.hls --sess $SESS --workdir $WORK --set-name $SET_NAME --docker --core $HLS_NAILGUN_CORE_NAME
+                if [[ "$HLS_DOCKER_LEGACY" == "1" ]]
+                then
+                    docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
+	        else
+		    docker run -it --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
+		fi
+		GUROBI_LIC=$GUROBI_LIC HLS_DIR=$HLS_DIR $DOCKER_DIR/hls_script_local.sh $OUTPUT_DIR $GEN_DIR $HLS_ARGS
+            # sudo chmod 777 -R $WORK/docker/hls
+            else
+		GUROBI_LIC=$GUROBI_LIC HLS_DIR=$HLS_DIR $DOCKER_DIR/hls_script_local.sh $OUTPUT_DIR $GEN_DIR $HLS_ARGS
+
+                # HLS_SCRIPT_LOCAL=$DOCKER_DIR/hls_script_local.sh python3 -m isaac_toolkit.retargeting.hls --sess $SESS --workdir $WORK --set-name $SET_NAME --docker --core $HLS_NAILGUN_CORE_NAME
+            fi
         fi
 
         # TODO: make sure that dir is empty?
