@@ -18,5 +18,7 @@ ${PYTHON_EXE} -m venv ${VENV_DIR}
 source ${VENV_DIR}/bin/activate
 
 pip install -r $TOP_DIR/requirements.txt
+pip install -e $TOP_DIR/seal5
+pip install -r $TOP_DIR/seal5/requirements.txt  # TODO
 
 # TODO
