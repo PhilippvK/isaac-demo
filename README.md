@@ -16,13 +16,18 @@ git submodule update --init --recursive
 
 ### OS Packages
 
-This demo is supposed to be run on an Ubuntu/Debian-like operating system. WSL2 should work but was not tested!
+This demo is supposed to be run on an Ubuntu/Debian-like operating system. WSL2 was tested, too.
 
-In addition to the default development packages (CMake, build-essential,...), the following SW is required to run this demo:
+The following APT packages should be installed:
 
+```sh
+sudo apt install libssl-dev cmake build-essential graphviz graphviz-dev ninja-build poppler-utils ccache git libboost-system-dev libboost-filesystem-dev libboost-program-options-dev zlib1g-dev libtinfo-dev libxml2-dev libedit-dev libncurses5-dev libffi-dev libssl-dev unzip
+```
+
+Further requirements:
 - Docker (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
-- Python v3.10
-- `poppler-utils` (for pdfunite command)
+- Python v3.10+
+- CMake Version 3.20 or higher
 
 ### Python
 
@@ -51,6 +56,10 @@ docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgr
 Further, we need the `mgclient` libraries to interface with the platform.
 
 Executing `scripts/setup_mgclient.sh` should to perform all required steps.
+
+### CCache
+
+CCache is used to speed up local LLVM & ETISS rebuilds. Make sure to have `ccache` installed and run `scripts/setup_ccache.sh` to initialize the `install/ccache` directory.
 
 ### LLVM
 
