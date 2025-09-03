@@ -546,6 +546,8 @@ mkdir -p $LOGS_DIR
 
 LOG_FILE=$LOGS_DIR/$NOW.log
 
+export VERBOSE=$VERBOSE
+
 for step in "${STEPS[@]}"
 do
    echo "Running step: $step"
