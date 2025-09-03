@@ -9,10 +9,6 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
 # PRELIM_FILTERED=${PRELIM_FILTERED:-0}
@@ -22,6 +18,7 @@ SELECTED=${SELECTED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
+    STAGE="final"
     INDEX_FILE=$WORK/final_index.yml
     SORT_BY="final_score"
 # elif [[ "$PRELIM_FILTERED" == "1" ]]
@@ -30,35 +27,34 @@ then
 #     SORT_BY="prelim_filtered_score"
 elif [[ "$PRELIM" == "1" ]]
 then
-    INDEX_FILE=$WORK/prelim_index.yml
+    STAGE="prelim"
     SORT_BY="prelim_score"
-    NAMES_CSV=$WORK/names_prelim.csv
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered2_selected_index.yml
+    STAGE="filtered2_selected"
     SORT_BY="filtered2_selected_score"
-    NAMES_CSV=$WORK/names_filtered2_selected.csv
 elif [[ "$FILTERED2" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered2_index.yml
+    STAGE="filtered2"
     SORT_BY="filtered2_score"
-    NAMES_CSV=$WORK/names_filtered2.csv
 elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_selected_index.yml
+    STAGE="filtered_selected"
     SORT_BY="filtered_selected_score"
-    NAMES_CSV=$WORK/names_filtered_selected.csv
 elif [[ "$FILTERED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_index.yml
+    STAGE="filtered"
     SORT_BY="filtered_score"
-    NAMES_CSV=$WORK/names_filtered.csv
 else
-    INDEX_FILE=$WORK/combined_index.yml
-    NAMES_CSV=$WORK/names.csv
+    STAGE="default"
     SORT_BY="score"
 fi
+STAGE_DIR=$DIR/$STAGE
 
+WORK=$STAGE_DIR/work
+
+INDEX_FILE=$WORK/index.yml
+NAMES_CSV=$WORK/names.csv
 
 python3 scripts/sort_index.py $INDEX_FILE --inplace --by $SORT_BY
 python3 scripts/names_helper.py $INDEX_FILE --output $NAMES_CSV

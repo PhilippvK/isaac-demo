@@ -9,10 +9,6 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
 MIN_SEAL5_SCORE=${MIN_SEAL5_SCORE:-0.5}
 FILTER_MIN_RUNTIME_REDUCTION_REL=${FILTER_MIN_RUNTIME_REDUCTION_REL:-0.005}
 MIN_UTIL_SCORE=${MIN_UTIL_SCORE:-0.005}
@@ -34,39 +30,41 @@ elif [[ "$PRELIM" == "1" ]]
 then
     echo "Filter PRELIM unsupported!"
     exit 1
-#     INDEX_FILE=$WORK/prelim_index.yml
-#     OUT_FILE=$WORK/prelim_filtered_index.yml
-#     # PREFIX="prelim_"
-#     SUFFIX="_prelim"
-#     FILTER_ARGS=""
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
 then
-    # echo "Filter FILTERED2&SELECTED unsupported!"
     echo "Filter FILTERED2&SELECTED skipped!"
     exit 0
 elif [[ "$FILTERED2" == "1" ]]
 then
-    # echo "Filter FILTERED2 unsupported!"
     echo "Filter FILTERED2 skipped!"
     exit 0
 elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_selected_index.yml
-    OUT_FILE=$WORK/filtered2_index.yml
-    SUFFIX="_filtered2"
+    IN_STAGE="filtered_selected"
+    OUT_STAGE="filtered2"
     FILTER_ARGS="--min-util-score ${MIN_UTIL_SCORE}"
 elif [[ "$FILTERED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_index.yml
-    OUT_FILE=$WORK/filtered2_index.yml
-    SUFFIX="_filtered2"
+    IN_STAGE="filtered"
+    OUT_STAGE="filtered2"
     FILTER_ARGS="--min-util-score ${MIN_UTIL_SCORE}"
 else
-    INDEX_FILE=$WORK/combined_index.yml
-    OUT_FILE=$WORK/filtered_index.yml
-    SUFFIX="_filtered"
+    IN_STAGE="default"
+    OUT_STAGE="filtered"
     FILTER_ARGS="--min-seal5-score ${MIN_SEAL5_SCORE} --min-runtime-reduction-rel ${FILTER_MIN_RUNTIME_REDUCTION_REL}"
 fi
+STAGE_IN_DIR=$DIR/$IN_STAGE
+STAGE_OUT_DIR=$DIR/$OUT_STAGE
+mkdir -p $STAGE_OUT_DIR
+
+# RUN=$DIR/run
+# SESS=$DIR/sess
+WORK_IN=$STAGE_IN_DIR/work
+WORK_OUT=$STAGE_OUT_DIR/work
+mkdir -p $WORK_OUT
+
+INDEX_FILE=$WORK_IN/index.yml
+OUT_FILE=$WORK_OUT/index.yml
 
 # TODO: topk
 # TODO: sort?
@@ -83,7 +81,7 @@ fi
 
 # TODO: handle float comparisons
 
-python3 scripts/filter_index.py $INDEX_FILE --out $OUT_FILE $FILTER_ARGS --sankey $WORK/sankey${SUFFIX}.md
+python3 scripts/filter_index.py $INDEX_FILE --out $OUT_FILE $FILTER_ARGS --sankey $WORK_OUT/sankey.md
 
 # TODO: names?
-python3 scripts/names_helper.py $OUT_FILE --output $WORK/names${SUFFIX}.csv
+python3 scripts/names_helper.py $OUT_FILE --output $WORK_OUT/names.csv

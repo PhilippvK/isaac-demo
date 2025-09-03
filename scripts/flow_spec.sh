@@ -9,11 +9,6 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
-
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
@@ -22,33 +17,30 @@ SELECTED=${SELECTED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
-    INDEX_FILE=$WORK/final_index.yml
-    SUFFIX="_final"
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    INDEX_FILE=$WORK/prelim_index.yml
-    SUFFIX="_prelim"
+    STAGE="prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered2_selected_index.yml
-    SUFFIX="_filtered2_selected"
+    STAGE="filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered2_index.yml
-    SUFFIX="_filtered2"
+    STAGE="filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_selected_index.yml
-    SUFFIX="_filtered_selected"
+    STAGE="filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_index.yml
-    SUFFIX="_filtered"
+    STAGE="filtered"
 else
-    INDEX_FILE=$WORK/combined_index.yml
-    SUFFIX=""
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
 
-SPEC_GRAPH=$WORK/spec_graph${SUFFIX}.pkl
+WORK=$STAGE_DIR/work
+
+INDEX_FILE=$WORK/index.yml
+SPEC_GRAPH=$WORK/spec_graph.pkl
 
 python3 -m tool.detect_specializations $INDEX_FILE --graph $SPEC_GRAPH --noop

@@ -9,6 +9,8 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
+STAGE="default"
+STAGE_DIR=$DIR/$STAGE
+# RUN=$STAGE_DIR/run
+# SESS=$STAGE_DIR/sess
+# WORK=$STAGE_DIR/work

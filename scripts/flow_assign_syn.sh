@@ -9,19 +9,20 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
-SYN_SCORE_CSV=$WORK/hls_score.csv
-
 FILTERED=${FILTERED:-0}
 
 if [[ "$FILTERED" == 1 ]]
 then
-    INDEX_FILE=$WORK/filtered_index.yml
+    STAGE="filtered"
 else
-    INDEX_FILE=$WORK/combined_index.yml
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
+
+# RUN=$DIR/run
+# SESS=$DIR/sess
+WORK=$DIR/work
+SYN_SCORE_CSV=$WORK/hls_score.csv
+INDEX_FILE=$WORK/index.yml
 
 # python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-score-csv $SYN_SCORE_CSV

@@ -9,10 +9,12 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-DOCKER=$WORK/docker
+HLS_ENABLE=${HLS_ENABLE:-1}
+if [[ "$HLS_ENABLE" == "0" ]]
+then
+    echo "HLS disabled. Skipping step!"
+    exit 0
+fi
 
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
@@ -22,38 +24,35 @@ SELECTED=${SELECTED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
-    INDEX_FILE=$WORK/final_index.yml
-    # SUFFIX="_final"
-    SUFFIX=""
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    INDEX_FILE=$WORK/prelim_index.yml
-    # SUFFIX="_prelim"
-    SUFFIX=""
+    STAGE="prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered2_selected_index.yml
-    # SUFFIX="_filtered2_selected"
-    SUFFIX=""
+    STAGE="filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered2_index.yml
-    # SUFFIX="_filtered2"
-    SUFFIX=""
+    STAGE="filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_selected_index.yml
-    # SUFFIX="_filtered_selected"
-    SUFFIX=""
+    STAGE="filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_index.yml
-    # SUFFIX="_filtered"
-    SUFFIX=""
+    STAGE="filtered"
 else
-    INDEX_FILE=$WORK/combined_index.yml
-    SUFFIX=""
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
+
+# RUN=$DIR/run
+# SESS=$DIR/sess
+WORK=$DIR/work
+
+INDEX_FILE=$WORK/index.yml
+
+DOCKER=$WORK/docker
+# TODO: handle local
 
 # TODO: handle sharing and total metrics
-python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DOCKER/hls${SUFFIX}/default/hls_schedules.csv --hls-selected-schedules-yaml $DOCKER/hls${SUFFIX}/default/output/selected_solutions.yaml
+python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DOCKER/hls/default/hls_schedules.csv --hls-selected-schedules-yaml $DOCKER/hls/default/output/selected_solutions.yaml

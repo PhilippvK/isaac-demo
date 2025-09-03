@@ -8,10 +8,6 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-RUN=$DIR/run
-SESS=$DIR/sess
-WORK=$DIR/work
-
 FORCE_ARGS=""
 
 FORCE=1
@@ -29,28 +25,33 @@ BUILD_ARCH=${BUILD_ARCH:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
-    SUFFIX="_final"
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    SUFFIX="_prelim"
+    STAGE="prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
 then
-    SUFFIX="_filtered2_selected"
+    STAGE="filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    SUFFIX="_filtered2"
+    STAGE="filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
-    SUFFIX="_filtered_selected"
+    STAGE="filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
-    SUFFIX="_filtered"
+    STAGE="filtered"
 else
-    SUFFIX=""
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
 
-RUN2=${RUN}_new${SUFFIX}
-SESS2=${SESS}_new${SUFFIX}
+RUN=$STAGE_DIR/run
+SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+
+RUN2=${RUN}_new/runs/0
+SESS2=${SESS}_new
 
 RUN_COMPARE=${RUN}_compare
 RUN_COMPARE_MEM=${RUN}_compare_mem
@@ -66,7 +67,7 @@ python3 -m isaac_toolkit.frontend.instr_trace.etiss $RUN2/etiss_instrs.log --ses
 python3 -m isaac_toolkit.frontend.disass.objdump $RUN2/generic_mlonmcu.dump --session $SESS2 $FORCE_ARGS
 
 # Import instruction names from original session
-NAMES_CSV=$WORK/names${SUFFIX}.csv
+NAMES_CSV=$WORK/names.csv
 ISE_INSTRS_PKL_OLD=$SESS/table/ise_instrs.pkl
 ISE_INSTRS_PKL_NEW=$WORK/ise_instrs.pkl
 python3 scripts/update_ise_instrs_pkl.py $ISE_INSTRS_PKL_OLD --out $ISE_INSTRS_PKL_NEW --names-csv $NAMES_CSV
@@ -101,4 +102,4 @@ python3 -m isaac_toolkit.eval.ise.compare_sess --sess $SESS2 --with $SESS $FORCE
 # python3 -m isaac_toolkit.eval.ise.score.total --sess $SESS2
 # python3 -m isaac_toolkit.eval.ise.summary --sess $SESS2  # -> combine all data into single table/plot/pdf?
 
-python3 scripts/calc_util_score.py --dynamic-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --static-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --out $WORK/util_score${SUFFIX}.csv
+python3 scripts/calc_util_score.py --dynamic-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --static-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --out $WORK/util_score.csv

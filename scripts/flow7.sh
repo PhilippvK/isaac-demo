@@ -9,13 +9,6 @@ LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-RUN=$DIR/run
-SESS=$DIR/sess
-WORK=$DIR/work
-
-DOCKER_DIR=$WORK/docker/
-mkdir -p $DOCKER_DIR
-
 SPLITTED=${SPLITTED:-0}
 PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
@@ -31,28 +24,36 @@ fi
 
 if [[ "$FINAL" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_final/
-    DEST_DIR=$DOCKER_DIR/etiss_final/
-    INDEX_FILE=$WORK/final_index.yml
-    SUFFIX="final"
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_prelim/
-    DEST_DIR=$DOCKER_DIR/etiss_prelim/
-    INDEX_FILE=$WORK/prelim_index.yml
-    SUFFIX="prelim"
+    STAGE="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered/
-    DEST_DIR=$DOCKER_DIR/etiss_filtered/
-    INDEX_FILE=$WORK/filtered_index.yml
-    SUFFIX="filtered"
+    STAGE="filtered"
 else
-    GEN_DIR=$WORK/gen/
-    DEST_DIR=$DOCKER_DIR/etiss/
-    INDEX_FILE=$WORK/combined_index.yml
-    SUFFIX=""
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
+
+RUN=$STAGE_DIR/run
+SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+
+GEN_DIR=$WORK/gen
+INDEX_FILE=$WORK/index.yml
+
+USE_ETISS_DOCKER=${USE_ETISS_DOCKER:-0}
+if [[ "$USE_ETISS_DOCKER" == "1" ]]
+then
+  DEST_DIR=$WORK/docker/etiss
+else
+  DEST_DIR=$WORK/local/etiss
+  TEMP_DIR=$WORK/local/temp
+fi
+
+
+mkdir -p $DEST_DIR
 
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 ETISS_IMAGE=${ETISS_IMAGE:-isaac-quickstart-etiss:latest}
@@ -65,11 +66,23 @@ mkdir -p $DEST_DIR
 # NEW:
 # python3 -m isaac_toolkit.retargeting.iss.etiss --sess $SESS --workdir $WORK --core-name $CORE_NAME --docker
 EXTRA_ARGS=""
-if [[ "$SUFFIX" != "" ]]
+# if [[ "$STAGE" != "" ]]
+# then
+#     EXTRA_ARGS="$EXTRA_ARGS --label $STAGE"
+# fi
+if [[ "$USE_ETISS_DOCKER" == "1" ]]
 then
-    EXTRA_ARGS="--label $SUFFIX"
+    EXTRA_ARGS="$EXTRA_ARGS --docker"
+elif [[ "$USE_ETISS_DOCKER" == "0" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --local"
 fi
-python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS
+
+if [[ "$VERBOSE" == "1" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --verbose"
+fi
+ETISS_SCRIPT_LOCAL=$DOCKER_DIR/etiss_script_local.sh python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS --cleanup
 
 # mkdir -p $WORK/docker/etiss_source
 # cd $WORK/docker/etiss_source

@@ -9,10 +9,6 @@ LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-RUN=$DIR/run
-SESS=$DIR/sess
-WORK=$DIR/work
-
 XLEN=${XLEN:-32}
 BASE_EXTENSIONS=${ISAAC_BASE_EXTENSIONS:-"i,m,a,f,d,c,zicsr,zifencei"}
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
@@ -37,6 +33,7 @@ MULTI=${MULTI:-0}
 
 if [[ "$MULTI" == 1 ]]
 then
+    # TODO: !!!
     INDEX_FILE=""
     # TODO: get set_names and index from file?
     for set_name in ${SET_NAME//;/ }
@@ -49,37 +46,38 @@ then
         fi
         INDEX_FILE="$INDEX_FILE $SET_INDEX_FILE"
     done
-    GEN_DIR=$WORK/gen_multi/
+    GEN_DIR=$WORK/gen/multi/
 else
     if [[ "$FINAL" == 1 ]]
     then
-        INDEX_FILE=$WORK/final_index.yml
-        GEN_DIR=$WORK/gen_final/
+	STAGE="final"
     elif [[ "$PRELIM" == 1 ]]
     then
-        INDEX_FILE=$WORK/prelim_index.yml
-        GEN_DIR=$WORK/gen_prelim/
+	STAGE="prelim"
     elif [[ "$FILTERED2" == 1 && "$SELECTED" == 1 ]]
     then
-        INDEX_FILE=$WORK/filtered2_selected_index.yml
-        GEN_DIR=$WORK/gen_filtered2_selected/
+	STAGE="filtered2_selected"
     elif [[ "$FILTERED2" == 1 ]]
     then
-        INDEX_FILE=$WORK/filtered2_index.yml
-        GEN_DIR=$WORK/gen_filtered2/
+	STAGE="filtered2"
     elif [[ "$FILTERED" == 1 && "$SELECTED" == 1 ]]
     then
-        INDEX_FILE=$WORK/filtered_selected_index.yml
-        GEN_DIR=$WORK/gen_filtered_selected/
+	STAGE="filtered_selected"
     elif [[ "$FILTERED" == 1 ]]
     then
-        INDEX_FILE=$WORK/filtered_index.yml
-        GEN_DIR=$WORK/gen_filtered/
+	STAGE="filtered"
     else
-        INDEX_FILE=$WORK/combined_index.yml
-        GEN_DIR=$WORK/gen/
+	STAGE="default"
     fi
 fi
+STAGE_DIR=$DIR/$STAGE
+
+RUN=$STAGE_DIR/run
+SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+
+INDEX_FILE=$WORK/index.yml
+GEN_DIR=$WORK/gen
 
 # SESS currently unused
 python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $BASE_DIR --tum-dir $TUM_DIR  --extra-includes $EXTRA_INCLUDES --index $INDEX_FILE
