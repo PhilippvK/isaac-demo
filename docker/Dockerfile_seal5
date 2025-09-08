@@ -10,6 +10,7 @@ ARG LLVM_REPO="https://github.com/PhilippvK/llvm-project.git"
 # ARG LLVM_REF="isaacnew-base-0"
 ARG LLVM_REF="isaacnew-base-3"
 ARG CLONE_DEPTH=2
+ARG CCACHE=1
 ENV SEAL5_HOME=/work/llvm/
 ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
 ENV DEBIAN_FRONTEND=noninteractive
@@ -22,7 +23,7 @@ RUN grep deb /etc/apt/sources.list | \
 # Install compiler, python and subversion.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates gnupg \
-           build-essential cmake make python3 zlib1g wget subversion unzip git ninja-build python3-dev python3-pip python3-venv libssl-dev libboost-all-dev zip unzip && \
+           build-essential cmake make python3 zlib1g wget subversion unzip git ninja-build python3-dev python3-pip python3-venv libssl-dev libboost-all-dev zip unzip ccache && \
     rm -rf /var/lib/apt/lists/*
 
 # Install modern CMake
@@ -69,12 +70,11 @@ RUN . /work/venv/bin/activate && seal5 --verbose --dir ${SEAL5_HOME} init --non-
 RUN . /work/venv/bin/activate && seal5 --verbose load --overwrite --files /work/cfg/*.yml
 RUN . /work/venv/bin/activate && seal5 --verbose setup
 RUN . /work/venv/bin/activate && seal5 --verbose patch -s 0
-RUN . /work/venv/bin/activate && seal5 --verbose build
+RUN . /work/venv/bin/activate && seal5 --verbose build --ccache
 
 # TODO: copy local llvm clone?
 
 COPY ./docker/seal5_script.sh /work/seal5_script.sh
-COPY ./docker/etiss_script.sh /work/etiss_script.sh
 
 ENTRYPOINT ["/work/seal5_script.sh"]
 # ENTRYPOINT ["/work/etiss_script.sh"]

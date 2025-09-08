@@ -4,7 +4,7 @@ set -e
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
-IMAGE=isaac-quickstart-seal5
+IMAGE=philippvk/isaac-quickstart-seal5
 TAG=latest
 
 pwd
