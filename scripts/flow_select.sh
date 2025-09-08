@@ -76,6 +76,10 @@ then
     # STRATEGY=""
     # EXTRA_ARGS="$EXTRA_ARGS --spec-graph $SPEC_GRAPH --benchmark $BENCH_FULL --use-mlonmcu --max-cost $MAX_COST --instr-cost-func $INSTR_COST_FUNC --total-cost-func $TOTAL_COST_FUNC --instr-benefit-func $INSTR_BENEFIT_FUNC --total-benefit-func $TOTAL_BENEFIT_FUNC"
     EXTRA_ARGS="$EXTRA_ARGS --spec-graph $SPEC_GRAPH --benchmark $BENCH_FULL --use-mlonmcu --instr-cost-func $INSTR_COST_FUNC --total-cost-func $TOTAL_COST_FUNC --instr-benefit-func $INSTR_BENEFIT_FUNC --total-benefit-func $TOTAL_BENEFIT_FUNC"
+    if [[ "$VERBOSE" == "1" ]]
+    then
+        EXTRA_ARGS="$EXTRA_ARGS --log debug"
+    fi
 else
     echo "Select unsupported"
 fi

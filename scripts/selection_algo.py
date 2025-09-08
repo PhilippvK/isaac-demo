@@ -1,4 +1,5 @@
 import os
+import logging
 import subprocess
 import pickle
 import argparse
@@ -38,18 +39,19 @@ def run_mlonmcu(progs, archs, global_artifacts, verbose: bool = False):
             all_metrics[arch_str] = metrics
         else:
             pending_archs.append(arch_str)
-    # print("pending_archs", pending_archs)
-    # print("all_metrics", all_metrics)
     pending_archs = [x if x.startswith("rv") or x.startswith("_") else f"_{x}" for x in pending_archs]
+    logging.debug(
+        "Requested %d MLonMCU runs (%d cached, %d pending)",
+        len(archs),
+        len(archs) - len(pending_archs),
+        len(pending_archs),
+    )
     if len(pending_archs) == 0:
         return all_metrics
     archs_file_content = "\n".join(pending_archs)
-    # print("arch_file_conent\n", archs_file_content)
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_dir = Path(temp_dir)
-        # print("temp_dir", temp_dir)
         archs_file = temp_dir / "extra_archs.txt"
-        # print("archs_file", archs_file)
         with open(archs_file, "w") as f:
             f.write(archs_file_content)
         mlonmcu_wrapper_env = {
@@ -59,43 +61,23 @@ def run_mlonmcu(progs, archs, global_artifacts, verbose: bool = False):
             "MEM_ONLY": str(0),
             "ARCHS_FILE": archs_file,
         }
-        # print("mlonmcu_wrapper_env", mlonmcu_wrapper_env)
         env = os.environ.copy()
         env.update(mlonmcu_wrapper_env)
         mlonmcu_wrapper_args = [MLONMCU_WRAPPER_SCRIPT, temp_dir, *progs]
-        # print("mlonmcu_wrapper_args", " ".join(map(str, mlonmcu_wrapper_args)))
-        # input("!!!")
         kwargs = {}
         if not verbose:
             kwargs["stdout"] = subprocess.DEVNULL
             kwargs["stderr"] = subprocess.DEVNULL
+        logging.debug("Executing MLonMCU wrapper...")
         subprocess.run(mlonmcu_wrapper_args, check=True, env=env, **kwargs)
-        # subprocess.run(mlonmcu_wrapper_args, check=True, env=env)
         report_file = temp_dir / "report.csv"
         report_df = pd.read_csv(report_file)
-        # print("report_df")
-        # print(report_df)
         COLS = ["Run Instructions"]
-        # total_metrics = {arch: {col: 0} for col in COLS for arch in pending_archs}
         assert len(report_df) == len(pending_archs) * len(progs)
-        # for i, row in report_df.iterrows():
-        #     COLS = ["Run Instructions"]
-        #     filtered_cols = row[COLS]
-        #     print("filtered_cols", filtered_cols)
-        #     metrics = filtered_cols.to_dict()
-        #     print("metrics", metrics)
-        #     key = pending[i]
-        #     if key.startswith("_"):
-        #         key = key[1:]
-        #     all_metrics[key] = metrics
-        #     cached_mlonmcu_metrics[key] = metrics
         report_df["arch"] = report_df.apply(lambda row: pending_archs[int(row.name) % len(pending_archs)], axis=1)
         report_df["prog"] = report_df.apply(lambda row: progs[int(row.name) // len(pending_archs)], axis=1)
         metrics_df = report_df[["arch", "prog", *COLS]]
-        # print("metrics_df", metrics_df)
         for arch, arch_df in metrics_df.groupby("arch"):
-            # print("arch", arch)
-            # print("arch_df", arch_df)
             if arch.startswith("_"):
                 arch = arch[1:]
             all_metrics[arch] = arch_df
@@ -194,7 +176,11 @@ def main():
         ],
         help="Cost Function (slow)",
     )
+    parser.add_argument("--log", default="info", choices=["critical", "error", "warning", "info", "debug"])
+
     args = parser.parse_args()
+
+    logging.basicConfig(level=getattr(logging, args.log.upper()))
 
     index_file = Path(args.index_file)
     assert index_file.is_file()
@@ -206,13 +192,10 @@ def main():
         global_artifacts = {}
     candidates = index_data["candidates"]
     num_candidates = len(candidates)
-    # print("num_candidates", num_candidates)
 
     # node_attrs = {f"c{i}": candidate["metrics"] for i, candidate in enumerate(candidates)}
     node_attrs = {i: candidate["metrics"] for i, candidate in enumerate(candidates)}
     node_instr = {i: candidate["properties"]["InstrName"] for i, candidate in enumerate(candidates)}
-    # print("node_instr", node_instr)
-    # input(">")
 
     def node_cost_func(attrs, func: str = "unknown"):
         if func == "enc_weight_per_instr":
@@ -253,32 +236,23 @@ def main():
         instr_lower = instr.lower()
         node_attrs[node]["arch"] = f"xisaac{instr_lower}single"
 
-    # print("node_attrs", node_attrs)
-
     spec_graph = None
     if args.spec_graph is not None:
         graph_file = Path(args.spec_graph)
         assert graph_file.is_file()
         with open(graph_file, "rb") as f:
             spec_graph = pickle.load(f)
-    # print("spec_graph", spec_graph)
 
     def annotate_nodes(graph, node_attrs):
-        # print("graph.nodes", graph.nodes)
         for node, attrs in node_attrs.items():
-            # print("node", node)
             assert node in graph.nodes
             graph.nodes[node].update(attrs)
 
     annotate_nodes(spec_graph, node_attrs)
-    # print("?", {i: spec_graph.nodes[i]["arch"] for i in spec_graph.nodes})
-    # input("!")
 
     sort_by = "ratio"
     # sort_by = "runtime_reduction_rel"  # TODO: revert
     priority_queue = list(reversed(sorted(list(spec_graph.nodes), key=lambda x: spec_graph.nodes[x][sort_by])))
-    # print("priority_queue", priority_queue)
-
     S_cur = set()
     B_cur = 0
     C_cur = 0
@@ -292,9 +266,10 @@ def main():
     i = 0
     STOP_ITERS = 1000
     max_iters = min(STOP_ITERS, len(priority_queue))
+    logging.info("Starting exploration of %d candidates", len(priority_queue))
     while len(priority_queue) > 0:
         if i >= STOP_ITERS:
-            print("abort (stop iters reached)")
+            logging.info("abort (stop iters reached)")
             break
         if args.plot:
             iters.append(i)
@@ -305,40 +280,40 @@ def main():
             )
             fig.savefig(args.plot, dpi=300)
         i += 1
-        # print("LOOP")
+        # logging.debug("LOOP")
         node = priority_queue.pop(0)
-        print("node", node)
-        print("remaining", len(priority_queue))
+        logging.debug("node: %d", node)
+        logging.debug("remaining: %d", len(priority_queue))
         attrs = node_attrs[node]
-        print("attrs", attrs)
+        logging.debug("attrs: %s", str(attrs))
 
         def get_specs(spec_graph, node):
             return set(spec_graph.successors(node))
 
         specs = get_specs(spec_graph, node)
-        print("specs", specs)
+        logging.debug("specs: %s", specs)
         S_temp = (S_cur - specs) | {node}
-        print("S_temp", S_temp)
+        logging.debug("S_temp: %s", S_temp)
 
         def mlonmcu_metrics2benefits(mlonmcu_metrics, base, compare):
-            # print("mlonmcu_metrics2benefits")
+            # logging.debug("mlonmcu_metrics2benefits")
             # benefits = {}
-            # print("mlonmcu_metrics", mlonmcu_metrics)
+            # logging.debug("mlonmcu_metrics", mlonmcu_metrics)
             base_df = mlonmcu_metrics[base].copy().reset_index()
             benefits_df = mlonmcu_metrics[compare].copy().reset_index()
             assert len(base_df) == len(benefits_df)
             benefits_df["runtime_reduction"] = base_df["Run Instructions"] - benefits_df["Run Instructions"]
             benefits_df["runtime_reduction_rel"] = benefits_df["runtime_reduction"] / base_df["Run Instructions"]
-            # print("benefits_df", benefits_df)
+            # logging.debug("benefits_df", benefits_df)
             total_benefits_df = benefits_df[["runtime_reduction", "runtime_reduction_rel"]].sum(axis=0)
-            # print("total_benefits_df", total_benefits_df)
+            # logging.debug("total_benefits_df", total_benefits_df)
 
             # benefits["runtime_reduction_rel"] = (
             #     # 1 - mlonmcu_metrics[compare]["Run Instructions"] / mlonmcu_metrics[base]["Run Instructions"]
             #     1 - mlonmcu_metrics[compare]["Run Instructions"] / mlonmcu_metrics[base]["Run Instructions"]
             # )
             benefits = {"runtime_reduction_rel": total_benefits_df["runtime_reduction_rel"]}
-            # print("benefits", benefits)
+            # logging.debug("benefits", benefits)
             # input("!!")
             return benefits
 
@@ -375,11 +350,11 @@ def main():
 
         # B_temp = calc_total_benefit(S_temp, spec_graph, use_mlonmcu=args.use_mlonmcu)
         B_temp = calc_total_benefit(S_temp, spec_graph, func=args.total_benefit_func)
-        print("B_temp", B_temp)
+        logging.debug("B_temp: %f", B_temp)
         C_temp = calc_total_cost(S_temp, spec_graph, func=args.total_cost_func)
-        print("C_temp", C_temp)
+        logging.debug("C_temp: %f", C_temp)
         if C_max is not None and C_temp > C_max:
-            print("if1 (cost too high)")
+            logging.debug("if1 (cost too high)")
             continue
             # TODO: do this step also after the final iteration
             # TODO: try to drop potential overlapping or conflicting candidates
@@ -399,16 +374,16 @@ def main():
             #     # ...
         EPS = 0.001
         if B_temp >= (B_cur + EPS):
-            print("if2 (benefit is higher)")
+            logging.debug("if2 (benefit is higher)")
             S_cur = S_temp
             B_cur = B_temp
             C_cur = C_temp
-            print("S_cur", S_cur)
-            print("B_cur", B_cur)
-            print("C_cur", C_cur)
+            logging.debug("S_cur: %s", S_cur)
+            logging.debug("B_cur: %f", B_cur)
+            logging.debug("C_cur: %f", C_cur)
             if B_stop is not None:
                 if B_temp >= B_stop:
-                    print("if3 (benefit stop value reached)")
+                    logging.info("abort (benefit stop value reached)")
                     break
             priority_queue = [node for node in priority_queue if node not in specs]
     if args.plot:
@@ -419,24 +394,23 @@ def main():
             iters, benefits_history, costs_history, max_cost=C_max, stop_benefit=B_stop, max_iters=max_iters
         )
         fig.savefig(args.plot, dpi=300)
-    print("done")
-    print("S_cur", S_cur)
-    print("B_cur", B_cur)
-    print("C_cur", C_cur)
+    logging.info("Finished after %d iters", i + 1)
 
     S_final = S_cur
+    B_final = B_cur
+    C_final = C_cur
     # B_final = calc_total_benefit(S_final, spec_graph, use_mlonmcu=True)
     # C_final = calc_total_cost(S_final, spec_graph)
-    # print("S_final", S_final)
-    # print("B_final", B_final)
-    # print("C_final", C_final)
+    logging.info("S_final: %s", S_final)
+    logging.info("B_final: %f", B_final)
+    logging.info("C_final: %f", C_final)
 
     # S_all = set(spec_graph.nodes)
     # B_all = calc_total_benefit(S_all, spec_graph, use_mlonmcu=True)
     # C_all = calc_total_cost(S_all, spec_graph)
-    # print("S_all", S_all)
-    # print("B_all", B_all)
-    # print("C_all", C_all)
+    # logging.info("S_all", S_all)
+    # logging.info("B_all", B_all)
+    # logging.info("C_all", C_all)
 
     # ARCH_none = ""
     # ARCH_final = get_arch(S_final, spec_graph)
