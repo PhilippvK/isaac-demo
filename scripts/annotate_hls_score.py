@@ -18,16 +18,16 @@ def main():
     with open(args.index, "r") as f:
         combined_index_data = yaml.safe_load(f)
     candidates = combined_index_data["candidates"]
-    print("candidates", candidates)
+    # print("candidates", candidates)
 
     schedules_df = pd.read_csv(args.hls_schedules_csv)
     schedules_df
-    print("schedules_df", schedules_df)
+    # print("schedules_df", schedules_df)
     # TODO: each instr needs its own schedule!
 
     with open(args.hls_selected_schedules_yaml, "r") as f:
         yaml_data = yaml.safe_load(f)
-    print("yaml_data", yaml_data)
+    # print("yaml_data", yaml_data)
     instr2ii = {}
     instr2lat = {}
     instr2area = {}
@@ -40,7 +40,7 @@ def main():
         name = f"SG_{sharing_group}_SOL_IDX_{idx}"
         schedules = schedules_df[schedules_df["config"] == name]
         assert len(schedules) == 1
-        print("schedules", schedules)
+        # print("schedules", schedules)
         schedule = schedules.iloc[0]
         ii = int(schedule["II"])
         import ast
@@ -66,7 +66,7 @@ def main():
         metrics["hls_num_shared"] = instr2num_shared[name]
         area_scaled = instr2area[name] / instr2num_shared[name]
         metrics["hls_area_scaled"] = area_scaled
-        print("metrics", metrics)
+        # print("metrics", metrics)
         candidate["metrics"] = metrics
 
     if args.inplace:

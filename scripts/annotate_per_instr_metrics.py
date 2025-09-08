@@ -61,7 +61,7 @@ def main():
             # run_instrs_rel = float(report_df[run_instrs_rel_col].iloc[i + 1])
             # rom_code_rel = float(report_df[rom_code_rel_col].iloc[i + 1])
             metrics = candidate.get("metrics", {})
-            print("metrics", metrics)
+            # print("metrics", metrics)
             # metrics["runtime_reduction_rel"] = 1 - run_instrs_rel
             # metrics["code_size_reduction_rel"] = 1 - rom_code_rel
             metrics["runtime_reduction_rel"] = float(report_df["runtime_reduction_rel"].iloc[i + 1])
