@@ -16,6 +16,7 @@ flow:
       allow_custom: false
       allow_fp: false
       allow_system: false
+      allow_rvv: false
     coredsl:
       set_name: XIsaac
     riscv:
