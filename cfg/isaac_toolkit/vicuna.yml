@@ -1,0 +1,30 @@
+---
+flow:
+  demo:
+    choose:
+      check_potential_min_supported: 0.15
+      bb_threshold: 0.9
+      bb_min_weight: 0.05
+      bb_min_supported_weight: 0.02
+      bb_max_num: 10
+      bb_min_instrs: null
+      allow_mem: false
+      allow_loads: false
+      allow_stores: false
+      allow_branches: false
+      allow_compressed: true
+      allow_custom: false
+      allow_fp: false
+      allow_system: false
+      allow_rvv: true
+    coredsl:
+      set_name: XIsaac
+    riscv:
+      xlen: 32
+    etiss:
+      core_name: XIsaacCore
+    docker:
+      etiss_image: philippvk/isaac-quickstart-etiss:latest
+      seal5_image: philippvk/isaac-quickstart-seal5:latest
+      hls_image:
+      enable: true  # TODO: enable/disable docker per stage?
