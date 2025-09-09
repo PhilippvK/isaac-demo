@@ -143,11 +143,18 @@ uniquify -force
 # set_dont_touch core_i/if_stage_i/prefetch_buffer_i/prefetch_buffer_i_1/instr_req_o
 # set_dont_touch core_i/if_stage_i/prefetch_buffer_i/prefetch_buffer_i_2/instr_req_o
 set_host_options -max_cores 16
-compile_ultra -no_autoungroup
+# compile_ultra -no_autoungroup
+# compile_ultra -no_autoungroup -area_high_effort_script
+# compile_ultra -no_autoungroup -timing_high_effort_script
+set_cost_priority -delay
+# compile_ultra -timing_high_effort_script -retime
+compile_ultra -timing_high_effort_script
+compile_ultra -incremental
 # compile
+# compile -map_effort high
 
 report_design
-report_timing > ${LOG_PATH}/report_timing.log
+report_timing -significant_digits 10 > ${LOG_PATH}/report_timing.log
 report_area -hierarchy > ${LOG_PATH}/report_area_hier.log
 change_names -hierarchy -rules verilog
 write -hierarchy -format verilog -output "${GATE_PATH}/${TOPLEVEL}.v"
