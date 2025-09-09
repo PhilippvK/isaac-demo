@@ -274,3 +274,44 @@ python3 -m mlonmcu.cli.main flow run $BENCH --target etiss -c run.export_optiona
 python3 -m mlonmcu.cli.main export --session -- ${RUN}_compare
 # TODO: -f global_isel
 ```
+
+### More compact ISAAC Flow
+
+
+
+### Automated Flow Scripts
+
+**Examples:**
+
+```sh
+# Source config file first
+source scripts/defaults.env
+source cfg/flow/paper/vex_5s.env
+
+# Override out dir (optional)
+export OUT_DIR=$(pwd)/out
+
+# Syntax
+./scripts/full_flow.sh [FRONTEND/PROG] [DATE|now|latest] [STAGE[;STAGE[;...]]]
+
+# Run multiple stages
+./scripts/full_flow.sh embench/picojpeg now "all"
+./scripts/full_flow.sh embench/picojpeg latest "bench_0;trace_0;isaac_0_load"
+./scripts/full_flow.sh embench/picojpeg 20250709T162530 "until_isaac_new"
+
+# Run single stage
+./scripts/full_flow.sh embench/picojpeg latest "isaac_0_generate"
+```
+
+**Directory structure**
+
+```
+out/embench/picojpeg/20250709T162530
+├── experiment.ini  # Contains metadata
+├── logs/  # Log files
+├── run*/  # MLonMCU artifacts
+├── sess*/  # ISAAC Sessions
+├── times.csv  # Profiling of stages
+├── vars.env  # Snapshot of environment vars
+└── work/  # Working directory for ISA DSE
+```
