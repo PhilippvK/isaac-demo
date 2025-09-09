@@ -26,7 +26,7 @@ fi
 mkdir -p $DEST_DIR
 
 SET_NAME=${ISAAC_SET_NAME:-XIsaac}
-SEAL5_IMAGE=${SEAL5_IMAGE:-isaac-quickstart-seal5:latest}
+SEAL5_IMAGE=${SEAL5_IMAGE:-philippvk/isaac-quickstart-seal5:latest}
 ENABLE_CDFG_PASS=${ENABLE_CDFG_PASS:-1}
 
 
