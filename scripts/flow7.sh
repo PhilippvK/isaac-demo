@@ -55,7 +55,7 @@ else
 fi
 
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
-ETISS_IMAGE=${ETISS_IMAGE:-isaac-quickstart-etiss:latest}
+ETISS_IMAGE=${ETISS_IMAGE:-philippvk/isaac-quickstart-etiss:latest}
 
 
 mkdir -p $DEST_DIR
