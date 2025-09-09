@@ -11,6 +11,7 @@ export VENV_DIR=$TOP_DIR/venv
 export INSTALL_DIR=$TOP_DIR/install
 export DOCKER_DIR=$TOP_DIR/docker
 export CONFIG_DIR=$TOP_DIR/cfg
+export LLVM_DIR=$TOP_DIR/llvm-project
 export CCACHE_DIR=$TOP_DIR/install/ccache
 export GNU_DIR=$INSTALL_DIR/gnu
 export LLVM_INSTALL_DIR=$INSTALL_DIR/llvm
