@@ -28,3 +28,4 @@ fi
 python3 -m isaac_toolkit.generate.cdfg.memgraph --sess $SESS --label $LABEL --stage $STAGE $FORCE_ARGS
 python3 -m isaac_toolkit.backend.memgraph.annotate_bb_weights --session $SESS --label $LABEL $FORCE_ARGS
 # python3 -m isaac_toolkit.frontend.memgraph.llvm_mir_cdfg --session $SESS --label $LABEL $FORCE_ARGS
+# NEW: python3 -m isaac_toolkit.flow.demo.stage.cdfg --session $SESS $FORCE_ARGS

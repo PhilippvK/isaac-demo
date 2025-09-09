@@ -51,3 +51,4 @@ then
     touch $DIR/unsuitable2.txt
     exit 1
 fi
+# NEW: python3 -m isaac_toolkit.flow.demo.stage.pick --session $SESS $FORCE_ARGS

@@ -36,3 +36,4 @@ python3 -m isaac_toolkit.analysis.static.histogram.disass_opcode --sess $SESS $F
 python3 -m isaac_toolkit.analysis.dynamic.trace.basic_blocks --session $SESS $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.trace.map_llvm_bbs_new --session $SESS $FORCE_ARGS
 python3 -m isaac_toolkit.analysis.dynamic.trace.track_used_functions --session $SESS $FORCE_ARGS
+# NEW: python3 -m isaac_toolkit.flow.demo.stage.analyze --session $SESS $FORCE_ARGS
