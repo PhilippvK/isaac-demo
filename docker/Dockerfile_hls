@@ -1,13 +1,61 @@
-FROM jhvjkcyyfdxghjk/isax-tools-integration-env AS builder
-LABEL maintainer="TODO"
+FROM ubuntu:22.04 AS hls_image
+# Hint: 20.04 does not work as we need Py3.10+ and GCC11
+LABEL maintainer="Philipp van Kempen"
 
-# ENV PATH=/nix/store/ifzwv2xqwdnv1gz87rxkizi67py5p3vj-coreutils-9.4/bin/:/nix/store/0glhx5lz5iphmz7dqfv5sa903z3adzpv-gnumake-4.4.1/bin/:/nix/store/q05w07w0a29kjh8wfj54yh605pdwbmnr-python3-3.11.8-env/bin:/nix/store/xhkf9rk6j0nlwxabga4h74si5x6kgkms-openjdk-21+35/bin:/nix/store/jg2i1qj5js5ckzvfq5b9p9j1gcv69750-findutils-4.9.0/bin:$PATH
-ENV PATH=/nix/store/8wdjzjs2cd19la06lqgf48y6xpbylbqx-bash-interactive-5.2p26/bin:/nix/store/5swj50v8iz3acvpx116lhmhwh3bs9mr6-buildDerivation/bin:/nix/store/q05w07w0a29kjh8wfj54yh605pdwbmnr-python3-3.11.8-env/bin:/nix/store/x3misplq46qblb5kjz9xygsgs2l9b428-verilator-5.022/bin:/nix/store/l1i4dj3ymd5sgj84kd703002jik6w3f0-gurobi-10.0.3/bin:/nix/store/qwqia7bmx12cig0b5drbizazhgcrdrqq-python3.11-openlane/bin:/nix/store/qp5zys77biz7imbk6yy85q5pdv7qk84j-python3-3.11.6/bin:/nix/store/8x0qa1j4z2907a9pvvf9lwzs6n58i5m5-python3.11-markdown-it-py-3.0.0/bin:/nix/store/ljd22jdzx6kj0hj7wsnhr71gqa4iqj88-python3.11-pygments-2.16.1/bin:/nix/store/g3kzbrnirxky2w4g3n67p01745pa8xcc-python3.11-charset-normalizer-3.2.0/bin:/nix/store/bnadfkpcdkmrzymnpyj8x2bdxq1f6kdw-python3.11-pcpp-1.30/bin:/nix/store/i41k9kc0s446fw5vl4k05vfq3prw06hv-python3.11-volare/bin:/nix/store/i46q5s4xj3700m2srcx4rd2bv2x6w51h-python3.11-httpx-0.25.0/bin:/nix/store/2la0rzl8xmznj76afna1l3mhzpc7w2a3-yosys-with-plugins/bin:/nix/store/5bgsgwzww9f2z7wl7kga42xrf1vpmnql-yosys-abc/bin:/nix/store/gdwa39fbpcgpwhkgnazji6099l0wlg4m-opensta/bin:/nix/store/833xyg96y8kdv9wydkdydrndsnxfhky1-openroad/bin:/nix/store/gvq51plg4ydzfxma0m46w82jbvngvnch-klayout/bin:/nix/store/2kw126cy93rix4pmh9lcl120njnb6r7r-ruby-3.1.4/bin:/nix/store/jsbvkdch3avnkv3zbpb9wm8kz4l3xcb0-netgen/bin:/nix/store/4b7wa5vwpzs31pj1ssirzh3i0gw7kvx7-magic-vlsi/bin:/nix/store/85s416hnb67i899b142rrc971zpi26bg-iverilog-12.0/bin:/nix/store/ikv5d72krnl2pgx7gsxwd3qjl375wja2-verilator/bin:/nix/store/an8ick81647292nkr6bdm7kfkg314lf3-tclFull/bin:/nix/store/2wmwl9g0204202qpj7p53w56rmi76m92-tcl-8.6.13/bin:/nix/store/9r1jllfibk9qwhg9y26z23ajb145w5q8-surelog/bin:/nix/store/qhahz45abn6y5m895x9ncwd0vid1vwpn-apache-maven-3.9.6/bin:/nix/store/pivs3g6ixljfbhwl0dskym62bxlh8pfj-sbt-1.9.9/bin:/nix/store/nn2x0f6hi9c33z3ac2p47ksi1x6iqszc-texinfo-7.0.3/bin:/nix/store/17a3zn5wipz67hkfdjlvvg2g1qj68pfj-bison-3.8.2/bin:/nix/store/gs9483szcwwgpm2bq0zj5y217xdqxbnf-gnum4-1.4.19/bin:/nix/store/5ahrvw3wg75s5w24wmi03cmjry1qas56-flex-2.6.4/bin:/nix/store/29npdjj7kssb4c553msz20jz8f78cfms-gperf-3.1/bin:/nix/store/08ip3a9ikab67vx15naqlzbf69m9xx2q-gradle-8.7/bin:/nix/store/xhkf9rk6j0nlwxabga4h74si5x6kgkms-openjdk-21+35/bin:/nix/store/kiry6mkmk1lkng6q3irx31i8q8704kx0-bluespec-2024.01/bin:/nix/store/ac1hb5dc2z4biwgy8mjrhlifffkkrvdq-gcc-wrapper-13.2.0/bin:/nix/store/a3mmr5jmrd0sjvmnc9vqvs388ppq1bnf-gcc-13.2.0/bin:/nix/store/fpv9yd0mwm1lyph02j9bdyxbjz8vaxzy-glibc-2.39-5-bin/bin:/nix/store/ifzwv2xqwdnv1gz87rxkizi67py5p3vj-coreutils-9.4/bin:/nix/store/jsjfmx7r6cpyixxsg7bjl5cy3y8hw7k7-binutils-wrapper-2.41/bin:/nix/store/hqvni28zpibl6jsqqimcvng6h6qm58xy-binutils-2.41/bin:/nix/store/mbw6qprvn80p8k7z3lq44hnz6b332xf6-cmake-3.28.3/bin:/nix/store/vv3ybx3l4r2050mva6a33kanq2g461qb-ccache-4.9.1/bin:/nix/store/b3lnyl8cgll4i9bx4k4vz8agq6swqb08-ninja-1.11.1/bin:/nix/store/0glhx5lz5iphmz7dqfv5sa903z3adzpv-gnumake-4.4.1/bin:/nix/store/r0j53jjaygpv55jzi6wsabj4crpdgvwj-clang-wrapper-18.1.3/bin:/nix/store/9xqfvjgwwik8qabj43vzbf5scmmr1k2a-clang-18.1.3/bin:/nix/store/li6hvanskij8agwk8vcjlwisvbjpyi0c-binutils-wrapper-2.41/bin:/nix/store/j04f7y8zssjybf9s01z21qvkr52sj6x2-llvm-binutils-wrapper-18.1.3/bin:/nix/store/7i1irm6mbpyip9rq087q6amhdxhw4dja-llvm-binutils-18.1.3/bin:/nix/store/3yswxv3bf59hj49r9qsd7fxgbfp5hwjm-clang-17.0.6-python/bin:/nix/store/vfj3g5b4rylggcva7ri05pcf9x85ybhd-util-linux-2.39.3-bin/bin:/nix/store/20b8i8m7fbdzm3r535a17p0xpc6dg1g9-rsync-3.2.7/bin:/nix/store/sj6sqg8243z11nrlpdgw51p1f39ld63w-curl-8.6.0-dev/bin:/nix/store/1jkcwwkl65zv2nin2r7xqpjcb9g80mfm-brotli-1.1.0/bin:/nix/store/wb4q4g5fi2q7zdl09x5bmzrc27j4jqzv-libkrb5-1.21.2-dev/bin:/nix/store/li8plf2qixrlrlny7qhw5ylgq01h3z7q-libkrb5-1.21.2/bin:/nix/store/8yvm0crfz9n7spxhh6xrs33pp70v179i-nghttp2-1.60.0/bin:/nix/store/7kmj03jmgkjlmg3aqm8pd5809nnbwvq4-libidn2-2.3.7-bin/bin:/nix/store/af81s49bcy6mxr2l1wi59jazm6qflg4a-openssl-3.0.13-bin/bin:/nix/store/xfc3kaxwvya9i0589b8gn9cnr2h6ah2p-libpsl-0.21.5-bin/bin:/nix/store/675pvgwijy2v1zg0kll8xx3dgayljq8h-zstd-1.5.5-bin/bin:/nix/store/ss6gh67xv5jw6jh0l7dwmyx9823wvb60-zstd-1.5.5/bin:/nix/store/zlhsbgcxv68rwl79pymhbn2af8yv2zq0-curl-8.6.0-bin/bin:/nix/store/xwvgwr85gghbl66kj30sp19p2y1cypqv-gnutar-1.35/bin:/nix/store/vnfi66rm1dykn8gwwy5i4f48bhbk9x6x-gzip-1.13/bin:/nix/store/ksyif7fp4p0baafvdm5szd375s7qf6cz-diffutils-3.10/bin:/nix/store/2s1h0q7xhk33nsw90l0g53bxax0d19ih-gawk-5.2.2/bin:/nix/store/049vj3kpw2578chpxvsybky3b2qf27sw-flock-0.4.0/bin:/nix/store/gsyvgp6bs6cnd3928c9ldbvgws2swqhl-perl-5.38.2/bin:/nix/store/3bdjxil2cz8dkd6l5sf4qalla762m99d-bzip2-1.0.8-bin/bin:/nix/store/d7chk2fjwb659kkjswr2a3rr97gibf47-coreutils-full-9.4/bin:/nix/store/8wdjzjs2cd19la06lqgf48y6xpbylbqx-bash-interactive-5.2p26/bin:/nix/store/y56vmnczakd9p0dsjl6jgnqrkqv04yxx-git-2.44.0/bin:/nix/store/rsd407grlqclrmavl9rj7d80p9wgzdca-git-lfs-3.5.1/bin:/nix/store/k471dlp9vhm3jcqc64c5mcs9kx0z7bzh-openssh-9.7p1/bin:/nix/store/jg2i1qj5js5ckzvfq5b9p9j1gcv69750-findutils-4.9.0/bin:/nix/store/avqi5nnx7qydr078ssgifc2hgzqipqgx-gnugrep-3.11/bin:/nix/store/237dff1igc3v09p9r23a37yw8dr04bv6-gnused-4.9/bin:/nix/store/ln17rjrvivr9b9306lc8r42mxvq9isyq-unzip-6.0/bin:/nix/store/xjmigm1527vc53dvd4a60fx0qj783lgs-which-2.21/bin:/nix/store/kgyq1rg22zaciqlgrzfl444fw4rrw6ws-less-643/bin:/nix/store/zg5w9npqy45vk7gbmyhciw59a9i0z24f-nano-7.2/bin:/nix/store/lxh60b9bh74sqphqvpgywwpmpc09v7v7-vim-9.1.0148/bin:/nix/store/43n2dxi419b1jgv2bq1xg7y6n8k66xpb-patchelf-0.15.0/bin:/nix/store/4rizsdz26g0yjnwgp28v46xkdi2jahq7-compiler-rt-libc-18.1.3/bin:/nix/store/ifzwv2xqwdnv1gz87rxkizi67py5p3vj-coreutils-9.4/bin:/nix/store/jg2i1qj5js5ckzvfq5b9p9j1gcv69750-findutils-4.9.0/bin:/nix/store/ksyif7fp4p0baafvdm5szd375s7qf6cz-diffutils-3.10/bin:/nix/store/237dff1igc3v09p9r23a37yw8dr04bv6-gnused-4.9/bin:/nix/store/avqi5nnx7qydr078ssgifc2hgzqipqgx-gnugrep-3.11/bin:/nix/store/2s1h0q7xhk33nsw90l0g53bxax0d19ih-gawk-5.2.2/bin:/nix/store/xwvgwr85gghbl66kj30sp19p2y1cypqv-gnutar-1.35/bin:/nix/store/vnfi66rm1dykn8gwwy5i4f48bhbk9x6x-gzip-1.13/bin:/nix/store/3bdjxil2cz8dkd6l5sf4qalla762m99d-bzip2-1.0.8-bin/bin:/nix/store/pg3wkw0as88676ib4ckbibrfwy5c5vzg-gnumake-4.4.1/bin:/nix/store/a1s263pmsci9zykm5xcdf7x9rv26w6d5-bash-5.2p26/bin:/nix/store/bf9rz7vvxannxp15wfi7x0bx5b68ky7z-patch-2.7.6/bin:/nix/store/jdg5lv2j7d765h8pn73qz72lilxrcb5x-xz-5.4.6-bin/bin:/nix/store/j3f0hag67n4piz2avqgf07gja8a2ifn6-file-5.45/bin:$PATH
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN mkdir /work
+RUN apt-get update \
+    && apt-get -qqq -y install --no-install-recommends git wget unzip vim openssh-client build-essential gnupg \
+        ca-certificates gpg wget apt-transport-https curl build-essential manpages-dev software-properties-common \
+        python3-pip python3-venv python3-dev \
+	yosys-dev openjdk-21-jdk maven \
+    && apt-get clean \
+    && rm -rf /var/cache/apt/archives/ \
+    && rm -rf /var/lib/apt/lists
 
-COPY ./docker/hls_script.sh /work/hls_script.sh
+RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" \
+        | tee /etc/apt/sources.list.d/sbt.list \
+    && curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" \
+        | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import \
+    && chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg \
+    && apt update \
+    && apt install -qqq -y sbt --no-install-recommends \
+    && rm -rf /var/cache/apt/archives/ \
+    && rm -rf /var/lib/apt/lists
 
-ENTRYPOINT ["bash", "/work/hls_script.sh"]
+# Install modern CMake
+ARG ENABLE_CMAKE="true"
+ARG CMAKE_REPO="https://github.com/Kitware/CMake"
+ARG CMAKE_VERSION="3.22.2"
+ARG CMAKE_TARGET="Linux-x86_64"
+RUN if [ "${ENABLE_CMAKE}" = "true" ] ; \
+    then \
+    cd /tmp \
+    && wget -q -O cmake.sh ${CMAKE_REPO}/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-${CMAKE_TARGET}.sh \
+    && mkdir -p /opt/cmake/ \
+    && sh ./cmake.sh --skip-license --exclude-subdir --prefix=/opt/cmake/ \
+    && rm ./cmake.sh ; \
+    fi
+ENV PATH="/opt/cmake/bin/:$PATH:"
 
-CMD ["help"]
+RUN mkdir /isax-tools
+
+COPY deps /isax-tools/deps
+COPY nailgun /isax-tools/nailgun
+
+RUN python3 -m venv /isax-tools/venv
+
+ENV PATH=/isax-tools/venv/bin:${PATH}
+
+RUN . /isax-tools/venv/bin/activate && pip install kconfiglib pyyaml pyelftools
+
+RUN cd /isax-tools/deps/scaie-v/ && mvn package
+
+COPY ./docker/hls_script.sh /isax-tools/hls_script.sh
+
+ENTRYPOINT ["/isax-tools/hls_script.sh"]
+
+# FROM hls_image AS openlane_image
+# RUN git clone --depth 1 https://github.com/The-OpenROAD-Project/OpenLane.git /isax-tools/OpenLane
+# RUN cd /isax-tools/OpenLane/ && make
+# RUN cd /isax-tools/OpenLane/ && make test
