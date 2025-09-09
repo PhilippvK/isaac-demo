@@ -14,7 +14,7 @@ WORK=$DIR/work
 SET_NAME=${ISAAX_SET_NAME:-XIsaac}
 # TOOLS_PATH=${TUDA_TOOLS_PATH:-/work/git/tuda/isax-tools-integration5}
 TOOLS_PATH=/work/git/tuda/isax-tools-integration-july2025
-HLS_IMAGE=${HLS_IMAGE:-isax-tools-integration-env:latest}
+HLS_IMAGE=${HLS_IMAGE:-philippvk/hls-quickstart:latest}
 
 if [[ ! -d "$TOOLS_PATH" ]]
 then
