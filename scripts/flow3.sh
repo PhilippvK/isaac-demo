@@ -28,8 +28,20 @@ then
     FORCE_ARGS="--force"
 fi
 
-python3 -m isaac_toolkit.generate.ise.check_ise_potential_per_llvm_bb --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS
-python3 -m isaac_toolkit.generate.ise.check_ise_potential --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS
+ENABLE_VEXT=${ENABLE_VEXT:-0}
+
+EXTRA_ARGS=""
+
+# TODO: use config
+if [[ "$ENABLE_VEXT" == "1" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --allow-rvv"
+fi
+
+# python3 -m isaac_toolkit.generate.ise.check_ise_potential_per_llvm_bb --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS
+# python3 -m isaac_toolkit.generate.ise.check_ise_potential --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS
+python3 -m isaac_toolkit.generate.ise.check_ise_potential_per_llvm_bb --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS $EXTRA_ARGS
+python3 -m isaac_toolkit.generate.ise.check_ise_potential --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS $EXTRA_ARGS
 # TODO: do not allow compressed?
 
 SUITABLE=$(python3 -c "import pandas as pd; print(1 if pd.read_pickle('$SESS/table/ise_potential.pkl')['has_potential'].all() else 0, end='')")
