@@ -26,5 +26,5 @@ flow:
     docker:
       etiss_image: philippvk/isaac-quickstart-etiss:latest
       seal5_image: philippvk/isaac-quickstart-seal5:latest
-      hls_image:
+      hls_image: philippvk/isaac-quickstart-hls:latest
       enable: true  # TODO: enable/disable docker per stage?
