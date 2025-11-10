@@ -2,6 +2,7 @@ venv/
 install/
 sess*/
 work*/
+!workflows/
 run*/
 .ipynb_checkpoints/
 out/
