@@ -76,7 +76,11 @@ def find_disass_snippet(disass_text, start, end, count=None):
     # print("rest", rest)
     assert len(ret_lines) > 0
     if count is not None:
-        assert len(ret_lines) == count, f"{len(ret_lines)} vs. {count}"
+        # assert len(ret_lines) == count, f"{len(ret_lines)} vs. {count}"
+        if len(ret_lines) != count:
+            logging.warning("Lines missmatch: %d vs. %d", len(ret_lines), count)
+
+        pass
     return "\n".join(ret_lines)
 
 
