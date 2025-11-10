@@ -19,23 +19,23 @@ def main():
     with open(args.index, "r") as f:
         combined_index_data = yaml.safe_load(f)
     candidates = combined_index_data["candidates"]
-    print("candidates", candidates)
+    # print("candidates", candidates)
 
     scores_df = pd.read_csv(args.util_score_csv)
-    print("scores_df", scores_df)
+    # print("scores_df", scores_df)
     # assert len(candidates) == len(scores_df)
 
     for i, candidate in enumerate(candidates):
-        print("i", i)
+        # print("i", i)
         name = candidate["properties"]["InstrName"]
         instr_row = scores_df[scores_df["instr"] == name]
-        print("instr_row", instr_row)
+        # print("instr_row", instr_row)
         assert len(instr_row) == 1
         util_score = float(instr_row[f"{args.in_prefix}util_score"].iloc[0])
         metrics = candidate.get("metrics", {})
-        print("metrics", metrics)
+        # print("metrics", metrics)
         metrics[f"{args.out_prefix}util_score"] = util_score
-        print("metrics2", metrics)
+        # print("metrics2", metrics)
         candidate["metrics"] = metrics
 
     if args.inplace:

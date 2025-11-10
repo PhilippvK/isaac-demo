@@ -24,7 +24,7 @@ def main():
     with open(args.index, "r") as f:
         combined_index_data = yaml.safe_load(f)
     candidates = combined_index_data["candidates"]
-    print("candidates", candidates)
+    # print("candidates", candidates)
 
     score_name = "score"
 

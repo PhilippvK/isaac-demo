@@ -20,6 +20,9 @@ then
     FORCE_ARGS="--force"
 fi
 
-python3 -m isaac_toolkit.visualize.pie.runtime --sess $SESS --legend $FORCE_ARGS
-python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess $SESS --legend $FORCE_ARGS
-python3 -m isaac_toolkit.visualize.pie.disass_counts --sess $SESS --legend $FORCE_ARGS
+python3 -m isaac_toolkit.flow.demo.stage.visualize --session $SESS $FORCE_ARGS
+
+# OLD:
+# python3 -m isaac_toolkit.visualize.pie.runtime --sess $SESS --legend $FORCE_ARGS
+# python3 -m isaac_toolkit.visualize.pie.mem_footprint --sess $SESS --legend $FORCE_ARGS
+# python3 -m isaac_toolkit.visualize.pie.disass_counts --sess $SESS --legend $FORCE_ARGS

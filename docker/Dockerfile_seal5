@@ -1,0 +1,97 @@
+# Debian 12
+# FROM debian:bookworm-slim AS builder
+# Debian 11
+# FROM debian:bullseye-slim AS builder
+FROM ubuntu:20.04 AS builder
+LABEL maintainer="Seal5 Developers"
+
+ARG LLVM_REPO="https://github.com/PhilippvK/llvm-project.git"
+# ARG LLVM_REF="isaac-base-0"
+# ARG LLVM_REF="isaacnew-base-0"
+ARG LLVM_REF="isaacnew-base-3"
+ARG CLONE_DEPTH=2
+ARG CCACHE=1
+ENV SEAL5_HOME=/work/llvm/
+ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
+ENV DEBIAN_FRONTEND=noninteractive
+
+
+# Install build dependencies of llvm.
+# First, Update the apt's source list and include the sources of the packages.
+RUN grep deb /etc/apt/sources.list | \
+    sed 's/^deb/deb-src /g' >> /etc/apt/sources.list
+# Install compiler, python and subversion.
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates gnupg \
+           build-essential cmake make python3 zlib1g wget subversion unzip git ninja-build python3-dev python3-pip python3-venv libssl-dev libboost-all-dev zip unzip ccache && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install modern CMake
+ARG ENABLE_CMAKE="true"
+ARG CMAKE_REPO="https://github.com/Kitware/CMake"
+ARG CMAKE_VERSION="3.22.2"
+ARG CMAKE_TARGET="Linux-x86_64"
+RUN if [ "${ENABLE_CMAKE}" = "true" ] ; \
+    then \
+    cd /tmp \
+    && apt-get remove cmake -yy -q \
+    && wget -O cmake.sh ${CMAKE_REPO}/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-${CMAKE_TARGET}.sh \
+    && mkdir -p /opt/cmake/ \
+    && sh ./cmake.sh --skip-license --exclude-subdir --prefix=/opt/cmake/ \
+    && rm ./cmake.sh \
+    && rm -rf /var/lib/apt/lists/* ; \
+    fi
+ENV PATH="/opt/cmake/bin/:$PATH:"
+
+
+
+RUN mkdir /work
+COPY M2-ISA-R/ /work/M2-ISA-R
+
+# RUN . /work/venv/bin/activate && pip3 install -e /work/M2-ISA-R
+
+COPY mgclient/ /work/mgclient
+# Setup mglcient (TODO: can we avoid this?)
+RUN rm -r /work/mgclient/build
+RUN cmake -B /work/mgclient/build -S /work/mgclient -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX:PATH=/usr/local
+RUN cmake --build /work/mgclient/build -j$(nproc)
+RUN cmake --install /work/mgclient/build
+RUN rm -r /work/mgclient/build
+
+RUN python3 -m venv /work/venv
+
+COPY seal5/ /work/seal5
+RUN . /work/venv/bin/activate && pip3 install -r /work/seal5/requirements.txt
+RUN . /work/venv/bin/activate && pip3 install -e /work/seal5
+RUN . /work/venv/bin/activate && pip3 uninstall M2-ISA-R
+
+COPY cfg/seal5/ /work/cfg
+RUN . /work/venv/bin/activate && seal5 --verbose --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH}
+RUN . /work/venv/bin/activate && seal5 --verbose load --overwrite --files /work/cfg/*.yml
+RUN . /work/venv/bin/activate && seal5 --verbose setup
+RUN . /work/venv/bin/activate && seal5 --verbose patch -s 0
+RUN . /work/venv/bin/activate && seal5 --verbose build --ccache
+
+# TODO: copy local llvm clone?
+
+COPY ./docker/seal5_script.sh /work/seal5_script.sh
+
+ENTRYPOINT ["/work/seal5_script.sh"]
+# ENTRYPOINT ["/work/etiss_script.sh"]
+# TODO: replace
+CMD ["help"]
+# TODO: select release or release_assertions?
+
+### COPY tvm/ /work/tvm
+###
+### # Setup mglcient (TODO: can we avoid this?)
+### RUN mkdir -p /work/tvm/build/
+### RUN cp /work/tvm/cmake/config.cmake /work/tvm/build/config.cmake
+### RUN echo "set(USE_MICRO ON)" >> /work/tvm/build/config.cmake \
+###     && echo "set(USE_MICRO_STANDALONE_RUNTIME ON)" >> /work/tvm/build/config.cmake \
+###     && echo "set(USE_RELAY_DEBUG ON)" >> /work/tvm/build/config.cmake \
+###     && echo "set(USE_CMSISNN ON)" >> /work/tvm/build/config.cmake \
+###     && echo "set(USE_LLVM /work/llvm/.seal5/build/release/bin/llvm-config)" >> /work/tvm/build/config.cmake \
+###     && cat /work/tvm/build/config.cmake
+### RUN cmake -B /work/tvm/build -S /work/tvm -DCMAKE_BUILD_TYPE=Release
+### RUN cmake --build /work/tvm/build -j$(nproc)

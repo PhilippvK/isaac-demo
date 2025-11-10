@@ -18,8 +18,7 @@ networkx<3.0.0,>=2.5.1
 gqlalchemy
 pygraphviz
 neo4j>=5.8.0
-matplotlib
-m2isar @ git+https://github.com/tum-ei-eda/M2-ISA-R.git@custom_insns
+# m2isar @ git+https://github.com/tum-ei-eda/M2-ISA-R.git@custom_insns
 leb128
 fastparquet
 pyarrow
@@ -28,10 +27,10 @@ networkx<3.0.0,>=2.5.1
 gqlalchemy
 pygraphviz
 neo4j>=5.8.0
-matplotlib
 anytree
 plotly
-kaleido
+matplotlib~=3.7.5
+kaleido~=0.2.1
 black
 pandas
 numpy
@@ -42,3 +41,4 @@ tables
 jupyter
 capstone
 kconfiglib
+paramiko

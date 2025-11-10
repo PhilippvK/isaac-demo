@@ -1,5 +1,6 @@
 # enable_variation_reuse_io: false
 enable_variation_reuse_io: true
+enable_variation_auto_imm: true
 filters:
   allowed_enc_sizes:
   - 32

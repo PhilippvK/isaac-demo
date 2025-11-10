@@ -14,6 +14,9 @@ args = parser.parse_args()
 
 data = {}
 
+# TODO: clock period?
+# TODO: slack
+
 if args.baseline_dir is not None:
     directory = Path(args.baseline_dir)
     assert directory.is_dir()

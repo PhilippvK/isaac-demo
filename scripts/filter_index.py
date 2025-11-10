@@ -25,14 +25,11 @@ def main():
         combined_index_data = yaml.safe_load(f)
     candidates = combined_index_data["candidates"]
     num_candidates = len(candidates)
-    print("candidates", candidates)
 
     to_drop = set()
     reasons_dropped = defaultdict(set)
     for i, candidate in enumerate(candidates):
-        print("i", i)
         metrics = candidate.get("metrics", {})
-        print("metrics", metrics)
         if args.min_seal5_score is not None:
             seal5_score = metrics.get("seal5_score")
             if seal5_score is not None:
@@ -68,7 +65,6 @@ def main():
                     to_drop.add(i)
                     reasons_dropped["min_estimated_reduction"].add(i)
                     continue
-    print("to_drop", to_drop)
     num_drop = len(to_drop)
     num_keep = num_candidates - num_drop
     # TODO: logging
