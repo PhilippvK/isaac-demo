@@ -5,3 +5,7 @@ work*/
 run*/
 .ipynb_checkpoints/
 out/
+*.jou
+*.pb
+vivado.*
+xvlog.log
