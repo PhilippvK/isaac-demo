@@ -1,0 +1,66 @@
+name: ISAAC Demo
+on:
+  workflow_dispatch:
+    inputs:
+      config:
+        description: Config
+        required: true
+        default: cfg/flow/paper/cva5_reuseio.env
+      command:
+        description: Command
+        required: true
+        default: "./scripts/full_flow.sh crypto_bench/mceliece348864_encrypt 'now until_isaac_new'"
+jobs:
+  demo:
+    runs-on: ${{ matrix.os }}
+    env:
+      SEAL5_NUM_THREADS: 1
+    strategy:
+      matrix:
+        python-version: ['3.10']
+        # os: [ubuntu-latest]
+        os: [ubuntu-20.04]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup ccache
+        if: ${{ matrix.ccache == '1' }}
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          max-size: 2G
+          key: ${{ matrix.os }}-${{ github.event.inputs.script }}-${{ github.event.inputs.build_config
+            }}
+          # variant: sccache
+          variant: ccache
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install APT packages
+        run: |
+          sudo apt -qq install -y python3-pip python3-venv cmake make ninja-build libssl-dev cmake build-essential graphviz graphviz-dev ninja-build poppler-utils ccache git libboost-system-dev libboost-filesystem-dev libboost-program-options-dev zlib1g-dev libtinfo-dev libxml2-dev libedit-dev libncurses5-dev libffi-dev libssl-dev unzip
+      - name: Start Memgraph docker container (detached)
+        run: |
+          docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform -d
+      - name: Setup Python
+        run: |
+          ./scripts/setup_python.sh
+      - name: Setup Deps
+        run: |
+          . scripts/env.sh
+          scripts/setup_ccache.sh
+          scripts/setup_mgclient.sh
+          scripts/setup_llvm.sh
+          scripts/setup_etiss.sh
+          scripts/setup_mlonmcu.sh
+      - name: Run Flow
+        run: |
+          . scripts/env.sh
+          . ${{ github.event.inputs.config }}
+          ${{ github.event.inputs.command }}
+      - name: Upload Outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-out
+          path: out/
