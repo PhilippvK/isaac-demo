@@ -29,7 +29,10 @@ RUN cmake --install /work/mgclient/build
 RUN rm -r /work/mgclient/build
 
 ADD mlonmcu /mlonmcu
+RUN rm /mlonmcu/.git
+ADD .git/modules/mlonmcu /mlonmcu/.git
 WORKDIR /mlonmcu
+RUN ls -al
 RUN python3 -m venv /venv
 ENV PATH="/venv/bin:$PATH"
 RUN . /venv/bin/activate && pip install --upgrade pip --no-cache-dir
