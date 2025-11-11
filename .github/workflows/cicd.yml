@@ -38,6 +38,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: ccache cache files
+        uses: actions/cache@v4
+        with:
+          path: install/ccache
+          key: ccache-${{ steps.date.outputs.date }}
+          restore-keys: |
+              ccache-
       - name: Install APT packages
         run: |
           sudo apt -qq update
