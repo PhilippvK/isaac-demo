@@ -58,7 +58,7 @@ jobs:
           echo
       - name: Start Memgraph docker container (detached)
         run: |
-          docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform -d
+          docker run -d -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
       - name: Setup Python
         run: |
           ./scripts/setup_python.sh
