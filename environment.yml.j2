@@ -238,7 +238,7 @@ targets:
     enabled: true
     features:
       gdbserver: true
-      etissdbg: true
+      etissdbg: false
       trace: true
       log_instrs: true
       # vext: true
@@ -247,7 +247,7 @@ targets:
     enabled: true
     features:
       gdbserver: true
-      etissdbg: true
+      etissdbg: false
       trace: true
       log_instrs: true
       # vext: true
@@ -315,6 +315,11 @@ vars:
   etissvp.script: {{ etiss_install_dir }}/bin/run_helper.sh
   etissvp.exe: {{ etiss_install_dir }}/bin/bare_etiss_processor
   etiss.experimental_print_to_file: true
+  spike.keep_build_dir: false
+  spike.full: false
+  etiss.keep_build_dir: false
+  cmake.keep_build_dir: false
+  cmake.keep_src_dir: false
 
 flags:
   tflmc.exe:
