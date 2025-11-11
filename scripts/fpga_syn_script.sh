@@ -4,7 +4,7 @@ set -e
 
 export PATH=/nfs/tools/xilinx/Vivado/2024.1/bin:$PATH
 
-ROOT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/
+ROOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )/
 
 if [[ "$#" -lt 2 ]]
 then

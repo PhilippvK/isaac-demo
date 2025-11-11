@@ -2,7 +2,7 @@
 
 set -e
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
 IMAGE=philippvk/isaac-quickstart-mlonmcu
 TAG=latest

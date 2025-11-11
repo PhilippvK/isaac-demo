@@ -1,11 +1,14 @@
+#!/bin/bash
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]
 then
     echo "Hey, you should source this script, not execute it!"
     exit 1
 fi
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/scripts
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
+# echo "SCRIPT_DIR=$SCRIPT_DIR"
 TOP_DIR=$(dirname $SCRIPT_DIR)
+# echo "TOP_DIR=$TOP_DIR"
 # TOP_DIR=$SCRIPT_DIR
 export VENV_DIR=$TOP_DIR/venv
 export INSTALL_DIR=$TOP_DIR/install
