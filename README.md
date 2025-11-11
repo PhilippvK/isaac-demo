@@ -63,7 +63,7 @@ CCache is used to speed up local LLVM & ETISS rebuilds. Make sure to have `ccach
 
 ### LLVM
 
-Our patched version of LLVM depends on the `mgclient` lib, hence that library has to be installed ion the previous step.
+Our patched version of LLVM depends on the `mgclient` lib, hence that library has to be installed in the previous step.
 
 We provide the `scripts/setup_llvm.sh` script which should allow you to install LLVM. This step will take a long time depending on your machine!
 
