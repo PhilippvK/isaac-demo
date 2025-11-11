@@ -100,50 +100,50 @@ repos:
 frameworks:
   default: tvm
   tflm:
-    enabled: true
+    enabled: false
     backends:
       default: tflmi
       tflmi:
-        enabled: true
+        enabled: false
         features:
-          debug_arena: true
+          debug_arena: false
     features:
-      muriscvnn: true
+      muriscvnn: false
       cmsisnn: false
   tvm:
-    enabled: true
+    enabled: false
     backends:
       default: tvmaot
       tvmrt:
-        enabled: true
+        enabled: false
         features:
-          debug_arena: true
+          debug_arena: false
           disable_legalize: false
-          autotuned: true
-          moiopt: true
+          autotuned: false
+          moiopt: false
       tvmaot:
-        enabled: true
+        enabled: false
         features:
-          debug_arena: true
-          unpacked_api: true
-          usmp: true
+          debug_arena: false
+          unpacked_api: false
+          usmp: false
           disable_legalize: false
-          autotuned: true
-          moiopt: true
+          autotuned: false
+          moiopt: false
       tvmaotplus:
-        enabled: true
+        enabled: false
         features:
-          debug_arena: true
+          debug_arena: false
           disable_legalize: false
-          autotuned: true
-          moiopt: true
+          autotuned: false
+          moiopt: false
       tvmllvm:
-        enabled: true
+        enabled: false
         features:
           # unpacked_api: true
           disable_legalize: false
-          autotuned: true
-          moiopt: true
+          autotuned: false
+          moiopt: false
     features:
       cmsisnnbyoc: false
       muriscvnnbyoc: false
@@ -151,28 +151,28 @@ frameworks:
 # Features like packing are only available in certain environments
 frontends:
   tflite:
-    enabled: true
+    enabled: false
     features:
-      validate: true
-      visualize: true
+      validate: false
+      visualize: false
       split_layers: false
   relay:
-    enabled: true
+    enabled: false
     features:
-      relayviz: true
+      relayviz: false
   packed:
     enabled: false
     features:
-      packing: true
-      packed: true
+      packing: false
+      packed: false
   onnx:
-    enabled: true
+    enabled: false
   pb:
-    enabled: true
+    enabled: false
   paddle:
-    enabled: true
+    enabled: false
   layergen:
-    enabled: true
+    enabled: false
   coremark:
     enabled: true
   dhrystone:
@@ -307,6 +307,8 @@ vars:
   etiss.keep_build_dir: false
   cmake.keep_build_dir: false
   cmake.keep_src_dir: false
+  boost.use_system: true
+  cmake.use_system: true
 
 flags:
   tflmc.exe:
