@@ -25,15 +25,6 @@ jobs:
         with:
           submodules: recursive
           token: ${{ secrets.GENIE_TOKEN }}
-      - name: Setup ccache
-        if: ${{ matrix.ccache == '1' }}
-        uses: hendrikmuhs/ccache-action@v1
-        with:
-          max-size: 2G
-          key: ${{ matrix.os }}-${{ github.event.inputs.script }}-${{ github.event.inputs.build_config
-            }}
-          # variant: sccache
-          variant: ccache
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -41,16 +32,24 @@ jobs:
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-      - name: ccache cache files
+      - name: Setup CCache
         uses: actions/cache@v4
         with:
           path: install/ccache
           key: ccache-${{ steps.date.outputs.date }}
           restore-keys: |
               ccache-
+      - name: Cache venv
+        uses: actions/cache@v4
+        with:
+          path: venv
+          key: venv-${{ steps.date.outputs.date }}
+          restore-keys: |
+              venv-
       - name: Install APT packages
         run: |
           sudo apt -qq update
+          sudo apt -qq install -y ccache
           # local-only:
           # sudo apt -qq install -y python3-pip python3-venv cmake make ninja-build libssl-dev cmake build-essential graphviz graphviz-dev libgraphviz-dev ninja-build poppler-utils ccache git libboost-system-dev libboost-filesystem-dev libboost-program-options-dev zlib1g-dev libtinfo-dev libxml2-dev libedit-dev libncurses5-dev libffi-dev libssl-dev unzip poppler-utils
       - name: Remove unused software
@@ -67,6 +66,10 @@ jobs:
           echo "Available storage after:"
           sudo df -h
           echo
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.5.0
+        with:
+          key: docker-${{ runner.os }}-${{ hashFiles(docker/*) }}
       - name: Start Memgraph docker container (detached)
         run: |
           docker run -d -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
