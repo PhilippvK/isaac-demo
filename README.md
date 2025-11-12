@@ -319,5 +319,5 @@ out/embench/picojpeg/20250709T162530
 ### WIP: Docker Flows
 
 ```
-git submodule update --init --recursive -- seal5 etiss mlonmcu isaac-toolkit memgraph_experiments
+git submodule update --init --recursive -- seal5 etiss mlonmcu isaac-toolkit memgraph_experiments etiss_arch_riscv
 ```
