@@ -7,6 +7,7 @@ TOP_DIR=$(dirname $SCRIPTS_DIR)
 echo "@=$@"
 
 echo "A"
+git config --global --add safe.directory $TOP_DIR/.git/modules/llvm-project
 
 source $SCRIPTS_DIR/env.sh
 echo "B"
