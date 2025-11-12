@@ -75,11 +75,11 @@ then
 elif [[ "$USE_MLONMCU_MIN_DOCKER" == "1" ]]
 then
     MLONMCU_MIN_IMAGE=${MLONMCU_IMAGE:-philippvk/isaac-quickstart-mlonmcu-min:latest}
-    docker run -it --rm -e MLONMCU_HOME=$MLONMCU_HOME -v $MLONMCU_HOME:$MLONMCU_HOME -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_MIN_IMAGE $MLONMCU_ARGS
+    docker run -i --rm -e MLONMCU_HOME=$MLONMCU_HOME -v $MLONMCU_HOME:$MLONMCU_HOME -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_MIN_IMAGE $MLONMCU_ARGS
 elif [[ "$USE_MLONMCU_DOCKER" == "1" ]]
 then
     MLONMCU_IMAGE=${MLONMCU_IMAGE:-philippvk/isaac-quickstart-mlonmcu:latest}
-    docker run -it --rm -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_IMAGE $MLONMCU_ARGS
+    docker run -i --rm -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_IMAGE $MLONMCU_ARGS
 else
     python3 -m mlonmcu.cli.main $MLONMCU_ARGS
     # flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-baseline -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $EXTRA_ARGS

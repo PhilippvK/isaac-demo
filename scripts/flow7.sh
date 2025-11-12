@@ -61,7 +61,7 @@ ETISS_IMAGE=${ETISS_IMAGE:-philippvk/isaac-quickstart-etiss:latest}
 mkdir -p $DEST_DIR
 
 # OLD:
-# docker run -it --rm -v $(pwd):$(pwd) $ETISS_IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_desc
+# docker run -i --rm -v $(pwd):$(pwd) $ETISS_IMAGE $DEST_DIR $GEN_DIR/$CORE_NAME.core_desc
 # NEW:
 # python3 -m isaac_toolkit.retargeting.iss.etiss --sess $SESS --workdir $WORK --core-name $CORE_NAME --docker
 EXTRA_ARGS=""

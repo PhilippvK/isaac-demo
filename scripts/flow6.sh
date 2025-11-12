@@ -84,11 +84,11 @@ done
 
 mkdir -p $DEST_DIR
 
-# docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
+# docker run -i --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
 # OLD:
 if [[ "$USE_SEAL5_DOCKER" == "1" ]]
 then
-  docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
+  docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
 else
   TEMP_SEAL5_HOME=$TEMP_DIR/seal5_llvm
   MGCLIENT_ROOT=$MGCLIENT_INSTALL_DIR ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS SEAL5_HOME=$TEMP_SEAL5_HOME CCACHE=$CCACHE CCACHE_DIR=$CCACHE_DIR SEAL5_CFG_DIR=$CONFIG_DIR/seal5 SEAL5_DIR=$SEAL5_DIR LLVM_REPO=$LLVM_DIR LLVM_REF=isaacnew-base-3 CLONE_DEPTH=2 $DOCKER_DIR/seal5_script_local.sh $DEST_DIR $CDSL_FILES $CFG_FILES

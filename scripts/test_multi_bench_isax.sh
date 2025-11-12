@@ -279,7 +279,7 @@ then
         CDSL_FILES="$CDSL_FILES $CDSL_FILE"
     done
 
-    docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $SEAL5_DEST_DIR $CDSL_FILES $CFG_FILES
+    docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $SEAL5_DEST_DIR $CDSL_FILES $CFG_FILES
 
     python3 scripts/seal5_score.py --output $SEAL5_SCORE_CSV --seal5-status-csv $SEAL5_DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $SEAL5_DEST_DIR/seal5_reports/status_compact.csv
 
@@ -297,7 +297,7 @@ if [[ "$ETISS_ENABLE" == 1 ]]
 then
     mkdir -p $ETISS_DEST_DIR
 
-    docker run -it --rm -v $(pwd):$(pwd) $ETISS_IMAGE $ETISS_DEST_DIR $GEN_DIR/$ETISS_CORE_NAME.core_desc
+    docker run -i --rm -v $(pwd):$(pwd) $ETISS_IMAGE $ETISS_DEST_DIR $GEN_DIR/$ETISS_CORE_NAME.core_desc
 fi
 
 # compare_multi_0
