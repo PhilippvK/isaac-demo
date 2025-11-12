@@ -9,7 +9,7 @@ on:
       command:
         description: Command
         required: true
-        default: "./scripts/full_flow.sh crypto_bench/mceliece348864_encrypt 'now' 'until_isaac_new'"
+        default: "./scripts/full_flow_docker.sh crypto_bench/mceliece348864_encrypt 'now' 'until_isaac_new'"
 jobs:
   demo:
     runs-on: ${{ matrix.os }}
@@ -69,22 +69,25 @@ jobs:
       - name: Start Memgraph docker container (detached)
         run: |
           docker run -d -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
-      - name: Setup Python
+      # - name: Setup Python
+      #   run: |
+      #     ./scripts/setup_python.sh
+      # - name: Setup Deps
+      #   run: |
+      #     . scripts/env.sh
+      #     scripts/setup_ccache.sh
+      #     scripts/setup_mgclient.sh
+      #     scripts/setup_llvm.sh
+      #     scripts/setup_etiss.sh
+      #     scripts/setup_mlonmcu.sh
+      # - name: Run Flow
+      #   run: |
+      #     . scripts/env.sh
+      #     . ${{ github.event.inputs.config }}
+      #     ${{ github.event.inputs.command }}
+      - name: Run Docker Flow
         run: |
-          ./scripts/setup_python.sh
-      - name: Setup Deps
-        run: |
-          . scripts/env.sh
-          scripts/setup_ccache.sh
-          scripts/setup_mgclient.sh
-          scripts/setup_llvm.sh
-          scripts/setup_etiss.sh
-          scripts/setup_mlonmcu.sh
-      - name: Run Flow
-        run: |
-          . scripts/env.sh
-          . ${{ github.event.inputs.config }}
-          ${{ github.event.inputs.command }}
+          CONFIG=${{ github.event.inputs.config }} ${{ github.event.inputs.command }}
       - name: Upload Outputs
         uses: actions/upload-artifact@v4
         with:
