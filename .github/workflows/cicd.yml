@@ -87,6 +87,7 @@ jobs:
       #     ${{ github.event.inputs.command }}
       - name: Run Docker Flow
         run: |
+          ./scripts/setup_docker_min.sh
           CONFIG=${{ github.event.inputs.config }} ${{ github.event.inputs.command }}
       - name: Upload Outputs
         uses: actions/upload-artifact@v4
