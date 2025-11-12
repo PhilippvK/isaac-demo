@@ -9,13 +9,13 @@ LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-OUT_DIR_BASE=$(pwd)/out
-OUT_DIR=out/$BENCH/$DATE
-mkdir -p $OUT_DIR
+# OUT_DIR_BASE=$(pwd)/out
+# OUT_DIR=out/$BENCH/$DATE
+# mkdir -p $OUT_DIR
 
-RUN=$OUT_DIR/run
-SESS=$OUT_DIR/sess
-WORK=$OUT_DIR/work
+RUN=$DIR/run
+SESS=$DIR/sess
+WORK=$DIR/work
 
 TARGET=${TARGET:-etiss}
 UNROLL=${UNROLL:-auto}
