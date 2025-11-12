@@ -315,3 +315,9 @@ out/embench/picojpeg/20250709T162530
 ├── vars.env  # Snapshot of environment vars
 └── work/  # Working directory for ISA DSE
 ```
+
+### WIP: Docker Flows
+
+```
+git submodule update --init --recursive -- seal5 etiss mlonmcu isaac-toolkit memgraph_experiments
+```
