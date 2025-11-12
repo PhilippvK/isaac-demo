@@ -51,7 +51,7 @@ jobs:
       - name: Install APT packages
         run: |
           sudo apt -qq update
-          sudo apt -qq install -y python3-pip python3-venv cmake make ninja-build libssl-dev cmake build-essential graphviz graphviz-dev ninja-build poppler-utils ccache git libboost-system-dev libboost-filesystem-dev libboost-program-options-dev zlib1g-dev libtinfo-dev libxml2-dev libedit-dev libncurses5-dev libffi-dev libssl-dev unzip
+          sudo apt -qq install -y python3-pip python3-venv cmake make ninja-build libssl-dev cmake build-essential graphviz graphviz-dev libgraphviz-dev ninja-build poppler-utils ccache git libboost-system-dev libboost-filesystem-dev libboost-program-options-dev zlib1g-dev libtinfo-dev libxml2-dev libedit-dev libncurses5-dev libffi-dev libssl-dev unzip poppler-utils
       - name: Remove unused software
         run: |
           echo "Available storage before:"
