@@ -86,3 +86,6 @@ RUN conda init
 RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
 RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 RUN conda install python=3.10
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+RUN source $HOME/.cargo/env
+ENV PATH="/root/.cargo/bin:${PATH}"
