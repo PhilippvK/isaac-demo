@@ -9,7 +9,7 @@ on:
       command:
         description: Command
         required: true
-        default: "./scripts/full_flow_docker.sh crypto_bench/mceliece348864_encrypt 'now' 'until_isaac_new'"
+        default: "./scripts/full_flow_docker_min.sh crypto_bench/mceliece348864_encrypt 'now' 'until_isaac_new'"
 jobs:
   demo:
     runs-on: ${{ matrix.os }}
