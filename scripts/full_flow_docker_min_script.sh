@@ -9,6 +9,7 @@ echo "@=$@"
 echo "A"
 
 source $SCRIPTS_DIR/env.sh
+export MLONMCU_HOME=$TOP_DIR/install/mlonmcu
 echo "B"
 if [[ -f "$CONFIG" ]]
 then
