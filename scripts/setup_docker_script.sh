@@ -5,12 +5,6 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
 
-apt -y update
-apt -y install graphviz libgraphviz-dev
-curl https://sh.rustup.rs -sSf | bash -s -- -y
-source $HOME/.cargo/env
-export PATH="/root/.cargo/bin:${PATH}"
-
 $SCRIPT_DIR/setup_python.sh
 # $SCRIPT_DIR/setup_python_docker.sh
 . $SCRIPT_DIR/env.sh
