@@ -43,19 +43,7 @@ WORKDIR /environment
 
 ADD environment_docker.yml.j2 /tmp/environment.yml.j2
 
-RUN mlonmcu init --template /tmp/environment.yml.j2 --non-interactive /environment --clone-models
-ENV MLONMCU_HOME=/environment
-
-RUN mlonmcu setup -g
-
-RUN . /venv/bin/activate && pip install -r /environment/requirements_addition.txt --no-cache-dir
-
-RUN . /venv/bin/activate && mlonmcu setup -v
-
-VOLUME /environment
-
 COPY ./docker/mlonmcu_script.sh /work/mlonmcu_script.sh
 
 ENTRYPOINT ["/work/mlonmcu_script.sh"]
 CMD ["help"]
-ENV LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"

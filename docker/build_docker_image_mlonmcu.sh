@@ -9,4 +9,5 @@ TAG=latest
 
 pwd
 
-docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_mlonmcu $TOP_DIR
+# docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_mlonmcu $TOP_DIR
+docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_mlonmcu $TOP_DIR --progress=plain

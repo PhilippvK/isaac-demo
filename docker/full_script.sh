@@ -2,8 +2,8 @@
 
 echo "HELLO WORLD"
 
-date
+source /venv/bin/activate
 
-mlonmcu $@
+$@
 
 echo "BYE WORLD"
