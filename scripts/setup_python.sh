@@ -19,6 +19,8 @@ source ${VENV_DIR}/bin/activate
 
 pip install -r $TOP_DIR/requirements.txt
 pip install -e $TOP_DIR/seal5
+pip install -e $TOP_DIR/isaac-toolkit
+pip install -r $TOP_DIR/memgraph_experiments/requirements.txt
 pip install -r $TOP_DIR/seal5/requirements.txt  # TODO
 
 # TODO
