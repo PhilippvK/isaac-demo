@@ -24,7 +24,7 @@ RUN apt-get update && \
 	      yosys-dev openjdk-21-jdk maven vim openssh-client \
         python3-pip python3-venv libssl-dev libboost-all-dev zip unzip ccache \
         wget unzip vim openssh-client \
-        g++ graphviz doxygen libtinfo-dev zlib1g-dev \
+        g++ graphviz graphviz libgraphviz-dev doxygen libtinfo-dev zlib1g-dev \
         autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential \
         bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ca-certificates \
         virtualenv git python3-dev python3-pip python3-setuptools python3-venv libtinfo5 libzstd-dev \
