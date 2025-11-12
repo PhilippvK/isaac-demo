@@ -11,6 +11,6 @@ $SCRIPT_DIR/setup_python.sh
 $SCRIPT_DIR/setup_ccache.sh
 # $SCRIPT_DIR/setup_mgclient.sh
 # $SCRIPT_DIR/setup_llvm.sh
-$SCRIPT_DIR/download_llvm.sh
+test -d $TOP_DIR/install/llvm || $SCRIPT_DIR/download_llvm.sh
 $SCRIPT_DIR/setup_etiss.sh
 $SCRIPT_DIR/setup_mlonmcu.sh
