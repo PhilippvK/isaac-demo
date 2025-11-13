@@ -66,10 +66,10 @@ jobs:
           echo "Available storage after:"
           sudo df -h
           echo
-      - name: Cache Docker images.
-        uses: ScribeMD/docker-cache@0.5.0
-        with:
-          key: docker-${{ runner.os }}-${{ hashFiles('docker/*') }}
+      # - name: Cache Docker images.
+      #   uses: ScribeMD/docker-cache@0.5.0
+      #   with:
+      #     key: docker-${{ runner.os }}-${{ hashFiles('docker/*') }}
       - name: Start Memgraph docker container (detached)
         run: |
           docker run -d -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
@@ -93,6 +93,8 @@ jobs:
         run: |
           ./scripts/setup_docker_min.sh
           CONFIG=${{ github.event.inputs.config }} ${{ github.event.inputs.command }}
+          chmod -R 777 venv
+          chmod -R 777 install/ccache
       - name: Upload Outputs
         uses: actions/upload-artifact@v4
         with:
