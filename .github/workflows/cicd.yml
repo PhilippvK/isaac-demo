@@ -97,7 +97,8 @@ jobs:
         run: |
           echo "Available storage before:"
           sudo df -h
-          sudo rm -rf install
+          sudo rm -rf install/mlonmcu
+          sudo rm -rf install/etiss
           sudo rm -rf out
           docker system prune -af
           echo "Available storage after:"
