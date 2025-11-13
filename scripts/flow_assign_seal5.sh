@@ -13,7 +13,13 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 # SESS=$DIR/sess
 WORK=$DIR/work
 
-DOCKER_DIR=$WORK/docker
+USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
+if [[ "$USE_SEAL5_DOCKER" == "1" ]]
+then
+  DOCKER_DIR=$WORK/docker
+else
+  DOCKER_DIR=$WORK/local
+fi
 
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}

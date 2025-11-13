@@ -13,8 +13,16 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
-DOCKER_DIR=$WORK/docker/
-mkdir -p $DOCKER_DIR
+USE_ETISS_DOCKER=${USE_ETISS_DOCKER:-1}
+if [[ "$USE_ETISS_DOCKER" == "1" ]]
+then
+  MODE="docker"
+else
+  MODE="local"
+fi
+DEST_DIR=$WORK/$MODE/
+
+mkdir -p $DEST_DIR
 
 SPLITTED=${SPLITTED:-0}
 PRELIM=${PRELIM:-0}
@@ -32,24 +40,24 @@ fi
 if [[ "$FINAL" == "1" ]]
 then
     GEN_DIR=$WORK/gen_final/
-    DEST_DIR=$DOCKER_DIR/etiss_final/
+    DEST_DIR=$DEST_DIR/etiss_final/
     INDEX_FILE=$WORK/final_index.yml
     SUFFIX="final"
 elif [[ "$PRELIM" == "1" ]]
 then
     GEN_DIR=$WORK/gen_prelim/
-    DEST_DIR=$DOCKER_DIR/etiss_prelim/
+    DEST_DIR=$DEST_DIR/etiss_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
     SUFFIX="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
-    DEST_DIR=$DOCKER_DIR/etiss_filtered/
+    DEST_DIR=$DEST_DIR/etiss_filtered/
     INDEX_FILE=$WORK/filtered_index.yml
     SUFFIX="filtered"
 else
     GEN_DIR=$WORK/gen/
-    DEST_DIR=$DOCKER_DIR/etiss/
+    DEST_DIR=$DEST_DIR/etiss/
     INDEX_FILE=$WORK/combined_index.yml
     SUFFIX=""
 fi
@@ -69,7 +77,7 @@ if [[ "$SUFFIX" != "" ]]
 then
     EXTRA_ARGS="--label $SUFFIX"
 fi
-python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS
+python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS --$MODE
 
 # mkdir -p $WORK/docker/etiss_source
 # cd $WORK/docker/etiss_source
