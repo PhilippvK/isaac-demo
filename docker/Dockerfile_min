@@ -49,6 +49,7 @@ COPY --from=philippvk/isaac-quickstart-etiss /opt/cmake/ /opt/cmake/
 # COPY --from=philippvk/isaac-quickstart-seal5 /work /work
 # COPY --from=philippvk/isaac-quickstart-mlonmcu-min /work /work
 COPY --from=philippvk/isaac-quickstart-mlonmcu-min /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so
+COPY --from=philippvk/isaac-quickstart-mlonmcu-min /usr/local/include/mgclient* /usr/local/include
 COPY --from=philippvk/isaac-quickstart-hls /isax-tools /isax-tools
 
 CMD ["help"]
