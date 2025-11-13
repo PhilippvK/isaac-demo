@@ -34,7 +34,6 @@ FPU=${FPU:-default}
 AUTO_VECTORIZE=${AUTO_VECTORIZE:-0}
 
 EXTRA_ARGS=""
-
 if [[ "$BACKEND" != "" ]]
 then
     EXTRA_ARGS="$EXTRA_ARGS --backend $BACKEND"

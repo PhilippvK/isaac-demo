@@ -12,7 +12,15 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 # RUN=$DIR/run
 # SESS=$DIR/sess
 WORK=$DIR/work
-DOCKER=$WORK/docker
+
+USE_HLS_DOCKER=${USE_HLS_DOCKER:-1}
+if [[ "$USE_HLS_DOCKER" == "1" ]]
+then
+  MODE="docker"
+else
+  MODE="local"
+fi
+DEST_DIR=$WORK/$MODE/
 
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
@@ -56,4 +64,4 @@ else
 fi
 
 # TODO: handle sharing and total metrics
-python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DOCKER/hls${SUFFIX}/default/hls_schedules.csv --hls-selected-schedules-yaml $DOCKER/hls${SUFFIX}/default/output/selected_solutions.yaml
+python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DEST_DIR/hls${SUFFIX}/default/hls_schedules.csv --hls-selected-schedules-yaml $DEST_DIR/hls${SUFFIX}/default/output/selected_solutions.yaml

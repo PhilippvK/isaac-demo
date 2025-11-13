@@ -21,6 +21,7 @@ UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 GLOBAL_ISEL=${GLOBAL_ISEL:-0}
+BACKEND=${BACKEND:-"none"}
 
 ETISS_INSTALL_DIR=${ETISS_INSTALL_DIR:-""}
 LLVM_INSTALL_DIR=${LLVM_INSTALL_DIR:-""}
@@ -87,6 +88,12 @@ if [[ "$LLVM_INSTALL_DIR" != "" ]]
 then
     EXTRA_ARGS+=("-c" "llvm.install_dir=$LLVM_INSTALL_DIR")
 fi
+if [[ "$BACKEND" != "" ]]
+then
+    EXTRA_ARGS+=("--backend=$BACKEND")
+fi
+
+source $VENV_DIR/bin/activate
 
 PRINT_OUTPUTS=0
 python3 -m mlonmcu.cli.main flow $STAGE $BENCHMARKS --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 -v -c mlif.toolchain=llvm --label $LABEL -c etiss.cpu_arch=$CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS $CONFIG_GEN_ARGS --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS "${EXTRA_ARGS[@]}"

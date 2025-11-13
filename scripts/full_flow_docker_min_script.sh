@@ -14,6 +14,8 @@ git config --global --add safe.directory "*"
 source $SCRIPTS_DIR/env.sh
 export MLONMCU_HOME=$TOP_DIR/install/mlonmcu
 export MGCLIENT_INSTALL_DIR=/usr/local/
+export HLS_DIR=/isax-tools/
+
 echo "B"
 if [[ -f "$CONFIG" ]]
 then

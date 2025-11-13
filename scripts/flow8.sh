@@ -469,4 +469,9 @@ then
     ARGS="$ARGS --hls-metrics-csv $DEST_DIR/default/hls_metrics.csv"
 fi
 python3 scripts/locs_helper.py $ARGS --output $WORK/combined_locs.csv
-sudo chmod 777 -R $DEST_DIR
+if [[ "$USER" == "root" ]]
+then
+    chmod 777 -R $DEST_DIR
+else
+    sudo chmod 777 -R $DEST_DIR
+fi
