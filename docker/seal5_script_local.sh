@@ -65,6 +65,7 @@ fi
 
 if [[ "$CMAKE_EXTRA_ARGS" != "" ]]
 then
+    CMAKE_EXTRA_ARGS="${CMAKE_EXTRA_ARGS:1}"
     BUILD_ARGS="$BUILD_ARGS --cmake-extra-args=$CMAKE_EXTRA_ARGS"
 fi
 

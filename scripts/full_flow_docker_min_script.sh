@@ -9,6 +9,7 @@ echo "@=$@"
 echo "A"
 
 git config --global --add safe.directory $TOP_DIR/.git/modules/llvm-project
+git config --global --add safe.directory "*"
 
 source $SCRIPTS_DIR/env.sh
 export MLONMCU_HOME=$TOP_DIR/install/mlonmcu
