@@ -44,7 +44,7 @@ RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" \
     && rm -rf /var/cache/apt/archives/ \
     && rm -rf /var/lib/apt/lists
 
-# COPY --from=philippvk/isaac-quickstart-etiss /opt/cmake/ /opt/cmake/
+COPY --from=philippvk/isaac-quickstart-etiss /opt/cmake/ /opt/cmake/
 # COPY --from=philippvk/isaac-quickstart-etiss /work /work
 # COPY --from=philippvk/isaac-quickstart-seal5 /work /work
 # COPY --from=philippvk/isaac-quickstart-mlonmcu-min /work /work
@@ -58,9 +58,9 @@ ENV MLONMCU_HOME=/environment
 # COPY --from=philippvk/isaac-quickstart-mlonmcu /venv /venv
 # COPY --from=philippvk/isaac-quickstart-mlonmcu /mlonmcu /mlonmcu
 
-COPY ./docker/full_script.sh /work/full_script.sh
+COPY ./docker/min_script.sh /work/min_script.sh
 
-ENTRYPOINT ["/work/full_script.sh"]
+ENTRYPOINT ["/work/min_script.sh"]
 ENV LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
 RUN ln -s /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so.2
 

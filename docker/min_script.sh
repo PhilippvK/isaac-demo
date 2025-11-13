@@ -4,7 +4,7 @@ set -e
 
 echo "HELLO WORLD"
 
-source /venv/bin/activate
+# source /venv/bin/activate
 
 $@
 
