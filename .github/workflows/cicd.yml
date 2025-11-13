@@ -93,6 +93,16 @@ jobs:
         run: |
           ./scripts/setup_docker_min.sh
           CONFIG=${{ github.event.inputs.config }} ${{ github.event.inputs.command }}
+      - name: Cleanup
+        run: |
+          echo "Available storage before:"
+          sudo df -h
+          sudo rm -rf install
+          sudo rm -rf out
+          docker system prune -af
+          echo "Available storage after:"
+          sudo df -h
+          echo
       - name: Upload Outputs
         uses: actions/upload-artifact@v4
         with:
