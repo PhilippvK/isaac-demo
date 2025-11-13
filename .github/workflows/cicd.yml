@@ -93,8 +93,8 @@ jobs:
         run: |
           ./scripts/setup_docker_min.sh
           CONFIG=${{ github.event.inputs.config }} ${{ github.event.inputs.command }}
-          chmod -R 777 venv
-          chmod -R 777 install/ccache
+          sudo chmod -R 777 venv
+          sudo chmod -R 777 install/ccache
       - name: Upload Outputs
         uses: actions/upload-artifact@v4
         with:
