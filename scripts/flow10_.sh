@@ -137,7 +137,7 @@ else
     FULL_ARCH=${ARCH}_xisaac
 fi
 
-NUM_THREADS=4
+NUM_THREADS=${MLONMCU_NUM_THREADS:-4}
 
 ETISS_SCRIPT=$ETISS_INSTALL_DIR/bin/run_helper.sh
 
