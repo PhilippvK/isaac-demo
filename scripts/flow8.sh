@@ -469,7 +469,8 @@ then
     ARGS="$ARGS --hls-metrics-csv $DEST_DIR/default/hls_metrics.csv"
 fi
 python3 scripts/locs_helper.py $ARGS --output $WORK/combined_locs.csv
-if [[ "$USER" == "root" ]]
+echo "USER=$USER"
+if [[ "$(whoami)" == "root" ]]
 then
     chmod 777 -R $DEST_DIR
 else
