@@ -17,5 +17,7 @@ if [[ -f "$CONFIG" ]]
 then
     source $CONFIG
 fi
+rm -rf /root/.rustup/toolchains
+coda clean -a
 
 $SCRIPTS_DIR/full_flow.sh $@

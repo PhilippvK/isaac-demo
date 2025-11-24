@@ -14,3 +14,5 @@ $SCRIPT_DIR/setup_ccache.sh
 test -d $TOP_DIR/install/llvm || $SCRIPT_DIR/download_llvm.sh
 $SCRIPT_DIR/setup_etiss.sh
 $SCRIPT_DIR/setup_mlonmcu.sh
+rm -rf /root/.rustup/toolchains
+conda clean -a
