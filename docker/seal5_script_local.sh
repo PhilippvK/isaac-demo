@@ -42,7 +42,13 @@ export CCACHE_DIR=${CCACHE_DIR:-0}
 MGCLIENT_ROOT=${MGCLIENT_ROOT:-""}
 ENABLE_CDFG_PASS=${ENABLE_CDFG_PASS:-1}
 RESET=${RESET:-1}
+VERBOSE=${VERBOSE:-0}
 
+VERBOSE_ARGS=""
+if [[ "$VERBOSE" == "1" ]]
+then
+    VERBOSE_ARGS="$VERBOSE_ARGS --verbose"
+fi
 BUILD_ARGS=""
 if [[ "$CCACHE" == "1" ]]
 then
@@ -71,34 +77,34 @@ fi
 
 if [[ "$RESET" == "1" ]]
 then
-  seal5 --verbose --dir ${SEAL5_HOME} reset  --settings
-  seal5 --verbose --dir ${SEAL5_HOME} clean --temp --patches --models --inputs
+  seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} reset  --settings
+  seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} clean --temp --patches --models --inputs
 fi
-seal5 --verbose --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH} --force
-seal5 --verbose load --overwrite --files $SEAL5_CFG_DIR/*.yml
-seal5 --verbose setup
-seal5 --verbose patch -s 0
-seal5 --verbose build $BUILD_ARGS
+seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH} --force
+seal5 $VERBOSE_ARGS load --overwrite --files $SEAL5_CFG_DIR/*.yml
+seal5 $VERBOSE_ARGS setup
+seal5 $VERBOSE_ARGS patch -s 0
+seal5 $VERBOSE_ARGS build $BUILD_ARGS
 
-seal5 --verbose load --files $GEN_CDSL_FILES
+seal5 $VERBOSE_ARGS load --files $GEN_CDSL_FILES
 if [[ $GEN_CFG_FILES != "" ]]
 then
-    seal5 --verbose load --files $GEN_CFG_FILES
+    seal5 $VERBOSE_ARGS load --files $GEN_CFG_FILES
 fi
-seal5 --verbose transform
-seal5 --verbose generate --skip pattern_gen
-seal5 --verbose patch -s 1 2
-seal5 --verbose build $BUILD_ARGS
-seal5 --verbose build -t pattern-gen $BUILD_ARGS
-seal5 --verbose build -t llc $BUILD_ARGS
-seal5 --verbose generate --only pattern_gen
-seal5 --verbose patch -s 3 4 5
-seal5 --verbose build $BUILD_ARGS
-seal5 --verbose test
+seal5 $VERBOSE_ARGS transform
+seal5 $VERBOSE_ARGS generate --skip pattern_gen
+seal5 $VERBOSE_ARGS patch -s 1 2
+seal5 $VERBOSE_ARGS build $BUILD_ARGS
+seal5 $VERBOSE_ARGS build -t pattern-gen $BUILD_ARGS
+seal5 $VERBOSE_ARGS build -t llc $BUILD_ARGS
+seal5 $VERBOSE_ARGS generate --only pattern_gen
+seal5 $VERBOSE_ARGS patch -s 3 4 5
+seal5 $VERBOSE_ARGS build $BUILD_ARGS
+seal5 $VERBOSE_ARGS test
 mkdir -p $DEST
-seal5 --verbose install --dest $DEST/llvm_install
-seal5 --verbose deploy --dest $DEST/llvm_source.zip  # TODO: use git archive instead (include .git dir)?
-seal5 --verbose export --dest $DEST/seal5.tar.gz  # TODO: zip
+seal5 $VERBOSE_ARGS install --dest $DEST/llvm_install
+seal5 $VERBOSE_ARGS deploy --dest $DEST/llvm_source.zip  # TODO: use git archive instead (include .git dir)?
+seal5 $VERBOSE_ARGS export --dest $DEST/seal5.tar.gz  # TODO: zip
 mkdir -p $DEST/seal5_reports
 python3 -m seal5.backends.report.properties.writer $SEAL5_HOME/.seal5/models/*.seal5model --output $DEST/seal5_reports/properties.csv
 python3 -m seal5.backends.report.status.writer $SEAL5_HOME/.seal5/models/*.seal5model --yaml $SEAL5_HOME/.seal5/settings.yml --output $DEST/seal5_reports/status.csv
