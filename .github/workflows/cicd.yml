@@ -117,9 +117,10 @@ jobs:
           echo "-"
       - name: Compress Outputs
         run: |
-            cd out
-            tar -I 'xz -9 -T0' -cf out.tar.xz .
-            cd -
+          cd out
+          sudo tar -I 'xz -9 -T0' -cf out.tar.xz .
+          cd -
+          du -ch -d1 .
       - name: Upload Outputs
         uses: actions/upload-artifact@v4
         with:
