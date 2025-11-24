@@ -121,11 +121,11 @@ jobs:
           sudo tar -I 'xz -9 -T0' -cf ../out.tar.xz .
           cd -
           sudo du -ch -d1 .
-      - name: Upload Outputs
-        uses: actions/upload-artifact@v4
-        with:
-          name: demo-out
-          path: out/
+      # - name: Upload Outputs
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: demo-out
+      #     path: out/
       - name: Upload Compressed Outputs
         uses: actions/upload-artifact@v4
         with:
