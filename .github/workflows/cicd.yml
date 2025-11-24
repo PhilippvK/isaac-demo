@@ -36,7 +36,7 @@ jobs:
           git fetch origin --tags
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M')"
+        run: echo "date=$(date +'%Y-%m-%dT%H:%M')" >> $GITHUB_OUTPUT
       - name: Setup CCache
         uses: actions/cache@v4
         with:
