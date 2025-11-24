@@ -103,15 +103,15 @@ jobs:
       - name: Cleanup Outputs
         run: |
           echo "-"
-          du -ch -d0 out/
+          sudo du -ch -d0 out/
           echo "-"
-          du -ch -d4 out/
+          sudo du -ch -d4 out/
           echo "-"
-          du -ch -d8 out/
+          sudo du -ch -d8 out/
           echo "-"
-          du -ch -d12 out/
+          sudo du -ch -d12 out/
           echo "-"
-          du -ch -d16 out/
+          sudo du -ch -d16 out/
           echo "-"
           sudo df -h
           echo "-"
@@ -120,7 +120,7 @@ jobs:
           cd out
           sudo tar -I 'xz -9 -T0' -cf ../out.tar.xz .
           cd -
-          du -ch -d1 .
+          sudo du -ch -d1 .
       - name: Upload Outputs
         uses: actions/upload-artifact@v4
         with:
