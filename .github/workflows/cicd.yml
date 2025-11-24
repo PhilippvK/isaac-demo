@@ -118,7 +118,7 @@ jobs:
       - name: Compress Outputs
         run: |
           cd out
-          sudo tar -I 'xz -9 -T0' -cf out.tar.xz .
+          sudo tar -I 'xz -9 -T0' -cf ../out.tar.xz .
           cd -
           du -ch -d1 .
       - name: Upload Outputs
