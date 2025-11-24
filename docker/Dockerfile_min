@@ -65,28 +65,54 @@ ENTRYPOINT ["/work/min_script.sh"]
 ENV LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
 RUN ln -s /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so.2
 
-RUN arch=$(uname -m) && \
-    if [ "$arch" = "x86_64" ]; then \
-    MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"; \
-    elif [ "$arch" = "aarch64" ]; then \
-    MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"; \
+# RUN arch=$(uname -m) && \
+#     if [ "$arch" = "x86_64" ]; then \
+#     MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"; \
+#     elif [ "$arch" = "aarch64" ]; then \
+#     MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"; \
+#     else \
+#     echo "Unsupported architecture: $arch"; \
+#     exit 1; \
+#     fi && \
+#     wget $MINICONDA_URL -O miniconda.sh && \
+#     mkdir -p /root/.conda && \
+#     bash miniconda.sh -b -p /root/miniconda3 && \
+#     rm -f miniconda.sh
+#
+# ENV PATH="/root/miniconda3/bin:${PATH}"
+#
+# RUN conda --version
+# RUN conda init \
+#     && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
+#     && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
+#     && conda install python=3.10 \
+#     && conda clean -a
+
+# Install Miniforge (no Python included)
+RUN ARCH=$(uname -m) && \
+    if [ "$ARCH" = "x86_64" ]; then \
+        URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"; \
+    elif [ "$ARCH" = "aarch64" ]; then \
+        URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh"; \
     else \
-    echo "Unsupported architecture: $arch"; \
-    exit 1; \
+        echo "Unsupported arch: $ARCH"; exit 1; \
     fi && \
-    wget $MINICONDA_URL -O miniconda.sh && \
-    mkdir -p /root/.conda && \
-    bash miniconda.sh -b -p /root/miniconda3 && \
-    rm -f miniconda.sh
+    wget $URL -O miniforge.sh && \
+    bash miniforge.sh -b -p /opt/conda && \
+    rm miniforge.sh
 
-ENV PATH="/root/miniconda3/bin:${PATH}"
+ENV PATH="/opt/conda/bin:$PATH"
 
-RUN conda --version
-RUN conda init \
-    && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
-    && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
-    && conda install python=3.10 \
-    && conda clean -a
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+# Create minimal Python 3.10 env
+RUN conda create -y -n py310 python=3.10 && \
+    conda clean -a -y
+
+# Activate environment
+# SHELL ["bash", "-c"]
+RUN echo "source activate py310" >> ~/.bashrc
+ENV CONDA_DEFAULT_ENV=py310
+ENV PATH="/opt/conda/envs/py310/bin:$PATH"
+
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --profile minimal
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustup show
