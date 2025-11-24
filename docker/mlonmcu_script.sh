@@ -1,9 +1,3 @@
 #!/bin/bash
 
-echo "HELLO WORLD"
-
-date
-
 mlonmcu $@
-
-echo "BYE WORLD"
