@@ -19,6 +19,7 @@ dist_lower=${6:-$(lsb_release -d | cut -f2 | cut -d' ' -f1 | tr "[:upper:]" "[:l
 release=${7:-$(lsb_release -r --short)}
 ext=${8:-tar.xz}
 cpu_arch=$(uname -p)
+VERBOSE=${VERBOSE:-0}
 
 
 if [[ "$dist_lower" == "pop!_os" ]]
@@ -57,7 +58,17 @@ else
 fi
 URL=https://github.com/PhilippvK/riscv-tools/releases/download/${tool_lower}_${version}/$archive
 echo "URL=$URL"
-wget --progress=dot:giga $URL
+if [[ "$VERBOSE" == "1" ]]
+then
+    wget --progress=dot:giga $URL
+else
+    wget -qq $URL
+fi
 mkdir -p $dest
-tar -xvf $archive -C $dest
+if [[ "$VERBOSE" == "1" ]]
+then
+    tar -xvf $archive -C $dest
+else
+    tar -xf $archive -C $dest
+fi
 rm $archive
