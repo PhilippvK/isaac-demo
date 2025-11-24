@@ -17,7 +17,8 @@ if [[ -f "$CONFIG" ]]
 then
     source $CONFIG
 fi
+# export GLOBAL_ISEL=1
 rm -rf /root/.rustup/toolchains
-coda clean -a
+conda clean -a
 
 $SCRIPTS_DIR/full_flow.sh $@
