@@ -82,9 +82,11 @@ RUN arch=$(uname -m) && \
 ENV PATH="/root/miniconda3/bin:${PATH}"
 
 RUN conda --version
-RUN conda init
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-RUN conda install python=3.10
+RUN conda init \
+    && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
+    && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
+    && conda install python=3.10 \
+    && conda clean -a
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN rustup show
