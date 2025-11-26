@@ -46,7 +46,10 @@ if args.fmt == "auto":
     assert len(suffix) > 1
     fmt = suffix[1:]
 
-compare_df = pd.read_csv(compare_csv, index_col=0)
+compare_df = None
+if compare_csv.is_file():
+    compare_df = pd.read_csv(compare_csv, index_col=0)
+
 times_df = pd.read_csv(times_csv)
 times_df.drop(columns=["t0", "t1"], inplace=True)
 times_df.rename(columns={"label": "Stage", "td": "Diff [s]"}, inplace=True)
@@ -72,9 +75,10 @@ if fmt in ["md", "markdown"]:
     times_text = times_df.to_markdown(index=False)
     content += times_text + "\n\n"
     content += "</details>\n\n"
-    content += "### Compare DF\n"
-    compare_text = compare_df.to_markdown(index=False)
-    content += compare_text + "\n\n"
+    if compare_df is not None:
+        content += "### Compare DF\n"
+        compare_text = compare_df.to_markdown(index=False)
+        content += compare_text + "\n\n"
 else:
     raise RuntimeError(f"Unsupported format: {fmt}")
 
