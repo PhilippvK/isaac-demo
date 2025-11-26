@@ -21,14 +21,14 @@ def main():
         combined_index_data = yaml.safe_load(f)
     candidates = combined_index_data["candidates"]
     # num_candidates = len(candidates)
-    print("candidates", candidates)
+    # print("candidates", candidates)
 
     names_data = []
 
     for i, candidate in enumerate(candidates):
-        print("i", i)
+        # print("i", i)
         properties = candidate.get("properties", {})
-        print("properties", properties)
+        # print("properties", properties)
         new_name = f"{args.prefix}{i}"
         properties["InstrName"] = new_name
         candidate["properties"] = properties
