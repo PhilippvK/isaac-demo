@@ -156,7 +156,8 @@ jobs:
       - name: Write Summary
         continue-on-error: true
         run: |
-          find out -name "experiment.ini" -exec python3 gen_ci_summary.py {} --fmt md \;
+          pip install pandas tabluate
+          find out -name "experiment.ini" -exec python3 gen_ci_summary.py {} --fmt md \; | tee -a $GITHUB_STEP_SUMMARY
       - name: Compress Outputs
         run: |
           cd out
