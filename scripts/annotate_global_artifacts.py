@@ -14,9 +14,9 @@ def main():
     parser.add_argument("--data", action="append", help="TODO")
     args = parser.parse_args()
 
-    print("data", args.data)
+    # print("data", args.data)
     mapping = dict([tuple(x.split("=", 1)) for x in args.data])
-    print("mapping", mapping)
+    # print("mapping", mapping)
 
     with open(args.index, "r") as f:
         combined_index_data = yaml.safe_load(f)
