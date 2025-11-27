@@ -157,7 +157,7 @@ jobs:
         continue-on-error: true
         run: |
           pip install pandas tabulate
-          chmod -R 777 out/
+          sudo chmod -R 777 out/
           find out -name "times.csv" -exec python3 times_to_mermaid.py {} --zero -o {}.md \;
           find out -name "experiment.ini" -exec python3 gen_ci_summary.py {} --fmt md \; | tee -a $GITHUB_STEP_SUMMARY
       - name: Compress Outputs
