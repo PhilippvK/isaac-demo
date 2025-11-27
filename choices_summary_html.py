@@ -1,4 +1,6 @@
+import re
 import sys
+import logging
 import argparse
 from pathlib import Path
 
@@ -6,8 +8,9 @@ import pandas as pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument("exp_dir")
-parser.add_argument("--out", type=Path, default=Path("choices_summary.html"),
+parser.add_argument("--out", "-o", type=Path, default=Path("choices_summary.html"),
                     help="Output HTML file (default: choices_summary.html)")
+parser.add_argument("--min", action="store_true", help="Only emit body contents")
 args = parser.parse_args()
 
 exp_dir = Path(args.exp_dir)
@@ -45,12 +48,18 @@ with open(disass_file, "r") as f:
 
 
 def find_disass_snippet(disass_text, start, end, count=None):
+    # end is exclusive!
     start_match = f" {start:x}: "
     end_match = f" {end:x}: "
+    end_match2 = r"^0+" + f"{end:x} "
     ret_lines = []
     for line in disass_text.splitlines():
+        if len(line.strip()) == 0:
+            continue
         if ret_lines:
             if end_match in line:
+                break
+            elif re.compile(end_match2).match(line.strip()):
                 break
             ret_lines.append(line)
         else:
@@ -58,13 +67,15 @@ def find_disass_snippet(disass_text, start, end, count=None):
                 ret_lines.append(line)
     assert ret_lines, f"No snippet found for {start:x}"
     if count is not None:
-        assert len(ret_lines) == count, f"{len(ret_lines)} vs. {count}"
+        if len(ret_lines) != count:
+            logging.warning("Lines missmatch: %d vs. %d", len(ret_lines), count)
     return "\n".join(ret_lines)
 
 
 # --- HTML boilerplate ---
 html_parts = []
-html_parts.append("""<!DOCTYPE html>
+if not args.min:
+    html_parts.append("""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -108,7 +119,8 @@ for idx, row in merged_df.iterrows():
 
     html_parts.append(f"<pre><code class='asm'>\n{snippet}\n</code></pre>")
 
-html_parts.append("</body></html>")
+if not args.min:
+    html_parts.append("</body></html>")
 
 # --- Write output ---
 args.out.write_text("\n".join(html_parts), encoding="utf-8")
