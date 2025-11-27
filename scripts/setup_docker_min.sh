@@ -6,6 +6,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/nu
 TOP_DIR=$(dirname $SCRIPT_DIR)
 
 DOCKER_IMAGE=${DOCKER_IMAGE:-philippvk/isaac-quickstart-min:latest}
+CONFIG=${CONFIG:-""}
 
 echo docker run -i --rm -v $TOP_DIR:$TOP_DIR --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/setup_docker_min_script.sh $@
-docker run -i --rm -v $TOP_DIR:$TOP_DIR --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/setup_docker_min_script.sh $@
+docker run -i --rm -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/setup_docker_min_script.sh $@
