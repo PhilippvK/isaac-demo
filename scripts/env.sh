@@ -8,6 +8,7 @@ fi
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 # echo "SCRIPT_DIR=$SCRIPT_DIR"
 TOP_DIR=$(dirname $SCRIPT_DIR)
+export SCRIPTS_DIR=$TOP_DIR/scripts
 # echo "TOP_DIR=$TOP_DIR"
 # TOP_DIR=$SCRIPT_DIR
 export VENV_DIR=$TOP_DIR/venv
