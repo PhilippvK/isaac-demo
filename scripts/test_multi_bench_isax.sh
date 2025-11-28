@@ -234,14 +234,14 @@ if [[ "$ISAAC_ENABLE" == 1 ]]
 then
     if [[ "$MULTI" == "0" ]]
     then
-        python3 scripts/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${OUT_SUFFIX}.csv --score $ENC_SCORE_CSV
+        python3 $SCRIPTS_DIR/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${OUT_SUFFIX}.csv --score $ENC_SCORE_CSV
 
-        python3 scripts/assign_names.py $INDEX_FILE --inplace --csv $NAMES_CSV --pkl $ISE_INSTRS_PKL
+        python3 $SCRIPTS_DIR/assign_names.py $INDEX_FILE --inplace --csv $NAMES_CSV --pkl $ISE_INSTRS_PKL
         python3 -m isaac_toolkit.generate.ise.generate_cdsl --sess $SESS --workdir $WORK --gen-dir $GEN_DIR --index $INDEX_FILE $FORCE_ARGS
 
         # assign_0_enc
 
-        python3 scripts/annotate_enc_score.py $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
+        python3 $SCRIPTS_DIR/annotate_enc_score.py $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
     fi
 
     # isaac_0_etiss
@@ -281,13 +281,13 @@ then
 
     docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $SEAL5_DEST_DIR $CDSL_FILES $CFG_FILES
 
-    python3 scripts/seal5_score.py --output $SEAL5_SCORE_CSV --seal5-status-csv $SEAL5_DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $SEAL5_DEST_DIR/seal5_reports/status_compact.csv
+    python3 $SCRIPTS_DIR/seal5_score.py --output $SEAL5_SCORE_CSV --seal5-status-csv $SEAL5_DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $SEAL5_DEST_DIR/seal5_reports/status_compact.csv
 
     # assign_0_seal5
 
     if [[ "$MULTI" == "0" ]]
     then
-        python3 scripts/annotate_seal5_score.py $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
+        python3 $SCRIPTS_DIR/annotate_seal5_score.py $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
     fi
 fi
 
@@ -325,11 +325,11 @@ then
     PRINT_OUTPUTS=0
     python3 -m mlonmcu.cli.main flow run $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions" --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $PROGRESS_ARGS
     python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi${OUT_SUFFIX}
-    python3 scripts/analyze_reuse.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --print-df --output ${RUN}_compare_multi${OUT_SUFFIX}.csv
+    python3 $SCRIPTS_DIR/analyze_reuse.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --print-df --output ${RUN}_compare_multi${OUT_SUFFIX}.csv
 
     python3 -m mlonmcu.cli.main flow compile $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $PROGRESS_ARGS
     python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem${OUT_SUFFIX}
-    python3 scripts/analyze_reuse.py ${RUN}_compare_multi_mem${OUT_SUFFIX}/report.csv --print-df --mem --output ${RUN}_compare_multi_mem${OUT_SUFFIX}.csv
+    python3 $SCRIPTS_DIR/analyze_reuse.py ${RUN}_compare_multi_mem${OUT_SUFFIX}/report.csv --print-df --mem --output ${RUN}_compare_multi_mem${OUT_SUFFIX}.csv
 fi
 
 if [[ "$COMPARE_MULTI_PER_INSTR_ENABLE" == 1 && "$MULTI" == "0" ]]
@@ -362,9 +362,9 @@ then
     # python3 -m mlonmcu.cli.main flow compile $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $CONFIG_GEN_ARGS $PROGRESS_ARGS
     # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}
 
-    # python3 scripts/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --mem-report ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
-    python3 scripts/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
-    python3 scripts/annotate_per_instr_metrics.py $INDEX_FILE --inplace --report ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv --multi --multi-agg-func sum
+    # python3 $SCRIPTS_DIR/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --mem-report ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
+    python3 $SCRIPTS_DIR/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
+    python3 $SCRIPTS_DIR/annotate_per_instr_metrics.py $INDEX_FILE --inplace --report ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv --multi --multi-agg-func sum
 fi
 
 # hls_0
@@ -454,7 +454,7 @@ then
 
             # TODO: make sure that dir is empty?
             mkdir -p $WORK/docker/hls/baseline/rtl
-            ./scripts/copy_rtl_files.sh $OUTPUT_DIR/$HLS_NAILGUN_CORE_NAME2/files.txt $WORK/docker/hls/baseline/rtl
+            $SCRIPTS_DIR/copy_rtl_files.sh $OUTPUT_DIR/$HLS_NAILGUN_CORE_NAME2/files.txt $WORK/docker/hls/baseline/rtl
             if [[ "$HLS_NAILGUN_OL2_ENABLE" == "y" ]]
             then
                 SDC_PATH=$(ls $OUTPUT_DIR/hw_syn/runs/*/final/sdc/*.sdc)
@@ -463,8 +463,8 @@ then
                 grep -v "set_driving_cell" $SDC_PATH > $WORK/docker/asip_syn/baseline/constraints.sdc
 
                 # mkdir -p $WORK/docker/asip_syn/baseline/rtl
-                # python3 scripts/get_rtl_files.py $WORK/docker/hls/baseline/output/hw_syn/config.json > $WORK/docker/hls/baseline/output/hw_syn/files.txt
-                # ./scripts/copy_rtl_files.sh $WORK/docker/hls/baseline/output/hw_syn/files.txt $WORK/docker/asip_syn/baseline/rtl
+                # python3 $SCRIPTS_DIR/get_rtl_files.py $WORK/docker/hls/baseline/output/hw_syn/config.json > $WORK/docker/hls/baseline/output/hw_syn/files.txt
+                # $SCRIPTS_DIR/copy_rtl_files.sh $WORK/docker/hls/baseline/output/hw_syn/files.txt $WORK/docker/asip_syn/baseline/rtl
             fi
         fi
 
@@ -479,7 +479,7 @@ then
             mkdir -p $WORK/docker/hls/default/rtl
             # cp $WORK/docker/hls/default/output/$HLS_NAILGUN_CORE_NAME/*.v $WORK/docker/hls/default/rtl/ || :
             # cp $WORK/docker/hls/default/output/$HLS_NAILGUN_CORE_NAME/*.sv $WORK/docker/hls/default/rtl/ || :
-            ./scripts/copy_rtl_files.sh $WORK/docker/hls/default/output/$HLS_NAILGUN_CORE_NAME2/files.txt $WORK/docker/hls/default/rtl
+            $SCRIPTS_DIR/copy_rtl_files.sh $WORK/docker/hls/default/output/$HLS_NAILGUN_CORE_NAME2/files.txt $WORK/docker/hls/default/rtl
             # for set_name in ${SET_NAME//;/ }
             # do
             #     cp $WORK/docker/hls/default/output/ISAX_$set_name.sv $WORK/docker/hls/default/rtl/
@@ -489,7 +489,7 @@ then
             echo -e "\nISAX_$SET_NAME_OUT.sv" >> $WORK/docker/hls/default/rtl/files.txt
             (git diff --no-index $WORK/docker/hls/baseline/rtl $WORK/docker/hls/default/rtl || : ) > $WORK/docker/hls/default/rtl.patch
             (git diff --no-index $WORK/docker/hls/baseline/rtl $WORK/docker/hls/default/rtl --shortstat || : ) > $WORK/docker/hls/default/rtl.patch.stat
-            # python3 scripts/stat2locs.py $WORK/docker/hls/default/rtl.patch.stat $WORK/docker/hls/default/rtl.csv
+            # python3 $SCRIPTS_DIR/stat2locs.py $WORK/docker/hls/default/rtl.patch.stat $WORK/docker/hls/default/rtl.csv
             if [[ "$HLS_NAILGUN_OL2_ENABLE" == "y" ]]
             then
                 # SDC_PATH=$(ls $WORK/docker/hls/default/output/hw_syn/runs/*/*-openroad-floorplan/*.sdc)
@@ -499,17 +499,17 @@ then
                 grep -v "set_driving_cell" $SDC_PATH > $WORK/docker/asip_syn/default/constraints.sdc
 
                 # mkdir -p $WORK/docker/asip_syn/rtl
-                # python3 scripts/get_rtl_files.py $WORK/docker/hls/default/output/hw_syn/config.json > $WORK/docker/hls/default/output/hw_syn/files.txt
-                # ./scripts/copy_rtl_files.sh $WORK/docker/hls/default/output/hw_syn/files.txt $WORK/docker/asip_syn/rtl
+                # python3 $SCRIPTS_DIR/get_rtl_files.py $WORK/docker/hls/default/output/hw_syn/config.json > $WORK/docker/hls/default/output/hw_syn/files.txt
+                # $SCRIPTS_DIR/copy_rtl_files.sh $WORK/docker/hls/default/output/hw_syn/files.txt $WORK/docker/asip_syn/rtl
             fi
 
 
-            python3 scripts/collect_hls_metrics.py $WORK/docker/hls/default/output --output $WORK/docker/hls/default/hls_metrics.csv --print
-            python3 scripts/parse_kconfig.py $WORK/docker/hls/default/output/Kconfig $WORK/docker/hls/default/hls_schedules.csv
-            python3 scripts/get_selected_schedule_metrics.py $WORK/docker/hls/default/hls_schedules.csv $WORK/docker/hls/default/output/selected_solutions.yaml $WORK/docker/hls/default/hls_selected_schedule_metrics.csv
+            python3 $SCRIPTS_DIR/collect_hls_metrics.py $WORK/docker/hls/default/output --output $WORK/docker/hls/default/hls_metrics.csv --print
+            python3 $SCRIPTS_DIR/parse_kconfig.py $WORK/docker/hls/default/output/Kconfig $WORK/docker/hls/default/hls_schedules.csv
+            python3 $SCRIPTS_DIR/get_selected_schedule_metrics.py $WORK/docker/hls/default/hls_schedules.csv $WORK/docker/hls/default/output/selected_solutions.yaml $WORK/docker/hls/default/hls_selected_schedule_metrics.csv
             if [[ "$MULTI" == "0" ]]
             then
-                python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DOCKER_DIR/hls/default/hls_schedules.csv --hls-selected-schedules-yaml $DOCKER_DIR/hls/default/output/selected_solutions.yaml
+                python3 $SCRIPTS_DIR/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DOCKER_DIR/hls/default/hls_schedules.csv --hls-selected-schedules-yaml $DOCKER_DIR/hls/default/output/selected_solutions.yaml
             fi
         fi
 
@@ -523,7 +523,7 @@ then
 
             # TODO: make sure that dir is empty?
             mkdir -p $WORK/docker/hls/shared/rtl
-            ./scripts/copy_rtl_files.sh $WORK/docker/hls/shared/output/$HLS_NAILGUN_CORE_NAME2/files.txt $WORK/docker/hls/shared/rtl
+            $SCRIPTS_DIR/copy_rtl_files.sh $WORK/docker/hls/shared/output/$HLS_NAILGUN_CORE_NAME2/files.txt $WORK/docker/hls/shared/rtl
             # for set_name in ${SET_NAME//;/ }
             # do
             #     cp $WORK/docker/hls/shared/output/ISAX_$set_name.sv $WORK/docker/hls/shared/rtl/
@@ -533,7 +533,7 @@ then
             echo -e "\nISAX_$SET_NAME_OUT.sv" >> $WORK/docker/hls/shared/rtl/files.txt
             (git diff --no-index $WORK/docker/hls/baseline/rtl $WORK/docker/hls/shared/rtl || : )> $WORK/docker/hls/shared/rtl.patch
             (git diff --no-index $WORK/docker/hls/baseline/rtl $WORK/docker/hls/shared/rtl --shortstat || : ) > $WORK/docker/hls/shared/rtl.patch.stat
-            # python3 scripts/stat2locs.py $WORK/docker/hls/shared/rtl.patch.stat $WORK/docker/hls/shared/rtl.csv
+            # python3 $SCRIPTS_DIR/stat2locs.py $WORK/docker/hls/shared/rtl.patch.stat $WORK/docker/hls/shared/rtl.csv
             if [[ "$HLS_NAILGUN_OL2_ENABLE" == "y" ]]
             then
                 # SDC_PATH=$(ls $WORK/docker/hls/shared/output/hw_syn/runs/*/*-openroad-floorplan/*.sdc)
@@ -543,13 +543,13 @@ then
                 grep -v "set_driving_cell" $SDC_PATH > $WORK/docker/asip_syn/shared/constraints.sdc
 
                 # mkdir -p $WORK/docker/asip_syn/shared/rtl
-                # python3 scripts/get_rtl_files.py $WORK/docker/hls/shared/output/hw_syn/config.json > $WORK/docker/hls/shared/output/hw_syn/files.txt
-                # ./scripts/copy_rtl_files.sh $WORK/docker/hls/shared/output/hw_syn/files.txt $WORK/docker/asip_syn/shared/rtl
+                # python3 $SCRIPTS_DIR/get_rtl_files.py $WORK/docker/hls/shared/output/hw_syn/config.json > $WORK/docker/hls/shared/output/hw_syn/files.txt
+                # $SCRIPTS_DIR/copy_rtl_files.sh $WORK/docker/hls/shared/output/hw_syn/files.txt $WORK/docker/asip_syn/shared/rtl
             fi
 
-            python3 scripts/collect_hls_metrics.py $WORK/docker/hls/shared/output --output $WORK/docker/hls/shared/hls_metrics.csv --print
-            python3 scripts/parse_kconfig.py $WORK/docker/hls/shared/output/Kconfig $WORK/docker/hls/shared/hls_schedules.csv
-            python3 scripts/get_selected_schedule_metrics.py $WORK/docker/hls/shared/hls_schedules.csv $WORK/docker/hls/shared/output/selected_solutions.yaml $WORK/docker/hls/shared/hls_selected_schedule_metrics.csv
+            python3 $SCRIPTS_DIR/collect_hls_metrics.py $WORK/docker/hls/shared/output --output $WORK/docker/hls/shared/hls_metrics.csv --print
+            python3 $SCRIPTS_DIR/parse_kconfig.py $WORK/docker/hls/shared/output/Kconfig $WORK/docker/hls/shared/hls_schedules.csv
+            python3 $SCRIPTS_DIR/get_selected_schedule_metrics.py $WORK/docker/hls/shared/hls_schedules.csv $WORK/docker/hls/shared/output/selected_solutions.yaml $WORK/docker/hls/shared/hls_selected_schedule_metrics.csv
         fi
     else
         echo "Unsupported HLS_TOOL: $HLS_TOOL"
@@ -565,8 +565,8 @@ then
     # TODO: check if exists
     SPEC_GRAPH=$DIR/spec_graph${OUT_SUFFIX}.pkl
     python3 -m tool.detect_specializations $INDEX_FILE --graph $SPEC_GRAPH --noop
-    python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$WORK/docker/etiss/etiss_install
-    python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$WORK/docker/seal5/llvm_install
+    python3 $SCRIPTS_DIR/annotate_global_artifacts.py $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$WORK/docker/etiss/etiss_install
+    python3 $SCRIPTS_DIR/annotate_global_artifacts.py $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$WORK/docker/seal5/llvm_install
     SELECTED_INDEX_FILE=$DIR/selected${OUT_SUFFIX}_index.yml
     BENCH_FULL=""
     for bench in "${BENCHMARKS[@]}"
@@ -610,7 +610,7 @@ then
     fi
     if [[ "$USE_STOP_BENEFIT" == "1" ]]
     then
-        # python3 scripts/extract_stop_benefit.py ${RUN}_compare_multi${SUFFIX}.csv $DIR/stop_benefit${SUFFIX}.txt
+        # python3 $SCRIPTS_DIR/extract_stop_benefit.py ${RUN}_compare_multi${SUFFIX}.csv $DIR/stop_benefit${SUFFIX}.txt
         if [[ ! -f $DIR/stop_benefit.txt ]]
         then
             echo "Missing: $DIR/stop_benefit.txt"
@@ -651,8 +651,8 @@ then
     SELECT_ARGS="$SELECT_ARGS --total-cost-func $TOTAL_COST_FUNC"
     SELECT_ARGS="$SELECT_ARGS --instr-benefit-func $INSTR_BENEFIT_FUNC"
     SELECT_ARGS="$SELECT_ARGS --total-benefit-func $TOTAL_BENEFIT_FUNC"
-    python3 scripts/selection_algo.py $INDEX_FILE --out $SELECTED_INDEX_FILE --sankey $DIR/sankey_selected${OUT_SUFFIX}.md $SELECT_ARGS
-    python3 scripts/names_helper.py $SELECTED_INDEX_FILE --output $WORK/names_selected.csv
+    python3 $SCRIPTS_DIR/selection_algo.py $INDEX_FILE --out $SELECTED_INDEX_FILE --sankey $DIR/sankey_selected${OUT_SUFFIX}.md $SELECT_ARGS
+    python3 $SCRIPTS_DIR/names_helper.py $SELECTED_INDEX_FILE --output $WORK/names_selected.csv
 fi
 
 # compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0_filtered;assign_0_compare_filtered;compare_others_0_filtered;assign_0_compare_others_filtered
@@ -701,7 +701,7 @@ do
         # NAMES_CSV=$WORK/names${SUFFIX}.csv
         # ISE_INSTRS_PKL_OLD=$SESS/table/ise_instrs.pkl
         # ISE_INSTRS_PKL_NEW=$WORK/ise_instrs.pkl
-        # python3 scripts/update_ise_instrs_pkl.py $ISE_INSTRS_PKL_OLD --out $ISE_INSTRS_PKL_NEW --names-csv $NAMES_CSV
+        # python3 $SCRIPTS_DIR/update_ise_instrs_pkl.py $ISE_INSTRS_PKL_OLD --out $ISE_INSTRS_PKL_NEW --names-csv $NAMES_CSV
 
         python3 -m isaac_toolkit.frontend.ise.instrs $ISE_INSTRS_PKL --session $SESS2 $FORCE_ARGS
         # rm $ISE_INSTRS_PKL_NEW
@@ -733,7 +733,7 @@ do
         # python3 -m isaac_toolkit.eval.ise.score.total --sess $SESS2
         # python3 -m isaac_toolkit.eval.ise.summary --sess $SESS2  # -> combine all data into single table/plot/pdf?
 
-        python3 scripts/calc_util_score.py --dynamic-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --static-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --out $SESS2/util_score.csv
+        python3 $SCRIPTS_DIR/calc_util_score.py --dynamic-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --static-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --out $SESS2/util_score.csv
 
 
         # cleanup run dir
@@ -754,22 +754,22 @@ done
 if [[ "$AGG_ENABLE" == "1" && "$UTIL_SCORE_ARGS" != "" ]]
 then
     # OUT_DIR=$DIR
-    # python3 scripts/analyze_multi_report.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --sess-dir ${SESS}_multi/ --names-csv $NAMES_CSV --out $OUT_DIR
+    # python3 $SCRIPTS_DIR/analyze_multi_report.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --sess-dir ${SESS}_multi/ --names-csv $NAMES_CSV --out $OUT_DIR
     AGG_UTIL_SCORE_CSV=$DIR/agg_util_score.csv
-    python3 scripts/agg_util_scores.py $UTIL_SCORE_ARGS --out $AGG_UTIL_SCORE_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
-    # python3 scripts/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
-    python3 scripts/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix ""
+    python3 $SCRIPTS_DIR/agg_util_scores.py $UTIL_SCORE_ARGS --out $AGG_UTIL_SCORE_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
+    # python3 $SCRIPTS_DIR/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
+    python3 $SCRIPTS_DIR/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix ""
     # TODO: MULTI!
 fi
 
 if [[ "$AGG_ENABLE" == "1" && "$AGG_COUNTS_ARGS" != "" ]]
 then
     # OUT_DIR=$DIR
-    # python3 scripts/analyze_multi_report.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --sess-dir ${SESS}_multi/ --names-csv $NAMES_CSV --out $OUT_DIR
+    # python3 $SCRIPTS_DIR/analyze_multi_report.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --sess-dir ${SESS}_multi/ --names-csv $NAMES_CSV --out $OUT_DIR
     AGG_COUNTS_CSV=$DIR/agg_counts.csv
-    python3 scripts/agg_counts.py $AGG_COUNTS_ARGS --out $AGG_COUNTS_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
-    # python3 scripts/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
-    python3 scripts/annotate_counts.py $INDEX_FILE --inplace --counts-csv $AGG_COUNTS_CSV --out-prefix ""
+    python3 $SCRIPTS_DIR/agg_counts.py $AGG_COUNTS_ARGS --out $AGG_COUNTS_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
+    # python3 $SCRIPTS_DIR/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
+    python3 $SCRIPTS_DIR/annotate_counts.py $INDEX_FILE --inplace --counts-csv $AGG_COUNTS_CSV --out-prefix ""
 fi
 
 
@@ -781,8 +781,8 @@ then
     MIN_ESTIMATED_REDUCTION=0.005
     FILTER_ARGS="--min-util-score ${MIN_UTIL_SCORE} --min-estimated-reduction ${MIN_ESTIMATED_REDUCTION}"
     # TODO: support prefix
-    python3 scripts/filter_index.py $INDEX_FILE --out $FILTERED_INDEX_FILE $FILTER_ARGS --sankey $DIR/sankey_filtered${OUT_SUFFIX}.md
-    python3 scripts/names_helper.py $FILTERED_INDEX_FILE --output $WORK/names_filtered.csv
+    python3 $SCRIPTS_DIR/filter_index.py $INDEX_FILE --out $FILTERED_INDEX_FILE $FILTER_ARGS --sankey $DIR/sankey_filtered${OUT_SUFFIX}.md
+    python3 $SCRIPTS_DIR/names_helper.py $FILTERED_INDEX_FILE --output $WORK/names_filtered.csv
     # TODO: gen
 fi
 
@@ -807,7 +807,7 @@ then
             else
                 mkdir -p $WORK/docker/asip_syn/baseline/rtl
                 cp -r $WORK/docker/hls/baseline/rtl/* $WORK/docker/asip_syn/baseline/rtl
-                ./asip_syn_script.sh $WORK/docker/asip_syn/baseline/ $WORK/docker/asip_syn/baseline/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/baseline/constraints.sdc
+                $SCRIPTS_DIR/asip_syn_script.sh $WORK/docker/asip_syn/baseline/ $WORK/docker/asip_syn/baseline/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/baseline/constraints.sdc
                 COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --baseline-dir $WORK/docker/asip_syn/baseline/"
             fi
         elif [[ "$ASIP_SYN_TOOL" == "ol2" ]]
@@ -825,7 +825,7 @@ then
         then
             mkdir -p $WORK/docker/asip_syn/default/rtl
             cp -r $WORK/docker/hls/default/rtl/* $WORK/docker/asip_syn/default/rtl
-            ./asip_syn_script.sh $WORK/docker/asip_syn/default $WORK/docker/asip_syn/default/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/default/constraints.sdc
+            $SCRIPTS_DIR/asip_syn_script.sh $WORK/docker/asip_syn/default $WORK/docker/asip_syn/default/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/default/constraints.sdc
             COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --default-dir $WORK/docker/asip_syn/default/"
         elif [[ "$ASIP_SYN_TOOL" == "ol2" ]]
         then
@@ -842,7 +842,7 @@ then
         then
             mkdir -p $WORK/docker/asip_syn/shared/rtl
             cp -r $WORK/docker/hls/shared/rtl/* $WORK/docker/asip_syn/shared/rtl
-            ./asip_syn_script.sh $WORK/docker/asip_syn/shared $WORK/docker/asip_syn/shared/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/shared/constraints.sdc
+            $SCRIPTS_DIR/asip_syn_script.sh $WORK/docker/asip_syn/shared $WORK/docker/asip_syn/shared/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/shared/constraints.sdc
             COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --shared-dir $WORK/docker/asip_syn/shared/"
         elif [[ "$ASIP_SYN_TOOL" == "ol2" ]]
         then
@@ -856,7 +856,7 @@ then
 fi
 if [[ "$COLLECT_ASIP_ARGS" != "" ]]
 then
-    python3 scripts/collect_asip_syn_metrics.py $COLLECT_ASIP_ARGS --out $WORK/docker/asip_syn/metrics.csv
+    python3 $SCRIPTS_DIR/collect_asip_syn_metrics.py $COLLECT_ASIP_ARGS --out $WORK/docker/asip_syn/metrics.csv
 fi
 
 # fpga_syn_0
@@ -877,7 +877,7 @@ then
                 fi
                 COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --baseline-dir $FPGA_SYN_BASELINE_USE"
             else
-                ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/baseline/ $WORK/docker/hls/baseline/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
+                $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/baseline/ $WORK/docker/hls/baseline/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
                 COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --baseline-dir $WORK/docker/fpga_syn/baseline/"
             fi
         else
@@ -889,7 +889,7 @@ then
     then
         if [[ "$FPGA_SYN_TOOL" == "vivado" ]]
         then
-            ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/default/ $WORK/docker/hls/default/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
+            $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/default/ $WORK/docker/hls/default/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
             COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --default-dir $WORK/docker/fpga_syn/default/"
         else
             echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
@@ -900,7 +900,7 @@ then
     then
         if [[ "$FPGA_SYN_TOOL" == "vivado" ]]
         then
-            ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/shared/ $WORK/docker/hls/shared/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
+            $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/shared/ $WORK/docker/hls/shared/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
             COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --shared-dir $WORK/docker/fpga_syn/shared/"
         else
             echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
@@ -911,7 +911,7 @@ fi
 
 if [[ "$COLLECT_FPGA_ARGS" != "" ]]
 then
-    python3 scripts/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn/metrics.csv
+    python3 $SCRIPTS_DIR/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn/metrics.csv
 fi
 
 # assign_0_syn

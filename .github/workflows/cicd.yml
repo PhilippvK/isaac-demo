@@ -175,8 +175,8 @@ jobs:
         run: |
           pip install pandas tabulate
           sudo chmod -R 777 out/
-          find out -name "times.csv" -exec python3 times_to_mermaid.py {} --zero -o {}.md \;
-          find out -name "experiment.ini" -exec python3 gen_ci_summary.py {} --fmt md \; | tee -a $GITHUB_STEP_SUMMARY
+          find out -name "times.csv" -exec python3 scripts/times_to_mermaid.py {} --zero -o {}.md \;
+          find out -name "experiment.ini" -exec python3 scripts/gen_ci_summary.py {} --fmt md \; | tee -a $GITHUB_STEP_SUMMARY
       - name: Compress Outputs
         run: |
           cd out

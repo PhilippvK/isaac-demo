@@ -91,8 +91,7 @@ def get_area(syn_path, mode):
     return data
 
 
-# def run_synthesis(t_clk_ns, exp_path, script="./scripts/asip_syn_script.sh"):
-def run_synthesis(t_clk_ns, exp_path, script="./asip_syn_script.sh", work_dir=None, cleanup=False):
+def run_synthesis(t_clk_ns, exp_path, script="./scripts/asip_syn_script.sh", work_dir=None, cleanup=False):
     ts = get_timestamp()
     assert Path(exp_path).is_dir()
     # print("run_synthesis", CORE, MODE, t_clk_ns, exp_path)
