@@ -21,7 +21,7 @@ def main(argv):
     zero = args.zero
     assert times_csv.is_file()
     times_df = pd.read_csv(times_csv)
-    if zero:
+    if zero and "t0" in times_df.columns:
         start = times_df["t0"].iloc[0]
         times_df["t0"] = times_df["t0"] - start
         times_df["t1"] = times_df["t1"] - start
@@ -37,10 +37,10 @@ def main(argv):
 """
     cur = 0
     for _, stage_data in times_df.iterrows():
-        stage = stage_data.get("label", "?")
+        stage = stage_data.get("label") or stage_data.get("Name", "?")
         start = stage_data.get("t0")
         end = stage_data.get("t1")
-        time_s = stage_data.get("td")
+        time_s = stage_data.get("td") or stage_data.get("Secs")
         if start:
             cur = start
         else:

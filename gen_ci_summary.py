@@ -70,6 +70,33 @@ combined_query_metrics_df = None
 if combined_query_metrics_csv.is_file():
     combined_query_metrics_df = pd.read_csv(combined_query_metrics_csv)
 
+func_bbs = []
+func_bb_times_dfs = {}
+func_bb_gantts = {}
+func_bb_sankeys = {}
+for _, row in combined_query_metrics_df.iterrows():
+    func = row.func
+    bb = row.basic_block
+    rnd = 0
+    func_bb = func + "_" + bb + "_" + str(rnd)
+    func_bbs.append(func_bb)
+    func_bb_dir = work_dir / func_bb
+    assert func_bb_dir.is_dir(), f"Not found: {func_bb_dir}"
+    func_bb_times_csv = func_bb_dir / "times.csv"
+    if func_bb_times_csv.is_file():
+        func_bb_times_df = pd.read_csv(func_bb_times_csv)
+        func_bb_times_dfs[func_bb] = func_bb_times_df
+    func_bb_times_gantt = func_bb_dir / "times.csv.md"
+    if func_bb_times_gantt.is_file():
+        with open(func_bb_times_gantt, "r") as f:
+            func_bb_gantt = f.read()
+        func_bb_gantts[func_bb] = func_bb_gantt
+    func_bb_sankey_md = func_bb_dir / "sankey.md"
+    if func_bb_sankey_md.is_file():
+        with open(func_bb_sankey_md, "r") as f:
+            func_bb_sankey = f.read()
+        func_bb_sankeys[func_bb] = func_bb_sankey
+
 sankey = None
 if sankey_md.is_file():
     with open(sankey_md, "r") as f:
@@ -117,6 +144,13 @@ if fmt in ["md", "markdown"]:
         content += gantt + "\n\n"
         content += "```\n"
         content += "</details>\n\n"
+    for func_bb, gantt in func_bb_gantts.items():
+        content += "<details>\n"
+        content += f"<summary>{func_bb}</summary>\n\n"
+        content += "```mermaid\n"
+        content += gantt + "\n\n"
+        content += "```\n"
+        content += "</details>\n\n"
     if ise_potential_df is not None:
         content += "### ISE Potential\n"
         content += ise_potential_df.to_markdown(index=False) + "\n\n"
@@ -132,16 +166,24 @@ if fmt in ["md", "markdown"]:
         content += "<summary>Metrics</summary>\n\n"
         content += combined_query_metrics_df.to_markdown(index=False) + "\n\n"
         content += "</details>\n\n"
-    if choices_summary is not None:
+    if sankey is not None or sankey_filtered is not None or len(func_bb_gantts) > 0:
         content += "### Sankeys\n"
+    if sankey is not None:
         content += "<details>\n"
         content += "<summary>Merge Query Results</summary>\n\n"
         content += sankey + "\n\n"
         content += "</details>\n\n"
+    if sankey_filtered is not None:
         content += "<details>\n"
         content += "<summary>Filtered Candidates</summary>\n\n"
         content += sankey_filtered + "\n\n"
         content += "</details>\n\n"
+    if len(func_bb_sankeys) > 0:
+        for func_bb, sankey in func_bb_sankeys.items():
+            content += "<details>\n"
+            content += f"<summary>{func_bb}</summary>\n\n"
+            content += sankey + "\n\n"
+            content += "</details>\n\n"
     if compare_df is not None:
         content += "### Compare DF\n"
         compare_text = compare_df.to_markdown(index=False)
