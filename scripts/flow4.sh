@@ -6,12 +6,16 @@ DIR=$(readlink -f $1)
 DATE=$(basename $DIR)
 BENCH=$(basename $(dirname $DIR))
 LABEL=isaac-demo-$BENCH-$DATE
-STAGE=${CDFG_STAGE:-32}
+CDFG_STAGE=${CDFG_STAGE:-32}
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-SESS=$DIR/sess
-WORK=$DIR/work
+STAGE="default"
+STAGE_DIR=$DIR/$STAGE
+mkdir -p $STAGE_DIR
+
+SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
 
 FORCE_ARGS=""
 
@@ -27,18 +31,18 @@ fi
 #
 # if [[ "$FINAL" == "1" ]]
 # then
-#     GEN_DIR=$WORK/gen_final/
+#     GEN_DIR=$WORK/gen/final/
 #     INDEX_FILE=$WORK/final_index.yml
 # elif [[ "$PRELIM" == "1" ]]
 # then
-#     GEN_DIR=$WORK/gen_prelim/
+#     GEN_DIR=$WORK/gen/prelim/
 #     INDEX_FILE=$WORK/prelim_index.yml
 # elif [[ "$FILTERED" == "1" ]]
 # then
-#     GEN_DIR=$WORK/gen_filtered/
+#     GEN_DIR=$WORK/gen/filtered/
 #     INDEX_FILE=$WORK/filtered_index.yml
 # else
-#     GEN_DIR=$WORK/gen/
+#     GEN_DIR=$WORK/gen/default/
 #     INDEX_FILE=$WORK/combined_index.yml
 # fi
 
@@ -109,7 +113,7 @@ then
     EXTRA_ARGS="$EXTRA_ARGS --partition-with-maxmiso $ISAAC_PARTITION_WITH_MAXMISO"
 fi
 
-python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess $SESS --workdir $WORK --label $LABEL --stage $STAGE $EXTRA_ARGS $FORCE_ARGS --progress
+python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess $SESS --workdir $WORK --label $LABEL --stage $CDFG_STAGE $EXTRA_ARGS $FORCE_ARGS --progress
 
 # python3 scripts/names_helper.py $WORK/combined_index.yml --output $WORK/names.csv
 
@@ -127,4 +131,4 @@ then
     exit 1
 fi
 
-python3 scripts/combine_pdfs.py $WORK/combined_index.yml -o $WORK/all_io_subs.pdf
+python3 scripts/combine_pdfs.py $WORK/index.yml -o $WORK/all_io_subs.pdf

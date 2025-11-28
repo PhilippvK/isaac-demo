@@ -9,30 +9,28 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
-    INDEX_FILE=$WORK/final_index.yml
-    PREFIX="final_"
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    INDEX_FILE=$WORK/prelim_index.yml
-    PREFIX="prelim_"
+    STAGE="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered_index.yml
-    PREFIX="filtered_"
+    STAGE="filtered"
 else
-    INDEX_FILE=$WORK/combined_index.yml
-    PREFIX=""
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
+
+# RUN=$STAGE_DIR/run
+# SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+INDEX_FILE=$WORK/index.yml
 
 # RUNTIME_WEIGHT=${RUNTIME_WEIGHT:-1.0}
 # CODE_SIZE_WEIGHT=${CODE_SIZE_WEIGHT:-1.0}

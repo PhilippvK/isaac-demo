@@ -9,17 +9,20 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
 FILTERED=${FILTERED:-0}
 
 if [[ "$FILTERED" == 1 ]]
 then
-    INDEX_FILE=$WORK/filtered_index.yml
+    STAGE="filtered"
 else
-    INDEX_FILE=$WORK/combined_index.yml
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
 
-python3 scripts/annotate_per_instr_metrics.py $INDEX_FILE --inplace --report ${DIR}/compare_per_instr.csv
+# RUN=$STAGE_DIR/run
+# SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+
+INDEX_FILE=$WORK/index.yml
+
+python3 scripts/annotate_per_instr_metrics.py $INDEX_FILE --inplace --report ${STAGE_DIR}/compare_per_instr.csv

@@ -13,9 +13,12 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 # OUT_DIR=out/$BENCH/$DATE
 # mkdir -p $OUT_DIR
 
-RUN=$DIR/run
-SESS=$DIR/sess
-WORK=$DIR/work
+STAGE="default"
+STAGE_DIR=$DIR/$STAGE
+
+# RUN=$STAGE_DIR/run
+# SESS=$STAGE_DIR/sess
+# WORK=$STAGE_DIR/work
 
 TARGET=${TARGET:-etiss}
 UNROLL=${UNROLL:-auto}

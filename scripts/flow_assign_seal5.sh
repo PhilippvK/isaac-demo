@@ -9,11 +9,31 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
+FINAL=${FINAL:-0}
+PRELIM=${PRELIM:-0}
+FILTERED=${FILTERED:-0}
+
+if [[ "$FINAL" == "1" ]]
+then
+    STAGE="final"
+elif [[ "$PRELIM" == "1" ]]
+then
+    STAGE="prelim"
+elif [[ "$FILTERED" == "1" ]]
+then
+    STAGE="filtered"
+else
+    STAGE="default"
+fi
+STAGE_DIR=$DIR/$STAGE
+
 # RUN=$DIR/run
 # SESS=$DIR/sess
-WORK=$DIR/work
+WORK=$STAGE_DIR/work
 
-USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
+INDEX_FILE=$WORK/index.yml
+
+USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-0}
 if [[ "$USE_SEAL5_DOCKER" == "1" ]]
 then
   DOCKER_DIR=$WORK/docker
@@ -21,26 +41,7 @@ else
   DOCKER_DIR=$WORK/local
 fi
 
-FINAL=${FINAL:-0}
-PRELIM=${PRELIM:-0}
-FILTERED=${FILTERED:-0}
-
-if [[ "$FINAL" == "1" ]]
-then
-    INDEX_FILE=$WORK/final_index.yml
-    DEST_DIR=$DOCKER_DIR/seal5_final/
-elif [[ "$PRELIM" == "1" ]]
-then
-    INDEX_FILE=$WORK/prelim_index.yml
-    DEST_DIR=$DOCKER_DIR/seal5_prelim/
-elif [[ "$FILTERED" == "1" ]]
-then
-    INDEX_FILE=$WORK/filtered_index.yml
-    DEST_DIR=$DOCKER_DIR/seal5_filtered/
-else
-    INDEX_FILE=$WORK/combined_index.yml
-    DEST_DIR=$DOCKER_DIR/seal5/
-fi
+DEST_DIR=$DOCKER_DIR/seal5/
 
 SEAL5_SCORE_CSV=$DEST_DIR/seal5_score.csv
 

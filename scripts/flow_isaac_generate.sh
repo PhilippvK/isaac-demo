@@ -8,9 +8,6 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-SESS=$DIR/sess
-WORK=$DIR/work
-
 FORCE_ARGS=""
 
 FORCE=1
@@ -27,42 +24,36 @@ SELECTED=${SELECTED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_final/
-    INDEX_FILE=$WORK/final_index.yml
-    SUFFIX="_final"
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_prelim/
-    INDEX_FILE=$WORK/prelim_index.yml
-    SUFFIX="_prelim"
+    STAGE="prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered2_selected/
-    INDEX_FILE=$WORK/filtered2_selected_index.yml
-    SUFFIX="_filtered2_selected"
+    STAGE="filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered2/
-    INDEX_FILE=$WORK/filtered2_index.yml
-    SUFFIX="_filtered2"
+    STAGE="filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered_selected/
-    INDEX_FILE=$WORK/filtered_selected_index.yml
-    SUFFIX="_filtered_selected"
+    STAGE="filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered/
-    INDEX_FILE=$WORK/filtered_index.yml
-    SUFFIX="_filtered"
+    STAGE="filtered"
 else
-    GEN_DIR=$WORK/gen/
-    INDEX_FILE=$WORK/combined_index.yml
-    SUFFIX=""
+    STAGE="default"
 fi
+DEFAULT_STAGE_DIR=$DIR/default
+STAGE_DIR=$DIR/$STAGE
+
+SESS=$DEFAULT_STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+
+GEN_DIR=$WORK/gen
+INDEX_FILE=$WORK/index.yml
 
 
 # TODO: move to flow_analyze_enc.sh
-python3 scripts/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${SUFFIX}.csv --score $WORK/encoding_score${SUFFIX}.csv
+python3 scripts/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics.csv --score $WORK/encoding_score.csv
 
 python3 -m isaac_toolkit.generate.ise.generate_cdsl --sess $SESS --workdir $WORK --gen-dir $GEN_DIR --index $INDEX_FILE $FORCE_ARGS

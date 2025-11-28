@@ -23,8 +23,10 @@ FILTER_ARGS="--min-seal5-score ${MIN_SEAL5_SCORE} --min-runtime-reduction-rel ${
 
 # TODO: handle float comparisons
 
+IN_STAGE_DIR=$WORK/default
+OUT_STAGE_DIR=$WORK/filtered
 
 # TODO: move to filter_0
-python3 scripts/filter_index.py $WORK/combined_index.yml --out $WORK/filtered_index.yml $FILTER_ARGS --sankey $WORK/sankey_filtered.md
+python3 scripts/filter_index.py $IN_STAGE_DIR/index.yml --out $IN_STAGE_DIR/index.yml $FILTER_ARGS --sankey $OUT_STAGE_DIR/sankey.md
 
-python3 scripts/names_helper.py $WORK/filtered_index.yml --output $WORK/names_filtered.csv
+python3 scripts/names_helper.py $OUT_STAGE_DIR/index.yml --output $OUT_STAGE_DIR/names.csv

@@ -20,7 +20,9 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
 # TODO: parse FILTERD2,...
 
-WORK=$DIR/work
+STAGE="default"
+STAGE_DIR=$DIR/$STAGE
+WORK=$STAGE_DIR/work
 
 # cp $WORK/docker/hls/output/ISAX_XIsaac.sv $WORK/docker/hls/output/$CORE_NAME
 # docker run -i --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools && volare enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af && python3 dse.py $WORK/docker/hls/output/$CORE_NAME/ $WORK/docker/hls/syn_dir prj LEGACY $START_CLK_NS $START_UTIL top clk"
@@ -30,8 +32,8 @@ WORK=$DIR/work
 # PRJ="prj_LEGACY_${PERIOD_NS}ns_${FP_UTIL}%"
 # python3 scripts/collect_syn_metrics.py $WORK/docker/hls/syn_dir/$PRJ --output $WORK/docker/hls/syn_metrics.csv --print --min --rename
 # # NEW:
-# # python3 -m isaac_toolkit.eval.ise.asip_syn.ol2 --sess $SESS --workdir $WORK --set-name XIsaac --docker --core $CORE_NAME --pdk sky130
-# # python3 -m isaac_toolkit.eval.ise.asip_syn.synopsys --sess $SESS --workdir $WORK --set-name XIsaac --docker --core $CORE_NAME --pdk nangate45
+# # python3 -m isaac_toolkit.eval.ise.asip_syn.ol2 --sess $SESS --workdir $STAGE_DIR --set-name XIsaac --docker --core $CORE_NAME --pdk sky130
+# # python3 -m isaac_toolkit.eval.ise.asip_syn.synopsys --sess $SESS --workdir $STAGE_DIR --set-name XIsaac --docker --core $CORE_NAME --pdk nangate45
 
 ASIP_SYN_SKIP_BASELINE=${ASIP_SYN_SKIP_BASELINE:-0}
 ASIP_SYN_BASELINE_USE=${ASIP_SYN_BASELINE_USE:-""}
@@ -44,11 +46,11 @@ FPGA_SYN_SKIP_DEFAULT=${FPGA_SYN_SKIP_DEFAULT:-0}
 FPGA_SYN_SKIP_SHARED=${FPGA_SYN_SKIP_SHARED:-0}
 
 ASIP_SYN_ENABLE=${ASIP_SYN_ENABLE:-1}
-ASIP_SYN_TOOL=${ASIP_SYN_TOOL:-synopsys}
+ASIP_SYN_TOOL=${ASIP_SYN_TOOL:-synopsys}  # TODO: openlane
 ASIP_SYN_SEARCH_FMAX=${ASIP_SYN_SEARCH_FMAX:-0}
 
 FPGA_SYN_ENABLE=${FPGA_SYN_ENABLE:-1}
-FPGA_SYN_TOOL=${FPGA_SYN_TOOL:-vivado}
+FPGA_SYN_TOOL=${FPGA_SYN_TOOL:-vivado}  # TODO: yosys
 
 ASIP_SYN_SYNOPSYS_CORE_NAME=${ASIP_SYN_SYNOPSYS_CORE_NAME:-CVA5}
 ASIP_SYN_SYNOPSYS_CLK_PERIOD=${ASIP_SYN_SYNOPSYS_CLK_PERIOD:-50.0}

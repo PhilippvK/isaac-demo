@@ -117,7 +117,7 @@ WORK=$DIR/work
 SESS=$DIR/sess
 RUN=$DIR/run
 RUN_MEM=$DIR/run_mem
-GEN_DIR=$WORK/gen
+GEN_DIR=$WORK/gen/default
 DOCKER_DIR=$WORK/docker
 SEAL5_DEST_DIR=$DOCKER_DIR/seal5/
 ENC_SCORE_CSV=$WORK/encoding_score${OUT_SUFFIX}.csv
@@ -323,12 +323,12 @@ then
         FULL_ARCH=${ARCH}_xisaac
     fi
     PRINT_OUTPUTS=0
-    python3 -m mlonmcu.cli.main flow run $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions" --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $PROGRESS_ARGS
-    python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi${OUT_SUFFIX}
+    python3 -m mlonmcu.cli.main flow run $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions" --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $PROGRESS_ARGS ${RUN}_compare_multi${OUT_SUFFIX}
+    # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi${OUT_SUFFIX}
     python3 scripts/analyze_reuse.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --print-df --output ${RUN}_compare_multi${OUT_SUFFIX}.csv
 
-    python3 -m mlonmcu.cli.main flow compile $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $PROGRESS_ARGS
-    python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem${OUT_SUFFIX}
+    python3 -m mlonmcu.cli.main flow compile $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $PROGRESS_ARGS --dest ${RUN}_compare_multi_mem${OUT_SUFFIX}
+    # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem${OUT_SUFFIX}
     python3 scripts/analyze_reuse.py ${RUN}_compare_multi_mem${OUT_SUFFIX}/report.csv --print-df --mem --output ${RUN}_compare_multi_mem${OUT_SUFFIX}.csv
 fi
 
@@ -354,13 +354,13 @@ then
     done
     # echo "CONFIG_GEN_ARGS=$CONFIG_GEN_ARGS"
     # read -n 1
-    python3 -m mlonmcu.cli.main flow run $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions" --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $CONFIG_GEN_ARGS $PROGRESS_ARGS
-    python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_per_instr${OUT_SUFFIX}
+    python3 -m mlonmcu.cli.main flow run $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions" --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $CONFIG_GEN_ARGS $PROGRESS_ARGS --dest ${RUN}_compare_multi_per_instr${OUT_SUFFIX}
+    # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_per_instr${OUT_SUFFIX}
 
 
     # TODO: optionally skip mem
-    # python3 -m mlonmcu.cli.main flow compile $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $CONFIG_GEN_ARGS $PROGRESS_ARGS
-    # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}
+    # python3 -m mlonmcu.cli.main flow compile $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $CONFIG_GEN_ARGS $PROGRESS_ARGS --dest ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}
+    # # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}
 
     # python3 scripts/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --mem-report ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
     python3 scripts/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
@@ -565,6 +565,7 @@ then
     # TODO: check if exists
     SPEC_GRAPH=$DIR/spec_graph${OUT_SUFFIX}.pkl
     python3 -m tool.detect_specializations $INDEX_FILE --graph $SPEC_GRAPH --noop
+    # TODO: FIX
     python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$WORK/docker/etiss/etiss_install
     python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$WORK/docker/seal5/llvm_install
     SELECTED_INDEX_FILE=$DIR/selected${OUT_SUFFIX}_index.yml

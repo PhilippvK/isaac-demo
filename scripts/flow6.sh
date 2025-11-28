@@ -9,22 +9,6 @@ LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-RUN=$DIR/run
-SESS=$DIR/sess
-WORK=$DIR/work
-
-# USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-0}
-USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
-if [[ "$USE_SEAL5_DOCKER" == "1" ]]
-then
-  MODE="docker"
-else
-  MODE="local"
-fi
-DEST_DIR=$WORK/$MODE/
-
-mkdir -p $DEST_DIR
-
 SET_NAME=${ISAAC_SET_NAME:-XIsaac}
 SEAL5_IMAGE=${SEAL5_IMAGE:-philippvk/isaac-quickstart-seal5:latest}
 ENABLE_CDFG_PASS=${ENABLE_CDFG_PASS:-1}
@@ -44,28 +28,35 @@ fi
 
 if [[ "$FINAL" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_final/
-    DEST_DIR=$DEST_DIR/seal5_final/
-    INDEX_FILE=$WORK/final_index.yml
-    SUFFIX="final"
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_prelim/
-    DEST_DIR=$DEST_DIR/seal5_prelim/
-    INDEX_FILE=$WORK/prelim_index.yml
-    SUFFIX="prelim"
+    STAGE="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered/
-    DEST_DIR=$DEST_DIR/seal5_filtered/
-    INDEX_FILE=$WORK/filtered_index.yml
-    SUFFIX="filtered"
+    STAGE="filtered"
 else
-    GEN_DIR=$WORK/gen/
-    DEST_DIR=$DEST_DIR/seal5/
-    INDEX_FILE=$WORK/combined_index.yml
-    SUFFIX=""
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
+
+RUN=$STAGE_DIR/run
+SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+
+INDEX_FILE=$WORK/index.yml
+GEN_DIR=$WORK/gen/
+
+USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-0}
+if [[ "$USE_SEAL5_DOCKER" == "1" ]]
+then
+  DEST_DIR=$WORK/docker/seal5/
+else
+  DEST_DIR=$WORK/local/seal5/
+  TEMP_DIR=$WORK/local/temp
+fi
+
+mkdir -p $DEST_DIR
 
 CDSL_FILES=""
 CFG_FILES="$(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml"
@@ -83,9 +74,6 @@ done
 
 
 mkdir -p $DEST_DIR
-
-# docker run -i --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
-# OLD:
 if [[ "$MODE" == "docker" ]]
 then
   docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
@@ -93,9 +81,14 @@ else
   TEMP_DIR=$WORK/local/temp
   TEMP_SEAL5_HOME=$TEMP_DIR/seal5_llvm
   MGCLIENT_ROOT=$MGCLIENT_INSTALL_DIR ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS SEAL5_HOME=$TEMP_SEAL5_HOME CCACHE=$CCACHE CCACHE_DIR=$CCACHE_DIR SEAL5_CFG_DIR=$CONFIG_DIR/seal5 SEAL5_DIR=$SEAL5_DIR LLVM_REPO=$LLVM_DIR LLVM_REF=isaacnew-base-3 CLONE_DEPTH=2 CLEANUP=1 $SEAL5_SCRIPT_LOCAL $DEST_DIR $CDSL_FILES $CFG_FILES
+  # CLEANUP_SEAL5_HOME=1  # get rid of seal5_home after successfull build
+  # if [[ "$CLEANUP_SEAL5_HOME" == "1" ]]
+  # then
+  #   rm -rf $TEMP_SEAL5_HOME
+  # fi
   # TODO: cleanup?
 fi
-# NEW:
+# NEW: TODO + --cleanup
 # EXTRA_ARGS=""
 # if [[ "$SUFFIX" != "" ]]
 # then

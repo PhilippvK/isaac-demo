@@ -11,6 +11,8 @@ LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
+# TODO: update for refactor
+
 RUN=$DIR/run
 RUN_NEW=${RUN}_new
 RUN_COMPARE=${RUN}_compare

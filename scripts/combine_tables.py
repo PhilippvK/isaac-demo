@@ -260,7 +260,7 @@ def create_exp_df(exp_dir):
             missing_files.add(overlaps_csv)
 
         # TODO: index metrics
-        combined_index_yaml = exp_dir / "work" / "combined_index.yml"
+        combined_index_yaml = exp_dir / "work" / "default" / "index.yml"
         num_combined_candidates = None
         num_total_candidates = None
         if combined_index_yaml.is_file():
@@ -298,7 +298,7 @@ def create_exp_df(exp_dir):
         else:
             missing_files.add(combined_index_yaml)
 
-        # filtered_index_yaml = exp_dir / "work" / "filtered_index.yml"
+        # filtered_index_yaml = exp_dir / "work" / "filtered" / "index.yml"
         # num_dropped_candidates = None
         # num_remaining_candidates = None
         # if filtered_index_yaml.is_file():
@@ -324,7 +324,7 @@ def create_exp_df(exp_dir):
         # else:
         #     missing_files.add(filtered_index_yaml)
 
-        # prelim_index_yaml = exp_dir / "work" / "prelim_index.yml"
+        # prelim_index_yaml = exp_dir / "work" / "prelim" / "index.yml"
         # # num_dropped_candidates = None
         # # num_remaining_candidates = None
         # if prelim_index_yaml.is_file():
@@ -347,7 +347,7 @@ def create_exp_df(exp_dir):
         #     ret = pd.concat([ret, index_row], axis=1)
         # else:
         #     missing_files.add(prelim_index_yaml)
-        final_index_yaml = exp_dir / "work" / "final_index.yml"
+        final_index_yaml = exp_dir / "work" / "final" / "index.yml"
         # num_dropped_candidates = None
         # num_remaining_candidates = None
         if final_index_yaml.is_file():

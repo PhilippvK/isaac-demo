@@ -9,10 +9,6 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
 ENC_WEIGHT=${ENC_WEIGHT:-1.0}
 UTIL_WEIGHT=${UTIL_WEIGHT:-1.0}
 
@@ -26,45 +22,39 @@ SELECTED=${SELECTED:-0}
 
 if [[ "$FINAL" == "1" ]]
 then
-    echo AAA
-    INDEX_FILE=$WORK/final_index.yml
-    # PREFIX="final_"
+    STAGE="final"
     EXTRA_ARGS="--final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    echo BBB
+    STAGE="prelim"
     INDEX_FILE=$WORK/prelim_index.yml
-    # PREFIX="prelim_"
     EXTRA_ARGS="--prelim --util-weight $UTIL_WEIGHT --enc-weight $ENC_WEIGHT"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
 then
-    echo CCC
-    INDEX_FILE=$WORK/filtered2_selected_index.yml
-    # PREFIX="prelim_"
+    STAGE="filtered2_selected"
     EXTRA_ARGS="--prelim --util-weight $UTIL_WEIGHT --enc-weight $ENC_WEIGHT"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    echo DDD
-    INDEX_FILE=$WORK/filtered2_index.yml
-    # PREFIX="filtered2_"
+    STAGE="filtered2"
     EXTRA_ARGS="--filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
 then
-    echo EEE
-    INDEX_FILE=$WORK/filtered_selected_index.yml
-    # PREFIX="filtered_"
+    STAGE="filtered_selected"
     EXTRA_ARGS="--filtered"
 elif [[ "$FILTERED" == "1" ]]
 then
-    echo FFF
-    INDEX_FILE=$WORK/filtered_index.yml
-    # PREFIX="filtered_"
+    STAGE="filtered"
     EXTRA_ARGS="--filtered"
 else
-    echo GGG
-    INDEX_FILE=$WORK/combined_index.yml
-    # PREFIX=""
+    STAGE="default"
     EXTRA_ARGS=""
 fi
+STAGE_DIR=$DIR/$STAGE
+
+# RUN=$STAGE_DIR/run
+# SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
+
+INDEX_FILE=$WORK/index.yml
 
 python3 scripts/annotate_score.py $INDEX_FILE --inplace $EXTRA_ARGS

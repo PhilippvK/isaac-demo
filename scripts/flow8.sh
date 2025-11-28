@@ -8,13 +8,12 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-WORK=$DIR/work
-
 # TODO: expose
 SET_NAME=${ISAAX_SET_NAME:-XIsaac}
 # TOOLS_PATH=${TUDA_TOOLS_PATH:-/work/git/tuda/isax-tools-integration5}
 TOOLS_PATH=/work/git/tuda/isax-tools-integration-july2025
-HLS_IMAGE=${HLS_IMAGE:-philippvk/hls-quickstart:latest}
+# HLS_IMAGE=${HLS_IMAGE:-philippvk/hls-quickstart:latest}
+HLS_IMAGE=${HLS_IMAGE:-philippvk/isaac-quickstart-hls:latest}
 
 GUROBI_LIC=${GUROBI_LIC:-""}
 HLS_DIR=${HLS_DIR:=/path/to/isax-tools-integration}
@@ -53,6 +52,21 @@ HLS_NAILGUN_SHARE_RESOURCES=${HLS_NAILGUN_SHARE_RESOURCES:-0}
 # LN_OPTY_CUSTOM_MODEL_PATH
 # LN_PREDEFINED_SOLUTION_SELECTION
 
+STAGE="default"
+STAGE_DIR=$DIR/$STAGE
+WORK=$STAGE_DIR/work
+
+USE_HLS_DOCKER=${USE_HLS_DOCKER:-0}
+HLS_DOCKER_LEGACY=${HLS_DOCKER_LEGACY:-0}
+echo "USE_HLS_DOCKER=$USE_HLS_DOCKER"
+echo "HLS_DOCKER_LEGACY=$HLS_DOCKER_LEGACY"
+if [[ "$USE_HLS_DOCKER" == "1" ]]
+then
+  DEST_DIR=$WORK/docker/hls
+else
+  DEST_DIR=$WORK/local/hls
+fi
+
 PRELIM=${PRELIM:-0}
 FILTERED=${FILTERED:-0}
 FILTERED2=${FILTERED2:-0}
@@ -65,27 +79,32 @@ then
     exit 0
 fi
 
+
 if [[ "$FINAL" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_final/
+    STAGE="final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_prelim/
+    STAGE="prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered2_selected/
+    STAGE="filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered2/
+    STAGE="filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered_selected/
+    STAGE="filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered/
+    STAGE="filtered"
 else
-    GEN_DIR=$WORK/gen/
+    STAGE="default"
 fi
+STAGE_DIR=$DIR/$STAGE
+
+WORK=$STAGE_DIR/work
+GEN_DIR=$WORK/gen
 
 # CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 
@@ -111,6 +130,24 @@ then
             DEST_DIR=$WORK/local/hls
     fi
 
+
+    if [[ "$USE_HLS_DOCKER" == "1" ]]
+    then
+        if [[ "$HLS_DOCKER_LEGACY" == "1" ]]
+        then
+            if [[ ! -d "$TOOLS_PATH" ]]
+            then
+                echo "Tools path does not exist: $TOOLS_PATH"
+                exit 1
+            fi
+        fi
+    else
+        if [[ ! -d "$HLS_DIR" ]]
+        then
+            echo "HLS_DIR does not exist: $HLS_DIR"
+            exit 1
+        fi
+    fi
 
     if [[ $HLS_NAILGUN_RESOURCE_MODEL == "none" ]]
     then
@@ -160,7 +197,7 @@ then
     # TODO: allow running the flow for multiple isaxes in parallel
     mkdir -p $DEST_DIR
     # sudo chmod 777 -R $DEST_DIR
-
+    # sudo chmod 777 -R $WORK/docker/hls
 
     if [[ $ILP_SOLVER == "GUROBI" ]]
     then

@@ -9,10 +9,6 @@ BENCH=$(basename $(dirname $DIR))
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-# RUN=$DIR/run
-# SESS=$DIR/sess
-WORK=$DIR/work
-
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
 PRELIM_FILTERED=${PRELIM_FILTERED-0}
@@ -29,30 +25,38 @@ SELECT_FINAL_TOPK=${SELECT_FINAL_TOPK:-0}
 if [[ "$FINAL" == "1" ]]
 then
     echo "Select unsupported for FINAL"
+    exit 1
 elif [[ "$PRELIM_FILTERED" == "1" ]]
 then
-    INDEX_FILE=$WORK/prelim_filtered_index.yml
-    OUT_FILE=$WORK/final_index.yml
+    IN_STAGE="prelim_filtered"
+    OUT_STAGE="final"
     TOPK=$SELECT_PRELIM_FILTERED_TOPK
-    NEW_SUFFIX="_final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    INDEX_FILE=$WORK/prelim_index.yml
-    OUT_FILE=$WORK/final_index.yml
+    IN_STAGE="prelim"
+    OUT_STAGE="final"
     TOPK=$SELECT_PRELIM_TOPK
-    NEW_SUFFIX="_final"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    INDEX_FILE=$WORK/filtered2_index.yml
-    OUT_FILE=$WORK/prelim_index.yml
+    IN_STAGE="filtered2"
+    OUT_STAGE="prelim"
     TOPK=$SELECT_FILTERED2_TOPK
-    NEW_SUFFIX="_prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
     echo "Select unsupported for FILTERED"
+    exit 1
 else
     echo "Select unsupported"
+    exit 1
 fi
+IN_STAGE_DIR=$DIR/$IN_STAGE
+OUT_STAGE_DIR=$DIR/$OUT_STAGE
+
+WORK_IN=$IN_STAGE_DIR/work
+WORK_OUT=$OUT_STAGE_DIR/work
+
+INDEX_FILE=$WORK_IN/index.yml
+OUT_FILE=$WORK_OUT/index.yml
 
 
 EXTRA_ARGS=""
@@ -62,8 +66,8 @@ then
     EXTRA_ARGS="$EXTRA_ARGS --topk $TOPK"
 fi
 
-python3 scripts/select_candidates.py $INDEX_FILE --out $OUT_FILE $EXTRA_ARGS --sankey $WORK/sankey${NEW_SUFFIX}.md
+python3 scripts/select_candidates.py $INDEX_FILE --out $OUT_FILE $EXTRA_ARGS --sankey $WORK_OUT/sankey.md
 
-NAMES_CSV=$WORK/names${NEW_SUFFIX}.csv
+NAMES_CSV=$WORK_OUT/names.csv
 
 python3 scripts/assign_names.py $OUT_FILE --inplace --csv $NAMES_CSV

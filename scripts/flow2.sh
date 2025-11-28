@@ -9,9 +9,12 @@ LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-RUN=$DIR/run
-SESS=$DIR/sess
-WORK=$DIR/work
+STAGE="default"
+STAGE_DIR=$DIR/$STAGE
+
+RUN=$STAGE_DIR/run
+SESS=$STAGE_DIR/sess
+WORK=$STAGE_DIR/work
 
 ISAAC_LOG_LEVEL=${ISAAC_LOG_LEVEL:-info}
 ISAAC_PROGRESS=${ISAAC_PROGRESS:-0}
@@ -40,7 +43,7 @@ then
     python3 -m isaac_toolkit.frontend.cfg.yaml $ISAAC_TOOLKIT_CONFIG_YAML --session $SESS $FORCE_ARGS $LOGGING_ARGS
 fi
 
-python3 -m isaac_toolkit.flow.demo.stage.load $RUN --session $SESS $FORCE_ARGS $LOGGING_ARGS $PROGRESS_ARGS
+python3 -m isaac_toolkit.flow.demo.stage.load $RUN/runs/0/ --session $SESS $FORCE_ARGS $LOGGING_ARGS $PROGRESS_ARGS
 
 # Old:
 # python3 -m isaac_toolkit.frontend.elf.riscv $RUN/generic_mlonmcu --session $SESS $FORCE_ARGS $LOGGING_ARGS
