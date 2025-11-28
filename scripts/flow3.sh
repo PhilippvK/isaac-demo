@@ -21,6 +21,14 @@ THRESHOLD=${CHOOSE_BB_THRESHOLD:-0.9}
 MIN_WEIGHT=${CHOOSE_BB_MIN_WEIGHT:-0.05}
 MIN_SUPPORTED_WEIGHT=${CHOOSE_BB_MIN_SUPPORTED_WEIGHT:-0.02}
 MAX_NUM=${CHOOSE_BB_MAX_NUM:-10}
+ENABLE_VEXT=${ENABLE_VEXT:-0}  # Move to cfg?
+EXTRA_ARGS=""
+
+# TODO: use config
+if [[ "$ENABLE_VEXT" == "1" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --allow-rvv"
+fi
 
 FORCE=1
 if [[ "$FORCE" == "1" ]]
@@ -28,7 +36,7 @@ then
     FORCE_ARGS="--force"
 fi
 
-python3 -m isaac_toolkit.flow.demo.stage.pick --session $SESS $FORCE_ARGS
+python3 -m isaac_toolkit.flow.demo.stage.pick --session $SESS $FORCE_ARGS $EXTRA_ARGS
 
 # OLD:
 # python3 -m isaac_toolkit.generate.ise.check_ise_potential_per_llvm_bb --sess $SESS --allow-compressed --min-supported $MIN_SUPPORTED $FORCE_ARGS $EXTRA_ARGS

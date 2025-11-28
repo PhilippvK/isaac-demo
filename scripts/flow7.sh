@@ -42,24 +42,24 @@ then
     GEN_DIR=$WORK/gen_final/
     DEST_DIR=$DEST_DIR/etiss_final/
     INDEX_FILE=$WORK/final_index.yml
-    SUFFIX="final"
+    LABEL="final"
 elif [[ "$PRELIM" == "1" ]]
 then
     GEN_DIR=$WORK/gen_prelim/
     DEST_DIR=$DEST_DIR/etiss_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
-    SUFFIX="prelim"
+    LABEL="prelim"
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
     DEST_DIR=$DEST_DIR/etiss_filtered/
     INDEX_FILE=$WORK/filtered_index.yml
-    SUFFIX="filtered"
+    LABEL="filtered"
 else
     GEN_DIR=$WORK/gen/
     DEST_DIR=$DEST_DIR/etiss/
     INDEX_FILE=$WORK/combined_index.yml
-    SUFFIX=""
+    LABEL=""
 fi
 
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}

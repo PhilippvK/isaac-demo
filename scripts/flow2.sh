@@ -16,7 +16,7 @@ WORK=$DIR/work
 ISAAC_LOG_LEVEL=${ISAAC_LOG_LEVEL:-info}
 ISAAC_PROGRESS=${ISAAC_PROGRESS:-0}
 ISAAC_TOOLKIT_CONFIG_YAML=${ISAAC_TOOLKIT_CONFIG_YAML:-""}
-
+TARGET=${TARGET:-etiss}
 FORCE_ARGS=""
 
 FORCE=1
@@ -48,3 +48,5 @@ python3 -m isaac_toolkit.flow.demo.stage.load $RUN --session $SESS $FORCE_ARGS $
 # python3 -m isaac_toolkit.frontend.instr_trace.etiss $RUN/etiss_instrs.log --session $SESS --operands $FORCE_ARGS $LOGGING_ARGS $PROGRESS_ARGS
 # python3 -m isaac_toolkit.frontend.disass.objdump $RUN/generic_mlonmcu.dump --session $SESS $FORCE_ARGS $LOGGING_ARGS
 # python3 -m isaac_toolkit.frontend.compile_commands.json $RUN/mlif/compile_commands.json --session $SESS $FORCE_ARGS $LOGGING_ARGS
+# NEW: python3 -m isaac_toolkit.frontend.mlonmcu.exported_run $RUN --session $SESS $FORCE_ARGS
+# NEW: python3 -m isaac_toolkit.frontend.mlonmcu.exported_session $? --session $SESS $FORCE_ARGS
