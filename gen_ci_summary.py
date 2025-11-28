@@ -37,6 +37,8 @@ choices_summary_min_html = exp_dir / "choices_summary_min.html"
 sankey_md = work_dir / "sankey.md"
 sankey_filtered_md = work_dir / "sankey_filtered.md"
 combined_query_metrics_csv = work_dir / "combined_query_metrics.csv"
+set_cdsl = work_dir / "gen" / "XIsaac.core_desc"
+set_filtered_cdsl = work_dir / "gen_filtered" / "XIsaac.core_desc"
 
 with open(exp_ini, "r") as f:
     exp_text = f.read()
@@ -106,6 +108,16 @@ sankey_filtered = None
 if sankey_filtered_md.is_file():
     with open(sankey_filtered_md, "r") as f:
         sankey_filtered = f.read()
+
+set_code = None
+if set_cdsl.is_file():
+    with open(set_cdsl, "r") as f:
+        set_code = f.read()
+
+set_filtered_code = None
+if set_filtered_cdsl.is_file():
+    with open(set_filtered_cdsl, "r") as f:
+        set_filtered_code = f.read()
 
 times_df = pd.read_csv(times_csv)
 times_df.drop(columns=["t0", "t1"], inplace=True)
@@ -188,6 +200,21 @@ if fmt in ["md", "markdown"]:
         content += "### Compare DF\n"
         compare_text = compare_df.to_markdown(index=False)
         content += compare_text + "\n\n"
+    if set_code is not None:
+        content += "### CoreDSL\n"
+        content += "<details>\n"
+        content += f"<summary>gen/XIsaac.core_desc</summary>\n\n"
+        content += "```c\n"
+        content += set_code + "\n"
+        content += "```\n\n"
+        content += "</details>\n\n"
+    if set_filtered_code is not None:
+        content += "<details>\n"
+        content += f"<summary>gen_filtered/XIsaac.core_desc</summary>\n\n"
+        content += "```c\n"
+        content += set_filtered_code + "\n"
+        content += "```\n\n"
+        content += "</details>\n\n"
 else:
     raise RuntimeError(f"Unsupported format: {fmt}")
 
