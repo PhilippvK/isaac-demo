@@ -127,4 +127,4 @@ then
     exit 1
 fi
 
-python3 scripts/combine_pdfs.py $WORK/combined_index.yml -o $WORK/all_io_subs.pdf
+python3 -m isaac_toolkit.utils.combine_pdfs.py $WORK/combined_index.yml -o $WORK/all_io_subs.pdf
