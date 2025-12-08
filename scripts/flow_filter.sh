@@ -86,4 +86,4 @@ fi
 python3 scripts/filter_index.py $INDEX_FILE --out $OUT_FILE $FILTER_ARGS --sankey $WORK/sankey${SUFFIX}.md
 
 # TODO: names?
-python3 scripts/names_helper.py $OUT_FILE --output $WORK/names${SUFFIX}.csv
+python3 -m isaac_toolkit.utils.names_helper $OUT_FILE --output $WORK/names${SUFFIX}.csv

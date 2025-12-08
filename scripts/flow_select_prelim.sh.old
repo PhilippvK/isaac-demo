@@ -35,4 +35,4 @@ python3 scripts/select_candidates.py $INDEX_FILE --inplace $EXTRA_ARGS --sankey 
 
 NAMES_CSV=$WORK/names_final.csv
 
-python3 scripts/assign_names.py $INDEX_FILE --inplace --csv $NAMES_CSV
+python3 -m isaac_toolkit.utils.assign_names $INDEX_FILE --inplace --csv $NAMES_CSV

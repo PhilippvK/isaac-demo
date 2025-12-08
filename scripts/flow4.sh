@@ -111,7 +111,7 @@ fi
 
 python3 -m isaac_toolkit.generate.ise.query_candidates_from_db --sess $SESS --workdir $WORK --label $LABEL --stage $STAGE $EXTRA_ARGS $FORCE_ARGS --progress
 
-# python3 scripts/names_helper.py $WORK/combined_index.yml --output $WORK/names.csv
+# python3 -m isaac_toolkit.utils.names_helper $WORK/combined_index.yml --output $WORK/names.csv
 
 if [[ ! -f "$WORK/names.csv" ]]
 then

@@ -309,9 +309,8 @@ SORT_BY2 = "runtime_reduction_rel"
 sorted_index_file = out_dir / "sorted_index.yml"
 sort_args = [
     "python3",
-    # "-m",
-    # "tool.sort_index",
-    "scripts/sort_index.py",
+    "-m",
+    "isaac_toolkit.utils.sort_index",
     dropped_index_file,
     "-o",
     sorted_index_file,

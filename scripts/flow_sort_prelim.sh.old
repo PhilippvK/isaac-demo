@@ -25,7 +25,8 @@ fi
 SORT_BY="prelim_score"
 
 
-python3 scripts/sort_index.py $INDEX_FILE --inplace --by $SORT_BY
+python3 -m isaac_toolkit.utils.sort_index $INDEX_FILE --inplace --by $SORT_BY
 
 # NAMES_CSV=$WORK/names_final.csv
 # python3 scripts/assign_names.py $INDEX_FILE --inplace --csv $NAMES_CSV
+# python3 -m isaac_toolkit.utils.assign_names $INDEX_FILE --inplace --csv $NAMES_CSV

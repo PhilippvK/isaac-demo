@@ -236,7 +236,7 @@ then
     then
         python3 $SCRIPTS_DIR/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${OUT_SUFFIX}.csv --score $ENC_SCORE_CSV
 
-        python3 $SCRIPTS_DIR/assign_names.py $INDEX_FILE --inplace --csv $NAMES_CSV --pkl $ISE_INSTRS_PKL
+        python3 -m isaac_toolkit.utils.assign_names $INDEX_FILE --inplace --csv $NAMES_CSV --pkl $ISE_INSTRS_PKL
         python3 -m isaac_toolkit.generate.ise.generate_cdsl --sess $SESS --workdir $WORK --gen-dir $GEN_DIR --index $INDEX_FILE $FORCE_ARGS
 
         # assign_0_enc
@@ -652,7 +652,7 @@ then
     SELECT_ARGS="$SELECT_ARGS --instr-benefit-func $INSTR_BENEFIT_FUNC"
     SELECT_ARGS="$SELECT_ARGS --total-benefit-func $TOTAL_BENEFIT_FUNC"
     python3 $SCRIPTS_DIR/selection_algo.py $INDEX_FILE --out $SELECTED_INDEX_FILE --sankey $DIR/sankey_selected${OUT_SUFFIX}.md $SELECT_ARGS
-    python3 $SCRIPTS_DIR/names_helper.py $SELECTED_INDEX_FILE --output $WORK/names_selected.csv
+    python3 -m isaac_toolkit.utils.names_helper $SELECTED_INDEX_FILE --output $WORK/names_selected.csv
 fi
 
 # compare_0_per_instr;assign_0_compare_per_instr;filter_0;compare_0_filtered;assign_0_compare_filtered;compare_others_0_filtered;assign_0_compare_others_filtered
@@ -782,7 +782,7 @@ then
     FILTER_ARGS="--min-util-score ${MIN_UTIL_SCORE} --min-estimated-reduction ${MIN_ESTIMATED_REDUCTION}"
     # TODO: support prefix
     python3 $SCRIPTS_DIR/filter_index.py $INDEX_FILE --out $FILTERED_INDEX_FILE $FILTER_ARGS --sankey $DIR/sankey_filtered${OUT_SUFFIX}.md
-    python3 $SCRIPTS_DIR/names_helper.py $FILTERED_INDEX_FILE --output $WORK/names_filtered.csv
+    python3 -m isaac_toolkit.utils.names_helper $FILTERED_INDEX_FILE --output $WORK/names_filtered.csv
     # TODO: gen
 fi
 
