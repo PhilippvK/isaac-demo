@@ -16,7 +16,7 @@ mkdir -p $CCACHE_DIR
 
 echo "Initializing ccache directory: $CCACHE_DIR"
 
-echo "max_size = 5.0G\n" > $CCACHE_DIR/ccache.conf
+echo "max_size = 5.0G" > $CCACHE_DIR/ccache.conf
 echo "base_dir = $TOP_DIR" >> $CCACHE_DIR/ccache.conf
 echo "absolute_paths_in_stderr = true" >> $CCACHE_DIR/ccache.conf
 

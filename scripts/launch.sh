@@ -8,4 +8,4 @@ VENV_DIR=${VENV_DIR:-$TOP_DIR/venv}
 
 source $VENV_DIR/bin/activate
 
-$@
+"$@"
