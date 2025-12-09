@@ -63,6 +63,6 @@ fi
 
 
 # TODO: move to flow_analyze_enc.sh
-python3 scripts/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${SUFFIX}.csv --score $WORK/encoding_score${SUFFIX}.csv
+python3 -m isaac_toolkit.utils.analyze_encoding $INDEX_FILE -o $WORK/total_encoding_metrics${SUFFIX}.csv --score $WORK/encoding_score${SUFFIX}.csv
 
 python3 -m isaac_toolkit.generate.ise.generate_cdsl --sess $SESS --workdir $WORK --gen-dir $GEN_DIR --index $INDEX_FILE $FORCE_ARGS
