@@ -115,4 +115,4 @@ python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE
 python3 -m mlonmcu.cli.main flow compile $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=XIsaacCore -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR $CONFIG_GEN_ARGS --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS
 python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE_MEM
 
-python3 scripts/analyze_compare.py ${REPORT_COMPARE} --mem-report ${REPORT_COMPARE_MEM} --print-df --output ${DIR}/compare_per_instr${SUFFIX}.csv
+python3 -m isaac_toolkit.utils.analyze_compare ${REPORT_COMPARE} --mem-report ${REPORT_COMPARE_MEM} --print-df --output ${DIR}/compare_per_instr${SUFFIX}.csv

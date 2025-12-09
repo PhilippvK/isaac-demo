@@ -158,4 +158,4 @@ python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE_MEM
 # export LLVM_INSTALL_DIR
 # LABEL=$LABEL-mem MEM_ONLY=1 scripts/mlonmcu_wrapper.sh $RUN_COMPARE_MEM $BENCH
 
-python3 scripts/analyze_compare.py ${REPORT_COMPARE} --mem-report ${REPORT_COMPARE_MEM} --print-df --output ${DIR}/compare${SUFFIX}.csv
+python3 -m isaac_toolkit.utils.analyze_compare ${REPORT_COMPARE} --mem-report ${REPORT_COMPARE_MEM} --print-df --output ${DIR}/compare${SUFFIX}.csv

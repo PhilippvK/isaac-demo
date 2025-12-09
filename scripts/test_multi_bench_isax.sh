@@ -362,7 +362,7 @@ then
     # python3 -m mlonmcu.cli.main flow compile $BENCHMARK_ARGS --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.cpu_arch=$ETISS_CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 --parallel $NUM_THREADS -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $CONFIG_GEN_ARGS $PROGRESS_ARGS
     # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}
 
-    # python3 $SCRIPTS_DIR/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --mem-report ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
+    # python3 -m isaac_toolkit.utils.analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --mem-report ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
     python3 -m isaac_toolkit.utils.analyze_compare ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
     python3 -m isaac_toolkit.utils.annotate_per_instr_metrics $INDEX_FILE --inplace --report ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv --multi --multi-agg-func sum
 fi
