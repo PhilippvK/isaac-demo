@@ -64,4 +64,4 @@ else
 fi
 
 # TODO: handle sharing and total metrics
-python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DEST_DIR/hls${SUFFIX}/default/hls_schedules.csv --hls-selected-schedules-yaml $DEST_DIR/hls${SUFFIX}/default/output/selected_solutions.yaml
+python3 -m isaac_toolkit.utils.annotate_hls_score $INDEX_FILE --inplace --hls-schedules-csv $DEST_DIR/hls${SUFFIX}/default/hls_schedules.csv --hls-selected-schedules-yaml $DEST_DIR/hls${SUFFIX}/default/output/selected_solutions.yaml

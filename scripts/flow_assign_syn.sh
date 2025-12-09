@@ -23,5 +23,3 @@ then
 else
     INDEX_FILE=$WORK/combined_index.yml
 fi
-
-# python3 scripts/annotate_hls_score.py $INDEX_FILE --inplace --hls-score-csv $SYN_SCORE_CSV

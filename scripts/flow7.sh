@@ -86,7 +86,7 @@ python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss --sess $SESS --workdir 
 # cmake --build build/ -j `nproc`
 # cmake --install build
 # cd -
-python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$DEST_DIR/etiss_install
+python3 -m isaac_tookit.utils.annotate_global_artifacts $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$DEST_DIR/etiss_install
 
 ARGS=""
 if [[ -f $WORK/docker/seal5_reports/diff.csv ]]

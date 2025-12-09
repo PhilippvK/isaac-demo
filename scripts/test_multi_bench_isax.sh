@@ -234,14 +234,14 @@ if [[ "$ISAAC_ENABLE" == 1 ]]
 then
     if [[ "$MULTI" == "0" ]]
     then
-        python3 $SCRIPTS_DIR/analyze_encoding.py $INDEX_FILE -o $WORK/total_encoding_metrics${OUT_SUFFIX}.csv --score $ENC_SCORE_CSV
+        python3 -m isaac_toolkit.utils.analyze_encoding $INDEX_FILE -o $WORK/total_encoding_metrics${OUT_SUFFIX}.csv --score $ENC_SCORE_CSV
 
         python3 -m isaac_toolkit.utils.assign_names $INDEX_FILE --inplace --csv $NAMES_CSV --pkl $ISE_INSTRS_PKL
         python3 -m isaac_toolkit.generate.ise.generate_cdsl --sess $SESS --workdir $WORK --gen-dir $GEN_DIR --index $INDEX_FILE $FORCE_ARGS
 
         # assign_0_enc
 
-        python3 $SCRIPTS_DIR/annotate_enc_score.py $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
+        python3 -m isaac_toolkit.utils.annotate_enc_score $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
     fi
 
     # isaac_0_etiss
@@ -281,13 +281,13 @@ then
 
     docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $SEAL5_DEST_DIR $CDSL_FILES $CFG_FILES
 
-    python3 $SCRIPTS_DIR/seal5_score.py --output $SEAL5_SCORE_CSV --seal5-status-csv $SEAL5_DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $SEAL5_DEST_DIR/seal5_reports/status_compact.csv
+    python3 -m isaac_toolkit.utils.seal5_score --output $SEAL5_SCORE_CSV --seal5-status-csv $SEAL5_DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $SEAL5_DEST_DIR/seal5_reports/status_compact.csv
 
     # assign_0_seal5
 
     if [[ "$MULTI" == "0" ]]
     then
-        python3 $SCRIPTS_DIR/annotate_seal5_score.py $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
+        python3 -m isaac_toolkit.utils.annotate_seal5_score $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
     fi
 fi
 
@@ -363,8 +363,8 @@ then
     # python3 -m mlonmcu.cli.main export --session -f -- ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}
 
     # python3 $SCRIPTS_DIR/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --mem-report ${RUN}_compare_multi_mem_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
-    python3 $SCRIPTS_DIR/analyze_compare.py ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
-    python3 $SCRIPTS_DIR/annotate_per_instr_metrics.py $INDEX_FILE --inplace --report ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv --multi --multi-agg-func sum
+    python3 -m isaac_toolkit.utils.analyze_compare ${RUN}_compare_multi_per_instr${OUT_SUFFIX}/report.csv --print-df --output ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv
+    python3 -m isaac_toolkit.utils.annotate_per_instr_metrics $INDEX_FILE --inplace --report ${DIR}/compare_multi_per_instr${OUT_SUFFIX}.csv --multi --multi-agg-func sum
 fi
 
 # hls_0
@@ -509,7 +509,7 @@ then
             python3 $SCRIPTS_DIR/get_selected_schedule_metrics.py $WORK/docker/hls/default/hls_schedules.csv $WORK/docker/hls/default/output/selected_solutions.yaml $WORK/docker/hls/default/hls_selected_schedule_metrics.csv
             if [[ "$MULTI" == "0" ]]
             then
-                python3 $SCRIPTS_DIR/annotate_hls_score.py $INDEX_FILE --inplace --hls-schedules-csv $DOCKER_DIR/hls/default/hls_schedules.csv --hls-selected-schedules-yaml $DOCKER_DIR/hls/default/output/selected_solutions.yaml
+                python3 -m isaac_toolkit.utils.annotate_hls_score $INDEX_FILE --inplace --hls-schedules-csv $DOCKER_DIR/hls/default/hls_schedules.csv --hls-selected-schedules-yaml $DOCKER_DIR/hls/default/output/selected_solutions.yaml
             fi
         fi
 
@@ -565,8 +565,8 @@ then
     # TODO: check if exists
     SPEC_GRAPH=$DIR/spec_graph${OUT_SUFFIX}.pkl
     python3 -m tool.detect_specializations $INDEX_FILE --graph $SPEC_GRAPH --noop
-    python3 $SCRIPTS_DIR/annotate_global_artifacts.py $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$WORK/docker/etiss/etiss_install
-    python3 $SCRIPTS_DIR/annotate_global_artifacts.py $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$WORK/docker/seal5/llvm_install
+    python3 -m isaac_toolkit.utils.annotate_global_artifacts $INDEX_FILE --inplace --data ETISS_INSTALL_DIR=$WORK/docker/etiss/etiss_install
+    python3 -m isaac_toolkit.annotate_global_artifacts $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$WORK/docker/seal5/llvm_install
     SELECTED_INDEX_FILE=$DIR/selected${OUT_SUFFIX}_index.yml
     BENCH_FULL=""
     for bench in "${BENCHMARKS[@]}"
@@ -756,9 +756,9 @@ then
     # OUT_DIR=$DIR
     # python3 $SCRIPTS_DIR/analyze_multi_report.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --sess-dir ${SESS}_multi/ --names-csv $NAMES_CSV --out $OUT_DIR
     AGG_UTIL_SCORE_CSV=$DIR/agg_util_score.csv
-    python3 $SCRIPTS_DIR/agg_util_scores.py $UTIL_SCORE_ARGS --out $AGG_UTIL_SCORE_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
-    # python3 $SCRIPTS_DIR/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
-    python3 $SCRIPTS_DIR/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix ""
+    python3 -m isaac_toolkit.utils.agg_util_scores $UTIL_SCORE_ARGS --out $AGG_UTIL_SCORE_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
+    # python3 -m isaac_toolkit.utils.annotate_util_score $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
+    python3 -m isaac_toolkit.utils.annotate_util_score $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix ""
     # TODO: MULTI!
 fi
 
@@ -767,9 +767,9 @@ then
     # OUT_DIR=$DIR
     # python3 $SCRIPTS_DIR/analyze_multi_report.py ${RUN}_compare_multi${OUT_SUFFIX}/report.csv --sess-dir ${SESS}_multi/ --names-csv $NAMES_CSV --out $OUT_DIR
     AGG_COUNTS_CSV=$DIR/agg_counts.csv
-    python3 $SCRIPTS_DIR/agg_counts.py $AGG_COUNTS_ARGS --out $AGG_COUNTS_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
-    # python3 $SCRIPTS_DIR/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
-    python3 $SCRIPTS_DIR/annotate_counts.py $INDEX_FILE --inplace --counts-csv $AGG_COUNTS_CSV --out-prefix ""
+    python3 -m isaac_toolkit.utils.agg_counts $AGG_COUNTS_ARGS --out $AGG_COUNTS_CSV  # --names-csv $NAMES_CSV --out $OUT_DIR
+    # python3 -m isaac_toolkit.utils.annotate_util_score $INDEX_FILE --inplace --util-score-csv $AGG_UTIL_SCORE_CSV --out-prefix "multi_"
+    python3 -m isaac_toolkit.annotate_counts $INDEX_FILE --inplace --counts-csv $AGG_COUNTS_CSV --out-prefix ""
 fi
 
 

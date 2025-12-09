@@ -44,4 +44,4 @@ fi
 
 SEAL5_SCORE_CSV=$DEST_DIR/seal5_score.csv
 
-python3 scripts/annotate_seal5_score.py $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
+python3 -m isaac_toolkit.utils.annotate_seal5_score $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV

@@ -51,4 +51,4 @@ fi
 
 ENC_SCORE_CSV=$WORK/encoding_score${SUFFIX}.csv
 
-python3 scripts/annotate_enc_score.py $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV
+python3 -m isaac_toolkit.utils.annotate_enc_score $INDEX_FILE --inplace --enc-score-csv $ENC_SCORE_CSV

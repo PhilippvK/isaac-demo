@@ -107,8 +107,8 @@ fi
 # fi
 # python3 -m isaac_toolkit.flow.demo.stage.retargeting.llvm --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS $CFG_FILES --$MODE
 
-python3 scripts/seal5_score.py --output $DEST_DIR/seal5_score.csv --seal5-status-csv $DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $DEST_DIR/seal5_reports/status_compact.csv
-python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$DEST_DIR/llvm_install
+python3 -m isaac_toolkit.utils.seal5_score --output $DEST_DIR/seal5_score.csv --seal5-status-csv $DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $DEST_DIR/seal5_reports/status_compact.csv
+python3 -m isaac_toolkit.utils.annotate_global_artifacts $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$DEST_DIR/llvm_install
 
 # TODO: handle locs in final separate step!
 # ARGS=""
