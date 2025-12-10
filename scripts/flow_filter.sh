@@ -83,7 +83,7 @@ fi
 
 # TODO: handle float comparisons
 
-python3 scripts/filter_index.py $INDEX_FILE --out $OUT_FILE $FILTER_ARGS --sankey $WORK/sankey${SUFFIX}.md
+python3 -m isaac_toolkit.utils.filter_index $INDEX_FILE --out $OUT_FILE $FILTER_ARGS --sankey $WORK/sankey${SUFFIX}.md
 
 # TODO: names?
 python3 -m isaac_toolkit.utils.names_helper $OUT_FILE --output $WORK/names${SUFFIX}.csv

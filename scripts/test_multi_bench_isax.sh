@@ -781,7 +781,7 @@ then
     MIN_ESTIMATED_REDUCTION=0.005
     FILTER_ARGS="--min-util-score ${MIN_UTIL_SCORE} --min-estimated-reduction ${MIN_ESTIMATED_REDUCTION}"
     # TODO: support prefix
-    python3 $SCRIPTS_DIR/filter_index.py $INDEX_FILE --out $FILTERED_INDEX_FILE $FILTER_ARGS --sankey $DIR/sankey_filtered${OUT_SUFFIX}.md
+    python3 -m isaac_toolkit.utils.filter_index $INDEX_FILE --out $FILTERED_INDEX_FILE $FILTER_ARGS --sankey $DIR/sankey_filtered${OUT_SUFFIX}.md
     python3 -m isaac_toolkit.utils.names_helper $FILTERED_INDEX_FILE --output $WORK/names_filtered.csv
     # TODO: gen
 fi
