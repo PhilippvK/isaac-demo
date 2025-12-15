@@ -21,4 +21,9 @@ fi
 
 rm -f $ARCHIVE
 
-sudo systemctl status memgraph
+if [[ "$(whoami)" == "root" ]]
+then
+    systemctl status memgraph
+else
+    sudo systemctl status memgraph
+fi
