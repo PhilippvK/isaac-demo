@@ -67,4 +67,4 @@ else
     EXTRA_ARGS=""
 fi
 
-python3 scripts/annotate_score.py $INDEX_FILE --inplace $EXTRA_ARGS
+python3 -m isaac_toolkit.utils.annotate_score $INDEX_FILE --inplace $EXTRA_ARGS

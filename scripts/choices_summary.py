@@ -1,5 +1,6 @@
 import sys
-# import re
+import re
+import logging
 import argparse
 from pathlib import Path
 
@@ -53,30 +54,24 @@ with open(disass_file, "r") as f:
 
 def find_disass_snippet(disass_text, start, end, count=None):
     # print("find_disass_snippet", start, end, count)
-    # print("disass_text", disass_text[:1000])
-    # start_match = re.compile(r"\s+1000018:\s+[0-9a-fA-F]+\s+(.*)").findall(disass_text)
-    # print("start_match", start_match)
     start_match = f" {start:x}: "
     end_match = f" {end:x}: "
-    # print("start_match", start_match)
-    # print("end_match", end_match)
+    end_match2 = r"^0+" + f"{end:x} "
     ret_lines = []
     for line in disass_text.splitlines():
+        if len(line.strip()) == 0:
+            continue
         if len(ret_lines) > 0:
             if end_match in line:
+                break
+            elif re.compile(end_match2).match(line.strip()):
                 break
             ret_lines.append(line)
         else:
             if start_match in line:
                 ret_lines.append(line)
-    # pre, rest = disass_text.split(start_match, 1)
-    # assert len(rest) > 0
-    # rest, post = disass_text.split(end_match, 1)
-    # print("splitted", len(splitted))
-    # print("rest", rest)
     assert len(ret_lines) > 0
     if count is not None:
-        # assert len(ret_lines) == count, f"{len(ret_lines)} vs. {count}"
         if len(ret_lines) != count:
             logging.warning("Lines missmatch: %d vs. %d", len(ret_lines), count)
 

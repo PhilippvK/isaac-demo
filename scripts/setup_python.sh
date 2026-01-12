@@ -4,7 +4,7 @@ set -e
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
-VENV_DIR=$TOP_DIR/venv
+VENV_DIR=${VENV_DIR:-$TOP_DIR/venv}
 # VENV_DIR=$TOP_DIR/venv_py38
 # PYTHON_VER=python3.8
 # PYTHON_EXE=/home/ga87puy/src/Python/cpython_v3.10/install/bin/python3.10
@@ -19,6 +19,9 @@ source ${VENV_DIR}/bin/activate
 
 pip install -r $TOP_DIR/requirements.txt
 pip install -e $TOP_DIR/seal5
+pip install -e $TOP_DIR/isaac-toolkit
+pip install -e $TOP_DIR/mlonmcu
+pip install -r $TOP_DIR/memgraph_experiments/requirements.txt
 pip install -r $TOP_DIR/seal5/requirements.txt  # TODO
 
 # TODO

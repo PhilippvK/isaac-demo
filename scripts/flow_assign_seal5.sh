@@ -13,7 +13,13 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 # SESS=$DIR/sess
 WORK=$DIR/work
 
-DOCKER_DIR=$WORK/docker
+USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
+if [[ "$USE_SEAL5_DOCKER" == "1" ]]
+then
+  DOCKER_DIR=$WORK/docker
+else
+  DOCKER_DIR=$WORK/local
+fi
 
 FINAL=${FINAL:-0}
 PRELIM=${PRELIM:-0}
@@ -38,4 +44,4 @@ fi
 
 SEAL5_SCORE_CSV=$DEST_DIR/seal5_score.csv
 
-python3 scripts/annotate_seal5_score.py $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV
+python3 -m isaac_toolkit.utils.annotate_seal5_score $INDEX_FILE --inplace --seal5-score-csv $SEAL5_SCORE_CSV

@@ -17,11 +17,11 @@ WORK=$DIR/work
 USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
 if [[ "$USE_SEAL5_DOCKER" == "1" ]]
 then
-  DEST_DIR=$WORK/docker/
+  MODE="docker"
 else
-  DEST_DIR=$WORK/local/
-  TEMP_DIR=$WORK/local/temp
+  MODE="local"
 fi
+DEST_DIR=$WORK/$MODE/
 
 mkdir -p $DEST_DIR
 
@@ -84,14 +84,15 @@ done
 
 mkdir -p $DEST_DIR
 
-# docker run -it --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
+# docker run -i --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
 # OLD:
-if [[ "$USE_SEAL5_DOCKER" == "1" ]]
+if [[ "$MODE" == "docker" ]]
 then
-  docker run -it --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
+  docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
 else
+  TEMP_DIR=$WORK/local/temp
   TEMP_SEAL5_HOME=$TEMP_DIR/seal5_llvm
-  MGCLIENT_ROOT=$MGCLIENT_INSTALL_DIR ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS SEAL5_HOME=$TEMP_SEAL5_HOME CCACHE=$CCACHE CCACHE_DIR=$CCACHE_DIR SEAL5_CFG_DIR=$CONFIG_DIR/seal5 SEAL5_DIR=$SEAL5_DIR LLVM_REPO=$LLVM_DIR LLVM_REF=isaacnew-base-3 CLONE_DEPTH=2 $DOCKER_DIR/seal5_script_local.sh $DEST_DIR $CDSL_FILES $CFG_FILES
+  MGCLIENT_ROOT=$MGCLIENT_INSTALL_DIR ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS SEAL5_HOME=$TEMP_SEAL5_HOME CCACHE=$CCACHE CCACHE_DIR=$CCACHE_DIR SEAL5_CFG_DIR=$CONFIG_DIR/seal5 SEAL5_DIR=$SEAL5_DIR LLVM_REPO=$LLVM_DIR LLVM_REF=isaacnew-base-3 CLONE_DEPTH=2 CLEANUP=1 $SEAL5_SCRIPT_LOCAL $DEST_DIR $CDSL_FILES $CFG_FILES
   # TODO: cleanup?
 fi
 # NEW:
@@ -104,10 +105,10 @@ fi
 # then
 #     EXTRA_ARGS="$EXTRA_ARGS --splitted"
 # fi
-# python3 -m isaac_toolkit.flow.demo.stage.retargeting.llvm --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS $CFG_FILES
+# python3 -m isaac_toolkit.flow.demo.stage.retargeting.llvm --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS $CFG_FILES --$MODE
 
-python3 scripts/seal5_score.py --output $DEST_DIR/seal5_score.csv --seal5-status-csv $DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $DEST_DIR/seal5_reports/status_compact.csv
-python3 scripts/annotate_global_artifacts.py $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$DEST_DIR/llvm_install
+python3 -m isaac_toolkit.utils.seal5_score --output $DEST_DIR/seal5_score.csv --seal5-status-csv $DEST_DIR/seal5_reports/status.csv --seal5-status-compact-csv $DEST_DIR/seal5_reports/status_compact.csv
+python3 -m isaac_toolkit.utils.annotate_global_artifacts $INDEX_FILE --inplace --data LLVM_INSTALL_DIR=$DEST_DIR/llvm_install
 
 # TODO: handle locs in final separate step!
 # ARGS=""

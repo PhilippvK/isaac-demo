@@ -23,12 +23,12 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 WORK=$DIR/work
 
 # cp $WORK/docker/hls/output/ISAX_XIsaac.sv $WORK/docker/hls/output/$CORE_NAME
-# docker run -it --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools && volare enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af && python3 dse.py $WORK/docker/hls/output/$CORE_NAME/ $WORK/docker/hls/syn_dir prj LEGACY $START_CLK_NS $START_UTIL top clk"
+# docker run -i --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools && volare enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af && python3 dse.py $WORK/docker/hls/output/$CORE_NAME/ $WORK/docker/hls/syn_dir prj LEGACY $START_CLK_NS $START_UTIL top clk"
 # PERIOD_NS=$(cat $WORK/docker/hls/syn_dir/best.csv | tail -1 | cut -d, -f2)
 # FP_UTIL=$(cat $WORK/docker/hls/syn_dir/best.csv | tail -1 | cut -d, -f3)
 # echo "PERIOD_NS=${PERIOD_NS}ns FP_UTIL=${FP_UTIL}%"
 # PRJ="prj_LEGACY_${PERIOD_NS}ns_${FP_UTIL}%"
-# python3 scripts/collect_syn_metrics.py $WORK/docker/hls/syn_dir/$PRJ --output $WORK/docker/hls/syn_metrics.csv --print --min --rename
+# python3 $SCRIPTS_DIR/collect_syn_metrics.py $WORK/docker/hls/syn_dir/$PRJ --output $WORK/docker/hls/syn_metrics.csv --print --min --rename
 # # NEW:
 # # python3 -m isaac_toolkit.eval.ise.asip_syn.ol2 --sess $SESS --workdir $WORK --set-name XIsaac --docker --core $CORE_NAME --pdk sky130
 # # python3 -m isaac_toolkit.eval.ise.asip_syn.synopsys --sess $SESS --workdir $WORK --set-name XIsaac --docker --core $CORE_NAME --pdk nangate45
@@ -85,7 +85,7 @@ then
             else
                 mkdir -p $WORK/docker/asip_syn/baseline/rtl
                 cp $WORK/docker/hls/baseline/rtl/* $WORK/docker/asip_syn/baseline/rtl
-                ./asip_syn_script.sh $WORK/docker/asip_syn/baseline/ $WORK/docker/asip_syn/baseline/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/baseline/constraints.sdc
+                $SCRIPTS_DIR/asip_syn_script.sh $WORK/docker/asip_syn/baseline/ $WORK/docker/asip_syn/baseline/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/baseline/constraints.sdc
                 COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --baseline-dir $WORK/docker/asip_syn/baseline/"
                 if [[ "$ASIP_SYN_SEARCH_FMAX" == "1" ]]
                 then
@@ -112,7 +112,7 @@ then
         then
             mkdir -p $WORK/docker/asip_syn/default/rtl
             cp $WORK/docker/hls/default/rtl/* $WORK/docker/asip_syn/default/rtl
-            ./asip_syn_script.sh $WORK/docker/asip_syn/default $WORK/docker/asip_syn/default/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/default/constraints.sdc
+            $SCRIPTS_DIR/asip_syn_script.sh $WORK/docker/asip_syn/default $WORK/docker/asip_syn/default/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/default/constraints.sdc
             COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --default-dir $WORK/docker/asip_syn/default/"
             if [[ "$ASIP_SYN_SEARCH_FMAX" == "1" ]]
             then
@@ -138,7 +138,7 @@ then
         then
             mkdir -p $WORK/docker/asip_syn/shared/rtl
             cp $WORK/docker/hls/shared/rtl/* $WORK/docker/asip_syn/shared/rtl
-            ./asip_syn_script.sh $WORK/docker/asip_syn/shared $WORK/docker/asip_syn/shared/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/shared/constraints.sdc
+            $SCRIPTS_DIR/asip_syn_script.sh $WORK/docker/asip_syn/shared $WORK/docker/asip_syn/shared/rtl $ASIP_SYN_SYNOPSYS_CORE_NAME $ASIP_SYN_SYNOPSYS_PDK $ASIP_SYN_SYNOPSYS_CLK_PERIOD $WORK/docker/asip_syn/shared/constraints.sdc
             COLLECT_ASIP_ARGS="$COLLECT_ASIP_ARGS --shared-dir $WORK/docker/asip_syn/shared/"
             if [[ "$ASIP_SYN_SEARCH_FMAX" == "1" ]]
             then
@@ -161,11 +161,11 @@ then
 fi
 if [[ "$COLLECT_ASIP_ARGS" != "" ]]
 then
-    python3 scripts/collect_asip_syn_metrics.py $COLLECT_ASIP_ARGS --out $WORK/docker/asip_syn/metrics.csv
+    python3 $SCRIPTS_DIR/collect_asip_syn_metrics.py $COLLECT_ASIP_ARGS --out $WORK/docker/asip_syn/metrics.csv
 fi
 if [[ "$COLLECT_ASIP_FMAX_ARGS" != "" ]]
 then
-    python3 scripts/collect_asip_syn_metrics.py $COLLECT_ASIP_FMAX_ARGS --out $WORK/docker/asip_syn/metrics_fmax.csv
+    python3 $SCRIPTS_DIR/collect_asip_syn_metrics.py $COLLECT_ASIP_FMAX_ARGS --out $WORK/docker/asip_syn/metrics_fmax.csv
 fi
 
 COLLECT_FPGA_ARGS=""
@@ -188,7 +188,7 @@ then
                     COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --baseline-dir $(realpath -s $FPGA_SYN_BASELINE_USE)_fmax"
                 fi
             else
-                ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/baseline/ $WORK/docker/hls/baseline/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
+                $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/baseline/ $WORK/docker/hls/baseline/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
                 COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --baseline-dir $WORK/docker/fpga_syn/baseline/"
                 if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
                 then
@@ -209,7 +209,7 @@ then
     then
         if [[ "$FPGA_SYN_TOOL" == "vivado" ]]
         then
-            ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/default/ $WORK/docker/hls/default/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
+            $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/default/ $WORK/docker/hls/default/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
             COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --default-dir $WORK/docker/fpga_syn/default/"
             if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
             then
@@ -229,7 +229,7 @@ then
     then
         if [[ "$FPGA_SYN_TOOL" == "vivado" ]]
         then
-            ./scripts/fpga_syn_script.sh $WORK/docker/fpga_syn/shared/ $WORK/docker/hls/shared/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
+            $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/shared/ $WORK/docker/hls/shared/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
             COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --shared-dir $WORK/docker/fpga_syn/shared/"
             if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
             then
@@ -249,9 +249,9 @@ fi
 
 if [[ "$COLLECT_FPGA_ARGS" != "" ]]
 then
-    python3 scripts/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn/metrics.csv
+    python3 $SCRIPTS_DIR/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn/metrics.csv
 fi
 if [[ "$COLLECT_FPGA_FMAX_ARGS" != "" ]]
 then
-    python3 scripts/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn_fmax/metrics.csv
+    python3 $SCRIPTS_DIR/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn_fmax/metrics.csv
 fi

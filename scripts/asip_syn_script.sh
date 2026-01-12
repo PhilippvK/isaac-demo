@@ -82,6 +82,6 @@ then
     exit 4
 fi
 
-python3 $ROOT_DIR/parse_area_report.py $LOG_DIR/report_area_hier.log > $OUT_DIR/area.csv
-python3 $ROOT_DIR/parse_timing_report.py $LOG_DIR/report_timing.log > $OUT_DIR/timing.csv
+python3 $SCRIPTS_DIR/parse_area_report.py $LOG_DIR/report_area_hier.log > $OUT_DIR/area.csv
+python3 $SCRIPTS_DIR/parse_timing_report.py $LOG_DIR/report_timing.log > $OUT_DIR/timing.csv
 paste -d"," $OUT_DIR/area.csv $OUT_DIR/timing.csv > $OUT_DIR/metrics.csv

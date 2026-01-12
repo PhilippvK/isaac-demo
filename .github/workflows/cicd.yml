@@ -1,7 +1,13 @@
+---
 name: ISAAC Demo
+run-name: ISAAC Demo [${{ inputs.distinct_id && inputs.distinct_id || 'default' }}]
 on:
   workflow_dispatch:
     inputs:
+      docker-image:
+        description: Docker Image
+        required: true  # TODO: add ubuntu version to tag?
+        default: philippvk/isaac-quickstart-min:latest
       config:
         description: Config
         required: true
@@ -9,7 +15,10 @@ on:
       command:
         description: Command
         required: true
-        default: "./scripts/full_flow.sh crypto_bench/mceliece348864_encrypt 'now' 'until_isaac_new'"
+        default: "./scripts/full_flow_docker_min.sh embench_iot/crc32 'now' 'bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;spec_0_filtered;isaac_0_generate_filtered;isaac_0_etiss_filtered;hls_0_filtered;assign_0_hls_filtered;select_0_filtered;compare_0_filtered_selected;assign_0_compare_filtered_selected;compare_others_0_filtered_selected;assign_0_compare_others_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;filter_0_filtered_selected;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_filtered2_selected;isaac_0_etiss_filtered2_selected;hls_0_filtered2_selected;assign_0_hls_filtered2_selected'"
+      distinct_id:
+        description: 'Distinct ID'
+        required: false
 jobs:
   demo:
     runs-on: ${{ matrix.os }}
@@ -25,33 +34,38 @@ jobs:
         with:
           submodules: recursive
           token: ${{ secrets.GENIE_TOKEN }}
-      - name: Setup ccache
-        if: ${{ matrix.ccache == '1' }}
-        uses: hendrikmuhs/ccache-action@v1
-        with:
-          max-size: 2G
-          key: ${{ matrix.os }}-${{ github.event.inputs.script }}-${{ github.event.inputs.build_config
-            }}
-          # variant: sccache
-          variant: ccache
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Fetch LLVM Tags & Branches
+        run: |
+          cd llvm-project
+          git fetch origin
+          git fetch origin --tags
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-      - name: ccache cache files
+        run: echo "date=$(date +'%Y-%m-%dT%H:%M')" >> $GITHUB_OUTPUT
+      - name: Setup CCache
         uses: actions/cache@v4
         with:
           path: install/ccache
           key: ccache-${{ steps.date.outputs.date }}
           restore-keys: |
               ccache-
+      - name: Cache venv
+        uses: actions/cache@v4
+        with:
+          path: venv
+          key: venv-${{ steps.date.outputs.date }}
+          restore-keys: |
+              venv-
       - name: Install APT packages
         run: |
           sudo apt -qq update
-          sudo apt -qq install -y python3-pip python3-venv cmake make ninja-build libssl-dev cmake build-essential graphviz graphviz-dev ninja-build poppler-utils ccache git libboost-system-dev libboost-filesystem-dev libboost-program-options-dev zlib1g-dev libtinfo-dev libxml2-dev libedit-dev libncurses5-dev libffi-dev libssl-dev unzip
+          sudo apt -qq install -y ccache
+          # local-only:
+          # sudo apt -qq install -y python3-pip python3-venv cmake make ninja-build libssl-dev cmake build-essential graphviz graphviz-dev libgraphviz-dev ninja-build poppler-utils ccache git libboost-system-dev libboost-filesystem-dev libboost-program-options-dev zlib1g-dev libtinfo-dev libxml2-dev libedit-dev libncurses5-dev libffi-dev libssl-dev unzip poppler-utils
       - name: Remove unused software
         run: |
           echo "Available storage before:"
@@ -66,27 +80,128 @@ jobs:
           echo "Available storage after:"
           sudo df -h
           echo
+          # Remove Java (JDKs)
+          sudo rm -rf /usr/lib/jvm
+
+          # Remove .NET SDKs
+          # sudo rm -rf /usr/share/dotnet
+
+          # Remove Swift toolchain
+          sudo rm -rf /usr/share/swift
+
+          # Remove Haskell (GHC)
+          sudo rm -rf /usr/local/.ghcup
+
+          # Remove Julia
+          sudo rm -rf /usr/local/julia*
+
+          # Remove Android SDKs
+          # sudo rm -rf /usr/local/lib/android
+
+          # Remove Chromium (optional if not using for browser tests)
+          sudo rm -rf /usr/local/share/chromium
+
+          # Remove Microsoft/Edge and Google Chrome builds
+          sudo rm -rf /opt/microsoft /opt/google
+
+          # Remove Azure CLI
+          sudo rm -rf /opt/az
+
+          # Remove PowerShell
+          sudo rm -rf /usr/local/share/powershell
+
+          # Remove CodeQL and other toolcaches
+          sudo rm -rf /opt/hostedtoolcache
+
+          # docker system prune -af || true
+          # docker builder prune -af || true
+          echo "Available storage after2:"
+          sudo df -h
+          echo
+      # - name: Cache Docker images.
+      #   uses: ScribeMD/docker-cache@0.5.0
+      #   with:
+      #     key: docker-${{ runner.os }}-${{ hashFiles('docker/*') }}
       - name: Start Memgraph docker container (detached)
         run: |
           docker run -d -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
-      - name: Setup Python
+      # - name: Setup Python
+      #   run: |
+      #     ./scripts/setup_python.sh
+      # - name: Setup Deps
+      #   run: |
+      #     . scripts/env.sh
+      #     scripts/setup_ccache.sh
+      #     scripts/setup_mgclient.sh
+      #     scripts/setup_llvm.sh
+      #     scripts/setup_etiss.sh
+      #     scripts/setup_mlonmcu.sh
+      # - name: Run Flow
+      #   run: |
+      #     . scripts/env.sh
+      #     . ${{ github.event.inputs.config }}
+      #     ${{ github.event.inputs.command }}
+      - name: Run Setup in Docker
         run: |
-          ./scripts/setup_python.sh
-      - name: Setup Deps
+          export DOCKER_IMAGE=${{ github.event.inputs.docker-image }}
+          export CONFIG=${{ github.event.inputs.config }}
+          ./scripts/setup_docker_min.sh
+          sudo chmod -R 777 venv
+          sudo chmod -R 777 install/ccache
+      - name: Run Flow in Docker
         run: |
-          . scripts/env.sh
-          scripts/setup_ccache.sh
-          scripts/setup_mgclient.sh
-          scripts/setup_llvm.sh
-          scripts/setup_etiss.sh
-          scripts/setup_mlonmcu.sh
-      - name: Run Flow
-        run: |
-          . scripts/env.sh
-          . ${{ github.event.inputs.config }}
+          export DOCKER_IMAGE=${{ github.event.inputs.docker-image }}
+          export CONFIG=${{ github.event.inputs.config }}
           ${{ github.event.inputs.command }}
-      - name: Upload Outputs
+          sudo chmod -R 777 venv
+          sudo chmod -R 777 install/ccache
+      - name: Cleanup Outputs
+        run: |
+          echo "-"
+          sudo du -ch -d0 out/
+          echo "-"
+          sudo du -ch -d4 out/
+          echo "-"
+          sudo du -ch -d8 out/
+          echo "-"
+          sudo du -ch -d12 out/
+          echo "-"
+          sudo du -ch -d16 out/
+          echo "-"
+          sudo df -h
+          echo "-"
+      - name: Write Summary
+        continue-on-error: true
+        run: |
+          pip install pandas tabulate
+          sudo chmod -R 777 out/
+          find out -name "times.csv" -exec python3 scripts/times_to_mermaid.py {} --zero -o {}.md \;
+          find out -name "experiment.ini" -exec python3 scripts/gen_ci_summary.py {} --fmt md \; | tee -a $GITHUB_STEP_SUMMARY
+      - name: Compress Outputs
+        run: |
+          cd out
+          sudo tar -I 'xz -9 -T0' -cf ../out.tar.xz .
+          cd -
+          sudo du -ch -d1 .
+      # - name: Upload Outputs
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: demo-out
+      #     path: out/
+      - name: Upload Compressed Outputs
         uses: actions/upload-artifact@v4
         with:
-          name: demo-out
-          path: out/
+          name: demo-compressed-out
+          path: out.tar.xz
+      - name: Cleanup
+        run: |
+          echo "Available storage before:"
+          sudo df -h
+          sudo rm -rf install/mlonmcu
+          sudo rm -rf install/etiss
+          sudo rm -rf out
+          sudo rm -f out.tar.xz
+          # docker system prune -af
+          echo "Available storage after:"
+          sudo df -h
+          echo

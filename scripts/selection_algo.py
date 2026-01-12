@@ -49,11 +49,14 @@ def run_mlonmcu(progs, archs, global_artifacts, verbose: bool = False):
     if len(pending_archs) == 0:
         return all_metrics
     archs_file_content = "\n".join(pending_archs)
+    # temp_dir = "/tmp/tmpn9trennp"
+    # if True:
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_dir = Path(temp_dir)
         archs_file = temp_dir / "extra_archs.txt"
         with open(archs_file, "w") as f:
             f.write(archs_file_content)
+        # print("archs_file_content", archs_file_content)
         mlonmcu_wrapper_env = {
             "ETISS_INSTALL_DIR": global_artifacts["ETISS_INSTALL_DIR"],
             "LLVM_INSTALL_DIR": global_artifacts["LLVM_INSTALL_DIR"],
@@ -62,13 +65,17 @@ def run_mlonmcu(progs, archs, global_artifacts, verbose: bool = False):
             "ARCHS_FILE": archs_file,
         }
         env = os.environ.copy()
+        # print("env", env)
         env.update(mlonmcu_wrapper_env)
         mlonmcu_wrapper_args = [MLONMCU_WRAPPER_SCRIPT, temp_dir, *progs]
         kwargs = {}
+        # verbose = True
         if not verbose:
             kwargs["stdout"] = subprocess.DEVNULL
             kwargs["stderr"] = subprocess.DEVNULL
         logging.debug("Executing MLonMCU wrapper...")
+        # print("?", mlonmcu_wrapper_args)
+        # input(">")
         subprocess.run(mlonmcu_wrapper_args, check=True, env=env, **kwargs)
         report_file = temp_dir / "report.csv"
         report_df = pd.read_csv(report_file)

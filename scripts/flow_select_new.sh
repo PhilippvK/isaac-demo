@@ -66,4 +66,4 @@ python3 scripts/select_candidates.py $INDEX_FILE --out $OUT_FILE $EXTRA_ARGS --s
 
 NAMES_CSV=$WORK/names${NEW_SUFFIX}.csv
 
-python3 scripts/assign_names.py $OUT_FILE --inplace --csv $NAMES_CSV
+python3 -m isaac_toolkit.utils.assign_names $OUT_FILE --inplace --csv $NAMES_CSV

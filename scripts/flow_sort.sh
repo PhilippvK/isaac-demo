@@ -60,7 +60,7 @@ else
 fi
 
 
-python3 scripts/sort_index.py $INDEX_FILE --inplace --by $SORT_BY
-python3 scripts/names_helper.py $INDEX_FILE --output $NAMES_CSV
+python3 -m isaac_toolkit.utils.sort_index $INDEX_FILE --inplace --by $SORT_BY
+python3 -m isaac_toolkit.utils.names_helper $INDEX_FILE --output $NAMES_CSV
 
-# python3 scripts/assign_names.py $INDEX_FILE --inplace --csv $NAMES_CSV
+# python3 -m isaac_toolkit.utils.assign_names $INDEX_FILE --inplace --csv $NAMES_CSV

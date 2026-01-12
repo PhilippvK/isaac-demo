@@ -36,7 +36,12 @@ repos:
     url: "https://github.com/PhilippvK/tvm.git"
     ref: isaac
     options:
-      recursive: true
+      # recursive: true
+      recursive: false
+      submodules:
+      - 3rdparty/dmlc-core
+      - 3rdparty/dlpack
+      - 3rdparty/libbacktrace
   tvm_extensions:
     url: "https://github.com/tum-ei-eda/tvm_extensions.git"
     ref: 859bbc89519b610d8adcdba0869d8b087887aabd
@@ -270,15 +275,15 @@ targets:
     features:
       vext: false
   microtvm_host:
-    enabled: true
+    enabled: false
   microtvm_spike:
-    enabled: true
+    enabled: false
   microtvm_zephyr:
     enabled: false
   microtvm_arduino:
     enabled: false
   microtvm_etiss:
-    enabled: true
+    enabled: false
   microtvm_espidf:
     enabled: false
   tvm_cpu:
@@ -311,6 +316,7 @@ vars:
   cmake.keep_src_dir: false
   boost.use_system: true
   cmake.use_system: true
+  cmake.exe: /opt/cmake/bin/cmake
 
 flags:
   tflmc.exe:

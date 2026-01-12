@@ -64,3 +64,6 @@ then
     touch $DIR/unsuitable2.txt
     exit 1
 fi
+
+python3 $SCRIPTS_DIR/choices_summary_html.py $DIR -o $DIR/choices_summary.html
+python3 $SCRIPTS_DIR/choices_summary_html.py $DIR -o $DIR/choices_summary_min.html --min

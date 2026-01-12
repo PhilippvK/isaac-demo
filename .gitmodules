@@ -1,6 +1,6 @@
 [submodule "isaac-toolkit"]
 	path = isaac-toolkit
-	url = git@github.com:PhilippvK/isaac-toolkit.git
+	url = git@github.com:tum-ei-eda/isaac-toolkit.git
 [submodule "memgraph_experiments"]
 	path = memgraph_experiments
 	url = git@github.com:PhilippvK/memgraph_experiments.git

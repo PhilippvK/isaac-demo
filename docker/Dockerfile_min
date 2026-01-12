@@ -6,8 +6,8 @@ FROM ubuntu:20.04 AS builder
 LABEL maintainer="ISAAC Developers"
 
 ARG CLONE_DEPTH=1
-ENV SEAL5_HOME=/work/llvm/
-ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
+# ENV SEAL5_HOME=/work/llvm/
+# ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
 ENV PATH="/opt/cmake/bin/:$PATH:"
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -45,46 +45,74 @@ RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" \
     && rm -rf /var/lib/apt/lists
 
 COPY --from=philippvk/isaac-quickstart-etiss /opt/cmake/ /opt/cmake/
-COPY --from=philippvk/isaac-quickstart-etiss /work /work
-COPY --from=philippvk/isaac-quickstart-seal5 /work /work
-COPY --from=philippvk/isaac-quickstart-mlonmcu /work /work
-COPY --from=philippvk/isaac-quickstart-mlonmcu /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so
+# COPY --from=philippvk/isaac-quickstart-etiss /work /work
+# COPY --from=philippvk/isaac-quickstart-seal5 /work /work
+# COPY --from=philippvk/isaac-quickstart-mlonmcu-min /work /work
+COPY --from=philippvk/isaac-quickstart-mlonmcu-min /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so
+COPY --from=philippvk/isaac-quickstart-mlonmcu-min /usr/local/include/mgclient* /usr/local/include
 COPY --from=philippvk/isaac-quickstart-hls /isax-tools /isax-tools
 
 CMD ["help"]
 
-
 ENV MLONMCU_HOME=/environment
-COPY --from=philippvk/isaac-quickstart-mlonmcu /environment /environment
-COPY --from=philippvk/isaac-quickstart-mlonmcu /venv /venv
-COPY --from=philippvk/isaac-quickstart-mlonmcu /mlonmcu /mlonmcu
+# COPY --from=philippvk/isaac-quickstart-mlonmcu /environment /environment
+# COPY --from=philippvk/isaac-quickstart-mlonmcu /venv /venv
+# COPY --from=philippvk/isaac-quickstart-mlonmcu /mlonmcu /mlonmcu
 
-COPY ./docker/full_script.sh /work/full_script.sh
+COPY ./docker/min_script.sh /work/min_script.sh
 
-ENTRYPOINT ["/work/full_script.sh"]
+ENTRYPOINT ["/work/min_script.sh"]
 ENV LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
 RUN ln -s /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so.2
 
-RUN arch=$(uname -m) && \
-    if [ "$arch" = "x86_64" ]; then \
-    MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"; \
-    elif [ "$arch" = "aarch64" ]; then \
-    MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"; \
+# RUN arch=$(uname -m) && \
+#     if [ "$arch" = "x86_64" ]; then \
+#     MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"; \
+#     elif [ "$arch" = "aarch64" ]; then \
+#     MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"; \
+#     else \
+#     echo "Unsupported architecture: $arch"; \
+#     exit 1; \
+#     fi && \
+#     wget $MINICONDA_URL -O miniconda.sh && \
+#     mkdir -p /root/.conda && \
+#     bash miniconda.sh -b -p /root/miniconda3 && \
+#     rm -f miniconda.sh
+#
+# ENV PATH="/root/miniconda3/bin:${PATH}"
+#
+# RUN conda --version
+# RUN conda init \
+#     && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
+#     && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
+#     && conda install python=3.10 \
+#     && conda clean -a
+
+# Install Miniforge (no Python included)
+RUN ARCH=$(uname -m) && \
+    if [ "$ARCH" = "x86_64" ]; then \
+        URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"; \
+    elif [ "$ARCH" = "aarch64" ]; then \
+        URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh"; \
     else \
-    echo "Unsupported architecture: $arch"; \
-    exit 1; \
+        echo "Unsupported arch: $ARCH"; exit 1; \
     fi && \
-    wget $MINICONDA_URL -O miniconda.sh && \
-    mkdir -p /root/.conda && \
-    bash miniconda.sh -b -p /root/miniconda3 && \
-    rm -f miniconda.sh
+    wget $URL -O miniforge.sh && \
+    bash miniforge.sh -b -p /opt/conda && \
+    rm miniforge.sh
 
-ENV PATH="/root/miniconda3/bin:${PATH}"
+ENV PATH="/opt/conda/bin:$PATH"
 
-RUN conda --version
-RUN conda init
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-RUN conda install python=3.10
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+# Create minimal Python 3.10 env
+RUN conda create -y -n py310 python=3.10 && \
+    conda clean -a -y
+
+# Activate environment
+# SHELL ["bash", "-c"]
+RUN echo "source activate py310" >> ~/.bashrc
+ENV CONDA_DEFAULT_ENV=py310
+ENV PATH="/opt/conda/envs/py310/bin:$PATH"
+
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --profile minimal
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN rustup show

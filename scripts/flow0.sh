@@ -9,13 +9,13 @@ LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 
-OUT_DIR_BASE=$(pwd)/out
-OUT_DIR=out/$BENCH/$DATE
-mkdir -p $OUT_DIR
+# OUT_DIR_BASE=$(pwd)/out
+# OUT_DIR=out/$BENCH/$DATE
+# mkdir -p $OUT_DIR
 
-RUN=$OUT_DIR/run
-SESS=$OUT_DIR/sess
-WORK=$OUT_DIR/work
+RUN=$DIR/run
+SESS=$DIR/sess
+WORK=$DIR/work
 
 TARGET=${TARGET:-etiss}
 UNROLL=${UNROLL:-auto}
@@ -34,7 +34,6 @@ FPU=${FPU:-default}
 AUTO_VECTORIZE=${AUTO_VECTORIZE:-0}
 
 EXTRA_ARGS=""
-
 if [[ "$BACKEND" != "" ]]
 then
     EXTRA_ARGS="$EXTRA_ARGS --backend $BACKEND"
@@ -75,11 +74,11 @@ then
 elif [[ "$USE_MLONMCU_MIN_DOCKER" == "1" ]]
 then
     MLONMCU_MIN_IMAGE=${MLONMCU_IMAGE:-philippvk/isaac-quickstart-mlonmcu-min:latest}
-    docker run -it --rm -e MLONMCU_HOME=$MLONMCU_HOME -v $MLONMCU_HOME:$MLONMCU_HOME -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_MIN_IMAGE $MLONMCU_ARGS
+    docker run -i --rm -e MLONMCU_HOME=$MLONMCU_HOME -v $MLONMCU_HOME:$MLONMCU_HOME -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_MIN_IMAGE $MLONMCU_ARGS
 elif [[ "$USE_MLONMCU_DOCKER" == "1" ]]
 then
     MLONMCU_IMAGE=${MLONMCU_IMAGE:-philippvk/isaac-quickstart-mlonmcu:latest}
-    docker run -it --rm -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_IMAGE $MLONMCU_ARGS
+    docker run -i --rm -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_IMAGE $MLONMCU_ARGS
 else
     python3 -m mlonmcu.cli.main $MLONMCU_ARGS
     # flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-baseline -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $EXTRA_ARGS

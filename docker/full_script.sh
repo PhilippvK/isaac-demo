@@ -1,9 +1,7 @@
 #!/bin/bash
 
-echo "HELLO WORLD"
+set -e
 
 source /venv/bin/activate
 
 $@
-
-echo "BYE WORLD"

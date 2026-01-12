@@ -8,6 +8,7 @@ fi
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 # echo "SCRIPT_DIR=$SCRIPT_DIR"
 TOP_DIR=$(dirname $SCRIPT_DIR)
+export SCRIPTS_DIR=$TOP_DIR/scripts
 # echo "TOP_DIR=$TOP_DIR"
 # TOP_DIR=$SCRIPT_DIR
 export VENV_DIR=$TOP_DIR/venv
@@ -30,7 +31,7 @@ export MLONMCU_DIR=${TOP_DIR}/mlonmcu
 export MEMGRAPH_PY_DIR=${TOP_DIR}/memgraph_experiments
 export M2ISAR_DIR=${TOP_DIR}/M2-ISA-R
 export PYTHONPATH=${ISAAC_DIR}:${MEMGRAPH_PY_DIR}:${M2ISAR_DIR}:${SEAL5_DIR}:${MLONMCU_DIR}:$PYTHONPATH
-export MLONMCU_HOME=$INSTALL_DIR/mlonmcu
+export MLONMCU_HOME=${MLONMCU_HOME:-$INSTALL_DIR/mlonmcu}
 
 export MGCLIENT_INSTALL_DIR=$INSTALL_DIR/mgclient
 export MGCLIENT_LIB_DIR=$MGCLIENT_INSTALL_DIR/lib

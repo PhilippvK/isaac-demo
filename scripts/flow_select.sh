@@ -96,7 +96,7 @@ NAMES_CSV=$WORK/names${NEW_SUFFIX}.csv
 # TODO expose KEEP_NAMES
 if [[ "$KEEP_NAMES" == "1" ]]
 then
-    python3 scripts/names_helper.py $OUT_FILE --output $NAMES_CSV
+    python3 -m isaac_toolkit.utils.names_helper $OUT_FILE --output $NAMES_CSV
 else
-    python3 scripts/assign_names.py $OUT_FILE --inplace --csv $NAMES_CSV
+    python3 -m isaac_toolkit.utils.assign_names $OUT_FILE --inplace --csv $NAMES_CSV
 fi

@@ -42,3 +42,4 @@ jupyter
 capstone
 kconfiglib
 paramiko
+tabulate
