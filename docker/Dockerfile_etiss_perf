@@ -1,0 +1,53 @@
+# Debian 12
+# FROM debian:bookworm-slim AS builder
+# Debian 11
+# FROM debian:bullseye-slim AS builder
+FROM ubuntu:20.04 AS builder
+LABEL maintainer="ETISS Developers"
+
+ARG CLONE_DEPTH=1
+ENV PYTHONPATH=/work/M2-ISA-R
+ENV DEBIAN_FRONTEND=noninteractive
+
+
+# Install build dependencies of llvm.
+# First, Update the apt's source list and include the sources of the packages.
+RUN grep deb /etc/apt/sources.list | \
+    sed 's/^deb/deb-src /g' >> /etc/apt/sources.list
+# Install compiler, python and subversion.
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates gnupg \
+           build-essential cmake make python3 zlib1g wget subversion zip unzip git ninja-build python3-dev python3-pip python3-venv libssl-dev libboost-all-dev zip unzip && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install modern CMake
+ARG ENABLE_CMAKE="true"
+ARG CMAKE_REPO="https://github.com/Kitware/CMake"
+ARG CMAKE_VERSION="3.22.2"
+ARG CMAKE_TARGET="Linux-x86_64"
+RUN if [ "${ENABLE_CMAKE}" = "true" ] ; \
+    then \
+    cd /tmp \
+    && apt-get remove cmake -yy -q \
+    && wget -O cmake.sh ${CMAKE_REPO}/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-${CMAKE_TARGET}.sh \
+    && mkdir -p /opt/cmake/ \
+    && sh ./cmake.sh --skip-license --exclude-subdir --prefix=/opt/cmake/ \
+    && rm ./cmake.sh ; \
+    fi
+ENV PATH="/opt/cmake/bin/:$PATH:"
+
+
+RUN mkdir /work
+COPY M2-ISA-R/ /work/M2-ISA-R
+
+RUN python3 -m venv /work/venv
+RUN . /work/venv/bin/activate && pip3 install -r /work/M2-ISA-R/requirements.txt
+
+# ETISS Perf specific
+RUN git config --global url."https://github.com/".insteadOf git@github.com:
+RUN cd /work/ && git clone https://github.com/tum-ei-eda/PerformanceSimulation_workspace.git /work/perf_sim_workspace -b xisaac_gen --recursive
+
+COPY ./docker/etiss_perf_script.sh /work/etiss_perf_script.sh
+
+ENTRYPOINT ["/work/etiss_perf_script.sh"]
+CMD ["help"]
