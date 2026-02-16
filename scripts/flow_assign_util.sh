@@ -51,4 +51,4 @@ fi
 
 UTIL_SCORE_CSV=$WORK/util_score${SUFFIX}.csv
 
-python3 scripts/annotate_util_score.py $INDEX_FILE --inplace --util-score-csv $UTIL_SCORE_CSV
+python3 -m isaac_toolkit.utils.annotate_util_score $INDEX_FILE --inplace --util-score-csv $UTIL_SCORE_CSV

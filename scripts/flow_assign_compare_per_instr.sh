@@ -22,4 +22,4 @@ else
     INDEX_FILE=$WORK/combined_index.yml
 fi
 
-python3 -m isaac_tookit.utils.annotate_per_instr_metrics $INDEX_FILE --inplace --report ${DIR}/compare_per_instr.csv
+python3 -m isaac_toolkit.utils.annotate_per_instr_metrics $INDEX_FILE --inplace --report ${DIR}/compare_per_instr.csv
