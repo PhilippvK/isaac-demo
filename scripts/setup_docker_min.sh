@@ -7,6 +7,7 @@ TOP_DIR=$(dirname $SCRIPT_DIR)
 
 DOCKER_IMAGE=${DOCKER_IMAGE:-philippvk/isaac-quickstart-min:latest}
 CONFIG=${CONFIG:-""}
+DOCKER_PREFIX=${DOCKER_PREFIX:-""}
 
-echo docker run -i --rm -v $TOP_DIR:$TOP_DIR --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/setup_docker_min_script.sh $@
-docker run -i --rm -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/setup_docker_min_script.sh $@
+echo $DOCKER_PREFIX docker run -i --rm -v $TOP_DIR:$TOP_DIR --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/setup_docker_min_script.sh $@
+$DOCKER_PREFIX docker run -i --rm -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/setup_docker_min_script.sh $@
