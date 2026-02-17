@@ -7,7 +7,10 @@ TOP_DIR=$(dirname $SCRIPT_DIR)
 
 $SCRIPT_DIR/setup_python.sh
 . $SCRIPT_DIR/env.sh
-$SCRIPT_DIR/setup_ccache.sh
+if [[ "$CCACHE" -eq 1 ]]
+then
+  $SCRIPT_DIR/setup_ccache.sh
+fi
 $SCRIPT_DIR/setup_mgclient.sh
 $SCRIPT_DIR/setup_llvm.sh
 $SCRIPT_DIR/setup_etiss.sh
