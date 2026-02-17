@@ -93,9 +93,15 @@ repos:
   dtc:
     url: "https://github.com/dgibson/dtc.git"
     ref: main
-  embench:
+  embench:  # legacy Embench-IoT 1.0
     url: "https://github.com/embench/embench-iot.git"
-    ref: master
+    ref: d9b30cdf805133bef9db5f7ecf84ae1ce8124291
+  embench_iot:
+    url: "https://github.com/embench/embench-iot.git"
+    ref: embench-2.0-branch
+  embench_dsp:
+    url: "https://github.com/embench/embench-dsp.git"
+    ref: rc1
   taclebench:
     url: "https://github.com/tacle/tacle-bench.git"
     ref: master
@@ -183,6 +189,10 @@ frontends:
   dhrystone:
     enabled: true
   embench:
+    enabled: true
+  embench_iot:
+    enabled: true
+  embench_dsp:
     enabled: true
   taclebench:
     enabled: true
