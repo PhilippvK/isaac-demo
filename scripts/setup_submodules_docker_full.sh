@@ -7,7 +7,7 @@ TOP_DIR=$(dirname $SCRIPT_DIR)
 NPROC=$(nproc)
 NUM_JOBS=${NUM_JOBS:-$NPROC}
 
-SUBMODULES="isaac-toolkit memgraph_experiments M2-ISA-R etiss_arch_riscv"
+SUBMODULES="isaac-toolkit memgraph_experiments M2-ISA-R etiss_arch_riscv seal5 mlonmcu"
 
 # TODO: install isaac_toolkit via Python?
 # TODO: move memgraph_experiments inside isaac_toolkit and install via pip
