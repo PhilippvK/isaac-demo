@@ -11,7 +11,13 @@ TOP_DIR=$(dirname $SCRIPT_DIR)
 export SCRIPTS_DIR=$TOP_DIR/scripts
 # echo "TOP_DIR=$TOP_DIR"
 # TOP_DIR=$SCRIPT_DIR
-export VENV_DIR=$TOP_DIR/venv
+if [[ ! -z "$IN_DEMO_DOCKER" ]]
+then
+    DEFAULT_VENV_DIR=/venv
+else
+    DEFAULT_VENV_DIR=$TOP_DIR/venv
+fi
+export VENV_DIR=$DEFAULT_VENV_DIR
 export INSTALL_DIR=$TOP_DIR/install
 export DOCKER_DIR=$TOP_DIR/docker
 export CONFIG_DIR=$TOP_DIR/cfg
