@@ -13,6 +13,7 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
+DOCKER_PREFIX=${DOCKER_PREFIX:-""}
 # USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-0}
 USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
 if [[ "$USE_SEAL5_DOCKER" == "1" ]]
@@ -88,7 +89,7 @@ mkdir -p $DEST_DIR
 # OLD:
 if [[ "$MODE" == "docker" ]]
 then
-  docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
+  $DOCKER_PREFIX docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
 else
   TEMP_DIR=$WORK/local/temp
   TEMP_SEAL5_HOME=$TEMP_DIR/seal5_llvm
