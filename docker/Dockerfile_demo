@@ -2,7 +2,6 @@ FROM philippvk/isaac-quickstart-full AS builder
 LABEL maintainer="ISAAC Developers"
 
 ENV IN_DEMO_DOCKER=1
-CMD ["test"]
 ENTRYPOINT ["/demo/scripts/demo.sh"]
 
 ENV SETUPTOOLS_SCM_PRETEND_VERSION=0.0.1
