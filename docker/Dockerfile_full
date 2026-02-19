@@ -1,8 +1,5 @@
-# Debian 12
-# FROM debian:bookworm-slim AS builder
-# Debian 11
-# FROM debian:bullseye-slim AS builder
-FROM ubuntu:20.04 AS builder
+ARG BASE_IMAGE=philippvk/isaac-quickstart-extra
+FROM ${BASE_IMAGE} AS builder
 LABEL maintainer="ISAAC Developers"
 
 ARG CLONE_DEPTH=1
@@ -12,15 +9,9 @@ ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
 ENV PATH="/opt/cmake/bin/:$PATH:"
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install build dependencies of llvm.
-# First, Update the apt's source list and include the sources of the packages.
-RUN grep deb /etc/apt/sources.list | \
-    sed 's/^deb/deb-src /g' >> /etc/apt/sources.list
-# Install compiler, python and subversion.
-# Install compiler, python and subversion.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates gnupg \
-        build-essential cmake make python3 zlib1g wget subversion git ninja-build python3-dev \
+        build-essential make python3 zlib1g wget subversion git ninja-build python3-dev \
         gpg apt-transport-https curl manpages-dev software-properties-common \
 	      yosys-dev openjdk-21-jdk maven vim openssh-client \
         python3-pip python3-venv libssl-dev libboost-all-dev zip unzip ccache \
@@ -29,29 +20,15 @@ RUN apt-get update && \
         autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential \
         bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ca-certificates \
         virtualenv git python3-dev python3-pip python3-setuptools python3-venv libtinfo5 libzstd-dev \
-        gcc libedit-dev libxml2-dev libopenblas-dev liblapack-dev gfortran cmake unzip ninja-build python-is-python3 device-tree-compiler libboost-all-dev \
+        gcc libedit-dev libxml2-dev libopenblas-dev liblapack-dev gfortran unzip ninja-build python-is-python3 device-tree-compiler libboost-all-dev \
         libfl-dev lsb-release libelf-dev libssl-dev poppler-utils \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/ \
     && rm -rf /var/lib/apt/lists
 
-RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" \
-        | tee /etc/apt/sources.list.d/sbt.list \
-    && curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" \
-        | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import \
-    && chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg \
-    && apt update \
-    && apt install -qqq -y sbt --no-install-recommends \
-    && rm -rf /var/cache/apt/archives/ \
-    && rm -rf /var/lib/apt/lists
-
-COPY --from=philippvk/isaac-quickstart-etiss /opt/cmake/ /opt/cmake/
 COPY --from=philippvk/isaac-quickstart-etiss /work /work
 COPY --from=philippvk/isaac-quickstart-seal5 /work /work
 COPY --from=philippvk/isaac-quickstart-mlonmcu /work /work
-COPY --from=philippvk/isaac-quickstart-mlonmcu /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so
-COPY --from=philippvk/isaac-quickstart-mlonmcu /usr/local/include/mgclient.h /usr/local/include/mgclient.h
-COPY --from=philippvk/isaac-quickstart-mlonmcu /usr/local/include/mgclient-export.h /usr/local/include/mgclient-export.h
 COPY --from=philippvk/isaac-quickstart-hls /isax-tools /isax-tools
 
 CMD ["help"]
@@ -66,29 +43,3 @@ COPY ./docker/full_script.sh /work/full_script.sh
 
 ENTRYPOINT ["/work/full_script.sh"]
 ENV LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
-RUN ln -s /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so.2
-
-RUN arch=$(uname -m) && \
-    if [ "$arch" = "x86_64" ]; then \
-    MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"; \
-    elif [ "$arch" = "aarch64" ]; then \
-    MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh"; \
-    else \
-    echo "Unsupported architecture: $arch"; \
-    exit 1; \
-    fi && \
-    wget $MINICONDA_URL -O miniconda.sh && \
-    mkdir -p /root/.conda && \
-    bash miniconda.sh -b -p /root/miniconda3 && \
-    rm -f miniconda.sh
-
-ENV PATH="/root/miniconda3/bin:${PATH}"
-
-RUN conda --version
-RUN conda init
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-RUN conda install python=3.10
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
-ENV PYTHON_EXE=python3.10
