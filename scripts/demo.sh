@@ -6,6 +6,14 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/nu
 TOP_DIR=$(dirname $SCRIPT_DIR)
 VENV_DIR=${VENV_DIR:-$TOP_DIR/venv}
 
-source $VENV_DIR/bin/activate
+CONFIG=${CONFIG:-""}
+
+# source $VENV_DIR/bin/activate
+source $SCRIPT_DIR/env.sh
+
+if [[ -f "$CONFIG" ]]
+then
+    source $CONFIG
+fi
 
 $SCRIPT_DIR/full_flow.sh "$@"
