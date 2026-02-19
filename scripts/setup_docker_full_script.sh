@@ -5,9 +5,12 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
 
-$SCRIPT_DIR/setup_python.sh
-# $SCRIPT_DIR/setup_python_docker.sh
-. $SCRIPT_DIR/env.sh
+# TODO: move to docker image
+export PYTHON_EXE=python3.10
+
+# $SCRIPT_DIR/setup_python.sh
+$SCRIPT_DIR/setup_python_docker.sh
+# . $SCRIPT_DIR/env.sh
 $SCRIPT_DIR/setup_ccache.sh
 # $SCRIPT_DIR/setup_mgclient.sh
 # $SCRIPT_DIR/setup_llvm.sh

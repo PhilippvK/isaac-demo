@@ -116,3 +116,4 @@ ENV PATH="/opt/conda/envs/py310/bin:$PATH"
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --profile minimal
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustup show
+ENV PYTHON_EXE=python3.10
