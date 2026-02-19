@@ -22,3 +22,4 @@ RUN cd /demo && ./scripts/launch.sh && ./scripts/setup_ccache.sh
 RUN conda clean --all
 ENV VENV_DIR=/venv
 CMD ["help"]
+ENV PYTHON_EXE=python3.10
