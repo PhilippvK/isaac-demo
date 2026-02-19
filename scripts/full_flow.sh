@@ -4,16 +4,22 @@ set -e
 
 NOW=$(date +%Y%m%dT%H%M%S)
 
-BENCH=${1:-coremark}
+BENCH=${1:-help}
 DATE=${2:-now} # valid: now/latest/20241118101112
 STEPS=${3:-all}
+
+if [[ "$BENCH" == "help" ]]
+then
+    echo "Usage: $0 BENCH_NAME [now|latest|20241118101112|...] [all|demo_iss|...]"
+    exit 1
+fi
 
 echo "BENCH=$BENCH"
 echo "DATE=$DATE"
 echo "STEPS=$STEPS"
 
-# OUT_DIR_BASE=$(pwd)/out
-BENCH_DIR=out/$BENCH/
+OUT_DIR_BASE=${OUT_DIR_BASE:-out}
+BENCH_DIR=$OUT_DIR_BASE/$BENCH/
 
 NEW=0
 

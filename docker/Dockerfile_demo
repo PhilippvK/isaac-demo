@@ -1,0 +1,25 @@
+FROM philippvk/isaac-quickstart-full AS builder
+LABEL maintainer="ISAAC Developers"
+
+ENV IN_DEMO_DOCKER=1
+CMD ["test"]
+ENTRYPOINT ["/demo/scripts/demo.sh"]
+
+ENV SETUPTOOLS_SCM_PRETEND_VERSION=0.0.1
+RUN mkdir /demo
+RUN ln -s /work/seal5 /demo/seal5
+RUN ln -s /work/etiss /demo/etiss
+ADD scripts/ /demo/scripts
+ADD cfg/ /demo/cfg
+ADD isaac-toolkit/ /demo/isaac-toolkit
+ADD constraints/ /demo/constraints
+ADD etiss_arch_riscv/ /demo/etiss_arch_riscv
+ADD M2-ISA-R/ /demo/M2-ISA-R
+ADD requirements.txt /demo/
+RUN echo "[global]" > /etc/pip.conf && echo "no-cache-dir = True" >> /etc/pip.conf
+RUN cd /demo && ./scripts/setup_python.sh
+RUN cd /demo && ./scripts/launch.sh && ./scripts/setup_ccache.sh
+RUN conda clean --all
+ENV VENV_DIR=/venv
+CMD ["help"]
+ENV PYTHON_EXE=python3.10

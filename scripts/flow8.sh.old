@@ -23,7 +23,7 @@ cp $WORK/$SET_NAME.hls.core_desc /work/git/tuda/isax-tools-integration/nailgun/i
 mkdir -p $WORK/docker/hls/
 sudo chmod 777 -R $WORK/docker/hls
 mkdir -p $WORK/docker/hls/output
-docker run -i --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools/nailgun && CONFIG_PATH=$WORK/docker/hls/.config OUTPUT_PATH=$WORK/docker/hls/output ISAXES=ISAAC SIM_EN=n CORE=$CORE_NAME SKIP_AWESOME_LLVM=y make gen_config ci"
+$DOCKER_PREFIX docker run -i --rm -v /work/git/tuda/isax-tools-integration/:/isax-tools -v $(pwd):$(pwd) isaac-quickstart-hls:latest "date && cd /isax-tools/nailgun && CONFIG_PATH=$WORK/docker/hls/.config OUTPUT_PATH=$WORK/docker/hls/output ISAXES=ISAAC SIM_EN=n CORE=$CORE_NAME SKIP_AWESOME_LLVM=y make gen_config ci"
 python3 scripts/collect_hls_metrics.py $WORK/docker/hls/output --output $WORK/docker/hls/hls_metrics.csv --print
 # NEW:
 # python3 -m isaac_toolkit.retargeting.hls --sess $SESS --workdir $WORK --set-name $SET_NAME --docker --core $CORE_NAME
