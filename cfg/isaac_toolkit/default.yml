@@ -25,6 +25,7 @@ flow:
       core_name: XIsaacCore
     docker:
       etiss_image: philippvk/isaac-quickstart-etiss:latest
+      etiss_perf_image: philippvk/isaac-quickstart-etiss-perf:latest
       seal5_image: philippvk/isaac-quickstart-seal5:latest
       hls_image: philippvk/isaac-quickstart-hls:latest
       enable: true  # TODO: enable/disable docker per stage?
