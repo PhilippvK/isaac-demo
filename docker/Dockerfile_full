@@ -6,6 +6,7 @@ FROM ubuntu:20.04 AS builder
 LABEL maintainer="ISAAC Developers"
 
 ARG CLONE_DEPTH=1
+ENV IN_FULL_DOCKER=1
 ENV SEAL5_HOME=/work/llvm/
 ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
 ENV PATH="/opt/cmake/bin/:$PATH:"
@@ -49,6 +50,8 @@ COPY --from=philippvk/isaac-quickstart-etiss /work /work
 COPY --from=philippvk/isaac-quickstart-seal5 /work /work
 COPY --from=philippvk/isaac-quickstart-mlonmcu /work /work
 COPY --from=philippvk/isaac-quickstart-mlonmcu /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so
+COPY --from=philippvk/isaac-quickstart-mlonmcu /usr/local/include/mgclient.h /usr/local/include/mgclient.h
+COPY --from=philippvk/isaac-quickstart-mlonmcu /usr/local/include/mgclient-export.h /usr/local/include/mgclient-export.h
 COPY --from=philippvk/isaac-quickstart-hls /isax-tools /isax-tools
 
 CMD ["help"]

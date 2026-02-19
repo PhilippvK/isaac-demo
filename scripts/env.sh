@@ -20,9 +20,11 @@ export GNU_DIR=$INSTALL_DIR/gnu
 export LLVM_INSTALL_DIR=$INSTALL_DIR/llvm
 export ETISS_INSTALL_DIR=$INSTALL_DIR/etiss
 
-if [[ ! -z "$IN_FULL_DOCKER" ]]
+if [[ ! -z "$IN_DEMO_DOCKER" ]]
 then
-    # DEFAULT_VENV_DIR=${DEFAULT_VENV_DIR:-/venv}
+    DEFAULT_VENV_DIR=/venv
+elif [[ ! -z "$IN_FULL_DOCKER" ]]
+then
     DEFAULT_VENV_DIR=$TOP_DIR/venv
 else
     DEFAULT_VENV_DIR=$TOP_DIR/venv
