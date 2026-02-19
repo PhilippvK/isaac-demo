@@ -448,6 +448,16 @@ then
         python3 scripts/parse_kconfig.py $DEST_DIR/shared/output/Kconfig $DEST_DIR/shared/hls_schedules.csv
         python3 scripts/get_selected_schedule_metrics.py $DEST_DIR/shared/hls_schedules.csv $DEST_DIR/shared/output/selected_solutions.yaml $DEST_DIR/shared/hls_selected_schedule_metrics.csv
     fi
+elif [[ $HLS_TOOL == "fake" ]]
+then
+    HLS_FAKE_CORE_NAME=cv32e40p
+    SESS=$DIR/sess
+    DEST_DIR=$WORK/local/fake_hls
+    mkdir -p $DEST_DIR
+
+    # INDEX_FILE=$WORK/final_index.yml
+    INDEX_FILE=$WORK/combined_index.yml
+    python3 -m isaac_toolkit.retargeting.fake_hls --sess $SESS --workdir $WORK --set-name $SET_NAME --core $HLS_FAKE_CORE_NAME --index $INDEX_FILE
 else
     echo "Unsupported HLS_TOOL: $HLS_TOOL"
     exit 1
