@@ -206,9 +206,9 @@ then
               # python3 -m isaac_toolkit.retargeting.hls --sess $SESS --workdir $WORK --set-name $SET_NAME --docker --core $HLS_NAILGUN_CORE_NAME
                if [[ "$HLS_DOCKER_LEGACY" == "1" ]]
                then
-                   docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
+                   $DOCKER_PREFIX docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
               else
-                  docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
+                  $DOCKER_PREFIX docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
               fi
            # sudo chmod 777 -R $DEST_DIR
            else
@@ -261,11 +261,11 @@ then
             then
                 # echo docker run -it --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
                 # read -n 1
-                docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
+                $DOCKER_PREFIX docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
            else
                # echo docker run -it --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
                # read -n 1
-               docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
+               $DOCKER_PREFIX docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
            fi
         # sudo chmod 777 -R $DEST_DIR
         else
@@ -348,9 +348,9 @@ then
            # python3 -m isaac_toolkit.retargeting.hls --sess $SESS --workdir $WORK --set-name $SET_NAME --docker --core $HLS_NAILGUN_CORE_NAME
             if [[ "$HLS_DOCKER_LEGACY" == "1" ]]
             then
-                docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
+                $DOCKER_PREFIX docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
            else
-               docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
+               $DOCKER_PREFIX docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
            fi
         # sudo chmod 777 -R $DEST_DIR
         else
@@ -412,9 +412,9 @@ then
            # python3 -m isaac_toolkit.retargeting.hls --sess $SESS --workdir $WORK --set-name $SET_NAME --docker --core $HLS_NAILGUN_CORE_NAME
             if [[ "$HLS_DOCKER_LEGACY" == "1" ]]
             then
-                docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
+                $DOCKER_PREFIX docker run -i --rm -v $TOOLS_PATH:/isax-tools -v $(pwd):$(pwd) $HLS_IMAGE "date && cd /isax-tools/nailgun && export NP_GIT=$(which git) && export GRB_LICENSE_FILE=/isax-tools/gurobi.lic && CONFIG_PATH=$OUTPUT_DIR/.config OUTPUT_PATH=$OUTPUT_DIR $HLS_ARGS make gen_config ci && chmod 777 -R $OUTPUT_DIR"
            else
-               docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
+               $DOCKER_PREFIX docker run -i --rm -v $DOCKER_MOUNT_ARGS $DOCKER_ENV_ARGS $HLS_IMAGE $OUTPUT_DIR $GEN_DIR $HLS_ARGS
            fi
         # sudo chmod 777 -R $DEST_DIR
         else
@@ -448,6 +448,16 @@ then
         python3 scripts/parse_kconfig.py $DEST_DIR/shared/output/Kconfig $DEST_DIR/shared/hls_schedules.csv
         python3 scripts/get_selected_schedule_metrics.py $DEST_DIR/shared/hls_schedules.csv $DEST_DIR/shared/output/selected_solutions.yaml $DEST_DIR/shared/hls_selected_schedule_metrics.csv
     fi
+elif [[ $HLS_TOOL == "fake" ]]
+then
+    HLS_FAKE_CORE_NAME=cv32e40p
+    SESS=$DIR/sess
+    DEST_DIR=$WORK/local/fake_hls
+    mkdir -p $DEST_DIR
+
+    # INDEX_FILE=$WORK/final_index.yml
+    INDEX_FILE=$WORK/combined_index.yml
+    python3 -m isaac_toolkit.retargeting.fake_hls --sess $SESS --workdir $WORK --set-name $SET_NAME --core $HLS_FAKE_CORE_NAME --index $INDEX_FILE
 else
     echo "Unsupported HLS_TOOL: $HLS_TOOL"
     exit 1
