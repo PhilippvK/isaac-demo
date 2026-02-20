@@ -100,7 +100,7 @@ python3 -m isaac_toolkit.eval.ise.compare_bench --sess $SESS2 --report $REPORT_C
 python3 -m isaac_toolkit.eval.ise.compare_sess --sess $SESS2 --with $SESS $FORCE_ARGS
 # TODO: move to isaac-toolkit
 python3 $SCRIPTS_DIR/diff_summary.py $DIR > $DIR/diff_summary.txt
-python3 $SCRIPTS_DIR/diff_summary.py $DIR --fancy > $DIR/diff_summary_fancy.txt
+which diff-so-fancy && python3 $SCRIPTS_DIR/diff_summary.py $DIR --fancy > $DIR/diff_summary_fancy.txt || :
 # python3 -m isaac_toolkit.eval.ise.score.total --sess $SESS2
 # python3 -m isaac_toolkit.eval.ise.summary --sess $SESS2  # -> combine all data into single table/plot/pdf?
 

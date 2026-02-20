@@ -12,4 +12,4 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
-# python3 gen_ci_summary.py out/embench_iot/crc32/20251124T100852/experiment.ini --fmt md
+python3 $SCRIPTS_DIR/gen_ci_summary.py $DIR/experiment.ini --fmt md > $DIR/ci_report.md
