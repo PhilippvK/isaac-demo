@@ -10,7 +10,7 @@ DOCKER_NAMESPACE=philippvk
 
 DOCKER_IMAGE_PREFIX=isaac-quickstart-
 
-DOCKER_IMAGE_NAMES=(base extra etiss etiss_perf seal5 mlonmcu mlonmcu_min min full demo)
+DOCKER_IMAGE_NAMES=(base extra etiss etiss-perf seal5 mlonmcu mlonmcu-min min full demo)
 
 TAG=${1:-"latest"}
 
@@ -20,6 +20,8 @@ for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     if [[ "$TAG" != "" ]]
     then
         echo docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
+        docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
     fi
     echo docker push $DOCKER_IMAGE:$TAG
+    docker push $DOCKER_IMAGE:$TAG
 done

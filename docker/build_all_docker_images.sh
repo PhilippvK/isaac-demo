@@ -10,11 +10,14 @@ DOCKER_NAMESPACE=philippvk
 
 DOCKER_IMAGE_PREFIX=isaac-quickstart-
 
-DOCKER_IMAGE_NAMES=(base extra etiss etiss_perf seal5 mlonmcu mlonmcu_min min full demo)
+DOCKER_IMAGE_NAMES=(base extra etiss etiss-perf seal5 mlonmcu mlonmcu-min min full demo)
 
 TAG=${1:-"latest"}
 
 for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     DOCKER_IMAGE=$DOCKER_NAMESPACE/${DOCKER_IMAGE_PREFIX}${name}
-    echo $DOCKER_DIR/build_docker_image_${name}.sh
+    echo "DOCKER_IAMGE=$DOCKER_IMAGE"
+    name2=${name/-/_}
+    echo $DOCKER_DIR/build_docker_image_${name2}.sh
+    $DOCKER_DIR/build_docker_image_${name}.sh
 done
