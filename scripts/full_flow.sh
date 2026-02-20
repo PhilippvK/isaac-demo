@@ -159,7 +159,7 @@ then
     STEPS="bench_perf_0;trace_perf_0;isaac_0_load_perf;isaac_0_analyze_perf;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_perf_0;compare_perf_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;spec_0_filtered;select_0_filtered;compare_0_filtered_selected;fake_hls_0;etiss_perf_0;compare_perf_0_filtered_selected;assign_0_compare_filtered_selected;assign_0_compare_perf_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;report_0"
 elif [[ "$STEPS" == "demo_perf_alt" ]]
 then
-    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;isaac_0_generate_filtered;isaac_0_etiss_filtered;fake_hls_0_filtered;assign_0_fake_hls_filtered;select_0_filtered;compare_0_filtered_selected;assign_0_compare_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;report_0"
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;isaac_0_generate_filtered;isaac_0_etiss_filtered;fake_hls_0_filtered;assign_0_fake_hls_filtered;select_0_filtered;compare_0_filtered_selected;assign_0_compare_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;etiss_perf_0_filtered_selected;compare_perf_0_filtered_selected;retrace_perf_0_filtered_selected;reanalyze_perf_0_filtered_selected;report_0"
 elif [[ "$STEPS" == "all_skip_hls" ]]
 then
     STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;isaac_0_etiss;seal5_0;etiss_0;compare_0;compare_others_0;retrace_0;reanalyze_0;report_0"
@@ -294,9 +294,12 @@ lookup_script() {
     then
         # echo -n "./scripts/flow7.sh"
         echo -n "./scripts/flow_etiss.sh"
-    elif [[ "$STEP" == "etiss_0_final" ]]
+    elif [[ "$step" == "etiss_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_etiss.sh"
+    elif [[ "$step" == "etiss_perf_0_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_etiss_perf.sh"
     elif [[ "$STEP" == "hls_0" ]]
     then
         # echo -n "./scripts/flow8.sh"
@@ -355,6 +358,22 @@ lookup_script() {
     then
         # echo -n "./scripts/flow10_per_instr.sh"
         echo -n "./scripts/flow_compare_per_instr.sh"
+    elif [[ "$STEP" == "compare_perf_0" ]]
+    then
+        # echo -n "./scripts/flow10.sh"
+        echo -n "./scripts/flow_compare_perf.sh"
+    elif [[ "$STEP" == "compare_perf_0_filtered" ]]
+    then
+        # echo -n "./scripts/flow10.sh"
+        echo -n "FILTERED=1 BUILD_ARCH=1 ./scripts/flow_compare_perf.sh"
+    elif [[ "$STEP" == "compare_perf_0_filtered_selected" ]]
+    then
+        # echo -n "./scripts/flow10.sh"
+        echo -n "FILTERED=1 SELECTED=1 BUILD_ARCH=1 ./scripts/flow_compare_perf.sh"
+    elif [[ "$STEP" == "compare_perf_0_per_instr" ]]
+    then
+        # echo -n "./scripts/flow10_per_instr.sh"
+        echo -n "./scripts/flow_compare_perf_per_instr.sh"
     elif [[ "$STEP" == "filter_0" ]]
     then
         # echo -n "./scripts/flow10_filter.sh"
@@ -385,6 +404,18 @@ lookup_script() {
     then
         # echo -n "./scripts/flow10_.sh"
         echo -n "FILTERED=1 SELECTED=1 BUILD_ARCH=1 ./scripts/flow_compare_others.sh"
+    elif [[ "$STEP" == "compare_perf_others_0" ]]
+    then
+        # echo -n "./scripts/flow10_.sh"
+        echo -n "./scripts/flow_compare_perf_others.sh"
+    elif [[ "$STEP" == "compare_perf_others_0_filtered" ]]
+    then
+        # echo -n "./scripts/flow10_.sh"
+        echo -n "FILTERED=1 BUILD_ARCH=1 ./scripts/flow_compare_perf_others.sh"
+    elif [[ "$STEP" == "compare_perf_others_0_filtered_selected" ]]
+    then
+        # echo -n "./scripts/flow10_.sh"
+        echo -n "FILTERED=1 SELECTED=1 BUILD_ARCH=1 ./scripts/flow_compare_perf_others.sh"
     elif [[ "$STEP" == "retrace_0" ]]
     then
         # echo -n "./scripts/flow11.sh"
@@ -467,6 +498,69 @@ lookup_script() {
     elif [[ "$STEP" == "assign_0_compare_others_filtered_selected" ]]
     then
         echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_per_instr" ]]
+    then
+        echo -n "FILTERED=0 ./scripts/flow_assign_compare_per_instr.sh"
+    elif [[ "$STEP" == "assign_0_compare" ]]
+    then
+        echo -n "./scripts/flow_assign_compare.sh"
+    elif [[ "$STEP" == "assign_0_compare_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_assign_compare.sh"
+    elif [[ "$STEP" == "assign_0_compare_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare.sh"
+    elif [[ "$STEP" == "assign_0_compare_others" ]]
+    then
+        echo -n "./scripts/flow_assign_compare_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_others_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_assign_compare_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_others_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_per_instr" ]]
+    then
+        echo -n "FILTERED=0 ./scripts/flow_assign_compare_perf_per_instr.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf" ]]
+    then
+        echo -n "./scripts/flow_assign_compare_perf.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_assign_compare_perf.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare_perf.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_others" ]]
+    then
+        echo -n "./scripts/flow_assign_compare_perf_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_others_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_assign_compare_perf_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_others_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare_perf_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_per_instr" ]]
+    then
+        echo -n "FILTERED=0 ./scripts/flow_assign_compare_perf_per_instr.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf" ]]
+    then
+        echo -n "./scripts/flow_assign_compare_perf.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_assign_compare_perf.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare_perf.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_others" ]]
+    then
+        echo -n "./scripts/flow_assign_compare_perf_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_others_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_assign_compare_perf_others.sh"
+    elif [[ "$STEP" == "assign_0_compare_perf_others_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_assign_compare_perf_others.sh"
     elif [[ "$STEP" == "assign_0_util" ]]
     then
         echo -n "./scripts/flow_assign_util.sh"
@@ -572,12 +666,24 @@ lookup_script() {
     elif [[ "$STEP" == "compare_others_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_compare_others.sh"
+    elif [[ "$STEP" == "compare_perf_0_final" ]]
+    then
+        echo -n "FINAL=1 ./scripts/flow_compare_perf.sh"
+    elif [[ "$STEP" == "compare_perf_others_0_final" ]]
+    then
+        echo -n "FINAL=1 ./scripts/flow_compare_perf_others.sh"
     elif [[ "$STEP" == "retrace_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_retrace.sh"
     elif [[ "$STEP" == "reanalyze_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_reanalyze.sh"
+    elif [[ "$STEP" == "retrace_perf_0_final" ]]
+    then
+        echo -n "FINAL=1 ./scripts/flow_retrace_perf.sh"
+    elif [[ "$STEP" == "reanalyze_perf_0_final" ]]
+    then
+        echo -n "FINAL=1 ./scripts/flow_reanalyze_perf.sh"
     elif [[ "$STEP" == "report_0" ]]
     then
         echo -n "./scripts/flow_report.sh"
