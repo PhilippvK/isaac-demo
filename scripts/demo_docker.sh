@@ -10,6 +10,7 @@ TOP_DIR=$(dirname $SCRIPT_DIR)
 DOCKER_IMAGE=${DOCKER_IMAGE:-philippvk/isaac-quickstart-demo:latest}
 CONFIG=${CONFIG:-""}
 DOCKER_PREFIX=${DOCKER_PREFIX:-""}
+OUT_DIR_BASE=$(realpath ${OUT_DIR_BASE:-$TOP_DIR/out})
 
-echo $DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG --workdir $(pwd) $DOCKER_IMAGE $@
-$DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG --workdir $(pwd) $DOCKER_IMAGE $@
+echo $DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG -e OUT_DIR_BASE=$OUT_DIR_BASE --workdir /demo $DOCKER_IMAGE $@
+$DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG -e OUT_DIR_BASE=$OUT_DIR_BASE --workdir /demo $DOCKER_IMAGE $@

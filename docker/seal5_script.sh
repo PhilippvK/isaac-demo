@@ -67,6 +67,11 @@ python3 -m seal5.backends.report.test_results.writer $SEAL5_HOME/.seal5/models/*
 python3 -m seal5.backends.report.diff.writer --yaml $SEAL5_HOME/.seal5/settings.yml --output $DEST/seal5_reports/diff.csv
 python3 -m seal5.backends.report.times.writer --yaml $SEAL5_HOME/.seal5/settings.yml --pass-times --output $DEST/seal5_reports/stage_times.csv --sum-level 2
 chmod -R 777 $DEST
+seal5 $VERBOSE_ARGS reset  --settings
+seal5 $VERBOSE_ARGS clean --temp --patches --models --inputs
+LLVM_REPO="https://github.com/PhilippvK/llvm-project.git"
+LLVM_REF=seal5-default-stage0
+seal5 $VERBOSE_ARGS init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --force
 
 if [[ "$CLEANUP" == "1" ]]
 then

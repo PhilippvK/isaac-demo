@@ -1,36 +1,7 @@
-ARG BASE_IMAGE=philippvk/isaac-quickstart-extra
+ARG BASE_IMAGE=philippvk/isaac-quickstart-mlonmcu-min
 
 FROM ${BASE_IMAGE} AS builder
 LABEL maintainer="MLonMCU Developers"
-
-RUN apt-get update \
-    && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends wget unzip vim openssh-client \
-    g++ graphviz doxygen libtinfo-dev zlib1g-dev \
-    autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential \
-    bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ca-certificates \
-    virtualenv git python3-dev python3-pip python3-setuptools python3-venv libtinfo5 libzstd-dev \
-    gcc libedit-dev libxml2-dev libopenblas-dev liblapack-dev gfortran unzip ninja-build python-is-python3 device-tree-compiler libboost-all-dev \
-    libfl-dev lsb-release libelf-dev libssl-dev \
-    && apt-get clean \
-    && rm -rf /var/cache/apt/archives/ \
-    && rm -rf /var/cache/apt/lists
-
-
-ADD mlonmcu /mlonmcu
-RUN rm /mlonmcu/.git
-ADD .git/modules/mlonmcu /mlonmcu/.git
-WORKDIR /mlonmcu
-RUN ls -al
-RUN python3 -m venv /venv
-ENV PATH="/venv/bin:$PATH"
-RUN . /venv/bin/activate && pip install --upgrade pip --no-cache-dir
-RUN . /venv/bin/activate && pip install -r requirements.txt --no-cache-dir
-RUN . /venv/bin/activate && pip install . --no-cache-dir
-
-WORKDIR /environment
-
-ADD environment_docker.yml.j2 /tmp/environment.yml.j2
 
 RUN mlonmcu init --template /tmp/environment.yml.j2 --non-interactive /environment --clone-models
 ENV MLONMCU_HOME=/environment
@@ -42,8 +13,6 @@ RUN . /venv/bin/activate && pip install -r /environment/requirements_addition.tx
 RUN . /venv/bin/activate && mlonmcu setup -v
 
 VOLUME /environment
-
-COPY ./docker/mlonmcu_script.sh /work/mlonmcu_script.sh
 
 ENTRYPOINT ["/work/mlonmcu_script.sh"]
 CMD ["help"]
