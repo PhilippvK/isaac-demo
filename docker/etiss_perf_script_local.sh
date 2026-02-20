@@ -72,10 +72,17 @@ set -e
 ETISS_REF=xisaac_gen
 ETISS_PERF_WS_REF=xisaac_gen
 ETISS_PERF_REF=xisaac_gen
-git clone https://github.com/tum-ei-eda/PerformanceSimulation_workspace.git --branch $ETISS_PERF_WS_REF --recursive $ETISS_PERF_HOME
+if [[ ! -d $ETISS_PERF_HOME ]]
+then
+  git clone https://github.com/tum-ei-eda/PerformanceSimulation_workspace.git --branch $ETISS_PERF_WS_REF --recursive $ETISS_PERF_HOME
+fi
 cd $ETISS_PERF_HOME
+git checkout $ETISS_PERF_WS_REF
+git pull origin $ETISS_PERF_WS_REF
 git -C etiss-perf-sim checkout $ETISS_PERF_REF
+git -C etiss-perf-sim pull origin $ETISS_PERF_REF
 git -C etiss-perf-sim/etiss checkout $ETISS_REF
+git -C etiss-perf-sim/etiss pull origin $ETISS_REF
 git submodule update --init --recursive
 
 ./scripts/setup_workspace.sh
@@ -109,7 +116,9 @@ cd -
 cd code_gen/descriptions/core_perf_dsl
 # TODO: get core, template,... from yaml?
 $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh pip install -r requirements.txt
-mkdir ini_out
+mkdir -p ini_out
+pwd
+echo $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --selected all --hls-dir $HLS_DIR/output --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json
 $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --selected all --hls-dir $HLS_DIR/output --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json
 mkdir -p $DEST/ini/
 cp -r ini_out/* $DEST/ini/
