@@ -290,6 +290,10 @@ lookup_script() {
     then
         # echo -n "SPLITTED=1 ./scripts/flow6.sh"
         echo -n "SPLITTED=1 ./scripts/flow_seal5.sh"
+    elif [[ "$STEP" == "seal5_0_splitted_filtered_selected" ]]
+    then
+        # echo -n "SPLITTED=1 ./scripts/flow6.sh"
+        echo -n "SPLITTED=1 FILTERED=1 SELECTED=1 ./scripts/flow_seal5.sh"
     elif [[ "$STEP" == "seal5_0_final" ]]
     then
         echo -n "FINAL=1 SPLITTED=0 ./scripts/flow_seal5.sh"
@@ -300,6 +304,9 @@ lookup_script() {
     elif [[ "$step" == "etiss_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_etiss.sh"
+    elif [[ "$step" == "etiss_perf_0_filtered" ]]
+    then
+        echo -n "FILTERED=1 ./scripts/flow_etiss_perf.sh"
     elif [[ "$step" == "etiss_perf_0_filtered_selected" ]]
     then
         echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_etiss_perf.sh"
