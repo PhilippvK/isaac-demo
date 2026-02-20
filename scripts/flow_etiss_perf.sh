@@ -49,6 +49,12 @@ then
     DEST_DIR=$DEST_DIR/etiss_perf_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
     SUFFIX="prelim"
+elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
+then
+    GEN_DIR=$WORK/gen_filtered_selected/
+    DEST_DIR=$DEST_DIR/etiss_perf_filtered_selected/
+    INDEX_FILE=$WORK/filtered_selected_index.yml
+    SUFFIX="filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
@@ -79,4 +85,4 @@ then
 fi
 python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss_perf --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS --$MODE
 
-python3 -m isaac_tookit.utils.annotate_global_artifacts $INDEX_FILE --inplace --data ETISS_PERF_INSTALL_DIR=$DEST_DIR/etiss_perf_install
+python3 -m isaac_toolkit.utils.annotate_global_artifacts $INDEX_FILE --inplace --data ETISS_PERF_INSTALL_DIR=$DEST_DIR/etiss_perf_install

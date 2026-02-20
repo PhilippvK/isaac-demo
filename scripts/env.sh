@@ -35,6 +35,7 @@ source $VENV_DIR/bin/activate
 
 # export ISAAC_DIR=/work/git/isaac-toolkit
 export ETISS_ARCH_DIR=${TOP_DIR}/etiss_arch_riscv
+export ETISS_DIR=${TOP_DIR}/etiss
 export ISAAC_DIR=${TOP_DIR}/isaac-toolkit
 export SEAL5_DIR=${TOP_DIR}/seal5
 export MLONMCU_DIR=${TOP_DIR}/mlonmcu
