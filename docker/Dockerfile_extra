@@ -1,0 +1,11 @@
+ARG BASE_IMAGE=philippvk/isaac-quickstart-base
+
+FROM ${BASE_IMAGE} AS builder
+
+COPY mgclient/ /work/mgclient
+# Setup mglcient (TODO: can we avoid this?)
+RUN test -d /work/mgclient/build &&  rm -r /work/mgclient/build || :
+RUN cmake -B /work/mgclient/build -S /work/mgclient -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX:PATH=/usr/local
+RUN cmake --build /work/mgclient/build -j$(nproc)
+RUN cmake --install /work/mgclient/build
+RUN rm -r /work/mgclient/build

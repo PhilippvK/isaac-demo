@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("exp_dir")
 parser.add_argument("-sess", default="sess_new_filtered_selected")  # TODO: auto
 parser.add_argument("--base-sess", default="sess")
+parser.add_argument("--fancy", action="store_true", help="Use diff-so-fancy")
 
 args = parser.parse_args()
 # print("args", args)
@@ -180,7 +181,11 @@ for i, row in merged_df.iterrows():
         # print("temppath", temppath)
         # input("!")
         # TODO: avoid code injection!
-        output = subprocess.run(f"git diff --no-index -w {base_name} {name} | diff-so-fancy", cwd=tempd, shell=True, check=False, stdout=subprocess.PIPE).stdout.decode()
+        cmd = f"git diff --no-index -w {base_name} {name}"
+        if args.fancy:
+            cmd += " | diff-so-fancy"
+
+        output = subprocess.run(cmd, cwd=tempd, shell=True, check=False, stdout=subprocess.PIPE).stdout.decode()
         # print("output")
         print(output)
     # print("=== ASM ===")

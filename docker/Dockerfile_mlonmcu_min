@@ -1,8 +1,4 @@
-ARG BASE_IMAGE=ubuntu:20.04
-ARG ENABLE_CMAKE="true"
-ARG CMAKE_REPO="https://github.com/Kitware/CMake"
-ARG CMAKE_VERSION="3.22.2"
-ARG CMAKE_TARGET="Linux-x86_64"
+ARG BASE_IMAGE=philippvk/isaac-quickstart-extra
 
 FROM ${BASE_IMAGE} AS builder
 LABEL maintainer="MLonMCU Developers"
@@ -14,19 +10,11 @@ RUN apt-get update \
     autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential \
     bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ca-certificates \
     virtualenv git python3-dev python3-pip python3-setuptools python3-venv libtinfo5 libzstd-dev \
-    gcc libedit-dev libxml2-dev libopenblas-dev liblapack-dev gfortran cmake unzip ninja-build python-is-python3 device-tree-compiler libboost-all-dev \
+    gcc libedit-dev libxml2-dev libopenblas-dev liblapack-dev gfortran unzip ninja-build python-is-python3 device-tree-compiler libboost-all-dev \
     libfl-dev lsb-release libelf-dev libssl-dev \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/ \
     && rm -rf /var/cache/apt/lists
-
-COPY mgclient/ /work/mgclient
-RUN test -d /work/mgclient/build && rm -r /work/mgclient/build || :
-# Setup mglcient (TODO: can we avoid this?)
-RUN cmake -B /work/mgclient/build -S /work/mgclient -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX:PATH=/usr/local
-RUN cmake --build /work/mgclient/build -j$(nproc)
-RUN cmake --install /work/mgclient/build
-RUN rm -r /work/mgclient/build
 
 ADD mlonmcu /mlonmcu
 RUN rm /mlonmcu/.git
