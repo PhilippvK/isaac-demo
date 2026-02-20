@@ -81,7 +81,7 @@ if [[ "$ETISS_INSTALL_DIR" != "" ]]
 then
     ETISS_SCRIPT=$ETISS_INSTALL_DIR/bin/run_helper.sh
     echo ETISS_SCRIPT=$ETISS_SCRIPT
-    EXTRA_ARGS+=("-c" "etissvp.script=$ETISS_SCRIPT etiss.script=$ETISS_SCRIPT")
+    EXTRA_ARGS+=("-c" "etissvp.script=$ETISS_SCRIPT" "-c" "etiss.script=$ETISS_SCRIPT")
 fi
 
 if [[ "$LLVM_INSTALL_DIR" != "" ]]

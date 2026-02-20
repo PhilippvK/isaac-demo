@@ -77,6 +77,6 @@ if [[ "$SUFFIX" != "" ]]
 then
     EXTRA_ARGS="--label $SUFFIX"
 fi
-python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS --$MODE
+python3 -m isaac_toolkit.flow.demo.stage.retargeting.iss_perf --sess $SESS --workdir $WORK $EXTRA_ARGS $FORCE_ARGS --$MODE
 
 python3 -m isaac_tookit.utils.annotate_global_artifacts $INDEX_FILE --inplace --data ETISS_PERF_INSTALL_DIR=$DEST_DIR/etiss_perf_install
