@@ -15,7 +15,7 @@ WORK=$DIR/work
 # echo "$WORK/docker/llvm_install"
 # sleep 10
 
-TARGET=${TARGET:-etiss}
+PERF_TARGET=${PERF_TARGET:-etiss_perf}
 ARCH=${ARCH:-rv32imfd}
 ABI=${ABI:-ilp32d}
 UNROLL=${UNROLL:-auto}
@@ -40,64 +40,64 @@ else
 fi
 SEAL5_DEST_DIR=$WORK/$SEAL5_MODE/
 
-USE_ETISS_DOCKER=${USE_ETISS_DOCKER:-1}
-if [[ "$USE_ETISS_DOCKER" == "1" ]]
+USE_ETISS_PERF_DOCKER=${USE_ETISS_PERF_DOCKER:-1}
+if [[ "$USE_ETISS_PERF_DOCKER" == "1" ]]
 then
-  ETISS_MODE="docker"
+  ETISS_PERF_MODE="docker"
 else
-  ETISS_MODE="local"
+  ETISS_PERF_MODE="local"
 fi
-ETISS_DEST_DIR=$WORK/$ETISS_MODE/
+ETISS_PERF_DEST_DIR=$WORK/$ETISS_PERF_MODE/
 
 if [[ "$FINAL" == "1" ]]
 then
-    ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_final/etiss_install
+    ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_final/etiss_perf_install
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_final/llvm_install
     SUFFIX="_final"
 elif [[ "$PRELIM" == "1" ]]
 then
-    ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_prelim/etiss_install
+    ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_prelim/etiss_perf_install
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_prelim/llvm_install
     SUFFIX="_prelim"
-elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
+elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
-    ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_filtered2_selected/etiss_install
+    ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered2_selected/etiss_perf_install
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered2_selected/llvm_install
-    SUFFIX="_filtered2_selected"
+    SUFFIX="_filtered2"
 elif [[ "$FILTERED2" == "1" ]]
 then
-    ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_filtered2/etiss_install
+    ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered2/etiss_perf_install
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered2/llvm_install
     SUFFIX="_filtered2"
-elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
+elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
     if [[ "$BUILD_ARCH" == 1 ]]
     then
-        ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss/etiss_install
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5/llvm_install
+        ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered/etiss_perf_install
     else
-        ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_filtered_selected/etiss_install
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered_selected/llvm_install
+        ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered_selected/etiss_perf_install
     fi
     SUFFIX="_filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
     if [[ "$BUILD_ARCH" == 1 ]]
     then
-        ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss/etiss_install
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5/llvm_install
+        ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered/etiss_perf_install
     else
-        ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_filtered/etiss_install
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered/llvm_install
+        ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered/etiss_perf_install
     fi
     SUFFIX="_filtered"
 else
-    ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss/etiss_install
+    ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf/etiss_perf_install
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5/llvm_install
     SUFFIX=""
 fi
 
-RUN2=${RUN}_new${SUFFIX}
+RUN2=${RUN}_new_perf${SUFFIX}
 
 if [[ "$BUILD_ARCH" == "1" ]]
 then
@@ -120,7 +120,9 @@ else
     FULL_ARCH=${ARCH}_xisaac
 fi
 
-ETISS_SCRIPT=$ETISS_INSTALL_DIR/bin/run_helper.sh
+ETISS_PERF_SCRIPT=$ETISS_PERF_INSTALL_DIR/bin/run_helper.sh
+ETISS_PERF_EXE=$ETISS_PERF_INSTALL_DIR/bin/bare_etiss_processor
+PERF_UARCH="cv32e40pxisaac"  # TODO: do not hardcode, use INI
 
 VERBOSE=${VERBOSE:-0}
 VERBOSE_ARGS=""
@@ -136,6 +138,7 @@ then
     EXTRA_ARGS+=("--backend=$BACKEND")
 fi
 
-python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 --label $LABEL-trace2${SUFFIX} -c etissvp.script=$ETISS_SCRIPT -c etiss.script=$ETISS_SCRIPT -c etiss.cpu_arch=$CORE_NAME -c llvm.install_dir=$LLVM_INSTALL_DIR -c $TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL "${EXTRA_ARGS[@]}"
+echo python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections --label $LABEL-trace-perf2${SUFFIX} -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c llvm.install_dir=$LLVM_INSTALL_DIR -c $PERF_TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL "${EXTRA_ARGS[@]}" -f perf_sim -c perf_sim.core=$PERF_UARCH -c etiss_perf.src_dir=$ETISS_PERF_SCRIPT -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR
+python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections --label $LABEL-trace-perf2${SUFFIX} -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c llvm.install_dir=$LLVM_INSTALL_DIR -c $PERF_TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL "${EXTRA_ARGS[@]}" -f perf_sim -c perf_sim.core=$PERF_UARCH -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR
 
 python3 -m mlonmcu.cli.main export --run -f -- $RUN2
