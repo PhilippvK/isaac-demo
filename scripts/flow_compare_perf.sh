@@ -76,7 +76,7 @@ then
     if [[ "$BUILD_ARCH" == 1 ]]
     then
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5/llvm_install
-        ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered/etiss_perf_install
+        ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered_selected/etiss_perf_install
     else
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered_selected/llvm_install
         ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered_selected/etiss_perf_install
