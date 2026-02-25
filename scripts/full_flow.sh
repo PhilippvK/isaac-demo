@@ -153,13 +153,13 @@ then
     # ";assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_others_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;spec_0_filtered;select_0_filtered;compare_0_filtered_selected;assign_0_compare_filtered_selected;compare_others_0_filtered_selected;assign_0_compare_others_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;filter_0_filtered_selected;score_0_filtered2;sort_0_filtered2;select_0_filtered2;isaac_0_generate_filtered2_selected;isaac_0_etiss_filtered2_selected;hls_0_filtered2_selected;assign_0_hls_filtered2_selected;syn_0_filtered2_selected;assign_0_syn_filtered2_selected;filter_0_filtered2_selected;score_0_filtered2_selected;sort_0_filtered2_selected;select_0_filtered2_selected;isaac_0_generate_final;isaac_0_etiss_final;seal5_0_final;etiss_0_final;compare_0_final;compare_others_0_final;retrace_0_final;reanalyze_0_final;report_0"
 elif [[ "$STEPS" == "demo_iss" ]]
 then
-    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;isaac_0_generate_filtered;isaac_0_etiss_filtered;report_0"
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;isaac_0_generate_filtered;isaac_0_etiss_filtered;fake_hls_0_filtered;assign_0_fake_hls_filtered;select_0_filtered;isaac_0_etiss_filtered_selected;fake_hls_0_filtered_selected;assign_0_fake_hls_filtered_selected;compare_0_filtered_selected;assign_0_compare_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;report_0"
 elif [[ "$STEPS" == "demo_perf" ]]
 then
     STEPS="bench_perf_0;trace_perf_0;isaac_0_load_perf;isaac_0_analyze_perf;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_perf_0;compare_perf_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;spec_0_filtered;select_0_filtered;compare_0_filtered_selected;fake_hls_0;etiss_perf_0;compare_perf_0_filtered_selected;assign_0_compare_filtered_selected;assign_0_compare_perf_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;report_0"
 elif [[ "$STEPS" == "demo_perf_alt" ]]
 then
-    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;isaac_0_generate_filtered;isaac_0_etiss_filtered;fake_hls_0_filtered;assign_0_fake_hls_filtered;select_0_filtered;isaac_0_etiss_filtered_selected;fake_hls_0_filtered_selected;assign_0_fake_hls_filtered_selected;compare_0_filtered_selected;assign_0_compare_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;etiss_perf_0_filtered_selected;compare_perf_0_filtered_selected;retrace_perf_0_filtered_selected;reanalyze_perf_0_filtered_selected;report_0"
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;assign_0_enc;isaac_0_etiss;seal5_0_splitted;assign_0_seal5;etiss_0;compare_0;compare_0_per_instr;assign_0_compare_per_instr;filter_0;isaac_0_generate_filtered;isaac_0_etiss_filtered;fake_hls_0_filtered;assign_0_fake_hls_filtered;select_0_filtered;isaac_0_etiss_filtered_selected;fake_hls_0_filtered_selected;assign_0_fake_hls_filtered_selected;compare_0_filtered_selected;assign_0_compare_filtered_selected;retrace_0_filtered_selected;reanalyze_0_filtered_selected;assign_0_util_filtered_selected;etiss_perf_0_filtered_selected;compare_perf_0_filtered_selected;retrace_perf_0_filtered_selected;report_0"
 elif [[ "$STEPS" == "all_skip_hls" ]]
 then
     STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;isaac_0_etiss;seal5_0;etiss_0;compare_0;compare_others_0;retrace_0;reanalyze_0;report_0"
@@ -266,13 +266,17 @@ lookup_script() {
     then
         # echo -n "./scripts/flow5.sh"
         echo -n "./scripts/flow_isaac_etiss.sh"
+    elif [[ "$STEP" == "isaac_0_etiss_temp" ]]
+    then
+        # echo -n "./scripts/flow5.sh"
+        echo -n "AUTO_ENCODING=0 ./scripts/flow_isaac_etiss.sh"
     elif [[ "$STEP" == "isaac_0_etiss_filtered" ]]
     then
         # echo -n "FILTERED=1 ./scripts/flow5.sh"
-        echo -n "FILTERED=1 ./scripts/flow_isaac_etiss.sh"
+        echo -n "FILTERED=1 AUTO_ENCODING=0 ./scripts/flow_isaac_etiss.sh"
     elif [[ "$STEP" == "isaac_0_etiss_filtered_selected" ]]
     then
-        echo -n "FILTERED=1 SELECTED=1 ./scripts/flow_isaac_etiss.sh"
+        echo -n "FILTERED=1 SELECTED=1 AUTO_ENCODING=0 ./scripts/flow_isaac_etiss.sh"
     elif [[ "$STEP" == "isaac_0_etiss_prelim" ]]
     then
         echo -n "PRELIM=1 ./scripts/flow_isaac_etiss.sh"
@@ -697,6 +701,9 @@ lookup_script() {
     elif [[ "$STEP" == "retrace_perf_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_retrace_perf.sh"
+    elif [[ "$STEP" == "retrace_perf_0_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 BUILD_ARCH=1 ./scripts/flow_retrace_perf.sh"
     elif [[ "$STEP" == "reanalyze_perf_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_reanalyze_perf.sh"
