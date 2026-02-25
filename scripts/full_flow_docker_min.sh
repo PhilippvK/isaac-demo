@@ -11,5 +11,5 @@ DOCKER_IMAGE=${DOCKER_IMAGE:-philippvk/isaac-quickstart-min:latest}
 CONFIG=${CONFIG:-""}
 DOCKER_PREFIX=${DOCKER_PREFIX:-""}
 
-echo $DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/full_flow_docker_min_script.sh $@
-$DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/full_flow_docker_min_script.sh $@
+echo $DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG -e IN_FULL_DOCKER=0 --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/full_flow_docker_min_script.sh $@
+$DOCKER_PREFIX docker run -i --rm --net=host -v $TOP_DIR/install/mlonmcu_temp:/environment/temp -v $TOP_DIR:$TOP_DIR -e CONFIG=$CONFIG -e IN_FULL_DOCKER=0 --workdir $(pwd) $DOCKER_IMAGE $SCRIPT_DIR/full_flow_docker_min_script.sh $@

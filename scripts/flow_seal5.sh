@@ -91,7 +91,7 @@ if [[ "$MODE" == "docker" ]]
 then
   $DOCKER_PREFIX docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
 else
-  if [[ ! -z "$IN_FULL_DOCKER" ]]
+  if [[ "$IN_FULL_DOCKER" == "1" ]]
   then
     $SEAL5_SCRIPT $DEST_DIR $CDSL_FILES $CFG_FILES
   else

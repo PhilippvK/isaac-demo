@@ -6,7 +6,6 @@ FROM ubuntu:20.04 AS builder
 LABEL maintainer="ISAAC Developers"
 
 ARG CLONE_DEPTH=1
-ENV IN_FULL_DOCKER=1
 ENV SEAL5_HOME=/work/llvm/
 ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
 ENV PATH="/opt/cmake/bin/:$PATH:"

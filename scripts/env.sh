@@ -23,7 +23,7 @@ export ETISS_INSTALL_DIR=$INSTALL_DIR/etiss
 if [[ ! -z "$IN_DEMO_DOCKER" ]]
 then
     DEFAULT_VENV_DIR=/venv
-elif [[ ! -z "$IN_FULL_DOCKER" ]]
+elif [[ "$IN_FULL_DOCKER" == "1" ]]
 then
     DEFAULT_VENV_DIR=$TOP_DIR/venv
 else
@@ -42,7 +42,7 @@ export MLONMCU_DIR=${TOP_DIR}/mlonmcu
 export MEMGRAPH_PY_DIR=${TOP_DIR}/memgraph_experiments
 export M2ISAR_DIR=${TOP_DIR}/M2-ISA-R
 export PYTHONPATH=${ISAAC_DIR}:${MEMGRAPH_PY_DIR}:${M2ISAR_DIR}:${SEAL5_DIR}:${MLONMCU_DIR}:$PYTHONPATH
-if [[ ! -z "$IN_FULL_DOCKER" ]]
+if [[ "$IN_FULL_DOCKER" == "1" ]]
 then
     DEFAULT_MLONMCU_HOME=${MLONMCU_HOME:-/environment}
 else
@@ -50,7 +50,7 @@ else
 fi
 export MLONMCU_HOME=$DEFAULT_MLONMCU_HOME
 
-if [[ ! -z "$IN_FULL_DOCKER" ]]
+if [[ "$IN_FULL_DOCKER" == "1" ]]
 then
     DEFAULT_MGCLIENT_INSTALL_DIR=${MGCLIENT_INSTALL_DIR:-/usr/local}
 else
