@@ -20,6 +20,7 @@ SET_NAME=${ISAAC_SET_NAME:-XIsaac}
 TUM_DIR=${CDSL_TUM_DIR:-$(pwd)/etiss_arch_riscv}
 BASE_DIR=${CDSL_BASE_DIR:-$(pwd)/etiss_arch_riscv/rv_base}
 EXTRA_INCLUDES=${CDSL_EXTRA_INCLUDES:-""}
+AUTO_ENCODING=${AUTO_ENCODING:-1}
 # TODO: ADD_MNEMONIC_PREFIX
 
 if [[ "$EXTRA_INCLUDES" == "" ]]
@@ -80,6 +81,15 @@ else
         GEN_DIR=$WORK/gen/
     fi
 fi
+EXTRA_ARGS=""
+
+if [[ "$AUTO_ENCODING" == "0" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --no-auto-encoding"
+else
+    EXTRA_ARGS="$EXTRA_ARGS --auto-encoding"
+fi
 
 # SESS currently unused
-python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $BASE_DIR --tum-dir $TUM_DIR  --extra-includes $EXTRA_INCLUDES --index $INDEX_FILE
+echo python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $BASE_DIR --tum-dir $TUM_DIR  --extra-includes $EXTRA_INCLUDES --index $INDEX_FILE $EXTRA_ARGS
+python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $BASE_DIR --tum-dir $TUM_DIR  --extra-includes $EXTRA_INCLUDES --index $INDEX_FILE $EXTRA_ARGS
