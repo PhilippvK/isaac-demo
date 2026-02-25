@@ -19,9 +19,9 @@ for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     echo "DOCKER_IMAGE=$DOCKER_IMAGE"
     if [[ "$TAG" != "" ]]
     then
-        echo docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
-        docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
+        echo $DOCKER_PREFIX docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
+        $DOCKER_PREFIX docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
     fi
-    echo docker push $DOCKER_IMAGE:$TAG
-    docker push $DOCKER_IMAGE:$TAG
+    echo $DOCKER_PREFIX docker push $DOCKER_IMAGE:$TAG
+    $DOCKER_PREFIX docker push $DOCKER_IMAGE:$TAG
 done

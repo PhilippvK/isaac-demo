@@ -9,4 +9,4 @@ TAG=latest
 
 pwd
 
-docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_mlonmcu_min $TOP_DIR
+$DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_mlonmcu_min $TOP_DIR

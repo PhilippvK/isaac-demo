@@ -8,11 +8,15 @@ DOCKER_DIR=$TOP_DIR/docker
 
 TAG=${1:-"latest"}
 
-# DOCKER_IMAGE_NAMES=(base extra etiss etiss_perf seal5 mlonmcu mlonmcu_min min full demo)
-DOCKER_IMAGE_NAMES=(etiss etiss_perf seal5 mlonmcu mlonmcu_min min full demo)
+DOCKER_NAMESPACE=philippvk
+
+DOCKER_IMAGE_PREFIX=isaac-quickstart-
+
+# DOCKER_IMAGE_NAMES=(base extra etiss etiss-perf seal5 mlonmcu mlonmcu-min min full demo)
+DOCKER_IMAGE_NAMES=(etiss etiss-perf seal5 mlonmcu mlonmcu-min min full demo)
 
 for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     DOCKER_IMAGE=$DOCKER_NAMESPACE/${DOCKER_IMAGE_PREFIX}${name}
     echo "DOCKER_IMAGE=$DOCKER_IMAGE"
-    echo docker pull $DOCKER_IMAGE:$TAG
+    $DOCKER_PREFIX docker pull $DOCKER_IMAGE:$TAG
 done
