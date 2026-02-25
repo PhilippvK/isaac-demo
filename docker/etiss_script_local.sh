@@ -55,7 +55,7 @@ git status
 # tar cfJ $DEST/etiss_src.tar.xz *
 # tar cf $DEST/etiss_src.tar.gz *
 # zip -r $DEST/etiss_source.zip *
-git archive -o $DEST/etiss_source.zip HEAD
+# git archive -o $DEST/etiss_source.zip HEAD
 git add -N ArchImpl/${CORE_NAME}/${CORE_NAME}_${SET_NAME}*Instr.cpp
 git status
 git diff > $DEST/etiss_patch.diff
@@ -64,6 +64,12 @@ git add -N ArchImpl/
 git status
 git diff > $DEST/etiss_patch_full.diff
 git diff --shortstat > $DEST/etiss_patch_full.stat
+git add .
+git status
+git commit -m "add etiss arch"
+git status
+git archive -o $DEST/etiss_source.zip HEAD
+tar --dereference --exclude=.git --exclude=.gitmodules --exclude build_dir -czf $DEST/etiss_perf_source.tar.gz .  # TODO: .zip?
 
 CCACHE_ARGS=""
 if [[ "$CCACHE" == "1" ]]
