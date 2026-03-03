@@ -65,9 +65,9 @@ then
     SESS=$DIR/sess
     DEST_DIR=$WORK/local/fake_hls
     mkdir -p $DEST_DIR
-    FAKE_HLS_STRATEGY=${FAKE_HLS_STRATEGY:-best}
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all"}
 
-    python3 -m isaac_toolkit.retargeting.fake_hls --sess $SESS --workdir $WORK --set-name $SET_NAME --core $HLS_FAKE_CORE_NAME --index $INDEX_FILE --strategy $FAKE_HLS_STRATEGY
+    python3 -m isaac_toolkit.retargeting.fake_hls --sess $SESS --workdir $WORK --set-name $SET_NAME --core $HLS_FAKE_CORE_NAME --index $INDEX_FILE --strategies $FAKE_HLS_STRATEGIES
 else
     echo "Unsupported FAKE_HLS_TOOL: $FAKE_HLS_TOOL"
     exit 1
