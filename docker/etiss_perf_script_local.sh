@@ -18,6 +18,7 @@ env
 
 # read -n 1
 export ETISS_PERF_HOME=${ETISS_PERF_HOME:-/tmp/etiss_perf_local}  # TODO: tempdir?
+VARIANTS_FILTER=${VARIANTS_FILTER:-""}
 
 if [[ "$#" -lt 3 ]]
 then
@@ -70,7 +71,7 @@ set -e
 # git clone https://github.com/PhilippvK/etiss.git --branch print_instr_to_file $ETISS_HOME
 
 ETISS_REF=xisaac_gen
-ETISS_PERF_WS_REF=xisaac_gen
+ETISS_PERF_WS_REF=xisaac_gen2
 ETISS_PERF_REF=xisaac_gen
 if [[ ! -d $ETISS_PERF_HOME ]]
 then
@@ -118,15 +119,24 @@ cd code_gen/descriptions/core_perf_dsl
 $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh pip install -r requirements.txt
 mkdir -p ini_out
 pwd
-echo $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --selected all --hls-dir $HLS_DIR/output --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json
-$PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --selected all --hls-dir $HLS_DIR/output --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json
+# echo $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --selected all --hls-dir $HLS_DIR/output --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json
+# $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --selected all --hls-dir $HLS_DIR/output --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json
+EXTRA_ARGS=""
+if [[ "$VARIANTS_FILTER" != "" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --variants $VARIANTS_FILTER"
+fi
+echo $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --hls-dir $HLS_DIR --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json --uarchs-dest uarchs.csv $EXTRA_ARGS
+$PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --hls-dir $HLS_DIR --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json --uarchs-dest uarchs.csv $EXTRA_ARGS
 mkdir -p $DEST/ini/
 cp -r ini_out/* $DEST/ini/
+cp -r uarchs.csv $DEST
 cp InstructionTrace_XISAAC.json $DEST/InstructionTrace_XISAAC.json
 cp CV32E40PXISAAC.corePerfDsl $DEST/CV32E40PXISAAC.corePerfDsl
 cd -
 
 ${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/CV32E40PXISAAC.corePerfDsl -i
+# ${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/CV32E40PXISAACALT.corePerfDsl -i
 ${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/InstructionTrace_XISAAC.json
 
 cd $ETISS_PERF_HOME/etiss-perf-sim/etiss
