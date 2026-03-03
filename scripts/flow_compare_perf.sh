@@ -54,21 +54,25 @@ ETISS_PERF_DEST_DIR=$WORK/$ETISS_PERF_MODE/
 if [[ "$FINAL" == "1" ]]
 then
     ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_final/etiss_perf_install
+    UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_final//uarchs.csv
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_final/llvm_install
     SUFFIX="_final"
 elif [[ "$PRELIM" == "1" ]]
 then
     ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_prelim/etiss_perf_install
+    UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_prelim//uarchs.csv
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_prelim/llvm_install
     SUFFIX="_prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
     ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered2_selected/etiss_perf_install
+    UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_filtered2_selected//uarchs.csv
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered2_selected/llvm_install
     SUFFIX="_filtered2"
 elif [[ "$FILTERED2" == "1" ]]
 then
     ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered2/etiss_perf_install
+    UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_filtered2//uarchs.csv
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered2/llvm_install
     SUFFIX="_filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
@@ -77,9 +81,11 @@ then
     then
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5/llvm_install
         ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered_selected/etiss_perf_install
+        UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_filtered_selected//uarchs.csv
     else
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered_selected/llvm_install
         ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered_selected/etiss_perf_install
+        UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_filtered_selected//uarchs.csv
     fi
     SUFFIX="_filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
@@ -88,13 +94,16 @@ then
     then
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5/llvm_install
         ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered/etiss_perf_install
+        UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_filtered//uarchs.csv
     else
         LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered/llvm_install
         ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf_filtered/etiss_perf_install
+        UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf_filtered//uarchs.csv
     fi
     SUFFIX="_filtered"
 else
     ETISS_PERF_INSTALL_DIR=$ETISS_PERF_DEST_DIR/etiss_perf/etiss_perf_install
+    UARCHS_FILE=$ETISS_PERF_DEST_DIR/etiss_perf//uarchs.csv
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5/llvm_install
     SUFFIX=""
 fi
@@ -148,19 +157,33 @@ then
 fi
 
 # TODO: PERF SIM
-PERF_UARCH="cv32e40pxisaac"  # TODO: do not hardcode, use INI
+# PERF_UARCH="cv32e40pxisaac"  # TODO: do not hardcode, use INI
+PERF_UARCH=$(cat $UARCHS_FILE | tail -n "+2" | cut -d, -f2 | head -1)
+CONFIG_GEN_ARGS="--config-gen $PERF_TARGET.arch=$ARCH perf_sim.core=$PERF_UARCH"
 
-echo python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.arch=$ARCH -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-perf -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss_perf.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c $PERF_TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $PERF_TARGET.arch=$ARCH --config-gen $PERF_TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$PERF_TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$PERF_TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions,Run Cycles" -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS -f perf_sim -c perf_sim.core=$PERF_UARCH -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR
-python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.arch=$ARCH -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-perf -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss_perf.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c $PERF_TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $PERF_TARGET.arch=$ARCH --config-gen $PERF_TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$PERF_TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$PERF_TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions,Run Cycles" -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS -f perf_sim -c perf_sim.core=$PERF_UARCH -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR
+if [[ ! -f $UARCHS_FILE ]]
+then
+    echo "Missing: $UARCHS_FILE"
+    exit 1
+fi
+
+for uarch in $(cat $UARCHS_FILE | tail -n "+2" | cut -d, -f2)
+do
+    CONFIG_GEN_ARGS="$CONFIG_GEN_ARGS --config-gen $PERF_TARGET.arch=$FULL_ARCH perf_sim.core=$uarch"
+done
+
+echo python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.arch=$ARCH -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-perf -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss_perf.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c $PERF_TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$PERF_TARGET.arch,perf_sim.core --post rename_cols -c rename_cols.mapping="{'config_$PERF_TARGET.arch': 'Arch', 'config_perf_sim.core': 'uArch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions,Run Cycles" -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS -f perf_sim -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR $CONFIG_GEN_ARGS
+python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.arch=$ARCH -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-perf -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss_perf.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c $PERF_TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$PERF_TARGET.arch,perf_sim.core --post rename_cols -c rename_cols.mapping="{'config_$PERF_TARGET.arch': 'Arch', 'config_perf_sim.core': 'uArch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions,Run Cycles" -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS -f perf_sim -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR $CONFIG_GEN_ARGS
 python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE_PERF
 # export ETISS_PERF_INSTALL_DIR
 # export LLVM_INSTALL_DIR
 # LABEL=$LABEL scripts/mlonmcu_wrapper.sh $RUN_COMPARE_PERF $BENCH
 
-python3 -m mlonmcu.cli.main flow compile $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.arch=$ARCH -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-perf-mem -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss_perf.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c $PERF_TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $PERF_TARGET.arch=$ARCH --config-gen $PERF_TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$PERF_TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$PERF_TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS -f perf_sim -c perf_sim.core=$PERF_UARCH -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR
+python3 -m mlonmcu.cli.main flow compile $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.arch=$ARCH -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-perf-mem -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss_perf.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c $PERF_TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --post config2cols -c config2cols.limit=$PERF_TARGET.arch,perf_sim.core --post rename_cols -c rename_cols.mapping="{'config_$PERF_TARGET.arch': 'Arch', 'config_perf_sim.core': 'uArch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS -f perf_sim -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR $CONFIG_GEN_ARGS
 python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE_PERF_MEM
 # export ETISS_PERF_INSTALL_DIR
 # export LLVM_INSTALL_DIR
 # LABEL=$LABEL-mem MEM_ONLY=1 scripts/mlonmcu_wrapper.sh $RUN_COMPARE_PERF_MEM $BENCH
 
+echo python3 -m isaac_toolkit.utils.analyze_compare_perf ${REPORT_COMPARE_PERF} --mem-report ${REPORT_COMPARE_PERF_MEM} --print-df --output ${DIR}/compare_perf${SUFFIX}.csv
 python3 -m isaac_toolkit.utils.analyze_compare_perf ${REPORT_COMPARE_PERF} --mem-report ${REPORT_COMPARE_PERF_MEM} --print-df --output ${DIR}/compare_perf${SUFFIX}.csv
