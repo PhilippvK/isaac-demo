@@ -66,6 +66,7 @@ ENV LD_LIBRARY_PATH="/usr/local/lib/:$LD_LIBRARY_PATH"
 RUN ln -s /usr/local/lib/libmgclient.so /usr/local/lib/libmgclient.so.2
 
 # Install Miniforge (no Python included)
+# Create minimal Python 3.10 env
 RUN ARCH=$(uname -m) && \
     if [ "$ARCH" = "x86_64" ]; then \
         URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"; \
@@ -76,13 +77,12 @@ RUN ARCH=$(uname -m) && \
     fi && \
     wget $URL -O miniforge.sh && \
     bash miniforge.sh -b -p /opt/conda && \
-    rm miniforge.sh
-
-ENV PATH="/opt/conda/bin:$PATH"
-
-# Create minimal Python 3.10 env
-RUN conda install --revision 0 && conda install python=3.10 && conda create -y -n py310 python=3.10 && \
+    rm miniforge.sh && \
+    conda install --revision 0 && \
+    conda install python=3.10 && \
+    conda create -y -n py310 python=3.10 && \
     conda clean -a -y -p -f
+ENV PATH="/opt/conda/bin:$PATH"
 
 # Activate environment
 # SHELL ["bash", "-c"]

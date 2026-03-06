@@ -1,4 +1,7 @@
 ARG BASE_IMAGE=philippvk/isaac-quickstart-extra
+ARG MLONMCU_IMAGE=philippvk/isaac-quickstart-mlonmcu
+ARG CONFIG=""
+
 FROM ${BASE_IMAGE} AS builder
 LABEL maintainer="ISAAC Developers"
 
@@ -28,16 +31,16 @@ RUN apt-get update && \
 
 COPY --from=philippvk/isaac-quickstart-etiss /work /work
 COPY --from=philippvk/isaac-quickstart-seal5 /work /work
-COPY --from=philippvk/isaac-quickstart-mlonmcu /work /work
+COPY --from=${MLONMCU_IMAGE} /work /work
 COPY --from=philippvk/isaac-quickstart-hls /isax-tools /isax-tools
 
 CMD ["help"]
 
 
 ENV MLONMCU_HOME=/environment
-COPY --from=philippvk/isaac-quickstart-mlonmcu /environment /environment
-COPY --from=philippvk/isaac-quickstart-mlonmcu /venv /venv
-COPY --from=philippvk/isaac-quickstart-mlonmcu /mlonmcu /mlonmcu
+COPY --from=${MLONMCU_IMAGE} /environment /environment
+COPY --from=${MLONMCU_IMAGE} /venv /venv
+COPY --from=${MLONMCU_IMAGE} /mlonmcu /mlonmcu
 
 COPY ./docker/full_script.sh /work/full_script.sh
 

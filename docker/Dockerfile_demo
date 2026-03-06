@@ -1,4 +1,7 @@
-FROM philippvk/isaac-quickstart-full AS builder
+ARG BASE_IMAGE=philippvk/isaac-quickstart-full
+ARG CONFIG=""
+
+FROM ${BASE_IMAGE} AS builder
 LABEL maintainer="ISAAC Developers"
 
 ENV IN_DEMO_DOCKER=1

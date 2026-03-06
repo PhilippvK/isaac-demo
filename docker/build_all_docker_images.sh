@@ -11,8 +11,11 @@ DOCKER_NAMESPACE=philippvk
 DOCKER_IMAGE_PREFIX=isaac-quickstart-
 
 DOCKER_IMAGE_NAMES=(base extra etiss etiss-perf seal5 mlonmcu mlonmcu-min min full demo)
+CONFIG=${CONFIG:-""}
+export CONFIG
 
-TAG=${1:-"latest"}
+# TAG=${1:-"latest"}
+# export TAG
 
 for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     DOCKER_IMAGE=$DOCKER_NAMESPACE/${DOCKER_IMAGE_PREFIX}${name}

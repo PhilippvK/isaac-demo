@@ -29,8 +29,6 @@ RUN . /venv/bin/activate && pip install . --no-cache-dir
 
 WORKDIR /environment
 
-ADD environment_docker.yml.j2 /tmp/environment.yml.j2
-
 COPY ./docker/mlonmcu_script.sh /work/mlonmcu_script.sh
 
 ENTRYPOINT ["/work/mlonmcu_script.sh"]
