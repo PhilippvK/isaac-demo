@@ -126,8 +126,8 @@ if [[ "$VARIANTS_FILTER" != "" ]]
 then
     EXTRA_ARGS="$EXTRA_ARGS --variants $VARIANTS_FILTER"
 fi
-echo $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --hls-dir $HLS_DIR --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json --uarchs-dest uarchs.csv $EXTRA_ARGS
-$PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --hls-dir $HLS_DIR --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json --uarchs-dest uarchs.csv $EXTRA_ARGS
+echo $PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl_new.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --hls-dir $HLS_DIR --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json --uarchs-dest uarchs.csv $EXTRA_ARGS
+$PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 gen_xisaac_core_perf_dsl_new.py -t CV32E40PXISAAC.corePerfDsl.mako -c cv32e40p -o CV32E40PXISAAC.corePerfDsl --temp-dir temp_out/ --index $INDEX_FILE --hls-dir $HLS_DIR --ini-dest ini_out/ --monitor-template InstructionTrace_XISAAC.json.mako --monitor-dest InstructionTrace_XISAAC.json --uarchs-dest uarchs.csv $EXTRA_ARGS
 mkdir -p $DEST/ini/
 cp -r ini_out/* $DEST/ini/
 cp -r uarchs.csv $DEST
