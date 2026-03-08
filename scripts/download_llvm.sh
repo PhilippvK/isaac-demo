@@ -13,4 +13,5 @@ then
     exit 1
 fi
 
-$SCRIPT_DIR/download_helper.sh $LLVM_INSTALL_DIR llvm_isaac_llvm_20251111 19.1.0
+# $SCRIPT_DIR/download_helper.sh $LLVM_INSTALL_DIR llvm_isaac_llvm_20251111 19.1.0
+$SCRIPT_DIR/download_helper.sh $LLVM_INSTALL_DIR llvm_isaac_llvm_20251111_min 19.1.0
