@@ -11,8 +11,8 @@ DOCKER_NAMESPACE=philippvk
 DOCKER_IMAGE_PREFIX=isaac-quickstart-
 
 DOCKER_IMAGE_NAMES=(base extra etiss etiss-perf seal5 mlonmcu mlonmcu-min min full demo)
-CONFIG=${CONFIG:-""}
-export CONFIG
+VARIANT=${VARIANT:-""}
+export VARIANT
 
 # TAG=${1:-"latest"}
 # export TAG

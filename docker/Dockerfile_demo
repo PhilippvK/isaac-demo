@@ -1,5 +1,5 @@
 ARG BASE_IMAGE=philippvk/isaac-quickstart-full
-ARG CONFIG=""
+ARG CONFIG="cfg/flow/paper/vex_5s.env"
 
 FROM ${BASE_IMAGE} AS builder
 LABEL maintainer="ISAAC Developers"
@@ -22,6 +22,7 @@ ADD etiss/ /demo/etiss
 ADD M2-ISA-R/ /demo/M2-ISA-R
 ADD requirements.txt /demo/
 RUN echo "[global]" > /etc/pip.conf && echo "no-cache-dir = True" >> /etc/pip.conf
+RUN cd /demo && . $CONFIG
 RUN cd /demo && ./scripts/setup_python.sh
 RUN cd /demo && ./scripts/launch.sh && ./scripts/setup_ccache.sh
 RUN conda clean --all

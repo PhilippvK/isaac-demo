@@ -11,13 +11,13 @@ DOCKER_NAMESPACE=philippvk
 DOCKER_IMAGE_PREFIX=isaac-quickstart-
 
 DOCKER_IMAGE_NAMES=(base extra etiss etiss-perf seal5 mlonmcu-min min)
-DOCKER_IMAGE_NAMES2=(mlonmcu full demo)  # CONFIG_SPECIFIC
+DOCKER_IMAGE_NAMES2=(mlonmcu full demo)  # VARIANT SPECIFIC
 
 TAG=${1:-"latest"}
-CONFIG=${CONFIG:-""}
-if [[ "$CONFIG" != "" ]]
+VARIANT=${VARIANT:-""}
+if [[ "$VARIANT" != "" ]]
 then
-    TAG2=$CONFIG-$TAG
+    TAG2=$VARIANT-$TAG
 else
     TAG2=$TAG
 fi
@@ -27,11 +27,11 @@ for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     echo "DOCKER_IMAGE=$DOCKER_IMAGE"
     if [[ "$TAG" != "" ]]
     then
-        echo docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
-        docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
+        echo $DOCKER_PREFIX docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
+        $DOCKER_PREFIX docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
     fi
-    echo docker push $DOCKER_IMAGE:$TAG
-    docker push $DOCKER_IMAGE:$TAG
+    echo $DOCKER_PREFIX docker push $DOCKER_IMAGE:$TAG
+    $DOCKER_PREFIX docker push $DOCKER_IMAGE:$TAG
 done
 for name in "${DOCKER_IMAGE_NAMES2[@]}"; do
     DOCKER_IMAGE=$DOCKER_NAMESPACE/${DOCKER_IMAGE_PREFIX}${name}
@@ -41,6 +41,6 @@ for name in "${DOCKER_IMAGE_NAMES2[@]}"; do
         echo docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG2
         docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG2
     fi
-    echo docker push $DOCKER_IMAGE:$TAG2
-    docker push $DOCKER_IMAGE:$TAG2
+    echo $DOCKER_PREFIX docker push $DOCKER_IMAGE:$TAG2
+    $DOCKER_REFIX docker push $DOCKER_IMAGE:$TAG2
 done

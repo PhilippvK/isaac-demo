@@ -92,6 +92,8 @@ ENV PATH="/opt/conda/envs/py310/bin:$PATH"
 
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 RUN git config --global url."https://github.com/".insteadOf git@github.com:
+RUN git config --global user.email "you@example.com"
+RUN git config --global user.name "Your Name"
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 ENV PYTHON_EXE=python3.10

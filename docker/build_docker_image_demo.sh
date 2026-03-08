@@ -5,14 +5,22 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
 IMAGE=philippvk/isaac-quickstart-demo
-CONFIG=${CONFIG:-""}
-if [[ "$CONFIG" != "" ]]
+VARIANT=${VARIANT:-""}
+if [[ "$VARIANT" != "" ]]
 then
-    DEFAULT_TAG=$CONFIG-latest
+    DEFAULT_TAG=$VARIANT-latest
 else
     DEFAULT_TAG=latest
 fi
 TAG=${TAG:-$DEFAULT_TAG}
+
+DEFAULT_CONFIG=cfg/flow/paper/vex_5s.env
+if [[ "$VARIANT" == "" ]]
+then
+    CONFIG=$DEFAULT_CONFIG
+else
+    CONFIG=${CONFIG:-cfg/flow/paper/$VARIANT.env}
+fi
 
 pwd
 

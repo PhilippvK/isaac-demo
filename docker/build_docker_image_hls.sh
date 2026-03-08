@@ -11,4 +11,4 @@ HLS_DIR=${HLS_DIR:-/path/to/isax-tools-integration}
 
 pwd
 
-docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_hls $HLS_DIR
+$DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_hls $HLS_DIR

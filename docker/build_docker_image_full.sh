@@ -5,11 +5,11 @@ set -e
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )
 TOP_DIR=$(dirname $SCRIPT_DIR)
 IMAGE=philippvk/isaac-quickstart-full
-CONFIG=${CONFIG:-""}
-if [[ "$CONFIG" != "" ]]
+VARIANT=${VARIANT:-""}
+if [[ "$VARIANT" != "" ]]
 then
-    DEFAULT_TAG=$CONFIG-latest
-    MLONMCU_IMAGE=philippvk/isaac-quickstart-full:$CONFIG-latest
+    DEFAULT_TAG=$VARIANT-latest
+    MLONMCU_IMAGE=philippvk/isaac-quickstart-full:$VARIANT-latest
 else
     DEFAULT_TAG=latest
     MLONMCU_IMAGE=philippvk/isaac-quickstart-full:latest
@@ -18,4 +18,4 @@ TAG=${TAG:-$DEFAULT_TAG}
 
 pwd
 
-docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_full $TOP_DIR --build-arg MLONMCU_IMAGE=${MLONMCU_IMAGE}
+$DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_full $TOP_DIR --build-arg MLONMCU_IMAGE=${MLONMCU_IMAGE}

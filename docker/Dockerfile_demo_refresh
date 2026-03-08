@@ -1,0 +1,18 @@
+ARG BASE_IMAGE="philippvk/isaac-quickstart-demo:latest"
+FROM ${BASE_IMAGE}
+
+ADD scripts/ /demo/scripts
+ADD docker /demo/docker
+ADD cfg/ /demo/cfg
+ADD isaac-toolkit/ /demo/isaac-toolkit
+ADD constraints/ /demo/constraints
+ADD etiss_arch_riscv/ /demo/etiss_arch_riscv
+ADD memgraph_experiments/ /demo/memgraph_experiments
+ADD etiss/ /demo/etiss
+ADD M2-ISA-R/ /demo/M2-ISA-R
+ADD requirements.txt /demo/
+RUN cd /demo && ./scripts/setup_python.sh
+RUN cd /demo && ./scripts/launch.sh && ./scripts/setup_ccache.sh
+RUN conda clean --all
+RUN git config --global user.email "you@example.com"
+RUN git config --global user.name "Your Name"
