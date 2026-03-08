@@ -13,10 +13,17 @@ ENV PYTHONPATH=/work/seal5/:/work/M2-ISA-R
 ENV DEBIAN_FRONTEND=noninteractive
 
 
+# TODO: move to base!
 RUN apt-get update && \
+    apt-get install -y --no-install-recommends software-properties-common && \
+    add-apt-repository -y ppa:git-core/ppa && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends git && \
     apt-get install -y --no-install-recommends ca-certificates gnupg \
            build-essential make python3 zlib1g wget subversion unzip git ninja-build python3-dev python3-pip python3-venv libssl-dev libboost-all-dev zip unzip ccache && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean && \
+    rm -rf /var/cache/apt/archives/ && \
+    rm -rf /var/lib/apt/lists
 
 RUN mkdir -p /work
 COPY M2-ISA-R/ /work/M2-ISA-R
@@ -31,11 +38,11 @@ RUN . /work/venv/bin/activate && pip3 install -e /work/seal5
 RUN . /work/venv/bin/activate && pip3 uninstall M2-ISA-R
 
 COPY cfg/seal5/ /work/cfg
-RUN . /work/venv/bin/activate && seal5 --verbose --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH}
+RUN . /work/venv/bin/activate && seal5 --verbose --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH} && git -C ${SEAL5_HOME} sparse-checkout init --cone && git -C ${SEAL5_HOME} sparse-checkout set clang/lib clang/include clang/cmake clang/utils clang/examples clang/runtime clang/tools cmake lld llvm/lib/ llvm/include llvm/tools llvm/cmake llvm/utils llvm/projects llvm/runtimes libunwind
 RUN . /work/venv/bin/activate && seal5 --verbose load --overwrite --files /work/cfg/*.yml
 RUN . /work/venv/bin/activate && seal5 --verbose setup
 RUN . /work/venv/bin/activate && seal5 --verbose patch -s 0
-RUN . /work/venv/bin/activate && seal5 --verbose build --ccache
+RUN . /work/venv/bin/activate && seal5 --verbose build --ccache && rm -rf ${SEAL5_HOME}/.seal5/build/*
 
 # TODO: copy local llvm clone?
 
