@@ -5,4 +5,5 @@ tools:
     # clone_url: ?
     # ref: ?
     clone_depth: 1
-    sparse_checkout: false
+    # sparse_checkout: false
+    sparse_checkout: true  # broken on u20.04
