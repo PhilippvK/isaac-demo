@@ -14,6 +14,19 @@ llvm:
         LLVM_ENABLE_PROJECTS: [clang, lld]
         LLVM_TARGETS_TO_BUILD: [X86, RISCV]
         LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
+        CMAKE_INSTALL_DO_STRIP: true
+        # LLVM_BUILD_LLVM_DYLIB: true
+        # LLVM_LINK_LLVM_DYLIB: true
+        LLVM_BUILD_LLVM_DYLIB: false
+        LLVM_LINK_LLVM_DYLIB: false
+        # LLVM_BUILD_STATIC_LIBS: false
+        LLVM_INCLUDE_TESTS: false
+        LLVM_INCLUDE_BENCHMARKS: false
+        LLVM_INCLUDE_DOCS: false
+        LLVM_BUILD_TESTS: false
+        LLVM_INCLUDE_EXAMPLES: false
+        LLVM_BUILD_DOCS: false
+        # LLVM_BUILD_RUNTIME: false
     release_assertions:
       options:
         CMAKE_BUILD_TYPE: Release
@@ -23,6 +36,7 @@ llvm:
         LLVM_ENABLE_PROJECTS: [clang, lld]
         LLVM_TARGETS_TO_BUILD: [X86, RISCV]
         LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
+        CMAKE_INSTALL_DO_STRIP: true
     debug:
       options:
         CMAKE_BUILD_TYPE: Debug
@@ -34,3 +48,4 @@ llvm:
         LLVM_PARALLEL_LINK_JOBS: 8
         # LLVM_USE_LINKER: lld
         LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
+        CMAKE_INSTALL_DO_STRIP: true
