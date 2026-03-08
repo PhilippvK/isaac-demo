@@ -187,3 +187,4 @@ python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE_PERF_MEM
 
 echo python3 -m isaac_toolkit.utils.analyze_compare_perf ${REPORT_COMPARE_PERF} --mem-report ${REPORT_COMPARE_PERF_MEM} --print-df --output ${DIR}/compare_perf${SUFFIX}.csv
 python3 -m isaac_toolkit.utils.analyze_compare_perf ${REPORT_COMPARE_PERF} --mem-report ${REPORT_COMPARE_PERF_MEM} --print-df --output ${DIR}/compare_perf${SUFFIX}.csv
+python3 -m isaac_toolkit.utils.rank_uarchs ${DIR}/compare_perf${SUFFIX}.csv --uarchs-csv $UARCHS_FILE --print-df --output ${DIR}/uarch_ranking${SUFFIX}.csv
