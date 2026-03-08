@@ -15,6 +15,7 @@ else
     DEFAULT_MLONMCU_TEMPLATE=environment_docker.yml.j2
 fi
 TAG=${TAG:-$DEFAULT_TAG}
-MLONMCU_TEMPLATE=${MLONMCU_TEMPLATE:-environment_docker.yml.j2}
+MLONMCU_TEMPLATE=${MLONMCU_TEMPLATE:-$DEFAULT_MLONMCU_TEMPLATE}
 
+echo $DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_mlonmcu $TOP_DIR --build-arg MLONMCU_TEMPLATE=${MLONMCU_TEMPLATE}
 $DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_mlonmcu $TOP_DIR --build-arg MLONMCU_TEMPLATE=${MLONMCU_TEMPLATE}

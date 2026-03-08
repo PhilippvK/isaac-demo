@@ -25,7 +25,7 @@ fi
 for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     DOCKER_IMAGE=$DOCKER_NAMESPACE/${DOCKER_IMAGE_PREFIX}${name}
     echo "DOCKER_IMAGE=$DOCKER_IMAGE"
-    if [[ "$TAG" != "" ]]
+    if [[ "$TAG" != "" && "$TAG" != "latest" ]]
     then
         echo $DOCKER_PREFIX docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
         $DOCKER_PREFIX docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG
@@ -36,10 +36,16 @@ done
 for name in "${DOCKER_IMAGE_NAMES2[@]}"; do
     DOCKER_IMAGE=$DOCKER_NAMESPACE/${DOCKER_IMAGE_PREFIX}${name}
     echo "DOCKER_IMAGE=$DOCKER_IMAGE"
-    if [[ "$TAG2" != "" ]]
+    if [[ "$TAG" != "" && "$TAG" != "latest" ]]
     then
-        echo docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG2
-        docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG2
+        if [[ "$VARIANT" != "" ]]
+        then
+            echo docker tag $DOCKER_IMAGE:$VARIANT-latest $DOCKER_IMAGE:$TAG2
+            docker tag $DOCKER_IMAGE:$VARIANT-latest $DOCKER_IMAGE:$TAG2
+        else
+            echo docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG2
+            docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$TAG2
+        fi
     fi
     echo $DOCKER_PREFIX docker push $DOCKER_IMAGE:$TAG2
     $DOCKER_REFIX docker push $DOCKER_IMAGE:$TAG2

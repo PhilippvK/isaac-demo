@@ -78,6 +78,7 @@ RUN ARCH=$(uname -m) && \
     wget $URL -O miniforge.sh && \
     bash miniforge.sh -b -p /opt/conda && \
     rm miniforge.sh && \
+    export PATH="/opt/conda/bin:$PATH" && \
     conda install --revision 0 && \
     conda install python=3.10 && \
     conda create -y -n py310 python=3.10 && \

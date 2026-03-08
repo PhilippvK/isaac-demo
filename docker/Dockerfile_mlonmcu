@@ -2,6 +2,7 @@ ARG BASE_IMAGE=philippvk/isaac-quickstart-mlonmcu-min
 ARG MLONMCU_TEMPLATE=environment_docker.yml.j2
 
 FROM ${BASE_IMAGE} AS builder
+ARG MLONMCU_TEMPLATE
 LABEL maintainer="MLonMCU Developers"
 
 ADD ${MLONMCU_TEMPLATE} /tmp/environment.yml.j2

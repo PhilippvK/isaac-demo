@@ -13,6 +13,7 @@ DOCKER_IMAGE_PREFIX=isaac-quickstart-
 DOCKER_IMAGE_NAMES=(base extra etiss etiss-perf seal5 mlonmcu mlonmcu-min min full demo)
 VARIANT=${VARIANT:-""}
 export VARIANT
+echo "VARIANT=$VARIANT"
 
 # TAG=${1:-"latest"}
 # export TAG
@@ -22,5 +23,5 @@ for name in "${DOCKER_IMAGE_NAMES[@]}"; do
     echo "DOCKER_IAMGE=$DOCKER_IMAGE"
     name2=${name/-/_}
     echo $DOCKER_DIR/build_docker_image_${name2}.sh
-    $DOCKER_DIR/build_docker_image_${name}.sh
+    $DOCKER_DIR/build_docker_image_${name2}.sh
 done

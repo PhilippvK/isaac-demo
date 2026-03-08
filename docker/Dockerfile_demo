@@ -2,6 +2,7 @@ ARG BASE_IMAGE=philippvk/isaac-quickstart-full
 ARG CONFIG="cfg/flow/paper/vex_5s.env"
 
 FROM ${BASE_IMAGE} AS builder
+ARG CONFIG
 LABEL maintainer="ISAAC Developers"
 
 ENV IN_DEMO_DOCKER=1
