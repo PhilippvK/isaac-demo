@@ -6,6 +6,21 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/nu
 TOP_DIR=$(dirname $SCRIPT_DIR)
 BASE_IMAGE=philippvk/isaac-quickstart-demo
 IMAGE=philippvk/isaac-quickstart-demo
-TAG=latest
+VARIANT=${VARIANT:-""}
+if [[ "$VARIANT" != "" ]]
+then
+    DEFAULT_TAG=$VARIANT-latest
+else
+    DEFAULT_TAG=latest
+fi
+TAG=${TAG:-$DEFAULT_TAG}
 
-$DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_demo_refresh --build-arg BASE_IMAGE=$BASE_IMAGE $TOP_DIR
+DEFAULT_CONFIG=cfg/flow/paper/vex_5s.env
+if [[ "$VARIANT" == "" ]]
+then
+    CONFIG=$DEFAULT_CONFIG
+else
+    CONFIG=${CONFIG:-cfg/flow/paper/$VARIANT.env}
+fi
+
+$DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_demo_refresh --build-arg BASE_IMAGE=$BASE_IMAGE:$TAG $TOP_DIR

@@ -32,6 +32,8 @@ RUN apt-get update && \
 
 COPY --from=philippvk/isaac-quickstart-etiss /work /work
 COPY --from=philippvk/isaac-quickstart-seal5 /work /work
+# TODO: move ccache dir to /work !
+COPY --from=philippvk/isaac-quickstart-seal5 /root/.ccache /root/.ccache
 COPY --from=mlonmcu /work /work
 COPY --from=philippvk/isaac-quickstart-hls /isax-tools /isax-tools
 

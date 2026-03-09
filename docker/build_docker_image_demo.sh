@@ -22,6 +22,4 @@ else
     CONFIG=${CONFIG:-cfg/flow/paper/$VARIANT.env}
 fi
 
-pwd
-
 $DOCKER_PREFIX docker build -t $IMAGE:$TAG -f $TOP_DIR/docker/Dockerfile_demo $TOP_DIR --build-arg CONFIG=$CONFIG --build-arg BASE_IMAGE=philippvk/isaac-quickstart-full:$TAG
