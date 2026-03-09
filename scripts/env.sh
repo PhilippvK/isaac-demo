@@ -15,7 +15,6 @@ export INSTALL_DIR=$TOP_DIR/install
 export DOCKER_DIR=$TOP_DIR/docker
 export CONFIG_DIR=$TOP_DIR/cfg
 export LLVM_DIR=$TOP_DIR/llvm-project
-export CCACHE_DIR=$TOP_DIR/install/ccache
 export GNU_DIR=$INSTALL_DIR/gnu
 export LLVM_INSTALL_DIR=$INSTALL_DIR/llvm
 export ETISS_INSTALL_DIR=$INSTALL_DIR/etiss
@@ -23,13 +22,17 @@ export ETISS_INSTALL_DIR=$INSTALL_DIR/etiss
 if [[ ! -z "$IN_DEMO_DOCKER" ]]
 then
     DEFAULT_VENV_DIR=/venv
+    DEFAULT_CCACHE_DIR=/root/.ccache # TODO: move
 elif [[ "$IN_FULL_DOCKER" == "1" ]]
 then
     DEFAULT_VENV_DIR=$TOP_DIR/venv
+    DEFAULT_CCACHE_DIR=$TOP_DIR/install/ccache
 else
     DEFAULT_VENV_DIR=$TOP_DIR/venv
+    DEFAULT_CCACHE_DIR=$TOP_DIR/install/ccache
 fi
 export VENV_DIR=${VENV_DIR:-$DEFAULT_VENV_DIR}
+export CCACHE_DIR=${CCACHE_DIR:-$DEFAULT_CCACHE_DIR}
 
 source $VENV_DIR/bin/activate
 
