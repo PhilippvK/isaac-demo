@@ -32,29 +32,36 @@ if [[ "$FINAL" == "1" ]]
 then
     GEN_DIR=$WORK/gen_final/
     INDEX_FILE=$WORK/final_index.yml
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$PRELIM" == "1" ]]
 then
     GEN_DIR=$WORK/gen_prelim/
     INDEX_FILE=$WORK/prelim_index.yml
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
     GEN_DIR=$WORK/gen_filtered2_selected/
     INDEX_FILE=$WORK/filtered2_selected_index.yml
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED2" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered2/
     INDEX_FILE=$WORK/filtered2_index.yml
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
     GEN_DIR=$WORK/gen_filtered_selected/
     INDEX_FILE=$WORK/filtered_selected_index.yml
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED" == "1" ]]
 then
     GEN_DIR=$WORK/gen_filtered/
     INDEX_FILE=$WORK/filtered_index.yml
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=1)"}
 else
     GEN_DIR=$WORK/gen/
     INDEX_FILE=$WORK/combined_index.yml
+    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=1)"}
 fi
 
 # CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
@@ -65,7 +72,6 @@ then
     SESS=$DIR/sess
     DEST_DIR=$WORK/local/fake_hls
     mkdir -p $DEST_DIR
-    FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all"}
 
     python3 -m isaac_toolkit.retargeting.fake_hls --sess $SESS --workdir $WORK --set-name $SET_NAME --core $HLS_FAKE_CORE_NAME --index $INDEX_FILE --strategies $FAKE_HLS_STRATEGIES
 else
