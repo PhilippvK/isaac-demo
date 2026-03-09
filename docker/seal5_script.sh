@@ -19,7 +19,8 @@ GEN_CFG_FILES=$(echo ${FILES[@]//*.core_desc})
 echo "GEN_CFG_FILES=$GEN_CFG_FILES"
 CLEANUP=${CLEANUP:-0}
 CCACHE=${CCACHE:-1}
-VERBOSE=${VERBOSE:-0}
+RESET=${RESET:-1}
+VERBOSE=${VERBOSE:-1}
 
 VERBOSE_ARGS=""
 if [[ "$VERBOSE" == "1" ]]
@@ -39,6 +40,14 @@ set -e
 # WORKAROUND/FIX (TODO: remove)
 # cp -r /work/git/isaac-demo/seal5/* /work/seal5/
 
+if [[ "$RESET" == "1" ]]
+then
+  # seal5 $VERBOSE_ARGS reset  --settings
+  seal5 $VERBOSE_ARGS clean --inputs --models --temp
+  mkdir -p ${SEAL5_HOME}/.seal5/inputs ${SEAL5_HOME}/.seal5/temp ${SEAL5_HOME}/.seal5/patches
+  git -C $SEAL5_HOME checkout seal5-default-stage0
+  # seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH} --force
+fi
 seal5 $VERBOSE_ARGS load --files $GEN_CDSL_FILES
 if [[ $GEN_CFG_FILES != "" ]]
 then
