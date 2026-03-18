@@ -16,7 +16,11 @@ WORK=$DIR/work
 DOCKER_PREFIX=${DOCKER_PREFIX:-""}
 # USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-0}
 USE_SEAL5_DOCKER=${USE_SEAL5_DOCKER:-1}
-if [[ "$USE_SEAL5_DOCKER" == "1" ]]
+USE_SEAL5_SERVICE=${USE_SEAL5_SERVICE:-1}
+if [[ "$USE_SEAL5_SERVICE" == "1" ]]
+then
+  MODE="service"
+elif [[ "$USE_SEAL5_DOCKER" == "1" ]]
 then
   MODE="docker"
 else
@@ -87,7 +91,13 @@ mkdir -p $DEST_DIR
 
 # docker run -i --rm -v $(pwd):$(pwd) isaac-quickstart-seal5:latest $DEST_DIR $CDSL_FILE $(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml
 # OLD:
-if [[ "$MODE" == "docker" ]]
+if [[ "$MODE" == "service" ]]
+then
+  SERVICE_HOST=${SERVICE_HOST:-localhost}
+  export PYTHONUNBUFFERED=1
+  # ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python -m isaac_toolkit.retargeting.service.client llvm $DEST_DIR $CDSL_FILES $CFG_FILES
+  ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python -u -m isaac_toolkit.retargeting.service.client llvm $DEST_DIR $CDSL_FILES $CFG_FILES
+elif [[ "$MODE" == "docker" ]]
 then
   $DOCKER_PREFIX docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
 else
