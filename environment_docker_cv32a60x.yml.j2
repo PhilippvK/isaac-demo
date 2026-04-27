@@ -144,7 +144,8 @@ targets:
     features:
       gdbserver: true
   spike:
-    enabled: true
+    # enabled: true
+    enabled: false
     features:
       vext: false
       pext: false
@@ -156,7 +157,9 @@ vars:
   allow_extensions: false
   runs_per_stage: true
   llvm.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/llvm_isaac_llvm_20251111_19.1.0_min/clang+llvm-19.1.0-x86_64-linux-gnu-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}.tar.xz"
-  riscv_gcc_rv32.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2025.08.08_min/riscv32-unknown-elf-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}-rv32im_zicsr_zifencei_zba_zbb_zbc_zbs_zcb_ilp32.tar.xz"
+  # riscv_gcc_rv32.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2025.08.08_min/riscv32-unknown-elf-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}-rv32im_zicsr_zifencei_zba_zbb_zbc_zbs_zcb_ilp32.tar.xz"
+  # riscv_gcc_rv32.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2025.08.08_min/riscv32-unknown-elf-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}-rv32im_zicsr_zifencei_zba_zbb_zbc_zbs_ilp32.tar.xz"
+  riscv_gcc_rv32.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2026.03.13_gcc_e769ec3/riscv32-unknown-elf-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}-rv32im_zicsr_zifencei_zba_zbb_zbc_zbs_ilp32.tar.xz"
   spike.keep_build_dir: false
   spike.full: false
   etiss.keep_build_dir: false
@@ -165,6 +168,7 @@ vars:
   boost.use_system: true
   cmake.use_system: true
   cmake.exe: /opt/cmake/bin/cmake
-  spikepk_rv32.default_arch: rv32im_zicsr_zifencei_zba_zbb_zbc_zbs_zcb
+  # spikepk_rv32.default_arch: rv32im_zicsr_zifencei_zba_zbb_zbc_zbs_zcb
+  spikepk_rv32.default_arch: rv32im_zicsr_zifencei_zba_zbb_zbc_zbs
   spikepk_rv32.default_abi: ilp32
 flags: {}
