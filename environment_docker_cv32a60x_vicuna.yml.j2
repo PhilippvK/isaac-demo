@@ -1,0 +1,174 @@
+---
+home: "{{ home_dir }}"
+logging:
+  level: DEBUG
+  to_file: false
+  rotate: false
+cleanup:
+  auto: true
+  keep: 10
+paths:
+  deps: deps
+  logs: logs
+  results: results
+  plugins: plugins
+  temp: temp
+  models:
+    - "{{ home_dir }}/models"
+    - "{{ config_dir }}/models"
+repos:
+  etiss:
+    url: "https://github.com/tum-ei-eda/etiss.git"
+    ref: 739573d5f12798074bc7d375a46c005f23f59f67  # develop, 23.01.2024
+  spike:
+    url: "https://github.com/riscv-software-src/riscv-isa-sim.git"
+    ref: 0bc176b3fca43560b9e8586cdbc41cfde073e17a
+  spikepk:
+    url: "https://github.com/riscv-software-src/riscv-pk.git"
+    ref: 7e9b671c0415dfd7b562ac934feb9380075d4aa2
+  mlif:
+    url: "https://github.com/tum-ei-eda/mlonmcu-sw.git"
+    ref: isaac-demo-rebased
+  dtc:
+    url: "https://github.com/dgibson/dtc.git"
+    ref: main
+  embench:  # legacy Embench-IoT 1.0
+    url: "https://github.com/embench/embench-iot.git"
+    ref: d9b30cdf805133bef9db5f7ecf84ae1ce8124291
+  embench_iot:
+    url: "https://github.com/embench/embench-iot.git"
+    ref: embench-2.0-branch
+  embench_dsp:
+    url: "https://github.com/embench/embench-dsp.git"
+    ref: rc1
+  taclebench:
+    url: "https://github.com/tacle/tacle-bench.git"
+    ref: master
+frameworks:
+  default: tvm
+  tflm:
+    enabled: false
+    backends:
+      default: tflmi
+      tflmi:
+        enabled: false
+        features:
+          debug_arena: false
+    features:
+      muriscvnn: false
+      cmsisnn: false
+  tvm:
+    enabled: false
+    backends:
+      default: tvmaot
+      tvmrt:
+        enabled: false
+        features:
+          debug_arena: false
+          disable_legalize: false
+          autotuned: false
+          moiopt: false
+      tvmaot:
+        enabled: false
+        features:
+          debug_arena: false
+          unpacked_api: false
+          usmp: false
+          disable_legalize: false
+          autotuned: false
+          moiopt: false
+      tvmaotplus:
+        enabled: false
+        features:
+          debug_arena: false
+          disable_legalize: false
+          autotuned: false
+          moiopt: false
+      tvmllvm:
+        enabled: false
+        features:
+          disable_legalize: false
+          autotuned: false
+          moiopt: false
+    features:
+      cmsisnnbyoc: false
+      muriscvnnbyoc: false
+frontends:
+  tflite:
+    enabled: false
+    features:
+      validate: false
+      visualize: false
+      split_layers: false
+  coremark:
+    enabled: true
+  dhrystone:
+    enabled: true
+  embench:
+    enabled: true
+  embench_iot:
+    enabled: true
+  embench_dsp:
+    enabled: true
+  taclebench:
+    enabled: true
+  cmsis_dsp:
+    enabled: true
+  cmsis_nn:
+    enabled: true
+  example:
+    enabled: true
+  crypto_bench:
+    enabled: true
+toolchains:
+  gcc: true
+  llvm: true
+platforms:
+  mlif:
+    enabled: true
+    features:
+      debug: true
+      validate: true
+      benchmark: true
+targets:
+  default: etiss
+  etiss:
+    enabled: true
+    features:
+      gdbserver: true
+      etissdbg: false
+      trace: true
+      log_instrs: true
+  host_x86:
+    enabled: true
+    features:
+      gdbserver: true
+  spike:
+    # enabled: true
+    enabled: false
+    features:
+      vext: false
+      pext: false
+      cachesim: true
+      log_instrs: true
+postprocesses:
+  use: []
+vars:
+  allow_extensions: false
+  runs_per_stage: true
+  llvm.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/llvm_isaac_llvm_20251111_19.1.0_min/clang+llvm-19.1.0-x86_64-linux-gnu-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}.tar.xz"
+  # riscv_gcc_rv32.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2025.08.08_min/riscv32-unknown-elf-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}-rv32im_zicsr_zifencei_zve32x_zba_zbb_zbc_zbs_zcb_ilp32.tar.xz"
+  # riscv_gcc_rv32.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2025.08.08_min/riscv32-unknown-elf-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}-rv32im_zicsr_zifencei_zve32x_zba_zbb_zbc_zbs_ilp32.tar.xz"
+  riscv_gcc_rv32.dl_url: "https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2026.03.13_gcc_e769ec3/riscv32-unknown-elf-ubuntu-{{ ubuntu_version if ubuntu_version is defined else '20.04'}}-rv32im_zicsr_zifencei_zve32x_zba_zbb_zbc_zbs_ilp32.tar.xz"
+  spike.keep_build_dir: false
+  spike.full: false
+  etiss.keep_build_dir: false
+  cmake.keep_build_dir: false
+  cmake.keep_src_dir: false
+  boost.use_system: true
+  cmake.use_system: true
+  cmake.exe: /opt/cmake/bin/cmake
+  # spikepk_rv32.default_arch: rv32im_zicsr_zifencei_zve32x_zba_zbb_zbc_zbs_zcb
+  spikepk_rv32.default_arch: rv32im_zicsr_zifencei_zve32x_zba_zbb_zbc_zbs
+  spikepk_rv32.default_abi: ilp32
+flags: {}

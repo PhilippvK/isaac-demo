@@ -14,7 +14,11 @@ SESS=$DIR/sess
 WORK=$DIR/work
 
 USE_ETISS_DOCKER=${USE_ETISS_DOCKER:-1}
-if [[ "$USE_ETISS_DOCKER" == "1" ]]
+USE_ETISS_DOCKER=${USE_ETISS_SERVICE:-0}
+if [[ "$USE_ETISS_SERVICE" == "1" ]]
+then
+  MODE="service"
+elif [[ "$USE_ETISS_DOCKER" == "1" ]]
 then
   MODE="docker"
 else

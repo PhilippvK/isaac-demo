@@ -23,8 +23,20 @@ flow:
       xlen: 32
     etiss:
       core_name: XIsaacCore
+      uarch_name: CV32E40XXISAAC
     docker:
+      mlonmcu_image: philippvk/isaac-quickstart-mlonmcu:vicuna-latest
       etiss_image: philippvk/isaac-quickstart-etiss:latest
+      etiss_perf_image: philippvk/isaac-quickstart-etiss-perf:latest
       seal5_image: philippvk/isaac-quickstart-seal5:latest
-      hls_image:
+      hls_image: philippvk/isaac-quickstart-hls:latest
       enable: true  # TODO: enable/disable docker per stage?
+    service:
+      host: localhost
+      port: 8080
+      tags:
+        etiss: iss
+        seal5: llvm
+        etiss_perf: etiss_perf
+        hls: null
+      enable: false

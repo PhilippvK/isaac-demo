@@ -20,7 +20,7 @@ flow:
     coredsl:
       set_name: XIsaac
     riscv:
-      xlen: 32
+      xlen: 64
     etiss:
       core_name: XIsaacCore
       uarch_name: null
