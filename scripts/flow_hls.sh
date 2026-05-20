@@ -67,25 +67,26 @@ fi
 
 if [[ "$FINAL" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_final/
+    SUFFIX=_final
 elif [[ "$PRELIM" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_prelim/
+    SUFFIX=_prelim
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered2_selected/
+    SUFFIX=_filtered2_selected
 elif [[ "$FILTERED2" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered2/
+    SUFFIX=_filtered2
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered_selected/
+    SUFFIX=_filtered_selected
 elif [[ "$FILTERED" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered/
+    SUFFIX=_filtered
 else
-    GEN_DIR=$WORK/gen/
+    SUFFIX=""
 fi
+GEN_DIR=$WORK/gen$SUFFIX/
 
 # CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 
@@ -100,15 +101,15 @@ then
                 echo "Tools path does not exist: $TOOLS_PATH"
                 exit 1
             fi
-            DEST_DIR=$WORK/docker/hls
         fi
+        DEST_DIR=$WORK/docker/hls$SUFFIX/
     else
         if [[ ! -d "$HLS_DIR" ]]
         then
             echo "HLS_DIR does not exist: $HLS_DIR"
             exit 1
         fi
-            DEST_DIR=$WORK/local/hls
+            DEST_DIR=$WORK/local/hls$SUFFIX/
     fi
 
 

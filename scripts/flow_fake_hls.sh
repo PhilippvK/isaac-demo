@@ -30,36 +30,36 @@ fi
 
 if [[ "$FINAL" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_final/
+    SUFFIX=_final
     INDEX_FILE=$WORK/final_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$PRELIM" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_prelim/
+    SUFFIX=_prelim
     INDEX_FILE=$WORK/prelim_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered2_selected/
+    SUFFIX=_filtered2_selected
     INDEX_FILE=$WORK/filtered2_selected_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED2" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered2/
+    SUFFIX=_filtered2
     INDEX_FILE=$WORK/filtered2_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
-    GEN_DIR=$WORK/gen_filtered_selected/
+    SUFFIX=_filtered_selected
     INDEX_FILE=$WORK/filtered_selected_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED" == "1" ]]
 then
-    GEN_DIR=$WORK/gen_filtered/
+    SUFFIX=_filtered
     INDEX_FILE=$WORK/filtered_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=1)"}
 else
-    GEN_DIR=$WORK/gen/
+    SUFFIX=""
     INDEX_FILE=$WORK/combined_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=1)"}
 fi

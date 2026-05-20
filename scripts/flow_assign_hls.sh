@@ -31,33 +31,27 @@ SELECTED=${SELECTED:-0}
 if [[ "$FINAL" == "1" ]]
 then
     INDEX_FILE=$WORK/final_index.yml
-    # SUFFIX="_final"
-    SUFFIX=""
+    SUFFIX="_final"
 elif [[ "$PRELIM" == "1" ]]
 then
     INDEX_FILE=$WORK/prelim_index.yml
-    # SUFFIX="_prelim"
-    SUFFIX=""
+    SUFFIX="_prelim"
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == "1" ]]
 then
     INDEX_FILE=$WORK/filtered2_selected_index.yml
-    # SUFFIX="_filtered2_selected"
-    SUFFIX=""
+    SUFFIX="_filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
     INDEX_FILE=$WORK/filtered2_index.yml
-    # SUFFIX="_filtered2"
-    SUFFIX=""
+    SUFFIX="_filtered2"
 elif [[ "$FILTERED" == "1" && "$SELECTED" == "1" ]]
 then
     INDEX_FILE=$WORK/filtered_selected_index.yml
-    # SUFFIX="_filtered_selected"
-    SUFFIX=""
+    SUFFIX="_filtered_selected"
 elif [[ "$FILTERED" == "1" ]]
 then
     INDEX_FILE=$WORK/filtered_index.yml
-    # SUFFIX="_filtered"
-    SUFFIX=""
+    SUFFIX="_filtered"
 else
     INDEX_FILE=$WORK/combined_index.yml
     SUFFIX=""
