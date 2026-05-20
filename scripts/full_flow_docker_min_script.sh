@@ -21,4 +21,7 @@ fi
 rm -rf /root/.rustup/toolchains
 conda clean -a
 
+# pip install antlr4-python3-runtime==4.12.0
+pip install antlr4-python3-runtime==4.13.1
+
 $SCRIPTS_DIR/full_flow.sh $@
