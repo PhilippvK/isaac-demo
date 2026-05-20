@@ -49,6 +49,9 @@ chmod -R 777 $TOP_DIR/gen_output
 cd /work/etiss
 git status
 cp -r $TOP_DIR/gen_output/$TOP_NAME/$CORE_NAME ArchImpl
+# TODO: handle xlen
+# TODO: handle missing compressed/float
+# TODO: align with etiss_perf and docker scripts
 cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.cpp ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.cpp
 sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
 git status
