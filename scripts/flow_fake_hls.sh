@@ -30,38 +30,45 @@ fi
 
 if [[ "$FINAL" == "1" ]]
 then
-    SUFFIX=_final
+    LABEL=final
     INDEX_FILE=$WORK/final_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$PRELIM" == "1" ]]
 then
-    SUFFIX=_prelim
+    LABEL=prelim
     INDEX_FILE=$WORK/prelim_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
-    SUFFIX=_filtered2_selected
+    LABEL=filtered2_selected
     INDEX_FILE=$WORK/filtered2_selected_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED2" == "1" ]]
 then
-    SUFFIX=_filtered2
+    LABEL=filtered2
     INDEX_FILE=$WORK/filtered2_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED" == "1" && "$SELECTED" == 1 ]]
 then
-    SUFFIX=_filtered_selected
+    LABEL=filtered_selected
     INDEX_FILE=$WORK/filtered_selected_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=100)"}
 elif [[ "$FILTERED" == "1" ]]
 then
-    SUFFIX=_filtered
+    LABEL=filtered
     INDEX_FILE=$WORK/filtered_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=1)"}
 else
-    SUFFIX=""
+    LABEL=""
     INDEX_FILE=$WORK/combined_index.yml
     FAKE_HLS_STRATEGIES=${FAKE_HLS_STRATEGIES:-"all(limit=1)"}
+fi
+
+if [[ "$LABEL" != "" ]]
+then
+    SUFFIX="_${LABEL}"
+else
+    SUFFIX=""
 fi
 
 # CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
@@ -70,10 +77,15 @@ if [[ $FAKE_HLS_TOOL == "fake" ]]
 then
     HLS_FAKE_CORE_NAME=cv32e40p
     SESS=$DIR/sess
-    DEST_DIR=$WORK/local/fake_hls
+    DEST_DIR=$WORK/local/fake_hls$SUFFIX
     mkdir -p $DEST_DIR
 
-    python3 -m isaac_toolkit.retargeting.fake_hls --sess $SESS --workdir $WORK --set-name $SET_NAME --core $HLS_FAKE_CORE_NAME --index $INDEX_FILE --strategies $FAKE_HLS_STRATEGIES
+    EXTRA_ARGS=""
+    if [[ "$LABEL" != "" ]]
+    then
+        EXTRA_ARGS="--label $LABEL"
+    fi
+    python3 -m isaac_toolkit.retargeting.fake_hls --sess $SESS --workdir $WORK --set-name $SET_NAME --core $HLS_FAKE_CORE_NAME --index $INDEX_FILE --strategies $FAKE_HLS_STRATEGIES --force $EXTRA_ARGS
 else
     echo "Unsupported FAKE_HLS_TOOL: $FAKE_HLS_TOOL"
     exit 1
