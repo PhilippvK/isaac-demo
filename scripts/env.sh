@@ -25,7 +25,7 @@ then
     DEFAULT_CCACHE_DIR=/root/.ccache # TODO: move
 elif [[ "$IN_FULL_DOCKER" == "1" ]]
 then
-    DEFAULT_VENV_DIR=$TOP_DIR/venv
+    DEFAULT_VENV_DIR=$TOP_DIR/venv_docker
     DEFAULT_CCACHE_DIR=$TOP_DIR/install/ccache
 else
     DEFAULT_VENV_DIR=$TOP_DIR/venv
