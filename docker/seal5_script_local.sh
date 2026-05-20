@@ -77,8 +77,11 @@ fi
 
 if [[ "$RESET" == "1" ]]
 then
-  seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} reset  --settings
-  seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} clean --temp --patches --models --inputs
+  if [[ -d "${SEAL5_HOME}" ]]
+  then
+    seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} reset  --settings
+    seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} clean --temp --patches --models --inputs
+  fi
 fi
 seal5 $VERBOSE_ARGS --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH} --force
 seal5 $VERBOSE_ARGS load --overwrite --files $SEAL5_CFG_DIR/*.yml
