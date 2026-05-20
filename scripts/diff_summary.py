@@ -1,4 +1,5 @@
 import sys
+
 # import re
 import argparse
 import tempfile
@@ -73,6 +74,7 @@ compare_runtime_per_llvm_bb_df = pd.read_pickle(compare_runtime_per_llvm_bb_pkl)
 
 print("=== DIFFS ===")
 
+
 def find_disass_snippet(disass_df, start, end, count=None):
     temp_df = disass_df[disass_df["pc"] >= start]
     assert len(temp_df) > 0
@@ -98,6 +100,10 @@ for i, row in merged_df.iterrows():
     func_bb = func_name + "-" + bb_name
     compare_runtime_match = compare_runtime_per_llvm_bb_df[compare_runtime_per_llvm_bb_df.index == func_bb]
     # print("compare_runtime_match", compare_runtime_match)
+    if len(compare_runtime_match) == 0:
+        print(f"{i}) <{func_bb}>")
+        print("Not found!")
+        continue
     assert len(compare_runtime_match) == 1
     compare_runtime_match.reset_index(inplace=True, drop=True)
     # input("")
@@ -147,7 +153,7 @@ for i, row in merged_df.iterrows():
     num_instrs = len(snippet_df)
     base_num_instrs = len(base_snippet_df)
     num_instrs_diff = -(base_num_instrs - num_instrs)
-    num_instrs_rel = (num_instrs_diff / base_num_instrs)
+    num_instrs_rel = num_instrs_diff / base_num_instrs
 
     rel_weight_ = compare_runtime_match["rel_weight_"].iloc[0]
     rel_weight = compare_runtime_match["rel_weight"].iloc[0]
