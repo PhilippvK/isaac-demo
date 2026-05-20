@@ -23,7 +23,7 @@ flow:
       xlen: 32
     etiss:
       core_name: XIsaacCore
-      uarch_name: VEX_5S_XISAAC
+      # uarch_name: VEX_5S_XISAAC
     docker:
       mlonmcu_image: philippvk/isaac-quickstart-mlonmcu:vex-latest
       etiss_image: philippvk/isaac-quickstart-etiss:latest
