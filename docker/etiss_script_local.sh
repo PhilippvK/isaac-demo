@@ -69,7 +69,7 @@ git status
 git commit -m "add etiss arch"
 git status
 git archive -o $DEST/etiss_source.zip HEAD
-tar --dereference --exclude=.git --exclude=.gitmodules --exclude build_dir -czf $DEST/etiss_perf_source.tar.gz .  # TODO: .zip?
+tar --dereference --exclude=.git --exclude=.gitmodules --exclude build_dir -czf $DEST/etiss_source.tar.gz .  # TODO: .zip?
 
 CCACHE_ARGS=""
 if [[ "$CCACHE" == "1" ]]
