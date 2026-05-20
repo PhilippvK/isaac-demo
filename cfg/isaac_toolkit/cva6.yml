@@ -23,7 +23,7 @@ flow:
       xlen: 64
     etiss:
       core_name: XIsaacCore
-      uarch_name: CVA6XISAAC
+      # uarch_name: CVA6XISAAC
     docker:
       mlonmcu_image: philippvk/isaac-quickstart-mlonmcu:cva6-latest
       etiss_image: philippvk/isaac-quickstart-etiss:latest
@@ -32,7 +32,7 @@ flow:
       hls_image: philippvk/isaac-quickstart-hls:latest
       enable: true  # TODO: enable/disable docker per stage?
     service:
-      host: localhost
+      hostname: localhost
       port: 8080
       tags:
         etiss: iss
