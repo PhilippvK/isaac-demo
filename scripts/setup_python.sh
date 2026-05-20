@@ -13,7 +13,7 @@ fi
 # VENV_DIR=$TOP_DIR/venv_py38
 # PYTHON_VER=python3.8
 # PYTHON_EXE=/home/ga87puy/src/Python/cpython_v3.10/install/bin/python3.10
-PYTHON_EXE=${PYTHON_EXE:-python}
+PYTHON_EXE=${PYTHON_EXE:-python3}
 
 echo "SCRIPT_DIR=${SCRIPT_DIR}"
 echo "TOP_DIR=${TOP_DIR}"
