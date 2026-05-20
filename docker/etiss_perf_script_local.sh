@@ -1,18 +1,15 @@
 #!/bin/bash
 
-git config --global url."https://github.com/".insteadOf git@github.com:
-
-
 date
 
-conda deactivate  # TODO: only on demand?
-deactivate
+conda deactivate || :
+deactivate || :
 pip list | grep -i m2
 which python
 unset PYTHONPATH
 unset VIRTUAL_ENV
 echo PYTHONPATH=$PYTHONPATH
-export PATH=/nfs/TUEIEDAscratch/ga87puy/work/cpython_v3.10_nodbgopt/install/bin/:$PATH
+# export PATH=/nfs/TUEIEDAscratch/ga87puy/work/cpython_v3.10_nodbgopt/install/bin/:$PATH
 env
 # TODO: python3.10!!
 
@@ -135,8 +132,8 @@ cp InstructionTrace_XISAAC.json $DEST/InstructionTrace_XISAAC.json
 cp CV32E40PXISAAC.corePerfDsl $DEST/CV32E40PXISAAC.corePerfDsl
 cd -
 
-${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/CV32E40PXISAAC.corePerfDsl -i
-# ${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/CV32E40PXISAACALT.corePerfDsl -i
+${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/CV32E40PXISAAC.corePerfDsl
+# ${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/CV32E40PXISAACALT.corePerfDsl
 ${PSW_SCRIPTS_SUPPORT}/code_gen_helper.py ./code_gen/descriptions/core_perf_dsl/InstructionTrace_XISAAC.json
 
 cd $ETISS_PERF_HOME/etiss-perf-sim/etiss
