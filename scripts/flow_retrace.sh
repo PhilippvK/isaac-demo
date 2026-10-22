@@ -131,6 +131,9 @@ then
 fi
 
 EXTRA_ARGS=()
+if [[ -n "${ISAAC_GNU_INSTALL_DIR:-}" ]]; then
+    EXTRA_ARGS+=("-c" "riscv_gcc_rv32.install_dir=$ISAAC_GNU_INSTALL_DIR")
+fi
 if [[ "$BACKEND" != "" ]]
 then
     EXTRA_ARGS+=("--backend=$BACKEND")

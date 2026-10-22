@@ -67,6 +67,9 @@ NUM_THREADS=16  # TODO: do not hardcode
 MEM_ONLY=${MEM_ONLY:-0}
 
 EXTRA_ARGS=()
+if [[ -n "${ISAAC_GNU_INSTALL_DIR:-}" ]]; then
+    EXTRA_ARGS+=("-c" "riscv_gcc_rv32.install_dir=$ISAAC_GNU_INSTALL_DIR")
+fi
 
 STAGE=run
 if [[ "$MEM_ONLY" == "1" ]]

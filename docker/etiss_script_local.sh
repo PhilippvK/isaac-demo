@@ -51,6 +51,8 @@ git status
 cp -r $TOP_DIR/gen_output/$TOP_NAME/$CORE_NAME ArchImpl
 cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.cpp ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.cpp
 sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
+# The copied implementation also handles compressed instructions, which may be absent.
+sed -i 's/vis->get(16)->getInvalid()/if (vis->get(16)) vis->get(16)->getInvalid()/' ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
 git status
 # tar cfJ $DEST/etiss_src.tar.xz *
 # tar cf $DEST/etiss_src.tar.gz *

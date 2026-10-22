@@ -1,0 +1,33 @@
+enable_variation_reuse_io: false
+enable_variation_auto_imm: false
+filters:
+  cfu: true
+  allowed_enc_sizes: [32]
+  allowed_reg_classes: 2
+  instr_predicates: 511
+  min_inputs: 1
+  # Includes constant nodes; physical register inputs are limited separately.
+  max_inputs: 9223372036854775807
+  min_outputs: 1
+  max_outputs: 1
+  max_in_operands: 2
+  max_out_operands: 1
+  max_inout_operands: 0
+  max_loads: 0
+  max_stores: 0
+  max_mems: 0
+  max_branches: 0
+  min_nodes: 1
+  max_nodes: 1000
+  max_enc_footprint: 1.0
+  max_enc_weight: 1.0
+  min_enc_bits_left: 10
+halt_on_error: true
+memgraph:
+  host: localhost
+  port: 7687
+query:
+  limit_results: null
+  max_path_len: 9
+  max_path_width: 2
+  min_path_len: 1
