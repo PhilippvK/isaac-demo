@@ -56,21 +56,21 @@ with open(disass_file, "r") as f:
 
 def find_disass_snippet(disass_text, start, end, count=None):
     # print("find_disass_snippet", start, end, count)
-    start_match = f" {start:x}: "
-    end_match = f" {end:x}: "
+    start_match = re.compile(rf"^\s*0*{start:x}:\s")
+    end_match = re.compile(rf"^\s*0*{end:x}:\s")
     end_match2 = r"^0+" + f"{end:x} "
     ret_lines = []
     for line in disass_text.splitlines():
         if len(line.strip()) == 0:
             continue
         if len(ret_lines) > 0:
-            if end_match in line:
+            if end_match.search(line):
                 break
             elif re.compile(end_match2).match(line.strip()):
                 break
             ret_lines.append(line)
         else:
-            if start_match in line:
+            if start_match.search(line):
                 ret_lines.append(line)
     assert len(ret_lines) > 0
     if count is not None:
