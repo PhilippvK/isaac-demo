@@ -20,6 +20,8 @@ run_dir = exp_dir / "run"
 sess_dir = exp_dir / "sess"
 
 disass_file = run_dir / "generic_mlonmcu.dump"
+if (run_dir / "cfu_discovery.json").is_file():
+    disass_file = run_dir / "firmware.dump"
 choices_pkl = sess_dir / "table" / "choices.pkl"
 llvm_bbs_new_pkl = sess_dir / "table" / "llvm_bbs_new.pkl"
 

@@ -1,8 +1,10 @@
 # CFU-Playground integration plan
 
-Status: Step 1 ISS verification/reporting and initial Step 2 RTL implementation
-are in progress. The plan was presented before testing. Whole-system hardware
-execution and synthesis milestones remain unimplemented.
+Status: ISS constraints, experimental native evaluation on Verilator/Renode/FPGA,
+and FPGA synthesis are implemented and demonstrated on CRC32. Verilator-based
+initial discovery is now implemented through candidate generation. Fully native
+candidate filtering/selection and broader validation remain outstanding. The
+plan was presented before testing; later sections retain earlier milestone notes.
 
 ## Current verification checkpoint
 
@@ -10,8 +12,17 @@ execution and synthesis milestones remain unimplemented.
   final runner and report. General preset `cfg/flow/paper/cfu_rv32.env` includes
   the ISS preset and defaults the final runner to Verilator. Expansion and shell
   syntax checks pass; the composed 34-step flow has not been rerun as a fresh
-  benchmark campaign. Initial VexRiscv benchmarking/tracing as input to discovery
-  remains outstanding; current Verilator traces belong to final evaluation.
+  benchmark campaign. The opt-in `cfu_verilator_rv32.env` preset now replaces
+  initial benchmark/trace stages using `CFU_DISCOVERY_RUNNER=verilator`.
+- New `cfu_discover` flow passes baseline benchmarking, tracing, loading,
+  analysis, visualization, block selection, Memgraph CDFG/query, and CoreDSL
+  generation without ETISS execution. Run `20261022T132649` validates both
+  native executions at 5,574,217 cycles / 4,179,652 instructions, analyzes
+  4,179,658 in-window retirements, selects two blocks, and emits ten candidates.
+  LLVM BB labels and complete compilation artifacts are exported; lowercase
+  trace mnemonics preserve control-flow recognition. Three trace/load regression
+  tests pass. The broad `run*/` ignore rule previously hid required runtime
+  sources; a narrow exception now includes `cfg/cfu_playground/runtime/`.
 
 - Dedicated preset: `cfg/flow/paper/cfu_iss_rv32.env`; separate ilp32 runtime at
   `install/gnu_cfu`, forwarded explicitly through all evaluation scripts.

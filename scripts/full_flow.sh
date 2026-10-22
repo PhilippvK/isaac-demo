@@ -10,7 +10,7 @@ STEPS=${3:-all}
 
 if [[ "$BENCH" == "help" ]]
 then
-    echo "Usage: $0 BENCH_NAME [now|latest|20241118101112|...] [all|demo_iss|demo_cfu|...]"
+    echo "Usage: $0 BENCH_NAME [now|latest|20241118101112|...] [all|demo_iss|demo_cfu|cfu_discover|...]"
     exit 1
 fi
 
@@ -124,6 +124,8 @@ FPGA_SYN_VIVADO_CLOCK_NS=${FPGA_SYN_VIVADO_CLOCK_NS}
 FPGA_SYN_VIVADO_CORE_NAME=${FPGA_SYN_VIVADO_CORE_NAME}
 ISAAC_QUERY_CONFIG_YAML=${ISAAC_QUERY_CONFIG_YAML}
 CFU_RUNNER=${CFU_RUNNER:-verilator}
+CFU_DISCOVERY_RUNNER=${CFU_DISCOVERY_RUNNER:-etiss}
+CFU_DISCOVERY_COMPILER=${CFU_DISCOVERY_COMPILER:-}
 CFU_PLAYGROUND_DIR=${CFU_PLAYGROUND_DIR:-}
 CFU_INSTRUCTION_TRACE=${CFU_INSTRUCTION_TRACE:-0}
 CFU_SYNTHESIZE_ONLY=${CFU_SYNTHESIZE_ONLY:-0}
@@ -158,7 +160,13 @@ if [[ "$STEPS" == "demo_cfu" ]]; then
     STEPS=demo_iss
 fi
 
-if [[ "$STEPS" == "all" ]]
+if [[ "$STEPS" == "cfu_discover" ]]; then
+    if [[ "${ISAAC_ENCODING_POLICY:-auto}" != cfu || "${CFU_DISCOVERY_RUNNER:-etiss}" != verilator ]]; then
+        echo "cfu_discover requires cfg/flow/paper/cfu_verilator_rv32.env" >&2
+        exit 1
+    fi
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate"
+elif [[ "$STEPS" == "all" ]]
 then
     STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;isaac_0_etiss;seal5_0;etiss_0;hls_0;syn_0;compare_0;compare_others_0;retrace_0;reanalyze_0;report_0"
 elif [[ "$STEPS" == "all_new" ]]

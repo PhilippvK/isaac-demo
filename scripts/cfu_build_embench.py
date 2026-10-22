@@ -4,6 +4,7 @@
 import argparse
 import hashlib
 import json
+import shlex
 from pathlib import Path
 import subprocess
 
@@ -17,6 +18,7 @@ def main():
     parser.add_argument("--soc-json", type=Path, required=True)
     parser.add_argument("--arch", default="rv32im_zicsr_zifencei")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--discovery", action="store_true", help="Emit LLVM BB labels and discovery artifact metadata")
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -55,7 +57,7 @@ SECTIONS {{
     sources = sorted(args.benchmark_dir.resolve().glob("*.c")) + [args.support_dir.resolve() / "beebsc.c"]
     if len(sources) < 2:
         parser.error("No benchmark sources found")
-    commands, objects, hashes = [], [], {}
+    commands, objects, hashes, compile_commands = [], [], {}, []
     def execute(command):
         command = list(map(str, command))
         commands.append(command)
@@ -68,11 +70,17 @@ SECTIONS {{
         else:
             command = [args.compiler.resolve(), "--target=riscv32", "--gcc-toolchain=" + str(gnu),
                        "--sysroot=" + str(gnu / "riscv32-unknown-elf"), "-march=" + args.arch]
-        execute(command + common + ["-c", source, "-o", obj])
+            if args.discovery:
+                command += ["-fbasic-block-sections=labels"]
+        flags = common + (["-DCFU_DISCOVERY=1"] if args.discovery else [])
+        compile_command = list(map(str, command + flags + ["-c", source, "-o", obj]))
+        execute(compile_command)
+        compile_commands.append({"directory": str(output), "file": str(source),
+                                 "command": shlex.join(compile_command)})
         objects.append(obj)
     elf, binary = output / "firmware.elf", output / "firmware.bin"
     execute([gcc, "-march=rv32im_zicsr_zifencei", "-mabi=ilp32", "-nostdlib", "-Wl,--gc-sections",
-             "-Wl,--no-relax", "-T", linker, *objects, "-lgcc", "-o", elf])
+             "-Wl,--no-relax", "-Wl,-Map," + str(output / "firmware.map"), "-T", linker, *objects, "-lgcc", "-o", elf])
     execute([gnu / "bin/riscv32-unknown-elf-objcopy", "-O", "binary", elf, binary])
     report = {"arch": args.arch, "abi": "ilp32", "cpu_mhz_scaling": 1,
               "warmup_heat": 0, "source_hashes": hashes, "commands": commands,
@@ -80,6 +88,7 @@ SECTIONS {{
               "soc_json_sha256": hashlib.sha256(args.soc_json.read_bytes()).hexdigest(),
               "measurement": "benchmark call plus counter-read overhead; initialization and validation excluded"}
     (output / "build.json").write_text(json.dumps(report, indent=2) + "\n")
+    (output / "compile_commands.json").write_text(json.dumps(compile_commands, indent=2) + "\n")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,9 @@
 #!/bin/bash
 
 set -e
+if [[ ${CFU_DISCOVERY_RUNNER:-etiss} == verilator ]]; then
+    exec bash scripts/flow_cfu_discover.sh "$1" bench
+fi
 
 DIR=$(readlink -f $1)
 DATE=$(basename $DIR)

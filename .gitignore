@@ -4,6 +4,7 @@ sess*/
 work*/
 !workflows/
 run*/
+!cfg/cfu_playground/runtime/
 .ipynb_checkpoints/
 out/
 *.jou

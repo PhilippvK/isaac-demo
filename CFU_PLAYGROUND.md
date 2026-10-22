@@ -103,12 +103,11 @@ export CFU_RUNNER=verilator  # alternatively renode or fpga, configured below
 ./scripts/full_flow.sh embench_iot/crc32 now demo_cfu
 ```
 
-`demo_cfu` runs the existing ETISS baseline/tracing, candidate discovery,
+By default, `demo_cfu` runs the existing ETISS baseline/tracing, candidate discovery,
 compiler generation, and ISS-based filtering/selection, then evaluates the
 selected set using `CFU_RUNNER` and generates the report. Runner choice currently
-affects the final evaluation stage. Optional Verilator retirement traces belong
-to that stage and do not replace the initial ETISS discovery trace. Initial
-benchmarking/discovery on VexRiscv remains outstanding. Fake-HLS selection costs
+affects the final evaluation stage. The optional Verilator discovery path below
+also replaces initial benchmarking/tracing. Fake-HLS selection costs
 also remain in that selection stage; FPGA resource reports come from the later
 actual Vivado builds.
 
@@ -116,6 +115,40 @@ actual Vivado builds.
 combined flow; the latter remains appropriate for `demo_iss` alone. These are
 environment presets, while `demo_cfu` selects the ordered flow steps. Sourcing
 an equivalent custom preset is supported if it sets the CFU encoding policy.
+
+### Verilator-based initial discovery
+
+```bash
+source scripts/env.sh
+source cfg/flow/paper/cfu_verilator_rv32.env
+export CFU_PLAYGROUND_DIR=/path/to/CFU-Playground
+./scripts/full_flow.sh embench_iot/crc32 now cfu_discover
+```
+
+This path runs baseline benchmarking and retirement tracing on the pinned
+CFU-capable VexRiscv CPU, then loads ELF/DWARF, disassembly, linker map, and
+compile commands into ISAAC. LLVM basic-block address labels connect the trace
+to source-level blocks. Analysis, visualization, hot-block selection, Memgraph
+CDFG extraction/querying, and CoreDSL candidate generation use the normal stages.
+No ETISS executable or retargeted ETISS model is used in these discovery steps.
+
+`CFU_DISCOVERY_RUNNER=verilator` controls the initial runner independently of
+`CFU_RUNNER`, which controls final evaluation. The preset sets the former;
+`CFU_DISCOVERY_COMPILER` optionally overrides the baseline LLVM compiler.
+`run_cfu_bench/` holds baseline metrics, while `run/` holds the trace and discovery
+artifacts. `sess/` and `work/` retain their normal roles.
+
+The existing `demo_cfu` can also use this preset to replace its initial discovery
+stages, but its later filtering/selection steps still use ETISS. `cfu_discover`
+deliberately ends after candidate generation. A completely ETISS-free compiler
+retargeting and candidate-selection flow is not yet implemented. Traces contain
+retirement cycles/PCs/instruction words, not runtime register or memory values.
+
+Verified CRC32 discovery run: `out/embench_iot/crc32/20261022T132649`.
+Both benchmark and trace validate with 5,574,217 cycles and 4,179,652 retired
+instructions. Analysis retains 4,179,658 in-window trace records, selects two
+basic blocks, and generates ten CFU candidates. Evidence is recorded in
+`work/cfu_discovery_validation.json`.
 
 Use a CFU-Playground checkout at revision
 `7f8ec4147b39db98534f8a10f9ddb1c26aca5648` with its pinned LiteX/Python submodules
