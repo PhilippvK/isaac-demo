@@ -14,10 +14,10 @@ LLVM_INSTALL_DIR=${LLVM_INSTALL_DIR:-$INSTALL_DIR/llvm}
 TEMPLATE_LLVM_ARGS="-c llvm_install_dir=$LLVM_INSTALL_DIR"
 TEMPLATE_ETISS_ARGS="-c etiss_dir=$ETISS_DIR etiss_install_dir=$ETISS_INSTALL_DIR"
 
-python -m mlonmcu.cli.main init -t "$MLONMCU_TEMPLATE" "$MLONMCU_HOME" --non-interactive --allow-exists --clone-models $TEMPLATE_LLVM_ARGS $TEMPLATE_ETISS_ARGS
+python3 -m mlonmcu.cli.main init -t "$MLONMCU_TEMPLATE" "$MLONMCU_HOME" --non-interactive --allow-exists --clone-models $TEMPLATE_LLVM_ARGS $TEMPLATE_ETISS_ARGS
 
-python -m mlonmcu.cli.main setup -g
+python3 -m mlonmcu.cli.main setup -g
 
-python -m pip install -r "$MLONMCU_HOME/requirements_addition.txt"
+python3 -m pip install -r "$MLONMCU_HOME/requirements_addition.txt"
 
-python -m mlonmcu.cli.main setup -v --rebuild
+python3 -m mlonmcu.cli.main setup -v --rebuild

@@ -42,7 +42,12 @@ set -e
 
 # echo "HELLO WORLD"
 python3 -m m2isar.frontends.coredsl2.parser $TOP_CDSL_FILE
-python -m m2isar.backends.etiss.writer $TOP_DIR/gen_model/$TOP_NAME.m2isarmodel --separate --static-scalars
+M2ISAR_FILL_ARGS=()
+if [[ ${ISAAC_M2ISAR_FILL_MODE:-empty} == auto ]]; then
+    # Future migration path: the parser and writer must both use new M2-ISA-R.
+    M2ISAR_FILL_ARGS+=(--fill-mode=auto)
+fi
+python3 -m m2isar.backends.etiss.writer $TOP_DIR/gen_model/$TOP_NAME.m2isarmodel --separate --static-scalars "${M2ISAR_FILL_ARGS[@]}"
 chmod -R 777 $TOP_DIR/gen_model
 chmod -R 777 $TOP_DIR/gen_output
 
@@ -52,10 +57,13 @@ cp -r $TOP_DIR/gen_output/$TOP_NAME/$CORE_NAME ArchImpl
 # TODO: handle xlen
 # TODO: handle missing compressed/float
 # TODO: align with etiss_perf and docker scripts
-cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.cpp ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.cpp
-sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
-# The copied implementation also handles compressed instructions, which may be absent.
-sed -i 's/vis->get(16)->getInvalid()/if (vis->get(16)) vis->get(16)->getInvalid()/' ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
+if [[ ${ISAAC_M2ISAR_FILL_MODE:-empty} != auto ]]; then
+    # Auto-fill supplies this implementation; copying RV32IMACFD would undo it.
+    cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.cpp ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.cpp
+    sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
+    # Legacy copied ETISS implementations may predate M2-ISA-R's width guards.
+    sed -i 's/vis->get(16)->getInvalid()/if (vis->get(16)) vis->get(16)->getInvalid()/' ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
+fi
 git status
 # tar cfJ $DEST/etiss_src.tar.xz *
 # tar cf $DEST/etiss_src.tar.gz *
