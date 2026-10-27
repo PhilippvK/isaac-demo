@@ -5,7 +5,6 @@ import argparse
 import json
 from pathlib import Path
 import pickle
-import re
 
 import yaml
 from m2isar.frontends.coredsl2_set.parser import parse_cdsl2_set
@@ -13,12 +12,19 @@ from m2isar.metamodel import arch
 from isaac_toolkit.generate.iss.cfu import CFUEncoder, validate_candidate
 
 
-def encoding_texts(path):
-    pattern = r"^\s*([A-Za-z_]\w*)\s*\{\s*encoding:\s*([^;]+);"
-    matches = re.findall(pattern, path.read_text(), re.MULTILINE | re.DOTALL)
-    if len(matches) != len({name for name, _ in matches}):
-        raise ValueError(f"Duplicate instructions in {path}")
-    return {name: re.sub(r"\s+", "", encoding) for name, encoding in matches}
+def instruction_encodings(path, base_dir):
+    """Compare parsed fields, including operand names, rather than text layout."""
+    result = {}
+    for instruction_set in parse_cdsl2_set(path, [str(base_dir)], defines={"XLEN": 32}).values():
+        for instruction in instruction_set.instructions.values():
+            if instruction.name in result:
+                raise ValueError(f"Duplicate instructions in {path}")
+            result[instruction.name] = tuple(
+                ("value", field.length, field.value) if isinstance(field, arch.BitVal)
+                else ("field", field.name, field.range.upper, field.range.lower, field.ty.kind)
+                for field in instruction.encoding
+            )
+    return result
 
 
 def verify(index, gen_dir, manifest, set_name, base_dir):
@@ -53,12 +59,11 @@ def verify(index, gen_dir, manifest, set_name, base_dir):
                          and field.range.upper == 4 and field.range.lower == 0)
             if not valid:
                 raise ValueError(f"Incorrect CFU {register} field: {instr.name}")
-    # The legacy writer emits an empty instructions block for the split group,
-    # accepted by Seal5 but not by this M2-ISA-R parser. Compare the exact emitted
-    # encoding expressions, and independently inspect the serialized split model.
-    combined_texts = encoding_texts(combined_path)
+    # Both combined and split files use the shared typed writer. Parse both,
+    # then independently inspect the serialized split model.
+    combined_texts = instruction_encodings(combined_path, base_dir)
     if (set(combined_texts) != set(expected)
-            or encoding_texts(gen_dir / f"{set_name}.splitted.core_desc") != combined_texts):
+            or instruction_encodings(gen_dir / f"{set_name}.splitted.core_desc", base_dir) != combined_texts):
         raise ValueError("Combined and split CoreDSL encodings disagree")
     with (gen_dir / f"{set_name}.splitted.m2isarmodel").open("rb") as handle:
         model = pickle.load(handle)
