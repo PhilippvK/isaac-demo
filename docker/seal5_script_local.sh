@@ -23,7 +23,9 @@ GEN_CFG_FILES=$(echo ${FILES[@]//*.core_desc})
 echo "GEN_CFG_FILES=$GEN_CFG_FILES"
 
 # source /work/venv/bin/activate
-export PYTHONPATH=${SEAL5_DIR}
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+# Seal5 still uses its legacy model API in a separate subprocess.
+export PYTHONPATH="${SEAL5_DIR}:${SEAL5_M2ISAR_DIR:-$SCRIPT_DIR/../M2-ISA-R}"
 # TODO: if seal5_dir unset, clone or pip install
 # alias seal5="python3 -m seal5.cli.main"
 

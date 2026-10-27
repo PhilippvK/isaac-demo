@@ -33,7 +33,6 @@ source /work/venv/bin/activate
 
 # WORKAROUND/FIX (TODO: remove)
 apt-get update && apt-get install -y --no-install-recommends zip unzip
-cp -r /work/git/isaac-demo/M2-ISA-R/* /work/M2-ISA-R/
 git clone https://github.com/PhilippvK/etiss.git --branch print_instr_to_file /work/etiss
 
 set -e
@@ -43,8 +42,7 @@ set -e
 # echo "HELLO WORLD"
 python3 -m m2isar.frontends.coredsl2.parser $TOP_CDSL_FILE
 M2ISAR_FILL_ARGS=()
-if [[ ${ISAAC_M2ISAR_FILL_MODE:-empty} == auto ]]; then
-    # Future migration path: the parser and writer must both use new M2-ISA-R.
+if [[ ${ISAAC_M2ISAR_FILL_MODE:-auto} == auto ]]; then
     M2ISAR_FILL_ARGS+=(--fill-mode=auto)
 fi
 python3 -m m2isar.backends.etiss.writer $TOP_DIR/gen_model/$TOP_NAME.m2isarmodel --separate --static-scalars "${M2ISAR_FILL_ARGS[@]}"
@@ -57,7 +55,7 @@ cp -r $TOP_DIR/gen_output/$TOP_NAME/$CORE_NAME ArchImpl
 # TODO: handle xlen
 # TODO: handle missing compressed/float
 # TODO: align with etiss_perf and docker scripts
-if [[ ${ISAAC_M2ISAR_FILL_MODE:-empty} != auto ]]; then
+if [[ ${ISAAC_M2ISAR_FILL_MODE:-auto} != auto ]]; then
     # Auto-fill supplies this implementation; copying RV32IMACFD would undo it.
     cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.cpp ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.cpp
     sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp

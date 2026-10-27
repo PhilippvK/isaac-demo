@@ -14,7 +14,7 @@ RUN mkdir /work
 COPY M2-ISA-R/ /work/M2-ISA-R
 
 RUN python3 -m venv /work/venv
-RUN . /work/venv/bin/activate && pip3 install -r /work/M2-ISA-R/requirements.txt
+RUN . /work/venv/bin/activate && python3 -m pip install /work/M2-ISA-R
 
 COPY ./docker/etiss_script.sh /work/etiss_script.sh
 
