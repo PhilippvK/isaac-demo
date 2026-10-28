@@ -35,7 +35,8 @@ flow:
       hostname: localhost
       port: 8080
       tags:
-        etiss: iss
+        etiss: etiss
+        spike: spike
         seal5: llvm
         etiss_perf: etiss_perf
         hls: null

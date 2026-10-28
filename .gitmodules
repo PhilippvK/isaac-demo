@@ -25,3 +25,6 @@
 [submodule "etiss_arch_riscv"]
 	path = etiss_arch_riscv
 	url = https://github.com/tum-ei-eda/etiss_arch_riscv.git
+[submodule "isaac-docker-service"]
+	path = isaac-docker-service
+	url = git@github.com:PhilippvK/isaac-docker-service.git

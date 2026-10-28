@@ -14,5 +14,11 @@ elif [[ ${MULTI:-0} == 1 ]]; then LABEL=multi
 fi
 ARGS=()
 if [[ -n ${SPIKE_INSTALL_DIR:-} ]]; then ARGS+=(--spike-install-dir "$SPIKE_INSTALL_DIR"); fi
+RETARGET_MODE=local
+if [[ ${USE_SPIKE_SERVICE:-0} == 1 ]]; then
+    RETARGET_MODE=service
+    ARGS+=(--service "${SPIKE_SERVICE_ADDR:-localhost:8080}")
+fi
+export SPIKE_RETARGET_MODE=$RETARGET_MODE
 python3 -m isaac_toolkit.retargeting.iss.spike --workdir "$WORK" --label "$LABEL" \
     --spike-core "${ISAAC_CORE_NAME:-XIsaacCore}" --force "${ARGS[@]}"

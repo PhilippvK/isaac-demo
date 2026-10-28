@@ -33,7 +33,8 @@ isaac_retarget_args() {
     isaac_iss_args
     ISAAC_RETARGET_ARGS=("${ISAAC_ISS_ARGS[@]}")
     if [[ $ISS == spike ]]; then
-        local manifest=${SPIKE_PLUGIN_MANIFEST:-$WORK/local/spike${SUFFIX}/spike_plugin.json}
+        local mode=${SPIKE_RETARGET_MODE:-local}
+        local manifest=${SPIKE_PLUGIN_MANIFEST:-$WORK/$mode/spike${SUFFIX}/spike_plugin.json}
         if [[ ! -f $manifest ]]; then
             echo "Missing Spike plugin: $manifest. Run the retargeting step first." >&2
             return 1
