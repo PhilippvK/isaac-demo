@@ -20,7 +20,8 @@ RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
 
-TARGET=${TARGET:-etiss}
+source "$(dirname "${BASH_SOURCE[0]}")/iss_config.sh"
+isaac_iss_args
 UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 ARCH=${ARCH:-rv32imfd}
@@ -38,7 +39,7 @@ AUTO_VECTORIZE=${AUTO_VECTORIZE:-0}
 
 EXTRA_ARGS=""
 if [[ -n "${ISAAC_GNU_INSTALL_DIR:-}" ]]; then
-    EXTRA_ARGS="$EXTRA_ARGS -c riscv_gcc_rv32.install_dir=$ISAAC_GNU_INSTALL_DIR"
+    : # GNU toolchain is selected by XLEN in iss_config.sh
 fi
 if [[ "$BACKEND" != "" ]]
 then
@@ -86,6 +87,6 @@ then
     MLONMCU_IMAGE=${MLONMCU_IMAGE:-philippvk/isaac-quickstart-mlonmcu:latest}
     $DOCKER_PREFIX docker run -i --rm -v $(pwd):$(pwd) --workdir $(pwd) $MLONMCU_IMAGE $MLONMCU_ARGS
 else
-    python3 -m mlonmcu.cli.main $MLONMCU_ARGS
+    python3 -m mlonmcu.cli.main $MLONMCU_ARGS "${ISAAC_ISS_ARGS[@]}"
     # flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-baseline -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL $EXTRA_ARGS
 fi

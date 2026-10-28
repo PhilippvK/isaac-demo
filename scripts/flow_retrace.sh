@@ -15,7 +15,7 @@ WORK=$DIR/work
 # echo "$WORK/docker/llvm_install"
 # sleep 10
 
-TARGET=${TARGET:-etiss}
+source "$(dirname "${BASH_SOURCE[0]}")/iss_config.sh"
 ARCH=${ARCH:-rv32imfd}
 ABI=${ABI:-ilp32d}
 UNROLL=${UNROLL:-auto}
@@ -132,13 +132,15 @@ fi
 
 EXTRA_ARGS=()
 if [[ -n "${ISAAC_GNU_INSTALL_DIR:-}" ]]; then
-    EXTRA_ARGS+=("-c" "riscv_gcc_rv32.install_dir=$ISAAC_GNU_INSTALL_DIR")
+    : # Selected by XLEN in iss_config.sh
 fi
 if [[ "$BACKEND" != "" ]]
 then
     EXTRA_ARGS+=("--backend=$BACKEND")
 fi
 
-python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 --label $LABEL-trace2${SUFFIX} -c etissvp.script=$ETISS_SCRIPT -c etiss.script=$ETISS_SCRIPT -c etiss.cpu_arch=$CORE_NAME -c llvm.install_dir=$LLVM_INSTALL_DIR -c $TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL "${EXTRA_ARGS[@]}"
+isaac_retarget_args
+
+python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 --label $LABEL-trace2${SUFFIX} "${ISAAC_RETARGET_ARGS[@]}" -c llvm.install_dir=$LLVM_INSTALL_DIR -c $TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL "${EXTRA_ARGS[@]}"
 
 python3 -m mlonmcu.cli.main export --run -f -- $RUN2
