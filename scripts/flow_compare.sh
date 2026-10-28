@@ -13,7 +13,7 @@ RUN=$DIR/run
 # SESS=$DIR/sess
 WORK=$DIR/work
 
-TARGET=${TARGET:-etiss}
+source "$(dirname "${BASH_SOURCE[0]}")/iss_config.sh"
 ARCH=${ARCH:-rv32imfd}
 ABI=${ABI:-ilp32d}
 UNROLL=${UNROLL:-auto}
@@ -65,7 +65,7 @@ elif [[ "$FILTERED2" == "1" && "$SELECTED" == 1 ]]
 then
     ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_filtered2_selected/etiss_install
     LLVM_INSTALL_DIR=$SEAL5_DEST_DIR/seal5_filtered2_selected/llvm_install
-    SUFFIX="_filtered2"
+    SUFFIX="_filtered2_selected"
 elif [[ "$FILTERED2" == "1" ]]
 then
     ETISS_INSTALL_DIR=$ETISS_DEST_DIR/etiss_filtered2/etiss_install
@@ -141,18 +141,23 @@ then
     VERBOSE_ARGS="-v"
 fi
 EXTRA_ARGS=""
+if [[ -n "${ISAAC_GNU_INSTALL_DIR:-}" ]]; then
+    : # Selected by XLEN in iss_config.sh
+fi
 if [[ "$BACKEND" != "" ]]
 then
     EXTRA_ARGS="$EXTRA_ARGS --backend $BACKEND"
 fi
 
-python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare -c etissvp.script=$ETISS_SCRIPT -c etiss.script=$ETISS_SCRIPT -c etiss.cpu_arch=$CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions" -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS
+isaac_retarget_args
+
+python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare "${ISAAC_RETARGET_ARGS[@]}" -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="Run Instructions" -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS
 python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE
 # export ETISS_INSTALL_DIR
 # export LLVM_INSTALL_DIR
 # LABEL=$LABEL scripts/mlonmcu_wrapper.sh $RUN_COMPARE $BENCH
 
-python3 -m mlonmcu.cli.main flow compile $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem -c etissvp.script=$ETISS_SCRIPT -c etiss.script=$ETISS_SCRIPT -c etiss.cpu_arch=$CORE_NAME -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS
+python3 -m mlonmcu.cli.main flow compile $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm --label $LABEL-compare-mem "${ISAAC_RETARGET_ARGS[@]}" -c $TARGET.print_outputs=$PRINT_OUTPUTS -c llvm.install_dir=$LLVM_INSTALL_DIR --config-gen $TARGET.arch=$ARCH --config-gen $TARGET.arch=$FULL_ARCH --post config2cols -c config2cols.limit=$TARGET.arch --post rename_cols -c rename_cols.mapping="{'config_$TARGET.arch': 'Arch'}" --post compare_rows -c compare_rows.to_compare="ROM code" -c mlif.strip_strings=1 -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --parallel $NUM_THREADS $EXTRA_ARGS
 python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE_MEM
 # export ETISS_INSTALL_DIR
 # export LLVM_INSTALL_DIR

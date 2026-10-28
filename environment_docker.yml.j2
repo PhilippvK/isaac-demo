@@ -53,7 +53,9 @@ repos:
     ref: 739573d5f12798074bc7d375a46c005f23f59f67  # develop, 23.01.2024
   spike:
     url: "https://github.com/riscv-software-src/riscv-isa-sim.git"
-    ref: 0bc176b3fca43560b9e8586cdbc41cfde073e17a
+    ref: 2c300cd90eb74bb79f3fcdd58596a6f8d842d01c
+    options:
+      recursive: true
   spikepk:
     url: "https://github.com/riscv-software-src/riscv-pk.git"
     ref: 7e9b671c0415dfd7b562ac934feb9380075d4aa2
@@ -319,8 +321,8 @@ vars:
   # etiss.install_dir: {{ etiss_install_dir }}
   # etissvp.script: {{ etiss_install_dir }}/bin/run_helper.sh
   # etissvp.exe: {{ etiss_install_dir }}/bin/bare_etiss_processor
-  spike.keep_build_dir: false
-  spike.full: false
+  spike.keep_build_dir: true
+  spike.full: true
   etiss.keep_build_dir: false
   cmake.keep_build_dir: false
   cmake.keep_src_dir: false

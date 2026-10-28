@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -e
+source "$(dirname "${BASH_SOURCE[0]}")/iss_config.sh"
+if [[ $ISS == spike ]]; then exec bash "$(dirname "${BASH_SOURCE[0]}")/flow_spike.sh" "$@"; fi
 
 DIR=$(readlink -f $1)
 DATE=$(basename $DIR)

@@ -82,6 +82,10 @@ else
     fi
 fi
 EXTRA_ARGS=""
+if [[ "${ISAAC_ENCODING_POLICY:-auto}" == "cfu" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --encoding-policy cfu --encoding-manifest $WORK/cfu_manifest.json"
+fi
 
 if [[ "$AUTO_ENCODING" == "0" ]]
 then
@@ -93,3 +97,7 @@ fi
 # SESS currently unused
 echo python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $BASE_DIR --tum-dir $TUM_DIR  --extra-includes $EXTRA_INCLUDES --index $INDEX_FILE $EXTRA_ARGS
 python3 -m isaac_toolkit.generate.iss.generate_etiss_core --workdir $WORK --gen-dir $GEN_DIR --core-name $CORE_NAME --set-name $SET_NAME --xlen $XLEN --semihosting --base-extensions $BASE_EXTENSIONS --auto-encoding --split --base-dir $BASE_DIR --tum-dir $TUM_DIR  --extra-includes $EXTRA_INCLUDES --index $INDEX_FILE $EXTRA_ARGS
+if [[ "${ISAAC_ENCODING_POLICY:-auto}" == "cfu" ]]
+then
+    python3 "$SCRIPTS_DIR/verify_cfu_artifacts.py" --index "$INDEX_FILE" --gen-dir "$GEN_DIR" --manifest "$WORK/cfu_manifest.json" --set-name "$SET_NAME" --base-dir "$BASE_DIR"
+fi

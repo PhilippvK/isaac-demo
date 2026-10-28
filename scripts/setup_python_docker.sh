@@ -26,3 +26,6 @@ pip install -r $TOP_DIR/memgraph_experiments/requirements.txt
 pip install -r $TOP_DIR/seal5/requirements.txt  # TODO
 
 # TODO
+
+# ISAAC uses the typed M2-ISA-R parser, encoder and shared writer.
+python3 -m pip install -e "${M2ISAR_DIR:-$TOP_DIR/M2-ISA-R}"

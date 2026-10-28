@@ -42,3 +42,6 @@ then
 fi
 
 # TODO
+
+# ISAAC uses the typed M2-ISA-R parser, encoder and shared writer.
+python3 -m pip install -e "${M2ISAR_DIR:-$TOP_DIR/M2-ISA-R}"

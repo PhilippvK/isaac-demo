@@ -20,6 +20,8 @@ run_dir = exp_dir / "run"
 sess_dir = exp_dir / "sess"
 
 disass_file = run_dir / "generic_mlonmcu.dump"
+if (run_dir / "cfu_discovery.json").is_file():
+    disass_file = run_dir / "firmware.dump"
 choices_pkl = sess_dir / "table" / "choices.pkl"
 llvm_bbs_new_pkl = sess_dir / "table" / "llvm_bbs_new.pkl"
 
@@ -49,21 +51,21 @@ with open(disass_file, "r") as f:
 
 def find_disass_snippet(disass_text, start, end, count=None):
     # end is exclusive!
-    start_match = f" {start:x}: "
-    end_match = f" {end:x}: "
+    start_match = re.compile(rf"^\s*0*{start:x}:\s")
+    end_match = re.compile(rf"^\s*0*{end:x}:\s")
     end_match2 = r"^0+" + f"{end:x} "
     ret_lines = []
     for line in disass_text.splitlines():
         if len(line.strip()) == 0:
             continue
         if ret_lines:
-            if end_match in line:
+            if end_match.search(line):
                 break
             elif re.compile(end_match2).match(line.strip()):
                 break
             ret_lines.append(line)
         else:
-            if start_match in line:
+            if start_match.search(line):
                 ret_lines.append(line)
     assert ret_lines, f"No snippet found for {start:x}"
     if count is not None:

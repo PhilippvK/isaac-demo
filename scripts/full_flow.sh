@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+source "$(dirname "${BASH_SOURCE[0]}")/iss_config.sh"
 
 NOW=$(date +%Y%m%dT%H%M%S)
 
@@ -10,7 +11,7 @@ STEPS=${3:-all}
 
 if [[ "$BENCH" == "help" ]]
 then
-    echo "Usage: $0 BENCH_NAME [now|latest|20241118101112|...] [all|demo_iss|...]"
+    echo "Usage: $0 BENCH_NAME [now|latest|20241118101112|...] [all|demo_iss|demo_cfu|cfu_discover|...]"
     exit 1
 fi
 
@@ -71,7 +72,12 @@ ABI=$ABI
 GLOBAL_ISEL=$GLOBAL_ISEL
 UNROLL=$UNROLL
 OPTIMIZE=$OPTIMIZE
-TARGET=$ETISS
+TARGET=$TARGET
+ISS=$ISS
+SPIKE_RUNTIME=${SPIKE_RUNTIME:-htif}
+SPIKE_EXE=${SPIKE_EXE:-}
+SPIKE_INSTALL_DIR=${SPIKE_INSTALL_DIR:-}
+SPIKE_PK=${SPIKE_PK:-}
 CCACHE=$CCACHE
 LLVM_BUILD_TYPE=$LLVM_BUILD_TYPE
 LLVM_ENABLE_ASSERTIONS=$LLVM_ENABLE_ASSERTIONS
@@ -83,6 +89,8 @@ ISAAC_SCALE_ISO_WEIGHT=${ISAAC_SCALE_ISO_WEIGHT}
 ISAAC_SORT_BY=${ISAAC_SORT_BY}
 ISAAC_TOPK=${ISAAC_TOPK}
 ISAAC_PARTITION_WITH_MAXMISO=${ISAAC_PARTITION_WITH_MAXMISO}
+ISAAC_ENCODING_POLICY=${ISAAC_ENCODING_POLICY:-auto}
+ISAAC_GNU_INSTALL_DIR=${ISAAC_GNU_INSTALL_DIR:-}
 HLS_ENABLE=${HLS_ENABLE}
 HLS_SKIP_BASELINE=${HLS_SKIP_BASELINE}
 HLS_SKIP_DEFAULT=${HLS_SKIP_DEFAULT}
@@ -121,6 +129,17 @@ FPGA_SYN_VIVADO_PART=${FPGA_SYN_VIVADO_PART}
 FPGA_SYN_VIVADO_CLOCK_NS=${FPGA_SYN_VIVADO_CLOCK_NS}
 FPGA_SYN_VIVADO_CORE_NAME=${FPGA_SYN_VIVADO_CORE_NAME}
 ISAAC_QUERY_CONFIG_YAML=${ISAAC_QUERY_CONFIG_YAML}
+CFU_RUNNER=${CFU_RUNNER:-verilator}
+CFU_DISCOVERY_RUNNER=${CFU_DISCOVERY_RUNNER:-etiss}
+CFU_DISCOVERY_COMPILER=${CFU_DISCOVERY_COMPILER:-}
+CFU_PLAYGROUND_DIR=${CFU_PLAYGROUND_DIR:-}
+CFU_INSTRUCTION_TRACE=${CFU_INSTRUCTION_TRACE:-0}
+CFU_SYNTHESIZE_ONLY=${CFU_SYNTHESIZE_ONLY:-0}
+CFU_VIVADO=${CFU_VIVADO:-}
+CFU_BOARD_SERIAL=${CFU_BOARD_SERIAL:-}
+CFU_SERIAL_PORT=${CFU_SERIAL_PORT:-}
+CFU_RENODE_EXECUTABLE=${CFU_RENODE_EXECUTABLE:-}
+CFU_RENODE_VIL=${CFU_RENODE_VIL:-}
 EOT
 
 # TODO:
@@ -136,7 +155,24 @@ EOT
 fi
 
 
-if [[ "$STEPS" == "all" ]]
+CFU_EVALUATION=0
+if [[ "$STEPS" == "demo_cfu" ]]; then
+    if [[ "${ISAAC_ENCODING_POLICY:-auto}" != cfu ]]; then
+        echo "demo_cfu requires the CFU preset (source cfg/flow/paper/cfu_rv32.env)" >&2
+        exit 1
+    fi
+    : "${CFU_PLAYGROUND_DIR:?Set CFU_PLAYGROUND_DIR to the pinned CFU-Playground checkout}"
+    CFU_EVALUATION=1
+    STEPS=demo_iss
+fi
+
+if [[ "$STEPS" == "cfu_discover" ]]; then
+    if [[ "${ISAAC_ENCODING_POLICY:-auto}" != cfu || "${CFU_DISCOVERY_RUNNER:-etiss}" != verilator ]]; then
+        echo "cfu_discover requires cfg/flow/paper/cfu_verilator_rv32.env" >&2
+        exit 1
+    fi
+    STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate"
+elif [[ "$STEPS" == "all" ]]
 then
     STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;isaac_0_etiss;seal5_0;etiss_0;hls_0;syn_0;compare_0;compare_others_0;retrace_0;reanalyze_0;report_0"
 elif [[ "$STEPS" == "all_new" ]]
@@ -169,6 +205,9 @@ then
 elif [[ "$STEPS" == "all_skip_syn" ]]
 then
     STEPS="bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_visualize;isaac_0_pick;isaac_0_cdfg;isaac_0_query;isaac_0_generate;isaac_0_etiss;seal5_0;etiss_0;hls_0;compare_0;compare_others_0;retrace_0;reanalyze_0;report_0"
+fi
+if [[ "$CFU_EVALUATION" == 1 ]]; then
+    STEPS="${STEPS%;report_0};cfu_0_filtered_selected;report_0"
 fi
 STEPS=($(echo $STEPS | tr ';' ' '|tr -s ' '))
 echo "STEPS=${STEPS[@]}"
@@ -716,6 +755,12 @@ lookup_script() {
     elif [[ "$STEP" == "reanalyze_perf_0_final" ]]
     then
         echo -n "FINAL=1 ./scripts/flow_reanalyze_perf.sh"
+    elif [[ "$STEP" == "cfu_0" ]]
+    then
+        echo -n "bash ./scripts/flow_cfu.sh"
+    elif [[ "$STEP" == "cfu_0_filtered_selected" ]]
+    then
+        echo -n "FILTERED=1 SELECTED=1 bash ./scripts/flow_cfu.sh"
     elif [[ "$STEP" == "report_0" ]]
     then
         echo -n "./scripts/flow_report.sh"

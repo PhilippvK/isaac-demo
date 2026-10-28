@@ -75,6 +75,10 @@ ISAAC_TOPK="170"  # TODO: expose
 ISAAC_PARTITION_WITH_MAXMISO=auto
 
 EXTRA_ARGS=""
+if [[ "${ISAAC_ENCODING_POLICY:-auto}" == "cfu" ]]
+then
+    EXTRA_ARGS="$EXTRA_ARGS --encoding-policy cfu"
+fi
 
 if [[ "$ISAAC_QUERY_CONFIG_YAML" != "" ]]
 then

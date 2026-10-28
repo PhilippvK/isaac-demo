@@ -1,11 +1,14 @@
 #!/bin/bash
 
 date
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+ISAAC_M2ISAR_DIR=${M2ISAR_DIR:-$SCRIPT_DIR/../M2-ISA-R}
+ISAAC_PYTHON3=$(command -v python3)
 
 conda deactivate || :
 deactivate || :
 pip list | grep -i m2
-which python
+which python3
 unset PYTHONPATH
 unset VIRTUAL_ENV
 echo PYTHONPATH=$PYTHONPATH
@@ -88,18 +91,24 @@ git submodule update --init --recursive
 
 source .env
 export PSW_DEFAULT_CORE_DSL=$TOP_CDSL_FILE
-$PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh pip list
-$PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 -m m2isar.frontends.coredsl2.parser $TOP_CDSL_FILE
-$PSW_SCRIPTS_SUPPORT/m2isar_run_wrapper.sh python3 -m m2isar.backends.etiss.writer $TOP_DIR/gen_model/$TOP_NAME.m2isarmodel --separate --static-scalars
+PYTHONPATH="$ISAAC_M2ISAR_DIR" "$ISAAC_PYTHON3" -m m2isar.frontends.coredsl2.parser $TOP_CDSL_FILE
+M2ISAR_FILL_ARGS=()
+if [[ ${ISAAC_M2ISAR_FILL_MODE:-auto} == auto ]]; then
+    M2ISAR_FILL_ARGS+=(--fill-mode=auto)
+fi
+PYTHONPATH="$ISAAC_M2ISAR_DIR" "$ISAAC_PYTHON3" -m m2isar.backends.etiss.writer $TOP_DIR/gen_model/$TOP_NAME.m2isarmodel --separate --static-scalars "${M2ISAR_FILL_ARGS[@]}"
 
 # TODO: needs xlen?
 cd $ETISS_PERF_HOME/etiss-perf-sim/etiss
 git status
 cp -r $TOP_DIR/gen_output/$TOP_NAME/$CORE_NAME ArchImpl
-cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.cpp ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.cpp
-sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
-cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.h ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.h
-sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.h
+if [[ ${ISAAC_M2ISAR_FILL_MODE:-auto} != auto ]]; then
+    # Preserve both generated files when the new writer auto-fills the model.
+    cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.cpp ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.cpp
+    sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.cpp
+    cp ArchImpl/RV32IMACFD/RV32IMACFDArchSpecificImp.h ArchImpl/$CORE_NAME/${CORE_NAME}ArchSpecificImp.h
+    sed -i "s/RV32IMACFD/${CORE_NAME}/g" ArchImpl/${CORE_NAME}/${CORE_NAME}ArchSpecificImp.h
+fi
 git status
 CCACHE_ARGS=""
 if [[ "$CCACHE" == "1" ]]
