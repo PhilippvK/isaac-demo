@@ -21,7 +21,7 @@ patches:
     onlyif: "settings.llvm.state.version.major == 18"
   - name: insert_markers_llvm19_isaacnew_base4
     target: llvm
-    file: llvm/insert_markers_llvm19_isaacnew_base4.patch
+    file: patches/insert_markers_llvm19_isaacnew_base4.patch
     onlyif: "settings.llvm.state.version.major == 19"
   - name: legalizer_split
   # TODO:  automatially select patch depending on llvm version
