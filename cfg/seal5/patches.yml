@@ -4,6 +4,7 @@ patches:
   - name: gitignore
     target: llvm
     stage: 0
+    priority: 100
     comment: ""
     file: llvm/gitignore.patch
   - name: gitlab_ci
@@ -19,8 +20,10 @@ patches:
     onlyif: "settings.llvm.state.version.major == 17"
   - name: insert_markers_llvm18
     onlyif: "settings.llvm.state.version.major == 18"
-  - name: insert_markers_llvm19_isaacnew_base4
+  - name: insert_markers_llvm19
     target: llvm
+    stage: 0
+    priority: 90
     file: patches/insert_markers_llvm19_isaacnew_base4.patch
     onlyif: "settings.llvm.state.version.major == 19"
   - name: legalizer_split
