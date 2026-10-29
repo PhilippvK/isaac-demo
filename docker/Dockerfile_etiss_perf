@@ -15,7 +15,9 @@ RUN mkdir /work
 COPY M2-ISA-R/ /work/M2-ISA-R
 
 RUN python3 -m venv /work/venv
-RUN . /work/venv/bin/activate && python3 -m pip install /work/M2-ISA-R
+# Copied submodules do not include usable Git metadata for setuptools-scm.
+ARG M2ISAR_VERSION=0.0.0
+RUN . /work/venv/bin/activate && SETUPTOOLS_SCM_PRETEND_VERSION_FOR_M2ISAR=${M2ISAR_VERSION} python3 -m pip install /work/M2-ISA-R
 
 # ETISS Perf specific
 RUN git config --global url."https://github.com/".insteadOf git@github.com:

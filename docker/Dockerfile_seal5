@@ -34,7 +34,9 @@ RUN python3 -m venv /work/venv
 
 COPY seal5/ /work/seal5
 RUN . /work/venv/bin/activate && pip3 install -r /work/seal5/requirements.txt
-RUN . /work/venv/bin/activate && pip3 install -e /work/seal5
+# The copied submodule's .git file points outside the Docker build context.
+ARG SEAL5_VERSION=0+unknown
+RUN . /work/venv/bin/activate && SETUPTOOLS_SCM_PRETEND_VERSION_FOR_SEAL5=${SEAL5_VERSION} pip3 install -e /work/seal5
 RUN . /work/venv/bin/activate && pip3 uninstall M2-ISA-R
 
 COPY cfg/seal5/ /work/cfg
