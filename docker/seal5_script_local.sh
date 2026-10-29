@@ -35,7 +35,7 @@ set -e
 # cp -r /work/git/isaac-demo/seal5/* /work/seal5/
 # LLVM_REPO="https://github.com/PhilippvK/llvm-project.git"
 LLVM_REPO=${LLVM_REPO:-"/home/philipp/src/isaac-demo/llvm-project"}
-LLVM_REF=${LLVM_REF:-"isaacnew-base-3"}
+LLVM_REF=${LLVM_REF:-"isaacnew-base-4"}
 CLONE_DEPTH=${CLONE_DEPTH:-2}
 SEAL5_CFG_DIR=${SEAL5_CFG_DIR:-/path/to/cfg/seal5}
 CCACHE=${CCACHE:-0}
