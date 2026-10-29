@@ -3,7 +3,7 @@ tools:
   pattern_gen:
     integrated: true
     # clone_url: ?
-    # ref: ?
+    ref: llvm-19.1.0  # Matches the LLVM 19.1 release API
     clone_depth: 1
     # sparse_checkout: false
     # sparse_checkout: true  # broken on u20.04
