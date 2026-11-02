@@ -6,6 +6,8 @@ ARG LLVM_REPO="https://github.com/PhilippvK/llvm-project.git"
 # ARG LLVM_REF="isaac-base-0"
 # ARG LLVM_REF="isaacnew-base-0"
 ARG LLVM_REF="isaac-llvm19.1.7"
+# The shallow clone helper requires a branch/tag; verify its expected commit.
+ARG LLVM_REVISION="5bd6ab74cd1dc8d09e54ca6000361d020d138aeb"
 ARG CLONE_DEPTH=2
 ARG CCACHE=1
 ENV SEAL5_HOME=/work/llvm/
@@ -40,7 +42,7 @@ RUN . /work/venv/bin/activate && SETUPTOOLS_SCM_PRETEND_VERSION_FOR_SEAL5=${SEAL
 RUN . /work/venv/bin/activate && pip3 uninstall M2-ISA-R
 
 COPY cfg/seal5/ /work/cfg
-RUN . /work/venv/bin/activate && seal5 --verbose --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH} && git -C ${SEAL5_HOME} sparse-checkout init --cone && git -C ${SEAL5_HOME} sparse-checkout set clang/lib clang/include clang/cmake clang/utils clang/examples clang/runtime clang/tools cmake lld llvm/lib/ llvm/include llvm/tools llvm/cmake llvm/utils llvm/projects llvm/runtimes libunwind
+RUN . /work/venv/bin/activate && seal5 --verbose --dir ${SEAL5_HOME} init --non-interactive --clone --clone-url ${LLVM_REPO} --clone-ref ${LLVM_REF} --clone-depth ${CLONE_DEPTH} && test "$(git -C ${SEAL5_HOME} rev-parse HEAD)" = "${LLVM_REVISION}" && git -C ${SEAL5_HOME} sparse-checkout init --cone && git -C ${SEAL5_HOME} sparse-checkout set clang/lib clang/include clang/cmake clang/utils clang/examples clang/runtime clang/tools cmake lld llvm/lib/ llvm/include llvm/tools llvm/cmake llvm/utils llvm/projects llvm/runtimes libunwind
 RUN . /work/venv/bin/activate && seal5 --verbose load --overwrite --files /work/cfg/*.yml
 RUN . /work/venv/bin/activate && seal5 --verbose setup
 RUN . /work/venv/bin/activate && seal5 --verbose patch -s 0
