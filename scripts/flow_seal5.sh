@@ -96,7 +96,7 @@ then
   SERVICE_HOST=${SERVICE_HOST:-localhost}
   export PYTHONUNBUFFERED=1
   # ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python3 -m isaac_toolkit.retargeting.service.client llvm $DEST_DIR $CDSL_FILES $CFG_FILES
-  ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python3 -u -m isaac_toolkit.retargeting.service.client llvm $DEST_DIR $CDSL_FILES $CFG_FILES
+  ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python3 -u -m isaac_toolkit.retargeting.service.client --tag llvm --output "$DEST_DIR" $CDSL_FILES $CFG_FILES
 elif [[ "$MODE" == "docker" ]]
 then
   $DOCKER_PREFIX docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
