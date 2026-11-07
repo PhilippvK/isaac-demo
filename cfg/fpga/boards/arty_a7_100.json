@@ -1,0 +1,23 @@
+{
+  "board": "Digilent Arty A7-100",
+  "part": "xc7a100tcsg324-1",
+  "oscillator_hz": 100000000,
+  "desired_core_hz": 20000000,
+  "usb_vid": "0403",
+  "usb_pid": "6010",
+  "usb_serial": "210319C08AE1",
+  "jtag_interface": 0,
+  "uart_interface": 1,
+  "uart_device_by_id": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "pins": {
+    "clock_100mhz": "E3",
+    "uart_tx_fpga_output": "D10",
+    "uart_rx_fpga_input": "A9",
+    "reset_button": "D9"
+  },
+  "io_standard": "LVCMOS33",
+  "constraints_source": "https://github.com/Digilent/digilent-xdc/blob/master/Arty-A7-100-Master.xdc",
+  "integration_status": "implemented by scripts/fpga_syn/boards/arty_a7_100; selected via FPGA_SYN_BOARD=arty_a7_100",
+  "uart_baudrate": 115200,
+  "top": "cva5_arty_top"
+}

@@ -1,0 +1,21 @@
+"""Emit raw instruction intrinsics from the exact HLS CoreDSL encodings."""
+import argparse,re,json
+from pathlib import Path
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('coredsl',type=Path);p.add_argument('output',type=Path);a=p.parse_args()
+s=a.coredsl.read_text();out=['/* Generated from '+str(a.coredsl)+' */'];manifest={}
+for name in ['CUSTOM17','CUSTOM43','CUSTOM44','CUSTOM76','CUSTOM78']:
+ m=re.search(r'\b'+name+r'\s*\{\s*encoding:\s*(.*?);',s,re.S)
+ if not m:raise ValueError(name+' not found')
+ code=0;bits=0
+ for token in m[1].split('::'):
+  token=token.strip();constant=re.fullmatch(r"(\d+)'([bdh])([0-9a-fA-F]+)",token)
+  field=re.fullmatch(r'(\w+)\[(\d+):(\d+)\]',token)
+  if constant:w=int(constant[1]);value=int(constant[3],{'b':2,'d':10,'h':16}[constant[2]])
+  elif field:w=int(field[2])-int(field[3])+1;value=0
+  else:raise ValueError(token)
+  code=(code<<w)|value;bits+=w
+ if bits!=32:raise ValueError((name,bits))
+ opcode=code&127;f3=(code>>12)&7;f7=code>>25
+ manifest[name]={'code':hex(code),'opcode':opcode,'funct3':f3,'funct7':f7}
+ out.append(f'static inline u32 ise_{name}(u32 a,u32 b) {{ u32 r; __asm__ volatile(".insn r {opcode}, {f3}, {f7}, %0, %1, %2":"=r"(r):"r"(a),"r"(b):"memory");return r; }}')
+a.output.write_text('\n'.join(out)+'\n');a.output.with_suffix('.json').write_text(json.dumps(manifest,indent=2)+'\n')

@@ -29,6 +29,7 @@ fi
 # TEMP_DIR=$(mktemp -d)
 # echo TEMP_DIR=$TEMP_DIR
 
+BOARD=${FPGA_SYN_BOARD:-generic}
 TOP_NAME=top
 
 if [[ "$CORE" == "CVA5" ]]
@@ -37,6 +38,14 @@ then
 fi
 
 CONSTRAINTS_FILE_DEFAULT=$SCRIPTS_DIR/fpga_syn/constraints/$CORE/$TOP_NAME.xdc
+if [[ "$BOARD" == "arty_a7_100" ]]; then
+    [[ "$CORE" == "CVA5" ]] || { echo "Arty shell supports CVA5 only"; exit 2; }
+    TOP_NAME=cva5_arty_top
+    CONSTRAINTS_FILE_DEFAULT=$SCRIPTS_DIR/fpga_syn/boards/arty_a7_100/board.xdc
+elif [[ "$BOARD" != "generic" ]]; then
+    echo "Unsupported FPGA_SYN_BOARD: $BOARD"; exit 2
+fi
+export FPGA_SYN_BOARD=$BOARD
 
 if [[ -z $CONSTRAINTS_FILE ]]
 then
@@ -74,6 +83,6 @@ then
     exit 3
 fi
 
-python3 scripts/parse_vivado_util_hier_report.py $REPORTS_DIR/utilization_hier_impl.rpt $REPORTS_DIR/utilization_hier_impl.csv
-python3 scripts/filter_vivado_util_hier_report.py $REPORTS_DIR/utilization_hier_impl.csv $REPORTS_DIR/utilization_hier_impl_filtered.csv
-python3 scripts/analyze_vivado_util_hier_report.py $REPORTS_DIR/utilization_hier_impl_filtered.csv $REPORTS_DIR/utilization_hier_impl_summary.csv
+"${FPGA_SYN_PYTHON:-python3}" $SCRIPTS_DIR/parse_vivado_util_hier_report.py $REPORTS_DIR/utilization_hier_impl.rpt $REPORTS_DIR/utilization_hier_impl.csv
+"${FPGA_SYN_PYTHON:-python3}" $SCRIPTS_DIR/filter_vivado_util_hier_report.py $REPORTS_DIR/utilization_hier_impl.csv $REPORTS_DIR/utilization_hier_impl_filtered.csv
+"${FPGA_SYN_PYTHON:-python3}" $SCRIPTS_DIR/analyze_vivado_util_hier_report.py $REPORTS_DIR/utilization_hier_impl_filtered.csv $REPORTS_DIR/utilization_hier_impl_summary.csv
