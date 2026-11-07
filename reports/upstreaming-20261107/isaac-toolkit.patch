@@ -1,0 +1,818 @@
+From 7ec17eb84c5d03b9881887e2af5bf88141877dd0 Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Fri, 6 Nov 2026 11:08:28 +0100
+Subject: [PATCH 1/3] Decode LLVM BB address maps across compiler versions
+
+---
+ README.md                                     |   2 +
+ isaac_toolkit/analysis/static/llvm_bbs.py     | 266 ++++--------------
+ isaac_toolkit/utils/llvm_bb_addr_map.py       | 107 +++++++
+ .../unit-tests/utils/test_llvm_bb_addr_map.py |  88 ++++++
+ 4 files changed, 254 insertions(+), 209 deletions(-)
+ create mode 100644 isaac_toolkit/utils/llvm_bb_addr_map.py
+ create mode 100644 tests/unit-tests/utils/test_llvm_bb_addr_map.py
+
+diff --git a/README.md b/README.md
+index c35307d..6aa6b23 100644
+--- a/README.md
++++ b/README.md
+@@ -92,6 +92,8 @@ isaac_toolkit
+ 
+ ## Usage
+ 
++[ELF/CDFG basic-block count validation](docs/bb_cdfg_validation.md) runs before Memgraph profile-weight annotation.
++
+ ### Prerequisites
+ 
+ Install (optional) APT Requirements:
+diff --git a/isaac_toolkit/analysis/static/llvm_bbs.py b/isaac_toolkit/analysis/static/llvm_bbs.py
+index df3c081..2c9fca5 100644
+--- a/isaac_toolkit/analysis/static/llvm_bbs.py
++++ b/isaac_toolkit/analysis/static/llvm_bbs.py
+@@ -16,11 +16,9 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ #
+-import io
+ import sys
+ import argparse
+ from pathlib import Path
+-from collections import defaultdict
+ 
+ import pandas as pd
+ from elftools.elf.elffile import ELFFile
+@@ -37,214 +35,64 @@ logger = get_logger()
+ 
+ 
+ def parse_elf(elf_path):
+-    GISEL = True  # TODO: make arg
+-    func_to_addrs = defaultdict(list)
+-    with open(elf_path, "rb") as f:
+-        elffile = ELFFile(f)
+-        if elffile['e_type'] == 'ET_REL':
+-            raise ValueError('BB address maps must be decoded from a linked ELF, not an unrelocated object')
+-        if not elffile.little_endian:
+-            raise NotImplementedError('Big-endian BB address maps are not supported')
++    """Read fixed BB IDs from linked RISC-V ELFs produced by LLVM 19–22."""
++    from isaac_toolkit.utils.llvm_bb_addr_map import decode_bb_addr_map
+ 
+-        # extract disassembly to count instructions per bb
+-        # see https://isleem.medium.com/create-your-own-disassembler-in-python-pefile-capstone-754f863b2e1c
+-        code = elffile.get_section_by_name(".text")
+-        ops = code.data()
+-        begin = code["sh_addr"]
+-        sz = code["sh_size"]
+-        end = begin + sz
+-        xlen = elffile.elfclass
+-        assert xlen is not None
+-
+-        mode = CS_MODE_RISCV32 if xlen == 32 else CS_MODE_RISCV64
+-        md = Cs(CS_ARCH_RISCV, mode | CS_MODE_RISCVC)
+-        # md = Cs(CS_ARCH_RISCV, CS_MODE_RISCV32)
+-        # valid_pcs = set(x.address for x in md.disasm(ops, addr))
+-        valid_pcs = set()
+-        while True:
+-            temp = [(x.address, x.size) for x in md.disasm(ops, begin)]
+-            valid_pcs_ = set(pc for pc, size in temp)
+-            if not temp:
+-                raise ValueError(f"Cannot disassemble ELF .text at {begin:#x}; instruction counts are not trustworthy")
+-            last = temp[-1]
+-            last_pc, last_size = last
+-            begin = max(last_pc, begin) + last_size
+-            valid_pcs.update(valid_pcs_)
+-            if begin >= end:
+-                break
+-
+-        section = elffile.get_section_by_name(".symtab")
+-        addr_bytes = int(xlen / 8)
+-
+-        if not section:
+-            pass
+-            # print('  No symbol table found. Perhaps this ELF has been stripped?')  # TODO: make err?
+-
+-        if isinstance(section, SymbolTableSection):
+-            num_symbols = section.num_symbols()
+-            # print("  It's a symbol section with %s symbols" % num_symbols)
+-            for i in range(num_symbols):
+-                sym = section.get_symbol(i)
+-                if sym["st_info"]["type"] != "STT_FUNC":
+-                    continue
+-                # print(i, sym.entry, sym.name)
+-                name = sym.name
+-                # print("name", name)
+-                # assert name not in func_to_addr, f"Conflict! {name} already in map: {func_to_addr}"
+-                func_to_addrs[name].append((sym["st_value"], sym["st_size"]))
+-
+-        addr_to_func = {}
+-        aliases = defaultdict(list)
+-        for func_name, funcs in func_to_addrs.items():
+-            for func in funcs:
+-                func_addr, func_sz = func
+-                # print(func_name, ":", func_sz,  hex(func_addr), "-", hex(func_addr + func_sz))
+-                if func_addr in addr_to_func:
+-                    if addr_to_func[func_addr] != func_name:
+-                        aliases[func_name].append(addr_to_func[func_addr])
+-                else:
+-                    addr_to_func[func_addr] = func_name
+-        llvm_bb_addr_map_raw = elffile.get_section_by_name(".llvm_bb_addr_map")
+-        assert llvm_bb_addr_map_raw is not None, "Missing: .llvm_bb_addr_map"
+-        llvm_bb_addr_map_raw = llvm_bb_addr_map_raw.data()
+-
+-        symbol_sizes = {}
+-        for entries in func_to_addrs.values():
+-            for address, size in entries:
+-                symbol_sizes[address] = max(symbol_sizes.get(address, 0), size)
+-
+-        def read_uleb(reader):
+-            value = 0
+-            for shift in range(0, 64, 7):
+-                byte = reader.read(1)
+-                if not byte:
+-                    raise ValueError("Truncated ULEB128 in BB address map")
+-                byte = byte[0]
+-                if shift == 63 and byte > 1:
+-                    raise ValueError("Oversized ULEB128 in BB address map")
+-                value |= (byte & 0x7f) << shift
+-                if not byte & 0x80:
+-                    return value
+-            raise ValueError("Oversized ULEB128 in BB address map")
+-
+-        def decode_map(data, addr_to_func):
+-            ret = {}
+-            unknown_count = 0
+-            with io.BytesIO(data) as reader:
+-                while reader.tell() < len(data):
+-                    # print("reader", reader)
+-                    # print("dir(reader)", dir(reader))
+-                    version = int.from_bytes(reader.read(1), byteorder="little")
+-                    # print("version", version)
+-                    # assert version == 2
+-                    if version != 2:
+-                        raise NotImplementedError(f"LLVM_BB_ADDR_MAP version {version}")
+-                        # print("!")
+-                        # print(reader.read(100))
+-                    features = int.from_bytes(reader.read(1), byteorder="little")
+-                    # print("features", features)
+-                    if features != 0:
+-                        raise NotImplementedError(f"Unsupported BB address map features: {features:#x}")
+-                    address_data = reader.read(addr_bytes)
+-                    if len(address_data) != addr_bytes:
+-                        raise ValueError("Truncated BB address map function address")
+-                    func_addr = int.from_bytes(address_data, byteorder="little")
+-                    # print("func_addr", func_addr)
+-                    func_name = addr_to_func.get(func_addr, None)
+-                    # print("func_name", func_name)
+-                    # assert func_name is not None
+-                    if func_name is None:
+-                        func_name = f"unknown_func_{unknown_count}"
+-                        unknown_count += 1
+-                    # TODO: leb128?
+-                    # num_bbs = int.from_bytes(reader.read(1), byteorder="little")
+-                    num_bbs = read_uleb(reader)
+-                    # print("num_bbs", num_bbs)
+-                    # assert num_bbs > 0
+-                    if GISEL:
+-                        tmp = {}
+-                    else:
+-                        tmp = [None] * num_bbs
+-                    cur = func_addr
+-                    for i in range(num_bbs):
+-                        # print("i", i)
+-                        # bb_id = int.from_bytes(reader.read(1), byteorder="little")
+-                        bb_id = read_uleb(reader)
+-                        if not GISEL:
+-                            assert bb_id < num_bbs
+-                        start_offset = read_uleb(reader)
+-                        # print("start_offset", start_offset)
+-                        assert start_offset >= 0
+-                        block_size = read_uleb(reader)
+-                        assert block_size >= 0
+-                        # TODO: leb128?
+-                        # metadata = int.from_bytes(reader.read(1), byteorder="little")
+-                        # metadata = read_uleb(reader)
+-                        _ = read_uleb(reader)
+-                        # print("metadata", metadata)
+-                        # TODO: decode metadata (is_return, is_call, ...)
+-                        # rest = reader.read(1000)
+-                        # print("rest", rest)
+-                        cur += start_offset
+-                        # Version 2 stores padding relative to the previous end,
+-                        # followed by a size, not an end offset.
+-                        sz = block_size
+-                        assert sz >= 0
+-                        start = cur
+-                        end = cur + sz
+-                        if symbol_sizes.get(func_addr, 0) and end > func_addr + symbol_sizes[func_addr]:
+-                            raise ValueError(f"BB {bb_id} exceeds function {func_name}'s symbol range")
+-                        if start < code["sh_addr"] or end > code["sh_addr"] + code["sh_size"]:
+-                            raise ValueError(f"BB {bb_id} of {func_name} lies outside .text")
+-                        if sz > 0:
+-                            pcs = [pc for pc in range(start, end, 2) if pc in valid_pcs]
+-                            # valid_pcs_sorted = sorted(list(valid_pcs))
+-                            # end_pc_idx = valid_pcs_sorted.index(pcs[-1])
+-                            # end_pc = valid_pcs_sorted[end_pc_idx]
+-                            # end_pc_next = valid_pcs_sorted[end_pc_idx+1]
+-                            # end_pc_next_next = valid_pcs_sorted[end_pc_idx+2]
+-                            num_instrs = len(pcs)
+-                        else:
+-                            num_instrs = 0
+-                        cur += sz
+-                        if GISEL:
+-                            if str(bb_id) in tmp:
+-                                raise ValueError(f"Duplicate BB ID {bb_id} in {func_name}")
+-                            tmp[str(bb_id)] = (start, end, sz, num_instrs)
+-                        else:
+-                            tmp[bb_id] = (start, end, sz, num_instrs)
+-                    if func_name in ret:
+-                        raise ValueError(f"Ambiguous BB map for function {func_name}")
+-                    ret[func_name] = tmp
+-            return ret
+-
+-        llvm_bb_addr_map = decode_map(llvm_bb_addr_map_raw, addr_to_func)
+-        # print("llvm_bb_addr_map", llvm_bb_addr_map)
+-        VERBOSE = False
+-        if VERBOSE:
+-            for func_name in func_to_addrs.keys():
+-                print(f"{func_name}:")
+-                bbs = llvm_bb_addr_map.get(func_name, None)
+-                # PRINT_MISSING = False
+-                PRINT_MISSING = True
+-                if bbs is None:
+-                    if PRINT_MISSING:
+-                        logger.debug("> no bb addr info found")
+-                    continue
+-                if GISEL:
+-                    bbs = dict(sorted(bbs.items(), key=lambda x: int(x[0]))).values()
+-                for i, bb in enumerate(bbs):
+-                    start, end, sz, num_instrs = bb
+-                    logger.debug(
+-                        f"> bb{i}",
+-                        ":",
+-                        hex(start),
+-                        "-",
+-                        hex(end),
+-                        f"(len={sz}B, num={num_instrs})",
+-                    )
+-                    # print()
+-    return llvm_bb_addr_map
++    with open(elf_path, "rb") as stream:
++        elf = ELFFile(stream)
++        if elf["e_type"] == "ET_REL":
++            raise ValueError("BB address maps require a linked ELF, not an unrelocated object")
++        if not elf.little_endian:
++            raise NotImplementedError("Big-endian BB address maps are not supported")
++        if elf["e_machine"] != "EM_RISCV":
++            raise ValueError("BB instruction counting currently requires a RISC-V ELF")
++        sections = [section for section in elf.iter_sections()
++                    if section["sh_flags"] & 4 and section["sh_type"] == "SHT_PROGBITS"]
++        code_bytes = {id(section): section.data() for section in sections}
++        symbols = elf.get_section_by_name(".symtab")
++        if not isinstance(symbols, SymbolTableSection):
++            raise ValueError("BB identity matching requires the ELF symbol table")
++        functions = {}
++        for symbol in symbols.iter_symbols():
++            if symbol["st_info"]["type"] == "STT_FUNC" and symbol["st_shndx"] != "SHN_UNDEF":
++                address = symbol["st_value"]
++                previous_name, previous_size = functions.get(address, (symbol.name, 0))
++                functions[address] = (previous_name, max(previous_size, symbol["st_size"]))
++        maps = [section for section in elf.iter_sections()
++                if section.name == ".llvm_bb_addr_map" or section["sh_type"] == "SHT_LLVM_BB_ADDR_MAP"]
++        if not maps:
++            raise ValueError("Missing .llvm_bb_addr_map")
++        mode = CS_MODE_RISCV32 if elf.elfclass == 32 else CS_MODE_RISCV64
++        disassembler = Cs(CS_ARCH_RISCV, mode | CS_MODE_RISCVC)
++        result = {}
++        for section in maps:
++            for record in decode_bb_addr_map(section.data(), elf.elfclass // 8):
++                func_address = record["ranges"][0][0]
++                if func_address not in functions:
++                    raise ValueError(f"No function symbol for BB map address {func_address:#x}")
++                name, func_size = functions[func_address]
++                if name in result:
++                    raise ValueError(f"Ambiguous BB map for function {name}")
++                blocks = {}
++                for base, entries in record["ranges"]:
++                    for bb_id, start, size in entries:
++                        end = start + size
++                        # Split cold ranges need not lie inside the entry symbol.
++                        if len(record["ranges"]) == 1 and func_size and end > func_address + func_size:
++                            raise ValueError(f"BB {bb_id} exceeds function {name}'s symbol range")
++                        containing = [sec for sec in sections if sec["sh_addr"] <= start
++                                      and end <= sec["sh_addr"] + sec["sh_size"]]
++                        if len(containing) != 1:
++                            raise ValueError(f"BB {bb_id} of {name} has no unique executable section")
++                        sec = containing[0]
++                        offset = start - sec["sh_addr"]
++                        code = code_bytes[id(sec)][offset:offset + size]
++                        instructions = list(disassembler.disasm(code, start))
++                        if sum(insn.size for insn in instructions) != size:
++                            raise ValueError(f"Cannot fully disassemble BB {bb_id} of {name}; instruction counts are not trustworthy")
++                        blocks[str(bb_id)] = (start, end, size, len(instructions))
++                result[name] = blocks
++        return result
+ 
+ 
+ def analyze_llvm_bbs(sess: Session, force: bool = False):
+diff --git a/isaac_toolkit/utils/llvm_bb_addr_map.py b/isaac_toolkit/utils/llvm_bb_addr_map.py
+new file mode 100644
+index 0000000..df269cb
+--- /dev/null
++++ b/isaac_toolkit/utils/llvm_bb_addr_map.py
+@@ -0,0 +1,107 @@
++"""Bounded decoder for linked LLVM BB address maps (LLVM 19–22).
++
++Layout follows llvm/lib/Object/ELF.cpp, decodeBBAddrMap, versions 2–5.
++Addresses require relocations to have been applied by the linker.
++"""
++import io
++
++
++def decode_bb_addr_map(data: bytes, address_size: int):
++    """Return function records with ranges and fixed block IDs.
++
++    Optional callsite, hash and PGO payloads are consumed to keep subsequent
++    records aligned. Maps without BB entries cannot support profile matching.
++    """
++    if address_size not in (4, 8):
++        raise ValueError("BB map address size must be 4 or 8")
++    reader = io.BytesIO(data)
++
++    def fixed(size):
++        raw = reader.read(size)
++        if len(raw) != size:
++            raise ValueError(f"Truncated BB address map at offset {reader.tell()}")
++        return int.from_bytes(raw, "little")
++
++    def uleb(bits=32):
++        value = 0
++        for shift in range(0, bits, 7):
++            byte = fixed(1)
++            value |= (byte & 0x7f) << shift
++            if value >= 1 << bits:
++                raise ValueError("Oversized ULEB128 in BB address map")
++            if not byte & 0x80:
++                return value
++        raise ValueError("Oversized ULEB128 in BB address map")
++
++    def count(bits=32):
++        value = uleb(bits)
++        # Every element below consumes at least one byte. Bound loops before
++        # allocating or iterating over a corrupted untrusted count.
++        if value > len(data) - reader.tell():
++            raise ValueError("BB map count exceeds remaining payload")
++        return value
++
++    records = []
++    while reader.tell() < len(data):
++        version = fixed(1)
++        if version not in (2, 3, 4, 5):
++            raise NotImplementedError(f"LLVM_BB_ADDR_MAP version {version}")
++        features = fixed(2 if version >= 5 else 1)
++        if features & ~0xff:
++            raise NotImplementedError(f"Unsupported BB address map features: {features:#x}")
++        if ((features & 0x20 and version < 3) or
++                (features & 0x40 and version < 4) or
++                (features & 0x80 and version < 5)):
++            raise ValueError("BB map feature is incompatible with its version")
++        if features & 0x10:
++            raise ValueError("BB map omits the entries required for profile matching")
++        multi = bool(features & 8)
++        num_ranges = count() if multi else 1
++        if num_ranges == 0:
++            raise ValueError("BB map has no address ranges")
++        ranges = []
++        ids = set()
++        for _ in range(num_ranges):
++            base = fixed(address_size)
++            num_blocks = count()
++            blocks = []
++            previous_end = 0
++            for _ in range(num_blocks):
++                bb_id = uleb()
++                if bb_id in ids:
++                    raise ValueError(f"Duplicate BB ID {bb_id} in BB map function")
++                ids.add(bb_id)
++                offset = previous_end + uleb()
++                callsite_size = 0
++                if features & 0x20:
++                    for _ in range(count()):
++                        callsite_size += uleb()
++                size = callsite_size + uleb()
++                metadata = uleb()
++                if metadata & ~0x1f:
++                    raise ValueError(f"Unknown BB metadata: {metadata:#x}")
++                if features & 0x40:
++                    fixed(8)
++                previous_end = offset + size
++                if previous_end >= 1 << 32 or base + previous_end > 1 << (address_size * 8):
++                    raise ValueError("BB map address/offset overflow")
++                blocks.append((bb_id, base + offset, size))
++            ranges.append((base, blocks))
++        if features & 1:
++            uleb(64)  # Function entry count.
++        # Match LLVM's hasPGOAnalysisBBData(): PostLinkCfg alone does not
++        # introduce a per-block payload, but adds fields to BBFreq/BrProb.
++        if features & 6:
++            for _ in range(len(ids)):
++                if features & 2:
++                    uleb(64)
++                if features & 0x80:
++                    uleb()
++                if features & 4:
++                    for _ in range(count(64)):
++                        uleb()  # Successor BB ID.
++                        uleb()  # Raw branch probability.
++                        if features & 0x80:
++                            uleb()
++        records.append({"version": version, "features": features, "ranges": ranges})
++    return records
+diff --git a/tests/unit-tests/utils/test_llvm_bb_addr_map.py b/tests/unit-tests/utils/test_llvm_bb_addr_map.py
+new file mode 100644
+index 0000000..0b05b75
+--- /dev/null
++++ b/tests/unit-tests/utils/test_llvm_bb_addr_map.py
+@@ -0,0 +1,88 @@
++"""LLVM 19–22 BB map wire formats and strict malformed-input rejection."""
++import pytest
++
++from isaac_toolkit.utils.llvm_bb_addr_map import decode_bb_addr_map
++
++
++def uleb(value):
++    out = bytearray()
++    while value >= 128:
++        out.append((value & 127) | 128)
++        value >>= 7
++    out.append(value)
++    return bytes(out)
++
++
++def record(version, features=0, address_size=4):
++    header = bytes([version]) + features.to_bytes(2 if version >= 5 else 1, 'little')
++    if features & 8:
++        header += uleb(2)
++    payload = b''
++    for base, bb_id in ([(0x1000, 7), (0x2000, 9)] if features & 8 else [(0x1000, 7)]):
++        payload += base.to_bytes(address_size, 'little') + uleb(1)
++        payload += uleb(bb_id) + uleb(4)
++        if features & 32:
++            payload += uleb(2) + uleb(2) + uleb(2)
++        payload += uleb(4) + uleb(1)
++        if features & 64:
++            payload += (0x1234567890abcdef).to_bytes(8, 'little')
++    if features & 1:
++        payload += uleb(1 << 40)
++    for _ in range(2 if features & 8 else 1):
++        if features & 2:
++            payload += uleb(1 << 40)
++        if features & 6 and features & 128:
++            payload += uleb(44)
++        if features & 4:
++            payload += uleb(1) + uleb(7) + uleb(0x80000000)
++            if features & 128:
++                payload += uleb(33)
++    return header + payload
++
++
++@pytest.mark.parametrize('version,features', [(2, 0), (2, 7), (2, 15), (3, 32), (4, 64),
++                                             (4, 111), (5, 0), (5, 239), (5, 128)])
++@pytest.mark.parametrize('address_size', [4, 8])
++def test_formats_and_following_record_alignment(version, features, address_size):
++    raw = record(version, features, address_size)
++    decoded = decode_bb_addr_map(raw + record(2, address_size=address_size), address_size)
++    assert len(decoded) == 2
++    assert decoded[0]['version'] == version
++    size = 8 if features & 32 else 4
++    assert decoded[0]['ranges'][0] == (0x1000, [(7, 0x1004, size)])
++    if features & 8:
++        assert decoded[0]['ranges'][1] == (0x2000, [(9, 0x2004, size)])
++    assert decoded[1]['ranges'] == [(0x1000, [(7, 0x1004, 4)])]
++
++
++@pytest.mark.parametrize('version,features', [(2, 0), (3, 32), (4, 111), (5, 239)])
++def test_every_truncation_fails(version, features):
++    data = record(version, features)
++    for end in range(1, len(data)):
++        with pytest.raises(ValueError):
++            decode_bb_addr_map(data[:end], 4)
++
++
++@pytest.mark.parametrize('raw', [b'\x01', b'\x06', b'\x05\x00\x01'])
++def test_unknown_format_or_feature_fails(raw):
++    with pytest.raises(NotImplementedError):
++        decode_bb_addr_map(raw, 4)
++
++
++@pytest.mark.parametrize('version,features', [(2, 32), (3, 64), (4, 128), (5, 16)])
++def test_incompatible_features_fail(version, features):
++    with pytest.raises(ValueError):
++        decode_bb_addr_map(record(version, features), 4)
++
++
++def test_duplicates_and_overflow_fail():
++    header = b'\x02\x00' + (0x1000).to_bytes(4, 'little') + b'\x02'
++    with pytest.raises(ValueError, match='Duplicate BB ID'):
++        decode_bb_addr_map(header + b'\x07\x00\x04\x00' * 2, 4)
++    with pytest.raises(ValueError, match='Oversized ULEB128'):
++        decode_bb_addr_map(header + b'\xff' * 5, 4)
++
++
++def test_empty_multi_range_fails():
++    with pytest.raises(ValueError, match='no address ranges'):
++        decode_bb_addr_map(b'\x02\x08\x00', 4)
+-- 
+2.34.1
+
+
+From 875aca748a55b364765edc1fc921579f34145f89 Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Fri, 6 Nov 2026 11:08:28 +0100
+Subject: [PATCH 2/3] Honor configured memory and effect-output query limits
+
+---
+ .../generate/ise/query_candidates_from_db.py          | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/isaac_toolkit/generate/ise/query_candidates_from_db.py b/isaac_toolkit/generate/ise/query_candidates_from_db.py
+index 51dc1d6..04d30ec 100644
+--- a/isaac_toolkit/generate/ise/query_candidates_from_db.py
++++ b/isaac_toolkit/generate/ise/query_candidates_from_db.py
+@@ -143,7 +143,7 @@ def query_candidates_from_db(
+     MIN_INPUTS: Optional[int] = 1,
+     MAX_INPUTS: Optional[int] = 4,
+     # MAX_INPUTS: Optional[int] = 3,
+-    MIN_OUTPUTS: Optional[int] = 1,
++    MIN_OUTPUTS: Optional[int] = None,
+     MAX_OUTPUTS: Optional[int] = 2,
+     # MAX_OUTPUTS: Optional[int] = 1,
+     # TODO: implement topk!
+@@ -167,7 +167,7 @@ def query_candidates_from_db(
+     scale_iso_weight: Union[bool, str] = "auto",
+     MAX_LOADS=1,
+     MAX_STORES=1,
+-    MAX_MEMS: Optional[int] = 0,  # TODO
++    MAX_MEMS: Optional[int] = None,
+     MAX_BRANCHES: Optional[int] = 1,
+     xlen: Optional[int] = 32,  # TODO: do not hardcode
+     ENABLE_VARIATION_REUSE_IO=False,
+@@ -200,6 +200,13 @@ def query_candidates_from_db(
+     ):
+         raise ValueError("query_timeout must be a positive finite number of seconds")
+     logger.info("Querying candidates from DB...")
++    if query_config_yaml is None:
++        # Keep legacy API defaults without overriding an explicitly supplied
++        # query configuration's memory and effect-output limits.
++        if MIN_OUTPUTS is None:
++            MIN_OUTPUTS = 1
++        if MAX_MEMS is None:
++            MAX_MEMS = 0
+     if encoding_policy == "cfu":
+         if xlen != 32:
+             raise ValueError("CFU requires RV32")
+-- 
+2.34.1
+
+
+From 4e9da973a363b1c4f7285a25fff3d95e67a43ebc Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Fri, 6 Nov 2026 11:08:28 +0100
+Subject: [PATCH 3/3] Export self-contained HLS models with SCAIE-V encoding
+ constraints
+
+---
+ .../generate/iss/generate_etiss_core.py       | 60 +++++++++++++-
+ isaac_toolkit/generate/iss/hls_immediates.py  | 78 +++++++++++++++++++
+ 2 files changed, 137 insertions(+), 1 deletion(-)
+ create mode 100644 isaac_toolkit/generate/iss/hls_immediates.py
+
+diff --git a/isaac_toolkit/generate/iss/generate_etiss_core.py b/isaac_toolkit/generate/iss/generate_etiss_core.py
+index be43eee..160a457 100644
+--- a/isaac_toolkit/generate/iss/generate_etiss_core.py
++++ b/isaac_toolkit/generate/iss/generate_etiss_core.py
+@@ -33,7 +33,7 @@ from pathlib import Path
+ from collections import defaultdict
+ from concurrent.futures import ProcessPoolExecutor
+ 
+-from m2isar.metamodel import M2_METAMODEL_VERSION, M2Model, arch, type_info, attribute_info
++from m2isar.metamodel import M2_METAMODEL_VERSION, M2Model, arch, behav, type_info, attribute_info
+ 
+ from m2isar.transforms.encode_instructions import (
+     EncodingError, EncodingPolicy, apply_model_plan, plan_model,
+@@ -316,10 +316,15 @@ def generate_etiss_core(
+     encoding_manifest: Optional[Union[str, Path]] = None,
+     encoding_opcodes=None,
+     encoding_reservations=(),
++    encoding_interface="generic",
+ ):
+     from m2isar.backends.coredsl2.writer import gen_cdsl_code
+ 
+     logger.info("Generating ETISS core...")
++    if encoding_interface not in ("generic", "scaiev2"):
++        raise EncodingError("Unknown encoding interface: " + encoding_interface)
++    if encoding_interface != "generic" and (encoding_policy != "auto" or not auto_encoding):
++        raise EncodingError("SCAIE-V encoding constraints require shared automatic allocation")
+     if encoding_policy not in ("auto", "cfu"):
+         raise ValueError(f"Unknown encoding policy: {encoding_policy}")
+     cfu_encoder = None
+@@ -363,6 +368,8 @@ def generate_etiss_core(
+     sub2files = defaultdict(dict)
+     sub2new_files = defaultdict(dict)
+     set_instr2sub_name = {}
++    sub_properties_by_name = {}
++    interface_constraints = []
+ 
+     index_records = []
+     for k, combined_index_file in enumerate(index_files):
+@@ -379,6 +386,7 @@ def generate_etiss_core(
+             sub2files[sub_name]["cdsl"] = sub_file
+             sub_encoded_file = Path(sub_artifacts["cdsl_encoded"]) if "cdsl_encoded" in sub_artifacts else None
+             sub_properties = sub_data["properties"]
++            sub_properties_by_name[sub_name] = sub_properties
+             if cfu_encoder is not None:
+                 validate_candidate(sub_properties)
+             instr_name = sub_properties["InstrName"]
+@@ -454,6 +462,18 @@ def generate_etiss_core(
+             if duplicates:
+                 raise EncodingError(f"{set_name}: duplicate instruction names: {sorted(duplicates)}")
+             target[set_name].update(parsed_instructions)
++            if encoding_interface == "scaiev2":
++                properties = sub_properties_by_name[candidate_name]
++                memory_funct3 = {"LB": 0, "LH": 1, "LW": 2, "LD": 3,
++                                 "LBU": 4, "LHU": 5, "LWU": 6,
++                                 "SB": 0, "SH": 1, "SW": 2, "SD": 3}
++                memory_ops = [op for op in properties.get("Instrs", []) if op in memory_funct3]
++                if properties.get("#Mems", 0):
++                    if len(memory_ops) != 1 or properties["#Mems"] != 1:
++                        raise EncodingError("Cannot determine a unique SCAIE-V memory funct3 for " + candidate_name)
++                    for name in parsed_instructions:
++                        interface_constraints.append((f"set/{set_name}/{name}",
++                            memory_funct3[memory_ops[0]] << 12, 7 << 12))
+ 
+     if auto_encoding and cfu_encoder is None:
+         manifest = None
+@@ -462,6 +482,8 @@ def generate_etiss_core(
+         policy = EncodingPolicy(
+             opcodes=tuple(encoding_opcodes) if encoding_opcodes is not None else EncodingPolicy().opcodes,
+             reservations=tuple(encoding_reservations),
++            fixed_bits=tuple(interface_constraints),
++            decode_mask=0xFE00707F if encoding_interface == "scaiev2" else 0xFFFFFFFF,
+         )
+         instructions_per_set, encoding_plan = encode_instruction_sets(
+             unencoded_instructions_per_set,
+@@ -469,6 +491,12 @@ def generate_etiss_core(
+             policy=policy,
+             assignments=manifest,
+         )
++        (gen_dir / "encoding_interface.json").write_text(json.dumps({
++            "interface": encoding_interface,
++            "decode_mask": policy.decode_mask,
++            "fixed_bits": [dict(name=name, code=code, mask=mask)
++                           for name, code, mask in interface_constraints],
++        }, indent=2) + "\n")
+         logger.info("Planned %d encodings across %d sets", len(encoding_plan.assignments), len(instructions_per_set))
+     elif auto_encoding:
+         pending_encoded = {}
+@@ -596,12 +624,39 @@ def generate_etiss_core(
+         )
+         model_obj = copy.deepcopy(model_obj)
+         model_obj.sets[set_name].register_banks["X"] = main_reg
++        # HLS exports are self-contained: dropping RV32I inheritance must not
++        # leave fused memory accesses or branch targets without state symbols.
++        referenced_state = set()
++        for instruction in model_obj.sets[set_name].instructions.values():
++            pending = [instruction.operation]
++            while pending:
++                node = pending.pop()
++                if isinstance(node, (behav.NamedReference, behav.IndexedReference)):
++                    referenced_state.add(getattr(node.reference, "name", None))
++                if isinstance(node, behav.BaseNode):
++                    for value in vars(node).values():
++                        if isinstance(value, behav.BaseNode):
++                            pending.append(value)
++                        elif isinstance(value, (list, tuple)):
++                            pending.extend(child for child in value if isinstance(child, behav.BaseNode))
++        if "MEM" in referenced_state:
++            model_obj.sets[set_name].memories["MEM"] = arch.Memory(
++                "MEM", type_info.TypeKind.UINT, 8, 1 << xlen,
++                {attribute_info.MemoryAttribute.IS_MAIN_MEM: []},
++            )
++        if "PC" in referenced_state:
++            model_obj.sets[set_name].register_banks["PC"] = arch.Register(
++                "PC", type_info.TypeKind.UINT, xlen,
++                {attribute_info.RegisterAttribute.IS_PC: []},
++            )
+         model_obj.sets[set_name].extension = []
+         hls_unique_instr_names = len(set_names) > 1
+         if hls_unique_instr_names:
+             assert add_mnemonic_prefix
+             for instr_def in model_obj.sets[set_name].instructions.values():
+                 instr_def.name = instr_def.mnemonic.upper().replace(".", "_")
++        from .hls_immediates import normalize_hls_immediates
++        normalize_hls_immediates(model_obj.sets[set_name], xlen)
+         set_hls_cdsl_code = gen_cdsl_code(model_obj, with_includes=False, legacy=True)
+         with open(set_hls_out_cdsl_file, "w") as f:
+             f.write(set_hls_includes_code)
+@@ -688,6 +743,7 @@ def handle(args):
+         encoding_manifest=args.encoding_manifest,
+         encoding_opcodes=args.encoding_opcode,
+         encoding_reservations=args.encoding_reserve,
++        encoding_interface=args.encoding_interface,
+     )
+     if sess is not None:
+         sess.save()
+@@ -723,6 +779,8 @@ def get_parser():
+     parser.add_argument("--base-extensions", type=str, default="i,m,a,f,d,c,zifencei")
+     parser.add_argument("--auto-encoding", action="store_true", default=True)
+     parser.add_argument("--encoding-policy", choices=["auto", "cfu"], default="auto")
++    parser.add_argument("--encoding-interface", choices=["generic", "scaiev2"], default="generic",
++                        help="Apply interface discriminator constraints before shared allocation")
+     parser.add_argument("--encoding-manifest", type=str, default=None,
+                         help="Auto: input planner manifest; CFU: persistent CFU ledger")
+     parser.add_argument("--encoding-opcode", action="append", type=lambda value: int(value, 0),
+diff --git a/isaac_toolkit/generate/iss/hls_immediates.py b/isaac_toolkit/generate/iss/hls_immediates.py
+new file mode 100644
+index 0000000..58e4642
+--- /dev/null
++++ b/isaac_toolkit/generate/iss/hls_immediates.py
+@@ -0,0 +1,78 @@
++"""Make legacy HLS operand decoding explicit without changing instruction bits."""
++from m2isar.metamodel import arch, behav, type_info
++
++
++def normalize_hls_immediates(instruction_set, xlen):
++    """Normalize a private HLS model in place.
++
++    Legacy CoreDSL omits signed operand declarations. Treenail also packs
++    encoded field runs densely, dropping implicit low zeros (e.g. B offsets).
++    Use zero-based packed fields and reconstruct their signed, scaled values
++    in behavior. The fixed encoding code and mask stay identical.
++    """
++    for instruction in instruction_set.instructions.values():
++        replacements = {}
++        for name, field in list(instruction.fields.items()):
++            parts = [e for e in instruction.encoding if isinstance(e, arch.BitField) and e.name == name]
++            if not parts:
++                continue
++            low = min(e.range.lower for e in parts)
++            high = max(e.range.upper for e in parts)
++            signed = field.ty.kind == type_info.TypeKind.INT
++            if not low and not signed:
++                continue
++            encoded = {bit for e in parts for bit in range(e.range.lower, e.range.upper + 1)}
++            if encoded != set(range(low, high + 1)):
++                raise ValueError(f"HLS operand {instruction.name}/{name} has internal encoding holes")
++            width = high - low + 1
++            if high + 1 != field.ty.size or high + 1 > xlen:
++                raise ValueError(f"Unsupported HLS operand width: {instruction.name}/{name}")
++            packed_name = name + "_hls_packed"
++            if packed_name in instruction.fields:
++                raise ValueError(f"HLS operand name collision: {packed_name}")
++            packed = arch.BitFieldDescr(packed_name, width, type_info.TypeKind.UINT)
++            for part in parts:
++                part.name = packed_name
++                part.kind = type_info.TypeKind.UINT
++                part.ty.kind = type_info.TypeKind.UINT
++                part.range = arch.RangeSpec(part.range.upper - low, part.range.lower - low)
++            instruction.fields.pop(name)
++            instruction.fields[packed_name] = packed
++            operand = instruction.operands.pop(name, None)
++            if operand is not None:
++                operand.name = packed_name
++                operand._size = width
++                operand.signed = False
++                instruction.operands[packed_name] = operand
++            # HLS does not consume assembler operands, but keep its placeholders
++            # consistent with the renamed encoding field.
++            instruction.assembly = (instruction.assembly or "").replace("{" + name + "}", "{" + packed_name + "}")
++            kind = type_info.TypeKind.INT if signed else type_info.TypeKind.UINT
++            replacements[id(field)] = (packed, kind, width, low)
++
++        def rewrite(node):
++            if isinstance(node, behav.IndexedReference) and id(node.reference) in replacements:
++                raise ValueError(f"Indexed HLS immediate is unsupported: {instruction.name}")
++            if isinstance(node, behav.NamedReference) and id(node.reference) in replacements:
++                packed, kind, width, low = replacements[id(node.reference)]
++                value = behav.TypeConv(kind, width, behav.NamedReference(packed))
++                value = behav.TypeConv(kind, xlen, value)
++                if low:
++                    value = behav.BinaryOperation(value, behav.Operator("<<"), behav.Literal(low))
++                return value
++            if isinstance(node, behav.BaseNode):
++                for key, value in list(vars(node).items()):
++                    if isinstance(value, behav.BaseNode):
++                        setattr(node, key, rewrite(value))
++                    elif isinstance(value, list):
++                        setattr(node, key, [rewrite(v) if isinstance(v, behav.BaseNode) else v for v in value])
++                    elif isinstance(value, tuple):
++                        setattr(node, key, tuple(rewrite(v) if isinstance(v, behav.BaseNode) else v for v in value))
++            return node
++
++        instruction.operation = rewrite(instruction.operation)
++        # Recalculate size/code/mask, preserving the explicitly packed fields.
++        old_code, old_mask = instruction.code, instruction.mask
++        instruction.process_encoding()
++        if instruction.code != old_code or instruction.mask != old_mask:
++            raise ValueError(f"HLS operand normalization changed encoding: {instruction.name}")
+-- 
+2.34.1
+

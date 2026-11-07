@@ -1,0 +1,6 @@
+{
+  "gisel_compiles_without_fused_branches": true,
+  "gisel_generated_table_has_no_branch_ise_names": true,
+  "far_functions_compile_and_verify": true,
+  "far_fused_sites": 6
+}

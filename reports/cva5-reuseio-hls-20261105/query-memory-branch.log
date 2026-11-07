@@ -1,0 +1,77 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000 DATE=20261105T120000 BENCH=crc32
+INFO - query_candidates_from_db - Querying candidates from DB...
+INFO:settings:Initializing default settings
+INFO:settings:Initializing settings from yaml
+INFO:settings:Initializing settings from args
+INFO:validate_settings:Validating settings...
+INFO:timing:<Settings Validation> took 0.000 seconds
+INFO:main:Running queries...
+INFO:connect_db:Connecting to DB...
+INFO:timing:<Connect to DB> took 0.000 seconds
+INFO:query_func:Exporting queries...
+INFO:timing:<Query func from DB> took 0.007 seconds
+INFO:query_candidates:Exporting queries...
+INFO:timing:<Query candidates from DB> took 0.042 seconds
+INFO:convert_func:Converting func graph to NX...
+INFO:timing:<Conversion to NX (func)> took 0.006 seconds
+INFO:convert_candidates:Converting candidates to NX...
+INFO:timing:<Conversion to NX (candidates)> took 0.079 seconds
+INFO:generate_subgraphs:Generating subgraphs...
+0it [00:00, ?it/s]98it [00:00, 39334.14it/s]
+INFO:generate_subgraphs:Exporting query metrics...
+INFO:timing:<Subgraph Generation> took 0.005 seconds
+INFO:relabel_nodes:Relabeling nodes...
+INFO:timing:<Relabeling> took 0.009 seconds
+INFO:dump_func_graph:Exporting GF graph...
+INFO:timing:<Dumping GF graph> took 0.010 seconds
+INFO:analyze_io:Collecting I/O details...
+  0%|          | 0/98 [00:00<?, ?it/s] 59%|█████▉    | 58/98 [00:00<00:00, 575.35it/s]100%|██████████| 98/98 [00:00<00:00, 585.96it/s]
+INFO:timing:<I/O Analysis> took 0.167 seconds
+INFO:create_hashes:Creating SubHashes...
+  0%|          | 0/98 [00:00<?, ?it/s]100%|██████████| 98/98 [00:00<00:00, 1624.74it/s]
+INFO:timing:<SubHash Creation> took 0.061 seconds
+INFO:check_iso:Checking isomorphism...
+  0%|          | 0/1 [00:00<?, ?it/s]                                       0%|          | 0/3 [00:00<?, ?it/s]                                       0%|          | 0/11 [00:00<?, ?it/s]                                        0%|          | 0/6 [00:00<?, ?it/s]                                       0%|          | 0/11 [00:00<?, ?it/s]                                        0%|          | 0/12 [00:00<?, ?it/s]                                        0%|          | 0/11 [00:00<?, ?it/s]                                        0%|          | 0/13 [00:00<?, ?it/s]                                        0%|          | 0/8 [00:00<?, ?it/s]                                       0%|          | 0/13 [00:00<?, ?it/s]                                        0%|          | 0/3 [00:00<?, ?it/s]                                       0%|          | 0/5 [00:00<?, ?it/s]                                       0%|          | 0/1 [00:00<?, ?it/s]                                     INFO:timing:<Isomorphism Check> took 0.031 seconds
+INFO:check_overlaps:Checking overlaps...
+INFO:timing:<Overlap Check> took 0.030 seconds
+INFO:detect_predicates:Detecting Predicates...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 904.47it/s]
+INFO:timing:<Predicate Detection> took 0.055 seconds
+INFO:detect_registers:Detecting Registers...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 5320.38it/s]
+INFO:timing:<Register Detection> took 0.010 seconds
+INFO:schedule_subs:Scheduling Subs...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 3162.25it/s]
+INFO:timing:<Schedule Subs> took 0.016 seconds
+INFO:filter_subs:Filtering subgraphs...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 6597.15it/s]
+INFO:timing:<Filtering subgraphs> took 0.009 seconds
+INFO:assign_io_names:Determining IO names...
+  0%|          | 0/45 [00:00<?, ?it/s]  0%|          | 0/45 [00:00<?, ?it/s]
+INFO:timing:<Determining IO names> took 0.002 seconds
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/memgraph_experiments/tool/main.py", line 263, in <module>
+    stages.assign_io_names(settings, subs, io_subs, subs_df)
+  File "/var/tmp/ga87puy/isaac-demo-new/memgraph_experiments/tool/stages/assign_io_names.py", line 69, in assign_io_names
+    raise ValueError("Only conditional branch target labels can be encoded")
+ValueError: Only conditional branch target labels can be encoded
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 671, in <module>
+    main(sys.argv[1:])
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 667, in main
+    handle(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 596, in handle
+    query_candidates_from_db(
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 477, in query_candidates_from_db
+    subprocess.run(args, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', '-m', 'tool.main', '--progress', '--times', '--yaml', '/var/tmp/ga87puy/isaac-demo-new/cfg/flow/../..//cfg/isaac/query/paper/cva5_reuseio.yml', '--host', '127.0.0.1', '--port', '7687', '--session', 'isaac-demo-crc32-20261105T120000', '--function', 'rand_beebs', '--basic-block', '%bb.0', '--stage', '32', '--module-name', '/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c', '--compilation-id', '155f934490bc44a0ad2e4c23db325334', '--output-dir', PosixPath('/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/rand_beebs_%bb.0_0'), '--min-inputs', '1', '--max-inputs', '4', '--max-outputs', '2', '--max-nodes', '1000', '--max-loads', '1', '--max-stores', '1', '--max-branches', '1', '--max-enc-footprint', '1.0', '--max-enc-weight', '1.0', '--min-enc-bits-left', '5', '--min-iso-weight', '0.028249806261933866', '--instr-predicates', '511', '--allowed-enc-sizes', '32', '--xlen', '32', '--halt-on-error', '--write-func', '--write-sub', '--write-io-sub', '--write-tree', '--write-pie', '--write-df', '--write-index', '--write-queries', '--write-query-metrics']' returned non-zero exit status 1.

@@ -1,0 +1,387 @@
+{
+  "validation": true,
+  "differential_cases": 15834,
+  "functions": 42,
+  "trace_instructions": 1924355,
+  "custom_executions": 13572,
+  "per_ise_executions": {
+    "fused_bne": 2262,
+    "fused_beq": 2262,
+    "fused_bge": 2262,
+    "fused_blt": 2262,
+    "fused_bgeu": 2262,
+    "fused_bltu": 2262
+  },
+  "all_sites_exercise_taken_and_fallthrough": true,
+  "trace_sha256": "e907e53ce99f234de6b5bddcc8c84916cb8ecf6a8c602f09d76be36683331967",
+  "function_calls": {
+    "selected_BEQ": 377,
+    "native_BEQ": 377,
+    "far_BEQ": 377,
+    "asm_BEQ_forward": 377,
+    "asm_BEQ_backward": 377,
+    "asm_BEQ_p4094": 377,
+    "asm_BEQ_m4096": 377,
+    "selected_BNE": 377,
+    "native_BNE": 377,
+    "far_BNE": 377,
+    "asm_BNE_forward": 377,
+    "asm_BNE_backward": 377,
+    "asm_BNE_p4094": 377,
+    "asm_BNE_m4096": 377,
+    "selected_BLT": 377,
+    "native_BLT": 377,
+    "far_BLT": 377,
+    "asm_BLT_forward": 377,
+    "asm_BLT_backward": 377,
+    "asm_BLT_p4094": 377,
+    "asm_BLT_m4096": 377,
+    "selected_BGE": 377,
+    "native_BGE": 377,
+    "far_BGE": 377,
+    "asm_BGE_forward": 377,
+    "asm_BGE_backward": 377,
+    "asm_BGE_p4094": 377,
+    "asm_BGE_m4096": 377,
+    "selected_BLTU": 377,
+    "native_BLTU": 377,
+    "far_BLTU": 377,
+    "asm_BLTU_forward": 377,
+    "asm_BLTU_backward": 377,
+    "asm_BLTU_p4094": 377,
+    "asm_BLTU_m4096": 377,
+    "selected_BGEU": 377,
+    "native_BGEU": 377,
+    "far_BGEU": 377,
+    "asm_BGEU_forward": 377,
+    "asm_BGEU_backward": 377,
+    "asm_BGEU_p4094": 377,
+    "asm_BGEU_m4096": 377
+  },
+  "sites": {
+    "0x1000268": {
+      "name": "fused_bne",
+      "function": "selected_BEQ",
+      "displacement": 8,
+      "target": 16777840,
+      "taken": 364,
+      "fallthrough": 13,
+      "executions": 377
+    },
+    "0x1000274": {
+      "name": "fused_beq",
+      "function": "selected_BNE",
+      "displacement": 8,
+      "target": 16777852,
+      "taken": 13,
+      "fallthrough": 364,
+      "executions": 377
+    },
+    "0x1000284": {
+      "name": "fused_bge",
+      "function": "selected_BLT",
+      "displacement": 8,
+      "target": 16777868,
+      "taken": 230,
+      "fallthrough": 147,
+      "executions": 377
+    },
+    "0x1000290": {
+      "name": "fused_blt",
+      "function": "selected_BGE",
+      "displacement": 8,
+      "target": 16777880,
+      "taken": 150,
+      "fallthrough": 227,
+      "executions": 377
+    },
+    "0x100029c": {
+      "name": "fused_bgeu",
+      "function": "selected_BLTU",
+      "displacement": 8,
+      "target": 16777892,
+      "taken": 293,
+      "fallthrough": 84,
+      "executions": 377
+    },
+    "0x10002a8": {
+      "name": "fused_bltu",
+      "function": "selected_BGEU",
+      "displacement": 8,
+      "target": 16777904,
+      "taken": 84,
+      "fallthrough": 293,
+      "executions": 377
+    },
+    "0x100032c": {
+      "name": "fused_beq",
+      "function": "far_BEQ",
+      "displacement": 8,
+      "target": 16778036,
+      "taken": 13,
+      "fallthrough": 364,
+      "executions": 377
+    },
+    "0x1001478": {
+      "name": "fused_bne",
+      "function": "far_BNE",
+      "displacement": 8,
+      "target": 16782464,
+      "taken": 364,
+      "fallthrough": 13,
+      "executions": 377
+    },
+    "0x10025c4": {
+      "name": "fused_blt",
+      "function": "far_BLT",
+      "displacement": 8,
+      "target": 16786892,
+      "taken": 162,
+      "fallthrough": 215,
+      "executions": 377
+    },
+    "0x1003710": {
+      "name": "fused_bge",
+      "function": "far_BGE",
+      "displacement": 8,
+      "target": 16791320,
+      "taken": 208,
+      "fallthrough": 169,
+      "executions": 377
+    },
+    "0x100485c": {
+      "name": "fused_bltu",
+      "function": "far_BLTU",
+      "displacement": 8,
+      "target": 16795748,
+      "taken": 84,
+      "fallthrough": 293,
+      "executions": 377
+    },
+    "0x10059a8": {
+      "name": "fused_bgeu",
+      "function": "far_BGEU",
+      "displacement": 8,
+      "target": 16800176,
+      "taken": 293,
+      "fallthrough": 84,
+      "executions": 377
+    },
+    "0x1006af4": {
+      "name": "fused_beq",
+      "function": "asm_BEQ_forward",
+      "displacement": 12,
+      "target": 16804608,
+      "taken": 13,
+      "fallthrough": 364,
+      "executions": 377
+    },
+    "0x1006b14": {
+      "name": "fused_beq",
+      "function": "asm_BEQ_backward",
+      "displacement": -8,
+      "target": 16804620,
+      "taken": 13,
+      "fallthrough": 364,
+      "executions": 377
+    },
+    "0x1006b20": {
+      "name": "fused_beq",
+      "function": "asm_BEQ_p4094",
+      "displacement": 4094,
+      "target": 16808734,
+      "taken": 13,
+      "fallthrough": 364,
+      "executions": 377
+    },
+    "0x1008b2c": {
+      "name": "fused_beq",
+      "function": "asm_BEQ_m4096",
+      "displacement": -4096,
+      "target": 16808748,
+      "taken": 13,
+      "fallthrough": 364,
+      "executions": 377
+    },
+    "0x1008b38": {
+      "name": "fused_bne",
+      "function": "asm_BNE_forward",
+      "displacement": 12,
+      "target": 16812868,
+      "taken": 364,
+      "fallthrough": 13,
+      "executions": 377
+    },
+    "0x1008b58": {
+      "name": "fused_bne",
+      "function": "asm_BNE_backward",
+      "displacement": -8,
+      "target": 16812880,
+      "taken": 364,
+      "fallthrough": 13,
+      "executions": 377
+    },
+    "0x1008b64": {
+      "name": "fused_bne",
+      "function": "asm_BNE_p4094",
+      "displacement": 4094,
+      "target": 16816994,
+      "taken": 364,
+      "fallthrough": 13,
+      "executions": 377
+    },
+    "0x100ab70": {
+      "name": "fused_bne",
+      "function": "asm_BNE_m4096",
+      "displacement": -4096,
+      "target": 16817008,
+      "taken": 364,
+      "fallthrough": 13,
+      "executions": 377
+    },
+    "0x100ab7c": {
+      "name": "fused_blt",
+      "function": "asm_BLT_forward",
+      "displacement": 12,
+      "target": 16821128,
+      "taken": 161,
+      "fallthrough": 216,
+      "executions": 377
+    },
+    "0x100ab9c": {
+      "name": "fused_blt",
+      "function": "asm_BLT_backward",
+      "displacement": -8,
+      "target": 16821140,
+      "taken": 155,
+      "fallthrough": 222,
+      "executions": 377
+    },
+    "0x100aba8": {
+      "name": "fused_blt",
+      "function": "asm_BLT_p4094",
+      "displacement": 4094,
+      "target": 16825254,
+      "taken": 164,
+      "fallthrough": 213,
+      "executions": 377
+    },
+    "0x100cbb4": {
+      "name": "fused_blt",
+      "function": "asm_BLT_m4096",
+      "displacement": -4096,
+      "target": 16825268,
+      "taken": 152,
+      "fallthrough": 225,
+      "executions": 377
+    },
+    "0x100cbc0": {
+      "name": "fused_bge",
+      "function": "asm_BGE_forward",
+      "displacement": 12,
+      "target": 16829388,
+      "taken": 217,
+      "fallthrough": 160,
+      "executions": 377
+    },
+    "0x100cbe0": {
+      "name": "fused_bge",
+      "function": "asm_BGE_backward",
+      "displacement": -8,
+      "target": 16829400,
+      "taken": 219,
+      "fallthrough": 158,
+      "executions": 377
+    },
+    "0x100cbec": {
+      "name": "fused_bge",
+      "function": "asm_BGE_p4094",
+      "displacement": 4094,
+      "target": 16833514,
+      "taken": 221,
+      "fallthrough": 156,
+      "executions": 377
+    },
+    "0x100ebf8": {
+      "name": "fused_bge",
+      "function": "asm_BGE_m4096",
+      "displacement": -4096,
+      "target": 16833528,
+      "taken": 233,
+      "fallthrough": 144,
+      "executions": 377
+    },
+    "0x100ec04": {
+      "name": "fused_bltu",
+      "function": "asm_BLTU_forward",
+      "displacement": 12,
+      "target": 16837648,
+      "taken": 84,
+      "fallthrough": 293,
+      "executions": 377
+    },
+    "0x100ec24": {
+      "name": "fused_bltu",
+      "function": "asm_BLTU_backward",
+      "displacement": -8,
+      "target": 16837660,
+      "taken": 84,
+      "fallthrough": 293,
+      "executions": 377
+    },
+    "0x100ec30": {
+      "name": "fused_bltu",
+      "function": "asm_BLTU_p4094",
+      "displacement": 4094,
+      "target": 16841774,
+      "taken": 84,
+      "fallthrough": 293,
+      "executions": 377
+    },
+    "0x1010c3c": {
+      "name": "fused_bltu",
+      "function": "asm_BLTU_m4096",
+      "displacement": -4096,
+      "target": 16841788,
+      "taken": 84,
+      "fallthrough": 293,
+      "executions": 377
+    },
+    "0x1010c48": {
+      "name": "fused_bgeu",
+      "function": "asm_BGEU_forward",
+      "displacement": 12,
+      "target": 16845908,
+      "taken": 293,
+      "fallthrough": 84,
+      "executions": 377
+    },
+    "0x1010c68": {
+      "name": "fused_bgeu",
+      "function": "asm_BGEU_backward",
+      "displacement": -8,
+      "target": 16845920,
+      "taken": 293,
+      "fallthrough": 84,
+      "executions": 377
+    },
+    "0x1010c74": {
+      "name": "fused_bgeu",
+      "function": "asm_BGEU_p4094",
+      "displacement": 4094,
+      "target": 16850034,
+      "taken": 293,
+      "fallthrough": 84,
+      "executions": 377
+    },
+    "0x1012c80": {
+      "name": "fused_bgeu",
+      "function": "asm_BGEU_m4096",
+      "displacement": -4096,
+      "target": 16850048,
+      "taken": 293,
+      "fallthrough": 84,
+      "executions": 377
+    }
+  }
+}

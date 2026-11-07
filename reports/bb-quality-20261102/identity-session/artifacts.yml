@@ -1,0 +1,46 @@
+artifacts:
+- attrs: {}
+  dest: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/elf/identity.elf
+  flags: 4
+  hash: N/A
+  name: identity.elf
+  type: ElfArtifact
+- attrs:
+    bb_map_decoder: 2
+    elf_sha256: 5f1ae7bea4fec91637e468a505c2df607ad1bee4efb7dc40a838f72b95edcb26
+  dest: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/llvm_bbs.pkl
+  flags: 65
+  hash: N/A
+  name: llvm_bbs
+  type: TableArtifact
+- attrs:
+    bb_map_decoder: 2
+    elf_sha256: 5f1ae7bea4fec91637e468a505c2df607ad1bee4efb7dc40a838f72b95edcb26
+  dest: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/llvm_bbs_new.pkl
+  flags: 65
+  hash: N/A
+  name: llvm_bbs_new
+  type: TableArtifact
+- attrs:
+    bb_map_decoder: 2
+    elf_sha256: 5f1ae7bea4fec91637e468a505c2df607ad1bee4efb7dc40a838f72b95edcb26
+  dest: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/choices.pkl
+  flags: 65
+  hash: N/A
+  name: choices
+  type: TableArtifact
+- attrs:
+    kind: compile_commands
+  dest: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/compile_commands.pkl
+  flags: 65
+  hash: N/A
+  name: compile_commands
+  type: TableArtifact
+- attrs:
+    by: isaac_toolkit.generate.cdfg.memgraph
+    kind: provenance
+  dest: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/cdfg_imports.pkl
+  flags: 65
+  hash: N/A
+  name: cdfg_imports
+  type: TableArtifact

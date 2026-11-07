@@ -1,0 +1,309 @@
+import "/var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVI.core_desc"
+InstructionSet XMem extends RV32I {
+    instructions {
+        MEM_ADDR_LB {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_lb", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)((unsigned<32>)(signed<8>)(MEM[_isaac_mem_addr_0]));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_ADDR_LBU {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_lbu", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)((unsigned<32>)(unsigned<8>)(MEM[_isaac_mem_addr_0]));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_ADDR_LH {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd1 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_lh", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)((unsigned<32>)(signed<16>)(MEM[_isaac_mem_addr_0+1:_isaac_mem_addr_0]));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_ADDR_LHU {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd1 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_lhu", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)((unsigned<32>)(unsigned<16>)(MEM[_isaac_mem_addr_0+1:_isaac_mem_addr_0]));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_ADDR_LW {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_lw", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)((unsigned<32>)(signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_LOADADD_LB {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_loadadd_lb", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)(((signed<32>)(unsigned<32>)((unsigned<32>)(signed<8>)(MEM[_isaac_mem_addr_0]))+(signed<32>)rs2_val));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_LOADADD_LBU {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd1 :: 1'd1 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_loadadd_lbu", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)(((signed<32>)(unsigned<32>)((unsigned<32>)(unsigned<8>)(MEM[_isaac_mem_addr_0]))+(signed<32>)rs2_val));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_LOADADD_LH {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd1 :: 1'd1 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_loadadd_lh", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)(((signed<32>)(unsigned<32>)((unsigned<32>)(signed<16>)(MEM[_isaac_mem_addr_0+1:_isaac_mem_addr_0]))+(signed<32>)rs2_val));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_LOADADD_LHU {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_loadadd_lhu", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)(((signed<32>)(unsigned<32>)((unsigned<32>)(unsigned<16>)(MEM[_isaac_mem_addr_0+1:_isaac_mem_addr_0]))+(signed<32>)rs2_val));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_LOADADD_LW {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd0 :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: rd[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_loadadd_lw", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                unsigned<32> outp0=(unsigned<32>)(((signed<32>)(unsigned<32>)((unsigned<32>)(signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]))+(signed<32>)rs2_val));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+        MEM_ADDR_SB {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_sb", "{name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> rs3_val=X[rs3];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                MEM[_isaac_mem_addr_0]=(unsigned<8>)(rs3_val);
+                
+            }
+        }
+        
+
+        MEM_ADDR_SH {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_sh", "{name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> rs3_val=X[rs3];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                MEM[_isaac_mem_addr_0+1:_isaac_mem_addr_0]=(unsigned<16>)(rs3_val);
+                
+            }
+        }
+        
+
+        MEM_ADDR_SW {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_addr_sw", "{name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> rs3_val=X[rs3];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((unsigned<32>)(((signed<32>)rs1_val+(signed<32>)rs2_val))+(signed<32>)((0)));
+                MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]=(unsigned<32>)(rs3_val);
+                
+            }
+        }
+        
+
+        MEM_STOREXOR_SB {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_storexor_sb", "{name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> rs3_val=X[rs3];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                MEM[_isaac_mem_addr_0]=(unsigned<8>)((unsigned<32>)(((unsigned<32>)rs2_val^(unsigned<32>)rs3_val)));
+                
+            }
+        }
+        
+
+        MEM_STOREXOR_SH {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd0 :: 1'd0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_storexor_sh", "{name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> rs3_val=X[rs3];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                MEM[_isaac_mem_addr_0+1:_isaac_mem_addr_0]=(unsigned<16>)((unsigned<32>)(((unsigned<32>)rs2_val^(unsigned<32>)rs3_val)));
+                
+            }
+        }
+        
+
+        MEM_STOREXOR_SW {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'd1 :: 1'd0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"mem_storexor_sw", "{name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                unsigned<32> rs1_val=X[rs1];
+                unsigned<32> rs2_val=X[rs2];
+                unsigned<32> rs3_val=X[rs3];
+                unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(rs1_val+(signed<32>)((0)));
+                MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]=(unsigned<32>)((unsigned<32>)(((unsigned<32>)rs2_val^(unsigned<32>)rs3_val)));
+                
+            }
+        }
+        
+
+    }
+}

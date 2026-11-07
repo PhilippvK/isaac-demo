@@ -1,0 +1,224 @@
+[
+    {
+        "Id": "3ba73bd8fe309f4866105092564c2661a526e495a926ba7577e699d314a0bb45",
+        "Created": "2026-11-04T07:00:44.812033451Z",
+        "Path": "sleep",
+        "Args": [
+            "infinity"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 937630,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-11-04T07:00:44.850137011Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:33a02caac54c1f31bd0ee63e2ad797174c88c93b5a7c6add8f2afae00c73abf9",
+        "ResolvConfPath": "/data/docker/containers/3ba73bd8fe309f4866105092564c2661a526e495a926ba7577e699d314a0bb45/resolv.conf",
+        "HostnamePath": "/data/docker/containers/3ba73bd8fe309f4866105092564c2661a526e495a926ba7577e699d314a0bb45/hostname",
+        "HostsPath": "/data/docker/containers/3ba73bd8fe309f4866105092564c2661a526e495a926ba7577e699d314a0bb45/hosts",
+        "LogPath": "/data/docker/containers/3ba73bd8fe309f4866105092564c2661a526e495a926ba7577e699d314a0bb45/3ba73bd8fe309f4866105092564c2661a526e495a926ba7577e699d314a0bb45-json.log",
+        "Name": "/isaac-fused-branches-etiss",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104:/experiment"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "bridge",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/data/docker/overlay2/54202b95520f1fcd00d45c8d6270701c02b0b11603af1d7ab76d0fe5dd34768c-init/diff:/data/docker/overlay2/issjk5ladeomu7escfgxxov91/diff:/data/docker/overlay2/uqjxq6z4w4uz06w6057o53kha/diff:/data/docker/overlay2/nx4tylc92h9ejziln1o1pk492/diff:/data/docker/overlay2/qthxi43bpyu3xpxoumvp8hzf6/diff:/data/docker/overlay2/59rgv5auhbffksg41l5h5na8c/diff:/data/docker/overlay2/6imahwrcak6ubxlvvgoj4yey7/diff:/data/docker/overlay2/r0opz6y9gdu76nuen2lamxuha/diff:/data/docker/overlay2/9wh7lc08tzmvjzsiuflzz7808/diff:/data/docker/overlay2/jpgoubzxeoeyfldgbxiic5q15/diff:/data/docker/overlay2/o9gaeu28zn7inbe72h3asazbz/diff:/data/docker/overlay2/2o8w9alpdhtu8234e64vhq05y/diff:/data/docker/overlay2/vnbb9py75dxho8x27c0tye9eq/diff:/data/docker/overlay2/xbligxlk95b6gl5vk51cbsvie/diff:/data/docker/overlay2/eoeao1mfuqyu1pv42t81eq6uc/diff:/data/docker/overlay2/uh158arfz1od1k1zt5tmhwmjs/diff:/data/docker/overlay2/901yxzu3mc3pqfcmbl5wke85y/diff:/data/docker/overlay2/tw6mw9yucd0g7x85n6n7m8jmm/diff:/data/docker/overlay2/6yws4g1tuy5dc23k03repd99h/diff:/data/docker/overlay2/2ndq5c9wrylxzvlno64n0n523/diff:/data/docker/overlay2/ub8x4j7qw2lox4zhza1bojyiw/diff:/data/docker/overlay2/8ajmo4nrcharqomabl25at5c5/diff:/data/docker/overlay2/sba22yxz5i4xrqgjq71bm3maf/diff:/data/docker/overlay2/rhf0bmps5jo1dkbs39w4gv3w1/diff:/data/docker/overlay2/v2x3j15weqqpvz3zpf67yvwah/diff:/data/docker/overlay2/qeqaykhwn5eridxs2g2bp0i29/diff:/data/docker/overlay2/l7koksmuhuhzit6tsw8ikylcs/diff:/data/docker/overlay2/v6wiamyccuo8agl875hhnsdi6/diff:/data/docker/overlay2/40a2b67b2f1ba1f2a12c3a386fb0194506a372a79fe3a0f5db21dd4f940c73af/diff",
+                "MergedDir": "/data/docker/overlay2/54202b95520f1fcd00d45c8d6270701c02b0b11603af1d7ab76d0fe5dd34768c/merged",
+                "UpperDir": "/data/docker/overlay2/54202b95520f1fcd00d45c8d6270701c02b0b11603af1d7ab76d0fe5dd34768c/diff",
+                "WorkDir": "/data/docker/overlay2/54202b95520f1fcd00d45c8d6270701c02b0b11603af1d7ab76d0fe5dd34768c/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104",
+                "Destination": "/experiment",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "3ba73bd8fe30",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/work/venv/bin:/root/.cargo/bin:/opt/conda/envs/py310/bin:/opt/conda/bin:/opt/cmake/bin/:/opt/cmake/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin::",
+                "SEAL5_HOME=/work/llvm/",
+                "PYTHONPATH=/opt/m2isar",
+                "DEBIAN_FRONTEND=noninteractive",
+                "LD_LIBRARY_PATH=/usr/local/lib/",
+                "CONDA_DEFAULT_ENV=py310",
+                "PYTHON_EXE=python3.10"
+            ],
+            "Cmd": [
+                "infinity"
+            ],
+            "Image": "isaac-docker-service-worker-etiss",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": [
+                "sleep"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.project": "isaac-docker-service",
+                "com.docker.compose.service": "worker-etiss",
+                "com.docker.compose.version": "2.29.7",
+                "maintainer": "ETISS Developers",
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "20.04"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "6c6b0af7fdcd24695e1b2330df721fe4433140c56e78e440b50995e7c90fc64b",
+            "SandboxKey": "/var/run/docker/netns/6c6b0af7fdcd",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "94d4c5cdeafeb58869a214cec6bfe38528716f047f7f97c9cdd583627ebb13ed",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.5",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:05",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "02:42:ac:11:00:05",
+                    "DriverOpts": null,
+                    "NetworkID": "b9d4df747996d32db4db0893ebc1e784e321ed8d36b57e0bcb4547e812db5c59",
+                    "EndpointID": "94d4c5cdeafeb58869a214cec6bfe38528716f047f7f97c9cdd583627ebb13ed",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.5",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        }
+    }
+]

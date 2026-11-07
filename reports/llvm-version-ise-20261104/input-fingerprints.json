@@ -1,0 +1,42 @@
+[
+  {
+    "benchmark": "crc32",
+    "input": "reports/bb-quality-20261102/runs/crc32/20261102T160334/work-new/gen/XIsaac.seal5.core_desc",
+    "sha256": "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c",
+    "llvm19_archive": "reports/bb-utilization-20261103/llvm/seal5.tar.gz",
+    "archive_matching_inputs": [
+      {
+        "member": "inputs/XIsaac.seal5.core_desc",
+        "sha256": "f72082929f4f2785b9a2722ae6bf7e2ce5ec1079893e7157770822802c1460c5",
+        "equal": false
+      },
+      {
+        "member": "inputs/XIsaac.seal5.core_desc",
+        "sha256": "f72082929f4f2785b9a2722ae6bf7e2ce5ec1079893e7157770822802c1460c5",
+        "equal": false
+      }
+    ],
+    "equal_after_normalizing_import_prefix": true,
+    "normalized_sha256": "b875bee0dc4ba4a4b46c3c8c8de1e0a7b60a5dfa58bc2e55d257dd13ded96931"
+  },
+  {
+    "benchmark": "nettle-sha256",
+    "input": "reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-new/gen/XIsaac.seal5.core_desc",
+    "sha256": "5b4adc1d5cf95f97ec99e397923157ad1797ce41528109b91388dd7ab11a11d8",
+    "llvm19_archive": "reports/bb-utilization-20261103/nettle-sha256/llvm/seal5.tar.gz",
+    "archive_matching_inputs": [
+      {
+        "member": "inputs/XIsaac.seal5.core_desc",
+        "sha256": "33f2b0cc928eef0ac7c02f82680d538042f0dd37a4337d2f1d5143e32cabd32e",
+        "equal": false
+      },
+      {
+        "member": "inputs/XIsaac.seal5.core_desc",
+        "sha256": "33f2b0cc928eef0ac7c02f82680d538042f0dd37a4337d2f1d5143e32cabd32e",
+        "equal": false
+      }
+    ],
+    "equal_after_normalizing_import_prefix": true,
+    "normalized_sha256": "569a5d34d16b5d49209e5eab31eb29d64006ea4902736283c43a879c6a427af7"
+  }
+]

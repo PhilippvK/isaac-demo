@@ -1,0 +1,2 @@
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]

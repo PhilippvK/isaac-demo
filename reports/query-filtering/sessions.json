@@ -1,0 +1,62 @@
+[
+  {
+    "label": "isaac-demo-nettle-sha256-20261021T203457",
+    "stage": 32,
+    "nodes": 2423
+  },
+  {
+    "label": "isaac-demo-nettle-sha256-20261021T091416",
+    "stage": 32,
+    "nodes": 2423
+  },
+  {
+    "label": "genie-run-2026-10-22-13-52-34-embench-iot-crc32-run-trace",
+    "stage": 32,
+    "nodes": 509
+  },
+  {
+    "label": "genie-run-2026-10-23-12-12-03-embench-iot-crc32-run-trace",
+    "stage": 32,
+    "nodes": 509
+  },
+  {
+    "label": "genie-run-2026-10-23-11-53-43-embench-iot-crc32-run-trace",
+    "stage": 32,
+    "nodes": 509
+  },
+  {
+    "label": "genie-run-2026-10-23-12-26-54-embench-iot-crc32-run-trace",
+    "stage": 32,
+    "nodes": 509
+  },
+  {
+    "label": "genie-run-2026-10-23-12-16-10-embench-iot-crc32-run-trace",
+    "stage": 32,
+    "nodes": 509
+  },
+  {
+    "label": "isaac-demo-crc32-20261021T154523",
+    "stage": 32,
+    "nodes": 464
+  },
+  {
+    "label": "isaac-demo-crc32-20261022T132649",
+    "stage": 32,
+    "nodes": 464
+  },
+  {
+    "label": "isaac-demo-crc32-e2e",
+    "stage": 32,
+    "nodes": 464
+  },
+  {
+    "label": "isaac-demo-crc32-20261021T203031",
+    "stage": 32,
+    "nodes": 464
+  },
+  {
+    "label": "isaac-demo-crc32-e2e-spike",
+    "stage": 32,
+    "nodes": 464
+  }
+]

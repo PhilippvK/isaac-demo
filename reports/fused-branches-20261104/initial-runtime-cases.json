@@ -1,0 +1,150 @@
+{
+  "functions": [
+    {
+      "name": "selected_BEQ",
+      "predicate": "BEQ"
+    },
+    {
+      "name": "native_BEQ",
+      "predicate": "BEQ"
+    },
+    {
+      "name": "asm_BEQ_forward",
+      "predicate": "BEQ"
+    },
+    {
+      "name": "asm_BEQ_backward",
+      "predicate": "BEQ"
+    },
+    {
+      "name": "asm_BEQ_p4094",
+      "predicate": "BEQ"
+    },
+    {
+      "name": "asm_BEQ_m4096",
+      "predicate": "BEQ"
+    },
+    {
+      "name": "selected_BNE",
+      "predicate": "BNE"
+    },
+    {
+      "name": "native_BNE",
+      "predicate": "BNE"
+    },
+    {
+      "name": "asm_BNE_forward",
+      "predicate": "BNE"
+    },
+    {
+      "name": "asm_BNE_backward",
+      "predicate": "BNE"
+    },
+    {
+      "name": "asm_BNE_p4094",
+      "predicate": "BNE"
+    },
+    {
+      "name": "asm_BNE_m4096",
+      "predicate": "BNE"
+    },
+    {
+      "name": "selected_BLT",
+      "predicate": "BLT"
+    },
+    {
+      "name": "native_BLT",
+      "predicate": "BLT"
+    },
+    {
+      "name": "asm_BLT_forward",
+      "predicate": "BLT"
+    },
+    {
+      "name": "asm_BLT_backward",
+      "predicate": "BLT"
+    },
+    {
+      "name": "asm_BLT_p4094",
+      "predicate": "BLT"
+    },
+    {
+      "name": "asm_BLT_m4096",
+      "predicate": "BLT"
+    },
+    {
+      "name": "selected_BGE",
+      "predicate": "BGE"
+    },
+    {
+      "name": "native_BGE",
+      "predicate": "BGE"
+    },
+    {
+      "name": "asm_BGE_forward",
+      "predicate": "BGE"
+    },
+    {
+      "name": "asm_BGE_backward",
+      "predicate": "BGE"
+    },
+    {
+      "name": "asm_BGE_p4094",
+      "predicate": "BGE"
+    },
+    {
+      "name": "asm_BGE_m4096",
+      "predicate": "BGE"
+    },
+    {
+      "name": "selected_BLTU",
+      "predicate": "BLTU"
+    },
+    {
+      "name": "native_BLTU",
+      "predicate": "BLTU"
+    },
+    {
+      "name": "asm_BLTU_forward",
+      "predicate": "BLTU"
+    },
+    {
+      "name": "asm_BLTU_backward",
+      "predicate": "BLTU"
+    },
+    {
+      "name": "asm_BLTU_p4094",
+      "predicate": "BLTU"
+    },
+    {
+      "name": "asm_BLTU_m4096",
+      "predicate": "BLTU"
+    },
+    {
+      "name": "selected_BGEU",
+      "predicate": "BGEU"
+    },
+    {
+      "name": "native_BGEU",
+      "predicate": "BGEU"
+    },
+    {
+      "name": "asm_BGEU_forward",
+      "predicate": "BGEU"
+    },
+    {
+      "name": "asm_BGEU_backward",
+      "predicate": "BGEU"
+    },
+    {
+      "name": "asm_BGEU_p4094",
+      "predicate": "BGEU"
+    },
+    {
+      "name": "asm_BGEU_m4096",
+      "predicate": "BGEU"
+    }
+  ],
+  "cases_per_function": 377,
+  "expected_total_cases": 13572
+}

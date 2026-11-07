@@ -1,0 +1,57 @@
+{
+  "image": [
+    "philippvk/isaac-quickstart-hls@sha256:40e063cb86db7a6c36c5c1f11a412506a6866423df06087a36e82ba598d54c79"
+  ],
+  "core": "CVA5",
+  "interface": "SCAIE-V 2.0",
+  "solver": "CBC",
+  "clock_period_ns": 100,
+  "resource_sharing": "separate instruction groups",
+  "jobs": {
+    "branches-fixed": {
+      "hls_and_integration_passed": true,
+      "instructions": 6,
+      "scheduled_latency_min": 2.0,
+      "scheduled_latency_max": 2.0,
+      "initiation_interval_min": 1.0,
+      "initiation_interval_max": 1.0,
+      "rtl_simulation": false,
+      "physical_synthesis": false
+    },
+    "memory-cva5-final": {
+      "hls_and_integration_passed": true,
+      "instructions": 5,
+      "scheduled_latency_min": 4.0,
+      "scheduled_latency_max": 4.0,
+      "initiation_interval_min": 1.0,
+      "initiation_interval_max": 1.0,
+      "rtl_simulation": false,
+      "physical_synthesis": false
+    },
+    "store-probes": {
+      "hls_and_integration_passed": true,
+      "instructions": 3,
+      "scheduled_latency_min": 3.0,
+      "scheduled_latency_max": 3.0,
+      "initiation_interval_min": 1.0,
+      "initiation_interval_max": 1.0,
+      "rtl_simulation": false,
+      "physical_synthesis": false
+    },
+    "crc32-scaiev2-final": {
+      "hls_and_integration_passed": true,
+      "instructions": 116,
+      "scheduled_latency_min": 4.0,
+      "scheduled_latency_max": 4.0,
+      "initiation_interval_min": 1.0,
+      "initiation_interval_max": 1.0,
+      "rtl_simulation": false,
+      "physical_synthesis": false
+    }
+  },
+  "full_crc32_status": "passed",
+  "scope": "HLS scheduling and generated RTL integration; no functional RTL simulation, ASIP or FPGA synthesis",
+  "encoding_interface": "scaiev2",
+  "decode_mask": "0xfe00707f",
+  "full_set_shared_resource_run": false
+}

@@ -1,0 +1,3046 @@
+{
+  "version": 1,
+  "assignments": [
+    {
+      "name": "set/XIsaac/CUSTOM0",
+      "layout": "R",
+      "code": 469762059,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM1",
+      "layout": "R",
+      "code": 100663307,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM10",
+      "layout": "R",
+      "code": 1174405131,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM100",
+      "layout": "R",
+      "code": 369098763,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM101",
+      "layout": "R",
+      "code": 3690995723,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM102",
+      "layout": "R",
+      "code": 1006641163,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM103",
+      "layout": "R",
+      "code": 33562635,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM104",
+      "layout": "R",
+      "code": 2181046283,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM105",
+      "layout": "R",
+      "code": 1107304459,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM106",
+      "layout": "R",
+      "code": 1442840587,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM107",
+      "layout": "R",
+      "code": 905969675,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM108",
+      "layout": "R4I",
+      "code": 11,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM109",
+      "layout": "R4I",
+      "code": 2147483659,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM11",
+      "layout": "R4I",
+      "code": 1073741835,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM110",
+      "layout": "I",
+      "code": 3221225483,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "simm10",
+          "offset": 20,
+          "width": 10,
+          "signed": true
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM111",
+      "layout": "I",
+      "code": 16395,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "simm10",
+          "offset": 20,
+          "width": 10,
+          "signed": true
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM112",
+      "layout": "R",
+      "code": 67108875,
+      "mask": 4292898943,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 20,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM113",
+      "layout": "R",
+      "code": 1140850699,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM114",
+      "layout": "I",
+      "code": 536870923,
+      "mask": 4160778367,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm7",
+          "offset": 20,
+          "width": 7,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM115",
+      "layout": "I",
+      "code": 1610612747,
+      "mask": 4160778367,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm7",
+          "offset": 20,
+          "width": 7,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM12",
+      "layout": "R4I",
+      "code": 2147500043,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM13",
+      "layout": "R4I",
+      "code": 268435467,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM14",
+      "layout": "R4I",
+      "code": 1073758219,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM15",
+      "layout": "R4I",
+      "code": 1342177291,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM16",
+      "layout": "R4I",
+      "code": 3221241867,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM17",
+      "layout": "R",
+      "code": 8203,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM18",
+      "layout": "R",
+      "code": 1979711499,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM19",
+      "layout": "R",
+      "code": 234881035,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM2",
+      "layout": "R",
+      "code": 1845493771,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM20",
+      "layout": "R",
+      "code": 503316491,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM21",
+      "layout": "R",
+      "code": 268443659,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM22",
+      "layout": "R",
+      "code": 2415927307,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM23",
+      "layout": "R",
+      "code": 1342185483,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM24",
+      "layout": "R",
+      "code": 3254788107,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM25",
+      "layout": "R",
+      "code": 570433547,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM26",
+      "layout": "R",
+      "code": 3489669131,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM27",
+      "layout": "R",
+      "code": 805314571,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM28",
+      "layout": "R",
+      "code": 134225931,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM29",
+      "layout": "R",
+      "code": 2281709579,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM3",
+      "layout": "R",
+      "code": 1207967755,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM30",
+      "layout": "R",
+      "code": 3355451403,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM31",
+      "layout": "R",
+      "code": 671096843,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM32",
+      "layout": "R",
+      "code": 402661387,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM33",
+      "layout": "R4I",
+      "code": 805306379,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM34",
+      "layout": "R4I",
+      "code": 24587,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM35",
+      "layout": "R4I",
+      "code": 1879048203,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM36",
+      "layout": "R4I",
+      "code": 2147508235,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM37",
+      "layout": "R4I",
+      "code": 134217739,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM38",
+      "layout": "R4I",
+      "code": 1073766411,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM39",
+      "layout": "I",
+      "code": 1207959563,
+      "mask": 4160778367,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm7",
+          "offset": 20,
+          "width": 7,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM4",
+      "layout": "R",
+      "code": 2550145035,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM40",
+      "layout": "I",
+      "code": 671088651,
+      "mask": 4160778367,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm7",
+          "offset": 20,
+          "width": 7,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM41",
+      "layout": "R",
+      "code": 1476403211,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM42",
+      "layout": "R",
+      "code": 3623886859,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM43",
+      "layout": "R",
+      "code": 2147491851,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM44",
+      "layout": "R",
+      "code": 1073750027,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM45",
+      "layout": "R",
+      "code": 301998091,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM46",
+      "layout": "R",
+      "code": 2449481739,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM47",
+      "layout": "R",
+      "code": 1375739915,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM48",
+      "layout": "I",
+      "code": 2684362763,
+      "mask": 3758125183,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm9",
+          "offset": 20,
+          "width": 9,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM49",
+      "layout": "I",
+      "code": 3221250059,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm10",
+          "offset": 20,
+          "width": 10,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM5",
+      "layout": "R",
+      "code": 939532299,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM50",
+      "layout": "I",
+      "code": 1610620939,
+      "mask": 3758125183,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm9",
+          "offset": 20,
+          "width": 9,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM51",
+      "layout": "I",
+      "code": 4107,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm10",
+          "offset": 20,
+          "width": 10,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM52",
+      "layout": "I",
+      "code": 3758104587,
+      "mask": 3758125183,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm9",
+          "offset": 20,
+          "width": 9,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM53",
+      "layout": "I",
+      "code": 2147487755,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm10",
+          "offset": 20,
+          "width": 10,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM54",
+      "layout": "R",
+      "code": 67117067,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM55",
+      "layout": "R",
+      "code": 2214600715,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM56",
+      "layout": "R",
+      "code": 1140858891,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM57",
+      "layout": "R",
+      "code": 3288342539,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM58",
+      "layout": "R",
+      "code": 603987979,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM59",
+      "layout": "R",
+      "code": 335552523,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM6",
+      "layout": "R",
+      "code": 2483036171,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM60",
+      "layout": "R",
+      "code": 3523223563,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM61",
+      "layout": "R",
+      "code": 838869003,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM62",
+      "layout": "R",
+      "code": 167780363,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM63",
+      "layout": "R",
+      "code": 1409294347,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM64",
+      "layout": "R",
+      "code": 3556777995,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM65",
+      "layout": "R",
+      "code": 872423435,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM66",
+      "layout": "R4I",
+      "code": 1744830475,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM67",
+      "layout": "R4I",
+      "code": 1073745931,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM68",
+      "layout": "R4I",
+      "code": 402653195,
+      "mask": 4227887231,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm1",
+          "offset": 25,
+          "width": 1,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM69",
+      "layout": "R4I",
+      "code": 3221229579,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM7",
+      "layout": "R",
+      "code": 201334795,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM70",
+      "layout": "R4I",
+      "code": 20491,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM71",
+      "layout": "I",
+      "code": 1476395019,
+      "mask": 4160778367,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm7",
+          "offset": 20,
+          "width": 7,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM72",
+      "layout": "I",
+      "code": 939524107,
+      "mask": 4160778367,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm7",
+          "offset": 20,
+          "width": 7,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM73",
+      "layout": "R",
+      "code": 2348818443,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM74",
+      "layout": "R",
+      "code": 1275076619,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM75",
+      "layout": "R",
+      "code": 2315264011,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM76",
+      "layout": "R",
+      "code": 3221233675,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM77",
+      "layout": "R",
+      "code": 3422560267,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM78",
+      "layout": "R",
+      "code": 536879115,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM79",
+      "layout": "R",
+      "code": 1241522187,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM8",
+      "layout": "R",
+      "code": 738205707,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM80",
+      "layout": "R",
+      "code": 3389005835,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM81",
+      "layout": "R",
+      "code": 704651275,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM82",
+      "layout": "R",
+      "code": 436215819,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM83",
+      "layout": "R4I",
+      "code": 2147504139,
+      "mask": 3758125183,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm4",
+          "offset": 25,
+          "width": 4,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM84",
+      "layout": "R4I",
+      "code": 1073762315,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM85",
+      "layout": "R4I",
+      "code": 2013265931,
+      "mask": 4160778367,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm2",
+          "offset": 25,
+          "width": 2,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM86",
+      "layout": "R4I",
+      "code": 3221245963,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 25,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM87",
+      "layout": "I",
+      "code": 2684375051,
+      "mask": 3758125183,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm9",
+          "offset": 20,
+          "width": 9,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM88",
+      "layout": "I",
+      "code": 12299,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm10",
+          "offset": 20,
+          "width": 10,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM89",
+      "layout": "R",
+      "code": 335544331,
+      "mask": 4278218879,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm4",
+          "offset": 20,
+          "width": 4,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM9",
+      "layout": "R",
+      "code": 469770251,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs3",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM90",
+      "layout": "R",
+      "code": 1409286155,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM91",
+      "layout": "R",
+      "code": 872415243,
+      "mask": 4290801791,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm2",
+          "offset": 20,
+          "width": 2,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM92",
+      "layout": "R",
+      "code": 1946157067,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM93",
+      "layout": "R",
+      "code": 201326603,
+      "mask": 4290801791,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm2",
+          "offset": 20,
+          "width": 2,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM94",
+      "layout": "R",
+      "code": 1811939339,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm5",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM95",
+      "layout": "I",
+      "code": 2147495947,
+      "mask": 3758125183,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm9",
+          "offset": 20,
+          "width": 9,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM96",
+      "layout": "I",
+      "code": 1073754123,
+      "mask": 3221254271,
+      "fields": [
+        {
+          "name": "rs2",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "uimm10",
+          "offset": 20,
+          "width": 10,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM97",
+      "layout": "R",
+      "code": 2617253899,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM98",
+      "layout": "R",
+      "code": 2583699467,
+      "mask": 4293947519,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    },
+    {
+      "name": "set/XIsaac/CUSTOM99",
+      "layout": "R",
+      "code": 1543512075,
+      "mask": 4261441663,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rd",
+          "offset": 7,
+          "width": 5,
+          "signed": false
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

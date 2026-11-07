@@ -1,0 +1,21 @@
+INFO:parser:parsing top level
+INFO:parser:reading instruction load order
+INFO:parser:building architecture model for set XMemoryCRC32
+INFO:parser:building behavior model for set XMemoryCRC32
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM17
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM43
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM44
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM76
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM78
+INFO:parser:Running type inference
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:16
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:16
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:33
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:33
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:50
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:50
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:67
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:67
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:84
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32/XMemoryCRC32.hls.core_desc:84
+INFO:parser:dumping model

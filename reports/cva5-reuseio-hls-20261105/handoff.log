@@ -1,0 +1,37 @@
+{
+  "status": "ready_for_external_hls_backend",
+  "workload": "crc32",
+  "preset": "cva5_reuseio",
+  "core": "CVA5",
+  "requested_interface": "SCAIE-V 2.0",
+  "interface_verified": false,
+  "hls_executed": false,
+  "asip_synthesis_enabled": false,
+  "fpga_synthesis_enabled": false,
+  "run_directory": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000",
+  "discovered_candidates": {
+    "arithmetic": 111,
+    "memory": 5
+  },
+  "supplemental_branch_probes": 6,
+  "checks": {
+    "baseline_validation_passed": true,
+    "selected_bb_validation_passed": true,
+    "cold_bb_frame_count_mismatches": 2,
+    "full_hls_parsed_instructions": 116,
+    "memory_slices_preserved": 5,
+    "encoding_roundtrip_matches": true
+  },
+  "inputs": {
+    "hls-inputs/crc32/XMemoryCRC32.hls.core_desc": {
+      "sha256": "d4c011deb34b9b37f05dff4603c4fe42f593c9d57213fde86788c9539799b1f1"
+    },
+    "hls-inputs/crc32/XIsaac.hls.core_desc": {
+      "sha256": "f458b301e58ec4f173de1353ab3da95cd22431dcdcb9e49974c810ae17cc2683"
+    },
+    "hls-inputs/branch-probes/XBranch.hls.core_desc": {
+      "sha256": "305f42940e2c89e27af55e8a99228e114fecdb6566fe813ada3b497b3b6b22d2"
+    }
+  },
+  "limitation": "CRC32 decrement/branch has a live register result; current effect-only branch generation rejects it. Six known branch probes are separate supplemental inputs."
+}

@@ -1,0 +1,63 @@
+OUTPUT_DIR=/experiment/hls-run/branches
+GEN_DIR=/experiment/hls-inputs/branch-probes
+HLS_DIR=/isax-tools
+GUROBI_LIC=
+make BUILD_DIR=/experiment/hls-run/branches/build_config ISAXES_DIR=/experiment/hls-inputs/branch-probes CONFIG_PATH=/experiment/hls-run/branches/.config OUTPUT_PATH=/experiment/hls-run/branches gen_config ci CORE=CVA5 ISAXES=XBRANCH.HLS SIM_EN=n OL2_ENABLE=n SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=CBC USE_OL2_MODEL=y CELL_LIBRARY=/experiment/config/compact.yaml CLOCK_TIME=100 SCHEDULE_TIMEOUT=60 REFINE_TIMEOUT=60 SCHED_ALGO_MS=y SCHED_ALGO_PA=y SCHED_ALGO_RA=y SCHED_ALGO_MI=y
+rm -rf /experiment/hls-run/branches/build_config/ISAX
+python3 gen_config.py
+python3 gen_ci_config.py
+python3 dispatch.py
+Output folder: ../../experiment/hls-run/branches
+Building CVA5 with ISAXes:
+csvpath /experiment/hls-run/branches/build_config/ISAX/XBranch/paths.csv
+csvpath /experiment/hls-run/branches/build_config/ISAX/XBranch.hls/paths.csv
+isax_file_mapping {'ISAX_XBRANCH_EN': '/experiment/hls-inputs/branch-probes/XBranch.core_desc', 'ISAX_XBRANCH.HLS_EN': '/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc'}
+enabled_isaxes ['ISAX_XBRANCH.HLS_EN']
+ - XBRANCH.HLS (associated description: /experiment/hls-inputs/branch-probes/XBranch.hls.core_desc)
+Running Treenail:
+ - Mapping /experiment/hls-inputs/branch-probes/XBranch.hls.core_desc to /experiment/hls-run/branches/mlir/ISAX_XBRANCH.HLS_EN.mlir
+Running command: './deps/treenail/app/build/install/app/bin/app /experiment/hls-inputs/branch-probes/XBranch.hls.core_desc -o /experiment/hls-run/branches/mlir/ISAX_XBRANCH.HLS_EN.mlir' failed
+Last 100 lines of the output:
+Parsing failed:
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 495 column : 73)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 495 column : 58)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 495 column : 116)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 495 column : 101)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 495 column : 42)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 495 column : 27)
+ERROR:Cannot implicitly convert signed<34> to unsigned<32> (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 496 column : 28)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 506 column : 73)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 506 column : 58)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 506 column : 116)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 506 column : 101)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 506 column : 42)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 506 column : 27)
+ERROR:Cannot implicitly convert signed<34> to unsigned<32> (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 507 column : 28)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 517 column : 71)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 517 column : 56)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 517 column : 114)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 517 column : 99)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 517 column : 40)
+ERROR:Cannot implicitly convert signed<34> to unsigned<32> (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 518 column : 28)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 528 column : 71)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 528 column : 56)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 528 column : 114)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 528 column : 99)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 528 column : 40)
+ERROR:Cannot implicitly convert signed<34> to unsigned<32> (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 529 column : 28)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 539 column : 73)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 539 column : 58)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 539 column : 116)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 539 column : 101)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 539 column : 42)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 539 column : 27)
+ERROR:Cannot implicitly convert signed<34> to unsigned<32> (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 540 column : 28)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 550 column : 73)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 550 column : 58)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 550 column : 116)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 550 column : 101)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 550 column : 42)
+WARNING:Identity cast does nothing (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 550 column : 27)
+ERROR:Cannot implicitly convert signed<34> to unsigned<32> (file:/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc line : 551 column : 28)
+ERROR: Treenail failed on /experiment/hls-inputs/branch-probes/XBranch.hls.core_desc
+make: *** [Makefile:12: build] Error 54

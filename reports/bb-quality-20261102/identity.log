@@ -1,0 +1,52 @@
+clang: warning: -fglobal-isel support for the 'riscv32' architecture is incomplete [-Wglobal-isel]
+DEBUG - save_artifacts - Saving artifacts...
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+clang-19: warning: -fglobal-isel support for the 'riscv32' architecture is incomplete [-Wglobal-isel]
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - save_artifacts - Saving artifacts...
+DEBUG - save - Exporting artifact 'identity.elf' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/elf/identity.elf'
+DEBUG - save - Exporting artifact 'llvm_bbs' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/llvm_bbs.pkl'
+DEBUG - save - Exporting artifact 'llvm_bbs_new' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/llvm_bbs_new.pkl'
+DEBUG - save - Exporting artifact 'choices' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/choices.pkl'
+DEBUG - save - Exporting artifact 'compile_commands' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/compile_commands.pkl'
+DEBUG - save - Exporting artifact 'cdfg_imports' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/cdfg_imports.pkl'
+{
+  "checks": {
+    "fresh_receipts": true,
+    "late_created_block_not_silently_substituted": true,
+    "wrong_compilation_rejected": true,
+    "changed_source_rejected": true,
+    "changed_elf_rejected": false,
+    "duplicate_block_rejected": true,
+    "modified_graph_receipt_rejected": true,
+    "all": false
+  },
+  "mapping": [
+    {
+      "requested_fixed_id": 1,
+      "new_mir": "%bb.1",
+      "old_name_join_fixed_ids": [
+        1
+      ],
+      "new_correct": true,
+      "old_correct": true
+    },
+    {
+      "requested_fixed_id": 3,
+      "new_mir": "%bb.2",
+      "old_name_join_fixed_ids": [
+        2
+      ],
+      "new_correct": true,
+      "old_correct": false
+    }
+  ]
+}
+Traceback (most recent call last):
+  File "/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity_experiment.py", line 70, in <module>
+    assert checks['all']
+AssertionError

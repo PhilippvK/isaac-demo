@@ -1,0 +1,17 @@
+model,set,xlen,is_rv32,is_rv64,instr,enc_size,is_compressed,enc_format,opcode,num_operands,num_inputs,num_outputs,num_inouts,num_regs,num_gprs,num_imms,imm_types,is_multi_in,is_single_in,is_multi_out,is_single_out,is_mimo,is_miso,is_siso,is_simo,has_imm_leaf,has_side_effects,may_load,may_store,is_terminator,is_branch,skip_pattern_gen,uses_custom_reg,defs_custom_reg
+XMem,XMem,32,True,False,MEM_ADDR_LB,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_ADDR_LBU,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_ADDR_LH,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_ADDR_LHU,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_ADDR_LW,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_LOADADD_LB,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_LOADADD_LBU,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_LOADADD_LH,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_LOADADD_LHU,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_LOADADD_LW,32,False,r-type (binop),custom-0,3,2,1,0,3,3,0,set(),True,False,False,True,False,True,False,False,False,True,True,False,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_ADDR_SB,32,False,"r-type (binop, noout)",custom-0,3,3,0,0,3,3,0,set(),True,False,False,False,False,False,False,False,False,True,False,True,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_ADDR_SH,32,False,"r-type (binop, noout)",custom-0,3,3,0,0,3,3,0,set(),True,False,False,False,False,False,False,False,False,True,False,True,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_ADDR_SW,32,False,"r-type (binop, noout)",custom-0,3,3,0,0,3,3,0,set(),True,False,False,False,False,False,False,False,False,True,False,True,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_STOREXOR_SB,32,False,"r-type (binop, noout)",custom-0,3,3,0,0,3,3,0,set(),True,False,False,False,False,False,False,False,False,True,False,True,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_STOREXOR_SH,32,False,"r-type (binop, noout)",custom-0,3,3,0,0,3,3,0,set(),True,False,False,False,False,False,False,False,False,True,False,True,False,False,False,False,False
+XMem,XMem,32,True,False,MEM_STOREXOR_SW,32,False,"r-type (binop, noout)",custom-0,3,3,0,0,3,3,0,set(),True,False,False,False,False,False,False,False,False,True,False,True,False,False,False,False,False

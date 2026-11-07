@@ -1,0 +1,75 @@
+InstructionSet XBranch {
+    architectural_state {
+        register unsigned<32> X[32] [[is_main_reg]];
+        register unsigned<32> PC [[is_pc]];
+    }
+    instructions {
+        FUSED_BEQ [[no_cont]] [[cond]] {
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: offset[4:1] :: offset[11:11] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) == ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(offset)));
+                    }
+                }
+            }
+        }
+        FUSED_BNE [[no_cont]] [[cond]] {
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b1 :: offset[4:1] :: offset[11:11] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) != ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(offset)));
+                    }
+                }
+            }
+        }
+        FUSED_BLT [[no_cont]] [[cond]] {
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b1 :: 1'b0 :: offset[4:1] :: offset[11:11] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset}";
+            behavior: {
+                {
+                    if (((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) < ((signed<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(offset)));
+                    }
+                }
+            }
+        }
+        FUSED_BGE [[no_cont]] [[cond]] {
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: offset[4:1] :: offset[11:11] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset}";
+            behavior: {
+                {
+                    if (((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) >= ((signed<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(offset)));
+                    }
+                }
+            }
+        }
+        FUSED_BLTU [[no_cont]] [[cond]] {
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b1 :: offset[4:1] :: offset[11:11] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) < ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(offset)));
+                    }
+                }
+            }
+        }
+        FUSED_BGEU [[no_cont]] [[cond]] {
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: offset[4:1] :: offset[11:11] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) >= ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(offset)));
+                    }
+                }
+            }
+        }
+    }
+}
+

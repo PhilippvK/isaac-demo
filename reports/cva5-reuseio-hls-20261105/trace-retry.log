@@ -1,0 +1,23 @@
+python3 -m mlonmcu.cli.main flow run crc32 --target etiss -c run.export_optional=1 -c etiss.arch=rv32im_zicsr_zifencei -c etiss.abi=ilp32 -c mlif.debug_symbols=1 -c mlif.toolchain=llvm -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=16 -c mlif.unroll_loops=0 -c mlif.optimize=3 -c mlif.global_isel=0 --label isaac-demo-crc32-20261105T120000-trace --backend none
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-05 08:37:56]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-1]  Processing stage LOAD
+INFO - [session-1]  Processing stage COMPILE
+WARNING - ignored: .llvm_bb_addr_map / size: 483
+INFO - [session-1]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-1] Done processing runs
+INFO - Report:
+   Run  Model Frontend Platform Target  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI  Run CPI  Total CPI  Simulated Instructions     MIPS  Runtime [s]  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s]                                 Features                                             Config Postprocesses Comment
+0    0  crc32  embench     mlif  etiss            52                  52     4005442           4005442             40                   40       4005739             4005739        1.0      1.0        1.0                 4022860  1.11395     0.040057        True            4.003528      70240       2692           3536     66696         8      1708                 984                1.013773             0.000009  [llvm_basic_block_sections, log_instrs]  {'embench.use_inout_data': False, 'embench.gen...            []       -
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-05 08:38:02]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+Creating directory: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/run
+Done

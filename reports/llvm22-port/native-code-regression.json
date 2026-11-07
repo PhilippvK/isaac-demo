@@ -1,0 +1,10 @@
+{
+  "compat-22-labels-rv32.elf": {
+    "text_sha256": "b220429339a13a198240ed6c825c80b3fc714482899906d69566fc5293fb0c1d",
+    "unchanged": true
+  },
+  "compat-22-labels-rv64.elf": {
+    "text_sha256": "908a6cecdbf6c93b7bac352605a9e0968ec71d3e0f3d979e4f03a8d4fd1b7788",
+    "unchanged": true
+  }
+}

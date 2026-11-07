@@ -1,0 +1,12 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334 DATE=20261102T160334 BENCH=crc32
+Matplotlib created a temporary cache directory at /tmp/matplotlib-fi7_2yre because the default path (/home/ga87puy/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[2026-11-02 17:03:11]::WARNING - Matplotlib created a temporary cache directory at /tmp/matplotlib-j9694mf3 because the default path (/home/ga87puy/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[2026-11-02 17:03:14]::INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+[2026-11-02 17:03:14]::INFO - generated new fontManager
+INFO - generate_cdsl - Generating CDSL...
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work/combined_index.yml
+0it [00:00, ?it/s]34it [00:00, 575.97it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work/combined_index.yml
+0it [00:00, ?it/s]34it [00:00, 959.42it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work/combined_index.yml
+0it [00:00, ?it/s]34it [00:00, 4177.10it/s]

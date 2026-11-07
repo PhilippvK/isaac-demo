@@ -1,0 +1,328 @@
+Logger started on port 44263
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-new/gen/XIsaac.seal5.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-new/gen/XIsaac.seal5.core_desc
+Logger on port 44263 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 43383
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XIsaac.seal5.m2isarmodel -> XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Filtering XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Inlining functions for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Optimizing XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting registers for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Processing settings for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing YAML for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Processing settings for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting loops for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XIsaac.seal5.seal5model
+INFO:annotate_opcodes:processing set XIsaac
+INFO:annotate_opcodes:processing instruction CUSTOM0
+INFO:annotate_opcodes:processing instruction CUSTOM1
+INFO:annotate_opcodes:processing instruction CUSTOM2
+INFO:annotate_opcodes:processing instruction CUSTOM3
+INFO:annotate_opcodes:processing instruction CUSTOM4
+INFO:annotate_opcodes:processing instruction CUSTOM5
+INFO:annotate_opcodes:processing instruction CUSTOM6
+INFO:annotate_opcodes:processing instruction CUSTOM7
+INFO:annotate_opcodes:processing instruction CUSTOM8
+INFO:annotate_opcodes:processing instruction CUSTOM9
+INFO:annotate_opcodes:processing instruction CUSTOM10
+INFO:annotate_opcodes:processing instruction CUSTOM11
+INFO:annotate_opcodes:processing instruction CUSTOM12
+INFO:annotate_opcodes:processing instruction CUSTOM13
+INFO:annotate_opcodes:processing instruction CUSTOM14
+INFO:annotate_opcodes:processing instruction CUSTOM15
+INFO:annotate_opcodes:processing instruction CUSTOM16
+INFO:annotate_opcodes:processing instruction CUSTOM17
+INFO:annotate_opcodes:processing instruction CUSTOM18
+INFO:annotate_opcodes:processing instruction CUSTOM19
+INFO:annotate_opcodes:processing instruction CUSTOM20
+INFO:annotate_opcodes:processing instruction CUSTOM21
+INFO:annotate_opcodes:processing instruction CUSTOM22
+INFO:annotate_opcodes:processing instruction CUSTOM23
+INFO:annotate_opcodes:processing instruction CUSTOM24
+INFO:annotate_opcodes:processing instruction CUSTOM25
+INFO:annotate_opcodes:processing instruction CUSTOM26
+INFO:annotate_opcodes:processing instruction CUSTOM27
+INFO:annotate_opcodes:processing instruction CUSTOM28
+INFO:annotate_opcodes:processing instruction CUSTOM29
+INFO:annotate_opcodes:processing instruction CUSTOM30
+INFO:annotate_opcodes:processing instruction CUSTOM31
+INFO:annotate_opcodes:processing instruction CUSTOM32
+INFO:annotate_opcodes:processing instruction CUSTOM33
+INFO:annotate_opcodes:processing instruction CUSTOM34
+INFO:annotate_opcodes:processing instruction CUSTOM35
+INFO:annotate_opcodes:processing instruction CUSTOM36
+INFO:annotate_opcodes:processing instruction CUSTOM37
+INFO:annotate_opcodes:processing instruction CUSTOM38
+INFO:annotate_opcodes:processing instruction CUSTOM39
+INFO:annotate_opcodes:processing instruction CUSTOM40
+INFO:annotate_opcodes:processing instruction CUSTOM41
+INFO:annotate_opcodes:processing instruction CUSTOM42
+INFO:annotate_opcodes:processing instruction CUSTOM43
+INFO:annotate_opcodes:processing instruction CUSTOM44
+INFO:annotate_opcodes:processing instruction CUSTOM45
+INFO:annotate_opcodes:processing instruction CUSTOM46
+INFO:annotate_opcodes:processing instruction CUSTOM47
+INFO:annotate_opcodes:processing instruction CUSTOM48
+INFO:annotate_opcodes:processing instruction CUSTOM49
+INFO:annotate_opcodes:processing instruction CUSTOM50
+INFO:annotate_opcodes:processing instruction CUSTOM51
+INFO:annotate_opcodes:processing instruction CUSTOM52
+INFO:annotate_opcodes:processing instruction CUSTOM53
+INFO:annotate_opcodes:processing instruction CUSTOM54
+INFO:annotate_opcodes:processing instruction CUSTOM55
+INFO:annotate_opcodes:processing instruction CUSTOM56
+INFO:annotate_opcodes:processing instruction CUSTOM57
+INFO:annotate_opcodes:processing instruction CUSTOM58
+INFO:annotate_opcodes:processing instruction CUSTOM59
+INFO:annotate_opcodes:processing instruction CUSTOM60
+INFO:annotate_opcodes:processing instruction CUSTOM61
+INFO:annotate_opcodes:processing instruction CUSTOM62
+INFO:annotate_opcodes:processing instruction CUSTOM63
+INFO:annotate_opcodes:processing instruction CUSTOM64
+INFO:annotate_opcodes:processing instruction CUSTOM65
+INFO:annotate_opcodes:processing instruction CUSTOM66
+INFO:annotate_opcodes:processing instruction CUSTOM67
+INFO:annotate_opcodes:processing instruction CUSTOM68
+INFO:annotate_opcodes:processing instruction CUSTOM69
+INFO:annotate_opcodes:processing instruction CUSTOM70
+INFO:annotate_opcodes:processing instruction CUSTOM71
+INFO:annotate_opcodes:processing instruction CUSTOM72
+INFO:annotate_opcodes:processing instruction CUSTOM73
+INFO:annotate_opcodes:processing instruction CUSTOM74
+INFO:annotate_opcodes:processing instruction CUSTOM75
+INFO:annotate_opcodes:processing instruction CUSTOM76
+INFO:annotate_opcodes:processing instruction CUSTOM77
+INFO:annotate_opcodes:processing instruction CUSTOM78
+INFO:annotate_opcodes:processing instruction CUSTOM79
+INFO:annotate_opcodes:processing instruction CUSTOM80
+INFO:annotate_opcodes:processing instruction CUSTOM81
+INFO:annotate_opcodes:processing instruction CUSTOM82
+INFO:annotate_opcodes:processing instruction CUSTOM83
+INFO:annotate_opcodes:processing instruction CUSTOM84
+INFO:annotate_opcodes:processing instruction CUSTOM85
+INFO:annotate_opcodes:processing instruction CUSTOM86
+INFO:annotate_opcodes:processing instruction CUSTOM87
+INFO:annotate_opcodes:processing instruction CUSTOM88
+INFO:annotate_opcodes:processing instruction CUSTOM89
+INFO:annotate_opcodes:processing instruction CUSTOM90
+INFO:annotate_opcodes:processing instruction CUSTOM91
+INFO:annotate_opcodes:processing instruction CUSTOM92
+INFO:annotate_opcodes:processing instruction CUSTOM93
+INFO:annotate_opcodes:processing instruction CUSTOM94
+INFO:annotate_opcodes:processing instruction CUSTOM95
+INFO:annotate_opcodes:processing instruction CUSTOM96
+INFO:annotate_opcodes:processing instruction CUSTOM97
+INFO:annotate_opcodes:processing instruction CUSTOM98
+INFO:annotate_opcodes:processing instruction CUSTOM99
+INFO:annotate_opcodes:processing instruction CUSTOM100
+INFO:annotate_opcodes:processing instruction CUSTOM101
+INFO:annotate_opcodes:processing instruction CUSTOM102
+INFO:annotate_opcodes:processing instruction CUSTOM103
+INFO:annotate_opcodes:processing instruction CUSTOM104
+[seal5.pass_list::INFO] Handle auto_unroll operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XIsaac.seal5.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XIsaac.seal5.seal5model
+Logger on port 43383 stopped.
+[seal5.flow::INFO] Completed tranformation of Seal5 models
+Logger started on port 34681
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing RISCVFeatures.td patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing RISCVRegisterInfo.td patch for XIsaac.seal5.seal5model
+[seal5.backends.riscv_register_info::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCV field types patches
+[seal5.pass_list::INFO] Writing RISCVInstrInfo.td patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing intrinsics patches patch for XIsaac.seal5.seal5model
+[seal5.backends.riscv_intrinsics::WARNING] No intrinsics configured; didn't need to invoke intrinsics writer.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVDisassembler.cpp patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing RISCVLegalizerInfo.cpp patch
+[seal5.backends.riscv_gisel_legalizer::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+Logger on port 34681 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 35767
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_1
+[seal5.flow::INFO] Applying patch 'seal5_td' on 'llvm'
+[seal5.flow::INFO] Applying patch 'set_td_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_1 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_1.patch
+[seal5.flow::INFO] Current stage: PHASE_2
+[seal5.flow::INFO] Applying patch 'riscv_features_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_field_types' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_instr_info_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_disass_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_2 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_2.patch
+Logger on port 35767 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 45755
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Logger on port 45755 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (pattern-gen)
+Logger started on port 35173
+[seal5.flow::INFO] Building Seal5 LLVM (llc)
+Logger on port 35173 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (llc)
+Logger started on port 36009
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing gmir for CUSTOM0.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM1.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM2.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM3.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM4.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM5.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM6.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM7.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM8.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM9.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM10.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM11.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM12.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM13.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM14.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM15.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM16.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM17.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM18.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM19.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM20.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM21.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM22.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM23.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM24.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM25.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM26.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM27.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM28.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM29.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM30.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM31.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM32.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM33.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM34.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM35.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM36.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM37.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM38.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM39.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM40.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM41.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM42.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM43.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM44.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM45.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM46.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM47.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM48.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM49.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM50.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM51.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM52.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM53.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM54.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM55.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM56.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM57.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM58.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM59.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM60.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM61.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM62.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM63.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM64.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM65.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM66.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM67.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM68.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM69.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM70.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM71.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM72.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM73.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM74.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM75.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM76.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM77.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM78.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM79.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM80.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM81.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM82.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM83.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM84.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM85.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM86.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM87.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM88.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM89.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM90.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM91.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM92.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM93.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM94.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM95.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM96.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM97.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM98.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM99.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM100.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM101.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM102.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM103.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM104.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XIsaac.seal5.seal5model
+Logger on port 36009 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 42741
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 42741 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 44623
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 44623 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 42659
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 84 tests passed: CodeGen/RISCV/seal5/generated/xisaac.test-attrs.ll, CodeGen/RISCV/seal5/generated/xisaac.test-ext.c, CodeGen/RISCV/seal5/generated/CUSTOM0.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM1.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM2.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM3.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM4.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM5.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM6.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM7.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM8.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM9.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM10.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM11.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM15.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM16.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM17.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM18.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM19.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM20.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM21.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM22.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM23.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM24.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM25.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM26.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM32.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM33.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM34.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM35.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM36.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM37.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM38.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM39.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM40.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM41.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM42.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM43.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM44.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM45.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM46.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM47.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM48.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM49.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM50.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM51.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM52.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM53.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM54.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM55.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM56.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM57.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM58.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM59.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM64.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM65.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM66.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM67.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM68.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM69.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM70.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM71.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM72.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM73.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM74.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM77.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM78.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM79.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM80.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM82.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM83.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM84.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM85.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM86.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM87.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM88.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM89.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM90.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM91.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM92.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM93.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM94.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM95.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM96.test-cg.ll
+Logger on port 42659 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 35005
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 35005 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model

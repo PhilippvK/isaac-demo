@@ -1,0 +1,38 @@
+-- bolt project is disabled
+-- clang project is enabled
+-- clang-tools-extra project is disabled
+-- compiler-rt project is disabled
+-- cross-project-tests project is disabled
+-- libclc project is disabled
+-- lld project is enabled
+-- lldb project is disabled
+-- mlir project is disabled
+-- openmp project is disabled
+-- polly project is disabled
+-- flang project is disabled
+-- libc project is disabled
+-- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
+-- LLVM host triple: x86_64-unknown-linux-gnu
+-- Native target X86 is not selected; lli will not JIT code
+-- Threads enabled.
+-- Doxygen disabled.
+-- Ninja version: 1.10.1
+-- Could NOT find OCaml (missing: OCAMLFIND OCAML_VERSION OCAML_STDLIB_PATH) 
+-- Could NOT find OCaml (missing: OCAMLFIND OCAML_VERSION OCAML_STDLIB_PATH) 
+-- OCaml bindings disabled.
+-- LLVM default target triple: 
+-- Building with -fPIC
+-- mgclient include: /var/tmp/ga87puy/isaac-demo-new/install/mgclient/include
+-- mgclient library: /var/tmp/ga87puy/isaac-demo-new/install/mgclient/lib/libmgclient.so
+-- Targeting RISCV
+-- LLD version: 22.1.8
+-- Clang version: 22.1.8
+CMake Deprecation Warning at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/clang/CMakeLists.txt:456 (message):
+  'CLANG_ENABLE_ARCMT' is deprecated as ARCMigrate has been removed from
+  Clang.  Please use 'CLANG_ENABLE_OBJC_REWRITER' instead to enable or
+  disable the Objective-C rewriter.
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build

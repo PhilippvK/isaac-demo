@@ -1,0 +1,2532 @@
+[
+  {
+    "benchmark": "crc32",
+    "arm": "old",
+    "stage": 32,
+    "limit_results": 1000,
+    "max_path_length": 3,
+    "max_path_width": 2,
+    "query_timeout": 30,
+    "mismatch_action": "warn",
+    "decoder_equal": true,
+    "ok": true,
+    "selected_candidates": 32,
+    "candidates": [
+      {
+        "InstrName": "CUSTOM0",
+        "#Instrs": 5.0,
+        "Freq": 174080.0,
+        "Weight": 0.21730620201487585,
+        "IsoWeight": 0.21730620201487585,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM1",
+        "#Instrs": 5.0,
+        "Freq": 174080.0,
+        "Weight": 0.21730620201487585,
+        "IsoWeight": 0.21730620201487585,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM2",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.17384496161190072,
+        "IsoWeight": 0.17384496161190072,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM3",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM4",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM5",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM6",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM7",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM8",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892555,
+        "IsoWeight": 0.13038372120892555,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM9",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892555,
+        "IsoWeight": 0.13038372120892555,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM10",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM11",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM12",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM13",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM14",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM15",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM16",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM17",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM18",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM19",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM20",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM21",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM22",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM23",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM24",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM25",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM26",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM27",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM28",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM29",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM30",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM31",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      }
+    ],
+    "wall_seconds": 15.204462811350822
+  },
+  {
+    "benchmark": "crc32",
+    "arm": "new",
+    "stage": 32,
+    "limit_results": 1000,
+    "max_path_length": 3,
+    "max_path_width": 2,
+    "query_timeout": 30,
+    "mismatch_action": "warn",
+    "decoder_equal": true,
+    "ok": true,
+    "selected_candidates": 32,
+    "candidates": [
+      {
+        "InstrName": "CUSTOM0",
+        "#Instrs": 5.0,
+        "Freq": 174080.0,
+        "Weight": 0.21730620201487585,
+        "IsoWeight": 0.21730620201487585,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM1",
+        "#Instrs": 5.0,
+        "Freq": 174080.0,
+        "Weight": 0.21730620201487585,
+        "IsoWeight": 0.21730620201487585,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM2",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.17384496161190072,
+        "IsoWeight": 0.17384496161190072,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM3",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM4",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM5",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 2.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM6",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM7",
+        "#Instrs": 4.0,
+        "Freq": 174080.0,
+        "Weight": 0.1738449616119007,
+        "IsoWeight": 0.1738449616119007,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM8",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892555,
+        "IsoWeight": 0.13038372120892555,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM9",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892555,
+        "IsoWeight": 0.13038372120892555,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM10",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM11",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM12",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM13",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM14",
+        "#Instrs": 3.0,
+        "Freq": 174080.0,
+        "Weight": 0.13038372120892552,
+        "IsoWeight": 0.13038372120892552,
+        "#Isos": 1.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM15",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM16",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM17",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM18",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM19",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM20",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM21",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM22",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM23",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM24",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595036,
+        "IsoWeight": 0.08692248080595036,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM25",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM26",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM27",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM28",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM29",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM30",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM31",
+        "#Instrs": 2.0,
+        "Freq": 174080.0,
+        "Weight": 0.08692248080595034,
+        "IsoWeight": 0.08692248080595034,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      }
+    ],
+    "wall_seconds": 16.08281134068966
+  },
+  {
+    "benchmark": "nettle-sha256",
+    "arm": "old",
+    "stage": 32,
+    "limit_results": 1000,
+    "max_path_length": 3,
+    "max_path_width": 2,
+    "query_timeout": 30,
+    "mismatch_action": "warn",
+    "decoder_equal": true,
+    "ok": true,
+    "selected_candidates": 105,
+    "candidates": [
+      {
+        "InstrName": "CUSTOM0",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.36225714802467895,
+        "#Isos": 19.0,
+        "#IsosNO": 19.0
+      },
+      {
+        "InstrName": "CUSTOM1",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.18112857401233948,
+        "#Isos": 9.0,
+        "#IsosNO": 9.0
+      },
+      {
+        "InstrName": "CUSTOM2",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM3",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM4",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM5",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM6",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM7",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM8",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.1245258946334834,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM9",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM10",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM11",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM12",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM13",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM14",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM15",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.09811131092335054,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM16",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.09056428700616974,
+        "#Isos": 3.0,
+        "#IsosNO": 3.0
+      },
+      {
+        "InstrName": "CUSTOM17",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM18",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM19",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM20",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM21",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM22",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM23",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM24",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM25",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM26",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM27",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM28",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM29",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM30",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM31",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM32",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM33",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM34",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM35",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM36",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM37",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM38",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM39",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM40",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM41",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM42",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM43",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM44",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM45",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM46",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM47",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM48",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM49",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM50",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM51",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM52",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM53",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM54",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM55",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM56",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM57",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM58",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM59",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM60",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM61",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM62",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM63",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM64",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM65",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM66",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM67",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM68",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM69",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM70",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM71",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM72",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM73",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM74",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM75",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM76",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM77",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM78",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM79",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM80",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM81",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM82",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM83",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM84",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM85",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM86",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM87",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM88",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM89",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM90",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM91",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM92",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM93",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM94",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM95",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM96",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM97",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM98",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM99",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM100",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM101",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM102",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM103",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM104",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      }
+    ],
+    "wall_seconds": 53.11134058237076
+  },
+  {
+    "benchmark": "nettle-sha256",
+    "arm": "new",
+    "stage": 32,
+    "limit_results": 1000,
+    "max_path_length": 3,
+    "max_path_width": 2,
+    "query_timeout": 30,
+    "mismatch_action": "warn",
+    "decoder_equal": true,
+    "ok": true,
+    "selected_candidates": 105,
+    "candidates": [
+      {
+        "InstrName": "CUSTOM0",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.36225714802467895,
+        "#Isos": 19.0,
+        "#IsosNO": 19.0
+      },
+      {
+        "InstrName": "CUSTOM1",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.18112857401233948,
+        "#Isos": 9.0,
+        "#IsosNO": 9.0
+      },
+      {
+        "InstrName": "CUSTOM2",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM3",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM4",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM5",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM6",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM7",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.14716696638502583,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM8",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.1245258946334834,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM9",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM10",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM11",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM12",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM13",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM14",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.03924452436934023,
+        "IsoWeight": 0.11773357310802067,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM15",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.04905565546167528,
+        "IsoWeight": 0.09811131092335054,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM16",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.022641071751542438,
+        "IsoWeight": 0.09056428700616974,
+        "#Isos": 3.0,
+        "#IsosNO": 3.0
+      },
+      {
+        "InstrName": "CUSTOM17",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM18",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM19",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM20",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM21",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM22",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM23",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM24",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM25",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM26",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 5.0,
+        "#IsosNO": 4.0
+      },
+      {
+        "InstrName": "CUSTOM27",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM28",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM29",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM30",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM31",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.02943339327700517,
+        "IsoWeight": 0.0883001798310155,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM32",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM33",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM34",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM35",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM36",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM37",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM38",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM39",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM40",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM41",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM42",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM43",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM44",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM45",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM46",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM47",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM48",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM49",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM50",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM51",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.03396160762731366,
+        "IsoWeight": 0.0679232152546273,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM52",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM53",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM54",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM55",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM56",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM57",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM58",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM59",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM60",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM61",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM62",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM63",
+        "#Instrs": 2.0,
+        "Freq": 2850.0,
+        "Weight": 0.019622262184670114,
+        "IsoWeight": 0.058866786554010335,
+        "#Isos": 2.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM64",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM65",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM66",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM67",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM68",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM69",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM70",
+        "#Instrs": 5.0,
+        "Freq": 2850.0,
+        "Weight": 0.05660267937885609,
+        "IsoWeight": 0.05660267937885609,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM71",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM72",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM73",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM74",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM75",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM76",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.027169286101850924,
+        "IsoWeight": 0.05433857220370184,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM77",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM78",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM79",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM80",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM81",
+        "#Instrs": 4.0,
+        "Freq": 2850.0,
+        "Weight": 0.045282143503084876,
+        "IsoWeight": 0.045282143503084876,
+        "#Isos": 0.0,
+        "#IsosNO": 0.0
+      },
+      {
+        "InstrName": "CUSTOM82",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM83",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM84",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM85",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM86",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM87",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM88",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM89",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM90",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM91",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM92",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM93",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM94",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 3.0,
+        "#IsosNO": 2.0
+      },
+      {
+        "InstrName": "CUSTOM95",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM96",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM97",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM98",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM99",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM100",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM101",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM102",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM103",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      },
+      {
+        "InstrName": "CUSTOM104",
+        "#Instrs": 3.0,
+        "Freq": 2850.0,
+        "Weight": 0.020376964576388195,
+        "IsoWeight": 0.04075392915277638,
+        "#Isos": 1.0,
+        "#IsosNO": 1.0
+      }
+    ],
+    "wall_seconds": 55.11913125962019
+  }
+]

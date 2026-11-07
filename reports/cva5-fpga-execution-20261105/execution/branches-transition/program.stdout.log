@@ -1,0 +1,68 @@
+
+****** Vivado v2024.1 (64-bit)
+  **** SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Fri Nov  6 10:58:24 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/capture_transition.tcl
+# set serial [lindex $argv 0]
+# set bitstream [file normalize [lindex $argv 1]]
+# set probes [file join [file dirname $bitstream] debug.ltx]
+# open_hw_manager
+open_hw_manager: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1470.258 ; gain = 44.836 ; free physical = 8515 ; free virtual = 22864
+# connect_hw_server
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2024.1
+  **** Build date : May 22 2024 at 19:19:01
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2024.1.0
+  ****** Build date   : Apr 27 2024-03:40:49
+    **** Build number : 2024.1.1714182049
+      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+# set matches [get_hw_targets *${serial}*]
+# if {[llength $matches] != 1} {error "Expected one target for $serial"}
+# current_hw_target [lindex $matches 0]
+# set_property PARAM.FREQUENCY 3000000 [current_hw_target]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210319C08AE1A
+# set device [lindex [get_hw_devices] 0]
+# if {[get_property PART $device] ne "xc7a100t"} {error "Unexpected FPGA"}
+# current_hw_device $device
+# set_property PROGRAM.FILE $bitstream $device
+# set_property PROBES.FILE $probes $device
+# set_property FULL_PROBES.FILE $probes $device
+# program_hw_devices $device
+INFO: [Labtools 27-3164] End of startup status: HIGH
+program_hw_devices: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1495.348 ; gain = 0.000 ; free physical = 8413 ; free virtual = 22810
+# puts "ISAAC_PROGRAMMED=$device FILE=$bitstream"
+ISAAC_PROGRAMMED=xc7a100t_0 FILE=/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-delayed-init/firmware.bit
+# refresh_hw_device $device
+INFO: [Labtools 27-2302] Device xc7a100t (JTAG device index = 0) is programmed with a design that has 1 ILA core(s).
+# set ilas [get_hw_ilas -of_objects $device]
+# if {[llength $ilas] != 1} {error "Expected one ILA; found $ilas"}
+# puts "ISAAC_ILA=$ilas"
+ISAAC_ILA=hw_ila_1
+# set probe [get_hw_probes -of_objects $ilas -filter {NAME =~ *oldest_pc*}]
+# if {[llength $probe] != 1} {error "Expected oldest-PC probe: $probe"}
+# set_property TRIGGER_COMPARE_VALUE {eq30'h20000013} $probe
+# set_property CONTROL.TRIGGER_POSITION 512 $ilas
+# run_hw_ila $ilas
+INFO: [Labtools 27-1964] The ILA core 'hw_ila_1' trigger was armed at 2026-Nov-06 10:58:52
+# wait_on_hw_ila -timeout 60 $ilas

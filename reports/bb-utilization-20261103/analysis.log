@@ -1,0 +1,3 @@
+crc32 baseline 4022847 retired, custom: {}
+crc32 old 2978355 retired, custom: {'custom23': 24, 'custom4': 174080, 'custom15': 174080, 'custom18': 174084, 'custom17': 174080}
+crc32 new 2978355 retired, custom: {'custom23': 24, 'custom4': 174080, 'custom15': 174080, 'custom18': 174084, 'custom17': 174080}

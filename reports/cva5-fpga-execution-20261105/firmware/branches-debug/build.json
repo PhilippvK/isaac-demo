@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"branches\"",
+    "-DISAAC_BRANCHES=1",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-debug/firmware.elf"
+  ],
+  "variant": "branches",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "a05efd387e44c11029a6830832292d54c6dc040890e304aca1f68fe4aeec12f4",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S": "04d68c2064b4e22cf658e6c9e390cf25a8401d49be859537233437095259a3ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/effect_checks.h": "bfdd77ab58e54a14d3214797967d8aac4f05d6257de24afeced8d158042fb505",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-debug/firmware.elf": "6ea08de7c71c9f3a0c7bd5629059af7f4b9c79d9f53522f2aae4ca34c7c28957",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-debug/firmware.bin": "2c15ffa4a4014e40118a48c5e926e70bcfeba0f6f08d2f48609a1b7f86ea039f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-debug/firmware.coe": "db9b7ad3d3b1ea625e7aa9020463e476ebe649ccf9d030ef2ff8beb7fc3b0f42"
+  }
+}

@@ -1,0 +1,7 @@
+model,set,xlen,instr,n_exists,n_required,n_optional,n_extra,n_required_exists,n_optional_exists,coverage
+XBranch,XBranch,32,FUSED_BEQ,0,4,5,0,0,0,bad
+XBranch,XBranch,32,FUSED_BGE,0,4,5,0,0,0,bad
+XBranch,XBranch,32,FUSED_BGEU,0,4,5,0,0,0,bad
+XBranch,XBranch,32,FUSED_BLT,0,4,5,0,0,0,bad
+XBranch,XBranch,32,FUSED_BLTU,0,4,5,0,0,0,bad
+XBranch,XBranch,32,FUSED_BNE,0,4,5,0,0,0,bad

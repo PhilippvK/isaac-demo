@@ -1,0 +1,18 @@
+Logger started on port 40927
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 40927 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 32981
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 2 tests passed: CodeGen/RISCV/seal5/generated/xbranch.test-attrs.ll, CodeGen/RISCV/seal5/generated/xbranch.test-ext.c
+Logger on port 32981 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 42191
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 42191 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model

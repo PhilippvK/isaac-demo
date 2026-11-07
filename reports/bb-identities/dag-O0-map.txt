@@ -1,0 +1,241 @@
+
+File: /tmp/isaac-bbid-investigation/dag-O0.elf
+Format: elf32-littleriscv
+Arch: riscv32
+AddressSize: 32bit
+LoadName: <Not found>
+BBAddrMap [
+  Function {
+    At: 0x10000
+    Name: choose
+    BB Ranges [
+      {
+        Base Address: 0x10000
+        BB Entries [
+          {
+            ID: 0
+            Offset: 0x0
+            Size: 0x28
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 1
+            Offset: 0x28
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 2
+            Offset: 0x38
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 3
+            Offset: 0x48
+            Size: 0x14
+            HasReturn: Yes
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+        ]
+      }
+    ]
+  }
+  Function {
+    At: 0x1005C
+    Name: loop
+    BB Ranges [
+      {
+        Base Address: 0x1005C
+        BB Entries [
+          {
+            ID: 0
+            Offset: 0x0
+            Size: 0x28
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 1
+            Offset: 0x28
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 2
+            Offset: 0x38
+            Size: 0x20
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 3
+            Offset: 0x58
+            Size: 0x2C
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 4
+            Offset: 0x84
+            Size: 0x24
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 5
+            Offset: 0xA8
+            Size: 0x4
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 6
+            Offset: 0xAC
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 7
+            Offset: 0xBC
+            Size: 0x14
+            HasReturn: Yes
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+        ]
+      }
+    ]
+  }
+  Function {
+    At: 0x1012C
+    Name: dispatch
+    BB Ranges [
+      {
+        Base Address: 0x1012C
+        BB Entries [
+          {
+            ID: 0
+            Offset: 0x0
+            Size: 0x28
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 6
+            Offset: 0x28
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 7
+            Offset: 0x38
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 1
+            Offset: 0x48
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 2
+            Offset: 0x58
+            Size: 0x14
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 3
+            Offset: 0x6C
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 4
+            Offset: 0x7C
+            Size: 0x10
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 5
+            Offset: 0x8C
+            Size: 0x14
+            HasReturn: Yes
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+        ]
+      }
+    ]
+  }
+]

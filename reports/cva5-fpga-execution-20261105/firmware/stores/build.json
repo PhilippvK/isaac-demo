@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"stores\"",
+    "-DISAAC_STORES=1",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/stores/firmware.elf"
+  ],
+  "variant": "stores",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "a05efd387e44c11029a6830832292d54c6dc040890e304aca1f68fe4aeec12f4",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/effect_checks.h": "adc75773b1ea9bd6e7d4f2d23bd920cd190fd2ad1a253170ae74a0dfeb2c5a55",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/stores/firmware.elf": "f25e4e6e56e27368a62db8f374b80558e31bc7a0d6e56b69c314dc685af995a9",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/stores/firmware.bin": "971543de8df26e355139558b90d4fea1c12405d0ba203068d0f9332f2bb0ddac",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/stores/firmware.coe": "1ced7b4dc230f8397c16fffd4c099231e273a1daac1794c48edd0109ab6e3c91"
+  }
+}

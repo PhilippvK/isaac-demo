@@ -1,0 +1,59 @@
+{
+  "source_revisions": {
+    ".": "a2e830367ab68b6e6549120f37e563931ecbae9a",
+    "seal5": "f8b4ab8f089be1c143b0100159671c1b5802aee4",
+    "M2-ISA-R": "59ba470011fafe5e814a2b9ca9504d8175fe25cc",
+    "isaac-toolkit": "5b9ec155a38f1aa787c6747cfe8ada50cf917e0b",
+    "llvm-project-22": "fccbeced732d9f50075c065fe4b18b848e77c5db"
+  },
+  "llvm22_common_stage0": "646fe13e",
+  "files": {
+    "reports/llvm-version-ise-20261104/prepare_sha22.py": "f7fdda3a2566797d1615294bf201d33179780ca28f9e29f06ae026d24a946e53",
+    "reports/llvm-version-ise-20261104/docker_etiss.py": "00a67efa91a5b53c4608746832bf2563d0190dfc786ba9c46843b2f0a45fe207",
+    "reports/llvm-version-ise-20261104/analyze.py": "2e60aff9c2c67d2e2ee43c8025b8966a9e5d1f15f2cb7023ad764fb404305c05",
+    "reports/llvm-version-ise-20261104/snapshot_sha22.py": "82390b94225ee7b2e380c775d8f822365996f4fb593e3d34a91d6754972e1e01",
+    "reports/llvm-version-ise-20261104/cmake.sh": "3ed75b11912a9494c0355c7d4d41fb83b0048509e93bc6284e37cd806fbced13",
+    "reports/llvm-version-ise-20261104/retarget_sha22.sh": "fe6929c256bb0ea4f16fef12b2668c4a73d66ba9eac847cd8fd5baaa5a1bca73",
+    "reports/llvm-version-ise-20261104/run.sh": "947643979669570f6b5c7a95940a641b8bb5f705eb56bd432f4ec0e058f22282",
+    "reports/llvm-version-ise-20261104/environment.yml": "9be26ad8d7ae2fef3cac83fd0035e06ef03ac6a71ceaa7cbacb3e5baf3e598e2",
+    "reports/llvm-version-ise-20261104/runs/nettle-sha256/19/baseline/compile_commands.json": "f9cfc20f0800ae7f4dba8885e3c7fc49337572aad0837a77337a14d7121dbd73",
+    "reports/llvm-version-ise-20261104/runs/nettle-sha256/19/ise/compile_commands.json": "335caf8174f9cfc7ed4a9551967e5d2bba292c2309ad56f1353097f3db99de9d",
+    "reports/llvm-version-ise-20261104/runs/nettle-sha256/22/baseline/compile_commands.json": "3a82560ddf903b99e7c2504c5cbff7f4a5ac44105947f5ca187b7c0355c6b0bf",
+    "reports/llvm-version-ise-20261104/runs/nettle-sha256/22/ise/compile_commands.json": "665b708a553480da9d94abec5933edde23cbf9e350c8e470a5852748f5820a14",
+    "reports/llvm-version-ise-20261104/runs/crc32/19/baseline/compile_commands.json": "ac0e7334a1a6825ea866aed1aa4137f86309491a301d8caf7381c78d107205aa",
+    "reports/llvm-version-ise-20261104/runs/crc32/19/ise/compile_commands.json": "a44bfe2c2ecc0597281b57726da7b53540bb383c0e7b94b70df9213632ef0bc7",
+    "reports/llvm-version-ise-20261104/runs/crc32/22/baseline/compile_commands.json": "f38561ad2bc7072b97a8dec298daeedf7bb0a2d76b9e2bd0ae950635ec5e15c7",
+    "reports/llvm-version-ise-20261104/runs/crc32/22/ise/compile_commands.json": "c7994dd355d7cf598abd39077d5399a8e561604805c3e0a322f8f626b74c44f7",
+    "reports/llvm-version-ise-20261104/report.md": "564678f61f1a2960a186ed28b6e56ca941238279483c6c12884493e1e717b671",
+    "reports/llvm-version-ise-20261104/summary.json": "8ade50578dc90eabefca26882a8bb6b8de75d56209c1ed5d5122459ec669c989",
+    "reports/llvm-version-ise-20261104/results.json": "aad860935740298f81e8059bec0b6f258a333249d18e05f84a38b908cbdd628f",
+    "reports/llvm-version-ise-20261104/comparison.json": "f7494558619b7306a00ab3927c408206b2e61e7c584e1bbf37e90c1fd83a8e08",
+    "reports/llvm-version-ise-20261104/native-retarget-control.json": "cbd151a2b15e98fc4cddedeff069ec11b1a295dcda8e0323868761b5d7866631",
+    "reports/llvm-version-ise-20261104/input-fingerprints.json": "f79707f52536a4fc2b8d0536d8fe4b88c4f1625e9637aad14e80fe822b9a59c5",
+    "reports/llvm-version-ise-20261104/container.json": "170a6276be56185f429385b890697ef700e9dc5057d6192cda8e71255cba16d2"
+  },
+  "compilers": {
+    "crc32-19": {
+      "clang": "reports/bb-utilization-20261103/llvm/llvm_install/bin/clang",
+      "sha256": "f530c42df766ec0aef980c775fcbe5a2d02d4a5c32e5b146d28cc3eb8cb9eb4c",
+      "version": "clang version 19.1.7 (https://github.com/PhilippvK/llvm-project.git 72e7d938ea0503555f1ae09b8cce670ba1e57370)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/llvm/llvm_install/bin\n"
+    },
+    "crc32-22": {
+      "clang": "reports/llvm-version-ise-20261104/crc32-llvm22/bin/clang",
+      "sha256": "8fc883a77ec881d48ccc1fd67c989a1d5f4d1eba9f87279e7eb1ed6a4e247063",
+      "version": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git cb4d54f0690258cf39d92521691af8bdef62a079)\nTarget: unknown\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/llvm-version-ise-20261104/crc32-llvm22/bin\nBuild config: +assertions\n"
+    },
+    "nettle-sha256-19": {
+      "clang": "reports/bb-utilization-20261103/nettle-sha256/llvm/llvm_install/bin/clang",
+      "sha256": "9b065f39d1334ce481363472979430255b5344f6c7c08421fbaf6ccb7b221a3a",
+      "version": "clang version 19.1.7 (https://github.com/PhilippvK/llvm-project.git 3550bdf4e6d2abf5a14f7579b83a937540655f39)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/nettle-sha256/llvm/llvm_install/bin\n"
+    },
+    "nettle-sha256-22": {
+      "clang": "reports/llvm-version-ise-20261104/sha256-llvm22/compiler/bin/clang",
+      "sha256": "a84c81ae10b55f41fde274f22c693b29aa5c63c0d607bb5a36a8f7b6b3835ee4",
+      "version": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git fccbeced732d9f50075c065fe4b18b848e77c5db)\nTarget: unknown\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/llvm-version-ise-20261104/sha256-llvm22/compiler/bin\nBuild config: +assertions\n"
+    }
+  },
+  "container_config": "container.json",
+  "input_fingerprints": "input-fingerprints.json"
+}

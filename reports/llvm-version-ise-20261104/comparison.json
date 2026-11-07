@@ -1,0 +1,16 @@
+[
+  {
+    "benchmark": "crc32",
+    "body_per_ise_execution_counts_equal": true,
+    "extended_run_instruction_change_percent": -0.00010131835442850345,
+    "native_run_instruction_change_percent": -7.489804503268971e-05,
+    "reduction_change_percentage_points": 1.9530824559410576e-05
+  },
+  {
+    "benchmark": "nettle-sha256",
+    "body_per_ise_execution_counts_equal": true,
+    "extended_run_instruction_change_percent": 1.4562071523095188,
+    "native_run_instruction_change_percent": 13.584430509803092,
+    "reduction_change_percentage_points": 6.27110419142884
+  }
+]

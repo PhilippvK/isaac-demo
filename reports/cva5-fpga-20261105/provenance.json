@@ -1,0 +1,16 @@
+{
+  "vivado": "2024.1",
+  "installation": "/nfs/tools/xilinx/Vivado/2024.1/",
+  "part": "xc7a200tffv1156-1",
+  "top": "cva5_top",
+  "clock_period_ns": 50.0,
+  "source_report": "../cva5-reuseio-hls-20261105",
+  "hls_clock_period_ns": 100,
+  "flow": "synth_design; opt_design; place_design; route_design",
+  "max_threads_per_process": 4,
+  "synthesis_rtl_edits": false,
+  "board_constraints": false,
+  "bitstream_generated": false,
+  "rtl_simulation_performed": false,
+  "cross_instruction_resource_sharing": false
+}

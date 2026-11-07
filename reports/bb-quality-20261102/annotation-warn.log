@@ -1,0 +1,7 @@
+INFO - annotate_bb_weights - Annotating BB weights...
+INFO - enforce_bb_report - ELF/CDFG BB count validation: {'not_exported': 40, 'missing_elf': 23, 'tolerated': 9, 'mismatch': 2, 'exact': 1}
+WARNING - enforce_bb_report - 23 CDFG blocks have no ELF block with the same function/BB identity; see bb_cdfg_validation for coverage details
+WARNING - enforce_bb_report - ELF/CDFG BB validation failed: 2 invalid blocks, 12 comparable blocks. Check the CDFG stage, ELF, and session label.
+     func_name bb_name  elf_instrs  graph_nodes  graph_blocks  difference  allowance   status  severe  selected                                                                                    graph_modules graph_stages graph_names                 graph_compilations graph_block_ids
+benchmark_body   %bb.1        11.0          2.0           1.0         9.0        6.1 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c]         [32]     [%bb.1] [403f48035c6f44399eac973062ba7111]           [378]
+benchmark_body   %bb.5        11.0          3.0           1.0         8.0        6.1 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c]         [32]     [%bb.5] [403f48035c6f44399eac973062ba7111]           [382]

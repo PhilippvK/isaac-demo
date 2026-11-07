@@ -1,0 +1,14 @@
+Logger started on port 34225
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 26 tests passed: CodeGen/RISCV/seal5/generated/xisaac.test-attrs.ll, CodeGen/RISCV/seal5/generated/xisaac.test-ext.c, CodeGen/RISCV/seal5/generated/CUSTOM0.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM1.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM2.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM3.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM4.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM5.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM6.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM7.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM8.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM9.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM10.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM11.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM12.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM13.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM14.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM15.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM16.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM17.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM18.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM25.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM26.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM27.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM28.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM29.test-cg.ll
+Logger on port 34225 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 40491
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 40491 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model

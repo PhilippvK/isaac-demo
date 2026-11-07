@@ -1,0 +1,104 @@
+OUTPUT_DIR=/experiment/hls-run/memory
+GEN_DIR=/experiment/hls-inputs/crc32
+HLS_DIR=/isax-tools
+GUROBI_LIC=
+make BUILD_DIR=/experiment/hls-run/memory/build_config ISAXES_DIR=/experiment/hls-inputs/crc32 CONFIG_PATH=/experiment/hls-run/memory/.config OUTPUT_PATH=/experiment/hls-run/memory gen_config ci CORE=CVA5 ISAXES=XMEMORYCRC32.HLS SIM_EN=n OL2_ENABLE=n SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=CBC USE_OL2_MODEL=y CELL_LIBRARY=/experiment/config/compact.yaml CLOCK_TIME=100 SCHEDULE_TIMEOUT=60 REFINE_TIMEOUT=60 SCHED_ALGO_MS=y SCHED_ALGO_PA=y SCHED_ALGO_RA=y SCHED_ALGO_MI=y
+rm -rf /experiment/hls-run/memory/build_config/ISAX
+python3 gen_config.py
+python3 gen_ci_config.py
+python3 dispatch.py
+Output folder: ../../experiment/hls-run/memory
+Building CVA5 with ISAXes:
+csvpath /experiment/hls-run/memory/build_config/ISAX/XMemoryCRC32.hls/paths.csv
+csvpath /experiment/hls-run/memory/build_config/ISAX/XIsaac.hls/paths.csv
+isax_file_mapping {'ISAX_XMEMORYCRC32.HLS_EN': '/experiment/hls-inputs/crc32/XMemoryCRC32.hls.core_desc', 'ISAX_XISAAC.HLS_EN': '/experiment/hls-inputs/crc32/XIsaac.hls.core_desc'}
+enabled_isaxes ['ISAX_XMEMORYCRC32.HLS_EN']
+ - XMEMORYCRC32.HLS (associated description: /experiment/hls-inputs/crc32/XMemoryCRC32.hls.core_desc)
+Running Treenail:
+ - Mapping /experiment/hls-inputs/crc32/XMemoryCRC32.hls.core_desc to /experiment/hls-run/memory/mlir/ISAX_XMEMORYCRC32.HLS_EN.mlir
+Running command: './deps/treenail/app/build/install/app/bin/app /experiment/hls-inputs/crc32/XMemoryCRC32.hls.core_desc -o /experiment/hls-run/memory/mlir/ISAX_XMEMORYCRC32.HLS_EN.mlir' failed
+Last 100 lines of the output:
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@368d5c00 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@56da52a7 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@30404dba (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@5d235104 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@417d6615 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@aa004a0 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@1bbae752 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@31cb96e1 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@4cdd2c73 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@c27d163 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@398474a2 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@2227a6c1 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@51ec2df1 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@4d74c3ba (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@770b3be0 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@19ccca5 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@3f92c349 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@70e02081 (signedness: signed)
+[WARN] Identity cast does nothing com.minres.coredsl.coreDsl.impl.CastExpressionImpl@7573e12f (signedness: signed)
+Exception in thread "main" java.lang.AssertionError
+	at de.tudarmstadt.esa.treenail.codegen.MLIRType.mapType(MLIRType.java:32)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseIndexAccessExpression(ExpressionSwitch.java:214)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseIndexAccessExpression(ExpressionSwitch.java:33)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:621)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseParenthesisExpression(ExpressionSwitch.java:402)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseParenthesisExpression(ExpressionSwitch.java:33)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:482)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseCastExpression(ExpressionSwitch.java:395)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseCastExpression(ExpressionSwitch.java:33)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:605)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseParenthesisExpression(ExpressionSwitch.java:402)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseParenthesisExpression(ExpressionSwitch.java:33)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:482)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseCastExpression(ExpressionSwitch.java:395)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseCastExpression(ExpressionSwitch.java:33)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:605)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseParenthesisExpression(ExpressionSwitch.java:402)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseParenthesisExpression(ExpressionSwitch.java:33)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:482)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseCastExpression(ExpressionSwitch.java:395)
+	at de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch.caseCastExpression(ExpressionSwitch.java:33)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:605)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.StatementSwitch.caseDeclaration(StatementSwitch.java:72)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:298)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.StatementSwitch.caseDeclarationStatement(StatementSwitch.java:82)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:208)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.StatementSwitch.caseCompoundStatement(StatementSwitch.java:47)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:192)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.StatementSwitch.caseCompoundStatement(StatementSwitch.java:47)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:192)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.StatementSwitch.caseCompoundStatement(StatementSwitch.java:47)
+	at com.minres.coredsl.coreDsl.util.CoreDslSwitch.doSwitch(CoreDslSwitch.java:192)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:53)
+	at org.eclipse.emf.ecore.util.Switch.doSwitch(Switch.java:69)
+	at de.tudarmstadt.esa.treenail.codegen.LongnailCodegen.emitBehavior(LongnailCodegen.java:382)
+	at de.tudarmstadt.esa.treenail.codegen.LongnailCodegen.emitInstruction(LongnailCodegen.java:336)
+	at de.tudarmstadt.esa.treenail.codegen.LongnailCodegen.emitISA(LongnailCodegen.java:104)
+	at de.tudarmstadt.esa.treenail.codegen.LongnailCodegen.emit(LongnailCodegen.java:51)
+	at de.tudarmstadt.esa.treenail.App.generateMLIR(App.java:47)
+	at de.tudarmstadt.esa.treenail.App.main(App.java:112)
+ERROR: Treenail failed on /experiment/hls-inputs/crc32/XMemoryCRC32.hls.core_desc
+make: *** [Makefile:12: build] Error 54

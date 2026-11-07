@@ -1,0 +1,117 @@
+[
+  {
+    "path": "clang/lib/Driver/ToolChains/Clang.cpp",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "cmake/Modules/Findmgclient.cmake",
+    "status": "new-custom-file",
+    "lines": 50
+  },
+  {
+    "path": "llvm/docs/BBIDTracing.rst",
+    "status": "new-custom-file",
+    "lines": 64
+  },
+  {
+    "path": "llvm/include/llvm/CodeGen/GlobalISel/CDFGPass.h",
+    "status": "new-custom-file",
+    "lines": 66
+  },
+  {
+    "path": "llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h",
+    "status": "conflict",
+    "conflict_regions": 1
+  },
+  {
+    "path": "llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutorImpl.h",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/include/llvm/CodeGen/MachineBasicBlock.h",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/include/llvm/InitializePasses.h",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/include/llvm/TargetParser/SubtargetFeature.h",
+    "status": "conflict",
+    "conflict_regions": 1
+  },
+  {
+    "path": "llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp",
+    "status": "new-custom-file",
+    "lines": 914
+  },
+  {
+    "path": "llvm/lib/CodeGen/GlobalISel/CMakeLists.txt",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/lib/CodeGen/GlobalISel/GIMatchTableExecutor.cpp",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/lib/CodeGen/GlobalISel/GlobalISel.cpp",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/lib/CodeGen/MachineBasicBlock.cpp",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/lib/CodeGen/MachineFunction.cpp",
+    "status": "conflict",
+    "conflict_regions": 1
+  },
+  {
+    "path": "llvm/lib/CodeGen/ResetMachineFunctionPass.cpp",
+    "status": "clean-text-merge",
+    "conflict_regions": 0
+  },
+  {
+    "path": "llvm/lib/CodeGen/TargetPassConfig.cpp",
+    "status": "conflict",
+    "conflict_regions": 3
+  },
+  {
+    "path": "llvm/lib/Target/RISCV/GISel/RISCVRegisterBankInfo.cpp",
+    "status": "conflict",
+    "conflict_regions": 1
+  },
+  {
+    "path": "llvm/lib/Transforms/InstCombine/InstCombineCasts.cpp",
+    "status": "conflict",
+    "conflict_regions": 2
+  },
+  {
+    "path": "notes/CDFG.md",
+    "status": "new-custom-file",
+    "lines": 121
+  },
+  {
+    "path": "notes/custom.gss",
+    "status": "new-custom-file",
+    "lines": 86
+  },
+  {
+    "path": "notes/matmult.c",
+    "status": "new-custom-file",
+    "lines": 22
+  }
+]

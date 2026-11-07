@@ -1,0 +1,102 @@
+[
+  {
+    "variant": "baseline",
+    "stage": "synth",
+    "LUTs": 3511.0,
+    "FFs": 2033.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 38.693,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "baseline",
+    "stage": "impl",
+    "LUTs": 3439.0,
+    "FFs": 2067.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 29.978,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "crc32-scaiev2-final",
+    "stage": "synth",
+    "LUTs": 13571.0,
+    "FFs": 4441.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 160.0,
+    "WNS_ns": 35.195,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "crc32-scaiev2-final",
+    "stage": "impl",
+    "LUTs": 13359.0,
+    "FFs": 4474.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 160.0,
+    "WNS_ns": 18.347,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "memory-cva5-final",
+    "stage": "synth",
+    "LUTs": 4046.0,
+    "FFs": 2236.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 35.251,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "memory-cva5-final",
+    "stage": "impl",
+    "LUTs": 3953.0,
+    "FFs": 2270.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 27.964,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "branches-fixed",
+    "stage": "synth",
+    "LUTs": 3804.0,
+    "FFs": 2083.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 38.683,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "branches-fixed",
+    "stage": "impl",
+    "LUTs": 3732.0,
+    "FFs": 2117.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 29.798,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "store-probes",
+    "stage": "synth",
+    "LUTs": 3554.0,
+    "FFs": 2120.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 36.967,
+    "TNS_ns": 0.0
+  },
+  {
+    "variant": "store-probes",
+    "stage": "impl",
+    "LUTs": 3478.0,
+    "FFs": 2154.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "WNS_ns": 27.292,
+    "TNS_ns": 0.0
+  }
+]

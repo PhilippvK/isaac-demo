@@ -1,0 +1,6 @@
+variant,LUTs,FFs,BRAM_tiles,DSPs,IOBs,WNS_ns,TNS_ns,core_WNS_ns,timing_met,bitstream
+baseline,3225.0,1864.0,130.0,4.0,4.0,3.761,0.0,29.61,True,True
+crc32-scaiev2-final,13177.0,4275.0,130.0,160.0,4.0,1.13,0.0,20.034,True,True
+memory-cva5-final,3716.0,2067.0,130.0,4.0,4.0,3.305,0.0,30.612,True,True
+branches-fixed,3510.0,1914.0,130.0,4.0,4.0,3.326,0.0,30.138,True,True
+store-probes,3269.0,1950.0,130.0,4.0,4.0,3.24,0.0,31.346,True,True

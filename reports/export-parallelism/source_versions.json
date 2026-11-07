@@ -1,0 +1,24 @@
+{
+  "commit": "6a92f1105a7388f9ba97721a823c18f7730a5ef6",
+  "dirty": "",
+  "python": "3.10.12",
+  "cpus": 16,
+  "affinity": 16,
+  "versions": {
+    "plotly": "7.1.0",
+    "kaleido": "1.5.0",
+    "pygraphviz": "2.0.4",
+    "pandas": "2.2.3",
+    "networkx": "2.8.8"
+  },
+  "source_sha256": {
+    "tool/main.py": "4999af301b5e1193b34e9259dbe33364356921484a1cfbcff458d98834db0af6",
+    "tool/stages/write_subs.py": "67649d9200ff57e48b1f602f6d7aa5e45d53f22523258eba5b37f43e72868ab2",
+    "tool/stages/write_io_subs.py": "ed8394a84c3971ec87e12e9b8644f668f3be420df68fa21ef84f4abb2e81b533",
+    "tool/stages/write_pie.py": "b3eb9753e441d33d5d7f39c3bd3542ed78a61c3e2539c595b9ac79439f95754c",
+    "tool/stages/write_dfs.py": "3f7563f6da487327b3f6e0739598d0e9361bce1b48220ff1848fa86683ea19a9",
+    "tool/stages/write_sankey.py": "7e38b35b47950b863b21cc69bdaa3608c07a84c774521cedf5fbd9762ad09d01",
+    "tool/stages/write_index.py": "11fce3aac6cb654ec3b4874d678b495e09b32c49b226d17f21ce9620b1d85cb0",
+    "tool/index.py": "b8f6831d75b93903c3d7a6b9f4c8f3490b1a4e9113bed95cde14e14f6e022f75"
+  }
+}

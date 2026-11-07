@@ -1,0 +1,80 @@
+[
+  {
+    "major": 19,
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/llvm/llvm_install/bin/clang",
+      "-DCPU_MHZ=1",
+      "-DMLONMCU_TARGET_ETISS",
+      "-DWARMUP_HEAT=0",
+      "-D__riscv__",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/embench/.",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/.",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/../targets",
+      "-O3",
+      "-DNDEBUG",
+      "-O3",
+      "-g",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-march=rv32imfd_xisaac",
+      "-mabi=ilp32d",
+      "--target=riscv32",
+      "--gcc-toolchain=/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/install/riscv_gcc_rv32",
+      "--sysroot=/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/install/riscv_gcc_rv32/riscv32-unknown-elf",
+      "-fno-unroll-loops",
+      "-fbasic-block-sections=labels",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/crc32-codegen/19/crc32.o",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c"
+    ],
+    "source_sha256": "8180991358e28507a14426207840ec5c340e2491beac8e72658b3832621efb9c",
+    "emitted_custom_sites": 6,
+    "per_ise_static": {
+      "custom15": 2,
+      "custom17": 2,
+      "custom18": 2
+    }
+  },
+  {
+    "major": 22,
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang",
+      "-DCPU_MHZ=1",
+      "-DMLONMCU_TARGET_ETISS",
+      "-DWARMUP_HEAT=0",
+      "-D__riscv__",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/embench/.",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/.",
+      "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/../targets",
+      "-O3",
+      "-DNDEBUG",
+      "-O3",
+      "-g",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-march=rv32imfd_xisaac",
+      "-mabi=ilp32d",
+      "--target=riscv32",
+      "--gcc-toolchain=/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/install/riscv_gcc_rv32",
+      "--sysroot=/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/install/riscv_gcc_rv32/riscv32-unknown-elf",
+      "-fno-unroll-loops",
+      "-fbasic-block-sections=labels",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/crc32-codegen/22/crc32.o",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c"
+    ],
+    "source_sha256": "8180991358e28507a14426207840ec5c340e2491beac8e72658b3832621efb9c",
+    "emitted_custom_sites": 6,
+    "per_ise_static": {
+      "custom15": 2,
+      "custom17": 2,
+      "custom18": 2
+    }
+  }
+]

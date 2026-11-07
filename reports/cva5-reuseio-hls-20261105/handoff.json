@@ -1,0 +1,57 @@
+{
+  "status": "full_crc32_hls_and_cva5_integration_passed",
+  "workload": "crc32",
+  "preset": "cva5_reuseio",
+  "core": "CVA5",
+  "requested_interface": "SCAIE-V 2.0",
+  "interface_verified": true,
+  "hls_executed": true,
+  "asip_synthesis_enabled": false,
+  "fpga_synthesis_enabled": false,
+  "run_directory": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000",
+  "discovered_candidates": {
+    "arithmetic": 111,
+    "memory": 5
+  },
+  "supplemental_branch_probes": 6,
+  "checks": {
+    "baseline_validation_passed": true,
+    "selected_bb_validation_passed": true,
+    "cold_bb_frame_count_mismatches": 2,
+    "full_hls_parsed_instructions": 116,
+    "memory_slices_preserved": 5,
+    "encoding_roundtrip_matches": true
+  },
+  "inputs": {
+    "hls-inputs/crc32/XMemoryCRC32.hls.core_desc": {
+      "sha256": "d4c011deb34b9b37f05dff4603c4fe42f593c9d57213fde86788c9539799b1f1"
+    },
+    "hls-inputs/crc32/XIsaac.hls.core_desc": {
+      "sha256": "f458b301e58ec4f173de1353ab3da95cd22431dcdcb9e49974c810ae17cc2683"
+    },
+    "hls-inputs/crc32-scaiev2/XIsaac.hls.core_desc": {
+      "sha256": "d033d6fac14d41abed713b6ff80fcbe076df0476e5fe2a31848d4124853bddc7"
+    },
+    "hls-inputs/store-probes/XStoreProbe.hls.core_desc": {
+      "sha256": "bf59b0666bce1f8516b017e008ffe77bfb867d79f25310c308efd14825a9d355"
+    },
+    "hls-inputs/crc32-scaiev2-final/XIsaac.hls.core_desc": {
+      "sha256": "82fce6ee0c516607018d314f3478b33259c8e2b27ec6c092e758126a1210f6f2"
+    },
+    "hls-inputs/branch-probes/XBranch.hls.core_desc": {
+      "sha256": "c5bae4dd4dfc78f1e2f17965f424a037e948f6c07275dfb429e7c4f1ffeb2386"
+    },
+    "hls-inputs/memory-cva5/XMemoryCRC32.hls.core_desc": {
+      "sha256": "5d6306ed490f951d73596d59c4febd20413fbc144b63b03aee6f48c73868c5f9"
+    },
+    "hls-inputs/memory-simple-range/XMemoryCRC32.hls.core_desc": {
+      "sha256": "7560c6c55c1ac025d017093c0f26e4666c87f984ad838a57d53fc15dac88c814"
+    }
+  },
+  "limitation": "CRC32 decrement/branch has a live register result; current effect-only branch generation rejects it. Six known branch probes are separate supplemental inputs.",
+  "scope": "CVA5 SCAIE-V RTL generation; no RTL simulation or physical synthesis",
+  "encoding_interface": "scaiev2",
+  "current_crc32_input": "hls-inputs/crc32-scaiev2-final/XIsaac.hls.core_desc",
+  "decode_mask": "0xfe00707f",
+  "full_crc32_hls": "passed"
+}

@@ -1,0 +1,5 @@
+{
+  "status": "REPRODUCED",
+  "error": "AssertionError in decode_map at sz >= 0",
+  "elf_valid_for_llvm_readobj": true
+}

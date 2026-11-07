@@ -1,0 +1,97 @@
+case,profile,mode,repeat,high,limit,query_ms,post_ms,rows,valid_rows,unique_candidates,identical,error
+sha_hot,no_mem,baseline,0,3,,6584.35682207346,,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,no_mem,late,0,3,,6184.656128287315,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,no_mem,early,0,3,,6683.187782764435,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,no_mem,idmask,0,3,,6387.784607708454,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,cfu_local,baseline,0,3,,6584.35682207346,,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,cfu_local,late,0,3,,6190.563678741455,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,cfu_local,early,0,3,,6710.289843380451,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,cfu_local,idmask,0,3,,6739.109590649605,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,codegen_local,baseline,0,3,,6584.35682207346,,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,codegen_local,late,0,3,,6043.881982564926,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,codegen_local,early,0,3,,6490.690425038338,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_hot,codegen_local,idmask,0,3,,6661.242127418518,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,no_mem,baseline,0,3,,6386.998258531094,,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,no_mem,late,0,3,,6388.714723289013,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,no_mem,early,0,3,,6374.055467545986,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,no_mem,idmask,0,3,,6322.361283004284,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,cfu_local,baseline,0,3,,6386.998258531094,,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,cfu_local,late,0,3,,6426.772519946098,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,cfu_local,early,0,3,,6356.38852417469,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,cfu_local,idmask,0,3,,6304.385423660278,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,codegen_local,baseline,0,3,,6386.998258531094,,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,codegen_local,late,0,3,,6619.549185037613,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,codegen_local,early,0,3,,6608.046665787697,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_mid,codegen_local,idmask,0,3,,6041.020818054676,0.0,,,,,TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Transaction was asked to abort because of transaction timeout.}
+sha_load,no_mem,baseline,0,3,,97.96670824289322,0.059708952903747003,85.0,29.0,21.0,1.0,
+sha_load,no_mem,late,0,3,,60.204148292541504,0.0,29.0,29.0,21.0,1.0,
+sha_load,no_mem,early,0,3,,63.70241940021515,0.0,29.0,29.0,21.0,1.0,
+sha_load,no_mem,idmask,0,3,,65.5687153339386,0.0,29.0,29.0,21.0,1.0,
+sha_load,cfu_local,baseline,0,3,,97.96670824289322,0.069126486778259,85.0,28.0,20.0,1.0,
+sha_load,cfu_local,late,0,3,,63.44367563724518,0.0,28.0,28.0,20.0,1.0,
+sha_load,cfu_local,early,0,3,,73.7188532948494,0.0,28.0,28.0,20.0,1.0,
+sha_load,cfu_local,idmask,0,3,,66.3023442029953,0.0,28.0,28.0,20.0,1.0,
+sha_load,codegen_local,baseline,0,3,,97.96670824289322,0.089213252067565,85.0,28.0,20.0,1.0,
+sha_load,codegen_local,late,0,3,,61.55524402856827,0.0,28.0,28.0,20.0,1.0,
+sha_load,codegen_local,early,0,3,,93.78594160079956,0.0,28.0,28.0,20.0,1.0,
+sha_load,codegen_local,idmask,0,3,,63.01452964544296,0.0,28.0,28.0,20.0,1.0,
+sha_mixed,no_mem,baseline,0,3,,123.6325278878212,0.055693089962005005,131.0,26.0,20.0,1.0,
+sha_mixed,no_mem,late,0,3,,62.721483409404755,0.0,26.0,26.0,20.0,1.0,
+sha_mixed,no_mem,early,0,3,,63.118331134319305,0.0,26.0,26.0,20.0,1.0,
+sha_mixed,no_mem,idmask,0,3,,65.2109831571579,0.0,26.0,26.0,20.0,1.0,
+sha_mixed,cfu_local,baseline,0,3,,123.6325278878212,0.069096684455871,131.0,25.0,19.0,1.0,
+sha_mixed,cfu_local,late,0,3,,65.1502013206482,0.0,25.0,25.0,19.0,1.0,
+sha_mixed,cfu_local,early,0,3,,62.164247035980225,0.0,25.0,25.0,19.0,1.0,
+sha_mixed,cfu_local,idmask,0,3,,68.61600279808044,0.0,25.0,25.0,19.0,1.0,
+sha_mixed,codegen_local,baseline,0,3,,123.6325278878212,0.052988529205322,131.0,25.0,19.0,1.0,
+sha_mixed,codegen_local,late,0,3,,58.51951241493225,0.0,25.0,25.0,19.0,1.0,
+sha_mixed,codegen_local,early,0,3,,101.80456191301346,0.0,25.0,25.0,19.0,1.0,
+sha_mixed,codegen_local,idmask,0,3,,69.9179470539093,0.0,25.0,25.0,19.0,1.0,
+crc_hot,no_mem,baseline,0,3,,51.38794332742691,0.02039223909378,27.0,12.0,8.0,1.0,
+crc_hot,no_mem,late,0,3,,41.50298982858658,0.0,12.0,12.0,8.0,1.0,
+crc_hot,no_mem,early,0,3,,45.60244828462601,0.0,12.0,12.0,8.0,1.0,
+crc_hot,no_mem,idmask,0,3,,45.546844601631165,0.0,12.0,12.0,8.0,1.0,
+crc_hot,cfu_local,baseline,0,3,,51.38794332742691,0.013805925846099002,27.0,11.0,7.0,1.0,
+crc_hot,cfu_local,late,0,3,,38.598284125328064,0.0,11.0,11.0,7.0,1.0,
+crc_hot,cfu_local,early,0,3,,46.61715775728226,0.0,11.0,11.0,7.0,1.0,
+crc_hot,cfu_local,idmask,0,3,,42.97191649675369,0.0,11.0,11.0,7.0,1.0,
+crc_hot,codegen_local,baseline,0,3,,51.38794332742691,0.012375414371490001,27.0,11.0,7.0,1.0,
+crc_hot,codegen_local,late,0,3,,40.48933833837509,0.0,11.0,11.0,7.0,1.0,
+crc_hot,codegen_local,early,0,3,,70.88680565357208,0.0,11.0,11.0,7.0,1.0,
+crc_hot,codegen_local,idmask,0,3,,50.9113147854805,0.0,11.0,11.0,7.0,1.0,
+crc_alloc,no_mem,baseline,0,3,,127.61317193508148,0.095628201961517,152.0,116.0,78.0,1.0,
+crc_alloc,no_mem,late,0,3,,106.03929311037064,0.0,116.0,116.0,78.0,1.0,
+crc_alloc,no_mem,early,0,3,,127.42437422275543,0.0,116.0,116.0,78.0,1.0,
+crc_alloc,no_mem,idmask,0,3,,118.63473057746887,0.0,116.0,116.0,78.0,1.0,
+crc_alloc,cfu_local,baseline,0,3,,127.61317193508148,0.073336064815521,152.0,101.0,69.0,1.0,
+crc_alloc,cfu_local,late,0,3,,99.38374906778336,0.0,101.0,101.0,69.0,1.0,
+crc_alloc,cfu_local,early,0,3,,104.15180027484894,0.0,101.0,101.0,69.0,1.0,
+crc_alloc,cfu_local,idmask,0,3,,98.76114875078201,0.0,101.0,101.0,69.0,1.0,
+crc_alloc,codegen_local,baseline,0,3,,127.61317193508148,0.07222592830657901,152.0,101.0,69.0,1.0,
+crc_alloc,codegen_local,late,0,3,,97.99908846616745,0.0,101.0,101.0,69.0,1.0,
+crc_alloc,codegen_local,early,0,3,,126.76604837179184,0.0,101.0,101.0,69.0,1.0,
+crc_alloc,codegen_local,idmask,0,3,,94.94783729314804,0.0,101.0,101.0,69.0,1.0,
+crc_rand,no_mem,baseline,0,3,,68.40845942497253,0.032804906368255005,50.0,33.0,20.0,1.0,
+crc_rand,no_mem,late,0,3,,52.66052484512329,0.0,33.0,33.0,20.0,1.0,
+crc_rand,no_mem,early,0,3,,64.57720696926117,0.0,33.0,33.0,20.0,1.0,
+crc_rand,no_mem,idmask,0,3,,55.02237379550934,0.0,33.0,33.0,20.0,1.0,
+crc_rand,cfu_local,baseline,0,3,,68.40845942497253,0.026404857635498002,50.0,33.0,20.0,1.0,
+crc_rand,cfu_local,late,0,3,,57.7726736664772,0.0,33.0,33.0,20.0,1.0,
+crc_rand,cfu_local,early,0,3,,71.28802686929703,0.0,33.0,33.0,20.0,1.0,
+crc_rand,cfu_local,idmask,0,3,,54.297007620334625,0.0,33.0,33.0,20.0,1.0,
+crc_rand,codegen_local,baseline,0,3,,68.40845942497253,0.025257468223571004,50.0,33.0,20.0,1.0,
+crc_rand,codegen_local,late,0,3,,53.40375006198883,0.0,33.0,33.0,20.0,1.0,
+crc_rand,codegen_local,early,0,3,,90.62612056732178,0.0,33.0,33.0,20.0,1.0,
+crc_rand,codegen_local,idmask,0,3,,66.86268746852875,0.0,33.0,33.0,20.0,1.0,
+crc_arith,no_mem,baseline,0,3,,34.497298300266266,0.004842877388,4.0,4.0,3.0,1.0,
+crc_arith,no_mem,late,0,3,,34.1663733124733,0.0,4.0,4.0,3.0,1.0,
+crc_arith,no_mem,early,0,3,,37.89500147104263,0.0,4.0,4.0,3.0,1.0,
+crc_arith,no_mem,idmask,0,3,,36.042846739292145,0.0,4.0,4.0,3.0,1.0,
+crc_arith,cfu_local,baseline,0,3,,34.497298300266266,0.0032931566238400003,4.0,4.0,3.0,1.0,
+crc_arith,cfu_local,late,0,3,,33.318907022476196,0.0,4.0,4.0,3.0,1.0,
+crc_arith,cfu_local,early,0,3,,49.25219714641571,0.0,4.0,4.0,3.0,1.0,
+crc_arith,cfu_local,idmask,0,3,,36.25793755054474,0.0,4.0,4.0,3.0,1.0,
+crc_arith,codegen_local,baseline,0,3,,34.497298300266266,0.0030398368835440003,4.0,4.0,3.0,1.0,
+crc_arith,codegen_local,late,0,3,,37.108078598976135,0.0,4.0,4.0,3.0,1.0,
+crc_arith,codegen_local,early,0,3,,75.89324563741684,0.0,4.0,4.0,3.0,1.0,
+crc_arith,codegen_local,idmask,0,3,,36.2076610326767,0.0,4.0,4.0,3.0,1.0,

@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"branches\"",
+    "-DISAAC_BRANCHES=1",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches/firmware.elf"
+  ],
+  "variant": "branches",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "a05efd387e44c11029a6830832292d54c6dc040890e304aca1f68fe4aeec12f4",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S": "04d68c2064b4e22cf658e6c9e390cf25a8401d49be859537233437095259a3ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/effect_checks.h": "adc75773b1ea9bd6e7d4f2d23bd920cd190fd2ad1a253170ae74a0dfeb2c5a55",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches/firmware.elf": "0698884a356a3cb3ab18943ad8b98f719dbf425a0cb5119c42e75f628d632172",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches/firmware.bin": "08e827074265ed03a1e712d178ab4cd200f8d2e1e37baeb0d206b5b6e0a3021d",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches/firmware.coe": "6ef5dfe9e4e1fcd44bd64cf74699e84649404fb8792b2aaf07d08d5d94af6389"
+  }
+}

@@ -1,0 +1,73 @@
+diff --git a/isaac_toolkit/retargeting/service/client.py b/isaac_toolkit/retargeting/service/client.py
+index 102d722..3b1f563 100644
+--- a/isaac_toolkit/retargeting/service/client.py
++++ b/isaac_toolkit/retargeting/service/client.py
+@@ -43,6 +43,18 @@ RV_BASE_CONTAINER_ROOT = "/tools/etiss_arch_riscv/rv_base"
+ # TODO MGCLIENT CDFGPASS
+ 
+ 
++def move_artifact_output(source: Path, destination: Path):
++    """Merge extracted artifacts without duplicating the compiler installation."""
++    destination.mkdir(parents=True, exist_ok=True)
++    for item in source.iterdir():
++        target = destination / item.name
++        if item.is_dir() and not item.is_symlink():
++            move_artifact_output(item, target)
++        else:
++            item.replace(target)
++    source.rmdir()
++
++
+ class RetargetClient(ABC):
+ 
+     def __init__(self, api_url: str, token: str = None, console: Console = None):
+@@ -381,8 +393,7 @@ def run_retargeting_service(
+         extract_zstd(artifact_file, out_path)
+ 
+         # Move files
+-        shutil.copytree(out_path / "output", out_path, dirs_exist_ok=True)
+-        shutil.rmtree(out_path / "output")
++        move_artifact_output(out_path / "output", out_path)
+         if console:
+             console.print("Done")
+             console.print(f"Removing archive {artifact_file}")
+diff --git a/isaac_toolkit/utils/compression.py b/isaac_toolkit/utils/compression.py
+index c60d004..888b91b 100644
+--- a/isaac_toolkit/utils/compression.py
++++ b/isaac_toolkit/utils/compression.py
+@@ -18,8 +18,6 @@
+ #
+ import sys
+ import tarfile
+-import tempfile
+-import shutil
+ from pathlib import Path
+ 
+ 
+@@ -33,8 +31,8 @@ def extract_zstd(archive: Path, out_path: Path):
+         from compression.zstd import ZstdFile
+ 
+         with ZstdFile(archive, "rb") as f_in:
+-            with out_path.open("wb") as f_out:
+-                shutil.copyfileobj(f_in, f_out)
++            with tarfile.open(fileobj=f_in, mode="r|") as bundle:
++                bundle.extractall(out_path)
+     else:
+         _legacy_decompress_zstd_stream(archive, out_path)
+ 
+@@ -42,9 +40,9 @@ def extract_zstd(archive: Path, out_path: Path):
+ def _legacy_decompress_zstd_stream(archive: Path, out_path: Path) -> None:
+     from zstandard import ZstdDecompressor
+ 
+-    with tempfile.TemporaryFile(suffix=".tar") as ofh:
+-        with archive.open("rb") as ifh:
+-            ZstdDecompressor().copy_stream(ifh, ofh)
+-        ofh.seek(0)
+-        with tarfile.open(fileobj=ofh) as z:
+-            z.extractall(out_path)
++    # Stream tar entries instead of storing a second, uncompressed copy of the
++    # complete compiler archive in /tmp before extraction.
++    with archive.open("rb") as source:
++        with ZstdDecompressor().stream_reader(source) as reader:
++            with tarfile.open(fileobj=reader, mode="r|") as bundle:
++                bundle.extractall(out_path)

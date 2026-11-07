@@ -1,0 +1,22 @@
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-04 06:12:04]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-9]  Processing stage LOAD
+INFO - [session-9]  Processing stage COMPILE
+WARNING - ignored: .llvm_bb_addr_map / size: 357
+INFO - [session-9]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-9] Done processing runs
+INFO - Report:
+   Run  Model Frontend Platform Target  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI  Run CPI  Total CPI  Simulated Instructions      MIPS  Runtime [s]  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s]                                 Features                                             Config Postprocesses Comment
+0    0  crc32  embench     mlif  etiss            55                  55     4005445           4005445             43                   43       4005758             4005758        1.0      1.0        1.0                 4022850  0.960205     0.040058        True            5.226391      45356       2704           3484     41864         8      1708                 996                0.957656             0.000008  [llvm_basic_block_sections, log_instrs]  {'embench.use_inout_data': False, 'embench.gen...            []       -
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-04 06:12:11]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+Creating directory: /var/tmp/ga87puy/isaac-demo-new/reports/llvm-version-ise-20261104/runs/crc32/19/baseline
+Done

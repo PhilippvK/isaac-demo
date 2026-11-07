@@ -1,0 +1,61 @@
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: -fglobal-isel support for the 'riscv32' architecture is incomplete [-Wglobal-isel]
+DEBUG - save_artifacts - Saving artifacts...
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+clang-22: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang-22: warning: -fglobal-isel support for the 'riscv32' architecture is incomplete [-Wglobal-isel]
+failed to connect to Memgraph: couldn't connect to host: Connection refused
+Traceback (most recent call last):
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/cdfg/memgraph.py", line 128, in generate_memgraph_cdfg_via_compile_commands
+    subprocess.run(cleaned, check=True, cwd=cwd)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang-22', '--target=riscv32', '-march=rv32im', '-mabi=ilp32', '-O2', '-g', '-fbasic-block-sections=labels', '-fglobal-isel', '-mllvm', '-global-isel-abort=1', '-c', '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-cases.c', '-o', '/tmp/isaac-cdfg-4s4wx_om/cdfg.o', '-MD', '-MF', '/tmp/isaac-cdfg-4s4wx_om/dependencies.d', '-mllvm', '-cdfg-enable=1', '-mllvm', '-cdfg-memgraph-session=isaac-import-e1b64b6176d244b79194a096a175b3de', '-mllvm', '-cdfg-memgraph-purge=0', '-mllvm', '-cdfg-stage-mask=32', '-mllvm', '-cdfg-memgraph-host=127.0.0.1', '-mllvm', '-cdfg-memgraph-port=28764']' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_async_compat/network/_bolt_socket.py", line 485, in _connect_secure
+    s.connect(resolved_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_bolt_socket.py", line 328, in connect
+    s = cls._connect_secure(
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_async_compat/network/_bolt_socket.py", line 502, in _connect_secure
+    raise ServiceUnavailable(
+neo4j.exceptions.ServiceUnavailable: Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 28764)) (reason [Errno 111] Connection refused)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/check_identity.py", line 40, in <module>
+    generate_memgraph_cdfg_via_compile_commands(sess,label,stage=32)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/cdfg/memgraph.py", line 201, in generate_memgraph_cdfg_via_compile_commands
+    db.run("MATCH (n) WHERE n.session = $staging DETACH DELETE n", staging=staging).consume()
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/work/session.py", line 317, in run
+    self._connect(self._config.default_access_mode)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/work/session.py", line 133, in _connect
+    super()._connect(
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/work/workspace.py", line 199, in _connect
+    self._connection = self._pool.acquire(**acquire_kwargs_)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_pool.py", line 686, in acquire
+    return self._acquire(
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_pool.py", line 419, in _acquire
+    return connection_creator()
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_pool.py", line 230, in connection_creator
+    connection = self.opener(
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_pool.py", line 647, in opener
+    return Bolt.open(
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_bolt.py", line 368, in open
+    s, protocol_version, handshake, data = BoltSocket.connect(
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_bolt_socket.py", line 380, in connect
+    raise ServiceUnavailable(
+neo4j.exceptions.ServiceUnavailable: Couldn't connect to 127.0.0.1:28764 (resolved to ('127.0.0.1:28764',)):
+Failed to establish connection to ResolvedIPv4Address(('127.0.0.1', 28764)) (reason [Errno 111] Connection refused)

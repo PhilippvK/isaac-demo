@@ -1,0 +1,14 @@
+--- a/core/scaiev_unit.sv
++++ b/core/scaiev_unit.sv
+@@ -172,7 +172,10 @@
+     assign ls_inputs_scaiev.rs1 = scaiev.execute_injectLS_potentiallyValid ? scaiev.execute_injectLS_addr : scaiev.issue_injectLS_addr;
+     assign ls_inputs_scaiev.rs2 = scaiev.execute_injectLS_potentiallyValid ? scaiev.execute_injectLS_storeVal : scaiev.issue_injectLS_storeVal;
+     assign ls_inputs_scaiev.offset = '0;
+-    assign ls_inputs_scaiev.fn3 = LS_W_fn3; //Full word
++    // ISAAC scaiev2 allocation preserves the source memory funct3.
++    // This selects byte/halfword lanes and load signedness just like native LS.
++    assign ls_inputs_scaiev.fn3 = scaiev.execute_injectLS_potentiallyValid
++        ? scaiev.execute_Instr[14:12] : scaiev_inputs.instruction[14:12];
+     assign ls_inputs_scaiev.load = scaiev.execute_injectLS_potentiallyValid ? scaiev.execute_injectLS_rnw : scaiev.issue_injectLS_rnw;
+     assign ls_inputs_scaiev.store = ~(scaiev.execute_injectLS_potentiallyValid ? scaiev.execute_injectLS_rnw : scaiev.issue_injectLS_rnw);
+     assign ls_inputs_scaiev.fence = 0;

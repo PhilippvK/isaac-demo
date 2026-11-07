@@ -1,0 +1,55 @@
+{
+  "repository": "PhilippvK/CoreDSL2LLVM",
+  "branch": "llvm-22.1.8",
+  "commit": "8cb68410c9fd7de62845494d5b029e924e451921",
+  "files": [
+    {
+      "path": "llvm/lib/Target/RISCV/GISel/RISCVInstructionSelector.cpp",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/lib/Target/RISCV/GISel/RISCVInstructionSelector.cpp",
+      "sha256": "ad26c90525a9a746ec95bda7e05e3e32b82b4aaea06f729dc7d16922c36ea84a",
+      "bytes": 73668
+    },
+    {
+      "path": "llvm/lib/Target/RISCV/RISCVInstrInfo.cpp",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/lib/Target/RISCV/RISCVInstrInfo.cpp",
+      "sha256": "963ea46797258e892dead1d8e7c99394fdca457bd89a23af56c8f4a0e5c10e67",
+      "bytes": 188200
+    },
+    {
+      "path": "llvm/lib/Target/RISCV/RISCVLateBranchOpt.cpp",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/lib/Target/RISCV/RISCVLateBranchOpt.cpp",
+      "sha256": "dfd7f742af0c700b5bc32b28b2badad262951a3f422b4e80f08cc671d90e94dd",
+      "bytes": 3578
+    },
+    {
+      "path": "llvm/lib/Target/RISCV/RISCVRedundantCopyElimination.cpp",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/lib/Target/RISCV/RISCVRedundantCopyElimination.cpp",
+      "sha256": "fda4bce85d4e9504576ec040ba61b05fbe2f396cc4d390f8bb5fdc261d4a81ca",
+      "bytes": 8082
+    },
+    {
+      "path": "llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp",
+      "sha256": "556ed3b8d72406e830858c0d239c158af1270707018f62adda3bbe964ce7238a",
+      "bytes": 65376
+    },
+    {
+      "path": "llvm/lib/Target/RISCV/RISCVInstrInfo.td",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/lib/Target/RISCV/RISCVInstrInfo.td",
+      "sha256": "ea633ae4c8f8bd0503dd04d13f725947d73fe8c55c491f6741f4b3e0f973f921",
+      "bytes": 98459
+    },
+    {
+      "path": "llvm/lib/CodeGen/GlobalISel/PatternGen.cpp",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/lib/CodeGen/GlobalISel/PatternGen.cpp",
+      "sha256": "c1f6f1a5021d659b6eadb67d17095bdc20088c7920027d569b3cf00ae3cf7fa4",
+      "bytes": 64489
+    },
+    {
+      "path": "llvm/include/llvm/CodeGen/GlobalISel/PatternGen.h",
+      "url": "https://raw.githubusercontent.com/PhilippvK/CoreDSL2LLVM/8cb68410c9fd7de62845494d5b029e924e451921/llvm/include/llvm/CodeGen/GlobalISel/PatternGen.h",
+      "sha256": "51d334ccc7b505bafe3b1ae7d5249cb96aa46326e2aeb50e4c5f67eac0d85310",
+      "bytes": 2047
+    }
+  ]
+}

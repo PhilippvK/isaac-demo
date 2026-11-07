@@ -1,0 +1,58 @@
+
+****** Vivado v2024.1 (64-bit)
+  **** SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Thu Nov  5 16:06:35 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/program_arty.tcl
+# set serial [lindex $argv 0]
+# set bitstream [file normalize [lindex $argv 1]]
+# if {$serial eq "" || ![file isfile $bitstream]} {error "Usage: program_arty.tcl SERIAL BITSTREAM"}
+# open_hw_manager
+open_hw_manager: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1469.715 ; gain = 90.836 ; free physical = 11983 ; free virtual = 23366
+# connect_hw_server
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2024.1
+  **** Build date : May 22 2024 at 19:19:01
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2024.1.0
+  ****** Build date   : Apr 27 2024-03:40:49
+    **** Build number : 2024.1.1714182049
+      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+# set matches [get_hw_targets *${serial}*]
+# if {[llength $matches] != 1} {error "Expected one target for $serial; found $matches"}
+# current_hw_target [lindex $matches 0]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210319C08AE1A
+# set devices [get_hw_devices]
+# if {[llength $devices] != 1} {error "Expected one FPGA; found $devices"}
+# set device [lindex $devices 0]
+# if {[get_property PART $device] ne "xc7a100t"} {error "Unexpected FPGA [get_property PART $device]"}
+# current_hw_device $device
+# set_property PROGRAM.FILE $bitstream $device
+# program_hw_devices $device
+INFO: [Labtools 27-3164] End of startup status: HIGH
+# puts "ISAAC_PROGRAMMED=$device FILE=$bitstream"
+ISAAC_PROGRAMMED=xc7a100t_0 FILE=/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches/cva5_arty_top.bit
+# close_hw_target
+INFO: [Labtoolstcl 44-464] Closing hw_target localhost:3121/xilinx_tcf/Digilent/210319C08AE1A
+# disconnect_hw_server
+# close_hw_manager
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  5 16:06:56 2026...

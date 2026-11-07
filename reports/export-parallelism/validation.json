@@ -1,0 +1,12 @@
+{
+  "crc": {
+    "exports": 9,
+    "png_pixels_identical": true,
+    "pdf_text_identical": true
+  },
+  "sha": {
+    "exports": 9,
+    "png_pixels_identical": true,
+    "pdf_text_identical": true
+  }
+}

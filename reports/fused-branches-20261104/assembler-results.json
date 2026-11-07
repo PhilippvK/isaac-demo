@@ -1,0 +1,330 @@
+{
+  "immediate_cases": [
+    {
+      "predicate": "beq",
+      "offset": -4098,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_beq a0,a1,-4098\n                ^\n"
+    },
+    {
+      "predicate": "beq",
+      "offset": -4096,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "beq",
+      "offset": -2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "beq",
+      "offset": -1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_beq a0,a1,-1\n                ^\n"
+    },
+    {
+      "predicate": "beq",
+      "offset": 0,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "beq",
+      "offset": 1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_beq a0,a1,1\n                ^\n"
+    },
+    {
+      "predicate": "beq",
+      "offset": 2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "beq",
+      "offset": 4094,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "beq",
+      "offset": 4096,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_beq a0,a1,4096\n                ^\n"
+    },
+    {
+      "predicate": "bne",
+      "offset": -4098,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bne a0,a1,-4098\n                ^\n"
+    },
+    {
+      "predicate": "bne",
+      "offset": -4096,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bne",
+      "offset": -2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bne",
+      "offset": -1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bne a0,a1,-1\n                ^\n"
+    },
+    {
+      "predicate": "bne",
+      "offset": 0,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bne",
+      "offset": 1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bne a0,a1,1\n                ^\n"
+    },
+    {
+      "predicate": "bne",
+      "offset": 2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bne",
+      "offset": 4094,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bne",
+      "offset": 4096,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bne a0,a1,4096\n                ^\n"
+    },
+    {
+      "predicate": "blt",
+      "offset": -4098,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_blt a0,a1,-4098\n                ^\n"
+    },
+    {
+      "predicate": "blt",
+      "offset": -4096,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "blt",
+      "offset": -2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "blt",
+      "offset": -1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_blt a0,a1,-1\n                ^\n"
+    },
+    {
+      "predicate": "blt",
+      "offset": 0,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "blt",
+      "offset": 1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_blt a0,a1,1\n                ^\n"
+    },
+    {
+      "predicate": "blt",
+      "offset": 2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "blt",
+      "offset": 4094,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "blt",
+      "offset": 4096,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_blt a0,a1,4096\n                ^\n"
+    },
+    {
+      "predicate": "bge",
+      "offset": -4098,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bge a0,a1,-4098\n                ^\n"
+    },
+    {
+      "predicate": "bge",
+      "offset": -4096,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bge",
+      "offset": -2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bge",
+      "offset": -1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bge a0,a1,-1\n                ^\n"
+    },
+    {
+      "predicate": "bge",
+      "offset": 0,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bge",
+      "offset": 1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bge a0,a1,1\n                ^\n"
+    },
+    {
+      "predicate": "bge",
+      "offset": 2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bge",
+      "offset": 4094,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bge",
+      "offset": 4096,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:17: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bge a0,a1,4096\n                ^\n"
+    },
+    {
+      "predicate": "bltu",
+      "offset": -4098,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bltu a0,a1,-4098\n                 ^\n"
+    },
+    {
+      "predicate": "bltu",
+      "offset": -4096,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bltu",
+      "offset": -2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bltu",
+      "offset": -1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bltu a0,a1,-1\n                 ^\n"
+    },
+    {
+      "predicate": "bltu",
+      "offset": 0,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bltu",
+      "offset": 1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bltu a0,a1,1\n                 ^\n"
+    },
+    {
+      "predicate": "bltu",
+      "offset": 2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bltu",
+      "offset": 4094,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bltu",
+      "offset": 4096,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bltu a0,a1,4096\n                 ^\n"
+    },
+    {
+      "predicate": "bgeu",
+      "offset": -4098,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bgeu a0,a1,-4098\n                 ^\n"
+    },
+    {
+      "predicate": "bgeu",
+      "offset": -4096,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bgeu",
+      "offset": -2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bgeu",
+      "offset": -1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bgeu a0,a1,-1\n                 ^\n"
+    },
+    {
+      "predicate": "bgeu",
+      "offset": 0,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bgeu",
+      "offset": 1,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bgeu a0,a1,1\n                 ^\n"
+    },
+    {
+      "predicate": "bgeu",
+      "offset": 2,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bgeu",
+      "offset": 4094,
+      "accepted": true,
+      "diagnostic": ""
+    },
+    {
+      "predicate": "bgeu",
+      "offset": 4096,
+      "accepted": false,
+      "diagnostic": "<stdin>:2:18: error: immediate must be a multiple of 2 bytes in the range [-4096, 4094]\nfused_bgeu a0,a1,4096\n                 ^\n"
+    }
+  ],
+  "out_of_range_relocation_rejected": true,
+  "linker_diagnostic": "ld.lld: error: /var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/out-of-range.o:(.text+0x0): relocation R_RISCV_BRANCH out of range: 8196 is not in [-4096, 4095]; references 'target'\n>>> defined in /var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/out-of-range-target.o\n"
+}

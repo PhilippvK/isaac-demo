@@ -1,0 +1,86 @@
+# NailGun - Custom ISAX Integration Flow
+
+NailGun is intended as a wrapper for configuring and executing our ISAX integration flow (CoreDSL &rarr; Treenail &rarr; Longnail &rarr; SCAIE-V &rarr; extended RISC-V core &rarr; cocotb simulation &rarr; OpenLane 2).
+
+NailGun is not intended to be used standalone but rather as part of the [integration repository](https://gitlab.esa.informatik.tu-darmstadt.de/scale4edge/isax-tools-integration).
+
+## Plugins
+
+Nailgun provides very rudimentary plugin support.
+OpenLane2 was integrated as synthesis plugin and can be used as an example to develop further plugins.
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>SCAIEV</groupId>
+  <artifactId>SCAIEV</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>test</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>16</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.11.2</version>
+        <configuration>
+            <additionalOptions>--show-module-contents all --show-packages all --show-types private --show-members private -private</additionalOptions>
+            <sourcepath>src</sourcepath>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.6.0</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>scaiev.ui.SCAIEVCmd</mainClass>
+            </manifest>
+            <manifestEntries>
+              <Multi-Release>true</Multi-Release>
+            </manifestEntries>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+cva5
+cva6
+BUILD_DIR ?= build
+
+all: menuconfig
+
+gen_config: clean_config
+	python3 gen_config.py
+
+menuconfig: gen_config
+	python3 -m menuconfig
+
+build:
+	python3 dispatch.py
+
+gen_ci_config:
+	python3 gen_ci_config.py
+
+ci: gen_ci_config build
+
+clean_config:
+	rm -rf $(BUILD_DIR)/ISAX
+
+clean:
+	rm -rf $(BUILD_DIR)
+
+mrproper: clean
+	rm -rf outputs
+	rm -rf test_results
+
+.PHONY : build menuconfig gen_config clean clean_config mrproper ci gen_ci_config

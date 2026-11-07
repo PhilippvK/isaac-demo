@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"full\"",
+    "-DISAAC_MEMORY_HEADER=\"/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/full/memory.h\"",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/full/firmware.elf"
+  ],
+  "variant": "full",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "a3bf7a310edcc075cad5fa923803c2d98ab3db40ac89cb6811a7c2d823d90afc",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-inputs/crc32-scaiev2-final/XIsaac.hls.core_desc": "82fce6ee0c516607018d314f3478b33259c8e2b27ec6c092e758126a1210f6f2",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/full/memory.h": "a64d3e2d24b2de1a59b05bac8ae2ff0c95ddcf8bd8afc1aeb850b4f6a31c0dd7",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/full/firmware.elf": "6348edf7d48190d2ed765a45787c88d744f066ee69b3c83d2b857d80423ab505",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/full/firmware.bin": "4296a49e241b1712cf71b7da63a474327bfa55bb9db722f0b8cf41d80295d258",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/full/firmware.coe": "a907dfd2cdb220fdfea601b9c4048052fdbf516a3fb9afc91458f8633736c86f"
+  }
+}

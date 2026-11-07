@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 440, in <module>
+    main(sys.argv[1:])
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 436, in main
+    handle(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 402, in handle
+    run_retargeting_service(
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 353, in run_retargeting_service
+    job_id, token = client.submit_job(tag, cdsl_path=str(cdsl_file),
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 235, in submit_job
+    assert config_path is not None
+AssertionError

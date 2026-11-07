@@ -1,0 +1,62 @@
+Logger started on port 34313
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/filter.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/git.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/llvm.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/patches.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/riscv.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/tools.yml']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/filter.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/git.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/llvm.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/patches.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/riscv.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/tools.yml
+Logger on port 34313 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 35455
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/versions/llvm22.yml']
+Logger on port 35455 stopped.
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/versions/llvm22.yml
+Logger started on port 46253
+[seal5.flow::INFO] Installing Seal5 dependencies
+[seal5.flow::INFO] Generating default patches
+[seal5.flow::INFO] Cloning CDSL2LLVM
+[seal5.settings::INFO] Skipping weak patch 'gitignore'
+[seal5.settings::INFO] Skipping weak patch 'insert_markers_llvm22'
+[seal5.flow::INFO] Adding PatternGen to target LLVM
+Logger on port 46253 stopped.
+[seal5.flow::INFO] Completed installation of Seal5 dependencies
+Logger started on port 39961
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::WARNING] Undefined patch stage for patch legalizer_split. Defaulting to PHASE_0
+[seal5.flow::INFO] Current stage: PHASE_0
+[seal5.flow::INFO] Applying patch 'isaac_cdfg_llvm22' on 'llvm'
+[seal5.flow::INFO] Applying patch 'gitignore' on 'llvm'
+[seal5.flow::INFO] Applying patch 'pattern_gen_backend_support' on 'llvm'
+[seal5.flow::INFO] Applying patch 'insert_markers_llvm22' on 'llvm'
+[seal5.flow::INFO] Applying patch 'pattern_gen_support' on 'llvm'
+[seal5.flow::INFO] Applying patch 'gitlab_ci' on 'llvm'
+[seal5.flow::INFO] Applying patch 'legalizer_split' on 'llvm'
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/patch.py", line 53, in handle
+    seal5_flow.patch(verbose=args.verbose, stages=[PatchStage(int(i)) for i in args.stages], force=args.force)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 1045, in patch
+    _ = self.apply_patch(patch, force=force)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 961, in apply_patch
+    repo.git.apply(file)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/git/cmd.py", line 1175, in <lambda>
+    return lambda *args, **kwargs: self._call_process(name, *args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/git/cmd.py", line 1900, in _call_process
+    return self.execute(call, **exec_kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/git/cmd.py", line 1682, in execute
+    raise GitCommandError(redacted_command, status, stderr_value, stdout_value)
+git.exc.GitCommandError: Cmd('git') failed due to: exit code(1)
+  cmdline: git apply /var/tmp/ga87puy/isaac-demo-new/seal5/seal5/resources/patches/llvm/legalizer_split.patch
+  stderr: 'error: patch failed: llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp:299
+error: llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp: patch does not apply'
+Logger on port 39961 stopped.

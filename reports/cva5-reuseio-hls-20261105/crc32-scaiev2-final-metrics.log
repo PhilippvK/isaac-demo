@@ -1,0 +1,617 @@
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM0_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM1_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM2_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM3_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM4_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM5_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM6_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM7_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM8_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM9_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM10_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM11_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM12_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM13_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM14_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM15_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM16_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM17_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM18_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM19_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM20_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM21_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM22_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM23_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM24_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM25_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM26_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM27_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM28_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM29_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM30_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM31_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM32_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM33_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM34_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM35_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM36_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM37_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM38_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM39_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM40_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM41_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM42_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM43_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM44_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM45_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM46_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM47_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM48_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM49_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM50_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM51_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM52_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM53_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM54_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM55_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM56_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM57_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM58_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM59_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM60_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM61_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM62_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM63_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM64_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM65_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM66_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM67_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM68_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM69_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM70_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM71_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM72_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM73_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM74_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM75_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM76_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM77_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM78_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM79_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM80_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM81_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM82_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM83_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM84_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM85_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM86_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM87_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM88_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM89_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM90_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM91_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM92_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM93_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM94_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM95_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM96_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM97_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM98_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM99_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM100_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM101_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM102_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM103_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM104_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM105_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM106_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM107_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM108_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM109_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM110_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM111_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM112_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM113_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM114_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/PARAMS_CUSTOM115_II_1.dot.stats
+              config  idx  ...  Total lifetime  Total decoupled ops
+0    SG_90_SOL_IDX_1    1  ...             1.0                  0.0
+1    SG_90_SOL_IDX_0    0  ...             NaN                  NaN
+2     SG_7_SOL_IDX_1    1  ...             2.0                  0.0
+3     SG_7_SOL_IDX_0    0  ...             NaN                  NaN
+4    SG_97_SOL_IDX_1    1  ...             1.0                  0.0
+..               ...  ...  ...             ...                  ...
+227  SG_69_SOL_IDX_0    0  ...             NaN                  NaN
+228  SG_76_SOL_IDX_1    1  ...             1.0                  0.0
+229  SG_76_SOL_IDX_0    0  ...             NaN                  NaN
+230  SG_83_SOL_IDX_1    1  ...             1.0                  0.0
+231  SG_83_SOL_IDX_0    0  ...             NaN                  NaN
+
+[232 rows x 11 columns]
+schedules_df      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+0             0  SG_90_SOL_IDX_1  ...             1.0                  0.0
+1             1  SG_90_SOL_IDX_0  ...             NaN                  NaN
+2             2   SG_7_SOL_IDX_1  ...             2.0                  0.0
+3             3   SG_7_SOL_IDX_0  ...             NaN                  NaN
+4             4  SG_97_SOL_IDX_1  ...             1.0                  0.0
+..          ...              ...  ...             ...                  ...
+227         227  SG_69_SOL_IDX_0  ...             NaN                  NaN
+228         228  SG_76_SOL_IDX_1  ...             1.0                  0.0
+229         229  SG_76_SOL_IDX_0  ...             NaN                  NaN
+230         230  SG_83_SOL_IDX_1  ...             1.0                  0.0
+231         231  SG_83_SOL_IDX_0  ...             NaN                  NaN
+
+[232 rows x 12 columns] Index(['Unnamed: 0', 'config', 'idx', 'II', 'Fallback',
+       'Instruction latencies', 'Allocation', 'Overall latency',
+       'Area estimate w/o lifetimes', 'Area estimate w/ lifetimes',
+       'Total lifetime', 'Total decoupled ops'],
+      dtype='object')
+yaml_data [{'sharing_group': 90, 'solution_idx': 1}, {'sharing_group': 7, 'solution_idx': 1}, {'sharing_group': 97, 'solution_idx': 1}, {'sharing_group': 14, 'solution_idx': 1}, {'sharing_group': 104, 'solution_idx': 1}, {'sharing_group': 21, 'solution_idx': 1}, {'sharing_group': 111, 'solution_idx': 1}, {'sharing_group': 28, 'solution_idx': 1}, {'sharing_group': 35, 'solution_idx': 1}, {'sharing_group': 42, 'solution_idx': 1}, {'sharing_group': 49, 'solution_idx': 1}, {'sharing_group': 56, 'solution_idx': 1}, {'sharing_group': 63, 'solution_idx': 1}, {'sharing_group': 70, 'solution_idx': 1}, {'sharing_group': 77, 'solution_idx': 1}, {'sharing_group': 84, 'solution_idx': 1}, {'sharing_group': 1, 'solution_idx': 1}, {'sharing_group': 91, 'solution_idx': 1}, {'sharing_group': 8, 'solution_idx': 1}, {'sharing_group': 98, 'solution_idx': 1}, {'sharing_group': 15, 'solution_idx': 1}, {'sharing_group': 105, 'solution_idx': 1}, {'sharing_group': 22, 'solution_idx': 1}, {'sharing_group': 112, 'solution_idx': 1}, {'sharing_group': 29, 'solution_idx': 1}, {'sharing_group': 36, 'solution_idx': 1}, {'sharing_group': 43, 'solution_idx': 1}, {'sharing_group': 50, 'solution_idx': 1}, {'sharing_group': 57, 'solution_idx': 1}, {'sharing_group': 64, 'solution_idx': 1}, {'sharing_group': 71, 'solution_idx': 1}, {'sharing_group': 78, 'solution_idx': 1}, {'sharing_group': 85, 'solution_idx': 1}, {'sharing_group': 2, 'solution_idx': 1}, {'sharing_group': 92, 'solution_idx': 1}, {'sharing_group': 9, 'solution_idx': 1}, {'sharing_group': 99, 'solution_idx': 1}, {'sharing_group': 16, 'solution_idx': 1}, {'sharing_group': 106, 'solution_idx': 1}, {'sharing_group': 23, 'solution_idx': 1}, {'sharing_group': 113, 'solution_idx': 1}, {'sharing_group': 30, 'solution_idx': 1}, {'sharing_group': 37, 'solution_idx': 1}, {'sharing_group': 44, 'solution_idx': 1}, {'sharing_group': 51, 'solution_idx': 1}, {'sharing_group': 58, 'solution_idx': 1}, {'sharing_group': 65, 'solution_idx': 1}, {'sharing_group': 72, 'solution_idx': 1}, {'sharing_group': 79, 'solution_idx': 1}, {'sharing_group': 86, 'solution_idx': 1}, {'sharing_group': 3, 'solution_idx': 1}, {'sharing_group': 93, 'solution_idx': 1}, {'sharing_group': 10, 'solution_idx': 1}, {'sharing_group': 100, 'solution_idx': 1}, {'sharing_group': 17, 'solution_idx': 1}, {'sharing_group': 107, 'solution_idx': 1}, {'sharing_group': 24, 'solution_idx': 1}, {'sharing_group': 114, 'solution_idx': 1}, {'sharing_group': 31, 'solution_idx': 1}, {'sharing_group': 38, 'solution_idx': 1}, {'sharing_group': 45, 'solution_idx': 1}, {'sharing_group': 52, 'solution_idx': 1}, {'sharing_group': 59, 'solution_idx': 1}, {'sharing_group': 66, 'solution_idx': 1}, {'sharing_group': 73, 'solution_idx': 1}, {'sharing_group': 80, 'solution_idx': 1}, {'sharing_group': 87, 'solution_idx': 1}, {'sharing_group': 4, 'solution_idx': 1}, {'sharing_group': 94, 'solution_idx': 1}, {'sharing_group': 11, 'solution_idx': 1}, {'sharing_group': 101, 'solution_idx': 1}, {'sharing_group': 18, 'solution_idx': 1}, {'sharing_group': 108, 'solution_idx': 1}, {'sharing_group': 25, 'solution_idx': 1}, {'sharing_group': 115, 'solution_idx': 1}, {'sharing_group': 32, 'solution_idx': 1}, {'sharing_group': 39, 'solution_idx': 1}, {'sharing_group': 46, 'solution_idx': 1}, {'sharing_group': 53, 'solution_idx': 1}, {'sharing_group': 60, 'solution_idx': 1}, {'sharing_group': 67, 'solution_idx': 1}, {'sharing_group': 74, 'solution_idx': 1}, {'sharing_group': 81, 'solution_idx': 1}, {'sharing_group': 88, 'solution_idx': 1}, {'sharing_group': 5, 'solution_idx': 1}, {'sharing_group': 95, 'solution_idx': 1}, {'sharing_group': 12, 'solution_idx': 1}, {'sharing_group': 102, 'solution_idx': 1}, {'sharing_group': 19, 'solution_idx': 1}, {'sharing_group': 109, 'solution_idx': 1}, {'sharing_group': 26, 'solution_idx': 1}, {'sharing_group': 116, 'solution_idx': 1}, {'sharing_group': 33, 'solution_idx': 1}, {'sharing_group': 40, 'solution_idx': 1}, {'sharing_group': 47, 'solution_idx': 1}, {'sharing_group': 54, 'solution_idx': 1}, {'sharing_group': 61, 'solution_idx': 1}, {'sharing_group': 68, 'solution_idx': 1}, {'sharing_group': 75, 'solution_idx': 1}, {'sharing_group': 82, 'solution_idx': 1}, {'sharing_group': 89, 'solution_idx': 1}, {'sharing_group': 6, 'solution_idx': 1}, {'sharing_group': 96, 'solution_idx': 1}, {'sharing_group': 13, 'solution_idx': 1}, {'sharing_group': 103, 'solution_idx': 1}, {'sharing_group': 20, 'solution_idx': 1}, {'sharing_group': 110, 'solution_idx': 1}, {'sharing_group': 27, 'solution_idx': 1}, {'sharing_group': 34, 'solution_idx': 1}, {'sharing_group': 41, 'solution_idx': 1}, {'sharing_group': 48, 'solution_idx': 1}, {'sharing_group': 55, 'solution_idx': 1}, {'sharing_group': 62, 'solution_idx': 1}, {'sharing_group': 69, 'solution_idx': 1}, {'sharing_group': 76, 'solution_idx': 1}, {'sharing_group': 83, 'solution_idx': 1}]
+schedules    Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+0           0  SG_90_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+2           2  SG_7_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+4           4  SG_97_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+6           6  SG_14_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+8           8  SG_104_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+10          10  SG_21_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+12          12  SG_111_SOL_IDX_1  ...             3.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+14          14  SG_28_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+16          16  SG_35_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+18          18  SG_42_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+20          20  SG_49_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+22          22  SG_56_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+24          24  SG_63_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+26          26  SG_70_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+28          28  SG_77_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+30          30  SG_84_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+32          32  SG_1_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+34          34  SG_91_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+36          36  SG_8_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+38          38  SG_98_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+40          40  SG_15_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+42          42  SG_105_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+44          44  SG_22_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+46          46  SG_112_SOL_IDX_1  ...             3.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+48          48  SG_29_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+50          50  SG_36_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+52          52  SG_43_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+54          54  SG_50_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+56          56  SG_57_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+58          58  SG_64_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+60          60  SG_71_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+62          62  SG_78_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+64          64  SG_85_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+66          66  SG_2_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+68          68  SG_92_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+70          70  SG_9_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+72          72  SG_99_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+74          74  SG_16_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+76          76  SG_106_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+78          78  SG_23_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+80          80  SG_113_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+82          82  SG_30_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+84          84  SG_37_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+86          86  SG_44_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+88          88  SG_51_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+90          90  SG_58_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+92          92  SG_65_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+94          94  SG_72_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+96          96  SG_79_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+98          98  SG_86_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+100         100  SG_3_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+102         102  SG_93_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+104         104  SG_10_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+106         106  SG_100_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+108         108  SG_17_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+110         110  SG_107_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+112         112  SG_24_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+114         114  SG_114_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+116         116  SG_31_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+118         118  SG_38_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+120         120  SG_45_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+122         122  SG_52_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+124         124  SG_59_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+126         126  SG_66_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+128         128  SG_73_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+130         130  SG_80_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+132         132  SG_87_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+134         134  SG_4_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+136         136  SG_94_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+138         138  SG_11_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+140         140  SG_101_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+142         142  SG_18_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+144         144  SG_108_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+146         146  SG_25_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+148         148  SG_115_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+150         150  SG_32_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+152         152  SG_39_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+154         154  SG_46_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+156         156  SG_53_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+158         158  SG_60_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+160         160  SG_67_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+162         162  SG_74_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+164         164  SG_81_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+166         166  SG_88_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+168         168  SG_5_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+170         170  SG_95_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+172         172  SG_12_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+174         174  SG_102_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+176         176  SG_19_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+178         178  SG_109_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+180         180  SG_26_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+182         182  SG_116_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+184         184  SG_33_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+186         186  SG_40_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+188         188  SG_47_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+190         190  SG_54_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+192         192  SG_61_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+194         194  SG_68_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+196         196  SG_75_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+198         198  SG_82_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+200         200  SG_89_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+202         202  SG_6_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+204         204  SG_96_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+206         206  SG_13_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+208         208  SG_103_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+210         210  SG_20_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0            config  ...  Total lifetime  Total decoupled ops
+212         212  SG_110_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+214         214  SG_27_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+216         216  SG_34_SOL_IDX_1  ...             2.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+218         218  SG_41_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+220         220  SG_48_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+222         222  SG_55_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+224         224  SG_62_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+226         226  SG_69_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+228         228  SG_76_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+schedules      Unnamed: 0           config  ...  Total lifetime  Total decoupled ops
+230         230  SG_83_SOL_IDX_1  ...             1.0                  0.0
+
+[1 rows x 12 columns]
+   num_groups  ...  total_area_estimate_with_lifetimes
+0         116  ...                        1.745647e+06
+
+[1 rows x 13 columns]

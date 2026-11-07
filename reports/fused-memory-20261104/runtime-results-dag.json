@@ -1,0 +1,143 @@
+{
+  "selector": "dag",
+  "validation": true,
+  "differential_cases": 4096,
+  "custom_sites": 16,
+  "custom_executions": 2048,
+  "per_ise_executions": {
+    "mem_addr_lb": 128,
+    "mem_addr_lbu": 128,
+    "mem_addr_lh": 128,
+    "mem_addr_lhu": 128,
+    "mem_addr_lw": 128,
+    "mem_loadadd_lb": 128,
+    "mem_loadadd_lbu": 128,
+    "mem_loadadd_lh": 128,
+    "mem_loadadd_lhu": 128,
+    "mem_loadadd_lw": 128,
+    "mem_addr_sb": 128,
+    "mem_addr_sh": 128,
+    "mem_addr_sw": 128,
+    "mem_storexor_sb": 128,
+    "mem_storexor_sh": 128,
+    "mem_storexor_sw": 128
+  },
+  "trace_instructions": 5277301,
+  "trace_sha256": "7166667b6855dfd7040118cc35015b07b42095b48b6060b28ed90f323947eb1a",
+  "function_calls": {
+    "selected_MEM_ADDR_LB": 128,
+    "native_MEM_ADDR_LB": 128,
+    "selected_MEM_ADDR_LBU": 128,
+    "native_MEM_ADDR_LBU": 128,
+    "selected_MEM_ADDR_LH": 128,
+    "native_MEM_ADDR_LH": 128,
+    "selected_MEM_ADDR_LHU": 128,
+    "native_MEM_ADDR_LHU": 128,
+    "selected_MEM_ADDR_LW": 128,
+    "native_MEM_ADDR_LW": 128,
+    "selected_MEM_LOADADD_LB": 128,
+    "native_MEM_LOADADD_LB": 128,
+    "selected_MEM_LOADADD_LBU": 128,
+    "native_MEM_LOADADD_LBU": 128,
+    "selected_MEM_LOADADD_LH": 128,
+    "native_MEM_LOADADD_LH": 128,
+    "selected_MEM_LOADADD_LHU": 128,
+    "native_MEM_LOADADD_LHU": 128,
+    "selected_MEM_LOADADD_LW": 128,
+    "native_MEM_LOADADD_LW": 128,
+    "selected_MEM_ADDR_SB": 128,
+    "native_MEM_ADDR_SB": 128,
+    "selected_MEM_ADDR_SH": 128,
+    "native_MEM_ADDR_SH": 128,
+    "selected_MEM_ADDR_SW": 128,
+    "native_MEM_ADDR_SW": 128,
+    "selected_MEM_STOREXOR_SB": 128,
+    "native_MEM_STOREXOR_SB": 128,
+    "selected_MEM_STOREXOR_SH": 128,
+    "native_MEM_STOREXOR_SH": 128,
+    "selected_MEM_STOREXOR_SW": 128,
+    "native_MEM_STOREXOR_SW": 128
+  },
+  "sites": {
+    "0x100044c": {
+      "instruction": "mem_addr_lb",
+      "function": "selected_MEM_ADDR_LB",
+      "executions": 128
+    },
+    "0x1000454": {
+      "instruction": "mem_addr_lbu",
+      "function": "selected_MEM_ADDR_LBU",
+      "executions": 128
+    },
+    "0x100045c": {
+      "instruction": "mem_addr_lh",
+      "function": "selected_MEM_ADDR_LH",
+      "executions": 128
+    },
+    "0x1000464": {
+      "instruction": "mem_addr_lhu",
+      "function": "selected_MEM_ADDR_LHU",
+      "executions": 128
+    },
+    "0x100046c": {
+      "instruction": "mem_addr_lw",
+      "function": "selected_MEM_ADDR_LW",
+      "executions": 128
+    },
+    "0x1000474": {
+      "instruction": "mem_loadadd_lb",
+      "function": "selected_MEM_LOADADD_LB",
+      "executions": 128
+    },
+    "0x100047c": {
+      "instruction": "mem_loadadd_lbu",
+      "function": "selected_MEM_LOADADD_LBU",
+      "executions": 128
+    },
+    "0x1000484": {
+      "instruction": "mem_loadadd_lh",
+      "function": "selected_MEM_LOADADD_LH",
+      "executions": 128
+    },
+    "0x100048c": {
+      "instruction": "mem_loadadd_lhu",
+      "function": "selected_MEM_LOADADD_LHU",
+      "executions": 128
+    },
+    "0x1000494": {
+      "instruction": "mem_loadadd_lw",
+      "function": "selected_MEM_LOADADD_LW",
+      "executions": 128
+    },
+    "0x100049c": {
+      "instruction": "mem_addr_sb",
+      "function": "selected_MEM_ADDR_SB",
+      "executions": 128
+    },
+    "0x10004a8": {
+      "instruction": "mem_addr_sh",
+      "function": "selected_MEM_ADDR_SH",
+      "executions": 128
+    },
+    "0x10004b4": {
+      "instruction": "mem_addr_sw",
+      "function": "selected_MEM_ADDR_SW",
+      "executions": 128
+    },
+    "0x10004c0": {
+      "instruction": "mem_storexor_sb",
+      "function": "selected_MEM_STOREXOR_SB",
+      "executions": 128
+    },
+    "0x10004cc": {
+      "instruction": "mem_storexor_sh",
+      "function": "selected_MEM_STOREXOR_SH",
+      "executions": 128
+    },
+    "0x10004d8": {
+      "instruction": "mem_storexor_sw",
+      "function": "selected_MEM_STOREXOR_SW",
+      "executions": 128
+    }
+  }
+}

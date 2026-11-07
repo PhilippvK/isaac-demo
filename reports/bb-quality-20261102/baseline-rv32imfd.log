@@ -1,0 +1,96 @@
+BENCH=crc32
+DATE=now
+STEPS=bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_pick
+DATE=20261102T160334
+NEW=1
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32//20261102T160334
+Initialized directory: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32//20261102T160334
+STEPS=bench_0 trace_0 isaac_0_load isaac_0_analyze isaac_0_pick
+Running step: bench_0
+Executing: ./scripts/flow_bench.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32//20261102T160334
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334 DATE=20261102T160334 BENCH=crc32
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-02 16:03:34]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-365]  Processing stage LOAD
+INFO - [session-365]  Processing stage COMPILE
+INFO - [session-365]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-365] Done processing runs
+INFO - Report:
+   Run  Model Frontend Platform Target  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI  Run CPI  Total CPI  Simulated Instructions     MIPS  Runtime [s]  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s] Features                                             Config Postprocesses Comment
+0    0  crc32  embench     mlif  etiss            55                  55     4005445           4005445             43                   43       4005758             4005758        1.0      1.0        1.0                 4022850  11.7059     0.040058        True            0.471532      45356       2704           3484     41864         8      1708                 996                0.878444             0.000009       []  {'embench.use_inout_data': False, 'embench.gen...            []       -
+Running step: trace_0
+Executing: ./scripts/flow_trace.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32//20261102T160334
+python3 -m mlonmcu.cli.main flow run crc32 --target etiss -c run.export_optional=1 -c etiss.arch=rv32imfd -c etiss.abi=ilp32d -c mlif.debug_symbols=1 -c mlif.toolchain=llvm -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=16 -c mlif.unroll_loops=0 -c mlif.optimize=3 -c mlif.global_isel=0 --label isaac-demo-crc32-20261102T160334-trace --backend none
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-02 16:03:37]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-367]  Processing stage LOAD
+INFO - [session-367]  Processing stage COMPILE
+WARNING - ignored: .llvm_bb_addr_map / size: 357
+INFO - [session-367]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-367] Done processing runs
+INFO - Report:
+   Run  Model Frontend Platform Target  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI  Run CPI  Total CPI  Simulated Instructions     MIPS  Runtime [s]  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s]                                 Features                                             Config Postprocesses Comment
+0    0  crc32  embench     mlif  etiss            55                  55     4005445           4005445             43                   43       4005758             4005758        1.0      1.0        1.0                 4022850  1.13078     0.040058        True            3.882959      45356       2704           3484     41864         8      1708                 996                0.826209             0.000009  [log_instrs, llvm_basic_block_sections]  {'embench.use_inout_data': False, 'embench.gen...            []       -
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-02 16:03:43]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+Creating directory: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/run
+Done
+Running step: isaac_0_load
+Executing: ./scripts/flow_isaac_load.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32//20261102T160334
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334 DATE=20261102T160334 BENCH=crc32
+INFO - create - Initializing new session: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/sess
+DEBUG - save_artifacts - Saving artifacts...
+INFO - load_cfg_files - Loading Config files...
+INFO - load_artifacts - Loading ISAAC Demo artifacts...
+INFO - load_mlonmcu_exported_run - Loading MLonMCU exported run...
+INFO - load_elf - Loading RISC-V ELF...
+INFO - load_linker_map - Loading linker map...
+INFO - load_instr_trace - Loading ETISS intruction trace...
+INFO - load_disass - Loading Disassembly...
+INFO - load_compile_commands_json - Loading compile commands JSON...
+Running step: isaac_0_analyze
+Executing: ./scripts/flow_isaac_analyze.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32//20261102T160334
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334 DATE=20261102T160334 BENCH=crc32
+[2026-11-02 16:03:58]::WARNING - Matplotlib created a temporary cache directory at /tmp/matplotlib-qzgi7b27 because the default path (/home/ga87puy/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[2026-11-02 16:04:01]::INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+[2026-11-02 16:04:02]::INFO - generated new fontManager
+INFO - analyze_artifacts - Analyzing ISAAC Demo artifacts...
+INFO - analyze_dwarf - Analyzing DWARF info...
+INFO - analyze_llvm_bbs - Analyzing LLVM BBs...
+INFO - analyze_mem_footprint - Analyzing memory footprint...
+INFO - analyze_linker_map - Analyzing linker map...
+INFO - trunc_trace - Truncating trace...
+INFO - trunc_trace - Truncating trace...
+INFO - create_opcode_hist - Creating opcode historgram...
+INFO - create_opcode_per_llvm_bb_hist - Analyzing opcodes per LLVM BB...
+INFO - create_instr_hist - Creating instrution histogram...
+INFO - create_disass_instr_hist - Creating disass histogram...
+INFO - create_disass_opcode_hist - Creating diass opcode histogram...
+INFO - create_loc_hists - Creating static LOC histograms for metrics: count
+INFO - create_loc_hists - Creating dynamic LOC histograms for metrics: count
+INFO - collect_bbs - Collecting BBs...
+INFO - map_llvm_bbs_new - Mapping LLVM BBs...
+INFO - track_unused_functions - Tracking unused functions...
+Running step: isaac_0_pick
+Executing: ./scripts/flow_isaac_pick.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32//20261102T160334
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334 DATE=20261102T160334 BENCH=crc32
+INFO - analyze_bottleneck_bbs - Analyzing bottleneck BBs...
+INFO - check_ise_potential - Checking ISE potential...
+INFO - check_ise_potential_per_llvm_bb - Checking ISE potential per LLVM BB...
+INFO - choose_bbs - Choosing BBs...
+NUM_CHOICES=2
+HTML report written to /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/choices_summary.html
+HTML report written to /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/choices_summary_min.html

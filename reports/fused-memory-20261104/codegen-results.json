@@ -1,0 +1,102 @@
+{
+  "all_selected": true,
+  "gisel_imported": true,
+  "instructions": [
+    {
+      "instruction": "MEM_ADDR_LB",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_ADDR_LBU",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_ADDR_LH",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_ADDR_LHU",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_ADDR_LW",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_LOADADD_LB",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_LOADADD_LBU",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_LOADADD_LH",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_LOADADD_LHU",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_LOADADD_LW",
+      "selected": true,
+      "selected_instructions": 2,
+      "native_instructions": 3
+    },
+    {
+      "instruction": "MEM_ADDR_SB",
+      "selected": true,
+      "selected_instructions": 3,
+      "native_instructions": 4
+    },
+    {
+      "instruction": "MEM_ADDR_SH",
+      "selected": true,
+      "selected_instructions": 3,
+      "native_instructions": 4
+    },
+    {
+      "instruction": "MEM_ADDR_SW",
+      "selected": true,
+      "selected_instructions": 3,
+      "native_instructions": 4
+    },
+    {
+      "instruction": "MEM_STOREXOR_SB",
+      "selected": true,
+      "selected_instructions": 3,
+      "native_instructions": 4
+    },
+    {
+      "instruction": "MEM_STOREXOR_SH",
+      "selected": true,
+      "selected_instructions": 3,
+      "native_instructions": 4
+    },
+    {
+      "instruction": "MEM_STOREXOR_SW",
+      "selected": true,
+      "selected_instructions": 3,
+      "native_instructions": 4
+    }
+  ]
+}

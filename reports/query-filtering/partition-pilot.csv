@@ -1,0 +1,13 @@
+case,profile,mode,repeat,high,limit,query_ms,post_ms,rows,valid_rows,unique_candidates,identical,error
+sha_hot_miso0,cfu_local,baseline,0,3,,198.82882386446,0.12378394603729201,186,186,145,True,
+sha_hot_miso0,cfu_local,late,0,3,,203.29633355140686,0.0,186,186,145,True,
+sha_hot_miso0,cfu_local,early,0,3,,228.4095659852028,0.0,186,186,145,True,
+sha_hot_miso0,cfu_local,idmask,0,3,,195.2749490737915,0.0,186,186,145,True,
+sha_hot_miso6,cfu_local,baseline,0,3,,43.23383420705795,0.0032335519790640003,1,0,0,True,
+sha_hot_miso6,cfu_local,late,0,3,,44.37023401260376,0.0,0,0,0,True,
+sha_hot_miso6,cfu_local,early,0,3,,53.882479667663574,0.0,0,0,0,True,
+sha_hot_miso6,cfu_local,idmask,0,3,,45.287102460861206,0.0,0,0,0,True,
+sha_mid_miso4,cfu_local,baseline,0,3,,62.420591711997986,0.0036358833312980002,1,0,0,True,
+sha_mid_miso4,cfu_local,late,0,3,,56.97239935398102,0.0,0,0,0,True,
+sha_mid_miso4,cfu_local,early,0,3,,51.09560489654541,0.0,0,0,0,True,
+sha_mid_miso4,cfu_local,idmask,0,3,,44.780753552913666,0.0,0,0,0,True,

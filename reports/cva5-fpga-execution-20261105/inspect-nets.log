@@ -1,0 +1,87 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Nov  6 10:34:02 2026
+# Process ID: 67
+# Current directory: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105
+# Command line: vivado -mode batch -log inspect-nets.log -journal inspect-nets.jou -source inspect_debug_nets.tcl
+# Log file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/inspect-nets.log
+# Journal file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/inspect-nets.jou
+# Running On        :ryloth.eda.cit.tum.de
+# Platform          :Ubuntu
+# Operating System  :Ubuntu 22.04.2 LTS
+# Processor Detail  :Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+# CPU Frequency     :1179.808 MHz
+# CPU Physical cores:8
+# CPU Logical cores :16
+# Host memory       :33388 MB
+# Swap memory       :1073 MB
+# Total Virtual     :34462 MB
+# Available Virtual :24790 MB
+#-----------------------------------------------------------
+CRITICAL WARNING: [Common 17-741] No write access right to the local Tcl store at '/home/ga87puy/.Xilinx/Vivado/2024.1/XilinxTclStore'. XilinxTclStore is reverted to the installation area. If you want to use local Tcl Store, please change the access right and relaunch Vivado.
+source inspect_debug_nets.tcl
+# open_checkpoint builds/branches-handshake/synthesized.dcp
+Command: open_checkpoint builds/branches-handshake/synthesized.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1359.164 ; gain = 0.000 ; free physical = 7144 ; free virtual = 23340
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Device 21-9227] Part: xc7a100tcsg324-1 does not have CEAM library.
+Netlist sorting complete. Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1812.906 ; gain = 0.000 ; free physical = 6692 ; free virtual = 22888
+INFO: [Netlist 29-17] Analyzing 701 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2024.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1896.562 ; gain = 1.000 ; free physical = 6609 ; free virtual = 22806
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Constraints 18-5170] The checkpoint was created with non-default parameter values which do not match the current Vivado settings.  Mismatching parameters are:
+  general.maxThreads
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2361.297 ; gain = 0.000 ; free physical = 6157 ; free virtual = 22353
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2361.297 ; gain = 0.000 ; free physical = 6157 ; free virtual = 22353
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2361.297 ; gain = 0.000 ; free physical = 6157 ; free virtual = 22353
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2361.297 ; gain = 0.000 ; free physical = 6157 ; free virtual = 22353
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2425.328 ; gain = 64.031 ; free physical = 6157 ; free virtual = 22353
+Read Physdb Files: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2425.328 ; gain = 64.031 ; free physical = 6157 ; free virtual = 22353
+Restored from archive | CPU: 0.050000 secs | Memory: 1.093536 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2425.328 ; gain = 64.031 ; free physical = 6157 ; free virtual = 22353
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2425.328 ; gain = 0.000 ; free physical = 6157 ; free virtual = 22353
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 177 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 8 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 54 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 48 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 7 instances
+  RAM64X1S => RAM64X1S (RAMS64E): 60 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2024.1 (64-bit) build 5076996
+open_checkpoint: Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 2425.328 ; gain = 1066.164 ; free physical = 6156 ; free virtual = 22353
+# foreach pattern {*core_RdPC_2_to_scal* *core_RdInstr_2_to_scal* *issue_isStalling* *execute_stall_idcounter_full* *fetch_wrPCValid* *pc_prescaiev* *oldest_pc*} {
+#  set nets [get_nets -quiet -hierarchical -filter "NAME =~ $pattern"]
+#  puts "DEBUG_PATTERN=$pattern COUNT=[llength $nets] NAMES=[lrange $nets 0 40]"
+# }
+DEBUG_PATTERN=*core_RdPC_2_to_scal* COUNT=30 NAMES=cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[10] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[11] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[12] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[13] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[14] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[15] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[16] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[17] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[18] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[19] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[20] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[21] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[22] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[23] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[24] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[25] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[26] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[27] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[28] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[29] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[2] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[30] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[31] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[3] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[4] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[5] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[6] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[7] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[8] cpu/cva5/cva5_wrapper/cva5/core_RdPC_2_to_scal[9]
+DEBUG_PATTERN=*core_RdInstr_2_to_scal* COUNT=31 NAMES=cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[10] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[11] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[25] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[26] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[27] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[28] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[29] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[30] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[31] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[7] cpu/cva5/cva5_wrapper/cva5/core_RdInstr_2_to_scal[9] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[0] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[10] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[1] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[2] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[3] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[4] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[5] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[6] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[7] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[8] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/core_RdInstr_2_to_scal[9] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/core_RdInstr_2_to_scal[0] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/core_RdInstr_2_to_scal[1] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/core_RdInstr_2_to_scal[2] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/core_RdInstr_2_to_scal[3] cpu/cva5/cva5_wrapper/cva5/register_file_block/core_RdInstr_2_to_scal[0] cpu/cva5/cva5_wrapper/cva5/register_file_block/core_RdInstr_2_to_scal[1] cpu/cva5/cva5_wrapper/cva5/register_file_block/core_RdInstr_2_to_scal[2] cpu/cva5/cva5_wrapper/cva5/register_file_block/core_RdInstr_2_to_scal[3] cpu/cva5/cva5_wrapper/cva5/register_file_block/register_file_gen[0].reg_group/core_RdInstr_2_to_scal[0]
+DEBUG_PATTERN=*issue_isStalling* COUNT=0 NAMES=
+DEBUG_PATTERN=*execute_stall_idcounter_full* COUNT=0 NAMES=
+DEBUG_PATTERN=*fetch_wrPCValid* COUNT=7 NAMES=cpu/cva5/cva5_wrapper/scaiev\\.fetch_wrPCValid cpu/cva5/cva5_wrapper/cva5/scaiev\\.fetch_wrPCValid cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/fetch_wrPCValid_r_reg[0] cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/scaiev\\.fetch_wrPCValid cpu/cva5/cva5_wrapper/scaiev_glue/fetch_wrPCValid_r_i_1_n_0 cpu/cva5/cva5_wrapper/scaiev_glue/fetch_wrPCValid_r_reg_0 cpu/cva5/cva5_wrapper/scaiev_glue/scaiev\\.fetch_wrPCValid
+DEBUG_PATTERN=*pc_prescaiev* COUNT=352 NAMES=cpu/cva5/cva5_wrapper/cva5/bp_block/pc_prescaiev_reg[31] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][0] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][10] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][11] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][12] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][13] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][14] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][15] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][16] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][17] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][18] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][19] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][1] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][20] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][2] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][3] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][4] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][5] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][6] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][7] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][8] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31][9] cpu/cva5/cva5_wrapper/cva5/bp_block/gen_branch_tag_banks[1].tag_bank/pc_prescaiev_reg[31]_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_10_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_14_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_15_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_16_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_17_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_18_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_19_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_20_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_21_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_22_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_23_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_24_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_25_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_26_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_27_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_28_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_29_n_0 cpu/cva5/cva5_wrapper/cva5/decode_and_issue_block/pc_prescaiev[10]_i_2_n_0
+DEBUG_PATTERN=*oldest_pc* COUNT=120 NAMES=cpu/cva5/cva5_wrapper/cva5/oldest_pc[10] cpu/cva5/cva5_wrapper/cva5/oldest_pc[11] cpu/cva5/cva5_wrapper/cva5/oldest_pc[12] cpu/cva5/cva5_wrapper/cva5/oldest_pc[13] cpu/cva5/cva5_wrapper/cva5/oldest_pc[14] cpu/cva5/cva5_wrapper/cva5/oldest_pc[15] cpu/cva5/cva5_wrapper/cva5/oldest_pc[16] cpu/cva5/cva5_wrapper/cva5/oldest_pc[17] cpu/cva5/cva5_wrapper/cva5/oldest_pc[18] cpu/cva5/cva5_wrapper/cva5/oldest_pc[19] cpu/cva5/cva5_wrapper/cva5/oldest_pc[20] cpu/cva5/cva5_wrapper/cva5/oldest_pc[21] cpu/cva5/cva5_wrapper/cva5/oldest_pc[22] cpu/cva5/cva5_wrapper/cva5/oldest_pc[23] cpu/cva5/cva5_wrapper/cva5/oldest_pc[24] cpu/cva5/cva5_wrapper/cva5/oldest_pc[25] cpu/cva5/cva5_wrapper/cva5/oldest_pc[26] cpu/cva5/cva5_wrapper/cva5/oldest_pc[27] cpu/cva5/cva5_wrapper/cva5/oldest_pc[28] cpu/cva5/cva5_wrapper/cva5/oldest_pc[29] cpu/cva5/cva5_wrapper/cva5/oldest_pc[2] cpu/cva5/cva5_wrapper/cva5/oldest_pc[30] cpu/cva5/cva5_wrapper/cva5/oldest_pc[31] cpu/cva5/cva5_wrapper/cva5/oldest_pc[3] cpu/cva5/cva5_wrapper/cva5/oldest_pc[4] cpu/cva5/cva5_wrapper/cva5/oldest_pc[5] cpu/cva5/cva5_wrapper/cva5/oldest_pc[6] cpu/cva5/cva5_wrapper/cva5/oldest_pc[7] cpu/cva5/cva5_wrapper/cva5/oldest_pc[8] cpu/cva5/cva5_wrapper/cva5/oldest_pc[9] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[0] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[10] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[11] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[12] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[13] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[14] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[15] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[16] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[17] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[18] cpu/cva5/cva5_wrapper/cva5/gen_csrs.csr_unit_block/oldest_pc[19]
+# foreach pattern {cpu/cva5/RdPC_2_o* cpu/cva5/RdInstr_2_o*} {
+#  set pins [get_pins -quiet -hierarchical -filter "NAME =~ $pattern"]
+#  puts "DEBUG_PINS=$pattern COUNT=[llength $pins] NAMES=[lrange $pins 0 3]"
+# }
+DEBUG_PINS=cpu/cva5/RdPC_2_o* COUNT=0 NAMES=
+DEBUG_PINS=cpu/cva5/RdInstr_2_o* COUNT=0 NAMES=
+# close_design
+INFO: [Common 17-206] Exiting Vivado at Fri Nov  6 10:34:28 2026...

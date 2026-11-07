@@ -1,0 +1,24 @@
+{
+  "XIsaac.seal5.core_desc": {
+    "identical": true,
+    "sha256": [
+      "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c",
+      "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c"
+    ]
+  },
+  "XIsaacCore.core_desc": {
+    "identical": false,
+    "sha256": [
+      "2c8743cca6b70e8bd02f9e7d7162000eeeecc5ed344b95731423e844a44854c6",
+      "ee929fe879c119a0e63508216e4c7c22d98687d7298b925dc3a3fda87f4d2e09"
+    ],
+    "identical_after_import_path_normalization": true
+  },
+  "etiss_instructions.core_desc": {
+    "identical": true,
+    "sha256": [
+      "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c",
+      "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c"
+    ]
+  }
+}

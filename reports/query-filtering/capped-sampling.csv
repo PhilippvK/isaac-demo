@@ -1,0 +1,10 @@
+case,profile,mode,repeat,high,limit,query_ms,post_ms,rows,valid_rows,unique_candidates,identical,error
+sha_load,cfu_local,baseline,0,9,20,51.99142545461655,0.010304152965545,20,0,0,,
+sha_load,cfu_local,late,0,9,20,61.26538664102554,0.0,20,20,14,,
+sha_load,cfu_local,annotated_early,0,9,20,51.88124626874924,0.0,20,20,14,,
+sha_mixed,cfu_local,baseline,0,9,20,46.05048894882202,0.015422701835632002,20,7,5,,
+sha_mixed,cfu_local,late,0,9,20,51.50071531534195,0.0,20,20,15,,
+sha_mixed,cfu_local,annotated_early,0,9,20,49.049995839595795,0.0,20,20,15,,
+crc_isaac_hot,cfu_local,baseline,0,9,20,44.189244508743286,0.012226402759552,20,10,6,,
+crc_isaac_hot,cfu_local,late,0,9,20,40.65606743097305,0.0,11,11,7,,
+crc_isaac_hot,cfu_local,annotated_early,0,9,20,39.22045975923538,0.0,11,11,7,,

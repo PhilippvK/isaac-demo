@@ -1,0 +1,42 @@
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/store-probes/PARAMS_STORE_XOR_SB_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/store-probes/PARAMS_STORE_XOR_SH_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/store-probes/PARAMS_STORE_XOR_SW_II_1.dot.stats
+           config  idx  ...  Total lifetime  Total decoupled ops
+0  SG_2_SOL_IDX_1    1  ...             0.0                  0.0
+1  SG_2_SOL_IDX_0    0  ...             NaN                  NaN
+2  SG_1_SOL_IDX_1    1  ...             0.0                  0.0
+3  SG_1_SOL_IDX_0    0  ...             NaN                  NaN
+4  SG_3_SOL_IDX_1    1  ...             0.0                  0.0
+5  SG_3_SOL_IDX_0    0  ...             NaN                  NaN
+
+[6 rows x 11 columns]
+schedules_df    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+0           0  SG_2_SOL_IDX_1  ...             0.0                  0.0
+1           1  SG_2_SOL_IDX_0  ...             NaN                  NaN
+2           2  SG_1_SOL_IDX_1  ...             0.0                  0.0
+3           3  SG_1_SOL_IDX_0  ...             NaN                  NaN
+4           4  SG_3_SOL_IDX_1  ...             0.0                  0.0
+5           5  SG_3_SOL_IDX_0  ...             NaN                  NaN
+
+[6 rows x 12 columns] Index(['Unnamed: 0', 'config', 'idx', 'II', 'Fallback',
+       'Instruction latencies', 'Allocation', 'Overall latency',
+       'Area estimate w/o lifetimes', 'Area estimate w/ lifetimes',
+       'Total lifetime', 'Total decoupled ops'],
+      dtype='object')
+yaml_data [{'sharing_group': 2, 'solution_idx': 1}, {'sharing_group': 1, 'solution_idx': 1}, {'sharing_group': 3, 'solution_idx': 1}]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+0           0  SG_2_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+2           2  SG_1_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+4           4  SG_3_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+   num_groups  ...  total_area_estimate_with_lifetimes
+0           3  ...                         1805.482635
+
+[1 rows x 13 columns]

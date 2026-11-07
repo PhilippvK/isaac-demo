@@ -1,0 +1,7 @@
+model,set,xlen,is_rv32,is_rv64,instr,enc_size,is_compressed,enc_format,opcode,num_operands,num_inputs,num_outputs,num_inouts,num_regs,num_gprs,num_imms,imm_types,is_multi_in,is_single_in,is_multi_out,is_single_out,is_mimo,is_miso,is_siso,is_simo,has_imm_leaf,has_side_effects,may_load,may_store,is_terminator,is_branch,skip_pattern_gen,uses_custom_reg,defs_custom_reg
+XBranch,XBranch,32,True,False,FUSED_BEQ,32,False,s-type (mem),custom-0,3,3,0,0,2,2,1,{'s13'},True,False,False,False,False,False,False,False,False,True,False,False,True,True,False,False,False
+XBranch,XBranch,32,True,False,FUSED_BNE,32,False,s-type (mem),custom-0,3,3,0,0,2,2,1,{'s13'},True,False,False,False,False,False,False,False,False,True,False,False,True,True,False,False,False
+XBranch,XBranch,32,True,False,FUSED_BLT,32,False,s-type (mem),custom-0,3,3,0,0,2,2,1,{'s13'},True,False,False,False,False,False,False,False,False,True,False,False,True,True,False,False,False
+XBranch,XBranch,32,True,False,FUSED_BGE,32,False,s-type (mem),custom-0,3,3,0,0,2,2,1,{'s13'},True,False,False,False,False,False,False,False,False,True,False,False,True,True,False,False,False
+XBranch,XBranch,32,True,False,FUSED_BLTU,32,False,s-type (mem),custom-0,3,3,0,0,2,2,1,{'s13'},True,False,False,False,False,False,False,False,False,True,False,False,True,True,False,False,False
+XBranch,XBranch,32,True,False,FUSED_BGEU,32,False,s-type (mem),custom-0,3,3,0,0,2,2,1,{'s13'},True,False,False,False,False,False,False,False,False,True,False,False,True,True,False,False,False

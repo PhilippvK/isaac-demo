@@ -1,0 +1,21 @@
+{
+  "revisions": {
+    "isaac-toolkit": "439c6ec2d84df0ace1303c85fa56496f796097a8",
+    "memgraph_experiments": "6a92f1105a7388f9ba97721a823c18f7730a5ef6",
+    "llvm-project": "5bd6ab74cd1dc8d09e54ca6000361d020d138aeb",
+    "seal5": "168b81be68c752a96238c8f504b88346bc38a55c",
+    "isaac-docker-service": "ddeae88821f95e59f7bda0ced920b0198affc81c",
+    "mlonmcu": "ee84b85f2d7bf4dd898717cb12a80cb05dc45250"
+  },
+  "files": {
+    "isaac-toolkit/isaac_toolkit/analysis/static/llvm_bbs.py": "9a548cf36815ee05168c264106cd4dc2596b18eb225e10d191185107a3408b4e",
+    "isaac-toolkit/isaac_toolkit/utils/bb_identity.py": "434f2446674cdacff151fd39ef0881048c0d2c62ffc2e29492cc1c0657319999",
+    "isaac-toolkit/isaac_toolkit/generate/cdfg/memgraph.py": "d5addc1155b8ac3d5652a20713efe6df460e882f177ce11d1ca1e7d741c11441",
+    "isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py": "dcd249eb6a1b544e35893b0e9ee8a78016b462f24fad46d6559dde33fc51f760",
+    "isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py": "58d47f57b9af5d866f5a9ac16d5fae18f9c2d1f88d7885f59a7b137f32d18148",
+    "memgraph_experiments/tool/queries.py": "ba2d184eb1342a5dbf7832d95c04a2e8e21012923f07deb6f28d3834cd03363c",
+    "memgraph_experiments/tool/stages/query_func.py": "21790e4e59564865da5190cac35f2f6c72e596f3106d2f304410a455e6abeda5",
+    "llvm-project/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp": "d163d553fdbf52339786e70ef25c4a8ec72cd95fe46d68a0a5f2543ba6e73e36"
+  },
+  "compiler_version": "clang version 19.1.7 (git@github.com:PhilippvK/llvm-project.git 5bd6ab74cd1dc8d09e54ca6000361d020d138aeb)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin\nBuild config: +assertions\n"
+}

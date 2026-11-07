@@ -1,0 +1,130 @@
+
+patches:
+  # manual patch
+  - name: gitignore
+    target: llvm
+    stage: 0
+    priority: 100
+    comment: ""
+    file: llvm/gitignore.patch
+  - name: gitlab_ci
+    target: llvm
+    stage: 0
+    comment: "[CI] Add CI/CD-Configuration for GitLab"
+    file: llvm/gitlab_ci.patch
+    # Alternatives (automated lookup not yet implemented):
+    # file: gitlab_ci.patch
+    # file: llvm/gitlab_ci.patch
+    # file: /absolute/path/to/gitlab_ci.patch
+  - name: insert_markers_llvm17
+    onlyif: "settings.llvm.state.version.major == 17"
+  - name: insert_markers_llvm18
+    onlyif: "settings.llvm.state.version.major == 18"
+  - name: insert_markers_llvm19
+    target: llvm
+    stage: 0
+    priority: 90
+    onlyif: "settings.llvm.state.version.major == 19"
+  - name: legalizer_split
+  # TODO:  automatially select patch depending on llvm version
+  # generated patch (TODO: implement)
+  # - name: ???
+  #   target: llvm
+  #   stage: ?  # allows overriding default stage
+  #   enable: false  # can be used to skip patches
+
+llvm:
+  ninja: true
+  default_config: release
+  state:
+    version:
+      major: 19
+  configs:
+    release:
+      options:
+        CMAKE_BUILD_TYPE: Release
+        LLVM_BUILD_TOOLS: true
+        LLVM_ENABLE_ASSERTIONS: false
+        LLVM_OPTIMIZED_TABLEGEN: true
+        LLVM_ENABLE_PROJECTS: [clang, lld]
+        LLVM_TARGETS_TO_BUILD: [X86, RISCV]
+        LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
+        CMAKE_INSTALL_DO_STRIP: true
+        # LLVM_BUILD_LLVM_DYLIB: true
+        # LLVM_LINK_LLVM_DYLIB: true
+        LLVM_BUILD_LLVM_DYLIB: false
+        LLVM_LINK_LLVM_DYLIB: false
+        # LLVM_BUILD_STATIC_LIBS: false
+        LLVM_INCLUDE_TESTS: false
+        LLVM_INCLUDE_BENCHMARKS: false
+        LLVM_INCLUDE_DOCS: false
+        LLVM_BUILD_TESTS: false
+        LLVM_INCLUDE_EXAMPLES: false
+        LLVM_BUILD_DOCS: false
+        # LLVM_BUILD_RUNTIME: false
+    release_assertions:
+      options:
+        CMAKE_BUILD_TYPE: Release
+        LLVM_BUILD_TOOLS: true
+        LLVM_ENABLE_ASSERTIONS: true
+        LLVM_OPTIMIZED_TABLEGEN: true
+        LLVM_ENABLE_PROJECTS: [clang, lld]
+        LLVM_TARGETS_TO_BUILD: [X86, RISCV]
+        LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
+        CMAKE_INSTALL_DO_STRIP: true
+    debug:
+      options:
+        CMAKE_BUILD_TYPE: Debug
+        LLVM_BUILD_TOOLS: true
+        LLVM_ENABLE_ASSERTIONS: true
+        LLVM_OPTIMIZED_TABLEGEN: true
+        LLVM_ENABLE_PROJECTS: [clang, lld]
+        LLVM_TARGETS_TO_BUILD: [X86, RISCV]
+        LLVM_PARALLEL_LINK_JOBS: 8
+        # LLVM_USE_LINKER: lld
+        LLVM_USE_RELATIVE_PATHS_IN_DEBUG_INFO: true  # for ccache
+        CMAKE_INSTALL_DO_STRIP: true
+
+
+git:
+  author: Philipp van Kempen
+  mail: philipp.van-kempen@tum.de
+
+# .
+
+filter:
+  sets:
+    drop: []
+  instructions:
+    drop: []
+  opcodes:
+    keep:
+    - custom-0
+    - custom-1
+    - custom-2
+    - custom-3
+    - OP-V
+    - OP-P
+    - reserved
+  encoding_sizes:
+    keep:
+    - 32
+
+
+tools:
+  pattern_gen:
+    integrated: true
+    # clone_url: ?
+    ref: llvm-19.1.0  # Matches the LLVM 19.1 release API
+    clone_depth: 1
+    # sparse_checkout: false
+    # sparse_checkout: true  # broken on u20.04
+    sparse_checkout: false  # broken on u20.04
+
+
+riscv:
+  xlen: 32
+  features:
+  - m
+  - fast-unaligned-access
+  # - gpr32v

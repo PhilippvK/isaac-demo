@@ -1,0 +1,73 @@
+[2026-11-04 10:57:20]::INFO - Determining IO names...
+[2026-11-04 10:57:20]::INFO - parsing top level
+[2026-11-04 10:57:21]::INFO - reading instruction load order
+[2026-11-04 10:57:21]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:21]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:21]::INFO - Running type inference
+[2026-11-04 10:57:21]::INFO - Determining IO names...
+[2026-11-04 10:57:21]::INFO - parsing top level
+[2026-11-04 10:57:21]::INFO - reading instruction load order
+[2026-11-04 10:57:21]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:22]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:22]::INFO - Running type inference
+[2026-11-04 10:57:22]::INFO - Determining IO names...
+[2026-11-04 10:57:22]::INFO - parsing top level
+[2026-11-04 10:57:22]::INFO - reading instruction load order
+[2026-11-04 10:57:22]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:22]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:22]::INFO - Running type inference
+[2026-11-04 10:57:22]::INFO - Determining IO names...
+[2026-11-04 10:57:22]::INFO - parsing top level
+[2026-11-04 10:57:23]::INFO - reading instruction load order
+[2026-11-04 10:57:23]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:23]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:23]::INFO - Running type inference
+[2026-11-04 10:57:23]::INFO - Determining IO names...
+[2026-11-04 10:57:23]::INFO - parsing top level
+[2026-11-04 10:57:23]::INFO - reading instruction load order
+[2026-11-04 10:57:23]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:23]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:23]::INFO - Running type inference
+[2026-11-04 10:57:23]::INFO - Determining IO names...
+[2026-11-04 10:57:23]::INFO - parsing top level
+[2026-11-04 10:57:24]::INFO - reading instruction load order
+[2026-11-04 10:57:24]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:24]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:24]::INFO - Running type inference
+[2026-11-04 10:57:24]::INFO - Determining IO names...
+[2026-11-04 10:57:24]::INFO - parsing top level
+[2026-11-04 10:57:25]::INFO - reading instruction load order
+[2026-11-04 10:57:25]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:25]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:25]::INFO - Running type inference
+[2026-11-04 10:57:25]::INFO - Determining IO names...
+[2026-11-04 10:57:25]::INFO - parsing top level
+[2026-11-04 10:57:25]::INFO - reading instruction load order
+[2026-11-04 10:57:25]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:25]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:25]::INFO - Running type inference
+[2026-11-04 10:57:25]::INFO - Determining IO names...
+[2026-11-04 10:57:25]::INFO - parsing top level
+[2026-11-04 10:57:26]::INFO - reading instruction load order
+[2026-11-04 10:57:26]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:26]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:26]::INFO - Running type inference
+[2026-11-04 10:57:26]::INFO - Determining IO names...
+[2026-11-04 10:57:26]::INFO - parsing top level
+[2026-11-04 10:57:26]::INFO - reading instruction load order
+[2026-11-04 10:57:26]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:26]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:26]::INFO - Running type inference
+[2026-11-04 10:57:26]::INFO - Determining IO names...
+[2026-11-04 10:57:26]::INFO - parsing top level
+[2026-11-04 10:57:27]::INFO - reading instruction load order
+[2026-11-04 10:57:27]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:27]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:27]::INFO - Running type inference
+[2026-11-04 10:57:27]::INFO - Determining IO names...
+[2026-11-04 10:57:27]::INFO - parsing top level
+[2026-11-04 10:57:28]::INFO - reading instruction load order
+[2026-11-04 10:57:28]::INFO - building architecture model for set MySet
+[2026-11-04 10:57:28]::INFO - building behavior model for set MySet
+[2026-11-04 10:57:28]::INFO - Running type inference
+Generated and encoded all six predicates for RV32 and RV64.

@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/baseline-latency1/cva5_arty_top.bit",
+  "uart": "\u001b[2J\n\r********************************************************\n\r********************************************************\n\r**        Avnet/Digilent Arty Evaluation Board        **\n\r**        LEDs and switches GPIO Demonstration        **\n\r********************************************************\n\r********************************************************\r\n**\r\nChoose Task:\r\nBTN0: Print PWM value.\r\nBTN1: 'Cylon' LED display.\r\nBTN2: Scrolling LED display.\r\nBTN3: Return to this menu.\r\n\r\n",
+  "elapsed_seconds": 42.25059340894222,
+  "programming": "volatile FPGA configuration; no flash"
+}

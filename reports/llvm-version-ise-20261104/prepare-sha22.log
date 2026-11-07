@@ -1,0 +1,3 @@
+Previous HEAD position was cb4d54f0 [Seal5] CDSL2LLVM Generated Tablegen Patterns for XIsaac.seal5.seal5model
+Switched to a new branch 'experiment-sha256-llvm22'
+CRC32 compiler and Seal5 state preserved at /var/tmp/ga87puy/isaac-demo-new/reports/llvm-version-ise-20261104/crc32-llvm22

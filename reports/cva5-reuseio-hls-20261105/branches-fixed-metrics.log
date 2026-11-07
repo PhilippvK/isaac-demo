@@ -1,0 +1,79 @@
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/branches-fixed/PARAMS_FUSED_BEQ_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/branches-fixed/PARAMS_FUSED_BNE_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/branches-fixed/PARAMS_FUSED_BLT_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/branches-fixed/PARAMS_FUSED_BGE_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/branches-fixed/PARAMS_FUSED_BLTU_II_1.dot.stats
+stats_file reports/cva5-reuseio-hls-20261105/hls-run/branches-fixed/PARAMS_FUSED_BGEU_II_1.dot.stats
+  instruction                              mask  ... latency   locs
+0   FUSED_BEQ  -----------------000-----0001011  ...     2.0    NaN
+1   FUSED_BNE  -----------------101-----0001011  ...     2.0    NaN
+2   FUSED_BLT  -----------------110-----0001011  ...     2.0    NaN
+3   FUSED_BGE  -----------------100-----0001011  ...     2.0    NaN
+4  FUSED_BLTU  -----------------001-----0001011  ...     2.0    NaN
+5  FUSED_BGEU  -----------------010-----0001011  ...     2.0    NaN
+0         NaN                               NaN  ...     NaN  399.0
+
+[7 rows x 6 columns]
+            config  idx  ...  Total lifetime  Total decoupled ops
+0   SG_2_SOL_IDX_1    1  ...             0.0                  0.0
+1   SG_2_SOL_IDX_0    0  ...             NaN                  NaN
+2   SG_4_SOL_IDX_1    1  ...             0.0                  0.0
+3   SG_4_SOL_IDX_0    0  ...             NaN                  NaN
+4   SG_6_SOL_IDX_1    1  ...             0.0                  0.0
+5   SG_6_SOL_IDX_0    0  ...             NaN                  NaN
+6   SG_1_SOL_IDX_1    1  ...             0.0                  0.0
+7   SG_1_SOL_IDX_0    0  ...             NaN                  NaN
+8   SG_3_SOL_IDX_1    1  ...             0.0                  0.0
+9   SG_3_SOL_IDX_0    0  ...             NaN                  NaN
+10  SG_5_SOL_IDX_1    1  ...             0.0                  0.0
+11  SG_5_SOL_IDX_0    0  ...             NaN                  NaN
+
+[12 rows x 11 columns]
+schedules_df     Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+0            0  SG_2_SOL_IDX_1  ...             0.0                  0.0
+1            1  SG_2_SOL_IDX_0  ...             NaN                  NaN
+2            2  SG_4_SOL_IDX_1  ...             0.0                  0.0
+3            3  SG_4_SOL_IDX_0  ...             NaN                  NaN
+4            4  SG_6_SOL_IDX_1  ...             0.0                  0.0
+5            5  SG_6_SOL_IDX_0  ...             NaN                  NaN
+6            6  SG_1_SOL_IDX_1  ...             0.0                  0.0
+7            7  SG_1_SOL_IDX_0  ...             NaN                  NaN
+8            8  SG_3_SOL_IDX_1  ...             0.0                  0.0
+9            9  SG_3_SOL_IDX_0  ...             NaN                  NaN
+10          10  SG_5_SOL_IDX_1  ...             0.0                  0.0
+11          11  SG_5_SOL_IDX_0  ...             NaN                  NaN
+
+[12 rows x 12 columns] Index(['Unnamed: 0', 'config', 'idx', 'II', 'Fallback',
+       'Instruction latencies', 'Allocation', 'Overall latency',
+       'Area estimate w/o lifetimes', 'Area estimate w/ lifetimes',
+       'Total lifetime', 'Total decoupled ops'],
+      dtype='object')
+yaml_data [{'sharing_group': 2, 'solution_idx': 1}, {'sharing_group': 4, 'solution_idx': 1}, {'sharing_group': 6, 'solution_idx': 1}, {'sharing_group': 1, 'solution_idx': 1}, {'sharing_group': 3, 'solution_idx': 1}, {'sharing_group': 5, 'solution_idx': 1}]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+0           0  SG_2_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+2           2  SG_4_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+4           4  SG_6_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+6           6  SG_1_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+schedules    Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+8           8  SG_3_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+schedules     Unnamed: 0          config  ...  Total lifetime  Total decoupled ops
+10          10  SG_5_SOL_IDX_1  ...             0.0                  0.0
+
+[1 rows x 12 columns]
+   num_groups  ...  total_area_estimate_with_lifetimes
+0           6  ...                        15741.342285
+
+[1 rows x 13 columns]

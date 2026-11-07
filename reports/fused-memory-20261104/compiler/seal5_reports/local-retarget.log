@@ -1,0 +1,412 @@
+Logger started on port 38515
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/reports/fused-memory-20261104/generated-rv32/XMem.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/reports/fused-memory-20261104/generated-rv32/XMem.core_desc
+Logger on port 38515 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 39829
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XMem.m2isarmodel -> XMem.seal5model
+[seal5.pass_list::INFO] Filtering XMem.seal5model
+[seal5.pass_list::INFO] Dropping unused for XMem.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XMem.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XMem.seal5model
+[seal5.pass_list::INFO] Dropping unused for XMem.seal5model
+[seal5.pass_list::INFO] Inlining functions for XMem.seal5model
+[seal5.pass_list::INFO] Dropping unused for XMem.seal5model
+[seal5.pass_list::INFO] Optimizing XMem.seal5model
+[seal5.pass_list::INFO] Infering types for XMem.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XMem.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XMem.seal5model
+[seal5.pass_list::INFO] Infering types for XMem.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XMem.seal5model
+[seal5.pass_list::INFO] Detecting registers for XMem.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XMem.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XMem.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XMem.seal5model
+[seal5.pass_list::INFO] Processing settings for XMem.seal5model
+[seal5.pass_list::INFO] Writing YAML for XMem.seal5model
+[seal5.pass_list::INFO] Processing settings for XMem.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XMem.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XMem.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XMem.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XMem.seal5model
+[seal5.pass_list::INFO] Detecting loops for XMem.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XMem.seal5model
+INFO:annotate_opcodes:processing set XMem
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LB
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LBU
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LH
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LHU
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LW
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LB
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LBU
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LH
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LHU
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LW
+INFO:annotate_opcodes:processing instruction MEM_ADDR_SB
+INFO:annotate_opcodes:processing instruction MEM_ADDR_SH
+INFO:annotate_opcodes:processing instruction MEM_ADDR_SW
+INFO:annotate_opcodes:processing instruction MEM_STOREXOR_SB
+INFO:annotate_opcodes:processing instruction MEM_STOREXOR_SH
+INFO:annotate_opcodes:processing instruction MEM_STOREXOR_SW
+[seal5.pass_list::INFO] Handle auto_unroll operands for XMem.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XMem.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XMem.seal5model
+[seal5.pass_list::INFO] Infering types for XMem.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XMem.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XMem.seal5model
+Logger on port 39829 stopped.
+[seal5.flow::INFO] Completed tranformation of Seal5 models
+Logger started on port 40247
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing RISCVFeatures.td patch for XMem.seal5model
+[seal5.pass_list::INFO] Writing RISCVRegisterInfo.td patch for XMem.seal5model
+[seal5.backends.riscv_register_info::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCV field types patches
+[seal5.backends.riscv_field_types::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVInstrInfo.td patch for XMem.seal5model
+[seal5.pass_list::INFO] Writing intrinsics patches patch for XMem.seal5model
+[seal5.backends.riscv_intrinsics::WARNING] No intrinsics configured; didn't need to invoke intrinsics writer.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVDisassembler.cpp patch for XMem.seal5model
+[seal5.pass_list::INFO] Writing RISCVLegalizerInfo.cpp patch
+[seal5.backends.riscv_gisel_legalizer::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+Logger on port 40247 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 42809
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_1
+[seal5.flow::INFO] Applying patch 'seal5_td' on 'llvm'
+[seal5.flow::INFO] Applying patch 'set_td_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_1 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_1.patch
+[seal5.flow::INFO] Current stage: PHASE_2
+[seal5.flow::INFO] Applying patch 'riscv_features_XMem' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_instr_info_XMem' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_disass_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_2 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_2.patch
+Logger on port 42809 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 33331
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Logger on port 33331 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (pattern-gen)
+Logger started on port 42161
+[seal5.flow::INFO] Building Seal5 LLVM (llc)
+Logger on port 42161 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (llc)
+Logger started on port 36203
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XMem.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XMem.seal5model
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SW.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XMem.seal5model
+Logger on port 36203 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 35863
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 35863 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 38739
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 38739 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 36405
+[seal5.flow::INFO] Testing Seal5 LLVM
+Traceback (most recent call last):
+[seal5.flow::INFO] 2 tests passed: CodeGen/RISCV/seal5/generated/xmem.test-attrs.ll, CodeGen/RISCV/seal5/generated/xmem.test-ext.c
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+[seal5.flow::ERROR] 16 tests failed: CodeGen/RISCV/seal5/generated/MEM_ADDR_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SW.test-cg.ll
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/test.py", line 62, in handle
+    seal5_flow.test(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 1144, in test
+    raise RuntimeError("Tests failed!")
+RuntimeError: Tests failed!
+Logger on port 36405 stopped.
+Logger started on port 45899
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/reports/fused-memory-20261104/generated-rv32/XMem.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/reports/fused-memory-20261104/generated-rv32/XMem.core_desc
+Logger on port 45899 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 34423
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XMem.m2isarmodel -> XMem.seal5model
+[seal5.pass_list::INFO] Filtering XMem.seal5model
+[seal5.pass_list::INFO] Dropping unused for XMem.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XMem.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XMem.seal5model
+[seal5.pass_list::INFO] Dropping unused for XMem.seal5model
+[seal5.pass_list::INFO] Inlining functions for XMem.seal5model
+[seal5.pass_list::INFO] Dropping unused for XMem.seal5model
+[seal5.pass_list::INFO] Optimizing XMem.seal5model
+[seal5.pass_list::INFO] Infering types for XMem.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XMem.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XMem.seal5model
+[seal5.pass_list::INFO] Infering types for XMem.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XMem.seal5model
+[seal5.pass_list::INFO] Detecting registers for XMem.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XMem.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XMem.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XMem.seal5model
+[seal5.pass_list::INFO] Processing settings for XMem.seal5model
+[seal5.pass_list::INFO] Writing YAML for XMem.seal5model
+[seal5.pass_list::INFO] Processing settings for XMem.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XMem.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XMem.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XMem.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XMem.seal5model
+[seal5.pass_list::INFO] Detecting loops for XMem.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XMem.seal5model
+INFO:annotate_opcodes:processing set XMem
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LB
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LBU
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LH
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LHU
+INFO:annotate_opcodes:processing instruction MEM_ADDR_LW
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LB
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LBU
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LH
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LHU
+INFO:annotate_opcodes:processing instruction MEM_LOADADD_LW
+INFO:annotate_opcodes:processing instruction MEM_ADDR_SB
+INFO:annotate_opcodes:processing instruction MEM_ADDR_SH
+INFO:annotate_opcodes:processing instruction MEM_ADDR_SW
+INFO:annotate_opcodes:processing instruction MEM_STOREXOR_SB
+INFO:annotate_opcodes:processing instruction MEM_STOREXOR_SH
+INFO:annotate_opcodes:processing instruction MEM_STOREXOR_SW
+[seal5.pass_list::INFO] Handle auto_unroll operands for XMem.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XMem.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XMem.seal5model
+[seal5.pass_list::INFO] Infering types for XMem.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XMem.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XMem.seal5model
+Logger on port 34423 stopped.
+[seal5.flow::INFO] Completed tranformation of Seal5 models
+Logger started on port 41913
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing RISCVFeatures.td patch for XMem.seal5model
+[seal5.pass_list::INFO] Writing RISCVRegisterInfo.td patch for XMem.seal5model
+[seal5.backends.riscv_register_info::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCV field types patches
+[seal5.backends.riscv_field_types::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVInstrInfo.td patch for XMem.seal5model
+[seal5.pass_list::INFO] Writing intrinsics patches patch for XMem.seal5model
+[seal5.backends.riscv_intrinsics::WARNING] No intrinsics configured; didn't need to invoke intrinsics writer.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVDisassembler.cpp patch for XMem.seal5model
+[seal5.pass_list::INFO] Writing RISCVLegalizerInfo.cpp patch
+[seal5.backends.riscv_gisel_legalizer::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+Logger on port 41913 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 41131
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_1
+[seal5.flow::INFO] Applying patch 'seal5_td' on 'llvm'
+[seal5.flow::INFO] Applying patch 'set_td_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_1 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_1.patch
+[seal5.flow::INFO] Current stage: PHASE_2
+[seal5.flow::INFO] Applying patch 'riscv_features_XMem' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_instr_info_XMem' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_disass_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_2 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_2.patch
+Logger on port 41131 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 37481
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Logger on port 37481 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (pattern-gen)
+Logger started on port 42907
+[seal5.flow::INFO] Building Seal5 LLVM (llc)
+Logger on port 42907 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (llc)
+Logger started on port 32873
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XMem.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XMem.seal5model
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SW.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XMem.seal5model
+Logger on port 32873 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 37857
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 37857 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 34195
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 34195 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 46271
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 18 tests passed: CodeGen/RISCV/seal5/generated/xmem.test-attrs.ll, CodeGen/RISCV/seal5/generated/xmem.test-ext.c, CodeGen/RISCV/seal5/generated/MEM_ADDR_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SW.test-cg.ll
+Logger on port 46271 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 33933
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 33933 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+Logger started on port 36957
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XMem.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XMem.seal5model
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SW.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XMem.seal5model
+Logger on port 36957 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 33705
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 33705 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 45671
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 45671 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 39427
+[seal5.flow::INFO] Testing Seal5 LLVM
+Traceback (most recent call last):
+[seal5.flow::INFO] 14 tests passed: CodeGen/RISCV/seal5/generated/xmem.test-attrs.ll, CodeGen/RISCV/seal5/generated/xmem.test-ext.c, CodeGen/RISCV/seal5/generated/MEM_ADDR_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SW.test-cg.ll
+[seal5.flow::ERROR] 4 tests failed: CodeGen/RISCV/seal5/generated/MEM_LOADADD_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LHU.test-cg.ll
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/test.py", line 62, in handle
+    seal5_flow.test(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 1144, in test
+    raise RuntimeError("Tests failed!")
+RuntimeError: Tests failed!
+Logger on port 39427 stopped.
+Logger started on port 41485
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XMem.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XMem.seal5model
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SW.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XMem.seal5model
+Logger on port 41485 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 44587
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 44587 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 36485
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 36485 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 35759
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 18 tests passed: CodeGen/RISCV/seal5/generated/xmem.test-attrs.ll, CodeGen/RISCV/seal5/generated/xmem.test-ext.c, CodeGen/RISCV/seal5/generated/MEM_ADDR_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SW.test-cg.ll
+Logger on port 35759 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 40301
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 40301 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XMem.seal5model

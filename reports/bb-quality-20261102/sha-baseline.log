@@ -1,0 +1,96 @@
+BENCH=nettle-sha256
+DATE=now
+STEPS=bench_0;trace_0;isaac_0_load;isaac_0_analyze;isaac_0_pick
+DATE=20261102T170300
+NEW=1
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256//20261102T170300
+Initialized directory: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256//20261102T170300
+STEPS=bench_0 trace_0 isaac_0_load isaac_0_analyze isaac_0_pick
+Running step: bench_0
+Executing: ./scripts/flow_bench.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256//20261102T170300
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300 DATE=20261102T170300 BENCH=nettle-sha256
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-02 17:03:01]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-369]  Processing stage LOAD
+INFO - [session-369]  Processing stage COMPILE
+INFO - [session-369]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-369] Done processing runs
+INFO - Report:
+   Run          Model Frontend Platform Target  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI  Run CPI  Total CPI  Simulated Instructions     MIPS  Runtime [s]  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s] Features                                             Config Postprocesses Comment
+0    0  nettle-sha256  embench     mlif  etiss            54                  54     3776360           3776360             43                   43       3776738             3776738        1.0      1.0        1.0                 3793820  9.98163     0.037767        True            0.409981      50732       2808           2716     48008         8      1796                1012                1.590006              0.00001       []  {'embench.use_inout_data': False, 'embench.gen...            []       -
+Running step: trace_0
+Executing: ./scripts/flow_trace.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256//20261102T170300
+python3 -m mlonmcu.cli.main flow run nettle-sha256 --target etiss -c run.export_optional=1 -c etiss.arch=rv32imfd -c etiss.abi=ilp32d -c mlif.debug_symbols=1 -c mlif.toolchain=llvm -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=16 -c mlif.unroll_loops=0 -c mlif.optimize=3 -c mlif.global_isel=0 --label isaac-demo-nettle-sha256-20261102T170300-trace --backend none
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-02 17:03:04]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-371]  Processing stage LOAD
+INFO - [session-371]  Processing stage COMPILE
+WARNING - ignored: .llvm_bb_addr_map / size: 443
+INFO - [session-371]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-371] Done processing runs
+INFO - Report:
+   Run          Model Frontend Platform Target  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI  Run CPI  Total CPI  Simulated Instructions     MIPS  Runtime [s]  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s]                                 Features                                             Config Postprocesses Comment
+0    0  nettle-sha256  embench     mlif  etiss            54                  54     3776360           3776360             43                   43       3776738             3776738        1.0      1.0        1.0                 3793820  1.06379     0.037767        True            3.939284      50732       2808           2716     48008         8      1796                1012                1.036757             0.000009  [log_instrs, llvm_basic_block_sections]  {'embench.use_inout_data': False, 'embench.gen...            []       -
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-02 17:03:11]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+Creating directory: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/run
+Done
+Running step: isaac_0_load
+Executing: ./scripts/flow_isaac_load.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256//20261102T170300
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300 DATE=20261102T170300 BENCH=nettle-sha256
+INFO - create - Initializing new session: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/sess
+DEBUG - save_artifacts - Saving artifacts...
+INFO - load_cfg_files - Loading Config files...
+INFO - load_artifacts - Loading ISAAC Demo artifacts...
+INFO - load_mlonmcu_exported_run - Loading MLonMCU exported run...
+INFO - load_elf - Loading RISC-V ELF...
+INFO - load_linker_map - Loading linker map...
+INFO - load_instr_trace - Loading ETISS intruction trace...
+INFO - load_disass - Loading Disassembly...
+INFO - load_compile_commands_json - Loading compile commands JSON...
+Running step: isaac_0_analyze
+Executing: ./scripts/flow_isaac_analyze.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256//20261102T170300
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300 DATE=20261102T170300 BENCH=nettle-sha256
+[2026-11-02 17:03:26]::WARNING - Matplotlib created a temporary cache directory at /tmp/matplotlib-6avc8kun because the default path (/home/ga87puy/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[2026-11-02 17:03:28]::INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+[2026-11-02 17:03:28]::INFO - generated new fontManager
+INFO - analyze_artifacts - Analyzing ISAAC Demo artifacts...
+INFO - analyze_dwarf - Analyzing DWARF info...
+INFO - analyze_llvm_bbs - Analyzing LLVM BBs...
+INFO - analyze_mem_footprint - Analyzing memory footprint...
+INFO - analyze_linker_map - Analyzing linker map...
+INFO - trunc_trace - Truncating trace...
+INFO - trunc_trace - Truncating trace...
+INFO - create_opcode_hist - Creating opcode historgram...
+INFO - create_opcode_per_llvm_bb_hist - Analyzing opcodes per LLVM BB...
+INFO - create_instr_hist - Creating instrution histogram...
+INFO - create_disass_instr_hist - Creating disass histogram...
+INFO - create_disass_opcode_hist - Creating diass opcode histogram...
+INFO - create_loc_hists - Creating static LOC histograms for metrics: count
+INFO - create_loc_hists - Creating dynamic LOC histograms for metrics: count
+INFO - collect_bbs - Collecting BBs...
+INFO - map_llvm_bbs_new - Mapping LLVM BBs...
+INFO - track_unused_functions - Tracking unused functions...
+Running step: isaac_0_pick
+Executing: ./scripts/flow_isaac_pick.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256//20261102T170300
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300 DATE=20261102T170300 BENCH=nettle-sha256
+INFO - analyze_bottleneck_bbs - Analyzing bottleneck BBs...
+INFO - check_ise_potential - Checking ISE potential...
+INFO - check_ise_potential_per_llvm_bb - Checking ISE potential per LLVM BB...
+INFO - choose_bbs - Choosing BBs...
+NUM_CHOICES=3
+HTML report written to /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/choices_summary.html
+HTML report written to /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/choices_summary_min.html

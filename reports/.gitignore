@@ -1,0 +1,4 @@
+# Evidence is added explicitly; keep bulk builds and generated traces local.
+*
+!.gitignore
+!README.md

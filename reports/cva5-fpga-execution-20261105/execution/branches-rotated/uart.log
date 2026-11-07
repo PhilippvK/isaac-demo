@@ -1,0 +1,5 @@
+ISAAC CVA5 BOOT branches
+RAM PASS
+CRC32=65842ca9 verify=00002ca9 cycles=00003c23
+BRANCH BEGIN probe=00000005CASE probe=00000005 input=00000000 forward
+RESULT forward=00000001 back

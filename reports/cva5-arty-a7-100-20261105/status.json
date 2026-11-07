@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "part": "xc7a100tcsg324-1",
+  "core_clock_hz": 20000000,
+  "builds": 5,
+  "bitstreams_generated": 5,
+  "all_timing_met": true,
+  "board_programmed": false,
+  "workload_firmware_initialized": false,
+  "rtl_functional_simulation": false
+}

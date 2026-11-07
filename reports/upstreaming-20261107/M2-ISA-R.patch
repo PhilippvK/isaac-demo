@@ -1,0 +1,387 @@
+From df47075858c770eb1391e73cdfd435183a40aecf Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Fri, 6 Nov 2026 11:08:28 +0100
+Subject: [PATCH 1/3] Handle intrinsic references without staticness attributes
+
+---
+ m2isar/metamodel/utils/scalar_staticness.py |  4 ++--
+ tests/test_intrinsic_staticness.py          | 18 ++++++++++++++++++
+ 2 files changed, 20 insertions(+), 2 deletions(-)
+ create mode 100644 tests/test_intrinsic_staticness.py
+
+diff --git a/m2isar/metamodel/utils/scalar_staticness.py b/m2isar/metamodel/utils/scalar_staticness.py
+index c1d358c..48e2497 100644
+--- a/m2isar/metamodel/utils/scalar_staticness.py
++++ b/m2isar/metamodel/utils/scalar_staticness.py
+@@ -207,7 +207,7 @@ class VarAccessVisitor(ExprVisitor):
+ 	@generate.register
+ 	def _(self, expr: behav.Callable, context: attribute_info.AccessContext):
+ 		args = [self.generate(arg, context) for arg in expr.args]
+-		is_static = bool(expr.ref_or_name.attributes.get("static", False))
++		is_static = bool(getattr(expr.ref_or_name, "attributes", {}).get("static", False))
+ 		args.append(attribute_info.AccessAttribute.READ if is_static else attribute_info.AccessAttribute.NONE)
+ 
+ 		return min(args)
+@@ -215,7 +215,7 @@ class VarAccessVisitor(ExprVisitor):
+ 	@generate.register
+ 	def _(self, expr: behav.ProcedureCall, context: attribute_info.AccessContext):
+ 		args = [self.generate(arg, context) for arg in expr.args]
+-		is_static = bool(expr.ref_or_name.attributes.get("static", False))
++		is_static = bool(getattr(expr.ref_or_name, "attributes", {}).get("static", False))
+ 		args.append(attribute_info.AccessAttribute.READ if is_static else attribute_info.AccessAttribute.NONE)
+ 		return min(args)
+ 
+diff --git a/tests/test_intrinsic_staticness.py b/tests/test_intrinsic_staticness.py
+new file mode 100644
+index 0000000..470a3ac
+--- /dev/null
++++ b/tests/test_intrinsic_staticness.py
+@@ -0,0 +1,18 @@
++"""Unresolved intrinsics must be conservative, rather than treated as functions."""
++from types import SimpleNamespace
++import unittest
++from m2isar.metamodel import behav, attribute_info
++from m2isar.metamodel.utils.scalar_staticness import VarAccessVisitor
++
++
++class IntrinsicStaticness(unittest.TestCase):
++    def test_intrinsic_calls_are_dynamic(self):
++        for kind in (behav.FunctionCall,behav.ProcedureCall):
++            result=VarAccessVisitor().generate(kind('branch',[behav.Literal(1)]),attribute_info.AccessContext())
++            self.assertEqual(result,attribute_info.AccessAttribute.NONE)
++
++    def test_named_function_attributes_are_retained(self):
++        for kind in (behav.FunctionCall,behav.ProcedureCall):
++            fn=SimpleNamespace(attributes={'static':True})
++            result=VarAccessVisitor().generate(kind(fn,[]),attribute_info.AccessContext())
++            self.assertEqual(result,attribute_info.AccessAttribute.READ)
+-- 
+2.34.1
+
+
+From 79286a326f4260e5c3a0337755e454f65704284c Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Fri, 6 Nov 2026 11:08:28 +0100
+Subject: [PATCH 2/3] Support branch offsets and interface-constrained
+ instruction allocation
+
+---
+ m2isar/metamodel/attribute_info.py            |  1 +
+ .../transforms/encode_instructions/planner.py | 83 ++++++++++++++++---
+ tests/test_branch_encoding_planner.py         | 47 +++++++++++
+ 3 files changed, 118 insertions(+), 13 deletions(-)
+ create mode 100644 tests/test_branch_encoding_planner.py
+
+diff --git a/m2isar/metamodel/attribute_info.py b/m2isar/metamodel/attribute_info.py
+index dd17730..0a9981e 100644
+--- a/m2isar/metamodel/attribute_info.py
++++ b/m2isar/metamodel/attribute_info.py
+@@ -78,3 +78,4 @@ class OperandAttribute(Enum):
+ 	IS_IMM = auto()
+ 	REG_CLASS = auto()
+ 	REG_TYPE = auto()
++	IS_BRANCH_OFFS = auto()
+diff --git a/m2isar/transforms/encode_instructions/planner.py b/m2isar/transforms/encode_instructions/planner.py
+index 8493d54..19541ad 100644
+--- a/m2isar/transforms/encode_instructions/planner.py
++++ b/m2isar/transforms/encode_instructions/planner.py
+@@ -20,14 +20,27 @@ class EncodingPolicy:
+     opcodes: Tuple[int, ...] = (0x0B, 0x2B, 0x5B, 0x7B)
+     # Additional occupied (code, mask) patterns, e.g. extension reservations.
+     reservations: Tuple[Tuple[int, int], ...] = ()
++    # Per qualified instruction name: required discriminator (code, mask).
++    fixed_bits: Tuple[Tuple[str, int, int], ...] = ()
++    decode_mask: int = 0xFFFFFFFF
+ 
+     def __post_init__(self):
++        if not isinstance(self.decode_mask, int) or not 0 <= self.decode_mask <= 0xFFFFFFFF or self.decode_mask & 0x7F != 0x7F:
++            raise EncodingError("decode mask must retain the complete 7-bit major opcode")
+         if not self.opcodes or len(set(self.opcodes)) != len(self.opcodes):
+             raise EncodingError("opcodes must be nonempty and unique")
+         if any(x not in (0x0B, 0x2B, 0x5B, 0x7B) for x in self.opcodes):
+             raise EncodingError("riscv-custom32 supports only custom-0 through custom-3")
+         for code, mask in self.reservations:
+             validate_pattern(code, mask)
++        names = set()
++        for name, code, mask in self.fixed_bits:
++            if name in names:
++                raise EncodingError("duplicate fixed-bit constraint: " + name)
++            names.add(name)
++            validate_pattern(code, mask)
++            if mask & ~self.decode_mask:
++                raise EncodingError("fixed-bit constraint is outside the target decode mask: " + name)
+ 
+ 
+ def validate_pattern(code, mask):
+@@ -45,6 +58,7 @@ class Field:
+     offset: int
+     width: int
+     signed: bool
++    source_lower: int = 0
+ 
+ 
+ @dataclass(frozen=True)
+@@ -64,7 +78,7 @@ class Assignment:
+             field = by_offset.get(bit)
+             if field:
+                 kind = type_info.TypeKind.INT if field.signed else type_info.TypeKind.UINT
+-                result.append(arch.BitField(field.name, arch.RangeSpec(field.width - 1, 0), kind))
++                result.append(arch.BitField(field.name, arch.RangeSpec(field.source_lower + field.width - 1, field.source_lower), kind))
+                 bit += field.width
+             else:
+                 result.append(arch.BitVal(1, (self.code >> bit) & 1))
+@@ -73,7 +87,8 @@ class Assignment:
+ 
+     def to_dict(self):
+         return dict(name=self.name, layout=self.layout, code=self.code, mask=self.mask,
+-                    fields=[dict(name=f.name, offset=f.offset, width=f.width, signed=f.signed) for f in self.fields])
++                    fields=[dict(name=f.name, offset=f.offset, width=f.width, signed=f.signed,
++                                 **({"source_lower": f.source_lower} if f.source_lower else {})) for f in self.fields])
+ 
+ 
+ @dataclass(frozen=True)
+@@ -127,6 +142,29 @@ def operand_requirements(instruction):
+ 
+ def candidates(instruction):
+     sources, destinations, immediates = operand_requirements(instruction)
++    offsets = [(name, op) for name, op in instruction.operands.items() if Attr.IS_BRANCH_OFFS in op.attributes]
++    if offsets:
++        from ...metamodel.attribute_info import InstrAttribute
++        if len(offsets) != 1 or destinations or InstrAttribute.COND not in instruction.attributes:
++            raise EncodingError("B format requires one conditional branch offset and no register outputs")
++        offset_name, operand = offsets[0]
++        if not operand.signed or operand.size != 13 or len(sources) > 2:
++            raise EncodingError("B format requires a signed 13-bit byte offset and at most two source registers")
++        other_imms = [imm for imm in immediates if imm[0] != offset_name]
++        fields = [Field(name, slot, width, signed) for (name, width, signed), slot in zip(sources, (15, 20))]
++        free = [(slot, 5) for slot in (15, 20)[len(sources):]]
++        for name, width, signed in other_imms:
++            for index, (slot, capacity) in enumerate(free):
++                if width <= capacity:
++                    fields.append(Field(name, slot, width, signed))
++                    free[index] = (slot + width, capacity - width)
++                    break
++            else:
++                raise EncodingError("B format has no space for additional immediate operands")
++        fields.extend((Field(offset_name, 31, 1, True, 12), Field(offset_name, 25, 6, True, 5),
++                       Field(offset_name, 8, 4, True, 1), Field(offset_name, 7, 1, True, 11)))
++        yield "B", tuple(fields)
++        return
+     # Standard-position layouts. Unused capacity becomes discriminator bits.
+     layouts = (
+         ("R", (15, 20), (7,), ((20, 5),)),
+@@ -157,9 +195,10 @@ def candidates(instruction):
+             yield layout, tuple(fields)
+ 
+ 
+-def available_codes(mask, opcodes, occupied):
++def available_codes(mask, opcodes, occupied, required=(0, 0)):
+     """Search discriminator bits, pruning subtrees covered by a reservation."""
+-    bits = [bit for bit in range(7, 32) if mask & (1 << bit)]
++    required_code, required_mask = required
++    bits = [bit for bit in range(7, 32) if mask & (1 << bit) and not required_mask & (1 << bit)]
+ 
+     def search(code, fixed, index):
+         if any((other_mask & mask & fixed) == (other_mask & mask) and
+@@ -175,7 +214,8 @@ def available_codes(mask, opcodes, occupied):
+         yield from search(code | bit, fixed | bit, index + 1)
+ 
+     for opcode in opcodes:
+-        yield from search(opcode, 0x7F, 0)
++        if ((opcode ^ required_code) & required_mask & 0x7F) == 0:
++            yield from search(opcode | required_code, 0x7F | required_mask, 0)
+ 
+ 
+ def plan_encodings(instructions, policy=None, existing=(), assignments=None):
+@@ -185,9 +225,16 @@ def plan_encodings(instructions, policy=None, existing=(), assignments=None):
+     Errors are collected and prevent application of the entire plan.
+     """
+     policy = policy or EncodingPolicy()
+-    occupied = list(existing) + list(policy.reservations)
+-    for pattern in occupied:
++    existing_full = list(existing)
++    occupied_full = existing_full + list(policy.reservations)
++    for pattern in occupied_full:
+         validate_pattern(*pattern)
++    occupied = [(code & policy.decode_mask, mask & policy.decode_mask)
++                for code, mask in occupied_full]
++    if policy.decode_mask != 0xFFFFFFFF:
++        for index, pattern in enumerate(occupied[:len(existing_full)]):
++            if any(overlaps(pattern, previous) for previous in occupied[:index]):
++                raise EncodingError("existing encodings overlap under the target decode mask")
+     manifest = assignments or {"version": 1, "assignments": []}
+     if manifest.get("version") != 1 or manifest.get("errors"):
+         raise EncodingError("expected a successful version 1 assignment manifest")
+@@ -197,10 +244,14 @@ def plan_encodings(instructions, policy=None, existing=(), assignments=None):
+             raise EncodingError("duplicate manifest assignment: " + item["name"])
+         pins[item["name"]] = item
+     requests, errors = {}, []
++    constraints = {name: (code, mask) for name, code, mask in policy.fixed_bits}
+     for instruction in instructions:
+         if instruction.name in requests:
+             errors.append(f"{instruction.name}: duplicate instruction name")
+         requests[instruction.name] = instruction
++    unknown = set(constraints) - set(requests)
++    if unknown:
++        raise EncodingError("fixed-bit constraints name unknown instructions: " + ", ".join(sorted(unknown)))
+     prepared = []
+     for name, instruction in sorted(requests.items()):
+         try:
+@@ -208,34 +259,40 @@ def plan_encodings(instructions, policy=None, existing=(), assignments=None):
+                 raise EncodingError("instruction already has an encoding")
+             options = list(candidates(instruction))
+             if not options:
+-                raise EncodingError("no layout fits operand counts and widths (available: R, I, R4, R4I, 2D, IMM17)")
++                raise EncodingError("no layout fits operand counts and widths (available: B, R, I, R4, R4I, 2D, IMM17)")
+             prepared.append((name, options))
+         except EncodingError as exc:
+             errors.append(f"{name}: {exc}")
+     result = []
+     # Pins first so newly allocated instructions cannot steal their space.
+-    prepared.sort(key=lambda item: (item[0] not in pins, len(item[1]), item[0]))
++    prepared.sort(key=lambda item: (item[0] not in pins, item[0] not in constraints, len(item[1]), item[0]))
+     for name, options in prepared:
+         found = None
+         pin = pins.get(name)
++        required_code, required_mask = constraints.get(name, (0, 0))
+         for layout, fields in options:
+             variable = sum(((1 << f.width) - 1) << f.offset for f in fields)
+             mask = 0xFFFFFFFF ^ variable
++            if required_mask & ~mask:
++                continue  # A fixed discriminator may never overlap an operand.
+             if pin:
+                 validate_pattern(pin["code"], pin["mask"])
+                 proposed = Assignment(name, layout, pin["code"], mask, fields)
+-                choices = [pin["code"]] if proposed.to_dict() == pin and pin["code"] & 0x7F in policy.opcodes else []
++                choices = [pin["code"]] if (proposed.to_dict() == pin
++                    and pin["code"] & 0x7F in policy.opcodes
++                    and pin["code"] & required_mask == required_code) else []
+             else:
+-                choices = available_codes(mask, policy.opcodes, occupied)
++                choices = available_codes(mask & policy.decode_mask, policy.opcodes, occupied,
++                                          (required_code, required_mask))
+             for code in choices:
+-                if all(not overlaps((code, mask), other) for other in occupied):
++                if all(not overlaps((code & policy.decode_mask, mask & policy.decode_mask), other) for other in occupied):
+                     found = Assignment(name, layout, code, mask, fields)
+                     break
+             if found:
+                 break
+         if found:
+             result.append(found)
+-            occupied.append((found.code, found.mask))
++            occupied.append((found.code & policy.decode_mask, found.mask & policy.decode_mask))
+         else:
+             errors.append(f"{name}: {'pinned assignment incompatible or occupied' if pin else 'no collision-free encoding remains'}")
+     return EncodingPlan(tuple(sorted(result, key=lambda a: a.name)), tuple(errors))
+diff --git a/tests/test_branch_encoding_planner.py b/tests/test_branch_encoding_planner.py
+new file mode 100644
+index 0000000..48cb22f
+--- /dev/null
++++ b/tests/test_branch_encoding_planner.py
+@@ -0,0 +1,47 @@
++"""B-format planning preserves signed byte offsets and encoding reservations."""
++import unittest
++from m2isar.metamodel.attribute_info import InstrAttribute, OperandAttribute as A
++from m2isar.transforms.encode_instructions import EncodingPolicy, plan_encodings, apply_encoding_plan
++from test_encoding_planner import instruction, operand, add
++
++
++def branch(name='BRANCH', width=13, signed=True):
++    offset=operand('offset',width,A.IS_IMM,signed=signed)
++    offset.attributes[A.IS_BRANCH_OFFS]=[]
++    result=instruction(name,operand('rs1'),operand('rs2'),offset)
++    result.attributes[InstrAttribute.COND]=[]
++    return result
++
++
++class BranchEncodingPlanner(unittest.TestCase):
++    def test_round_trip_all_even_displacements(self):
++        instr=branch();plan=plan_encodings([instr]);plan.raise_for_errors()
++        a=plan.assignments[0];self.assertEqual(a.layout,'B')
++        for offset in range(-4096,4096,2):
++            values={'rs1':10,'rs2':31,'offset':offset&8191};word=a.code
++            for f in a.fields:word|=((values[f.name]>>f.source_lower)&((1<<f.width)-1))<<f.offset
++            raw=((word>>31)&1)<<12 | ((word>>25)&63)<<5 | ((word>>8)&15)<<1 | ((word>>7)&1)<<11
++            decoded=raw-8192 if raw&4096 else raw
++            self.assertEqual(decoded,offset)
++            self.assertEqual(word&a.mask,a.code)
++        encoded=apply_encoding_plan([instr],plan)[0]
++        self.assertEqual(encoded.operands['offset'].size,13)
++        self.assertTrue(encoded.operands['offset'].signed)
++
++    def test_branch_and_arithmetic_are_disjoint_and_pinnable(self):
++        instructions=[branch(),add()];plan=plan_encodings(instructions);plan.raise_for_errors()
++        a,b=plan.assignments
++        self.assertNotEqual((a.code^b.code)&a.mask&b.mask,0)
++        self.assertEqual(plan,plan_encodings(instructions,assignments=plan.to_dict()))
++
++    def test_reject_invalid_branch_shapes(self):
++        for width,signed in ((12,True),(13,False),(14,True)):
++            self.assertTrue(plan_encodings([branch(width=width,signed=signed)]).errors)
++        b=branch();b.operands['rd']=operand('rd',direction=A.OUT)
++        self.assertTrue(plan_encodings([b]).errors)
++        b=branch();b.attributes={}
++        self.assertTrue(plan_encodings([b]).errors)
++
++    def test_shared_capacity(self):
++        plan=plan_encodings([branch(f'B{i}') for i in range(9)],policy=EncodingPolicy(opcodes=(0x0b,)))
++        self.assertTrue(plan.errors) # Only eight funct3 values for two-register B format.
+-- 
+2.34.1
+
+
+From 2f32e39fc816aa440dcb848730a4f19f29c66d9c Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Fri, 6 Nov 2026 11:08:28 +0100
+Subject: [PATCH 3/3] Emit affine memory ranges accepted by legacy HLS
+ consumers
+
+---
+ m2isar/backends/coredsl2/visitor.py | 30 ++++++++++++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
+
+diff --git a/m2isar/backends/coredsl2/visitor.py b/m2isar/backends/coredsl2/visitor.py
+index 6d84ee9..2d69de9 100644
+--- a/m2isar/backends/coredsl2/visitor.py
++++ b/m2isar/backends/coredsl2/visitor.py
+@@ -242,7 +242,35 @@ class CDSLWriterVisitor(ExprVisitor):
+         # if isinstance(expr.reference, arch.Memory):
+         #     # writer.track(expr.reference.name)
+         #     pass
+-        self.generate(expr.index, writer)
++        def ungroup(node):
++            while isinstance(node, behav.Group):
++                node = node.expr
++            return node
++
++        index = ungroup(expr.index)
++        lower = ungroup(expr.right)
++        base = ungroup(index.left) if isinstance(index, behav.BinaryOperation) else None
++        width_offset = ungroup(index.right) if isinstance(index, behav.BinaryOperation) else None
++        affine_memory_range = (
++            isinstance(expr.reference, arch.Memory)
++            and isinstance(index, behav.BinaryOperation)
++            and index.op.value == "+"
++            and isinstance(base, behav.NamedReference)
++            and isinstance(width_offset, behav.Literal)
++            and isinstance(lower, behav.NamedReference)
++            and base.reference is lower.reference
++        )
++        if affine_memory_range:
++            # Treenail's affine width inference requires the common base to be
++            # syntactically bare: MEM[base+3:base], not MEM[(base)+(3):base].
++            self.generate(base, writer)
++            writer.write("+")
++            self.generate(width_offset, writer)
++        else:
++            self.generate(expr.index, writer)
++        if expr.right is not None:
++            writer.write(":")
++            self.generate(lower if affine_memory_range else expr.right, writer)
+         writer.write("]")
+ 
+     @generate.register
+-- 
+2.34.1
+

@@ -1,0 +1,62 @@
+diff --git a/llvm/lib/Target/RISCV/AsmParser/RISCVAsmParser.cpp b/llvm/lib/Target/RISCV/AsmParser/RISCVAsmParser.cpp
+index 0cf879f7f..7e3d10703 100644
+--- a/llvm/lib/Target/RISCV/AsmParser/RISCVAsmParser.cpp
++++ b/llvm/lib/Target/RISCV/AsmParser/RISCVAsmParser.cpp
+@@ -1590,6 +1590,8 @@ bool RISCVAsmParser::MatchAndEmitInstruction(SMLoc IDLoc, unsigned &Opcode,
+         "operand must be a symbol with a "
+         "%pcrel_hi/%got_pcrel_hi/%tls_ie_pcrel_hi/%tls_gd_pcrel_hi modifier or "
+         "an integer in the range");
++// RISCVAsmParser.cpp - riscv_match_invalid_operands - INSERTION_START
++// RISCVAsmParser.cpp - riscv_match_invalid_operands - INSERTION_END
+   case Match_InvalidSImm21Lsb0JAL:
+     return generateImmOutOfRangeError(
+         Operands, ErrorInfo, -(1 << 20), (1 << 20) - 2,
+diff --git a/llvm/lib/Target/RISCV/RISCV.td b/llvm/lib/Target/RISCV/RISCV.td
+index d78d7676e..9f1271201 100644
+--- a/llvm/lib/Target/RISCV/RISCV.td
++++ b/llvm/lib/Target/RISCV/RISCV.td
+@@ -85,4 +85,7 @@ def RISCV : Target {
+ }
+ 
+ // RISCV.td - riscv_td_includes - INSERTION_START
++
++include "seal5.td"
++
+ // RISCV.td - riscv_td_includes - INSERTION_END
+diff --git a/llvm/lib/Target/RISCV/RISCVInstrInfo.cpp b/llvm/lib/Target/RISCV/RISCVInstrInfo.cpp
+index 7f4bbe786..447cb5b46 100644
+--- a/llvm/lib/Target/RISCV/RISCVInstrInfo.cpp
++++ b/llvm/lib/Target/RISCV/RISCVInstrInfo.cpp
+@@ -2380,6 +2380,8 @@ bool RISCVInstrInfo::verifyInstruction(const MachineInstr &MI,
+         CASE_OPERAND_UIMM(8)
+         CASE_OPERAND_UIMM(12)
+         CASE_OPERAND_UIMM(20)
++// RISCVInstrInfo.cpp - riscv_verify_operands - INSERTION_START
++// RISCVInstrInfo.cpp - riscv_verify_operands - INSERTION_END
+           // clang-format on
+         case RISCVOp::OPERAND_UIMM2_LSB0:
+           Ok = isShiftedUInt<1, 1>(Imm);
+diff --git a/llvm/lib/Target/RISCV/seal5.td b/llvm/lib/Target/RISCV/seal5.td
+new file mode 100644
+index 000000000..39dff43e6
+--- /dev/null
++++ b/llvm/lib/Target/RISCV/seal5.td
+@@ -0,0 +1,7 @@
++
++// Includes
++// seal5.td - seal5_td_includes - INSERTION_START
++// XIsaac.seal5
++include "seal5/XIsaac.td"
++// seal5.td - seal5_td_includes - INSERTION_END
++
+diff --git a/llvm/lib/Target/RISCV/seal5/XIsaac.td b/llvm/lib/Target/RISCV/seal5/XIsaac.td
+new file mode 100644
+index 000000000..f54459bb8
+--- /dev/null
++++ b/llvm/lib/Target/RISCV/seal5/XIsaac.td
+@@ -0,0 +1,5 @@
++
++// Includes
++// XIsaac.td - xisaac_set_td_includes - INSERTION_START
++// XIsaac.td - xisaac_set_td_includes - INSERTION_END
++

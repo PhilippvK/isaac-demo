@@ -1,0 +1,23 @@
+import "RVI.core_desc"
+
+InstructionSet MySet extends RV32I {
+    instructions {
+        FUSED_BLTU [[no_cont]] [[cond]] {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                signed<13> offset [[is_imm]] [[in]] [[is_branch_offs]];
+            }
+            encoding: auto;
+            assembly: {"fused_bltu", "{name(rs1)}, {name(rs2)}, {offset}"};
+            behavior: {
+                
+                
+                if ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(unsigned<32>)(X[rs1])&(unsigned<32>)(unsigned<32>)(X[rs2]))))<(unsigned<32>)((7))) { PC = PC + (signed<XLEN>)(offset); }
+                
+            }
+        }
+        
+
+    }
+}

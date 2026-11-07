@@ -1,0 +1,122 @@
+[
+  {
+    "xlen": 32,
+    "predicate": "BEQ",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 32,
+    "predicate": "BNE",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 32,
+    "predicate": "BLT",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 32,
+    "predicate": "BGE",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 32,
+    "predicate": "BLTU",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 32,
+    "predicate": "BGEU",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 64,
+    "predicate": "BEQ",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 64,
+    "predicate": "BNE",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 64,
+    "predicate": "BLT",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 64,
+    "predicate": "BGE",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 64,
+    "predicate": "BLTU",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  },
+  {
+    "xlen": 64,
+    "predicate": "BGEU",
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "offset"
+    ],
+    "physical_operand_bits": 22.0
+  }
+]

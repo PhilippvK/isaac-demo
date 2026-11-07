@@ -1,0 +1,37 @@
+--- a/CVA5_top.v
++++ b/CVA5_top.v
+@@ -135,14 +135,14 @@
+ );
+ 
+     // Instruction Memory Signals
+-    wire [29:0] instruction_bram_addr;
++    wire [31:0] instruction_bram_addr;
+     wire        instruction_bram_en;
+     wire [3:0]  instruction_bram_we;
+     wire [31:0] instruction_bram_din;
+     wire [31:0] instruction_bram_dout;
+ 
+     // Data Memory Signals
+-    wire [29:0] data_bram_addr;
++    wire [31:0] data_bram_addr;
+     wire        data_bram_en;
+     wire [3:0]  data_bram_we;
+     wire [31:0] data_bram_din;
+@@ -154,7 +154,7 @@
+         // .rsta(rst),
+         .ena(instruction_bram_en),
+         .wea(instruction_bram_we),
+-        .addra(instruction_bram_addr),
++        .addra(instruction_bram_addr[17:2]),
+         .dina(instruction_bram_din),
+         .douta(instruction_bram_dout)
+     );
+@@ -165,7 +165,7 @@
+         // .rsta(rst),
+         .ena(data_bram_en),
+         .wea(data_bram_we),
+-        .addra(data_bram_addr),
++        .addra(data_bram_addr[17:2]),
+         .dina(data_bram_din),
+         .douta(data_bram_dout)
+     );

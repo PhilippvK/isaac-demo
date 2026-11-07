@@ -1,0 +1,38 @@
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+DEBUG - save_artifacts - Saving artifacts...
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+clang-22: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - save_artifacts - Saving artifacts...
+DEBUG - save - Exporting artifact 'identity.elf' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-79a9d326101a42be812d54a5eb400bcb/elf/identity.elf'
+DEBUG - save - Exporting artifact 'llvm_bbs' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-79a9d326101a42be812d54a5eb400bcb/table/llvm_bbs.pkl'
+DEBUG - save - Exporting artifact 'llvm_bbs_new' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-79a9d326101a42be812d54a5eb400bcb/table/llvm_bbs_new.pkl'
+DEBUG - save - Exporting artifact 'choices' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-79a9d326101a42be812d54a5eb400bcb/table/choices.pkl'
+DEBUG - save - Exporting artifact 'compile_commands' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-79a9d326101a42be812d54a5eb400bcb/table/compile_commands.pkl'
+DEBUG - save - Exporting artifact 'cdfg_imports' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-79a9d326101a42be812d54a5eb400bcb/table/cdfg_imports.pkl'
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+{
+  "checks": {
+    "fresh_receipts": true,
+    "late_bb_3_rejected": true,
+    "export_preserves_machine_code": true,
+    "wrong_compilation_rejected": true,
+    "changed_source_rejected": true,
+    "duplicate_block_rejected": true,
+    "modified_graph_receipt_rejected": true
+  },
+  "mapping": [
+    {
+      "fixed_id": 0,
+      "mir": "%bb.0"
+    },
+    {
+      "fixed_id": 2,
+      "mir": "%bb.1"
+    }
+  ]
+}

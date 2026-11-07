@@ -1,0 +1,3 @@
+CDFG port applies to pristine LLVM22.1.8
+PatternGen backend support applies after CDFG
+LLVM22 Seal5 insertion markers apply after both patches

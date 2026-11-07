@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"branches\"",
+    "-DISAAC_BRANCHES=1",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-rotated/firmware.elf"
+  ],
+  "variant": "branches",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "a05efd387e44c11029a6830832292d54c6dc040890e304aca1f68fe4aeec12f4",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S": "04d68c2064b4e22cf658e6c9e390cf25a8401d49be859537233437095259a3ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/effect_checks.h": "b737d50e5e9eb98c2295f2419d45545941d9697bc5b6307a1c4a6601239d566b",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-rotated/firmware.elf": "cc93d14f501a1f793f979576b9045b5948a9d50566346d723acc04bf4389be6b",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-rotated/firmware.bin": "37bea1773cee105f8bd586c78f77943ff48d902bfc9213ca251905e2068a4a73",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-rotated/firmware.coe": "b52cde8ff3a80eccbf8db9f32d0387a89a3d35db41b1cd9250ca6478564352cc"
+  }
+}

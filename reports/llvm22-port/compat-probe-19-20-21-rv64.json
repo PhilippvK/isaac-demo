@@ -1,0 +1,257 @@
+[
+  {
+    "major": 19,
+    "xlen": 64,
+    "version": "clang version 19.1.7 (git@github.com:PhilippvK/llvm-project.git 5bd6ab74cd1dc8d09e54ca6000361d020d138aeb)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/install/llvm/bin\nBuild config: +assertions\n",
+    "flag": "-fbasic-block-address-map",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/install/llvm/bin/clang",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-address-map",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-19-address-map-rv64.o"
+    ],
+    "compile_returncode": 1,
+    "stderr": "clang: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'\n"
+  },
+  {
+    "major": 19,
+    "xlen": 64,
+    "version": "clang version 19.1.7 (git@github.com:PhilippvK/llvm-project.git 5bd6ab74cd1dc8d09e54ca6000361d020d138aeb)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/install/llvm/bin\nBuild config: +assertions\n",
+    "flag": "-fbasic-block-sections=labels",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/install/llvm/bin/clang",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-sections=labels",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-19-labels-rv64.o"
+    ],
+    "compile_returncode": 0,
+    "stderr": "",
+    "format_versions": [
+      2
+    ],
+    "blocks": {
+      "choose": {
+        "0": [
+          70032,
+          70040,
+          8,
+          2
+        ],
+        "1": [
+          70040,
+          70060,
+          20,
+          5
+        ],
+        "2": [
+          70060,
+          70076,
+          16,
+          4
+        ]
+      },
+      "_start": {
+        "0": [
+          70076,
+          70104,
+          28,
+          7
+        ],
+        "1": [
+          70104,
+          70108,
+          4,
+          1
+        ]
+      }
+    }
+  },
+  {
+    "major": 20,
+    "xlen": 64,
+    "version": "Ubuntu clang version 20.1.8 (++20250708082409+6fb913d3e2ec-1~exp1~20250708202428.132)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/20/usr/lib/llvm-20/bin\n",
+    "flag": "-fbasic-block-address-map",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/20/usr/bin/clang-20",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-address-map",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-20-address-map-rv64.o"
+    ],
+    "compile_returncode": 1,
+    "stderr": "clang-20: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'\n"
+  },
+  {
+    "major": 20,
+    "xlen": 64,
+    "version": "Ubuntu clang version 20.1.8 (++20250708082409+6fb913d3e2ec-1~exp1~20250708202428.132)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/20/usr/lib/llvm-20/bin\n",
+    "flag": "-fbasic-block-sections=labels",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/20/usr/bin/clang-20",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-sections=labels",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-20-labels-rv64.o"
+    ],
+    "compile_returncode": 0,
+    "stderr": "clang-20: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]\n",
+    "format_versions": [
+      2
+    ],
+    "blocks": {
+      "choose": {
+        "0": [
+          70032,
+          70040,
+          8,
+          2
+        ],
+        "1": [
+          70040,
+          70060,
+          20,
+          5
+        ],
+        "2": [
+          70060,
+          70076,
+          16,
+          4
+        ]
+      },
+      "_start": {
+        "0": [
+          70076,
+          70104,
+          28,
+          7
+        ],
+        "1": [
+          70104,
+          70108,
+          4,
+          1
+        ]
+      }
+    }
+  },
+  {
+    "major": 21,
+    "xlen": 64,
+    "version": "Ubuntu clang version 21.1.8 (++20251221032842+2078da43e25a-1~exp1~20251221153008.77)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/21/usr/lib/llvm-21/bin\n",
+    "flag": "-fbasic-block-address-map",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/21/usr/bin/clang-21",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-address-map",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-21-address-map-rv64.o"
+    ],
+    "compile_returncode": 1,
+    "stderr": "clang-21: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'\n"
+  },
+  {
+    "major": 21,
+    "xlen": 64,
+    "version": "Ubuntu clang version 21.1.8 (++20251221032842+2078da43e25a-1~exp1~20251221153008.77)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/21/usr/lib/llvm-21/bin\n",
+    "flag": "-fbasic-block-sections=labels",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-compilers/21/usr/bin/clang-21",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-sections=labels",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-21-labels-rv64.o"
+    ],
+    "compile_returncode": 0,
+    "stderr": "clang-21: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]\n",
+    "format_versions": [
+      3
+    ],
+    "blocks": {
+      "choose": {
+        "0": [
+          70032,
+          70040,
+          8,
+          2
+        ],
+        "1": [
+          70040,
+          70060,
+          20,
+          5
+        ],
+        "2": [
+          70060,
+          70076,
+          16,
+          4
+        ]
+      },
+      "_start": {
+        "0": [
+          70076,
+          70104,
+          28,
+          7
+        ],
+        "1": [
+          70104,
+          70108,
+          4,
+          1
+        ]
+      }
+    }
+  }
+]

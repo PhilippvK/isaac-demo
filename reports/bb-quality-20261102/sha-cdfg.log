@@ -1,0 +1,27 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300 DATE=20261102T170300 BENCH=nettle-sha256
+INFO - annotate_bb_weights - Annotating BB weights...
+INFO - enforce_bb_report - ELF/CDFG BB count validation: {'not_exported': 40, 'missing_elf': 25, 'tolerated': 19, 'exact': 7, 'mismatch': 6}
+WARNING - enforce_bb_report - 25 CDFG blocks have no ELF block with the same function/BB identity; see bb_cdfg_validation for coverage details
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 412, in <module>
+    main(sys.argv[1:])
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 408, in main
+    handle(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 357, in handle
+    annotate_bb_weights(
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 310, in annotate_bb_weights
+    enforce_bb_report(report, mismatch_action)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 192, in enforce_bb_report
+    raise BBMismatchError(message)
+__main__.BBMismatchError: ELF/CDFG BB validation failed: 6 invalid blocks, 32 comparable blocks. Check the CDFG stage, ELF, and session label.
+              func_name bb_name  elf_instrs  graph_nodes  graph_blocks  difference  allowance   status  severe  selected                                                                                                   graph_modules graph_stages graph_names                 graph_compilations graph_block_ids
+_nettle_sha256_compress   %bb.0        16.0          6.0           1.0        10.0        6.6 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/nettle-sha256/nettle-sha256.c]         [32]     [%bb.0] [4f2ce024cf474b68a9c25b68e66c9a4c]           [618]
+_nettle_sha256_compress   %bb.2        20.0         11.0           1.0         9.0        7.0 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/nettle-sha256/nettle-sha256.c]         [32]     [%bb.2] [4f2ce024cf474b68a9c25b68e66c9a4c]           [620]
+_nettle_sha256_compress   %bb.6        40.0         18.0           1.0        22.0        9.0 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/nettle-sha256/nettle-sha256.c]         [32]     [%bb.6] [4f2ce024cf474b68a9c25b68e66c9a4c]           [624]
+         benchmark_body   %bb.1        36.0          1.0           1.0        35.0        8.6 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/nettle-sha256/nettle-sha256.c]         [32]     [%bb.1] [4f2ce024cf474b68a9c25b68e66c9a4c]          [2836]
+         benchmark_body   %bb.2        25.0         59.0           1.0        34.0        7.5 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/nettle-sha256/nettle-sha256.c]         [32]     [%bb.2] [4f2ce024cf474b68a9c25b68e66c9a4c]          [2837]
+          sha256_digest   %bb.6        35.0         46.0           1.0        11.0        8.5 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/nettle-sha256/nettle-sha256.c]         [32]     [%bb.6] [4f2ce024cf474b68a9c25b68e66c9a4c]          [2425]

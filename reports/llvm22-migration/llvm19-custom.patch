@@ -1,0 +1,1983 @@
+diff --git a/clang/lib/Driver/ToolChains/Clang.cpp b/clang/lib/Driver/ToolChains/Clang.cpp
+index 8858c318aba7..02579da3124b 100644
+--- a/clang/lib/Driver/ToolChains/Clang.cpp
++++ b/clang/lib/Driver/ToolChains/Clang.cpp
+@@ -6180,8 +6180,9 @@ void Clang::ConstructJob(Compilation &C, const JobAction &JA,
+     } else if (Val != "none") {
+       // =none is allowed everywhere. It's useful for overriding the option
+       // and is the same as not specifying the option.
+-      D.Diag(diag::err_drv_unsupported_opt_for_target)
+-          << A->getAsString(Args) << TripleStr;
++      A->render(Args, CmdArgs);
++      // D.Diag(diag::err_drv_unsupported_opt_for_target)
++      //     << A->getAsString(Args) << TripleStr;
+     }
+   }
+ 
+diff --git a/cmake/Modules/Findmgclient.cmake b/cmake/Modules/Findmgclient.cmake
+new file mode 100644
+index 000000000000..9f1e352dd5ad
+--- /dev/null
++++ b/cmake/Modules/Findmgclient.cmake
+@@ -0,0 +1,50 @@
++# Findmgclient.cmake - Locate mgclient library and headers
++# Usage: find_package(mgclient REQUIRED)
++
++if(MGCLIENT_ROOT)
++    set(_mgclient_include "${MGCLIENT_ROOT}/include")
++    set(_mgclient_lib_dir "${MGCLIENT_ROOT}/lib")
++    set(MGCLIENT_ROOT "${MGCLIENT_ROOT}" CACHE PATH "mgclient install root" FORCE)
++else()
++    # Fall back to standard system paths
++    find_path(_mgclient_include_dir NAMES mgclient.h
++              PATHS /usr/include /usr/local/include
++              NO_DEFAULT_PATH)
++    find_library(_mgclient_lib NAMES mgclient
++                 PATHS /usr/lib /usr/local/lib
++                 NO_DEFAULT_PATH)
++    set(_mgclient_include "${_mgclient_include_dir}")
++    set(_mgclient_lib_dir "")
++endif()
++
++# Pick library: prefer shared if it exists
++if(MGCLIENT_ROOT)
++    if(EXISTS "${_mgclient_lib_dir}/libmgclient.so")
++        set(_mgclient_lib "${_mgclient_lib_dir}/libmgclient.so")
++    elseif(EXISTS "${_mgclient_lib_dir}/libmgclient.a")
++        set(_mgclient_lib "${_mgclient_lib_dir}/libmgclient.a")
++    else()
++        message(FATAL_ERROR "mgclient library not found in ${_mgclient_lib_dir}")
++    endif()
++endif()
++
++# Check include directory
++if(NOT EXISTS "${_mgclient_include}/mgclient.h")
++    message(FATAL_ERROR "mgclient.h not found in ${_mgclient_include}")
++endif()
++
++message(STATUS "mgclient include: ${_mgclient_include}")
++message(STATUS "mgclient library: ${_mgclient_lib}")
++
++# Create imported target
++add_library(mgclient SHARED IMPORTED)
++set_target_properties(mgclient PROPERTIES
++    IMPORTED_LOCATION "${_mgclient_lib}"
++    INTERFACE_INCLUDE_DIRECTORIES "${_mgclient_include}"
++)
++
++# Variables for compatibility
++set(MGCLIENT_INCLUDE_DIRS "${_mgclient_include}")
++set(MGCLIENT_LIBRARIES mgclient)
++set(MGCLIENT_FOUND TRUE)
++
+diff --git a/llvm/docs/BBIDTracing.rst b/llvm/docs/BBIDTracing.rst
+new file mode 100644
+index 000000000000..1ea5b3da3a68
+--- /dev/null
++++ b/llvm/docs/BBIDTracing.rst
+@@ -0,0 +1,64 @@
++Tracing basic block identities in the ISAAC LLVM fork
++===================================================
++
++Machine basic blocks have two different identifiers:
++
++* ``MachineBasicBlock::getNumber()`` is the mutable MIR number printed as
++  ``%bb.N``. Renumbering and layout changes can change this number.
++* ``getBBID()`` is an optional ``UniqueBBID`` containing a fixed ``BaseID``
++  and a ``CloneID``. Newly created blocks normally receive a new base ID.
++  Deleting a block leaves a gap; renumbering does not change its fixed ID.
++
++The CDFG exporter currently stores the MIR spelling in ``BB.name`` and
++``INSTR.basic_block``, and the fixed base ID in ``bb_id``. These numbers need
++not agree, even immediately after instruction selection. The version 2
++``.llvm_bb_addr_map`` ELF section records fixed base IDs of surviving blocks,
++in final layout order. It is separate from DWARF source debugging information.
++
++Usage
++-----
++
++Use the compiler from the rebuilt, assertions-enabled LLVM build and enable
++the dedicated debug category. A previously installed copy does not contain
++the new instrumentation. From the ISAAC demo workspace:
++
++.. code-block:: sh
++
++  llvm-project/build/bin/clang --target=riscv32 -march=rv32im -mabi=ilp32 -O2 -g \
++    -fbasic-block-sections=labels -fglobal-isel \
++    -mllvm -global-isel-abort=0 -mllvm -debug-only=bbid-trace \
++    -mllvm -print-after-all -c example.c -o example.o 2> example.bbid.log
++
++``BBIDTRACE`` records creation, deletion, detachment, splitting, block movement,
++GlobalISel fallback resets, renumbering snapshots, CDFG-stage snapshots, and
++final address-map emission.
++Records identify the function, current MIR number, fixed base ID and clone ID.
++An unavailable fixed ID is printed as ``none``. Creation happens before
++insertion, so its MIR number can be ``-1``. ``clear`` and subsequent ``delete``
++records include function teardown and should not be mistaken for optimization
++deleting emitted blocks.
++Instruction transfers between blocks are visible in the accompanying machine
++IR dumps; block identity does not imply an unchanged instruction sequence.
++
++CDFG snapshots are printed even when database export is disabled. They do not
++require a live Memgraph. ``requested`` and ``selected`` describe the exporter
++enable and stage-mask settings; snapshots alone do not prove that a push took
++place. Use one log per translation unit to distinguish equal function names.
++
++Stage mask values are not chronological. In the optimized pipeline, stages
++128 (after machine sinking) and 256 (before PHI elimination) precede stage
++64 (after register allocation). Stages 1, 2, 4, 8, 16 and 32 correspond to
++IR translation, legalization, register-bank selection, instruction selection,
++fallback selection and pseudo expansion, respectively. SelectionDAG-only
++compilation skips the GlobalISel-specific stages. Optimization level and target
++can omit some stage visits.
++
++Compare with ``llvm-readobj --bb-addr-map example.elf`` after linking. Object
++files still have relocations, so address-to-function resolution can differ
++from the linked executable. IDs are scoped to a function and compilation;
++different optimization flags, instruction selectors or source revisions need
++not assign the same IDs. For matching, preserve translation-unit/function
++context, CDFG stage and fixed ID, keeping MIR labels separately. Even a fixed
++ID match does not account for subsequent instruction movement, duplication,
++splits, merges or newly created blocks. Base IDs alone also do not distinguish
++nonzero clone IDs in workflows that use block path cloning.
+diff --git a/llvm/include/llvm/CodeGen/GlobalISel/CDFGPass.h b/llvm/include/llvm/CodeGen/GlobalISel/CDFGPass.h
+new file mode 100644
+index 000000000000..d04088c39828
+--- /dev/null
++++ b/llvm/include/llvm/CodeGen/GlobalISel/CDFGPass.h
+@@ -0,0 +1,66 @@
++//== llvm/CodeGen/GlobalISel/CDFGPass.h -----------------*- C++ -*-==//
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++/// \file This file describes the interface of the MachineFunctionPass
++/// responsible for selecting (possibly generic) machine instructions to
++/// target-specific instructions.
++//===----------------------------------------------------------------------===//
++
++#ifndef LLVM_CODEGEN_GLOBALISEL_CDFGPASS_H
++#define LLVM_CODEGEN_GLOBALISEL_CDFGPASS_H
++
++#include "llvm/ADT/StringRef.h"
++#include "llvm/CodeGen/MachineFunction.h"
++#include "llvm/CodeGen/MachineFunctionPass.h"
++#include "llvm/Support/CodeGen.h"
++
++//TODO: turn into enum!
++#define CDFG_STAGE_NONE 0  // none
++#define CDFG_STAGE_0 1  // post irtranslator
++#define CDFG_STAGE_1 2  // post legalizer
++#define CDFG_STAGE_2 4  // post regbankselect
++#define CDFG_STAGE_3 8  // post instructionselect
++#define CDFG_STAGE_4 16  // post fallback/iseldag
++#define CDFG_STAGE_5 32  // post finalizeisel/expandpseudos
++#define CDFG_STAGE_6 64  // post regalloc
++#define CDFG_STAGE_7 128  // post machine-sink
++#define CDFG_STAGE_8 256  // pre virtregrewriter
++
++namespace llvm {
++
++class BlockFrequencyInfo;
++class ProfileSummaryInfo;
++
++class CDFGPass : public MachineFunctionPass {
++public:
++  static char ID;
++  StringRef getPassName() const override { return "CDFGPass"; }
++
++  void getAnalysisUsage(AnalysisUsage &AU) const override;
++
++  MachineFunctionProperties getRequiredProperties() const override {
++    return MachineFunctionProperties();
++        // .set(MachineFunctionProperties::Property::IsSSA);
++        // .set(MachineFunctionProperties::Property::Legalized)
++        // .set(MachineFunctionProperties::Property::RegBankSelected);
++  }
++
++  CDFGPass(CodeGenOptLevel OL, int Stage);
++  CDFGPass(int Stage);
++
++  bool runOnMachineFunction(MachineFunction &MF) override;
++
++protected:
++  BlockFrequencyInfo *BFI = nullptr;
++  ProfileSummaryInfo *PSI = nullptr;
++
++  CodeGenOptLevel OptLevel = CodeGenOptLevel::None;
++  int CurrentStage = -1;
++};
++} // End namespace llvm.
++
++#endif
+diff --git a/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h b/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h
+index cc2dd2f4e489..e98e4337f9f2 100644
+--- a/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h
++++ b/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h
+@@ -694,7 +694,8 @@ protected:
+ 
+   bool isOperandImmEqual(const MachineOperand &MO, int64_t Value,
+                          const MachineRegisterInfo &MRI,
+-                         bool Splat = false) const;
++                         bool Splat = false,
++                         bool LookThroughBarrier = false) const;
+ 
+   /// Return true if the specified operand is a G_PTR_ADD with a G_CONSTANT on
+   /// the right-hand side. GlobalISel's separation of pointer and integer types
+diff --git a/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutorImpl.h b/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutorImpl.h
+index 90b4fe5518c8..7fcaf21d3439 100644
+--- a/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutorImpl.h
++++ b/llvm/include/llvm/CodeGen/GlobalISel/GIMatchTableExecutorImpl.h
+@@ -18,6 +18,7 @@
+ #include "llvm/ADT/SmallVector.h"
+ #include "llvm/CodeGen/GlobalISel/GIMatchTableExecutor.h"
+ #include "llvm/CodeGen/GlobalISel/GISelChangeObserver.h"
++#include "llvm/CodeGen/GlobalISel/InstructionSelector.h"
+ #include "llvm/CodeGen/GlobalISel/MachineIRBuilder.h"
+ #include "llvm/CodeGen/GlobalISel/Utils.h"
+ #include "llvm/CodeGen/MachineInstrBuilder.h"
+@@ -38,6 +39,7 @@
+ #include <cassert>
+ #include <cstddef>
+ #include <cstdint>
++#include <type_traits>
+ 
+ namespace llvm {
+ 
+@@ -837,7 +839,12 @@ bool GIMatchTableExecutor::executeMatchTable(
+         }
+ 
+         Value = SignExtend64(Value, Ty.getScalarSizeInBits());
+-        if (!isOperandImmEqual(MO, Value, MRI, /*Splat=*/true)) {
++        // Combiners must still respect the optimization barrier. Only
++        // instruction selection may match the constant hidden behind it.
++        if (!isOperandImmEqual(
++                MO, Value, MRI, /*Splat=*/true,
++                /*LookThroughBarrier=*/
++                    std::is_base_of_v<InstructionSelector, TgtExecutor>)) {
+           if (handleReject() == RejectAndGiveUp)
+             return false;
+         }
+diff --git a/llvm/include/llvm/CodeGen/MachineBasicBlock.h b/llvm/include/llvm/CodeGen/MachineBasicBlock.h
+index b8153fd5d3fb..f6a924a1f230 100644
+--- a/llvm/include/llvm/CodeGen/MachineBasicBlock.h
++++ b/llvm/include/llvm/CodeGen/MachineBasicBlock.h
+@@ -1107,11 +1107,18 @@ public:
+   ///
+   /// The instruction at 'Where' must not be included in the range of
+   /// instructions to move.
++// TODO: move to c++ file with DEBUG_TYPE
++#ifndef DEBUG_TYPE
++#define DEBUG_TYPE "codegen"
++
+   void splice(iterator Where, MachineBasicBlock *Other,
+               iterator From, iterator To) {
++    LLVM_DEBUG(dbgs() << "BBIDLOG: Splice: BB " << Other->getBBID()->BaseID << " → BB " << getBBID()->BaseID << "\n");
+     Insts.splice(Where.getInstrIterator(), Other->Insts,
+                  From.getInstrIterator(), To.getInstrIterator());
+   }
++#undef DEBUG_TYPE
++#endif
+ 
+   /// This method unlinks 'this' from the containing function, and returns it,
+   /// but does not delete it.
+diff --git a/llvm/include/llvm/InitializePasses.h b/llvm/include/llvm/InitializePasses.h
+index 13be9c11f010..38be8b839765 100644
+--- a/llvm/include/llvm/InitializePasses.h
++++ b/llvm/include/llvm/InitializePasses.h
+@@ -18,6 +18,10 @@ namespace llvm {
+ 
+ class PassRegistry;
+ 
++#ifdef HAS_CDFG_PASS
++void initializeCDFGPassPass(PassRegistry&);
++#endif
++
+ /// Initialize all passes linked into the Core library.
+ void initializeCore(PassRegistry&);
+ 
+diff --git a/llvm/include/llvm/TargetParser/SubtargetFeature.h b/llvm/include/llvm/TargetParser/SubtargetFeature.h
+index 2e1f00dad2df..db1850568334 100644
+--- a/llvm/include/llvm/TargetParser/SubtargetFeature.h
++++ b/llvm/include/llvm/TargetParser/SubtargetFeature.h
+@@ -31,7 +31,7 @@ namespace llvm {
+ class raw_ostream;
+ class Triple;
+ 
+-const unsigned MAX_SUBTARGET_WORDS = 5;
++const unsigned MAX_SUBTARGET_WORDS = 10;
+ const unsigned MAX_SUBTARGET_FEATURES = MAX_SUBTARGET_WORDS * 64;
+ 
+ /// Container class for subtarget features.
+diff --git a/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp b/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp
+index 2297b27ffdc0..90af745fc5a5 100644
+--- a/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp
++++ b/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp
+@@ -108,6 +108,7 @@
+ #include "llvm/Remarks/RemarkStreamer.h"
+ #include "llvm/Support/Casting.h"
+ #include "llvm/Support/Compiler.h"
++#include "llvm/Support/Debug.h"
+ #include "llvm/Support/ErrorHandling.h"
+ #include "llvm/Support/FileSystem.h"
+ #include "llvm/Support/Format.h"
+@@ -1396,6 +1397,15 @@ void AsmPrinter::emitBBAddrMapSection(const MachineFunction &MF) {
+   }
+   // Emit the BB entry for each basic block in the function.
+   for (const MachineBasicBlock &MBB : MF) {
++    DEBUG_WITH_TYPE("bbid-trace", {
++      dbgs() << "BBIDTRACE event=emit function=" << MF.getName()
++             << " mbb=" << MBB.getNumber();
++      if (auto ID = MBB.getBBID())
++        dbgs() << " base=" << ID->BaseID << " clone=" << ID->CloneID;
++      else
++        dbgs() << " base=none clone=none";
++      dbgs() << " map_version=" << unsigned(BBAddrMapVersion) << "\n";
++    });
+     const MCSymbol *MBBSymbol =
+         MBB.isEntryBlock() ? FunctionSymbol : MBB.getSymbol();
+     bool IsBeginSection =
+diff --git a/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp b/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp
+new file mode 100644
+index 000000000000..d082b6da233d
+--- /dev/null
++++ b/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp
+@@ -0,0 +1,914 @@
++//===- llvm/CodeGen/GlobalISel/CDFGPass.cpp - CDFGPass ---==//
++//
++// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
++// See https://llvm.org/LICENSE.txt for license information.
++// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++//
++//===----------------------------------------------------------------------===//
++/// \file
++/// This file implements the CDFGPass class.
++//===----------------------------------------------------------------------===//
++
++#include <iostream>
++#include <mgclient.h>
++
++#include "llvm/CodeGen/GlobalISel/CDFGPass.h"
++#include "llvm/ADT/PostOrderIterator.h"
++#include "llvm/ADT/ScopeExit.h"
++#include "llvm/Analysis/LazyBlockFrequencyInfo.h"
++#include "llvm/Analysis/ProfileSummaryInfo.h"
++#include "llvm/CodeGen/GlobalISel/GISelKnownBits.h"
++#include "llvm/CodeGen/GlobalISel/InstructionSelector.h"
++#include "llvm/CodeGen/GlobalISel/LegalizerInfo.h"
++#include "llvm/CodeGen/TargetInstrInfo.h"
++#include "llvm/CodeGen/GlobalISel/Utils.h"
++#include "llvm/CodeGen/ISDOpcodes.h"
++#include "llvm/CodeGenTypes/LowLevelType.h"
++#include "llvm/CodeGen/MachineBasicBlock.h"
++#include "llvm/CodeGen/MachineFrameInfo.h"
++#include "llvm/CodeGen/MachineFunction.h"
++#include "llvm/CodeGen/MachineInstr.h"
++#include "llvm/CodeGen/MachineMemOperand.h"
++#include "llvm/CodeGen/MachineOptimizationRemarkEmitter.h"
++#include "llvm/CodeGen/MachineRegisterInfo.h"
++#include "llvm/CodeGen/TargetLowering.h"
++#include "llvm/CodeGen/TargetOpcodes.h"
++#include "llvm/CodeGen/TargetPassConfig.h"
++#include "llvm/CodeGen/TargetSubtargetInfo.h"
++#include "llvm/Config/config.h"
++#include "llvm/IR/Function.h"
++#include "llvm/IR/InstrTypes.h"
++#include "llvm/IR/Module.h"
++#include "llvm/MC/TargetRegistry.h"
++#include "llvm/Support/Casting.h"
++#include "llvm/Support/CodeGenCoverage.h"
++#include "llvm/Support/CommandLine.h"
++#include "llvm/Support/Debug.h"
++#include "llvm/Support/ErrorHandling.h"
++#include "llvm/Support/TypeSize.h"
++#include "llvm/Support/raw_ostream.h"
++#include "llvm/Target/TargetMachine.h"
++#include "llvm/Transforms/Utils/PredicateInfo.h"
++#include <memory>
++#include <sstream>
++#include <string>
++#include <utility>
++#include <unordered_set>
++
++#include <vector>
++
++
++#define PURGE_DB false
++#define FORCE_ENABLE false
++// #define FORCE_ENABLE true
++#define DEBUG false  // TODO: use -debug flag of llvm
++#define NOOP false
++
++#define CDFG_STAGE CDFG_STAGE_3
++
++#define DEBUG_TYPE "cdfg-pass"
++
++using namespace llvm;
++
++// #define CDFG_ENABLE_DEFAULT true
++
++static cl::opt<std::string>
++    MemgraphHost("cdfg-memgraph-host", cl::init("localhost"),
++                   cl::desc("Hostname of Memgraph server"));
++static cl::opt<int>
++    MemgraphPort("cdfg-memgraph-port", cl::init(7687),
++                   cl::desc("Port of Memgraph server"));
++static cl::opt<int>
++    StageMask("cdfg-stage-mask", cl::init(CDFG_STAGE_3),
++                   cl::desc("Chooses ISel stages where pass is executed (1,2,4,8,16,32 or combinations)"));
++static cl::opt<bool>
++    MemgraphPurge("cdfg-memgraph-purge", cl::desc("Purge Memgraph database"));
++static cl::opt<std::string>
++    MemgraphSession("cdfg-memgraph-session", cl::init("default"),
++                   cl::desc("Session name to be added as node attribute"));
++static cl::opt<bool>
++    EnablePass("cdfg-enable", cl::desc("Enable CDFGPass"));
++
++bool is_numeric(const std::string &str)
++{
++    return std::all_of(str.begin(), str.end(), ::isdigit); // C++11
++}
++
++typedef enum OpType {NONE, INPUT, OUTPUT, OPERATOR, CONSTANT, LABEL} op_type_t;
++
++std::string op_type_to_str(op_type_t op_type) {
++  switch (op_type) {
++    case NONE:
++      return "none";
++    case INPUT:
++      return "input";
++    case OUTPUT:
++      return "output";
++    case OPERATOR:
++      return "operator";
++    case CONSTANT:
++      return "constant";
++    case LABEL:
++      return "label";
++    default:
++      return "unkown";
++  };
++  return "invalid";
++}
++
++std::string get_bb_name(MachineBasicBlock *bb) {
++    std::string str;
++    raw_string_ostream OS(str);
++    bb->printAsOperand(OS, false);
++    return OS.str();
++}
++
++template <typename LLVM_Type>
++std::string llvm_to_string(LLVM_Type *obj)
++{
++    std::string str;
++    raw_string_ostream OS(str);
++    OS << *obj << "\n";
++    return OS.str();
++}
++
++std::string reg_to_string(int Reg, const TargetRegisterInfo *TRI)
++{
++    std::string str;
++    raw_string_ostream OS(str);
++    OS << printReg(Reg, TRI);
++    return OS.str();
++}
++
++bool isUsedOutsideOfBlock(MachineInstr* MI, MachineBasicBlock* MBB, MachineRegisterInfo* MRI) {
++  for (const MachineOperand &MO : MI->uses()) {
++    if (MO.getType() == MachineOperand::MO_Register) {  // TODO: isReg
++      auto Reg = MO.getReg();
++      if (Reg.isVirtual() && Reg.isValid()) {
++        MachineInstr *MI_ = MRI->getVRegDef(Reg);
++        if (!MI_) continue;
++        MachineBasicBlock *ParentMBB = MI_->getParent();
++        if (ParentMBB != MBB) {
++          return true;
++        }
++      } else {
++        // TODO
++      }
++    }
++  }
++  return false;
++}
++
++bool isOutputForBasicBlock(MachineInstr* MI, MachineRegisterInfo* MRI) {
++  if (MI->mayStore()) {
++    return true;
++  }
++  MachineBasicBlock *MBB = MI->getParent();
++  // FIXME: broken as this flags nodes with MOs defined in other BBs
++	// if (isUsedOutsideOfBlock(MI, MBB, MRI)) {
++  //   llvm::outs() << "-> true (used outside)" << "\n";
++	// 	return true;
++  // }
++  for (MachineInstr &TermMI :
++       llvm::make_range(MBB->getFirstInstrTerminator(), MBB->instr_end())) {
++    if (TermMI.isReturn() || TermMI.isBranch()) {
++      for (const MachineOperand &MO : TermMI.operands()) {
++        if (MO.isReg()) {
++          auto Reg = MO.getReg();
++          if (Reg.isVirtual() && Reg.isValid()) {
++            MachineInstr *OpMI = MRI->getVRegDef(Reg);
++            if (OpMI == MI) {
++              return true;
++            }
++          } else {
++            // TODO
++          }
++        }
++      }
++    }
++  }
++  return false;
++}
++
++mg_session *connect_to_db(const char *host, uint16_t port)
++        {
++            mg_init();
++#if DEBUG
++            // printf("mgclient version: %s\n", mg_client_version());
++            llvm::outs() << "mgclient version: " << mg_client_version() << "\n";
++#endif
++
++            mg_session_params *params = mg_session_params_make();
++            if (!params)
++            {
++                // fprintf(stderr, "failed to allocate session parameters\n");
++                llvm::errs() << "failed to allocate session parameters\n";
++                exit(1);
++            }
++            mg_session_params_set_host(params, host);
++            mg_session_params_set_port(params, port);
++            mg_session_params_set_sslmode(params, MG_SSLMODE_DISABLE);
++
++            mg_session *session = NULL;
++            int status = mg_connect(params, &session);
++            mg_session_params_destroy(params);
++            if (status < 0)
++            {
++                // printf("failed to connect to Memgraph: %s\n", mg_session_error(session));
++                llvm::errs() << "failed to connect to Memgraph: " << mg_session_error(session) << "\n";
++                mg_session_destroy(session);
++                exit(1);
++            }
++            return session;
++        }
++
++  void disconnect(mg_session *session)
++  {
++      mg_session_destroy(session);
++      mg_finalize();
++  }
++
++
++
++  void exec_qeury(mg_session *session, const char *query)
++  {
++#if DEBUG
++      outs() << "query: " << query << "\n";
++#endif
++#if NOOP
++      return;  // skip pushing to db
++#endif
++      if (mg_session_run(session, query, NULL, NULL, NULL, NULL) < 0)
++      {
++          llvm::errs() << "failed to execute query: " << query << " mg error: " << mg_session_error(session) << "\n";
++          mg_session_destroy(session);
++          exit(1);
++      }
++      if (mg_session_pull(session, NULL))
++      {
++          llvm::errs() << "failed to pull results of the query: " << mg_session_error(session) << "\n";
++          mg_session_destroy(session);
++          exit(1);
++      }
++
++      int status = 0;
++      mg_result *result;
++      int rows = 0;
++      while ((status = mg_session_fetch(session, &result)) == 1)
++      {
++          rows++;
++      }
++
++      if (status < 0)
++      {
++          llvm::errs() << "error occurred during query execution: " << mg_session_error(session) << "\n";
++      }
++      else
++      {
++#if DEBUG
++          printf("query executed successfuly and returned %d rows\n", rows);
++#endif
++
++      }
++  }
++  std::string sanitize_str(std::string str) {
++      const std::string illegal_chars = "\n\"\\\'\t()[]{}~";
++      for (char c : illegal_chars) {
++          replace(str.begin(), str.end(), c, '_');
++      }
++      return str;
++  }
++
++  // void connect_bbs(mg_session *session, MachineBasicBlock *first_bb, MachineBasicBlock *second_bb, std::string f_name, std::string module_name)
++  // {
++  //     // std::string frist_bb_str = llvm_to_string(first_bb);
++  //     // std::string second_bb_str = llvm_to_string(second_bb);
++  //     // first_bb_str = sanitize_str(first_bb_str);
++  //     // second_bb_str = sanitize_str(second_bb__str);
++
++  //     // MERGE: create if not exist else match
++  //     std::string store_first = "MERGE (first_bb {name: '" + get_bb_name(first_bb) + "', func_name: '" + f_name + "', basic_block: '" + get_bb_name(first_bb) + "', module_name: '" + module_name + "'})";
++  //     std::string set_frist_code = " SET first_bb.code =  '" + sanitize_str(llvm_to_string(first_bb)) + "'";
++  //     std::string store_second = " MERGE (second_bb {name: '" + get_bb_name(second_bb) + "', func_name: '" + f_name + "', basic_block: '" + get_bb_name(second_bb) + "', module_name: '" + module_name + "'})";
++  //     std::string set_second_code = " SET second_bb.code =  '" + sanitize_str(llvm_to_string(second_bb)) + "'";
++  //     std::string rel = " MERGE (first_bb)-[:CFG]->(second_bb);";
++  //     std::string qry = store_first + set_frist_code + store_second + set_second_code + rel;
++  //     exec_qeury(session, qry.c_str());
++  // }
++  void create_bb(mg_session *session, MachineBasicBlock *bb, std::string f_name, std::string module_name, int stage)
++  {
++      int bb_id = -1;
++      if (auto bbid = bb->getBBID())
++          bb_id = bbid->BaseID;
++      std::string store_bb = "MERGE (bb:BB {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + get_bb_name(bb) + "', bb_id: " + std::to_string(bb_id) + ", func_name: '" + f_name + "', module_name: '" + module_name + "', kind: 'basicblock'})";
++      std::string set_bb_code = " SET bb.bb_clone_id = " + std::to_string(bb->getBBID()->CloneID) + ", bb.bb_identity_version = 1, bb.code =  '" + sanitize_str(llvm_to_string(bb)) + "'";
++      std::string qry = store_bb + set_bb_code;
++      exec_qeury(session, qry.c_str());
++  }
++
++  void connect_bbs(mg_session *session, MachineBasicBlock *first_bb, MachineBasicBlock *second_bb, std::string f_name, std::string module_name, int stage)
++  {
++      // MERGE: create if not exist else match
++      int first_bb_id = -1;
++      int second_bb_id = -1;
++      if (auto bbid = first_bb->getBBID())
++          first_bb_id = bbid->BaseID;
++      if (auto bbid = second_bb->getBBID())
++          second_bb_id = bbid->BaseID;
++      std::string match_first = "MATCH (first_bb:BB {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + get_bb_name(first_bb) + "', bb_id: " + std::to_string(first_bb_id) + ", func_name: '" + f_name + "', module_name: '" + module_name + "', kind: 'basicblock'})";
++      std::string match_second = "MATCH (second_bb:BB {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + get_bb_name(second_bb) + "', bb_id: " + std::to_string(second_bb_id) + ", func_name: '" + f_name + "', module_name: '" + module_name + "', kind: 'basicblock'})";
++      std::string rel = " MERGE (first_bb)-[:CFG]->(second_bb);";
++      std::string qry = match_first + match_second + rel;
++      exec_qeury(session, qry.c_str());
++  }
++
++
++
++  // void connect_insts(mg_session *session, std::string src_str, std::string src_op_name, std::string dst_str, std::string dst_op_name, std::string bb_name, std::string f_name, std::string module_name)
++  // void connect_insts(mg_session *session, std::string src_str, std::string src_op_name, std::string dst_str, std::string dst_op_name, std::string parent_bb_name, std::string bb_name, std::string f_name, std::string module_name, std::string rel_type)
++  // {
++  //     // MERGE: create if not exist else match
++  //     src_str = sanitize_str(src_str);
++  //     dst_str = sanitize_str(dst_str);
++
++  //     std::string store_src = "MERGE (src_inst {name: '" + src_op_name + "', inst: '" + src_str + "', func_name: '" + f_name + "', basic_block: '" + parent_bb_name + "', module_name: '" + module_name + "'})";
++  //     std::string store_dst = "MERGE (dst_inst {name: '" + dst_op_name + "', inst: '" + dst_str + "', func_name: '" + f_name + "', basic_block: '" + bb_name + "', module_name: '" + module_name + "'})";
++  //     std::string rel = "MERGE (src_inst)-[:" + rel_type + "]->(dst_inst);";
++  //     std::string qry = store_src + '\n' + store_dst + '\n' + rel + '\n';
++  //     exec_qeury(session, qry.c_str());
++  // }
++  void create_inst(mg_session *session, std::string code, std::string op_name, std::string op_type_str, std::string label_type, std::string f_name, std::string bb_name, int bb_id, std::string module_name, int stage)
++  {
++      code = sanitize_str(code);
++
++      std::string store_inst = "MERGE (inst:INSTR {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + op_name + "', inst: '" + code + "', func_name: '" + f_name + "', basic_block: '" + bb_name + "', bb_id: " + std::to_string(bb_id) + ", module_name: '" + module_name + "', kind: 'instruction', op_type: '" + op_type_str + "', label_type: '" + label_type + "'})";
++      std::string qry = store_inst + '\n';
++      exec_qeury(session, qry.c_str());
++  }
++  void add_inst_preds(mg_session *session, std::string code, std::string op_name, std::string op_type_str, std::string f_name, std::string bb_name, int bb_id, std::string module_name, int stage, bool mayLoad, bool mayStore, bool isPseudo, bool isReturn, bool isCall, bool isTerminator, bool isBranch, bool hasUnmodeledSideEffects, bool isCommutable)
++  {
++      code = sanitize_str(code);
++
++      std::string match_inst = "MATCH (inst:INSTR {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + op_name + "', inst: '" + code + "', func_name: '" + f_name + "', basic_block: '" + bb_name + "', bb_id: " + std::to_string(bb_id) + ", module_name: '" + module_name + "', kind: 'instruction', op_type: '" + op_type_str + "'})\n";
++      std::string set_may_load = "SET inst.mayLoad = " + std::string(mayLoad ? "true": "false") + "\n";
++      std::string set_may_store = "SET inst.mayStore = " + std::string(mayStore ? "true": "false") + "\n";
++      std::string set_is_pseudo = "SET inst.isPseudo = " + std::string(isPseudo ? "true": "false") + "\n";
++      std::string set_is_return = "SET inst.isReturn = " + std::string(isReturn ? "true": "false") + "\n";
++      std::string set_is_call = "SET inst.isCall = " + std::string(isCall ? "true": "false") + "\n";
++      std::string set_is_terminator = "SET inst.isTerminator = " + std::string(isTerminator ? "true": "false") + "\n";
++      std::string set_is_branch = "SET inst.isBranch = " + std::string(isBranch ? "true": "false") + "\n";
++      std::string set_has_unmodeled_side_effects = "SET inst.hasUnmodeledSideEffects = " + std::string(hasUnmodeledSideEffects ? "true": "false") + "\n";
++      std::string set_is_commutable = "SET inst.isCommutable = " + std::string(isCommutable ? "true": "false") + "\n";
++      std::string qry = match_inst + set_may_load + set_may_store + set_is_pseudo + set_is_return + set_is_call + set_is_terminator + set_is_branch + set_has_unmodeled_side_effects + set_is_commutable;
++      exec_qeury(session, qry.c_str());
++  }
++
++  void add_inst_reg(mg_session *session, std::string code, std::string op_name, std::string op_type_str, std::string label_type, std::string f_name, std::string bb_name, int bb_id, std::string module_name, int stage, std::string out_reg_name, std::string out_reg_type, std::string out_reg_class, std::string out_reg_size)
++  {
++      code = sanitize_str(code);
++
++      std::string match_inst = "MATCH (inst:INSTR {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + op_name + "', inst: '" + code + "', func_name: '" + f_name + "', basic_block: '" + bb_name + "', bb_id: " + std::to_string(bb_id) + ", module_name: '" + module_name + "', kind: 'instruction', op_type: '" + op_type_str + "', label_type: '" + label_type + "'})\n";
++      std::string set_name = "SET inst.out_reg_name = '" + out_reg_name + "'\n";
++      std::string set_type = "SET inst.out_reg_type = '" + out_reg_type + "'\n";
++      std::string set_class = "SET inst.out_reg_class = '" + out_reg_class + "'\n";
++      std::string set_size = "SET inst.out_reg_size = '" + out_reg_size + "'\n";
++      std::string qry = match_inst + set_name + set_type + set_class + set_size;
++      exec_qeury(session, qry.c_str());
++  }
++
++  void connect_insts(mg_session *session, std::string src_str, std::string src_op_name, std::string dst_str, std::string dst_op_name, std::string f_name, std::string src_bb_name, std::string dst_bb_name, int src_bb_id, int dst_bb_id, std::string module_name, int stage, std::string rel_type, int op_idx, int out_idx, std::string op_reg_name, std::string op_reg_type, std::string op_reg_class, std::string op_reg_size, bool op_reg_single_use)
++  {
++      // MERGE: create if not exist else match
++      src_str = sanitize_str(src_str);
++      dst_str = sanitize_str(dst_str);
++
++      std::string match_src = "MATCH (src_inst:INSTR {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + src_op_name + "', inst: '" + src_str + "', func_name: '" + f_name + "', basic_block: '" + src_bb_name + "', bb_id: " + std::to_string(src_bb_id) + ", module_name: '" + module_name + "', kind: 'instruction'})";
++      std::string match_dst = "MATCH (dst_inst:INSTR {session: '" + MemgraphSession + "', stage: " + std::to_string(stage) + ", name: '" + dst_op_name + "', inst: '" + dst_str + "', func_name: '" + f_name + "', basic_block: '" + dst_bb_name + "', bb_id: " + std::to_string(dst_bb_id) + ", module_name: '" + module_name + "', kind: 'instruction'})";
++      std::string rel = "MERGE (src_inst)-[:" + rel_type + "{op_idx: " + std::to_string(op_idx) +  ", out_idx: " + std::to_string(out_idx) + ", op_reg_name: '" + op_reg_name + "', op_reg_type: '" + op_reg_type + "', op_reg_class: '" + op_reg_class + "', op_reg_size: '" + op_reg_size + "', op_reg_single_use: " + (op_reg_single_use ? "true" : "false") + "}]->(dst_inst);";
++      std::string qry = match_src + '\n' + match_dst + '\n' + rel + '\n';
++      exec_qeury(session, qry.c_str());
++  }
++
++
++
++char CDFGPass::ID = 0;
++INITIALIZE_PASS_BEGIN(
++    CDFGPass, DEBUG_TYPE,
++    "Generate CDFG and store in memgraph platform", false,
++    false)
++INITIALIZE_PASS_DEPENDENCY(TargetPassConfig)
++INITIALIZE_PASS_DEPENDENCY(GISelKnownBitsAnalysis)
++INITIALIZE_PASS_DEPENDENCY(ProfileSummaryInfoWrapperPass)
++INITIALIZE_PASS_DEPENDENCY(LazyBlockFrequencyInfoPass)
++INITIALIZE_PASS_END(
++    CDFGPass, DEBUG_TYPE,
++    "Generate CDFG and store in memgraph platform", false,
++    false)
++
++CDFGPass::CDFGPass(CodeGenOptLevel OL, int Stage)
++    : MachineFunctionPass(ID), OptLevel(OL), CurrentStage(Stage) {}
++
++// In order not to crash when calling getAnalysis during testing with -run-pass
++// we use the default opt level here instead of None, so that the addRequired()
++// calls are made in getAnalysisUsage().
++CDFGPass::CDFGPass(int Stage)
++    : MachineFunctionPass(ID), OptLevel(CodeGenOptLevel::Default), CurrentStage(Stage) {}
++
++void CDFGPass::getAnalysisUsage(AnalysisUsage &AU) const {
++  // AU.addRequired<TargetPassConfig>();
++  // AU.addRequired<GISelKnownBitsAnalysis>();
++  // AU.addPreserved<GISelKnownBitsAnalysis>();
++  AU.setPreservesAll();
++
++  // if (OptLevel != CodeGenOptLevel::None) {
++  //   AU.addRequired<ProfileSummaryInfoWrapperPass>();
++  //   LazyBlockFrequencyInfoPass::getLazyBFIAnalysisUsage(AU);
++  // }
++  // getSelectionDAGFallbackAnalysisUsage(AU);
++  MachineFunctionPass::getAnalysisUsage(AU);
++}
++
++
++bool CDFGPass::runOnMachineFunction(MachineFunction &MF) {
++  // Diagnostics do not require enabling database export or a live Memgraph.
++  DEBUG_WITH_TYPE("bbid-trace", {
++    for (const auto &BB : MF) {
++      dbgs() << "BBIDTRACE event=cdfg-stage function=" << MF.getName()
++             << " stage=" << CurrentStage
++             << " requested=" << (EnablePass || FORCE_ENABLE)
++             << " selected=" << ((CurrentStage & StageMask) != 0)
++             << " failed_isel=" << MF.getProperties().hasProperty(
++                    MachineFunctionProperties::Property::FailedISel)
++             << " mbb=" << BB.getNumber();
++      if (auto ID = BB.getBBID())
++        dbgs() << " base=" << ID->BaseID << " clone=" << ID->CloneID;
++      else
++        dbgs() << " base=none clone=none";
++      dbgs() << " instructions=" << BB.size() << "\n";
++    }
++  });
++
++  if (!EnablePass && !FORCE_ENABLE) {
++    return true;  // TODO: return false?
++  }
++  if ((CurrentStage & StageMask) == 0) {
++#if DEBUG
++    llvm::outs() << "Skipping CDFGPass for stage " << CurrentStage << "." << "\n";
++#endif
++    return true;  // TODO: return false?
++  }
++  std::string f_name = MF.getName().str();
++  const Module *M = nullptr;
++  const llvm::Function *F = nullptr;
++  F = &MF.getFunction();
++  M = F->getParent();
++  // std::string module_name = "moduleABC";
++  std::string module_name = M->getName().str();
++  if (MF.getProperties().hasProperty(
++     MachineFunctionProperties::Property::FailedISel)) {  // check non-gisel?
++     llvm::errs() << "skipping CDFGPass in func '" << f_name << "' due to gisel failure" << "\n";
++     return true;
++  }
++  // A base ID alone cannot distinguish path clones. Do not export a graph
++  // that downstream ELF/profile joins could silently identify incorrectly.
++  for (const auto &BB : MF) {
++    auto ID = BB.getBBID();
++    if (!ID)
++      report_fatal_error("CDFG export needs fixed BB IDs; enable -fbasic-block-sections=labels");
++    if (ID->CloneID != 0)
++      report_fatal_error("CDFG export cannot map nonzero BB clone IDs to the ELF base-ID map");
++  }
++  const TargetInstrInfo *TII = MF.getSubtarget().getInstrInfo();  // TODO: move to constructor?
++#if DEBUG
++  llvm::outs() << "Running CDFGPass on function '" << f_name << "' of module '" << module_name << "'" << "\n";
++#endif
++  MachineRegisterInfo &MRI = MF.getRegInfo();
++  const TargetRegisterInfo *TRI = MF.getSubtarget().getRegisterInfo();
++  mg_session *session = connect_to_db(MemgraphHost.c_str(), MemgraphPort);
++  if (MemgraphPurge || PURGE_DB){
++      auto del = "MATCH (n) DETACH DELETE n;";
++      exec_qeury(session, del);
++  }
++  exec_qeury(session, "CALL schema.assert({}, {}, {}, true) YIELD action, key, keys, label, unique RETURN action, key, keys, label, unique;");
++  exec_qeury(session, "CREATE INDEX ON :INSTR");
++  exec_qeury(session, "CREATE INDEX ON :INSTR(name)");
++  exec_qeury(session, "CREATE INDEX ON :INSTR(inst)");
++  exec_qeury(session, "CREATE INDEX ON :INSTR(func_name)");
++  exec_qeury(session, "CREATE INDEX ON :INSTR(session)");
++  exec_qeury(session, "CREATE INDEX ON :INSTR(stage)");
++  exec_qeury(session, "CREATE INDEX ON :BB");
++  exec_qeury(session, "CREATE INDEX ON :BB(name)");
++  exec_qeury(session, "CREATE INDEX ON :BB(func_name)");
++  exec_qeury(session, "CREATE INDEX ON :BB(session)");
++  exec_qeury(session, "CREATE INDEX ON :BB(stage)");
++  for (MachineBasicBlock &bb : MF) {
++    create_bb(session, &bb, f_name, module_name, CurrentStage);
++  }
++  for (MachineBasicBlock &bb : MF) {
++    std::string bb_name = get_bb_name(&bb);
++    std::string parent_bb_name = bb_name;
++    int bb_id = -1;
++    if (auto bbid = bb.getBBID())
++      bb_id = bbid->BaseID;
++    int parent_bb_id = bb_id;
++#if DEBUG
++    // llvm::outs() << "bb_name=" << bb_name << std::endl;
++#endif
++    for (MachineBasicBlock *suc_bb : successors(&bb)) {
++      connect_bbs(session, &bb, suc_bb, f_name, module_name, CurrentStage);
++    }
++    for (auto LI : bb.liveins()) {
++        std::string lir = reg_to_string(LI.PhysReg, TRI);
++        // llvm::outs() << "lir=" << lir << std::endl;
++        // TODO: LaneMask?
++    }
++    std::unordered_set<MachineInstr*> forcedOutputs;
++    op_type_t op_type = NONE;
++    for (MachineInstr &MI : bb) {
++      std::string inst_str = llvm_to_string(&MI);
++      std::string name = std::string(TII->getName(MI.getOpcode()));
++      // llvm::outs() << "name=" << name << "\n";
++      if (name == "DBG_VALUE") continue;
++      if (name == "DBG_VALUE_LIST") continue;
++      // llvm::outs() << "> " << inst_str << "\n";
++      if (MI.isTerminator()) {
++        op_type = OUTPUT;
++      } else if (name == "PHI" || name == "G_PHI") {
++        op_type = INPUT;
++        // for (const MachineOperand &MO : MI.operands()) {
++        for (const MachineOperand &MO : MI.uses()) {
++          if (MO.getType() == MachineOperand::MO_Register) {
++            auto Reg = MO.getReg();
++            if (Reg.isVirtual()) {
++              MachineInstr *MI_ = MRI.getVRegDef(Reg);
++              // llvm::outs() << "MI_= " << llvm_to_string(MI_) << "\n";
++              if (!MI_) continue;
++              std::string name2 = std::string(TII->getName(MI_->getOpcode()));
++              MachineBasicBlock *ParentMBB = MI_->getParent();
++              std::string ParentMBB_name = get_bb_name(ParentMBB);
++              if (ParentMBB == &bb) {
++                // if (name2 == "OR") {
++                //   llvm::outs() << "HEYHEY!" << "\n";
++                //   llvm::outs() << "HEY!" << "\n";
++                //   llvm::outs() << "MI= " << llvm_to_string(&MI) << "\n";
++                //   llvm::outs() << "MO= " << llvm_to_string(&MO) << "\n";
++                //   llvm::outs() << "Reg= " << llvm_to_string(&Reg) << "\n";
++                //   llvm::outs() << "ParentMBB= " << ParentMBB << "\n";
++                //   llvm::outs() << "bb= " << &bb << "\n";
++                //   llvm::outs() << "bb_name= " << bb_name << "\n";
++                //   llvm::outs() << "ParentMBB_name= " << ParentMBB_name << "\n";
++                //   llvm::outs() << "MI_= " << llvm_to_string(MI_) << "\n";
++                // }
++                forcedOutputs.insert(MI_);
++              }
++            }
++          }
++        }
++      } else if (auto iter = forcedOutputs.find(&MI); iter != forcedOutputs.end()) {
++        // if (name == "OR") {
++        //   llvm::outs() << "OR: forced out" << "\n";
++        // }
++        op_type = OUTPUT;
++        forcedOutputs.erase(&MI);
++      } else if(isOutputForBasicBlock(&MI, &MRI)) {
++        op_type = OUTPUT;
++      } else {
++        op_type = OPERATOR;
++      }
++      std::string op_type_str = op_type_to_str(op_type);
++#if DEBUG
++      llvm::outs() << "op_type_str=" << op_type_str << "\n";
++#endif
++      create_inst(session, inst_str, name, op_type_str, "", f_name, bb_name, bb_id, module_name, CurrentStage);
++      bool mayLoad = MI.mayLoad();
++      bool mayStore = MI.mayStore();
++      bool isPseudo = MI.isPseudo();
++      bool isReturn = MI.isReturn();
++      bool isCall = MI.isCall();
++      bool isTerminator = MI.isTerminator();
++      bool isBranch = MI.isBranch();
++      bool hasUnmodeledSideEffects = MI.hasUnmodeledSideEffects();
++      bool isCommutable = MI.isCommutable();
++      add_inst_preds(session, inst_str, name, op_type_str, f_name, bb_name, bb_id, module_name, CurrentStage, mayLoad, mayStore, isPseudo, isReturn, isCall, isTerminator, isBranch, hasUnmodeledSideEffects, isCommutable);
++      std::string out_reg_name = "unknown";
++      std::string out_reg_type = "unknown";
++      std::string out_reg_class = "unknown";
++      std::string out_reg_size = "unknown";
++      for (const MachineOperand &MO : MI.defs()) {
++        if (MO.isReg()) {
++          auto Reg2 = MO.getReg();
++          if (!Reg2.isValid()) continue;
++          std::string temp;
++          raw_string_ostream tmpstream(temp);
++          tmpstream << printReg(Reg2, TRI, 0, &MRI);
++          out_reg_name = tmpstream.str();
++          LLT ty2 = MRI.getType(Reg2);
++          std::string temp2;
++          raw_string_ostream tmpstream2(temp2);
++          tmpstream2 << ty2;
++          out_reg_type = tmpstream2.str();
++          if (Reg2.isVirtual()) {
++            std::string temp3;
++            raw_string_ostream tmpstream3(temp3);
++            tmpstream3 << printRegClassOrBank(Reg2, MRI, TRI);
++            out_reg_class = tmpstream3.str();
++          }
++          auto reg_size = TRI->getRegSizeInBits(Reg2, MRI);
++          std::string temp4;
++          raw_string_ostream tmpstream4(temp4);
++          reg_size.print(tmpstream4);
++          out_reg_size = tmpstream4.str();
++          // if (Reg2.isVirtual()) {
++          // llvm::outs() << "printRegClassOrBank2=" << printRegClassOrBank(Reg2, MRI, TRI) << "\n";
++          // }
++        }
++        break; // TODO: support multiple out types
++      }
++      add_inst_reg(session, inst_str, name, op_type_str, "", f_name, bb_name, bb_id, module_name, CurrentStage, out_reg_name, out_reg_type, out_reg_class, out_reg_size);
++      if (MI.getNumOperands() == 0) continue;
++#if DEBUG
++      llvm::outs() << "instr_str=" << inst_str << "\n";
++#endif
++      int op_idx = 0;
++      int out_idx = -1;  // -1 is unknown (if not a virtual_reg), default to 0?
++      // TODO: change to use_idx, def_idx
++      for (const MachineOperand &MO : MI.uses()) {
++        bool isLabelOp = false;
++#if DEBUG
++        llvm::outs() << "MO" << "\n";
++#endif
++        op_type_t op_type_ = NONE;
++        std::string label_type = "";
++        std::string src_str = llvm_to_string(&MO);
++        std::string src_op_name = "Const";
++        std::string src_reg_name = "unknown";
++        std::string src_reg_type = "unknown";
++        std::string src_reg_class = "unknown";
++        std::string src_reg_size = "unknown";
++        bool src_reg_single_use = false;
++
++        switch (MO.getType()) {
++          case MachineOperand::MO_Register: {
++            // llvm::outs() << "=> REG" << "\n";
++            auto Reg = MO.getReg();
++            if (!Reg.isValid()) continue;
++
++            src_reg_single_use = true;
++            for (MachineRegisterInfo::use_instr_nodbg_iterator I = MRI.use_instr_nodbg_begin(Reg),
++                   E = MRI.use_instr_nodbg_end(); I != E; ++I) {
++              MachineInstr *UseMI = &*I;
++              if (UseMI) {
++                // llvm::outs() << "UseMI=" << *UseMI << "\n";
++                // src_reg_uses++;
++                if (UseMI != &MI) {
++                  src_reg_single_use = false;
++                  break;
++                }
++              }
++            }
++            std::string temp_;
++            raw_string_ostream tmpstream_(temp_);
++            tmpstream_ << printReg(Reg, TRI, 0, &MRI);
++            src_reg_name = tmpstream_.str();
++            LLT ty = MRI.getType(Reg);
++            std::string temp2_;
++            raw_string_ostream tmpstream2_(temp2_);
++            tmpstream2_ << ty;
++            src_reg_type = tmpstream2_.str();
++            if (Reg.isVirtual()) {
++
++                std::string temp;
++                raw_string_ostream tmpstream(temp);
++                tmpstream << printRegClassOrBank(Reg, MRI, TRI);
++                src_reg_class = tmpstream.str();
++
++                auto reg_size = TRI->getRegSizeInBits(Reg, MRI);
++                std::string temp2;
++                raw_string_ostream tmpstream2(temp2);
++                reg_size.print(tmpstream2);
++                src_reg_size = tmpstream2.str();
++
++                MachineInstr *MI_ = MRI.getVRegDef(Reg);
++                if (!MI_) continue;
++                out_idx = MI_->findRegisterDefOperandIdx(Reg, TRI);
++                MachineBasicBlock *ParentMBB = MI_->getParent();
++                if (ParentMBB != &bb) {
++                  op_type_ = INPUT;
++                }
++                parent_bb_name = get_bb_name(ParentMBB);
++                if (auto bbid = ParentMBB->getBBID())
++                    parent_bb_id = bbid->BaseID;
++                src_str = llvm_to_string(MI_);
++                src_op_name = std::string(TII->getName(MI_->getOpcode()));
++                // llvm::outs() << "src_op_name=" << name << "\n";
++                // llvm::outs() << ">> " << src_str << "\n";
++            } else {
++                bool is_system_reg = !is_numeric(src_reg_name.substr(1));
++                if (!is_system_reg) {
++                    auto reg_size = TRI->getRegSizeInBits(Reg, MRI);
++                    std::string temp2;
++                    raw_string_ostream tmpstream2(temp2);
++                    reg_size.print(tmpstream2);
++                    src_reg_size = tmpstream2.str();
++                }
++
++                src_str = llvm_to_string(&MO);
++                std::string reg_name = reg_to_string(Reg, TRI);
++                // src_op_name = "PhysReg";
++                src_op_name = reg_name;
++                op_type_ = INPUT;
++            }
++            break;
++            // for (MachineInstr &RI : MRI.def_instructions(reg)) {
++            //   src_str = llvm_to_string(&RI);
++            //   src_op_name = std::string(TII->getName(RI.getOpcode()));
++            //   llvm::outs() << "src_op_name=" << name << "\n";
++            //   // llvm::outs() << "   " << inst_str;
++            //   llvm::outs() << ">> " << src_str << "\n";
++            // }
++          }
++          case MachineOperand::MO_Immediate: {
++            // llvm::outs() << "=> IMM" << "\n";
++            auto Imm = MO.getImm();
++            // llvm::outs() << "Imm=" << Imm << "\n";
++            // isConstOp = true;
++            op_type_ = CONSTANT;
++            break;
++          }
++          case MachineOperand::MO_CImmediate: {
++            // llvm::outs() << "=> CIMM" << "\n";
++            auto Imm = MO.getCImm();
++            // llvm::outs() << "Imm=" << Imm << "\n";
++            // isConstOp = true;
++            op_type_ = CONSTANT;
++            break;
++          }
++          case MachineOperand::MO_FPImmediate: {
++            // llvm::outs() << "=> FPIMM" << "\n";
++            auto Imm = MO.getFPImm();
++            // llvm::outs() << "Imm=" << Imm << "\n";
++            // isConstOp = true;
++            op_type_ = CONSTANT;
++            break;
++          }
++          case MachineOperand::MO_GlobalAddress: {
++            // llvm::outs() << "=> GA" << "\n";
++            // isLabelOp = true;
++            src_op_name = src_str;
++            label_type = "GA";
++            // op_type_ = CONSTANT;
++            op_type_ = LABEL;
++            break;
++          }
++          case MachineOperand::MO_MachineBasicBlock: {
++            // llvm::outs() << "=> MBB" << "\n";
++            // isLabelOp = true;
++            src_op_name = src_str;
++            label_type = "MBB";
++            // op_type_ = CONSTANT;
++            op_type_ = LABEL;
++            break;
++          }
++          case MachineOperand::MO_FrameIndex: {  // TODO: huffbench
++            // llvm::outs() << "=> FI" << "\n";
++            // llvm_unreachable("Not Implemented!");
++            src_op_name = src_str;
++            // isLabelOp = true;
++            label_type = "FI";
++            op_type_ = LABEL;
++            break;
++          }
++          case MachineOperand::MO_ConstantPoolIndex: {
++            // llvm::outs() << "=> CPI" << "\n";
++            // llvm_unreachable("Not Implemented!");
++            isLabelOp = true;
++            break;
++          }
++          case MachineOperand::MO_TargetIndex: {
++            // llvm::outs() << "=> TI" << "\n";
++            llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_JumpTableIndex: {
++            // llvm::outs() << "=> JTI" << "\n";
++            // llvm_unreachable("Not Implemented!");
++            isLabelOp = true;
++            break;
++          }
++          case MachineOperand::MO_ExternalSymbol: {
++            // llvm::outs() << "=> ES" << "\n";
++            isLabelOp = true;
++            // llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_BlockAddress: {
++            llvm::outs() << "=> BA" << "\n";
++            llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_RegisterMask: {  // TODO: edn, matmult-int, md5sum
++            // llvm::outs() << "=> RM" << "\n";
++            isLabelOp = true;
++            // llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_RegisterLiveOut: {
++            llvm::outs() << "=> RLO" << "\n";
++            llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_MCSymbol: {
++            // llvm::outs() << "=> MCS" << "\n";
++            // llvm_unreachable("Not Implemented!");
++            isLabelOp = true;  // TODO: add label op_type?
++            break;
++          }
++          case MachineOperand::MO_DbgInstrRef: {
++            llvm::outs() << "=> DIR" << "\n";
++            llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_CFIIndex: {
++            llvm::outs() << "=> CFII" << "\n";
++            llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_Metadata: {
++            // llvm::outs() << "=> MD" << "\n";
++            // llvm_unreachable("Not Implemented!");
++            continue;
++            break;
++          }
++          case MachineOperand::MO_IntrinsicID: {
++            llvm::outs() << "=> IID" << "\n";
++            llvm_unreachable("Not Implemented!");
++            break;
++          }
++          case MachineOperand::MO_Predicate: {
++            // llvm::outs() << "=> PC" << "\n";
++            // llvm_unreachable("Not Implemented!");
++            isLabelOp = true;
++            break;
++          }
++          case MachineOperand::MO_ShuffleMask: {
++            llvm::outs() << "=> SM" << "\n";
++            llvm_unreachable("Not Implemented!");
++            break;
++          }
++          default: {
++            llvm::outs() << "DEFAULT" << "\n";
++            llvm_unreachable("Not Implemented!");
++          }
++        }
++        if (isLabelOp) {
++#if DEBUG
++          llvm::outs() << "skip label" << "\n";
++#endif
++          continue;
++        }
++        // if (src_str == "") src_str = llvm_to_string(&MO);
++        // llvm::outs() << "MO=?" << "\n";
++        // llvm::outs() << "MO=" << MO << "\n";
++        // llvm::outs() << "MO=" << MO << "\n";
++        // break;
++        // MachineInstr *src_inst = dyn_cast<MachineInstr>(MO);
++        // connect_insts(session, src_str, src_op_name, inst_str, name, bb_name, f_name, module_name);
++        std::string op_type_str_ = op_type_to_str(op_type_);
++#if DEBUG
++        llvm::outs() << "op_type_str_=" << op_type_str_ << "\n";
++        llvm::outs() << "src_reg_name=" << src_reg_name << "\n";
++        llvm::outs() << "src_reg_type=" << src_reg_type << "\n";
++        llvm::outs() << "src_reg_class=" << src_reg_class << "\n";
++        llvm::outs() << "src_reg_size=" << src_reg_size << "\n";
++        llvm::outs() << "src_reg_single_use=" << src_reg_single_use << "\n";
++#endif
++        bool crossBBMode = false;
++        // bool crossBBMode = true;
++        if (crossBBMode) {
++          if (parent_bb_name != bb_name) {
++            connect_insts(session, src_str, src_op_name, inst_str, name, f_name, parent_bb_name, bb_name, parent_bb_id, bb_id, module_name, CurrentStage, "CROSS", op_idx, out_idx, src_reg_name, src_reg_type, src_reg_class, src_reg_size, src_reg_single_use);
++          } else {
++            connect_insts(session, src_str, src_op_name, inst_str, name, f_name, bb_name, bb_name, bb_id, bb_id, module_name, CurrentStage, "DFG", op_idx, out_idx, src_reg_name, src_reg_type, src_reg_class, src_reg_size, src_reg_single_use);
++          }
++        } else {
++          if (op_type_ == INPUT || op_type_ == CONSTANT || op_type_ == LABEL) {
++            // TODO: create_label, create_const?
++            create_inst(session, src_str, src_op_name, op_type_str_, label_type, f_name, bb_name, bb_id, module_name, CurrentStage);
++            add_inst_reg(session, src_str, src_op_name, op_type_str_, label_type, f_name, bb_name, bb_id, module_name, CurrentStage, src_reg_name, src_reg_type, src_reg_class, src_reg_size);
++          }
++          connect_insts(session, src_str, src_op_name, inst_str, name, f_name, bb_name, bb_name, bb_id, bb_id, module_name, CurrentStage, "DFG", op_idx, out_idx, src_reg_name, src_reg_type, src_reg_class, src_reg_size, src_reg_single_use);
++        }
++        // if (MO.isReg()) {
++        //   auto reg = MO.getReg();
++        //   llvm::outs() << "IS REG" << "\n";
++        //   // llvm::outs() << "reg=" << reg << "\n";
++
++        // } else {
++
++        // }
++        op_idx++;
++      }
++    }
++  }
++  return true;
++}
+diff --git a/llvm/lib/CodeGen/GlobalISel/CMakeLists.txt b/llvm/lib/CodeGen/GlobalISel/CMakeLists.txt
+index 54ac7f72011a..64a52b06e978 100644
+--- a/llvm/lib/CodeGen/GlobalISel/CMakeLists.txt
++++ b/llvm/lib/CodeGen/GlobalISel/CMakeLists.txt
+@@ -1,4 +1,15 @@
++option(ENABLE_CDFG_PASS "Enable the CDFG pass (requires mgclient)" OFF)
++
++set(EXTRA_GISEL_SRCS "")
++
++if(ENABLE_CDFG_PASS)
++  list(APPEND EXTRA_GISEL_SRCS CDFGPass.cpp)
++else()
++  list(APPEND LLVM_OPTIONAL_SOURCES CDFGPass.cpp)
++endif()
++
+ add_llvm_component_library(LLVMGlobalISel
++  ${EXTRA_GISEL_SRCS}
+   CSEInfo.cpp
+   GISelKnownBits.cpp
+   CSEMIRBuilder.cpp
+@@ -28,7 +39,6 @@ add_llvm_component_library(LLVMGlobalISel
+ 
+   ADDITIONAL_HEADER_DIRS
+   ${LLVM_MAIN_INCLUDE_DIR}/llvm/CodeGen/GlobalISel
+-
+   DEPENDS
+   intrinsics_gen
+ 
+@@ -43,3 +53,14 @@ add_llvm_component_library(LLVMGlobalISel
+   Target
+   TransformUtils
+   )
++
++
++if(ENABLE_CDFG_PASS)
++  find_package(mgclient REQUIRED)
++  TARGET_INCLUDE_DIRECTORIES(LLVMGlobalISel PUBLIC
++    ${MGCLIENT_INCLUDE_DIRS}
++  )
++  target_link_libraries(LLVMGlobalISel PUBLIC mgclient)
++  target_compile_definitions(LLVMGlobalISel PUBLIC HAS_CDFG_PASS)
++  target_compile_definitions(LLVMCodeGen PUBLIC HAS_CDFG_PASS)
++endif()
+diff --git a/llvm/lib/CodeGen/GlobalISel/GIMatchTableExecutor.cpp b/llvm/lib/CodeGen/GlobalISel/GIMatchTableExecutor.cpp
+index 26752369a771..3d16bdc814a0 100644
+--- a/llvm/lib/CodeGen/GlobalISel/GIMatchTableExecutor.cpp
++++ b/llvm/lib/CodeGen/GlobalISel/GIMatchTableExecutor.cpp
+@@ -29,9 +29,19 @@ GIMatchTableExecutor::GIMatchTableExecutor() = default;
+ bool GIMatchTableExecutor::isOperandImmEqual(const MachineOperand &MO,
+                                              int64_t Value,
+                                              const MachineRegisterInfo &MRI,
+-                                             bool Splat) const {
++                                             bool Splat,
++                                             bool LookThroughBarrier) const {
+   if (MO.isReg() && MO.getReg()) {
+-    if (auto VRegVal = getIConstantVRegValWithLookThrough(MO.getReg(), MRI))
++    // The barrier prevents folding during optimization, but does not change
++    // the value seen by instruction-selection immediate predicates.
++    Register Reg = MO.getReg();
++    while (LookThroughBarrier && Reg.isVirtual()) {
++      MachineInstr *Def = getDefIgnoringCopies(Reg, MRI);
++      if (!Def || Def->getOpcode() != TargetOpcode::G_CONSTANT_FOLD_BARRIER)
++        break;
++      Reg = Def->getOperand(1).getReg();
++    }
++    if (auto VRegVal = getIConstantVRegValWithLookThrough(Reg, MRI))
+       return VRegVal->Value.getSExtValue() == Value;
+ 
+     if (Splat) {
+diff --git a/llvm/lib/CodeGen/GlobalISel/GlobalISel.cpp b/llvm/lib/CodeGen/GlobalISel/GlobalISel.cpp
+index efcc40641ea8..33682261df5f 100644
+--- a/llvm/lib/CodeGen/GlobalISel/GlobalISel.cpp
++++ b/llvm/lib/CodeGen/GlobalISel/GlobalISel.cpp
+@@ -15,6 +15,9 @@
+ using namespace llvm;
+ 
+ void llvm::initializeGlobalISel(PassRegistry &Registry) {
++#ifdef HAS_CDFG_PASS
++  initializeCDFGPassPass(Registry);
++#endif
+   initializeIRTranslatorPass(Registry);
+   initializeLegalizerPass(Registry);
+   initializeLoadStoreOptPass(Registry);
+diff --git a/llvm/lib/CodeGen/MachineBasicBlock.cpp b/llvm/lib/CodeGen/MachineBasicBlock.cpp
+index d681d00b5d8c..60119a44a7d8 100644
+--- a/llvm/lib/CodeGen/MachineBasicBlock.cpp
++++ b/llvm/lib/CodeGen/MachineBasicBlock.cpp
+@@ -42,6 +42,24 @@ using namespace llvm;
+ 
+ #define DEBUG_TYPE "codegen"
+ 
++static void traceBBID(StringRef Event, const MachineBasicBlock &MBB,
++                     const MachineBasicBlock *Other = nullptr) {
++  dbgs() << "BBIDTRACE event=" << Event << " function="
++         << MBB.getParent()->getName() << " mbb=" << MBB.getNumber();
++  if (auto ID = MBB.getBBID())
++    dbgs() << " base=" << ID->BaseID << " clone=" << ID->CloneID;
++  else
++    dbgs() << " base=none clone=none";
++  if (Other) {
++    dbgs() << " other_mbb=" << Other->getNumber();
++    if (auto ID = Other->getBBID())
++      dbgs() << " other_base=" << ID->BaseID << " other_clone=" << ID->CloneID;
++    else
++      dbgs() << " other_base=none other_clone=none";
++  }
++  dbgs() << "\n";
++}
++
+ static cl::opt<bool> PrintSlotIndexes(
+     "print-slotindexes",
+     cl::desc("When printing machine IR, annotate instructions and blocks with "
+@@ -672,10 +690,12 @@ MachineBasicBlock::addLiveIn(MCRegister PhysReg, const TargetRegisterClass *RC)
+ }
+ 
+ void MachineBasicBlock::moveBefore(MachineBasicBlock *NewAfter) {
++  DEBUG_WITH_TYPE("bbid-trace", traceBBID("move-before", *this, NewAfter));
+   getParent()->splice(NewAfter->getIterator(), getIterator());
+ }
+ 
+ void MachineBasicBlock::moveAfter(MachineBasicBlock *NewBefore) {
++  DEBUG_WITH_TYPE("bbid-trace", traceBBID("move-after", *this, NewBefore));
+   getParent()->splice(++NewBefore->getIterator(), getIterator());
+ }
+ 
+@@ -1057,6 +1077,7 @@ MachineBasicBlock *MachineBasicBlock::splitAt(MachineInstr &MI,
+ 
+   if (LIS)
+     LIS->insertMBBInMaps(SplitBB);
++  DEBUG_WITH_TYPE("bbid-trace", traceBBID("split", *this, SplitBB));
+ 
+   return SplitBB;
+ }
+@@ -1466,6 +1487,7 @@ MachineBasicBlock::insert(instr_iterator I, MachineInstr *MI) {
+ /// does not delete it.
+ MachineBasicBlock *MachineBasicBlock::removeFromParent() {
+   assert(getParent() && "Not embedded in a function!");
++  DEBUG_WITH_TYPE("bbid-trace", traceBBID("detach", *this));
+   getParent()->remove(this);
+   return this;
+ }
+@@ -1473,6 +1495,7 @@ MachineBasicBlock *MachineBasicBlock::removeFromParent() {
+ /// This method unlinks 'this' from the containing function, and deletes it.
+ void MachineBasicBlock::eraseFromParent() {
+   assert(getParent() && "Not embedded in a function!");
++  DEBUG_WITH_TYPE("bbid-trace", traceBBID("erase", *this));
+   getParent()->erase(this);
+ }
+ 
+diff --git a/llvm/lib/CodeGen/MachineFunction.cpp b/llvm/lib/CodeGen/MachineFunction.cpp
+index 7f6a75208d25..385d1b828371 100644
+--- a/llvm/lib/CodeGen/MachineFunction.cpp
++++ b/llvm/lib/CodeGen/MachineFunction.cpp
+@@ -82,6 +82,16 @@ using namespace llvm;
+ 
+ #define DEBUG_TYPE "codegen"
+ 
++static void traceBBID(StringRef Event, const MachineBasicBlock &MBB) {
++  dbgs() << "BBIDTRACE event=" << Event << " function="
++         << MBB.getParent()->getName() << " mbb=" << MBB.getNumber();
++  if (auto ID = MBB.getBBID())
++    dbgs() << " base=" << ID->BaseID << " clone=" << ID->CloneID;
++  else
++    dbgs() << " base=none clone=none";
++  dbgs() << "\n";
++}
++
+ static cl::opt<unsigned> AlignAllFunctions(
+     "align-all-functions",
+     cl::desc("Force the alignment of all functions in log2 format (e.g. 4 "
+@@ -261,6 +271,10 @@ MachineFunction::~MachineFunction() {
+ }
+ 
+ void MachineFunction::clear() {
++  DEBUG_WITH_TYPE("bbid-trace", {
++    for (const auto &BB : *this)
++      traceBBID("clear", BB);
++  });
+   Properties.reset();
+   // Don't call destructors on MachineInstr and MachineOperand. All of their
+   // memory comes from the BumpPtrAllocator which is about to be purged.
+@@ -341,6 +355,10 @@ MachineFunction::addFrameInst(const MCCFIInstruction &Inst) {
+ /// ordering of the blocks within the function.  If a specific MachineBasicBlock
+ /// is specified, only that block and those after it are renumbered.
+ void MachineFunction::RenumberBlocks(MachineBasicBlock *MBB) {
++  DEBUG_WITH_TYPE("bbid-trace", {
++    for (const auto &BB : *this)
++      traceBBID("renumber-before", BB);
++  });
+   if (empty()) { MBBNumbering.clear(); return; }
+   MachineFunction::iterator MBBI, E = end();
+   if (MBB == nullptr)
+@@ -375,6 +393,10 @@ void MachineFunction::RenumberBlocks(MachineBasicBlock *MBB) {
+   // numbering, shrink MBBNumbering now.
+   assert(BlockNo <= MBBNumbering.size() && "Mismatch!");
+   MBBNumbering.resize(BlockNo);
++  DEBUG_WITH_TYPE("bbid-trace", {
++    for (const auto &BB : *this)
++      traceBBID("renumber-after", BB);
++  });
+ }
+ 
+ /// This method iterates over the basic blocks and assigns their IsBeginSection
+@@ -471,6 +493,7 @@ MachineFunction::CreateMachineBasicBlock(const BasicBlock *BB,
+       Target.Options.BBAddrMap ||
+       Target.getBBSectionsType() == BasicBlockSection::List)
+     MBB->setBBID(BBID.has_value() ? *BBID : UniqueBBID{NextBBID++, 0});
++  DEBUG_WITH_TYPE("bbid-trace", traceBBID("create", *MBB));
+   return MBB;
+ }
+ 
+@@ -480,6 +503,7 @@ void MachineFunction::deleteMachineBasicBlock(MachineBasicBlock *MBB) {
+   // Clean up any references to MBB in jump tables before deleting it.
+   if (JumpTableInfo)
+     JumpTableInfo->RemoveMBBFromJumpTables(MBB);
++  DEBUG_WITH_TYPE("bbid-trace", traceBBID("delete", *MBB));
+   MBB->~MachineBasicBlock();
+   BasicBlockRecycler.Deallocate(Allocator, MBB);
+ }
+diff --git a/llvm/lib/CodeGen/ResetMachineFunctionPass.cpp b/llvm/lib/CodeGen/ResetMachineFunctionPass.cpp
+index 11bdf3bb2ba8..b03c9657141a 100644
+--- a/llvm/lib/CodeGen/ResetMachineFunctionPass.cpp
++++ b/llvm/lib/CodeGen/ResetMachineFunctionPass.cpp
+@@ -66,6 +66,9 @@ namespace {
+           report_fatal_error("Instruction selection failed");
+         LLVM_DEBUG(dbgs() << "Resetting: " << MF.getName() << '\n');
+         ++NumFunctionsReset;
++        DEBUG_WITH_TYPE("bbid-trace",
++                        dbgs() << "BBIDTRACE event=reset function="
++                               << MF.getName() << " reason=failed-isel\n");
+         MF.reset();
+         MF.initTargetMachineFunctionInfo(MF.getSubtarget());
+ 
+diff --git a/llvm/lib/CodeGen/TargetPassConfig.cpp b/llvm/lib/CodeGen/TargetPassConfig.cpp
+index 3658e8320a0c..2c5c15b716fd 100644
+--- a/llvm/lib/CodeGen/TargetPassConfig.cpp
++++ b/llvm/lib/CodeGen/TargetPassConfig.cpp
+@@ -48,10 +48,14 @@
+ #include "llvm/Target/TargetMachine.h"
+ #include "llvm/Transforms/Scalar.h"
+ #include "llvm/Transforms/Utils.h"
++#ifdef HAS_CDFG_PASS
++#include "llvm/CodeGen/GlobalISel/CDFGPass.h"
++#endif
+ #include <cassert>
+ #include <optional>
+ #include <string>
+ 
++
+ using namespace llvm;
+ 
+ static cl::opt<bool>
+@@ -1017,11 +1021,17 @@ bool TargetPassConfig::addCoreISelPasses() {
+     SaveAndRestore SavedAddingMachinePasses(AddingMachinePasses, true);
+     if (addIRTranslator())
+       return true;
++#ifdef HAS_CDFG_PASS
++    addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_0));
++#endif
+ 
+     addPreLegalizeMachineIR();
+ 
+     if (addLegalizeMachineIR())
+       return true;
++#ifdef HAS_CDFG_PASS
++    addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_1));
++#endif
+ 
+     // Before running the register bank selector, ask the target if it
+     // wants to run some passes.
+@@ -1029,11 +1039,17 @@ bool TargetPassConfig::addCoreISelPasses() {
+ 
+     if (addRegBankSelect())
+       return true;
++#ifdef HAS_CDFG_PASS
++    addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_2));
++#endif
+ 
+     addPreGlobalInstructionSelect();
+ 
+     if (addGlobalInstructionSelect())
+       return true;
++#ifdef HAS_CDFG_PASS
++    addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_3));
++#endif
+ 
+     // Pass to reset the MachineFunction if the ISel failed.
+     addPass(createResetMachineFunctionPass(
+@@ -1047,10 +1063,18 @@ bool TargetPassConfig::addCoreISelPasses() {
+   } else if (addInstSelector())
+     return true;
+ 
++#ifdef HAS_CDFG_PASS
++  addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_4));
++#endif
++
+   // Expand pseudo-instructions emitted by ISel. Don't run the verifier before
+   // FinalizeISel.
+   addPass(&FinalizeISelID);
+ 
++#ifdef HAS_CDFG_PASS
++  addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_5));
++#endif
++
+   // Print the instruction selected machine code...
+   printAndVerify("After Instruction Selection");
+ 
+@@ -1139,6 +1163,9 @@ void TargetPassConfig::addMachinePasses() {
+     addOptimizedRegAlloc();
+   else
+     addFastRegAlloc();
++#ifdef HAS_CDFG_PASS
++  addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_6));
++#endif
+ 
+   // Run post-ra passes.
+   addPostRegAlloc();
+@@ -1307,6 +1334,9 @@ void TargetPassConfig::addMachineSSAOptimization() {
+   addPass(&MachineCSEID);
+ 
+   addPass(&MachineSinkingID);
++#ifdef HAS_CDFG_PASS
++  addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_7));
++#endif
+ 
+   addPass(&PeepholeOptimizerID);
+   // Clean-up the dead code that may have been generated by peephole
+@@ -1450,6 +1480,9 @@ void TargetPassConfig::addOptimizedRegAlloc() {
+   // after it with -stop-before/-stop-after.
+   addPass(&UnreachableMachineBlockElimID);
+   addPass(&LiveVariablesID);
++#ifdef HAS_CDFG_PASS
++  addPass(new CDFGPass(getOptLevel(), CDFG_STAGE_8));
++#endif
+ 
+   // Edge splitting is smarter with machine loop info.
+   addPass(&MachineLoopInfoID);
+diff --git a/llvm/lib/Target/RISCV/GISel/RISCVRegisterBankInfo.cpp b/llvm/lib/Target/RISCV/GISel/RISCVRegisterBankInfo.cpp
+index d25e96525399..a7e817d7cef8 100644
+--- a/llvm/lib/Target/RISCV/GISel/RISCVRegisterBankInfo.cpp
++++ b/llvm/lib/Target/RISCV/GISel/RISCVRegisterBankInfo.cpp
+@@ -133,6 +133,7 @@ RISCVRegisterBankInfo::getRegBankFromRegClass(const TargetRegisterClass &RC,
+   case RISCV::SR07RegClassID:
+   case RISCV::SPRegClassID:
+   case RISCV::GPRX0RegClassID:
++  case RISCV::GPRX7RegClassID:
+     return getRegBank(RISCV::GPRBRegBankID);
+   case RISCV::FPR64RegClassID:
+   case RISCV::FPR16RegClassID:
+diff --git a/llvm/lib/Transforms/InstCombine/InstCombineCasts.cpp b/llvm/lib/Transforms/InstCombine/InstCombineCasts.cpp
+index 8f8304702093..03340f194f06 100644
+--- a/llvm/lib/Transforms/InstCombine/InstCombineCasts.cpp
++++ b/llvm/lib/Transforms/InstCombine/InstCombineCasts.cpp
+@@ -1155,40 +1155,40 @@ Instruction *InstCombinerImpl::visitZExt(ZExtInst &Zext) {
+ 
+   // Try to extend the entire expression tree to the wide destination type.
+   unsigned BitsToClear;
+-  if (shouldChangeType(SrcTy, DestTy) &&
+-      canEvaluateZExtd(Src, DestTy, BitsToClear, *this, &Zext)) {
+-    assert(BitsToClear <= SrcTy->getScalarSizeInBits() &&
+-           "Can't clear more bits than in SrcTy");
+-
+-    // Okay, we can transform this!  Insert the new expression now.
+-    LLVM_DEBUG(
+-        dbgs() << "ICE: EvaluateInDifferentType converting expression type"
+-                  " to avoid zero extend: "
+-               << Zext << '\n');
+-    Value *Res = EvaluateInDifferentType(Src, DestTy, false);
+-    assert(Res->getType() == DestTy);
+-
+-    // Preserve debug values referring to Src if the zext is its last use.
+-    if (auto *SrcOp = dyn_cast<Instruction>(Src))
+-      if (SrcOp->hasOneUse())
+-        replaceAllDbgUsesWith(*SrcOp, *Res, Zext, DT);
+-
+-    uint32_t SrcBitsKept = SrcTy->getScalarSizeInBits() - BitsToClear;
+-    uint32_t DestBitSize = DestTy->getScalarSizeInBits();
+-
+-    // If the high bits are already filled with zeros, just replace this
+-    // cast with the result.
+-    if (MaskedValueIsZero(Res,
+-                          APInt::getHighBitsSet(DestBitSize,
+-                                                DestBitSize - SrcBitsKept),
+-                             0, &Zext))
+-      return replaceInstUsesWith(Zext, Res);
+-
+-    // We need to emit an AND to clear the high bits.
+-    Constant *C = ConstantInt::get(Res->getType(),
+-                               APInt::getLowBitsSet(DestBitSize, SrcBitsKept));
+-    return BinaryOperator::CreateAnd(Res, C);
+-  }
++  // if (shouldChangeType(SrcTy, DestTy) &&
++  //     canEvaluateZExtd(Src, DestTy, BitsToClear, *this, &Zext)) {
++  //   assert(BitsToClear <= SrcTy->getScalarSizeInBits() &&
++  //          "Can't clear more bits than in SrcTy");
++
++  //   // Okay, we can transform this!  Insert the new expression now.
++  //   LLVM_DEBUG(
++  //       dbgs() << "ICE: EvaluateInDifferentType converting expression type"
++  //                 " to avoid zero extend: "
++  //              << Zext << '\n');
++  //   Value *Res = EvaluateInDifferentType(Src, DestTy, false);
++  //   assert(Res->getType() == DestTy);
++
++  //   // Preserve debug values referring to Src if the zext is its last use.
++  //   if (auto *SrcOp = dyn_cast<Instruction>(Src))
++  //     if (SrcOp->hasOneUse())
++  //       replaceAllDbgUsesWith(*SrcOp, *Res, Zext, DT);
++
++  //   uint32_t SrcBitsKept = SrcTy->getScalarSizeInBits() - BitsToClear;
++  //   uint32_t DestBitSize = DestTy->getScalarSizeInBits();
++
++  //   // If the high bits are already filled with zeros, just replace this
++  //   // cast with the result.
++  //   if (MaskedValueIsZero(Res,
++  //                         APInt::getHighBitsSet(DestBitSize,
++  //                                               DestBitSize - SrcBitsKept),
++  //                            0, &Zext))
++  //     return replaceInstUsesWith(Zext, Res);
++
++  //   // We need to emit an AND to clear the high bits.
++  //   Constant *C = ConstantInt::get(Res->getType(),
++  //                              APInt::getLowBitsSet(DestBitSize, SrcBitsKept));
++  //   return BinaryOperator::CreateAnd(Res, C);
++  // }
+ 
+   // If this is a TRUNC followed by a ZEXT then we are dealing with integral
+   // types and if the sizes are just right we can convert this into a logical
+@@ -1446,26 +1446,26 @@ Instruction *InstCombinerImpl::visitSExt(SExtInst &Sext) {
+     return CI;
+   }
+ 
+-  // Try to extend the entire expression tree to the wide destination type.
+-  if (shouldChangeType(SrcTy, DestTy) && canEvaluateSExtd(Src, DestTy)) {
+-    // Okay, we can transform this!  Insert the new expression now.
+-    LLVM_DEBUG(
+-        dbgs() << "ICE: EvaluateInDifferentType converting expression type"
+-                  " to avoid sign extend: "
+-               << Sext << '\n');
+-    Value *Res = EvaluateInDifferentType(Src, DestTy, true);
+-    assert(Res->getType() == DestTy);
+-
+-    // If the high bits are already filled with sign bit, just replace this
+-    // cast with the result.
+-    if (ComputeNumSignBits(Res, 0, &Sext) > DestBitSize - SrcBitSize)
+-      return replaceInstUsesWith(Sext, Res);
+-
+-    // We need to emit a shl + ashr to do the sign extend.
+-    Value *ShAmt = ConstantInt::get(DestTy, DestBitSize-SrcBitSize);
+-    return BinaryOperator::CreateAShr(Builder.CreateShl(Res, ShAmt, "sext"),
+-                                      ShAmt);
+-  }
++  // // Try to extend the entire expression tree to the wide destination type.
++  // if (shouldChangeType(SrcTy, DestTy) && canEvaluateSExtd(Src, DestTy)) {
++  //   // Okay, we can transform this!  Insert the new expression now.
++  //   LLVM_DEBUG(
++  //       dbgs() << "ICE: EvaluateInDifferentType converting expression type"
++  //                 " to avoid sign extend: "
++  //              << Sext << '\n');
++  //   Value *Res = EvaluateInDifferentType(Src, DestTy, true);
++  //   assert(Res->getType() == DestTy);
++
++  //   // If the high bits are already filled with sign bit, just replace this
++  //   // cast with the result.
++  //   if (ComputeNumSignBits(Res, 0, &Sext) > DestBitSize - SrcBitSize)
++  //     return replaceInstUsesWith(Sext, Res);
++
++  //   // We need to emit a shl + ashr to do the sign extend.
++  //   Value *ShAmt = ConstantInt::get(DestTy, DestBitSize-SrcBitSize);
++  //   return BinaryOperator::CreateAShr(Builder.CreateShl(Res, ShAmt, "sext"),
++  //                                     ShAmt);
++  // }
+ 
+   Value *X;
+   if (match(Src, m_Trunc(m_Value(X)))) {
+diff --git a/notes/CDFG.md b/notes/CDFG.md
+new file mode 100644
+index 000000000000..a4dd91212648
+--- /dev/null
++++ b/notes/CDFG.md
+@@ -0,0 +1,121 @@
++# CDFG Extraction Task on (G)MIR Level
++
++This file contains usage instructions for the `feature-pass-mir-cdfg-clean` branch.
++
++## Disclaimer
++
++The implementation is heavily inspired by https://github.com/AndHager/Sizalizer/tree/main/llvm-pass-plugin which implements similar functionality on LLVM-IR level.
++
++
++## Prerequisites
++
++Compile LLVM from source:
++
++```sh
++cmake -B build -S llvm/ -GNinja -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TOOLS=ON LLVM_ENABLE_ASSERTIONS=ON -DLLVM_OPTIMIZED_TABLEGEN=ON -DLLVM_ENABLE_PROJECTS="clang;lld" -DLLVM_TARGETS_TO_BUILD="X86;RISCV"
++ninja -C build/ all
++```
++
++Start memgraph docker container:
++
++```sh
++docker run -p 7687:7687 -p 7444:7444 -p 3000:3000 --name memgraph memgraph/memgraph-platform
++```
++
++
++## Compiling Example Program
++
++### RISC-V
++
++An installation of the RISC-V GNU Tools (preferably non-multilib version) is required to run the following example.
++
++```
++./build/bin/clang notes/matmult.c -o out.elf --target=riscv32 --gcc-toolchain=/path/to/rv32gc_ilp32d -march=rv32gc -mabi=ilp32d --sysroot=/path/to/rv32gc_ilp32d/riscv32-unknown-elf -fuse-ld=lld -mllvm -global-isel=1 -c
++```
++
++### X86
++
++Analogously the program can be build for X86 machines. (However, autovectorization needs to be disabled due to GlobalISel related crashes)
++
++```
++clang -o out.elf matmult.c -O3 -mllvm -global-isel=1 -c --target=x86_64 -fno-vectorize
++```
++
++### Analyzing Example Program (RISC-V only)
++
++Connect to the web interface: `http://localhost:3000/`
++
++**Optional:** Load custom Graph Style (see [`custom.gss`](./custom.gss)) for highlighting different functions and basic blocks in different colors.
++
++1. Query all CFGs:
++
++```
++MATCH p0=(a)-[:CFG]->(b)
++RETURN *;
++```
++
++*Output:* ![cfg1](https://github.com/PhilippvK/llvm-project/assets/7712605/60c2d497-525b-466e-83ac-119b76fb6595)
++
++
++2. Query all DFGs:
++
++```
++MATCH p0=(a)-[:DFG]->(b)
++RETURN *;
++```
++
++*Output:* ![dfg0](https://github.com/PhilippvK/llvm-project/assets/7712605/ed8b932b-881c-4f54-8092-7656311f8e5a)
++
++
++3. Query DFG for a specific function and basic block:
++
++```
++MATCH p0=(a)-[:DFG]->(b)
++WHERE a.func_name = "mat_mult" AND a.basic_block = "%bb.7"
++RETURN *;
++```
++
++*Output:* ![dfg1](https://github.com/PhilippvK/llvm-project/assets/7712605/b8554bff-fb98-4541-839c-cbc2fc537548)
++
++
++
++## Notes
++- This pass should be target independent, but was so far only tested on RISC-V (`rv32im` and `rv32gc`).
++- To run the pass based on GMIR instead of target-specific MIR, you have to manually edit `llvm/lib/Target/RISCV/RISCVTargetMachine.cpp` to move `addPass(new CDFGPass(getOptLevel()));` to an earlier stage.
++- The stage where th pass is executed can be configured via `llvm/lib/CodeGen/TargetPassConfig.cpp`. However `#define CDFG_STAGE CDFG_STAGE_3` is tested so far...
++- The (G)-MIR version unfortunately can not be build "out-of-tree" as it needs to be tightly integrated into the GlobalIsel Compilation Flow
++- Due to the experimental state of GlobalISel (especially incomplete legalizations for RISC-V), some programs can not be compiled. This also affects this pass unless running it before the legalization stage.
++- The `mgclient` library is not fullt integrated into the LLVM build system, hence you will need change the hardcoded paths in `/llvm/lib/CodeGen/GlobalISel/CMakeLists.txt` to point to match your system.
++- Additionally `export LD_LIBRARY_PATH=/path/to/mgclient/build/src:$LD_LIBRARY_PATH` needs to be exported in the shell session during compilation and usage of LLVM.
++- The pass does NOT cleanup the database automatically unless `#define PURGE_DB true` is enabled in `CDFGPass.cpp`.
++
++## TODOs
++- remove unnecessary `dbgs()` and `std::cout`!
++- track liveins/liveouts between basic blocks (physical registers)
++- properly handle `COPY` and `PHI` nodes
++- make pass configurable via cli options
++- allow choosing stage where pass should be executed
++- add optional for automatic cleanup of database
++- implement missing operand types:
++  - [ ] MO_ShuffleMask
++  - [ ] MO_Predicate
++  - [ ] MO_IntrinsicID
++  - [ ] MO_Metadata
++  - [ ] MO_CFIIndex
++  - [ ] MO_DbgInstrRef
++  - [ ] MO_MCSymbol
++  - [ ] MO_RegisterLiveOut
++  - [ ] MO_RegisterMask
++  - [ ] MO_BlockAddress
++  - [ ] MO_ExternalSymbol
++  - [ ] MO_JumpTableIndex
++  - [ ] MO_TargetIndex
++  - [ ] MO_ConstantPoolIndex
++
++## Known Bugs
++
++In `CDFG_STAGE_0` or lower, the following assertion is thrown:
++
++```
++clang: /tmp/llvm-project/llvm/include/llvm/CodeGen/MachineOperand.h:557: int64_t llvm::MachineOperand::getImm() const: Assertion `isImm() && "Wrong MachineOperand accessor"' failed.
++```
+diff --git a/notes/custom.gss b/notes/custom.gss
+new file mode 100644
+index 000000000000..b1f7431b5eee
+--- /dev/null
++++ b/notes/custom.gss
+@@ -0,0 +1,86 @@
++// A palette of colors used to color distinct node labels
++Define(COLOR_PALETTE, AsArray(
++  #DD2222, #FB6E00, #FFC500, #720096,
++  #5E4FA2, #3288BD, #66C2A5, #ABDDA4,
++  #E6F598, #FEE08B, #D53E4F, #9E0142
++))
++Define(COLOR_PALETTE_ITER, AsIterator(COLOR_PALETTE))
++
++// If there are no palette colors to use, use random colors instead
++Define(RandomColor, Function(RGB(RandomInt(255), RandomInt(255), RandomInt(255))))
++Define(GetNextColor, Function(
++  Coalesce(Next(COLOR_PALETTE_ITER), RandomColor())
++))
++
++// Cache map to keep a selected color for each node label
++Define(ColorByLabel, AsMap())
++Define(GetColorByLabel, Function(labels, Coalesce(
++  Get(ColorByLabel, labels),
++  Set(ColorByLabel, labels, GetNextColor())
++)))
++Define(JoinLabels, Function(labels, Join(Sort(labels), ":")))
++
++// Baseline node style that will be applied to every single node
++@NodeStyle {
++  Define(COLOR, GetColorByLabel(JoinLabels(Labels(node))))
++
++  size: 6
++  color: COLOR
++  color-hover: Lighter(COLOR)
++  color-selected: Darker(COLOR)
++  border-width: 0.6
++  border-color: #1D1D1D
++  font-size: 3
++}
++
++
++
++
++
++
++// Baseline edge style that will be applied to every single edge
++@EdgeStyle {
++  color: #999999
++  color-hover: #1D1D1D
++  color-selected: #1D1D1D
++  width: 0.3
++  width-hover: 0.9
++  width-selected: 0.9
++  font-size: 3
++}
++
++// Show edge text only if there is a small number of edges in the view
++@EdgeStyle Less(EdgeCount(graph), 30) {
++  label: Type(edge)
++}
++
++// In case of a map view, set the default tile layer
++@ViewStyle.Map {
++  tile-layer: "light"
++}
++
++// Canvas background color
++@ViewStyle {
++  background-color: #FFFFFF00
++}
++
++
++@NodeStyle {
++  size: 3
++  label: Property(node, "name")
++  border-width: 1
++  border-color: #ffffff
++  shadow-color: #333333
++  shadow-size: 20
++  Define(COLOR, GetColorByLabel(Property(node, "func_name")))
++  color: COLOR
++  Define(COLOR2, GetColorByLabel(Property(node, "basic_block")))
++  border-color: COLOR2
++}
++
++@EdgeStyle {
++  width: 0.4
++  label: Type(edge)
++  arrow-size: 1
++  color: #6AA84F
++}
+diff --git a/notes/matmult.c b/notes/matmult.c
+new file mode 100644
+index 000000000000..9410f6a85138
+--- /dev/null
++++ b/notes/matmult.c
+@@ -0,0 +1,22 @@
++#include <stdint.h>
++void mat_mult(const int8_t *mat_l, const int8_t *mat_r, int32_t *result, const unsigned int N, const unsigned int K, const unsigned int M)
++{
++    unsigned int n, k, m;
++    unsigned int row, col;
++    int accumulator;
++
++    for (m = 0; m < M; m++)
++    {
++        for (n = 0; n < N; n++)
++        {
++            row = n*K;
++            accumulator = 0;
++            for (k = 0; k < K; k++)
++            {
++                col = k*M;
++                accumulator += mat_l[row + k] * mat_r[col + m];
++            }
++            result[n*M + m] = accumulator;
++        }
++    }
++}

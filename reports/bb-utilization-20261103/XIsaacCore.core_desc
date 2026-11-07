@@ -1,0 +1,658 @@
+import "/tools/etiss_arch_riscv/rv_base/RVC.core_desc"
+import "/tools/etiss_arch_riscv/rv_base/RVD.core_desc"
+import "/tools/etiss_arch_riscv/rv_base/RVF.core_desc"
+import "/tools/etiss_arch_riscv/rv_base/RVI.core_desc"
+import "/tools/etiss_arch_riscv/rv_base/RVM.core_desc"
+import "/tools/etiss_arch_riscv/tum_mod.core_desc"
+import "/tools/etiss_arch_riscv/tum_rva.core_desc"
+import "/tools/etiss_arch_riscv/rv_base/RVI.core_desc"
+
+InstructionSet XIsaac extends RV32I {
+    instructions {
+        CUSTOM0 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom0", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(-(403))))))))) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs3_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM1 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom1", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)(rs2_val))))) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs3_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM2 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom2", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)(rs3_val))))) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM3 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom3", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM4 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom4", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)(rs2_val))))) + ((signed<32>)(rs3_val))))) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM5 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom5", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)((unsigned<32>)(((signed<32>)(rs3_val)) + ((signed<32>)(-(403))))))))) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM6 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom6", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)(rs2_val))))) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs3_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM7 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b1 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom7", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(-(403))))))))) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs3_val)) + ((signed<32>)(57))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM8 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom8", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)(rs2_val))))) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM9 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom9", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM10 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom10", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)(rs2_val))))) + ((signed<32>)(rs3_val))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM11 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom11", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)(rs2_val))))) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs3_val)) + ((signed<32>)(57))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM12 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b0 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom12", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)((unsigned<32>)(((signed<32>)(rs3_val)) + ((signed<32>)(-(403))))))))) + ((signed<32>)(rs2_val)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM13 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom13", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM14 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom14", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM15 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom15", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)(rs2_val))))) & ((unsigned<32>)(255)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM16 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom16", "{name(rd)}, {name(rs1)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM17 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom17", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)(8))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM18 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom18", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)(2))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM19 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<9> uimm9 [[is_imm]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: uimm9[8:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom19", "{name(rd)}, {name(rs1)}, {uimm9}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)((unsigned<9>)(uimm9)))))) << ((unsigned<32>)(2)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM20 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<10> uimm10 [[is_imm]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b1 :: uimm10[9:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom20", "{name(rd)}, {name(rs1)}, {uimm10}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)((unsigned<10>)(uimm10)))))) << ((unsigned<32>)(2)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM21 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<4> uimm4 [[is_imm]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: uimm4[3:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom21", "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm4}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)((unsigned<4>)(uimm4)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM22 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> uimm5 [[is_imm]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b0 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom22", "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)((unsigned<5>)(uimm5)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM23 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<2> uimm2 [[is_imm]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: uimm2[1:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom23", "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm2}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)((unsigned<2>)(uimm2)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM24 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> uimm5 [[is_imm]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b1 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom24", "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)((unsigned<5>)(uimm5)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM25 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom25", "{name(rd)}, {name(rs1)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM26 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom26", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(-(403)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM27 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs3 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b1 :: rs3[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom27", "{name(rd)}, {name(rs1)}, {name(rs2)}, {name(rs3)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs3_val = X[rs3];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)((unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)(rs2_val))))) + ((signed<32>)(rs3_val)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM28 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom28", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM29 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom29", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM30 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<1> uimm1 [[is_imm]] [[in]];
+            }
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: uimm1[0:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom30", "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm1}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)((unsigned<1>)(uimm1))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM31 {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> uimm5 [[is_imm]] [[in]];
+            }
+            encoding: 1'b0 :: 1'b0 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: {"custom31", "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}"};
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)((unsigned<5>)(uimm5))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+Core XIsaacCore provides RV32I, RV32IC, RV32M, RV32F, RV32FC, RV32D, RV32DC, Zifencei, tum_rva, tum_csr, tum_semihosting, tum_ret, XIsaac {
+    architectural_state {
+        CSR[0x000] = 0x0000000B;
+        CSR[RV_CSR_SSTATUS] = 0x0000000B;
+        CSR[RV_CSR_MSTATUS] = 0x0000000B;
+        CSR[RV_CSR_MISA] = 0x4014112D;
+        CSR[0xC10] = 0x00000003;
+        CSR[RV_CSR_MIE] = 0xFFFFFBBB;
+        CSR[RV_CSR_SIE] = 0xFFFFF333;
+        CSR[0x004] = 0xFFFFF111;
+    }
+}

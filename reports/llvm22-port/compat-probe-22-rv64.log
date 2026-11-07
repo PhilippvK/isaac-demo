@@ -1,0 +1,2 @@
+22 -fbasic-block-address-map clang: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'
+22 -fbasic-block-sections=labels PASS

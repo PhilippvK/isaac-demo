@@ -1,0 +1,56 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334 DATE=20261102T160334 BENCH=crc32
+INFO - query_candidates_from_db - Querying candidates from DB...
+INFO:settings:Initializing default settings
+INFO:settings:Initializing settings from yaml
+INFO:settings:Initializing settings from args
+INFO:validate_settings:Validating settings...
+INFO:timing:<Settings Validation> took 0.000 seconds
+INFO:main:Running queries...
+INFO:connect_db:Connecting to DB...
+INFO:timing:<Connect to DB> took 0.000 seconds
+INFO:query_func:Exporting queries...
+INFO:timing:<Query func from DB> took 0.004 seconds
+INFO:timing:<Query candidates from DB> took 0.046 seconds
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/memgraph_experiments/tool/main.py", line 47, in <module>
+    results = stages.query_candidates(settings, driver)
+  File "/var/tmp/ga87puy/isaac-demo-new/memgraph_experiments/tool/stages/query_candidates.py", line 42, in query_candidates
+    results = run_query(driver, query, timeout=settings.query.timeout_seconds)
+  File "/var/tmp/ga87puy/isaac-demo-new/memgraph_experiments/tool/memgraph.py", line 21, in run_query
+    return driver.session().run(query)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/work/session.py", line 332, in run
+    self._auto_result._run(
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/work/result.py", line 236, in _run
+    self._attach()
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/work/result.py", line 430, in _attach
+    self._connection.fetch_message()
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_common.py", line 193, in inner
+    func(*args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_bolt.py", line 858, in fetch_message
+    res = self._process_message(tag, fields)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_bolt5.py", line 495, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/neo4j/_sync/io/_common.py", line 263, in on_failure
+    raise self._hydrate_error(metadata)
+neo4j.exceptions.TransientError: {code: Memgraph.TransientError.MemgraphError.MemgraphError} {message: Not yet implemented: atom expression '[nodeINall_nodesWHEREcoalesce(node.mayLoad,true)|node]'}
+WARNING:neo4j.pool:Failed to consume outstanding auto-commit transaction result before closing session: Failed to read from closed connection IPv4Address(('127.0.0.1', 28763)) (ResolvedIPv4Address(('127.0.0.1', 28763)))
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 662, in <module>
+    main(sys.argv[1:])
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 658, in main
+    handle(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 587, in handle
+    query_candidates_from_db(
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py", line 468, in query_candidates_from_db
+    subprocess.run(args, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', '-m', 'tool.main', '--progress', '--times', '--yaml', 'cfg/isaac/query/paper/iss_only.yml', '--session', 'isaac-demo-crc32-20261102T160334', '--function', 'rand_beebs', '--basic-block', '%bb.0', '--stage', '32', '--module-name', '/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c', '--compilation-id', '6aadad1e51f7403c97b54d696db67d18', '--output-dir', PosixPath('/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work/rand_beebs_%bb.0_0'), '--limit-results', '1000', '--min-inputs', '1', '--max-inputs', '4', '--min-outputs', '1', '--max-outputs', '2', '--max-nodes', '1000', '--max-loads', '1', '--max-stores', '1', '--max-mems', '0', '--max-branches', '1', '--max-enc-footprint', '1.0', '--max-enc-weight', '1.0', '--min-enc-bits-left', '5', '--min-iso-weight', '0.028249806261933866', '--instr-predicates', '511', '--allowed-enc-sizes', '32', '--xlen', '32', '--halt-on-error', '--write-func', '--write-sub', '--write-io-sub', '--write-tree', '--write-pie', '--write-df', '--write-index', '--write-queries', '--write-query-metrics']' returned non-zero exit status 1.

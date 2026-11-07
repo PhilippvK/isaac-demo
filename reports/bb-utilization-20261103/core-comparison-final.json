@@ -1,0 +1,48 @@
+{
+  "crc32": {
+    "XIsaac.seal5.core_desc": {
+      "identical_after_timestamp_and_import_path_normalization": true,
+      "sha256": [
+        "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c",
+        "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c"
+      ]
+    },
+    "XIsaacCore.core_desc": {
+      "identical_after_timestamp_and_import_path_normalization": true,
+      "sha256": [
+        "07439af7d89217ee2c541622887b01512de808dd0e221b87cf11c01e636a6e3b",
+        "07439af7d89217ee2c541622887b01512de808dd0e221b87cf11c01e636a6e3b"
+      ]
+    },
+    "etiss_instructions.core_desc": {
+      "identical_after_timestamp_and_import_path_normalization": true,
+      "sha256": [
+        "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c",
+        "07b01a263b7433657345fd5b5c7968d29a840ec71592974422db03ef981ae50c"
+      ]
+    }
+  },
+  "nettle-sha256": {
+    "XIsaac.seal5.core_desc": {
+      "identical_after_timestamp_and_import_path_normalization": true,
+      "sha256": [
+        "5b4adc1d5cf95f97ec99e397923157ad1797ce41528109b91388dd7ab11a11d8",
+        "5b4adc1d5cf95f97ec99e397923157ad1797ce41528109b91388dd7ab11a11d8"
+      ]
+    },
+    "XIsaacCore.core_desc": {
+      "identical_after_timestamp_and_import_path_normalization": true,
+      "sha256": [
+        "07439af7d89217ee2c541622887b01512de808dd0e221b87cf11c01e636a6e3b",
+        "07439af7d89217ee2c541622887b01512de808dd0e221b87cf11c01e636a6e3b"
+      ]
+    },
+    "etiss_instructions.core_desc": {
+      "identical_after_timestamp_and_import_path_normalization": true,
+      "sha256": [
+        "5b4adc1d5cf95f97ec99e397923157ad1797ce41528109b91388dd7ab11a11d8",
+        "5b4adc1d5cf95f97ec99e397923157ad1797ce41528109b91388dd7ab11a11d8"
+      ]
+    }
+  }
+}

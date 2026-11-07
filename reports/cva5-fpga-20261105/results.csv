@@ -1,0 +1,11 @@
+variant,stage,LUTs,FFs,BRAM_tiles,DSPs,WNS_ns,TNS_ns
+baseline,synth,3511.0,2033.0,130.0,4.0,38.693,0.0
+baseline,impl,3439.0,2067.0,130.0,4.0,29.978,0.0
+crc32-scaiev2-final,synth,13571.0,4441.0,130.0,160.0,35.195,0.0
+crc32-scaiev2-final,impl,13359.0,4474.0,130.0,160.0,18.347,0.0
+memory-cva5-final,synth,4046.0,2236.0,130.0,4.0,35.251,0.0
+memory-cva5-final,impl,3953.0,2270.0,130.0,4.0,27.964,0.0
+branches-fixed,synth,3804.0,2083.0,130.0,4.0,38.683,0.0
+branches-fixed,impl,3732.0,2117.0,130.0,4.0,29.798,0.0
+store-probes,synth,3554.0,2120.0,130.0,4.0,36.967,0.0
+store-probes,impl,3478.0,2154.0,130.0,4.0,27.292,0.0

@@ -1,0 +1,50 @@
+[
+  {
+    "benchmark": "crc32",
+    "llvm_major": 19,
+    "baseline_instructions": 4005445,
+    "ise_instructions": 2960964,
+    "saved_instructions": 1044481,
+    "reduction_percent": 26.076528325816483,
+    "speedup": 1.352750320503728,
+    "body_ise_types": 4,
+    "generated_definitions": 32,
+    "body_custom_executions": 696320
+  },
+  {
+    "benchmark": "crc32",
+    "llvm_major": 22,
+    "baseline_instructions": 4005442,
+    "ise_instructions": 2960961,
+    "saved_instructions": 1044481,
+    "reduction_percent": 26.076547856641042,
+    "speedup": 1.3527506779049099,
+    "body_ise_types": 4,
+    "generated_definitions": 32,
+    "body_custom_executions": 696320
+  },
+  {
+    "benchmark": "nettle-sha256",
+    "llvm_major": 19,
+    "baseline_instructions": 3776360,
+    "ise_instructions": 2217885,
+    "saved_instructions": 1558475,
+    "reduction_percent": 41.26923810229957,
+    "speedup": 1.7026852158700745,
+    "body_ise_types": 19,
+    "generated_definitions": 105,
+    "body_custom_executions": 1161375
+  },
+  {
+    "benchmark": "nettle-sha256",
+    "llvm_major": 22,
+    "baseline_instructions": 4289357,
+    "ise_instructions": 2250182,
+    "saved_instructions": 2039175,
+    "reduction_percent": 47.54034229372841,
+    "speedup": 1.9062266963294525,
+    "body_ise_types": 19,
+    "generated_definitions": 105,
+    "body_custom_executions": 1161375
+  }
+]

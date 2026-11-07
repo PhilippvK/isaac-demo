@@ -1,0 +1,624 @@
+INFO - generate_etiss_core - Generating ETISS core...
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:57]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - reading instruction load order
+[2026-11-03 06:17:58]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:58]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:58]::INFO - Running type inference
+[2026-11-03 06:17:58]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - reading instruction load order
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - building architecture model for set MySet
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:17:59]::INFO - building behavior model for set MySet
+[2026-11-03 06:17:59]::INFO - Running type inference
+[2026-11-03 06:17:59]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - reading instruction load order
+[2026-11-03 06:18:00]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:00]::INFO - parsing top level
+[2026-11-03 06:18:00]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:01]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:01]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:01]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - Running type inference
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:01]::INFO - parsing top level
+[2026-11-03 06:18:01]::INFO - reading instruction load order
+[2026-11-03 06:18:01]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - Running type inference
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - parsing top level
+[2026-11-03 06:18:02]::INFO - reading instruction load order
+[2026-11-03 06:18:02]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - reading instruction load order
+[2026-11-03 06:18:03]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:03]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:03]::INFO - Running type inference
+[2026-11-03 06:18:03]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - parsing top level
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:04]::INFO - Running type inference
+[2026-11-03 06:18:04]::INFO - reading instruction load order
+[2026-11-03 06:18:04]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:05]::INFO - reading instruction load order
+[2026-11-03 06:18:05]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:05]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:05]::INFO - Running type inference
+[2026-11-03 06:18:05]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:05]::INFO - Running type inference
+[2026-11-03 06:18:05]::INFO - reading instruction load order
+[2026-11-03 06:18:05]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:05]::INFO - reading instruction load order
+[2026-11-03 06:18:05]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:05]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:05]::INFO - Running type inference
+[2026-11-03 06:18:05]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:05]::INFO - Running type inference
+[2026-11-03 06:18:05]::INFO - reading instruction load order
+[2026-11-03 06:18:05]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:05]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:05]::INFO - Running type inference
+[2026-11-03 06:18:05]::INFO - reading instruction load order
+[2026-11-03 06:18:05]::INFO - building architecture model for set MySet
+[2026-11-03 06:18:05]::INFO - building behavior model for set MySet
+[2026-11-03 06:18:05]::INFO - Running type inference
+INFO - generate_etiss_core - Planned 105 encodings across 1 sets
+[2026-11-03 06:18:10]::INFO - parsing top level
+[2026-11-03 06:18:15]::INFO - reading instruction load order
+[2026-11-03 06:18:15]::INFO - building architecture model for core XIsaacCore
+[2026-11-03 06:18:15]::INFO - building behavior model for core XIsaacCore
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LUI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AUIPC
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction JAL
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction JALR
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LB
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LH
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LBU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LHU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction ADDI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SLTI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SLTIU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction XORI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction ORI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction ANDI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SLLI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SRLI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SRAI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction ADD
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SUB
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SLL
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SLT
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SLTU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction XOR
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SRL
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SRA
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction OR
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AND
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction MUL
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction MULH
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction MULHSU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction MULHU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction DIV
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction DIVU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction REM
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction REMU
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRW
+[2026-11-03 06:18:15]::WARNING - operand rs1 is used as both a register index and an immediate in instruction CSRRS
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRS
+[2026-11-03 06:18:15]::WARNING - operand rs1 is used as both a register index and an immediate in instruction CSRRC
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRC
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRWI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRSI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRCI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FCVT_W_S
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FCVT_WU_S
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FEQ_S
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FLT_S
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FLE_S
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FCLASS_S
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FMV_X_W
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FEQ_D
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FLT_D
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FLE_D
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FCVT_W_D
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction FCVT_WU_D
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LRW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SCW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOSWAPW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOADDW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOXORW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOANDW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOORW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOMINW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOMAXW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOMINUW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction AMOMAXUW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction LRW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction SCW
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRW
+[2026-11-03 06:18:15]::WARNING - operand rs1 is used as both a register index and an immediate in instruction CSRRS
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRS
+[2026-11-03 06:18:15]::WARNING - operand rs1 is used as both a register index and an immediate in instruction CSRRC
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRC
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRWI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRSI
+[2026-11-03 06:18:15]::WARNING - operand rd is used as both a register index and an immediate in instruction CSRRCI
+[2026-11-03 06:18:15]::WARNING - instr LRW from extension RV32A was overwritten by LRW from tum_rva
+[2026-11-03 06:18:15]::WARNING - instr SCW from extension RV32A was overwritten by SCW from tum_rva
+[2026-11-03 06:18:15]::WARNING - instr CSRRW from extension Zicsr was overwritten by CSRRW from tum_csr
+[2026-11-03 06:18:15]::WARNING - instr CSRRS from extension Zicsr was overwritten by CSRRS from tum_csr
+[2026-11-03 06:18:15]::WARNING - instr CSRRC from extension Zicsr was overwritten by CSRRC from tum_csr
+[2026-11-03 06:18:15]::WARNING - instr CSRRWI from extension Zicsr was overwritten by CSRRWI from tum_csr
+[2026-11-03 06:18:15]::WARNING - instr CSRRSI from extension Zicsr was overwritten by CSRRSI from tum_csr
+[2026-11-03 06:18:15]::WARNING - instr CSRRCI from extension Zicsr was overwritten by CSRRCI from tum_csr
+[2026-11-03 06:18:15]::WARNING - instr EBREAK from extension RV32I was overwritten by EBREAK from tum_semihosting
+[2026-11-03 06:18:15]::WARNING - instr MRET from extension RV32I was overwritten by MRET from tum_ret
+[2026-11-03 06:18:15]::WARNING - instr ECALL from extension RV32I was overwritten by ECALL from tum_ret
+[2026-11-03 06:18:15]::WARNING - instr WFI from extension RV32I was overwritten by WFI from tum_ret
+[2026-11-03 06:18:15]::INFO - Running type inference
+[2026-11-03 06:18:16]::WARNING - Can not infer type of non-static slice operation.
+[2026-11-03 06:18:16]::WARNING - Concat Operation needs inferred type.
+[2026-11-03 06:18:16]::INFO - dumping model

@@ -1,0 +1,260 @@
+diff --git a/seal5/backends/patterngen/writer.py b/seal5/backends/patterngen/writer.py
+index b4bbf27..5eb13ee 100644
+--- a/seal5/backends/patterngen/writer.py
++++ b/seal5/backends/patterngen/writer.py
+@@ -163,6 +163,10 @@ def main():
+                         may_load=Seal5InstrAttribute.MAY_LOAD in attrs,
+                     )
+                     if output_file.is_file():
++                        if args.patterns and Seal5InstrAttribute.IS_BRANCH in attrs:
++                            # Imported DAG patterns must never enter the GlobalISel tables.
++                            contents = output_file.read_text()
++                            output_file.write_text(cdsl2llvm.lower_branch_patterns_to_riscv(contents))
+                         if args.patterns and args.added_complexity:
+                             contents = output_file.read_text()
+                             output_file.write_text(
+diff --git a/seal5/backends/report/test_results/writer.py b/seal5/backends/report/test_results/writer.py
+index 3cd1ade..7e96398 100644
+--- a/seal5/backends/report/test_results/writer.py
++++ b/seal5/backends/report/test_results/writer.py
+@@ -24,6 +24,16 @@ from seal5.logging import Logger
+ logger = Logger("backends.test_results_writer")
+ 
+ 
++
++def latest_test_metrics(metrics):
++    """Report the latest attempt when a saved build is tested again."""
++    for stages_metrics in reversed(metrics):
++        assert len(stages_metrics) == 1
++        if "test" in stages_metrics:
++            return stages_metrics["test"]
++    return None
++
++
+ def main():
+     """Main app entrypoint."""
+ 
+@@ -57,12 +67,7 @@ def main():
+     settings = Seal5Settings.from_yaml_file(args.yaml)
+ 
+     def map_tests(metrics):
+-        test_metrics = None
+-        for stages_metrics in metrics:
+-            assert len(stages_metrics) == 1
+-            if "test" in stages_metrics.keys():
+-                test_metrics = stages_metrics["test"]
+-                break
++        test_metrics = latest_test_metrics(metrics)
+         if test_metrics is None:
+             logger.warning("Could not find test metrics. Make sure to run TEST stage!")
+             return {}, []
+diff --git a/seal5/flow.py b/seal5/flow.py
+index 8d6abc0..a7e7f8c 100644
+--- a/seal5/flow.py
++++ b/seal5/flow.py
+@@ -945,6 +945,11 @@ class Seal5Flow:
+ 
+         else:
+             file = self.resolve_patch_file(patch.file)
++            builtin_split = Path(__file__).parent / "resources/patches/llvm/legalizer_split.patch"
++            if (patch.name == "legalizer_split" and file == builtin_split.resolve()
++                    and self.settings.llvm.state.version.major >= 20):
++                file = cdsl2llvm.get_legalizer_split_patch(self.directory, self.settings.temp_dir)
++                patch.file = str(file)
+         dest = None
+         if target == "llvm":
+             dest = self.directory
+diff --git a/seal5/model.py b/seal5/model.py
+index 5641058..e52e22b 100644
+--- a/seal5/model.py
++++ b/seal5/model.py
+@@ -896,6 +896,9 @@ class Seal5Instruction(Instruction):
+             attrs["isTerminator"] = 1
+         else:
+             attrs["isTerminator"] = 0
++        if Seal5InstrAttribute.IS_BRANCH in self.attributes:
++            attrs["isBranch"] = 1
++            attrs["isTerminator"] = 1
+         uses = self.attributes.get(Seal5InstrAttribute.USES, [])
+         if uses:
+             attrs["Uses"] = "[" + ", ".join(uses) + "]"
+diff --git a/seal5/pass_list.py b/seal5/pass_list.py
+index 5164878..2703991 100644
+--- a/seal5/pass_list.py
++++ b/seal5/pass_list.py
+@@ -294,6 +294,7 @@ def detect_branches(input_model, settings=None, enabled=False, **_kwargs):
+                 instr.operation = operation
+                 instr.operands[offset_name].attributes[Seal5OperandAttribute.IS_BRANCH_OFFS] = []
+                 instr.attributes[Seal5InstrAttribute.IS_BRANCH] = []
++                instr.attributes[Seal5InstrAttribute.IS_TERMINATOR] = []
+                 changed += 1
+     dump_model(model, path)
+     return PassResult(metrics={"enabled": True, "rewritten": changed})
+diff --git a/seal5/tools/cdsl2llvm.py b/seal5/tools/cdsl2llvm.py
+index e1f6110..9230e99 100644
+--- a/seal5/tools/cdsl2llvm.py
++++ b/seal5/tools/cdsl2llvm.py
+@@ -189,6 +189,48 @@ def get_pattern_gen_backend_patch(src: Path, llvm_dir: Path, temp_dir: Path):
+     )
+ 
+ 
++
++def split_minmax_legalizer_actions(source: str) -> str:
++    """Give each min/max opcode its own legality rules, preserving all rules.
++
++    Seal5 extends these rules per instruction. LLVM19 uses a named shared
++    builder; newer releases use a chained builder with conditional actions.
++    """
++    pattern = (r"(?m)^  (?:auto &(?P<variable>\w+)\s*=\s*)?"
++               r"getActionDefinitionsBuilder\(\{G_UMAX, G_UMIN, G_SMAX, G_SMIN\}\)")
++    match = re.search(pattern, source)
++    if match is None:
++        raise ValueError("Cannot find the shared RISC-V min/max legality rules; source preserved")
++    variable = match.group("variable")
++    terminator = f"{variable}.lower();" if variable else ";"
++    end = source.find(terminator, match.end())
++    if end < 0:
++        raise ValueError("Cannot find the end of the RISC-V min/max legality rules")
++    end += len(terminator)
++    original = source[match.start():end]
++    single = original.replace(
++        "getActionDefinitionsBuilder({G_UMAX, G_UMIN, G_SMAX, G_SMIN})",
++        "getActionDefinitionsBuilder(Opcode)", 1,
++    )
++    replacement = "  for (unsigned Opcode : {G_UMAX, G_UMIN, G_SMAX, G_SMIN}) {\n"
++    replacement += "\n".join("  " + line if line else line for line in single.splitlines())
++    replacement += "\n  }"
++    return source[:match.start()] + replacement + source[end:]
++
++
++def get_legalizer_split_patch(llvm_dir: Path, temp_dir: Path) -> Path:
++    """Materialize a min/max split against the selected LLVM source version."""
++    path = "llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp"
++    original = (llvm_dir / path).read_text()
++    updated = split_minmax_legalizer_actions(original)
++    output = temp_dir / "legalizer_split_selected_llvm.patch"
++    output.write_text("".join(difflib.unified_diff(
++        original.splitlines(keepends=True), updated.splitlines(keepends=True),
++        fromfile="a/" + path, tofile="b/" + path,
++    )))
++    return output
++
++
+ def build_llc(
+     src: Path,
+     dest: Path,
+@@ -623,3 +665,53 @@ def convert_ll_to_gmir(
+         print_func=logger.info if verbose else logger.debug,
+         live=True,
+     )
++
++
++def lower_branch_patterns_to_riscv(contents):
++    """Match the target BR_CC node produced by RISC-V's BRCOND lowering.
++
++    PatternGen describes generic brcond/setcc trees. RISC-V custom-lowers those
++    before DAG selection, including swapping greater-than comparisons. Keep
++    these rules out of the GlobalISel importer.
++    """
++    def arguments(text):
++        depth, start, result = 0, 0, []
++        for index, char in enumerate(text):
++            depth += (char == '(') - (char == ')')
++            if char == ',' and depth == 0:
++                result.append(text[start:index].strip())
++                start = index + 1
++        result.append(text[start:].strip())
++        return result
++
++    def untype(text):
++        match = re.fullmatch(r'\(i(?:32|64)\s+(.*)\)', text, re.S)
++        return match.group(1).strip() if match else text
++
++    offset = 0
++    while True:
++        match = re.search(r'\(brcond\s+', contents[offset:])
++        if match is None:
++            break
++        start = offset + match.start()
++        depth, end = 1, start + 1
++        while end < len(contents) and depth:
++            depth += (contents[end] == '(') - (contents[end] == ')')
++            end += 1
++        if depth:
++            raise ValueError('Unbalanced branch TableGen pattern')
++        condition, target = arguments(contents[start + len('(brcond'):end - 1])
++        condition = untype(condition)
++        if not condition.startswith('(setcc ') or not condition.endswith(')'):
++            raise ValueError('Expected a setcc condition in a generated branch pattern')
++        lhs, rhs, cc = arguments(condition[len('(setcc '):-1])
++        swaps = {'SETGT': 'SETLT', 'SETLE': 'SETGE', 'SETUGT': 'SETULT', 'SETULE': 'SETUGE'}
++        if cc in swaps:
++            lhs, rhs, cc = rhs, lhs, swaps[cc]
++        if cc not in ('SETEQ', 'SETNE', 'SETLT', 'SETGE', 'SETULT', 'SETUGE'):
++            raise ValueError(f'Unsupported branch condition {cc}')
++        replacement = f'(riscv_brcc {lhs}, {rhs}, {cc}, {target})'
++        contents = contents[:start] + replacement + contents[end:]
++        offset = start + len(replacement)
++    return re.sub(r'(?m)^([ \t]*)def\s*:\s*Pat\s*<',
++                  r'\1let GISelShouldIgnore = 1 in def : Pat<', contents)
+diff --git a/seal5/tools/llvm.py b/seal5/tools/llvm.py
+index c0be881..c8f957a 100644
+--- a/seal5/tools/llvm.py
++++ b/seal5/tools/llvm.py
+@@ -278,7 +278,9 @@ def build_llvm(
+         else:
+             target = "install/strip" if do_strip else "install"
+     elif reduced and target in (None, "all"):
+-        target = reduced_tools
++        # LLVM's lit configuration requires these even for a single test.
++        # They are build-tree utilities, not part of the installed tool subset.
++        target = reduced_tools + ["count", "not"]
+     utils.make(
+         target=target, cwd=dest, print_func=logger.info if verbose else logger.debug, live=True, use_ninja=use_ninja
+     )
+@@ -316,7 +318,9 @@ def test_llvm(base: Path, build_dir: Path, test_paths: Optional[List[str]] = Non
+                 assert test_file.is_file()
+         out = utils.exec_getout(
+             lit_exe,
+-            *(["--verbose"] if verbose else []),
++            # PASS records are required to populate test results even when
++            # console logging is quiet. The logger still controls display.
++            "--verbose",
+             test_file,
+             print_func=logger.info if verbose else logger.debug,
+             live=True,
+@@ -329,6 +333,8 @@ def test_llvm(base: Path, build_dir: Path, test_paths: Optional[List[str]] = Non
+         passed = re.compile(r"PASS: LLVM :: (.*) \(").findall(out)
+         if len(passed) > 0:
+             passed_tests.extend(passed)
++        if not passed and not failing:
++            raise RuntimeError(f"lit produced no PASS/FAIL results for {test_file}:\n{out}")
+ 
+     return passed_tests, failing_tests
+ 
+diff --git a/seal5/transform/pattern_normalization.py b/seal5/transform/pattern_normalization.py
+index d057224..ad62a88 100644
+--- a/seal5/transform/pattern_normalization.py
++++ b/seal5/transform/pattern_normalization.py
+@@ -37,6 +37,7 @@ def transform_model(model, *, memory=False, registers=False, subscripts=False, b
+                     instr.operation = operation
+                     instr.operands[offset_name].attributes[Seal5OperandAttribute.IS_BRANCH_OFFS] = []
+                     instr.attributes[Seal5InstrAttribute.IS_BRANCH] = []
++                    instr.attributes[Seal5InstrAttribute.IS_TERMINATOR] = []
+                     counts["branches"] += 1
+         for name, visitor in visitors:
+             counts[name] += visitor.changed
+diff --git a/seal5/utils.py b/seal5/utils.py
+index a816f6d..b9978b2 100644
+--- a/seal5/utils.py
++++ b/seal5/utils.py
+@@ -188,6 +188,9 @@ def make(*args, target=None, threads=multiprocessing.cpu_count(), use_ninja=Fals
+     if target:
+         extra_args.extend(target.split(",") if isinstance(target, str) else target)
+     tool = "ninja" if use_ninja else "make"
++    threads = int(os.environ.get("SEAL5_BUILD_THREADS", threads))
++    if threads < 1:
++        raise ValueError("SEAL5_BUILD_THREADS must be positive")
+     extra_args.append("-j" + str(threads))
+     cmd = [tool] + extra_args + list(args)
+     return exec_getout(*cmd, cwd=cwd, **kwargs)

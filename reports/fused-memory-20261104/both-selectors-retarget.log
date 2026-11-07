@@ -1,0 +1,55 @@
+Logger started on port 36957
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XMem.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XMem.seal5model
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LBU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LHU.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_LOADADD_LW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_ADDR_SW.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SB.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SH.ll
+[seal5.pass_list::INFO] Writing gmir for MEM_STOREXOR_SW.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XMem.seal5model
+Logger on port 36957 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 33705
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XMem' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 33705 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 45671
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 45671 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 39427
+[seal5.flow::INFO] Testing Seal5 LLVM
+Traceback (most recent call last):
+[seal5.flow::INFO] 14 tests passed: CodeGen/RISCV/seal5/generated/xmem.test-attrs.ll, CodeGen/RISCV/seal5/generated/xmem.test-ext.c, CodeGen/RISCV/seal5/generated/MEM_ADDR_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LHU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_ADDR_SW.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_STOREXOR_SW.test-cg.ll
+[seal5.flow::ERROR] 4 tests failed: CodeGen/RISCV/seal5/generated/MEM_LOADADD_LB.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LBU.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LH.test-cg.ll, CodeGen/RISCV/seal5/generated/MEM_LOADADD_LHU.test-cg.ll
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/test.py", line 62, in handle
+    seal5_flow.test(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 1144, in test
+    raise RuntimeError("Tests failed!")
+RuntimeError: Tests failed!
+Logger on port 39427 stopped.

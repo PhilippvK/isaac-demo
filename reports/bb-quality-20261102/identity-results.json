@@ -1,0 +1,119 @@
+{
+  "checks": {
+    "fresh_receipts": true,
+    "late_created_block_not_silently_substituted": true,
+    "wrong_compilation_rejected": true,
+    "changed_source_rejected": true,
+    "changed_elf_rejected": true,
+    "duplicate_block_rejected": true,
+    "modified_graph_receipt_rejected": true,
+    "all": true
+  },
+  "mapping": [
+    {
+      "requested_fixed_id": 1,
+      "new_mir": "%bb.1",
+      "old_name_join_fixed_ids": [
+        1
+      ],
+      "new_correct": true,
+      "old_correct": true
+    },
+    {
+      "requested_fixed_id": 3,
+      "new_mir": "%bb.2",
+      "old_name_join_fixed_ids": [
+        2
+      ],
+      "new_correct": true,
+      "old_correct": false
+    }
+  ],
+  "inventory": [
+    {
+      "func": "choose",
+      "fixed": 3,
+      "mir": "%bb.2"
+    },
+    {
+      "func": "dispatch",
+      "fixed": 7,
+      "mir": "%bb.7"
+    },
+    {
+      "func": "choose",
+      "fixed": 1,
+      "mir": "%bb.1"
+    },
+    {
+      "func": "dispatch",
+      "fixed": 3,
+      "mir": "%bb.3"
+    },
+    {
+      "func": "loop",
+      "fixed": 6,
+      "mir": "%bb.6"
+    },
+    {
+      "func": "dispatch",
+      "fixed": 1,
+      "mir": "%bb.1"
+    },
+    {
+      "func": "loop",
+      "fixed": 5,
+      "mir": "%bb.5"
+    },
+    {
+      "func": "dispatch",
+      "fixed": 4,
+      "mir": "%bb.4"
+    },
+    {
+      "func": "dispatch",
+      "fixed": 5,
+      "mir": "%bb.5"
+    },
+    {
+      "func": "choose",
+      "fixed": 2,
+      "mir": "%bb.3"
+    },
+    {
+      "func": "loop",
+      "fixed": 3,
+      "mir": "%bb.3"
+    },
+    {
+      "func": "dispatch",
+      "fixed": 6,
+      "mir": "%bb.6"
+    },
+    {
+      "func": "dispatch",
+      "fixed": 2,
+      "mir": "%bb.2"
+    },
+    {
+      "func": "loop",
+      "fixed": 1,
+      "mir": "%bb.1"
+    },
+    {
+      "func": "loop",
+      "fixed": 2,
+      "mir": "%bb.2"
+    },
+    {
+      "func": "loop",
+      "fixed": 4,
+      "mir": "%bb.4"
+    },
+    {
+      "func": "loop",
+      "fixed": 7,
+      "mir": "%bb.7"
+    }
+  ]
+}

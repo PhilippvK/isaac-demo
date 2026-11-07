@@ -1,0 +1,1266 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Nov  5 16:14:51 2026
+# Process ID: 90
+# Current directory: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final
+# Command line: vivado -mode batch -source /var/tmp/ga87puy/isaac-demo-new/scripts//fpga_syn/my_vivado_script.tcl
+# Log file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado.log
+# Journal file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado.jou
+# Running On        :ryloth.eda.cit.tum.de
+# Platform          :Ubuntu
+# Operating System  :Ubuntu 22.04.2 LTS
+# Processor Detail  :Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+# CPU Frequency     :2900.000 MHz
+# CPU Physical cores:8
+# CPU Logical cores :16
+# Host memory       :33388 MB
+# Swap memory       :1073 MB
+# Total Virtual     :34462 MB
+# Available Virtual :10302 MB
+#-----------------------------------------------------------
+CRITICAL WARNING: [Common 17-741] No write access right to the local Tcl store at '/home/ga87puy/.Xilinx/Vivado/2024.1/XilinxTclStore'. XilinxTclStore is reverted to the installation area. If you want to use local Tcl Store, please change the access right and relaunch Vivado.
+source /var/tmp/ga87puy/isaac-demo-new/scripts//fpga_syn/my_vivado_script.tcl
+# set_param general.maxThreads 4
+# set ROOT_PATH      $env(ROOT_PATH)
+# set FILES_TXT $env(FILES_TXT)
+# set CONSTRAINTS_FILE $env(CONSTRAINTS_FILE)
+# set TOPLEVEL       $env(TOPLEVEL)
+# set PART       $env(PART)
+# create_project -force -part ${PART} CVA5IP ./vivado/CVA5IP
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1450.508 ; gain = 42.836 ; free physical = 679 ; free virtual = 9540
+# create_ip -name blk_mem_gen -vendor xilinx.com -library ip -version 8.4 \
+#           -module_name blk_mem_gen_0
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/nfs/tools/xilinx/Vivado/2024.1/data/ip'.
+# set_property -dict [list \
+#     CONFIG.Memory_Type {Single_Port_RAM} \
+#     CONFIG.Write_Width_A {32} \
+#     CONFIG.Write_Depth_A {65536} \
+#     CONFIG.Use_Byte_Write_Enable {true} \
+#     CONFIG.Byte_Size {8} \
+#     CONFIG.Register_PortA_Output_of_Memory_Primitives {false} \
+#     CONFIG.Register_PortA_Output_of_Memory_Core {false} \
+#     CONFIG.Operating_Mode_A {WRITE_FIRST} \
+# ] [get_ips blk_mem_gen_0]
+# if {[info exists env(FPGA_SYN_INIT_COE)] && $env(FPGA_SYN_INIT_COE) ne ""} {
+#     set_property -dict [list CONFIG.Load_Init_File true CONFIG.Coe_File [file normalize $env(FPGA_SYN_INIT_COE)]] [get_ips blk_mem_gen_0]
+# }
+INFO: [IP_Flow 19-3484] Absolute path of file '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/full/firmware.coe' provided. It will be converted relative to IP Instance files '../../../../../../../../firmware/full/firmware.coe'
+# generate_target all [get_ips blk_mem_gen_0]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'blk_mem_gen_0'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'blk_mem_gen_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'blk_mem_gen_0'...
+INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'blk_mem_gen_0'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'blk_mem_gen_0'...
+# update_ip_catalog
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+# synth_ip [get_ips blk_mem_gen_0]
+CRITICAL WARNING: [Vivado 12-5447] synth_ip is not supported in project mode, please use non-project mode.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/nfs/tools/xilinx/Vivado/2024.1/data/ip'.
+WARNING: [Vivado 12-13650] The IP file '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci' has been moved from its original location, as a result the outputs for this IP will now be generated in '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0'. Alternatively a copy of the IP can be imported into the project using one of the 'import_ip' or 'import_files' commands.
+Command: synth_design -top blk_mem_gen_0 -part xc7a100tcsg324-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Device 21-9227] Part: xc7a100tcsg324-1 does not have CEAM library.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 97
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2336.500 ; gain = 412.566 ; free physical = 8922 ; free virtual = 17620
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'blk_mem_gen_0' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/synth/blk_mem_gen_0.vhd:70]
+	Parameter C_FAMILY bound to: artix7 - type: string 
+	Parameter C_XDEVICEFAMILY bound to: artix7 - type: string 
+	Parameter C_ELABORATION_DIR bound to: ./ - type: string 
+	Parameter C_INTERFACE_TYPE bound to: 0 - type: integer 
+	Parameter C_AXI_TYPE bound to: 1 - type: integer 
+	Parameter C_AXI_SLAVE_TYPE bound to: 0 - type: integer 
+	Parameter C_USE_BRAM_BLOCK bound to: 0 - type: integer 
+	Parameter C_ENABLE_32BIT_ADDRESS bound to: 0 - type: integer 
+	Parameter C_CTRL_ECC_ALGO bound to: NONE - type: string 
+	Parameter C_HAS_AXI_ID bound to: 0 - type: integer 
+	Parameter C_AXI_ID_WIDTH bound to: 4 - type: integer 
+	Parameter C_MEM_TYPE bound to: 0 - type: integer 
+	Parameter C_BYTE_SIZE bound to: 8 - type: integer 
+	Parameter C_ALGORITHM bound to: 1 - type: integer 
+	Parameter C_PRIM_TYPE bound to: 1 - type: integer 
+	Parameter C_LOAD_INIT_FILE bound to: 1 - type: integer 
+	Parameter C_INIT_FILE_NAME bound to: blk_mem_gen_0.mif - type: string 
+	Parameter C_INIT_FILE bound to: blk_mem_gen_0.mem - type: string 
+	Parameter C_USE_DEFAULT_DATA bound to: 0 - type: integer 
+	Parameter C_DEFAULT_DATA bound to: 0 - type: string 
+	Parameter C_HAS_RSTA bound to: 0 - type: integer 
+	Parameter C_RST_PRIORITY_A bound to: CE - type: string 
+	Parameter C_RSTRAM_A bound to: 0 - type: integer 
+	Parameter C_INITA_VAL bound to: 0 - type: string 
+	Parameter C_HAS_ENA bound to: 1 - type: integer 
+	Parameter C_HAS_REGCEA bound to: 0 - type: integer 
+	Parameter C_USE_BYTE_WEA bound to: 1 - type: integer 
+	Parameter C_WEA_WIDTH bound to: 4 - type: integer 
+	Parameter C_WRITE_MODE_A bound to: WRITE_FIRST - type: string 
+	Parameter C_WRITE_WIDTH_A bound to: 32 - type: integer 
+	Parameter C_READ_WIDTH_A bound to: 32 - type: integer 
+	Parameter C_WRITE_DEPTH_A bound to: 65536 - type: integer 
+	Parameter C_READ_DEPTH_A bound to: 65536 - type: integer 
+	Parameter C_ADDRA_WIDTH bound to: 16 - type: integer 
+	Parameter C_HAS_RSTB bound to: 0 - type: integer 
+	Parameter C_RST_PRIORITY_B bound to: CE - type: string 
+	Parameter C_RSTRAM_B bound to: 0 - type: integer 
+	Parameter C_INITB_VAL bound to: 0 - type: string 
+	Parameter C_HAS_ENB bound to: 0 - type: integer 
+	Parameter C_HAS_REGCEB bound to: 0 - type: integer 
+	Parameter C_USE_BYTE_WEB bound to: 1 - type: integer 
+	Parameter C_WEB_WIDTH bound to: 4 - type: integer 
+	Parameter C_WRITE_MODE_B bound to: WRITE_FIRST - type: string 
+	Parameter C_WRITE_WIDTH_B bound to: 32 - type: integer 
+	Parameter C_READ_WIDTH_B bound to: 32 - type: integer 
+	Parameter C_WRITE_DEPTH_B bound to: 65536 - type: integer 
+	Parameter C_READ_DEPTH_B bound to: 65536 - type: integer 
+	Parameter C_ADDRB_WIDTH bound to: 16 - type: integer 
+	Parameter C_HAS_MEM_OUTPUT_REGS_A bound to: 0 - type: integer 
+	Parameter C_HAS_MEM_OUTPUT_REGS_B bound to: 0 - type: integer 
+	Parameter C_HAS_MUX_OUTPUT_REGS_A bound to: 0 - type: integer 
+	Parameter C_HAS_MUX_OUTPUT_REGS_B bound to: 0 - type: integer 
+	Parameter C_MUX_PIPELINE_STAGES bound to: 0 - type: integer 
+	Parameter C_HAS_SOFTECC_INPUT_REGS_A bound to: 0 - type: integer 
+	Parameter C_HAS_SOFTECC_OUTPUT_REGS_B bound to: 0 - type: integer 
+	Parameter C_USE_SOFTECC bound to: 0 - type: integer 
+	Parameter C_USE_ECC bound to: 0 - type: integer 
+	Parameter C_EN_ECC_PIPE bound to: 0 - type: integer 
+	Parameter C_READ_LATENCY_A bound to: 1 - type: integer 
+	Parameter C_READ_LATENCY_B bound to: 1 - type: integer 
+	Parameter C_HAS_INJECTERR bound to: 0 - type: integer 
+	Parameter C_SIM_COLLISION_CHECK bound to: ALL - type: string 
+	Parameter C_COMMON_CLK bound to: 0 - type: integer 
+	Parameter C_DISABLE_WARN_BHV_COLL bound to: 0 - type: integer 
+	Parameter C_EN_SLEEP_PIN bound to: 0 - type: integer 
+	Parameter C_USE_URAM bound to: 0 - type: integer 
+	Parameter C_EN_RDADDRA_CHG bound to: 0 - type: integer 
+	Parameter C_EN_RDADDRB_CHG bound to: 0 - type: integer 
+	Parameter C_EN_DEEPSLEEP_PIN bound to: 0 - type: integer 
+	Parameter C_EN_SHUTDOWN_PIN bound to: 0 - type: integer 
+	Parameter C_EN_SAFETY_CKT bound to: 0 - type: integer 
+	Parameter C_DISABLE_WARN_BHV_RANGE bound to: 0 - type: integer 
+	Parameter C_COUNT_36K_BRAM bound to: 64 - type: string 
+	Parameter C_COUNT_18K_BRAM bound to: 0 - type: string 
+	Parameter C_EST_POWER_SUMMARY bound to: Estimated Power for IP     :     10.194002 mW - type: string 
+INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_8' declared at '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195208' bound to instance 'U0' of component 'blk_mem_gen_v8_4_8' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/synth/blk_mem_gen_0.vhd:236]
+INFO: [Synth 8-256] done synthesizing module 'blk_mem_gen_0' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/synth/blk_mem_gen_0.vhd:70]
+WARNING: [Synth 8-7129] Port CLKB in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[31] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[30] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[29] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[28] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[27] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[26] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[25] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[24] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[23] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[22] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[21] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[20] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[19] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[18] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[17] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[16] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[15] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[14] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[13] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[12] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[11] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[10] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[9] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[8] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[7] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[6] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[5] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[4] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[3] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[2] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[1] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB_I[0] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERR_I in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERR_I in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[15] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[14] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[13] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[12] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[11] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[10] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[9] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[8] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[7] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[6] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[5] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[4] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[3] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[2] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[1] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RDADDRECC_I[0] in module blk_mem_output_block is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[8] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[7] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[6] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[5] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[4] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[3] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[2] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[1] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[0] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSRA in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLKB in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SSRB in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ENB in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port REGCEB in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port WEB[0] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[11] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[10] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[9] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[8] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[7] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[6] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[5] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[4] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[3] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[2] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[1] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDRB[0] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[8] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[7] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[6] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[5] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[4] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[3] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[2] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[1] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DINB[0] in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SLEEP in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INJECTSBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INJECTDBITERR in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ECCPIPECE in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ram_rstram_b in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ram_rstreg_b in module blk_mem_gen_prim_wrapper_init__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[8] in module blk_mem_gen_prim_wrapper_init__parameterized47 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[7] in module blk_mem_gen_prim_wrapper_init__parameterized47 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[6] in module blk_mem_gen_prim_wrapper_init__parameterized47 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[5] in module blk_mem_gen_prim_wrapper_init__parameterized47 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DOUTB[4] in module blk_mem_gen_prim_wrapper_init__parameterized47 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:33 ; elapsed = 00:01:02 . Memory (MB): peak = 2856.383 ; gain = 932.449 ; free physical = 7028 ; free virtual = 16703
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:01:03 . Memory (MB): peak = 2856.383 ; gain = 932.449 ; free physical = 7018 ; free virtual = 16693
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:33 ; elapsed = 00:01:03 . Memory (MB): peak = 2856.383 ; gain = 932.449 ; free physical = 7017 ; free virtual = 16692
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2856.383 ; gain = 0.000 ; free physical = 6955 ; free virtual = 16629
+INFO: [Netlist 29-17] Analyzing 64 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc] for cell 'U0'
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 6895 ; free virtual = 16571
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 6895 ; free virtual = 16570
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:40 ; elapsed = 00:01:10 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7393 ; free virtual = 16606
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:40 ; elapsed = 00:01:10 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7393 ; free virtual = 16606
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:01:10 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7393 ; free virtual = 16606
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:41 ; elapsed = 00:01:11 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7393 ; free virtual = 16607
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	                5 Bit    Registers := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:01:13 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7888 ; free virtual = 17104
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:49 ; elapsed = 00:01:19 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7675 ; free virtual = 16907
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:01:19 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7604 ; free virtual = 16837
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:49 ; elapsed = 00:01:19 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 7668 ; free virtual = 16903
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 8120 ; free virtual = 16926
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 8116 ; free virtual = 16921
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 8142 ; free virtual = 16948
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 8149 ; free virtual = 16956
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 8132 ; free virtual = 16939
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 8126 ; free virtual = 16932
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |LUT5     |    16|
+|2     |LUT6     |   128|
+|3     |MUXF7    |    64|
+|4     |MUXF8    |    32|
+|5     |RAMB36E1 |    64|
+|10    |FDRE     |     4|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:56 ; elapsed = 00:01:26 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 8134 ; free virtual = 16940
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 209 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:57 ; elapsed = 00:01:24 . Memory (MB): peak = 2952.430 ; gain = 932.449 ; free physical = 13397 ; free virtual = 22212
+Synthesis Optimization Complete : Time (s): cpu = 00:01:00 ; elapsed = 00:01:27 . Memory (MB): peak = 2952.430 ; gain = 1028.496 ; free physical = 13401 ; free virtual = 22216
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 13431 ; free virtual = 22253
+INFO: [Netlist 29-17] Analyzing 160 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc] for cell 'U0'
+INFO: [Vivado 12-4761] HD.CLK_SRC property is set on port clka. The net connecting to the port drives either clock PIN or hierarchical black box. Use the create_clock constraint to create a clock on this port prior to setting HD.CLK_SRC.  [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc:54]
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc] for cell 'U0'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 13261 ; free virtual = 22331
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 1941a962
+INFO: [Common 17-83] Releasing license: Synthesis
+25 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:06 ; elapsed = 00:01:34 . Memory (MB): peak = 2952.430 ; gain = 1382.613 ; free physical = 13250 ; free virtual = 22318
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 7598.773; main = 2355.283; forked = 5634.404
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 12934.320; main = 2920.418; forked = 10013.902
+INFO: [Coretcl 2-1174] Renamed 133 cell refs.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 13255 ; free virtual = 22323
+INFO: [Common 17-1381] The checkpoint '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.dcp' has been generated.
+INFO: [Vivado 12-3441] generate_netlist_ip - operation complete
+synth_ip: Time (s): cpu = 00:01:07 ; elapsed = 00:01:36 . Memory (MB): peak = 2952.430 ; gain = 1382.613 ; free physical = 13145 ; free virtual = 22305
+INFO: [Common 17-2834] synth_ip peak Physical Memory [PSS] (MB): overall = 7598.773; main = 2357.312; forked = 5634.404
+INFO: [Common 17-2834] synth_ip peak Virtual Memory [VSS] (MB): overall = 12934.320; main = 2920.418; forked = 10013.902
+# set file_handle [open ${FILES_TXT} r]
+# set file_list [read $file_handle]
+# close $file_handle
+# set parent_dir [file dirname ${FILES_TXT}]
+# set rtl_files {}
+# foreach file [split $file_list "\n"] {
+#     # Skip empty lines
+#     if {[string length $file] == 0} {
+#         continue
+#     }
+#     set file [string trim $file]
+#     if {[file pathtype $file] ne "absolute"} {set file [file join $parent_dir $file]}
+#     if {[info exists env(FPGA_SYN_BOARD)] && $env(FPGA_SYN_BOARD) eq "arty_a7_100" && [file tail $file] eq "CVA5_top.v"} {
+#         set adapted [file normalize board_rtl/CVA5_top.v]
+#         exec python3 [file join $ROOT_PATH fpga_syn boards arty_a7_100 prepare_top.py] $file $adapted
+#         set file $adapted
+#     }
+#     if {[info exists env(FPGA_SYN_BOARD)] && $env(FPGA_SYN_BOARD) eq "arty_a7_100" && [file tail $file] eq "scaiev_unit.sv"} {
+#         set adapted [file normalize board_rtl/scaiev_unit.sv]
+#         exec python3 [file join $ROOT_PATH fpga_syn boards arty_a7_100 prepare_scaiev.py] $file $adapted
+#         set file $adapted
+#     }
+#     lappend rtl_files $file
+# }
+# add_files -force $rtl_files
+# if {[info exists env(FPGA_SYN_BOARD)] && $env(FPGA_SYN_BOARD) eq "arty_a7_100"} {
+#     # The shell terminates cache AXI because this configuration disables caches.
+#     set config_file [lsearch -inline -glob $rtl_files */cva5_config.sv]
+#     set fh [open $config_file r]; set config [read $fh]; close $fh
+#     foreach option {INCLUDE_ICACHE INCLUDE_DCACHE INCLUDE_IBUS} {
+#         if {![regexp "${option}\\s*:\\s*0" $config]} {error "Arty shell requires $option disabled"}
+#     }
+#     source [file join $ROOT_PATH fpga_syn boards arty_a7_100 setup.tcl]
+# }
+## if {$PART ne "xc7a100tcsg324-1"} {error "Arty A7-100 requires xc7a100tcsg324-1"}
+## if {abs(double($env(CLOCK_PERIOD)) - 50.0) > 0.001} {
+##     error "Arty shell currently generates a fixed 20 MHz core clock (50 ns)"
+## }
+## add_files -norecurse [file join $ROOT_PATH fpga_syn boards arty_a7_100 cva5_arty_top.sv]
+## create_ip -name axi_uartlite -vendor xilinx.com -library ip -version 2.0 -module_name isaac_uart
+## set_property -dict [list CONFIG.C_BAUDRATE {115200} CONFIG.C_DATA_BITS {8} \
+##     CONFIG.C_S_AXI_ACLK_FREQ_HZ_d {20}] [get_ips isaac_uart]
+## generate_target all [get_ips isaac_uart]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'isaac_uart'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'isaac_uart'...
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_ooc.xdc'
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'isaac_uart'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'isaac_uart'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'isaac_uart'...
+## synth_ip [get_ips isaac_uart]
+CRITICAL WARNING: [Vivado 12-5447] synth_ip is not supported in project mode, please use non-project mode.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/nfs/tools/xilinx/Vivado/2024.1/data/ip'.
+WARNING: [Vivado 12-13650] The IP file '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.srcs/sources_1/ip/isaac_uart/isaac_uart.xci' has been moved from its original location, as a result the outputs for this IP will now be generated in '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart'. Alternatively a copy of the IP can be imported into the project using one of the 'import_ip' or 'import_files' commands.
+Command: synth_design -top isaac_uart -part xc7a100tcsg324-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12859 ; free virtual = 22039
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'isaac_uart' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/synth/isaac_uart.vhd:86]
+	Parameter C_FAMILY bound to: artix7 - type: string 
+	Parameter C_S_AXI_ACLK_FREQ_HZ bound to: 20000000 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_BAUDRATE bound to: 115200 - type: integer 
+	Parameter C_DATA_BITS bound to: 8 - type: integer 
+	Parameter C_USE_PARITY bound to: 0 - type: integer 
+	Parameter C_ODD_PARITY bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'axi_uartlite' declared at '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:2089' bound to instance 'U0' of component 'axi_uartlite' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/synth/isaac_uart.vhd:162]
+INFO: [Synth 8-638] synthesizing module 'axi_uartlite' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:2151]
+INFO: [Synth 8-638] synthesizing module 'uartlite_core' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:1617]
+INFO: [Synth 8-638] synthesizing module 'baudrate' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:1426]
+INFO: [Synth 8-256] done synthesizing module 'baudrate' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:1426]
+INFO: [Synth 8-638] synthesizing module 'uartlite_rx' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:906]
+INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:106]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:514]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2' to cell 'FDR' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:545]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3' to cell 'FDR' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:554]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4' to cell 'FDR' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:564]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5' to cell 'FDR' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:574]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6' to cell 'FDR' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:584]
+INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_f' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:777]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_rbu_f' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:538]
+INFO: [Synth 8-638] synthesizing module 'cntr_incr_decr_addn_f' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:134]
+INFO: [Synth 8-256] done synthesizing module 'cntr_incr_decr_addn_f' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:134]
+INFO: [Synth 8-638] synthesizing module 'dynshreg_f' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:329]
+INFO: [Synth 8-256] done synthesizing module 'dynshreg_f' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:329]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_rbu_f' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:538]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_f' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/lib_srl_fifo_v1_0_rfs.vhd:777]
+INFO: [Synth 8-256] done synthesizing module 'uartlite_rx' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:906]
+INFO: [Synth 8-638] synthesizing module 'uartlite_tx' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:393]
+INFO: [Synth 8-256] done synthesizing module 'uartlite_tx' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:393]
+INFO: [Synth 8-256] done synthesizing module 'uartlite_core' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:1617]
+INFO: [Synth 8-638] synthesizing module 'axi_lite_ipif' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-638] synthesizing module 'slave_attachment' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-638] synthesizing module 'address_decoder' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-638] synthesizing module 'pselect_f' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized0' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized0' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized1' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized1' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized2' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized2' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'address_decoder' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-226] default block is never used [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2550]
+INFO: [Synth 8-256] done synthesizing module 'slave_attachment' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-256] done synthesizing module 'axi_lite_ipif' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-256] done synthesizing module 'axi_uartlite' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_uartlite_v2_0_vh_rfs.vhd:2151]
+INFO: [Synth 8-256] done synthesizing module 'isaac_uart' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/synth/isaac_uart.vhd:86]
+WARNING: [Synth 8-6014] Unused sequential element is_read_reg was removed.  [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2447]
+WARNING: [Synth 8-6014] Unused sequential element is_write_reg was removed.  [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2448]
+WARNING: [Synth 8-7129] Port Address_In_Erly[2] in module address_decoder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Address_In_Erly[3] in module address_decoder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Bus_RNW in module address_decoder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_WSTRB[3] in module slave_attachment is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_WSTRB[2] in module slave_attachment is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_WSTRB[1] in module slave_attachment is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_WSTRB[0] in module slave_attachment is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_aclk in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_resetn in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[31] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[30] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[29] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[28] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[27] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[26] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[25] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[24] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[23] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[22] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[21] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[20] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[19] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[18] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[17] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[16] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[15] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[14] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[13] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[12] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[11] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[10] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[9] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[8] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[7] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[6] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[5] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[4] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[3] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[2] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[1] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[0] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port scndry_resetn in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port bus2ip_cs in module uartlite_core is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12871 ; free virtual = 22064
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12869 ; free virtual = 22062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12869 ; free virtual = 22062
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12877 ; free virtual = 22071
+INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_ooc.xdc] for cell 'U0'
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_board.xdc] for cell 'U0'
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_board.xdc] for cell 'U0'
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart.xdc] for cell 'U0'
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart.xdc] for cell 'U0'
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12847 ; free virtual = 22041
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 6 instances were transformed.
+  FDR => FDRE: 6 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12845 ; free virtual = 22039
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12868 ; free virtual = 22062
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12866 ; free virtual = 22060
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12862 ; free virtual = 22056
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'slave_attachment'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 sm_idle |                             0010 |                               00
+                 sm_read |                             1000 |                               01
+                sm_write |                             0100 |                               10
+                 sm_resp |                             0001 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'slave_attachment'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12784 ; free virtual = 21979
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               16 Bit    Registers := 2     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 46    
++---Muxes : 
+	   2 Input    8 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 7     
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 44    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port s_axi_wdata[31] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[30] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[29] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[28] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[27] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[26] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[25] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[24] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[23] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[22] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[21] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[20] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[19] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[18] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[17] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[16] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[15] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[14] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[13] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[12] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[11] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[10] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[9] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wdata[8] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[3] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[2] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[1] in module axi_uartlite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[0] in module axi_uartlite is either unconnected or has no load
+INFO: [Synth 8-3332] Sequential element (UARTLITE_CORE_I/UARTLITE_RX_I/INPUT_DOUBLE_REGS3/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module axi_uartlite.
+INFO: [Synth 8-3332] Sequential element (UARTLITE_CORE_I/UARTLITE_RX_I/INPUT_DOUBLE_REGS3/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module axi_uartlite.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12679 ; free virtual = 21874
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12475 ; free virtual = 21681
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12462 ; free virtual = 21668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12460 ; free virtual = 21666
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++-------------+--------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name  | RTL Name                                         | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++-------------+--------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|axi_uartlite | UARTLITE_CORE_I/UARTLITE_RX_I/data_shift_reg[15] | 16     | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|axi_uartlite | UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[15] | 15     | 1     | YES          | NO                 | YES               | 1      | 0       | 
++-------------+--------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+
+Dynamic Shift Register Report:
++------------+---------------------------+--------+------------+--------+---------+--------+--------+--------+
+|Module Name | RTL Name                  | Length | Data Width | SRL16E | SRLC32E | Mux F7 | Mux F8 | Mux F9 | 
++------------+---------------------------+--------+------------+--------+---------+--------+--------+--------+
+|dsrl        | INFERRED_GEN.data_reg[15] | 8      | 8          | 8      | 0       | 0      | 0      | 0      | 
++------------+---------------------------+--------+------------+--------+---------+--------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |LUT1   |     1|
+|2     |LUT2   |    14|
+|3     |LUT3   |     9|
+|4     |LUT4   |    29|
+|5     |LUT5   |    21|
+|6     |LUT6   |    26|
+|7     |MUXF7  |     1|
+|8     |SRL16E |    18|
+|9     |FDR    |     4|
+|10    |FDRE   |    86|
+|11    |FDSE   |    18|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 29 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 12921 ; free virtual = 21665
+INFO: [Netlist 29-17] Analyzing 5 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_ooc.xdc] for cell 'U0'
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_board.xdc] for cell 'U0'
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart_board.xdc] for cell 'U0'
+Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart.xdc] for cell 'U0'
+Finished Parsing XDC File [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart.xdc] for cell 'U0'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 13195 ; free virtual = 21940
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 4 instances were transformed.
+  FDR => FDRE: 4 instances
+
+Synth Design complete | Checksum: 7d133284
+INFO: [Common 17-83] Releasing license: Synthesis
+64 Infos, 75 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:29 ; elapsed = 00:00:26 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 13193 ; free virtual = 21937
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2638.634; main = 2359.006; forked = 422.861
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3927.324; main = 2920.418; forked = 1006.906
+INFO: [Coretcl 2-1174] Renamed 19 cell refs.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 13193 ; free virtual = 21937
+INFO: [Common 17-1381] The checkpoint '/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/vivado/CVA5IP/CVA5IP.gen/sources_1/ip/isaac_uart/isaac_uart.dcp' has been generated.
+INFO: [Vivado 12-3441] generate_netlist_ip - operation complete
+synth_ip: Time (s): cpu = 00:00:30 ; elapsed = 00:00:28 . Memory (MB): peak = 2952.430 ; gain = 0.000 ; free physical = 13192 ; free virtual = 21935
+INFO: [Common 17-2834] synth_ip peak Physical Memory [PSS] (MB): overall = 2638.634; main = 2359.006; forked = 422.861
+INFO: [Common 17-2834] synth_ip peak Virtual Memory [VSS] (MB): overall = 3927.324; main = 2952.434; forked = 1006.906
+# set_property top ${TOPLEVEL} [current_fileset]
+# update_compile_order -fileset sources_1
+# read_xdc ${CONSTRAINTS_FILE}
+# synth_design -top ${TOPLEVEL} -part ${PART}
+Command: synth_design -top cva5_arty_top -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2952.613 ; gain = 0.000 ; free physical = 13129 ; free virtual = 21893
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11067] parameter 'C_M_AXI_ADDR_WIDTH' declared inside package 'cva5_config' shall be treated as localparam [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_config.sv:284]
+WARNING: [Synth 8-11067] parameter 'C_M_AXI_DATA_WIDTH' declared inside package 'cva5_config' shall be treated as localparam [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_config.sv:285]
+WARNING: [Synth 8-11067] parameter 'L2_SUB_ID_W' declared inside package 'l2_config_and_types' shall be treated as localparam [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/l2_arbiter/l2_config_and_types.sv:27]
+INFO: [Synth 8-11241] undeclared symbol 'instruction_bram_clk', assumed default net type 'wire' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper_verilog.v:460]
+INFO: [Synth 8-11241] undeclared symbol 'instruction_bram_rst', assumed default net type 'wire' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper_verilog.v:461]
+INFO: [Synth 8-11241] undeclared symbol 'data_bram_clk', assumed default net type 'wire' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper_verilog.v:462]
+INFO: [Synth 8-11241] undeclared symbol 'data_bram_rst', assumed default net type 'wire' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper_verilog.v:463]
+INFO: [Synth 8-6157] synthesizing module 'cva5_arty_top' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'IBUF' [/nfs/tools/xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:73643]
+INFO: [Synth 8-6155] done synthesizing module 'IBUF' (0#1) [/nfs/tools/xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:73643]
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_BASE' [/nfs/tools/xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:82508]
+	Parameter CLKFBOUT_MULT_F bound to: 10.000000 - type: double 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 50.000000 - type: double 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_BASE' (0#1) [/nfs/tools/xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:82508]
+WARNING: [Synth 8-7071] port 'CLKFBOUTB' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT0B' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT1' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT1B' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT2' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT2B' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT3' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT3B' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT4' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT5' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7071] port 'CLKOUT6' of module 'MMCME2_BASE' is unconnected for instance 'clock_manager' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+WARNING: [Synth 8-7023] instance 'clock_manager' of module 'MMCME2_BASE' has 18 connections declared, but only 7 given [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [/nfs/tools/xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:1951]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (0#1) [/nfs/tools/xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:1951]
+INFO: [Synth 8-6157] synthesizing module 'cva5_top' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/board_rtl/CVA5_top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/.Xil/Vivado-90-ryloth.eda.cit.tum.de/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/.Xil/Vivado-90-ryloth.eda.cit.tum.de/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'cva5_wrapper_verilog' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper_verilog.v:17]
+INFO: [Synth 8-6157] synthesizing module 'cva5_wrapper' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'local_memory_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/local_memory/local_memory_interface.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'local_memory_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/local_memory/local_memory_interface.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'local_memory_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/local_memory/local_memory_interface.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'local_memory_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/local_memory/local_memory_interface.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'axi_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'axi_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'avalon_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:91]
+INFO: [Synth 8-6155] done synthesizing module 'avalon_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:91]
+INFO: [Synth 8-6157] synthesizing module 'wishbone_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:114]
+INFO: [Synth 8-6155] done synthesizing module 'wishbone_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:114]
+INFO: [Synth 8-6157] synthesizing module 'wishbone_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:114]
+INFO: [Synth 8-6155] done synthesizing module 'wishbone_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:114]
+INFO: [Synth 8-6157] synthesizing module 'l2_requester_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/l2_arbiter/l2_external_interfaces.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'l2_requester_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/l2_arbiter/l2_external_interfaces.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'l2_requester_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/l2_arbiter/l2_external_interfaces.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'l2_requester_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/l2_arbiter/l2_external_interfaces.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'l2_memory_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/l2_arbiter/l2_external_interfaces.sv:79]
+INFO: [Synth 8-6155] done synthesizing module 'l2_memory_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/l2_arbiter/l2_external_interfaces.sv:79]
+INFO: [Synth 8-6157] synthesizing module 'scaiev_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/scaiev_types.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'scaiev_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/scaiev_types.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'cva5' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5.sv:25]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_request_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_request_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_request_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_request_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_request_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_request_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_request_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_request_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:138]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_return_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_return_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_return_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_return_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_return_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_return_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter_return_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter_return_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/external_interfaces.sv:161]
+INFO: [Synth 8-6157] synthesizing module 'branch_predictor_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'branch_predictor_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'exception_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6155] done synthesizing module 'exception_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6157] synthesizing module 'ras_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:87]
+INFO: [Synth 8-6155] done synthesizing module 'ras_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:87]
+INFO: [Synth 8-6157] synthesizing module 'register_file_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:364]
+	Parameter NUM_WB_GROUPS bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'register_file_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:364]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'mmu_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:145]
+INFO: [Synth 8-6155] done synthesizing module 'mmu_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:145]
+INFO: [Synth 8-6157] synthesizing module 'mmu_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:145]
+INFO: [Synth 8-6155] done synthesizing module 'mmu_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:145]
+INFO: [Synth 8-6157] synthesizing module 'tlb_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:169]
+INFO: [Synth 8-6155] done synthesizing module 'tlb_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:169]
+INFO: [Synth 8-6157] synthesizing module 'tlb_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:169]
+INFO: [Synth 8-6155] done synthesizing module 'tlb_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:169]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_issue_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6155] done synthesizing module 'unit_issue_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:54]
+INFO: [Synth 8-6157] synthesizing module 'unit_writeback_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'unit_writeback_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:67]
+INFO: [Synth 8-6157] synthesizing module 'exception_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6155] done synthesizing module 'exception_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6157] synthesizing module 'renamer_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:338]
+	Parameter NUM_WB_GROUPS bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'renamer_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:338]
+INFO: [Synth 8-6157] synthesizing module 'exception_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6155] done synthesizing module 'exception_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6157] synthesizing module 'exception_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6155] done synthesizing module 'exception_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6157] synthesizing module 'exception_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6155] done synthesizing module 'exception_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:103]
+INFO: [Synth 8-6157] synthesizing module 'l1_arbiter' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/l1_arbiter.sv:23]
+	Parameter CONFIG[INCLUDE_M_MODE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_S_MODE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_U_MODE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_MUL] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_DIV] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_SCAIEV] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_IFENCE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_CSRS] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_AMO] bound to: 1'b0 
+	Parameter CONFIG[CSRS][MACHINE_IMPLEMENTATION_ID] bound to: 32'b00000000000000000000000000000000 
+	Parameter CONFIG[CSRS][CPU_ID] bound to: 32'b00000000000000000000000000000000 
+	Parameter CONFIG[CSRS][RESET_VEC] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[CSRS][RESET_MTVEC] bound to: 32'b10001111000000000000000000000000 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][COUNTER_W] bound to: 32'b00000000000000000000000000100001 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][MCYCLE_WRITEABLE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][MINSTR_WRITEABLE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][MTVEC_WRITEABLE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][INCLUDE_MSCRATCH] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][INCLUDE_MCAUSE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][INCLUDE_MTVAL] bound to: 1'b1 
+	Parameter CONFIG[SQ_DEPTH] bound to: 32'b00000000000000000000000000000100 
+	Parameter CONFIG[INCLUDE_ICACHE] bound to: 1'b0 
+	Parameter CONFIG[ICACHE][LINES] bound to: 32'b00000000000000000000001000000000 
+	Parameter CONFIG[ICACHE][LINE_W] bound to: 32'b00000000000000000000000000000100 
+	Parameter CONFIG[ICACHE][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[ICACHE][USE_EXTERNAL_INVALIDATIONS] bound to: 1'b0 
+	Parameter CONFIG[ICACHE][USE_NON_CACHEABLE] bound to: 1'b0 
+	Parameter CONFIG[ICACHE][NON_CACHEABLE][L] bound to: 32'b01110000000000000000000000000000 
+	Parameter CONFIG[ICACHE][NON_CACHEABLE][H] bound to: 32'b01111111111111111111111111111111 
+	Parameter CONFIG[ICACHE_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[ICACHE_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[ITLB][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[ITLB][DEPTH] bound to: 32'b00000000000000000000000001000000 
+	Parameter CONFIG[INCLUDE_DCACHE] bound to: 1'b0 
+	Parameter CONFIG[DCACHE][LINES] bound to: 32'b00000000000000000000001000000000 
+	Parameter CONFIG[DCACHE][LINE_W] bound to: 32'b00000000000000000000000000000100 
+	Parameter CONFIG[DCACHE][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[DCACHE][USE_EXTERNAL_INVALIDATIONS] bound to: 1'b0 
+	Parameter CONFIG[DCACHE][USE_NON_CACHEABLE] bound to: 1'b0 
+	Parameter CONFIG[DCACHE][NON_CACHEABLE][L] bound to: 32'b01110000000000000000000000000000 
+	Parameter CONFIG[DCACHE][NON_CACHEABLE][H] bound to: 32'b01111111111111111111111111111111 
+	Parameter CONFIG[DCACHE_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[DCACHE_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[DTLB][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[DTLB][DEPTH] bound to: 32'b00000000000000000000000001000000 
+	Parameter CONFIG[INCLUDE_ILOCAL_MEM] bound to: 1'b1 
+	Parameter CONFIG[ILOCAL_MEM_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[ILOCAL_MEM_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[INCLUDE_DLOCAL_MEM] bound to: 1'b1 
+	Parameter CONFIG[DLOCAL_MEM_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[DLOCAL_MEM_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[INCLUDE_IBUS] bound to: 1'b0 
+	Parameter CONFIG[IBUS_ADDR][L] bound to: 32'b01100000000000000000000000000000 
+	Parameter CONFIG[IBUS_ADDR][H] bound to: 32'b01101111111111111111111111111111 
+	Parameter CONFIG[INCLUDE_PERIPHERAL_BUS] bound to: 1'b1 
+	Parameter CONFIG[PERIPHERAL_BUS_ADDR][L] bound to: 32'b01100000000000000000000000000000 
+	Parameter CONFIG[PERIPHERAL_BUS_ADDR][H] bound to: 32'b01101111111111111111111111111111 
+	Parameter CONFIG[PERIPHERAL_BUS_TYPE] bound to: 32'sb00000000000000000000000000000000 
+	Parameter CONFIG[INCLUDE_BRANCH_PREDICTOR] bound to: 1'b1 
+	Parameter CONFIG[BP][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[BP][ENTRIES] bound to: 32'b00000000000000000000001000000000 
+	Parameter CONFIG[BP][RAS_ENTRIES] bound to: 32'b00000000000000000000000000001000 
+	Parameter CONFIG[NUM_WB_GROUPS] bound to: 32'b00000000000000000000000000000010 
+INFO: [Synth 8-6157] synthesizing module 'priority_encoder' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/priority_encoder.sv:28]
+	Parameter WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'priority_encoder' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/priority_encoder.sv:28]
+INFO: [Synth 8-6155] done synthesizing module 'l1_arbiter' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/l1_arbiter.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'tlb_lut_ram' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/tlb_lut_ram.sv:25]
+	Parameter WAYS bound to: 2 - type: integer 
+	Parameter DEPTH bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'lutram_1w_1r' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/lutrams/lutram_1w_1r.sv:23]
+	Parameter WIDTH bound to: 35 - type: integer 
+	Parameter DEPTH bound to: 64 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'lutram_1w_1r' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/lutrams/lutram_1w_1r.sv:23]
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/tlb_lut_ram.sv:168]
+INFO: [Synth 8-6157] synthesizing module 'lfsr' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/lfsr.sv:24]
+	Parameter WIDTH bound to: 32'b00000000000000000000000000000110 
+	Parameter NEEDS_RESET bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'lfsr' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/lfsr.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'cycler' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cycler.sv:24]
+	Parameter C_WIDTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cycler' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cycler.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'tlb_lut_ram' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/tlb_lut_ram.sv:25]
+INFO: [Synth 8-6157] synthesizing module 'mmu' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:23]
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:205]
+INFO: [Synth 8-155] case statement is not full and has no default [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:133]
+INFO: [Synth 8-6155] done synthesizing module 'mmu' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'tlb_lut_ram__parameterized0' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/tlb_lut_ram.sv:25]
+	Parameter WAYS bound to: 2 - type: integer 
+	Parameter DEPTH bound to: 64 - type: integer 
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/tlb_lut_ram.sv:168]
+INFO: [Synth 8-6155] done synthesizing module 'tlb_lut_ram__parameterized0' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/tlb_lut_ram.sv:25]
+INFO: [Synth 8-6157] synthesizing module 'mmu__parameterized0' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:23]
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:205]
+INFO: [Synth 8-155] case statement is not full and has no default [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:133]
+INFO: [Synth 8-6155] done synthesizing module 'mmu__parameterized0' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mmu.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'csr_unit' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/csr_unit.sv:23]
+	Parameter CONFIG[INCLUDE_M_MODE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_S_MODE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_U_MODE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_MUL] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_DIV] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_SCAIEV] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_IFENCE] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_CSRS] bound to: 1'b1 
+	Parameter CONFIG[INCLUDE_AMO] bound to: 1'b0 
+	Parameter CONFIG[CSRS][MACHINE_IMPLEMENTATION_ID] bound to: 32'b00000000000000000000000000000000 
+	Parameter CONFIG[CSRS][CPU_ID] bound to: 32'b00000000000000000000000000000000 
+	Parameter CONFIG[CSRS][RESET_VEC] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[CSRS][RESET_MTVEC] bound to: 32'b10001111000000000000000000000000 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][COUNTER_W] bound to: 32'b00000000000000000000000000100001 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][MCYCLE_WRITEABLE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][MINSTR_WRITEABLE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][MTVEC_WRITEABLE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][INCLUDE_MSCRATCH] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][INCLUDE_MCAUSE] bound to: 1'b1 
+	Parameter CONFIG[CSRS][NON_STANDARD_OPTIONS][INCLUDE_MTVAL] bound to: 1'b1 
+	Parameter CONFIG[SQ_DEPTH] bound to: 32'b00000000000000000000000000000100 
+	Parameter CONFIG[INCLUDE_ICACHE] bound to: 1'b0 
+	Parameter CONFIG[ICACHE][LINES] bound to: 32'b00000000000000000000001000000000 
+	Parameter CONFIG[ICACHE][LINE_W] bound to: 32'b00000000000000000000000000000100 
+	Parameter CONFIG[ICACHE][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[ICACHE][USE_EXTERNAL_INVALIDATIONS] bound to: 1'b0 
+	Parameter CONFIG[ICACHE][USE_NON_CACHEABLE] bound to: 1'b0 
+	Parameter CONFIG[ICACHE][NON_CACHEABLE][L] bound to: 32'b01110000000000000000000000000000 
+	Parameter CONFIG[ICACHE][NON_CACHEABLE][H] bound to: 32'b01111111111111111111111111111111 
+	Parameter CONFIG[ICACHE_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[ICACHE_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[ITLB][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[ITLB][DEPTH] bound to: 32'b00000000000000000000000001000000 
+	Parameter CONFIG[INCLUDE_DCACHE] bound to: 1'b0 
+	Parameter CONFIG[DCACHE][LINES] bound to: 32'b00000000000000000000001000000000 
+	Parameter CONFIG[DCACHE][LINE_W] bound to: 32'b00000000000000000000000000000100 
+	Parameter CONFIG[DCACHE][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[DCACHE][USE_EXTERNAL_INVALIDATIONS] bound to: 1'b0 
+	Parameter CONFIG[DCACHE][USE_NON_CACHEABLE] bound to: 1'b0 
+	Parameter CONFIG[DCACHE][NON_CACHEABLE][L] bound to: 32'b01110000000000000000000000000000 
+	Parameter CONFIG[DCACHE][NON_CACHEABLE][H] bound to: 32'b01111111111111111111111111111111 
+	Parameter CONFIG[DCACHE_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[DCACHE_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[DTLB][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[DTLB][DEPTH] bound to: 32'b00000000000000000000000001000000 
+	Parameter CONFIG[INCLUDE_ILOCAL_MEM] bound to: 1'b1 
+	Parameter CONFIG[ILOCAL_MEM_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[ILOCAL_MEM_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[INCLUDE_DLOCAL_MEM] bound to: 1'b1 
+	Parameter CONFIG[DLOCAL_MEM_ADDR][L] bound to: 32'b10000000000000000000000000000000 
+	Parameter CONFIG[DLOCAL_MEM_ADDR][H] bound to: 32'b10001111111111111111111111111111 
+	Parameter CONFIG[INCLUDE_IBUS] bound to: 1'b0 
+	Parameter CONFIG[IBUS_ADDR][L] bound to: 32'b01100000000000000000000000000000 
+	Parameter CONFIG[IBUS_ADDR][H] bound to: 32'b01101111111111111111111111111111 
+	Parameter CONFIG[INCLUDE_PERIPHERAL_BUS] bound to: 1'b1 
+	Parameter CONFIG[PERIPHERAL_BUS_ADDR][L] bound to: 32'b01100000000000000000000000000000 
+	Parameter CONFIG[PERIPHERAL_BUS_ADDR][H] bound to: 32'b01101111111111111111111111111111 
+	Parameter CONFIG[PERIPHERAL_BUS_TYPE] bound to: 32'sb00000000000000000000000000000000 
+	Parameter CONFIG[INCLUDE_BRANCH_PREDICTOR] bound to: 1'b1 
+	Parameter CONFIG[BP][WAYS] bound to: 32'b00000000000000000000000000000010 
+	Parameter CONFIG[BP][ENTRIES] bound to: 32'b00000000000000000000001000000000 
+	Parameter CONFIG[BP][RAS_ENTRIES] bound to: 32'b00000000000000000000000000001000 
+	Parameter CONFIG[NUM_WB_GROUPS] bound to: 32'b00000000000000000000000000000010 
+INFO: [Synth 8-6157] synthesizing module 'priority_encoder__parameterized0' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/priority_encoder.sv:28]
+	Parameter WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'priority_encoder__parameterized0' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/priority_encoder.sv:28]
+INFO: [Synth 8-6155] done synthesizing module 'csr_unit' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/csr_unit.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'mul_unit' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mul_unit.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'mul_unit' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/mul_unit.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'div_unit' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/div_unit.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'unsigned_division_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:324]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'unsigned_division_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:324]
+INFO: [Synth 8-6157] synthesizing module 'fifo_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:132]
+	Parameter DATA_WIDTH bound to: 81 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fifo_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:132]
+INFO: [Synth 8-6157] synthesizing module 'fifo_interface' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:132]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fifo_interface' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/interfaces.sv:132]
+INFO: [Synth 8-6157] synthesizing module 'clz' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/clz.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'clz' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/clz.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'cva5_fifo' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_fifo.sv:28]
+	Parameter DATA_WIDTH bound to: 81 - type: integer 
+	Parameter FIFO_DEPTH bound to: 1 - type: integer 
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_fifo.sv:136]
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_fifo.sv:138]
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_fifo.sv:140]
+INFO: [Synth 8-6155] done synthesizing module 'cva5_fifo' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_fifo.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'set_clr_reg_with_rst' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/set_clr_reg_with_rst.sv:28]
+	Parameter SET_OVER_CLR bound to: 1 - type: integer 
+	Parameter WIDTH bound to: 1 - type: integer 
+	Parameter RST_VALUE bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'set_clr_reg_with_rst' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/set_clr_reg_with_rst.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'div_core' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/div_core.sv:23]
+	Parameter DIV_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'div_core' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/div_core.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'div_unit' (0#1) [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/div_unit.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'scaiev_unit' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/board_rtl/scaiev_unit.sv:23]
+ERROR: [Synth 8-6038] cannot resolve hierarchical name for the item 'fn3' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/board_rtl/scaiev_unit.sv:178]
+ERROR: [Synth 8-6156] failed synthesizing module 'scaiev_unit' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/board_rtl/scaiev_unit.sv:23]
+ERROR: [Synth 8-6156] failed synthesizing module 'cva5' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5.sv:25]
+ERROR: [Synth 8-6156] failed synthesizing module 'cva5_wrapper' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper.sv:17]
+ERROR: [Synth 8-6156] failed synthesizing module 'cva5_wrapper_verilog' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/crc32-scaiev2-final/CVA5/core/cva5_wrapper_verilog.v:17]
+ERROR: [Synth 8-6156] failed synthesizing module 'cva5_top' [/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/board_rtl/CVA5_top.v:1]
+ERROR: [Synth 8-6156] failed synthesizing module 'cva5_arty_top' [/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/boards/arty_a7_100/cva5_arty_top.sv:2]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2952.613 ; gain = 0.000 ; free physical = 13081 ; free virtual = 21873
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+161 Infos, 22 Warnings, 0 Critical Warnings and 8 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  5 16:17:29 2026...

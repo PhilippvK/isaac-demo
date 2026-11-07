@@ -1,0 +1,629 @@
+diff --git a/tool/gen/cdsl.py b/tool/gen/cdsl.py
+index 1dcd896..4a73655 100644
+--- a/tool/gen/cdsl.py
++++ b/tool/gen/cdsl.py
+@@ -7,6 +7,7 @@ import pandas as pd
+ from anytree import AnyNode, RenderTree
+ 
+ from .cdsl_utils import CDSLEmitter, wrap_cdsl
++from ..branches import BRANCHES, BRANCH_OFFSET
+ from .tree_utils import tree_from_pkl
+ from .desc import generate_desc
+ from .gen_utils import gen_helper
+@@ -55,7 +56,10 @@ def generate_operands(sub_data: dict, xlen: int, with_attrs: bool = True):
+                 raise NotImplementedError
+         elif operand_type == "IMM":
+             # TODO: store sign info
+-            signed = operand_name[0] == "s"
++            branch_offset = operand_name == BRANCH_OFFSET
++            signed = branch_offset or operand_name[0] == "s"
++            if branch_offset:
++                enc_bits = 13
+             dtype = "signed" if signed else "unsigned"
+             operand_code = f"{dtype}<{enc_bits}> {operand_name}"
+             if with_attrs:
+@@ -70,6 +74,8 @@ def generate_operands(sub_data: dict, xlen: int, with_attrs: bool = True):
+                 ]
+                 attrs_str = " ".join(attr_strs)
+                 operand_code += " " + attrs_str
++            if branch_offset and with_attrs:
++                operand_code += " [[is_branch_offs]]"
+             operand_reg_class = "IMM"
+         else:
+             raise NotImplementedError
+@@ -79,7 +85,7 @@ def generate_operands(sub_data: dict, xlen: int, with_attrs: bool = True):
+     return operands
+ 
+ 
+-def generate_complete_cdsl(codes: List[str], operands, xlen: int, name="result", desc=None):
++def generate_complete_cdsl(codes: List[str], operands, xlen: int, name="result", desc=None, branch=False):
+     # print("CDSL Code:")
+     codes = ["    " + code for code in codes]
+     asm_ins = []
+@@ -111,7 +117,7 @@ def generate_complete_cdsl(codes: List[str], operands, xlen: int, name="result",
+         + codes
+         + ["}"]
+     )
+-    codes = wrap_cdsl(name, "\n".join(codes)).split("\n")
++    codes = wrap_cdsl(name, "\n".join(codes), branch=branch).split("\n")
+     codes = ["    " * 2 + code for code in codes]
+     code = "\n".join(codes) + "\n"
+     prefix = 'import "RVI.core_desc"\n\n'
+@@ -133,13 +139,14 @@ def generate_cdsl(stmts_root, sub_data, xlen: int, name="result", desc=None):
+     # print("stmts_root", stmts_root)
+     # print(RenderTree(stmts_root))
+     # input(">>>")
+-    emitter = CDSLEmitter(xlen)
++    branch = any(getattr(n, "name", None) in BRANCHES for n in (stmts_root, *stmts_root.descendants))
++    emitter = CDSLEmitter(xlen, inline_values=branch)
+     emitter.visit(stmts_root)
+     output = emitter.output
+     codes = []
+     codes += output.split("\n")
+     operands = generate_operands(sub_data, xlen=xlen, with_attrs=True)
+-    return generate_complete_cdsl(codes, operands=operands, xlen=xlen, name=name, desc=desc)
++    return generate_complete_cdsl(codes, operands=operands, xlen=xlen, name=name, desc=desc, branch=branch)
+ 
+ 
+ def process_candidate_cdsl(idx, candidate_data, xlen=None, out_dir=None):
+@@ -147,7 +154,7 @@ def process_candidate_cdsl(idx, candidate_data, xlen=None, out_dir=None):
+     candidate_artifacts = candidate_data["artifacts"]
+     name = candidate_properties.get("InstrName")
+     if name is None:
+-        name = f"name{i}"
++        name = f"name{idx}"
+     sub_data = candidate_properties
+     desc = generate_desc(idx, sub_data, name=name)
+     tree_pkl = candidate_artifacts.get("tree", None)
+diff --git a/tool/gen/cdsl_utils.py b/tool/gen/cdsl_utils.py
+index 781bef2..01c91b5 100644
+--- a/tool/gen/cdsl_utils.py
++++ b/tool/gen/cdsl_utils.py
+@@ -2,10 +2,13 @@ from enum import IntEnum, auto
+ 
+ from .tree_utils import Ref, Cast, Constant, Register, Operation, Statements, Declaration, Assignment
+ from .utils import mem_lookup
++from ..branches import BRANCHES, BRANCH_OFFSET
++from ..memory import LOADS, STORES
+ 
+ 
+-def wrap_cdsl(name, code):
+-    ret = f"{name} {{\n"
++def wrap_cdsl(name, code, branch=False):
++    attrs = " [[no_cont]] [[cond]]" if branch else ""
++    ret = f"{name}{attrs} {{\n"
+     ret += "\n".join(["    " + line for line in code.splitlines()]) + "\n"
+     ret += "}\n"
+     return ret
+@@ -19,10 +22,13 @@ class ExtendMode(IntEnum):
+ 
+ class CDSLEmitter:
+ 
+-    def __init__(self, xlen):
++    def __init__(self, xlen, inline_values=False):
+         assert xlen in [32, 64]
+         self.xlen = xlen
+         self.output = ""
++        self.inline_values = inline_values
++        self.values = {}
++        self.memory_addresses = {}
+ 
+     def write(self, text):
+         if not isinstance(text, str):
+@@ -31,7 +37,13 @@ class CDSLEmitter:
+ 
+     def visit_ref(self, node):
+         assert isinstance(node, Ref)
+-        self.write(node.name)
++        if self.inline_values and node.name in self.values:
++            dtype, value = self.values[node.name]
++            self.write(f"({dtype})(")
++            self.visit(value)
++            self.write(")")
++        else:
++            self.write(node.name)
+ 
+     def visit_constant(self, node):
+         assert isinstance(node, Constant)
+@@ -117,6 +129,16 @@ class CDSLEmitter:
+         assert isinstance(node, Statements)
+         # print("visit_statements", node, node.children)
+         for children in node.children:
++            if not isinstance(children, Statements):
++                for access in (children, *children.descendants):
++                    if isinstance(access, Operation) and access.name in (set(LOADS) | set(STORES)):
++                        if access.id not in self.memory_addresses:
++                            base, offset = access.children[-2:]
++                            name = f"_isaac_mem_addr_{len(self.memory_addresses)}"
++                            self.memory_addresses[access.id] = name
++                            self.write(f"unsigned<{self.xlen}> {name} = ")
++                            self._memory_address(base, offset)
++                            self.write(";\n")
+             self.visit(children)
+             self.write("\n")
+ 
+@@ -144,6 +166,9 @@ class CDSLEmitter:
+         # print("visit_declaration", node, node.children)
+         assert len(node.children) == 2
+         lhs, rhs = node.children
++        if self.inline_values:
++            self.values[lhs.name] = (node.decl_type, rhs)
++            return
+         decl_type = node.decl_type
+         self.write(f"{decl_type} ")
+         self.visit_assignment(node)
+@@ -162,125 +187,66 @@ class CDSLEmitter:
+ 
+     def visit_branch_riscv(self, node):
+         assert isinstance(node, Operation)
+-        lookup = {
+-            "BNE": ("!=", False),
+-            "BEQ": ("==", False),
+-        }
+-        res = lookup.get(node.name)
+-        assert res is not None
+-        pred, imm = res
+-        assert not imm, "Immediated branching not supported"
+-        # print("node.children", node.children)
+-        assert len(node.children) == 2  # TODO: fix missing offset label
+-        lhs, rhs = node.children
+-        # TODO: check alignment
+-        self.write("if(")
+-        self.visit(lhs)
+-        self.write(pred)
+-        self.visit(rhs)
+-        self.write(")")
+-        self.write("{")
+-        self.write("PC")
+-        self.write("=")
+-        self.write("PC")
+-        self.write("+")
+-        self.write("(signed)")
+-        # self.visit(offset)
+-        self.write("TODO")
+-        self.write("}")
++        predicate, signed = BRANCHES[node.name]
++        if len(node.children) != 3:
++            raise ValueError("Branch displacement is missing")
++        lhs, rhs, offset = node.children
++        if not isinstance(offset, Ref) or offset.name != BRANCH_OFFSET:
++            raise ValueError("Expected the final branch operand to be its PC-relative target")
++        self.write("if (")
++        for i, value in enumerate((lhs, rhs)):
++            if i:
++                self.write(predicate)
++            self.write(f"({'signed' if signed else 'unsigned'}<{self.xlen}>)(")
++            self.visit(value)
++            self.write(")")
++        self.write(") { PC = PC + (signed<XLEN>)(")
++        self.visit(offset)
++        self.write("); }")
+ 
+     def visit_load_generic(self, node):
+-        assert isinstance(node, Operation)
++        raise ValueError("Generic memory nodes require access-width metadata; use selected scalar RISC-V loads")
+ 
+-        lookup = {
+-            "G_LOAD": (ExtendMode.UNDEFINED,),
+-            "G_SEXTLOAD": (ExtendMode.SIGN_EXTEND,),
+-            "G_ZEXTLOAD": (ExtendMode.ZERO_EXTEND,),
+-        }
+-        res = lookup.get(node.name)
+-        assert res is not None
+-        (mode,) = res
+-        # TODO: dtypes?
+-        # in_types = node.in_types
+-        # assert len(in_types) == 1
+-        # in_type = in_types[0]  # TODO: need to get the bit size here...
+-        mem_type = "unsigned<?>"
+-        out_types = node.out_types
+-        assert len(out_types) == 1
+-        out_type = out_types[0]
+-        assert out_type is not None
+-        # print("node.children", node.children)
+-        assert len(node.children) == 1
+-        (base,) = node.children
+-        self.write(f"({out_type})")
+-        self.write("(")
+-        if mode == ExtendMode.SIGN_EXTEND:
+-            if mem_type.startswith("unsigned"):
+-                mem_type_ = mem_type.replace("unsigned", "signed")
+-                self.write(f"({mem_type_})")
+-        elif mode == "ExtendMode.ZERO_EXTEND":
+-            if mem_type.startswith("signed"):
+-                mem_type_ = mem_type.replace("signed", "unsigned")
+-                self.write(f"({mem_type_})")
+-        else:
+-            pass  # TODO: ok?
+-        self.write(f"({mem_type})")
+-        self.write("MEM[")
++    def _memory_address(self, base, offset):
++        # RISC-V address arithmetic wraps at XLEN before accessing memory.
++        self.write(f"(unsigned<{self.xlen}>)(")
+         self.visit(base)
+-        self.write("+")
+-        # self.visit(offset)
+-        self.write("?")
++        self.write(f"+(signed<{self.xlen}>)(")
++        self.visit(offset)
++        self.write("))")
++
++    def _memory_access(self, node, width):
++        address = self.memory_addresses.get(node.id)
++        if address is None:
++            raise ValueError("Memory expressions require statement scheduling")
++        self.write("MEM[")
++        if width > 8:
++            self.write(f"{address}+{width // 8 - 1}:")
++        self.write(address)
+         self.write("]")
+-        self.write(")")
+ 
+     def visit_load_riscv(self, node):
+-        assert isinstance(node, Operation)
+-        lookup = {
+-            "LH": (True, 16, True),
+-            "LW": (True, 32, True),
+-        }
+-        res = lookup.get(node.name)
+-        assert res is not None
+-        signed, sz, imm = res
+-        assert imm, "reg-reg loads not supported"
+-        assert len(node.children) == 2
++        width, signed = LOADS[node.name]
++        if width > self.xlen or (node.name == "LWU" and self.xlen != 64):
++            raise ValueError(f"{node.name} is unavailable on RV{self.xlen}")
++        if len(node.children) != 2:
++            raise ValueError(f"{node.name} requires base and offset")
+         base, offset = node.children
+-        self.write("(unsigned<XLEN>)")
+-        self.write("(")
+-        if signed:
+-            self.write(f"(signed<{sz}>)")
+-        else:
+-            self.write(f"(unsigned<{sz}>)")
+-        self.write("MEM[")
+-        self.visit(base)
+-        self.write("+")
+-        self.visit(offset)
+-        self.write("]")
++        self.write(f"(unsigned<{self.xlen}>)({'signed' if signed else 'unsigned'}<{width}>)(")
++        self._memory_access(node, width)
+         self.write(")")
+ 
+     def visit_store_riscv(self, node):
+-        assert isinstance(node, Operation)
+-        lookup = {
+-            "SW": (32, True),
+-            "SH": (16, True),
+-        }
+-        res = lookup.get(node.name)
+-        assert res is not None
+-        sz, imm = res
+-        assert imm, "reg-reg stores not supported"
+-        assert len(node.children) == 3
++        width = STORES[node.name]
++        if width > self.xlen:
++            raise ValueError(f"{node.name} is unavailable on RV{self.xlen}")
++        if len(node.children) != 3:
++            raise ValueError(f"{node.name} requires value, base and offset")
+         value, base, offset = node.children
+-        self.write("MEM[")
+-        self.visit(base)
+-        self.write("+")
+-        self.visit(offset)
+-        self.write("]")
+-        self.write("=")
+-        self.write("(")
+-        self.write(f"(signed<{sz}>)")
++        self._memory_access(node, width)
++        self.write(f"=(unsigned<{width}>)(")
+         self.visit(value)
+-        self.write(")")
+-        self.write(";")
++        self.write(");")
+ 
+     def visit_lui_riscv(self, node):
+         assert isinstance(node, Operation)
+@@ -521,11 +487,11 @@ class CDSLEmitter:
+             self.visit_binop_riscv_div_rem(node)
+         elif name in ["SLT", "SLTU", "SLTIU", "SLTI"]:
+             self.visit_cond_set_riscv(node)
+-        elif name in ["BNE", "BEQ"]:
++        elif name in BRANCHES:
+             self.visit_branch_riscv(node)
+-        elif name in ["LH", "LW"]:
++        elif name in LOADS:
+             self.visit_load_riscv(node)
+-        elif name in ["SW", "SH"]:
++        elif name in STORES:
+             self.visit_store_riscv(node)
+         elif name in ["LUI"]:
+             self.visit_lui_riscv(node)
+diff --git a/tool/gen/fuse_cdsl.py b/tool/gen/fuse_cdsl.py
+index 9ae9fe5..75c0069 100644
+--- a/tool/gen/fuse_cdsl.py
++++ b/tool/gen/fuse_cdsl.py
+@@ -10,13 +10,17 @@ from tqdm import tqdm
+ from .flat_utils import FlatCodeEmitter
+ from .tree_utils import tree_from_pkl
+ from .desc import generate_desc
+-from .cdsl import generate_operands, generate_complete_cdsl
++from .cdsl import generate_operands, generate_complete_cdsl, generate_cdsl
++from ..branches import BRANCHES
++from ..memory import LOADS, STORES
+ from .gen_utils import gen_helper
+ 
+ logger = logging.getLogger("fuse_cdsl")
+ 
+ 
+ def generate_fuse_cdsl(stmts_root, sub_data, xlen: int, name="result", desc=None):
++    if any(getattr(n, "name", None) in (set(BRANCHES) | set(LOADS) | set(STORES)) for n in (stmts_root, *stmts_root.descendants)):
++        return generate_cdsl(stmts_root, sub_data, xlen, name, desc)
+     codes = []
+     emitter = FlatCodeEmitter(guard_gpr_writes=True)
+     emitter.visit(stmts_root)
+@@ -36,7 +40,7 @@ def process_candidate_fuse_cdsl(idx, candidate_data, xlen=None, out_dir=None):
+     candidate_artifacts = candidate_data["artifacts"]
+     name = candidate_properties.get("InstrName")
+     if name is None:
+-        name = f"name{i}"
++        name = f"name{idx}"
+     sub_data = candidate_properties
+     desc = generate_desc(idx, sub_data, name=name)
+     tree_pkl = candidate_artifacts.get("tree", None)
+diff --git a/tool/gen/tree.py b/tool/gen/tree.py
+index eb5c31d..b51aed4 100644
+--- a/tool/gen/tree.py
++++ b/tool/gen/tree.py
+@@ -80,6 +80,7 @@ def generate_tree(sub, sub_data, io_sub, xlen=None):
+         inputs=all_inputs,
+         outputs=outputs,
+         constants=constants,
++        xlen=xlen,
+     )
+     tree = treegen.generate_tree()
+     return tree
+diff --git a/tool/gen/tree_utils.py b/tool/gen/tree_utils.py
+index 25bb70f..1e5bb5f 100644
+--- a/tool/gen/tree_utils.py
++++ b/tool/gen/tree_utils.py
+@@ -6,6 +6,8 @@ from anytree import AnyNode, RenderTree
+ 
+ from ..llvm_utils import parse_llvm_const_str, llvm_type_to_cdsl_type
+ from .utils import mem_lookup
++from ..branches import BRANCHES, BRANCH_OFFSET
++from ..memory import STORES
+ 
+ 
+ logger = logging.getLogger("tree_utils")
+@@ -134,6 +136,8 @@ class TreeGenContext:
+ 
+     def visit(self, node):
+         # print("visit", node)
++        if self.graph.nodes[node]["properties"].get("op_type") == "label":
++            return Ref(name=BRANCH_OFFSET, in_types=[], out_types=["signed<13>"])
+         if node in self.visited:
+             # print("visited")
+             op_type = self.graph.nodes[node]["properties"]["op_type"]
+@@ -229,7 +233,7 @@ class TreeGenContext:
+         # print("out_reg_type", out_reg_type)
+         out_reg_size = self.graph.nodes[node]["properties"].get("out_reg_size", None)
+         # print("out_reg_size", out_reg_size)
+-        out_reg_name = self.graph.nodes[node]["properties"].get("out_reg_name", None)
++        out_reg_name = self.graph.nodes[node]["properties"].get("out_reg_name") or ""
+         # print("out_reg_name", out_reg_name)
+         # print("!1", [self.graph[src, node]["properties"].get("op_reg_class", None) for src in srcs])
+         # print("!2", [self.graph[src, node]["properties"].get("op_reg_type", None) for src in srcs])
+@@ -245,6 +249,18 @@ class TreeGenContext:
+         if out_reg_name.startswith("$noreg"):  # TODO: fix
+             out_reg_size = "NOREG"
+         # print("out_reg_size", out_reg_size)
++        if name in STORES:
++            if len(children) != 3:
++                raise ValueError(f"{name} requires a value, base and offset")
++            ret = Operation(node_id=node, name=name, children=children, in_types=[None] * 3, out_types=[None])
++            self.node_map[node] = ret
++            return ret
++        if name in BRANCHES:
++            if len(children) != 3:
++                raise ValueError(f"{name} requires two values and one branch target")
++            ret = Operation(node_id=node, name=name, children=children, in_types=[None] * 3, out_types=[None])
++            self.node_map[node] = ret
++            return ret
+         if op_type == "constant":
+             val_str = self.graph.nodes[node]["properties"]["inst"]
+             val, llvm_type, signed = parse_llvm_const_str(val_str)
+@@ -684,7 +700,18 @@ class TreeGenContext:
+         # i = 0  # reg
+         input_stmts = self.visit_inputs()
+         output_stmts = self.visit_outputs()
+-        all_stmts = input_stmts.children + output_stmts.children
++        effects = [n for n in self.sub.nodes
++                   if self.graph.nodes[n]["properties"].get("name") in (set(BRANCHES) | set(STORES))]
++        if effects:
++            if len(effects) != 1 or self.outputs:
++                raise ValueError("Fused stores/branches require one effect and no register outputs")
++            effect = self.visit(effects[0])
++            declarations = [Declaration(children=[Ref(name=name, out_types=[None]), value],
++                                        decl_type=value.out_types[0], in_types=[None, None], out_types=[None])
++                            for name, value in self.temps.items()]
++            all_stmts = list(input_stmts.children) + declarations + [effect]
++        else:
++            all_stmts = input_stmts.children + output_stmts.children
+ 
+         root = Statements(
+             name="statements",
+diff --git a/tool/stages/assign_io_names.py b/tool/stages/assign_io_names.py
+index fb7339f..6ae7f83 100644
+--- a/tool/stages/assign_io_names.py
++++ b/tool/stages/assign_io_names.py
+@@ -3,6 +3,8 @@ import logging
+ from tqdm import tqdm
+ 
+ from ..encoding import calc_encoding_footprint
++from ..branches import BRANCHES, BRANCH_OFFSET
++from ..memory import STORES
+ 
+ logger = logging.getLogger("assign_io_names")
+ 
+@@ -15,7 +17,9 @@ def assign_io_names(settings, subs, io_subs, subs_df):
+     for i, io_sub in tqdm(io_subs_iter, disable=not settings.progress):
+         # sub = subs[i]
+         sub_data = subs_df.iloc[i]
+-        inputs = sub_data["InputNodes"]
++        inputs = sorted(sub_data["InputNodes"],
++                        key=lambda n: io_sub.nodes[n]["properties"].get("op_type") == "label")
++        subs_df.at[i, "InputNodes"] = inputs  # Branch destination must be the last machine operand.
+         # print("inputs", inputs)
+         # io_sub_topo = list(reversed(list(nx.topological_sort(io_sub))))
+         # print("io_sub_topo", io_sub_topo)
+@@ -33,6 +37,9 @@ def assign_io_names(settings, subs, io_subs, subs_df):
+         operand_enc_bits = []
+         output_names = []
+         for output_idx, j in enumerate(outputs):
++            producers = list(io_sub.predecessors(j))
++            if len(producers) == 1 and io_sub.nodes[producers[0]]["properties"].get("name") in (set(BRANCHES) | set(STORES)):
++                continue  # Branches and stores are effects, not destination registers.
+             output_name = f"outp{output_idx}"
+             # output_node = io_sub.nodes[j]
+             # output_properties = output_node["properties"]
+@@ -56,6 +63,20 @@ def assign_io_names(settings, subs, io_subs, subs_df):
+             # input_node = io_sub.nodes[j]
+             # input_properties = input_node["properties"]
+             # op_type = input_properties["op_type"]
++            if io_sub.nodes[j]["properties"].get("op_type") == "label":
++                users = list(io_sub.successors(j))
++                if not users or any(io_sub.nodes[n]["properties"].get("name") not in BRANCHES for n in users):
++                    raise ValueError("Only conditional branch target labels can be encoded")
++                if BRANCH_OFFSET in operand_names:
++                    raise ValueError("A fused instruction must have exactly one branch target")
++                input_names.append(input_name)
++                operand_names.append(BRANCH_OFFSET)
++                operand_nodes.append(j)
++                operand_types.append("IMM")
++                operand_reg_classes.append("IMM")
++                operand_dirs.append("IN")
++                operand_enc_bits.append(12)  # signed 13-bit byte offset; bit zero is implicit
++                continue
+             input_names.append(input_name)
+             # TODO: do not hardcode
+             op_type_ = "REG"
+diff --git a/tool/stages/filter_subs.py b/tool/stages/filter_subs.py
+index cf5bfef..8f758b4 100644
+--- a/tool/stages/filter_subs.py
++++ b/tool/stages/filter_subs.py
+@@ -4,6 +4,8 @@ from tqdm import tqdm
+ 
+ from ..enums import ExportFilter
+ from ..pred import check_predicates
++from ..branches import BRANCHES
++from ..memory import LOADS, STORES, unsupported_memory
+ 
+ logger = logging.getLogger("filter_subs")
+ 
+@@ -40,6 +42,20 @@ def filter_subs(settings, subs, subs_df, io_isos):
+         num_inputs = int(sub_data["#InputNodes"])
+         # outputs = sub_data["OutputNodes"]
+         num_outputs = int(sub_data["#OutputNodes"])
++        memory_nodes = [n for n in sub.nodes if sub.nodes[n]["properties"].get("mayLoad")
++                        or sub.nodes[n]["properties"].get("mayStore")]
++        if memory_nodes and (len(memory_nodes) != 1 or sub_data["#Branches"] or any(
++            sub.nodes[n]["properties"].get("name") not in (set(LOADS) | set(STORES))
++            or unsupported_memory(sub.nodes[n]["properties"]) for n in memory_nodes
++        )):
++            filtered_mem.add(i)
++            continue
++        branch_nodes = sub_data["BranchNodes"]
++        if len(branch_nodes) and (len(branch_nodes) != 1 or any(
++            sub.nodes[n]["properties"].get("name") not in BRANCHES for n in branch_nodes
++        )):
++            filtered_branch.add(i)
++            continue
+         if num_inputs == 0:  # or num_outputs == 0:
+             # TODO heck if branches and stores have outputs?
+             invalid.add(i)
+diff --git a/tool/stages/filter_subs_operands.py b/tool/stages/filter_subs_operands.py
+index 66038d9..f201231 100644
+--- a/tool/stages/filter_subs_operands.py
++++ b/tool/stages/filter_subs_operands.py
+@@ -3,6 +3,7 @@ import logging
+ from tqdm import tqdm
+ 
+ from ..enums import ExportFilter
++from ..branches import BRANCHES, BRANCH_OFFSET
+ 
+ logger = logging.getLogger("filter_subs_operands")
+ 
+@@ -37,6 +38,23 @@ def filter_subs_operands(settings, subs, subs_df):
+             valid = False
+         if "IMM" in operand_types:
+             pass
++        if sub_data["#Branches"]:
++            branch_nodes = [n for n in sub.nodes if sub.nodes[n]["properties"].get("isBranch")]
++            valid = valid and (
++                len(branch_nodes) == 1
++                and sub.nodes[branch_nodes[0]]["properties"].get("name") in BRANCHES
++                and num_out_operands == num_inout_operands == 0
++                and num_in_operands <= 2
++                and list(sub_data["OperandNames"]).count(BRANCH_OFFSET) == 1
++                and sub_data["#Mems"] == 0
++            )
++        if sub_data["#Mems"]:
++            valid = valid and (
++                sub_data["#Mems"] == 1 and not sub_data["#Branches"]
++                and num_inout_operands == 0
++                and num_out_operands == (0 if sub_data["#Stores"] else 1)
++                and num_in_operands <= 3
++            )
+         if settings.filters.cfu:
+             valid = valid and (
+                 operand_types == ["REG"] * len(operand_types)
+diff --git a/tool/stages/generate_cdsl.py b/tool/stages/generate_cdsl.py
+index f36ffec..71fabcf 100644
+--- a/tool/stages/generate_cdsl.py
++++ b/tool/stages/generate_cdsl.py
+@@ -25,7 +25,7 @@ def generate_cdsl(settings, subs, subs_df, filtered_subs_df, index_artifacts, su
+                 name=f"result{i}",
+                 desc=desc,
+             )
+-        except AssertionError as e:
++        except (AssertionError, ValueError) as e:
+             logger.exception(e)
+             if settings.halt_on_error:
+                 print("CDSL ERR", str(e))
+diff --git a/tool/stages/generate_tree.py b/tool/stages/generate_tree.py
+index 631cdb6..0de0134 100644
+--- a/tool/stages/generate_tree.py
++++ b/tool/stages/generate_tree.py
+@@ -31,7 +31,7 @@ def generate_tree(settings, subs, io_subs, subs_df, filtered_subs_df, index_arti
+             )
+             # input(">>>")
+             sub_stmts[i] = stmts
+-        except AssertionError as e:
++        except (AssertionError, ValueError) as e:
+             logger.exception(e)
+             if settings.halt_on_error:
+                 print("TREE ERR", str(e))
+diff --git a/tool/stages/generate_variations.py b/tool/stages/generate_variations.py
+index 5db22df..2d6656e 100644
+--- a/tool/stages/generate_variations.py
++++ b/tool/stages/generate_variations.py
+@@ -23,6 +23,8 @@ def generate_variations(settings, subs, GF, io_subs, subs_df):
+             sub = subs[i]
+             # print("sub", sub)
+             sub_data = subs_df.iloc[i]
++            if sub_data["#Branches"] or sub_data["#Mems"]:
++                continue  # Effectful candidates need dedicated variations to preserve memory/control flow.
+             # print("sub_data", sub_data)
+             inputs = sub_data["InputNodes"]
+             # input_names = sub_data["InputNames"]
+@@ -238,6 +240,8 @@ def generate_variations(settings, subs, GF, io_subs, subs_df):
+             sub = subs[i]
+             # print("sub", sub)
+             sub_data = subs_df.iloc[i]
++            if sub_data["#Branches"] or sub_data["#Mems"]:
++                continue  # Effectful candidates need dedicated variations to preserve memory/control flow.
+             # print("sub_data", sub_data)
+             inputs = sub_data["InputNodes"]
+             # print("inputs", inputs)

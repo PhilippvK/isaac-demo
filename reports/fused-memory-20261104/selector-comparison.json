@@ -1,0 +1,18 @@
+{
+  "same_trace": true,
+  "metrics": {
+    "dag": {
+      "differential_cases": 4096,
+      "custom_sites": 16,
+      "custom_executions": 2048,
+      "trace_instructions": 5277301
+    },
+    "gisel": {
+      "differential_cases": 4096,
+      "custom_sites": 16,
+      "custom_executions": 2048,
+      "trace_instructions": 5277301
+    }
+  },
+  "scope": "standalone memory correctness fixtures, not workload performance"
+}

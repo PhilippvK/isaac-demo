@@ -1,0 +1,15 @@
+[1/5] Building CXX object lib/CodeGen/GlobalISel/CMakeFiles/LLVMGlobalISel.dir/CDFGPass.cpp.o
+/var/tmp/ga87puy/isaac-demo-new/llvm-project/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp: In member function ‘virtual bool llvm::CDFGPass::runOnMachineFunction(llvm::MachineFunction&)’:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:732:18: warning: unused variable ‘Imm’ [-Wunused-variable]
+  732 |             auto Imm = MO.getImm();
+      |                  ^~~
+/var/tmp/ga87puy/isaac-demo-new/llvm-project/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:740:18: warning: unused variable ‘Imm’ [-Wunused-variable]
+  740 |             auto Imm = MO.getCImm();
+      |                  ^~~
+/var/tmp/ga87puy/isaac-demo-new/llvm-project/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:748:18: warning: unused variable ‘Imm’ [-Wunused-variable]
+  748 |             auto Imm = MO.getFPImm();
+      |                  ^~~
+[2/5] Linking CXX static library lib/libLLVMGlobalISel.a
+[3/5] Linking CXX executable bin/llc
+[4/5] Linking CXX executable bin/clang-19
+[5/5] Creating executable symlink bin/clang

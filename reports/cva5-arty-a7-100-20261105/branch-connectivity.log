@@ -1,0 +1,83 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Nov  5 15:25:07 2026
+# Process ID: 67
+# Current directory: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-arty-a7-100-20261105
+# Command line: vivado -mode batch -log branch-connectivity.log -journal branch-connectivity.jou -source inspect_branch.tcl
+# Log file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-arty-a7-100-20261105/branch-connectivity.log
+# Journal file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-arty-a7-100-20261105/branch-connectivity.jou
+# Running On        :ryloth.eda.cit.tum.de
+# Platform          :Ubuntu
+# Operating System  :Ubuntu 22.04.2 LTS
+# Processor Detail  :Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+# CPU Frequency     :3579.575 MHz
+# CPU Physical cores:8
+# CPU Logical cores :16
+# Host memory       :33388 MB
+# Swap memory       :1073 MB
+# Total Virtual     :34462 MB
+# Available Virtual :23749 MB
+#-----------------------------------------------------------
+CRITICAL WARNING: [Common 17-741] No write access right to the local Tcl store at '/home/ga87puy/.Xilinx/Vivado/2024.1/XilinxTclStore'. XilinxTclStore is reverted to the installation area. If you want to use local Tcl Store, please change the access right and relaunch Vivado.
+source inspect_branch.tcl
+# open_checkpoint builds/branches-fixed/synthesized.dcp
+Command: open_checkpoint builds/branches-fixed/synthesized.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1407.672 ; gain = 0.000 ; free physical = 3581 ; free virtual = 22290
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Device 21-9227] Part: xc7a100tcsg324-1 does not have CEAM library.
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1812.414 ; gain = 0.000 ; free physical = 3143 ; free virtual = 21875
+INFO: [Netlist 29-17] Analyzing 701 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2024.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1896.070 ; gain = 1.000 ; free physical = 3164 ; free virtual = 21820
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Constraints 18-5170] The checkpoint was created with non-default parameter values which do not match the current Vivado settings.  Mismatching parameters are:
+  general.maxThreads
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2360.773 ; gain = 0.000 ; free physical = 3051 ; free virtual = 21708
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2360.773 ; gain = 0.000 ; free physical = 3051 ; free virtual = 21708
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2360.773 ; gain = 0.000 ; free physical = 3051 ; free virtual = 21708
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2360.773 ; gain = 0.000 ; free physical = 3051 ; free virtual = 21708
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2424.805 ; gain = 64.031 ; free physical = 3050 ; free virtual = 21708
+Read Physdb Files: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2424.805 ; gain = 64.031 ; free physical = 3050 ; free virtual = 21708
+Restored from archive | CPU: 0.050000 secs | Memory: 1.093536 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2424.805 ; gain = 64.031 ; free physical = 3050 ; free virtual = 21708
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2424.805 ; gain = 0.000 ; free physical = 3050 ; free virtual = 21708
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 177 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 8 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 54 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 48 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 7 instances
+  RAM64X1S => RAM64X1S (RAMS64E): 60 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2024.1 (64-bit) build 5076996
+open_checkpoint: Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 2424.805 ; gain = 1017.133 ; free physical = 3050 ; free virtual = 21708
+# set nets [get_nets -hierarchical -filter {NAME =~ *core_WrPC*}]
+# puts "ISAAC_BRANCH_NET_COUNT=[llength $nets]"
+ISAAC_BRANCH_NET_COUNT=3
+# foreach net $nets {
+#     set pins [get_pins -leaf -of_objects [get_nets -segments $net]]
+#     set drivers [filter $pins {DIRECTION == OUT}]
+#     set cells [get_cells -of_objects $drivers]
+#     set loads [filter $pins {DIRECTION == IN}]
+#     puts "ISAAC_BRANCH_NET=$net DRIVERS=$cells REFS=[get_property REF_NAME $cells] LOADS=[llength $loads]"
+# }
+ISAAC_BRANCH_NET=cpu/cva5/cva5_wrapper/core_WrPC_validReq_2_from_scal DRIVERS=cpu/cva5/cva5_wrapper/cva5/register_file_block/abort_tracking[1]_i_2 REFS=LUT6 LOADS=69
+ISAAC_BRANCH_NET=cpu/cva5/cva5_wrapper/cva5/core_WrPC_validReq_2_from_scal DRIVERS=cpu/cva5/cva5_wrapper/cva5/register_file_block/abort_tracking[1]_i_2 REFS=LUT6 LOADS=69
+ISAAC_BRANCH_NET=cpu/cva5/cva5_wrapper/scaiev_glue/core_WrPC_validReq_2_from_scal DRIVERS=cpu/cva5/cva5_wrapper/cva5/register_file_block/abort_tracking[1]_i_2 REFS=LUT6 LOADS=69
+# close_design
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  5 15:25:37 2026...

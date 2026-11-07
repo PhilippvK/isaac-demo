@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "assignments": [
+    {
+      "name": "set/XBranch/FUSED_BEQ",
+      "layout": "B",
+      "code": 11,
+      "mask": 28799,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "offset",
+          "offset": 31,
+          "width": 1,
+          "signed": true,
+          "source_lower": 12
+        },
+        {
+          "name": "offset",
+          "offset": 25,
+          "width": 6,
+          "signed": true,
+          "source_lower": 5
+        },
+        {
+          "name": "offset",
+          "offset": 8,
+          "width": 4,
+          "signed": true,
+          "source_lower": 1
+        },
+        {
+          "name": "offset",
+          "offset": 7,
+          "width": 1,
+          "signed": true,
+          "source_lower": 11
+        }
+      ]
+    },
+    {
+      "name": "set/XBranch/FUSED_BGE",
+      "layout": "B",
+      "code": 16395,
+      "mask": 28799,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "offset",
+          "offset": 31,
+          "width": 1,
+          "signed": true,
+          "source_lower": 12
+        },
+        {
+          "name": "offset",
+          "offset": 25,
+          "width": 6,
+          "signed": true,
+          "source_lower": 5
+        },
+        {
+          "name": "offset",
+          "offset": 8,
+          "width": 4,
+          "signed": true,
+          "source_lower": 1
+        },
+        {
+          "name": "offset",
+          "offset": 7,
+          "width": 1,
+          "signed": true,
+          "source_lower": 11
+        }
+      ]
+    },
+    {
+      "name": "set/XBranch/FUSED_BGEU",
+      "layout": "B",
+      "code": 8203,
+      "mask": 28799,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "offset",
+          "offset": 31,
+          "width": 1,
+          "signed": true,
+          "source_lower": 12
+        },
+        {
+          "name": "offset",
+          "offset": 25,
+          "width": 6,
+          "signed": true,
+          "source_lower": 5
+        },
+        {
+          "name": "offset",
+          "offset": 8,
+          "width": 4,
+          "signed": true,
+          "source_lower": 1
+        },
+        {
+          "name": "offset",
+          "offset": 7,
+          "width": 1,
+          "signed": true,
+          "source_lower": 11
+        }
+      ]
+    },
+    {
+      "name": "set/XBranch/FUSED_BLT",
+      "layout": "B",
+      "code": 24587,
+      "mask": 28799,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "offset",
+          "offset": 31,
+          "width": 1,
+          "signed": true,
+          "source_lower": 12
+        },
+        {
+          "name": "offset",
+          "offset": 25,
+          "width": 6,
+          "signed": true,
+          "source_lower": 5
+        },
+        {
+          "name": "offset",
+          "offset": 8,
+          "width": 4,
+          "signed": true,
+          "source_lower": 1
+        },
+        {
+          "name": "offset",
+          "offset": 7,
+          "width": 1,
+          "signed": true,
+          "source_lower": 11
+        }
+      ]
+    },
+    {
+      "name": "set/XBranch/FUSED_BLTU",
+      "layout": "B",
+      "code": 4107,
+      "mask": 28799,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "offset",
+          "offset": 31,
+          "width": 1,
+          "signed": true,
+          "source_lower": 12
+        },
+        {
+          "name": "offset",
+          "offset": 25,
+          "width": 6,
+          "signed": true,
+          "source_lower": 5
+        },
+        {
+          "name": "offset",
+          "offset": 8,
+          "width": 4,
+          "signed": true,
+          "source_lower": 1
+        },
+        {
+          "name": "offset",
+          "offset": 7,
+          "width": 1,
+          "signed": true,
+          "source_lower": 11
+        }
+      ]
+    },
+    {
+      "name": "set/XBranch/FUSED_BNE",
+      "layout": "B",
+      "code": 20491,
+      "mask": 28799,
+      "fields": [
+        {
+          "name": "rs1",
+          "offset": 15,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "rs2",
+          "offset": 20,
+          "width": 5,
+          "signed": false
+        },
+        {
+          "name": "offset",
+          "offset": 31,
+          "width": 1,
+          "signed": true,
+          "source_lower": 12
+        },
+        {
+          "name": "offset",
+          "offset": 25,
+          "width": 6,
+          "signed": true,
+          "source_lower": 5
+        },
+        {
+          "name": "offset",
+          "offset": 8,
+          "width": 4,
+          "signed": true,
+          "source_lower": 1
+        },
+        {
+          "name": "offset",
+          "offset": 7,
+          "width": 1,
+          "signed": true,
+          "source_lower": 11
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

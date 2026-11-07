@@ -1,0 +1,40 @@
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-03 06:17:24]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-1]  Processing stage LOAD
+INFO - [session-1]  Processing stage COMPILE
+WARNING - ignored: .llvm_bb_addr_map / size: 357
+INFO - [session-1]  Processing stage RUN
+ERROR - /var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/etiss/etiss_install/bin/run_helper.sh: line 120: /jobs/056e74fa-03bd-489b-8781-7ae8dd013424/output/etiss_install/bin/bare_etiss_processor: No such file or directory
+
+ERROR - The process returned an non-zero exit code 127! (CMD: `/var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/etiss/etiss_install/bin/run_helper.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/environment/temp/sessions/1/runs/0/generic_mlonmcu nodmi -p PrintInstruction -i/tmp/tmpy77w2jv1/custom.ini`)
+Traceback (most recent call last):
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/session/run.py", line 1339, in process
+    func()
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/session/run.py", line 982, in run
+    artifacts = self.target.generate_artifacts(elf_artifact.path)
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/target/target.py", line 221, in generate_artifacts
+    artifacts, metrics = self.generate(elf)
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/target/target.py", line 201, in generate
+    metrics_, out, artifacts_ = self.get_metrics(elf, temp_dir, *args)
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/platform/mlif/mlif_target.py", line 228, in get_metrics
+    metrics, out, artifacts = super().get_metrics(elf, directory, handle_exit=_handle_exit)
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/target/riscv/etiss.py", line 734, in get_metrics
+    out_, artifacts_ = self.exec(
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/platform/mlif/mlif_target.py", line 134, in exec
+    ret_, artifacts_ = super().exec(
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/target/riscv/etiss.py", line 640, in exec
+    ret = execute(
+  File "/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/setup/utils.py", line 307, in execute
+    assert exit_code == 0, "The process returned an non-zero exit code {}! (CMD: `{}`)".format(
+AssertionError: The process returned an non-zero exit code 127! (CMD: `/var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/etiss/etiss_install/bin/run_helper.sh /var/tmp/ga87puy/isaac-demo-new/reports/bb-utilization-20261103/environment/temp/sessions/1/runs/0/generic_mlonmcu nodmi -p PrintInstruction -i/tmp/tmpy77w2jv1/custom.ini`)
+ERROR - [run-0] Run failed at stage 'RUN', aborting...
+ERROR - All runs have failed to complete!
+INFO - Postprocessing session report
+INFO - [session-1] Done processing runs
+INFO - Report:
+   Run  Model Frontend Platform Target  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s]                                 Features                                             Config Postprocesses Comment  Failing                Reason
+0    0  crc32  embench     mlif  etiss      45356       2704           3484     41864         8      1708                 996                1.283525              0.00001  [log_instrs, llvm_basic_block_sections]  {'embench.use_inout_data': False, 'embench.gen...            []       -     True  AssertionError @ RUN
+ERROR - At least one error occured!

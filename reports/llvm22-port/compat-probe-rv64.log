@@ -1,0 +1,6 @@
+19 -fbasic-block-address-map clang: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'
+19 -fbasic-block-sections=labels PASS
+20 -fbasic-block-address-map clang-20: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'
+20 -fbasic-block-sections=labels PASS
+21 -fbasic-block-address-map clang-21: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'
+21 -fbasic-block-sections=labels PASS

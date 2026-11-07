@@ -1,0 +1,7 @@
+model,set,xlen,instr,n_success,n_skipped,n_failed,n_total,status
+XBranch,XBranch,32,FUSED_BEQ,15,0,0,15,good
+XBranch,XBranch,32,FUSED_BNE,15,0,0,15,good
+XBranch,XBranch,32,FUSED_BLT,15,0,0,15,good
+XBranch,XBranch,32,FUSED_BGE,15,0,0,15,good
+XBranch,XBranch,32,FUSED_BLTU,15,0,0,15,good
+XBranch,XBranch,32,FUSED_BGEU,15,0,0,15,good

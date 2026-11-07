@@ -1,0 +1,14 @@
+[2026-11-02 21:31:48,173]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:235::DEBUG - save_artifacts - Saving artifacts...
+[2026-11-02 21:31:48,173]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:173::DEBUG - add_artifact - Adding artifact to session
+[2026-11-02 21:31:48,178]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:173::DEBUG - add_artifact - Adding artifact to session
+[2026-11-02 21:31:48,178]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:173::DEBUG - add_artifact - Adding artifact to session
+[2026-11-02 21:31:48,179]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:173::DEBUG - add_artifact - Adding artifact to session
+[2026-11-02 21:31:48,180]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:173::DEBUG - add_artifact - Adding artifact to session
+[2026-11-02 21:31:49,140]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:173::DEBUG - add_artifact - Adding artifact to session
+[2026-11-02 21:31:49,142]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/session.py:235::DEBUG - save_artifacts - Saving artifacts...
+[2026-11-02 21:31:49,142]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/artifact.py:138::DEBUG - save - Exporting artifact 'identity.elf' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/elf/identity.elf'
+[2026-11-02 21:31:49,142]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/artifact.py:138::DEBUG - save - Exporting artifact 'llvm_bbs' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/llvm_bbs.pkl'
+[2026-11-02 21:31:49,143]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/artifact.py:138::DEBUG - save - Exporting artifact 'llvm_bbs_new' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/llvm_bbs_new.pkl'
+[2026-11-02 21:31:49,143]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/artifact.py:138::DEBUG - save - Exporting artifact 'choices' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/choices.pkl'
+[2026-11-02 21:31:49,143]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/artifact.py:138::DEBUG - save - Exporting artifact 'compile_commands' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/compile_commands.pkl'
+[2026-11-02 21:31:49,143]::/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/session/artifact.py:138::DEBUG - save - Exporting artifact 'cdfg_imports' to '/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/identity-session/table/cdfg_imports.pkl'

@@ -1,0 +1,132 @@
+INFO:parser:parsing top level
+INFO:parser:reading instruction load order
+INFO:parser:building architecture model for set XIsaac
+INFO:parser:building behavior model for set XIsaac
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM0
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM1
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM2
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM3
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM4
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM5
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM6
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM7
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM8
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM9
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM10
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM11
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM12
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM13
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM14
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM15
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM16
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM17
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM18
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM19
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM20
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM21
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM22
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM23
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM24
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM25
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM26
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM27
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM28
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM29
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM30
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM31
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM32
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM33
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM34
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM35
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM36
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM37
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM38
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM39
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM40
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM41
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM42
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM43
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM44
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM45
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM46
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM47
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM48
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM49
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM50
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM51
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM52
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM53
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM54
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM55
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM56
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM57
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM58
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM59
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM60
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM61
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM62
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM63
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM64
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM65
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM66
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM67
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM68
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM69
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM70
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM71
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM72
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM73
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM74
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM75
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM76
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM77
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM78
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM79
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM80
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM81
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM82
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM83
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM84
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM85
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM86
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM87
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM88
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM89
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM90
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM91
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM92
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM93
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM94
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM95
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM96
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM97
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM98
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM99
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM100
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM101
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM102
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM103
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM104
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM105
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM106
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM107
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM108
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM109
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM110
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM111
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM112
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM113
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM114
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CUSTOM115
+INFO:parser:Running type inference
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:272
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:272
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:655
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:655
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:670
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:670
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:1130
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:1130
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:1159
+WARNING:infer_types:Can not infer type of non-static array range. [-Winfer-non-static-slice] @ /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/gen/XIsaac.hls.core_desc:1159
+INFO:parser:dumping model

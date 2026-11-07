@@ -67,6 +67,126 @@ Our patched version of LLVM depends on the `mgclient` lib, hence that library ha
 
 We provide the `scripts/setup_llvm.sh` script which should allow you to install LLVM. This step will take a long time depending on your machine!
 
+#### Local LLVM 22 port
+
+LLVM 19 remains the default. Prepare the separate LLVM 22.1.8 CDFG checkout with
+`scripts/prepare_llvm22.sh`; the portable patch is in `cfg/seal5/llvm22-isaac.patch`.
+For local retargeting, set `LLVM_MAJOR=22` when running `scripts/flow_seal5.sh`.
+The runner selects matching Seal5/PatternGen settings and retains its build tree.
+`SEAL5_BUILD_THREADS` controls compilation concurrency; `CLEANUP=1` explicitly
+opts into deleting that tree after exports complete. LLVM 22 outputs use a
+separate directory from LLVM 19 outputs.
+
+The Toolkit BB-map decoder handles formats 2–5. Keep
+`-fbasic-block-sections=labels` for RISC-V compatibility across LLVM 19–22.
+Unpatched LLVM compilers do not provide CDFG export: LLVM 20/21 local retargeting
+requires a matching patched source or `ENABLE_CDFG_PASS=0`.
+Local retargeting of the 32-ISE CRC32 set passes all 26 generated tests.
+Toolkit RV32/RV64 compatibility probes pass on LLVM 19–22. Results, limitations
+and reproduction instructions are in [the port report](reports/llvm22-port/report.md).
+
+#### Fused conditional branches
+
+The generation path supports arithmetic fused into `BEQ`, `BNE`, `BLT`, `BGE`,
+`BLTU` and `BGEU`, using SelectionDAG TableGen patterns. Generated branch
+patterns have `GISelShouldIgnore = 1`. Enable branch candidates in query/potential
+filtering, generate and auto-encode the instruction set using the current
+`M2-ISA-R` checkout, then enable branch lowering for local retargeting:
+
+```bash
+FUSED_BRANCHES=1 LLVM_MAJOR=22 scripts/flow_seal5.sh RUN_DIR
+```
+
+The optional configuration is `cfg/seal5/optional/fused-branches.yml`; it can
+also be supplied directly to `docker/seal5_script_local.sh` after the model.
+The initial supported shape has one conditional branch, at most two GPR inputs,
+no register results and no memory effects. Its signed 13-bit byte displacement
+uses the standard B-format bit placement and implicit zero low bit. Other
+branch forms are filtered. Details and validation status are in
+[the implementation note](reports/fused-branches-20261104/implementation.md).
+
+#### Fused scalar memory instructions and selector choice
+
+Integer loads/stores can be fused with address or data arithmetic. Enable
+candidate filtering with `cfg/isaac/query/fused-memory.yml`, then retarget with:
+
+```bash
+FUSED_MEMORY=1 LLVM_MAJOR=22 scripts/flow_seal5.sh RUN_DIR
+```
+
+This uses ordinary TableGen patterns and LLVM's normal GlobalISel importer.
+PatternGen's experimental direct GISel-table support is not used. The initial
+scope is one scalar memory access, up to three GPR inputs, and no branch,
+atomic or volatile candidate. Loads preserve access width and sign extension;
+stores have no destination register. See the [validation report](reports/fused-memory-20261104/report.md).
+
+Choose `GLOBAL_ISEL=0` (SelectionDAG) or `GLOBAL_ISEL=1` (GlobalISel).
+`ISAAC_ISEL=dag|gisel` is an equivalent spelling; when both are set they must
+agree. `flow_trace.sh` records the choice. `flow_compare.sh` and
+`flow_retrace.sh` inherit it when no explicit override is supplied. Legacy
+runs without selector metadata retain the DAG default. Pattern coverage can
+differ between selectors; the existing fused branches currently use DAG.
+
+To reuse the same discovered instruction set and evaluate both selectors:
+
+```bash
+FINAL=1 bash scripts/flow_compare_isel.sh RUN_DIR
+```
+
+This runs compare, retrace and reanalysis for each selector, retaining
+`_isel_dag` and `_isel_gisel` outputs. `isel-comparison_final.json` compares
+measured instruction counts, static ISE sites and dynamic ISE use. Discovery
+is shared; this does not compare separately discovered instruction sets.
+
+#### CVA5 presets
+
+Select the corresponding file under `cfg/flow/paper/`:
+
+| Preset | Memory/branch candidates | FPGA target |
+|---|---|---|
+| `cva5_reuseio` | Disabled | Generic CVA5, xc7a200t |
+| `cva5_reuseio_mem_branch` | Experimental | Generic CVA5, xc7a200t |
+| `cva5_reuseio_arty_a7_100t` | Disabled | Arty A7-100, xc7a100t |
+| `cva5_reuseio_mem_branch_arty_a7_100t` | Experimental | Arty A7-100, xc7a100t |
+
+The original query and potential filters disable memory and branches. The
+experimental preset selects separate query and Toolkit YAML files. Branch
+FPGA execution still has a known backward-BGEU stall; see the execution report.
+
+#### CVA5 / SCAIE-V 2.0 encodings
+
+The experimental `cva5_reuseio_mem_branch` preset enables
+`ISAAC_ENCODING_INTERFACE=scaiev2`.
+`flow_isaac_etiss.sh` forwards this as `--encoding-interface scaiev2` to the
+shared instruction allocator. The compiler, simulator and HLS exports then
+use the same constrained encodings.
+
+Memory instructions retain the source load/store's RISC-V `funct3` field
+(bits 14:12): LB/SB=000, LH/SH=001, LW/SW=010, LD/SD=011;
+unsigned loads LBU/LHU/LWU use 100/101/110. SCAIE-V distinguishes encodings
+using opcode, funct3 and funct7, so allocation also checks collisions under
+the decoder mask `0xfe00707f`. Fixed unused register-field bits cannot serve
+as additional discriminators in this mode. Incompatible layouts, pinned
+manifests and existing decoder overlaps are rejected.
+
+`encoding_interface.json` records the decoder mask and per-instruction
+constraints next to `encoding_plan.json`. The default `generic` mode retains
+the full 32-bit decoding policy. See the
+[CVA5 HLS report](reports/cva5-reuseio-hls-20261105/report.md).
+
+#### CVA5 FPGA synthesis on Arty A7-100
+
+The `cva5_reuseio_arty_a7_100t` preset selects `FPGA_SYN_BOARD=arty_a7_100`,
+`xc7a100tcsg324-1`, and a 20 MHz core clock. The board shell keeps AXI
+internal, derives the clock from the 100 MHz oscillator, and connects
+reset button 0 and a 115200-baud UART. See the
+[board-shell instructions](scripts/fpga_syn/boards/arty_a7_100/README.md)
+and [Arty implementation report](reports/cva5-arty-a7-100-20261105/build-results.md).
+Optional memory initialization is separate from synthesis; ETISS semihosting
+firmware does not directly provide board UART support.
+Physical UART execution results, firmware sources, and cycle comparisons are
+in the [FPGA execution report](reports/cva5-fpga-execution-20261105/report.md).
+
 ### ETISS
 
 The simulator used for tracing and evaluating custom instruction candidates. Before starting extending ETISS, you will need to install ETISS once by running the `scripts/setup_etiss.sh` script.
@@ -321,3 +441,10 @@ out/embench/picojpeg/20250709T162530
 ```
 git submodule update --init --recursive -- seal5 etiss mlonmcu isaac-toolkit memgraph_experiments etiss_arch_riscv
 ```
+
+
+## Investigation reports
+
+Performance measurements, BB identity/compiler traces, and decoder/mapping notes
+are retained under [reports/](reports/README.md), including selected evidence and
+reproducers. They do not depend on temporary-directory retention.

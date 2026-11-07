@@ -1,0 +1,23 @@
+Logger started on port 34495
+[seal5.flow::INFO] Testing Seal5 LLVM
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+[seal5.utils::ERROR] llvm-lit: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/lit/lit/llvm/subst.py:133: fatal: Did not find count in /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin
+
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/test.py", line 62, in handle
+    seal5_flow.test(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 1128, in test
+    passed_tests, failing_tests = llvm.test_llvm(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/tools/llvm.py", line 317, in test_llvm
+    out = utils.exec_getout(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 132, in exec_getout
+    assert exit_code == 0, "The process returned an non-zero exit code {}! (CMD: `{}`)".format(
+AssertionError: The process returned an non-zero exit code 2! (CMD: `/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/build/release/bin/llvm-lit --verbose /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/test/CodeGen/RISCV/seal5/generated/xisaac.test-attrs.ll`)
+Logger on port 34495 stopped.

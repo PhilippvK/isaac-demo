@@ -1,0 +1,11 @@
+{
+  "passed": false,
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-packed/cva5_arty_top.bit",
+  "uart": "ISAAC CVA5 BOOT branches\r\nRAM PASS\r\nCRC32=65842ca9 verify=00002ca9 cycles=00003c23\r\nBRANCH BEGIN probe=00000000\rBRANCH BEGIN probe=00000001\rBRANCH BEGIN probe=00000002\rBRANCH BEGIN probe=00000003\rBRANCH BEGIN probe=00000004\rBRANCH BEGIN probe=00000005\r",
+  "elapsed_seconds": 48.05767322331667,
+  "programming": "volatile FPGA configuration; no flash"
+}

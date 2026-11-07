@@ -1,0 +1,7 @@
+-- Install configuration: "Release"
+-- Installing: /var/tmp/ga87puy/isaac-demo-new/install/llvm/bin/clang-19
+-- Up-to-date: /var/tmp/ga87puy/isaac-demo-new/install/llvm/bin/clang
+-- Set runtime path of "/var/tmp/ga87puy/isaac-demo-new/install/llvm/bin/clang-19" to "$ORIGIN/../lib"
+-- Creating clang++
+-- Creating clang-cl
+-- Creating clang-cpp

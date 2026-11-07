@@ -1,0 +1,46 @@
+artifacts:
+  instr_trace:
+    compression_level: null
+    compression_method: zstd
+    engine: null
+    fmt: pickle
+  table:
+    compression_level: null
+    compression_method: null
+    engine: null
+    fmt: pickle
+  trace:
+    compression_level: null
+    compression_method: zstd
+    engine: null
+    fmt: pickle
+flow:
+  demo:
+    asip_syn: null
+    cdfg: null
+    choose: null
+    coredsl: null
+    docker: null
+    etiss: null
+    experiment: null
+    fpga_syn: null
+    hls: null
+    mlonmcu: null
+    query: null
+    riscv: null
+    service: null
+    sim: null
+    stages: null
+logging:
+  console:
+    level: INFO
+  file:
+    level: DEBUG
+    limit: 1000
+    rotate: false
+memgraph:
+  database: memgraph
+  hostname: localhost
+  password: ''
+  port: 7687
+  user: ''

@@ -11,3 +11,10 @@ out/
 *.pb
 vivado.*
 xvlog.log
+
+# Disposable dependency checkouts and local compiler workspaces.
+/M2-ISA-R-new/
+/llvm-project-22/
+/tmp/
+__pycache__/
+*.pyc

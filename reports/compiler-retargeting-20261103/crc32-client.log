@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 440, in <module>
+    main(sys.argv[1:])
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 436, in main
+    handle(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 402, in handle
+    run_retargeting_service(
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 381, in run_retargeting_service
+    extract_zstd(artifact_file, out_path)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/utils/compression.py", line 39, in extract_zstd
+    _legacy_decompress_zstd_stream(archive, out_path)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/utils/compression.py", line 50, in _legacy_decompress_zstd_stream
+    z.extractall(out_path)
+  File "/usr/lib/python3.10/tarfile.py", line 2286, in extractall
+    self._extract_one(tarinfo, path, set_attrs=not tarinfo.isdir(),
+  File "/usr/lib/python3.10/tarfile.py", line 2353, in _extract_one
+    self._handle_fatal_error(e)
+  File "/usr/lib/python3.10/tarfile.py", line 2349, in _extract_one
+    self._extract_member(tarinfo, os.path.join(path, tarinfo.name),
+  File "/usr/lib/python3.10/tarfile.py", line 2432, in _extract_member
+    self.makefile(tarinfo, targetpath)
+  File "/usr/lib/python3.10/tarfile.py", line 2485, in makefile
+    copyfileobj(source, target, tarinfo.size, ReadError, bufsize)
+  File "/usr/lib/python3.10/tarfile.py", line 255, in copyfileobj
+    dst.write(buf)
+OSError: [Errno 28] No space left on device

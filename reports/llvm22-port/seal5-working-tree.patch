@@ -1,0 +1,153 @@
+diff --git a/seal5/backends/report/test_results/writer.py b/seal5/backends/report/test_results/writer.py
+index 3cd1ade..7e96398 100644
+--- a/seal5/backends/report/test_results/writer.py
++++ b/seal5/backends/report/test_results/writer.py
+@@ -24,6 +24,16 @@ from seal5.logging import Logger
+ logger = Logger("backends.test_results_writer")
+ 
+ 
++
++def latest_test_metrics(metrics):
++    """Report the latest attempt when a saved build is tested again."""
++    for stages_metrics in reversed(metrics):
++        assert len(stages_metrics) == 1
++        if "test" in stages_metrics:
++            return stages_metrics["test"]
++    return None
++
++
+ def main():
+     """Main app entrypoint."""
+ 
+@@ -57,12 +67,7 @@ def main():
+     settings = Seal5Settings.from_yaml_file(args.yaml)
+ 
+     def map_tests(metrics):
+-        test_metrics = None
+-        for stages_metrics in metrics:
+-            assert len(stages_metrics) == 1
+-            if "test" in stages_metrics.keys():
+-                test_metrics = stages_metrics["test"]
+-                break
++        test_metrics = latest_test_metrics(metrics)
+         if test_metrics is None:
+             logger.warning("Could not find test metrics. Make sure to run TEST stage!")
+             return {}, []
+diff --git a/seal5/flow.py b/seal5/flow.py
+index 8d6abc0..a7e7f8c 100644
+--- a/seal5/flow.py
++++ b/seal5/flow.py
+@@ -945,6 +945,11 @@ class Seal5Flow:
+ 
+         else:
+             file = self.resolve_patch_file(patch.file)
++            builtin_split = Path(__file__).parent / "resources/patches/llvm/legalizer_split.patch"
++            if (patch.name == "legalizer_split" and file == builtin_split.resolve()
++                    and self.settings.llvm.state.version.major >= 20):
++                file = cdsl2llvm.get_legalizer_split_patch(self.directory, self.settings.temp_dir)
++                patch.file = str(file)
+         dest = None
+         if target == "llvm":
+             dest = self.directory
+diff --git a/seal5/tools/cdsl2llvm.py b/seal5/tools/cdsl2llvm.py
+index e1f6110..2fe224b 100644
+--- a/seal5/tools/cdsl2llvm.py
++++ b/seal5/tools/cdsl2llvm.py
+@@ -189,6 +189,48 @@ def get_pattern_gen_backend_patch(src: Path, llvm_dir: Path, temp_dir: Path):
+     )
+ 
+ 
++
++def split_minmax_legalizer_actions(source: str) -> str:
++    """Give each min/max opcode its own legality rules, preserving all rules.
++
++    Seal5 extends these rules per instruction. LLVM19 uses a named shared
++    builder; newer releases use a chained builder with conditional actions.
++    """
++    pattern = (r"(?m)^  (?:auto &(?P<variable>\w+)\s*=\s*)?"
++               r"getActionDefinitionsBuilder\(\{G_UMAX, G_UMIN, G_SMAX, G_SMIN\}\)")
++    match = re.search(pattern, source)
++    if match is None:
++        raise ValueError("Cannot find the shared RISC-V min/max legality rules; source preserved")
++    variable = match.group("variable")
++    terminator = f"{variable}.lower();" if variable else ";"
++    end = source.find(terminator, match.end())
++    if end < 0:
++        raise ValueError("Cannot find the end of the RISC-V min/max legality rules")
++    end += len(terminator)
++    original = source[match.start():end]
++    single = original.replace(
++        "getActionDefinitionsBuilder({G_UMAX, G_UMIN, G_SMAX, G_SMIN})",
++        "getActionDefinitionsBuilder(Opcode)", 1,
++    )
++    replacement = "  for (unsigned Opcode : {G_UMAX, G_UMIN, G_SMAX, G_SMIN}) {\n"
++    replacement += "\n".join("  " + line if line else line for line in single.splitlines())
++    replacement += "\n  }"
++    return source[:match.start()] + replacement + source[end:]
++
++
++def get_legalizer_split_patch(llvm_dir: Path, temp_dir: Path) -> Path:
++    """Materialize a min/max split against the selected LLVM source version."""
++    path = "llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp"
++    original = (llvm_dir / path).read_text()
++    updated = split_minmax_legalizer_actions(original)
++    output = temp_dir / "legalizer_split_selected_llvm.patch"
++    output.write_text("".join(difflib.unified_diff(
++        original.splitlines(keepends=True), updated.splitlines(keepends=True),
++        fromfile="a/" + path, tofile="b/" + path,
++    )))
++    return output
++
++
+ def build_llc(
+     src: Path,
+     dest: Path,
+diff --git a/seal5/tools/llvm.py b/seal5/tools/llvm.py
+index c0be881..c8f957a 100644
+--- a/seal5/tools/llvm.py
++++ b/seal5/tools/llvm.py
+@@ -278,7 +278,9 @@ def build_llvm(
+         else:
+             target = "install/strip" if do_strip else "install"
+     elif reduced and target in (None, "all"):
+-        target = reduced_tools
++        # LLVM's lit configuration requires these even for a single test.
++        # They are build-tree utilities, not part of the installed tool subset.
++        target = reduced_tools + ["count", "not"]
+     utils.make(
+         target=target, cwd=dest, print_func=logger.info if verbose else logger.debug, live=True, use_ninja=use_ninja
+     )
+@@ -316,7 +318,9 @@ def test_llvm(base: Path, build_dir: Path, test_paths: Optional[List[str]] = Non
+                 assert test_file.is_file()
+         out = utils.exec_getout(
+             lit_exe,
+-            *(["--verbose"] if verbose else []),
++            # PASS records are required to populate test results even when
++            # console logging is quiet. The logger still controls display.
++            "--verbose",
+             test_file,
+             print_func=logger.info if verbose else logger.debug,
+             live=True,
+@@ -329,6 +333,8 @@ def test_llvm(base: Path, build_dir: Path, test_paths: Optional[List[str]] = Non
+         passed = re.compile(r"PASS: LLVM :: (.*) \(").findall(out)
+         if len(passed) > 0:
+             passed_tests.extend(passed)
++        if not passed and not failing:
++            raise RuntimeError(f"lit produced no PASS/FAIL results for {test_file}:\n{out}")
+ 
+     return passed_tests, failing_tests
+ 
+diff --git a/seal5/utils.py b/seal5/utils.py
+index a816f6d..b9978b2 100644
+--- a/seal5/utils.py
++++ b/seal5/utils.py
+@@ -188,6 +188,9 @@ def make(*args, target=None, threads=multiprocessing.cpu_count(), use_ninja=Fals
+     if target:
+         extra_args.extend(target.split(",") if isinstance(target, str) else target)
+     tool = "ninja" if use_ninja else "make"
++    threads = int(os.environ.get("SEAL5_BUILD_THREADS", threads))
++    if threads < 1:
++        raise ValueError("SEAL5_BUILD_THREADS must be positive")
+     extra_args.append("-j" + str(threads))
+     cmd = [tool] + extra_args + list(args)
+     return exec_getout(*cmd, cwd=cwd, **kwargs)

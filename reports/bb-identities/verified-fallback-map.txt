@@ -1,0 +1,111 @@
+
+File: /tmp/isaac-bbid-investigation/verified-fallback.elf
+Format: elf32-littleriscv
+Arch: riscv32
+AddressSize: 32bit
+LoadName: <Not found>
+BBAddrMap [
+  Function {
+    At: 0x10000
+    Name: varsum
+    BB Ranges [
+      {
+        Base Address: 0x10000
+        BB Entries [
+          {
+            ID: 1
+            Offset: 0x0
+            Size: 0x2C
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 2
+            Offset: 0x2C
+            Size: 0x18
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 4
+            Offset: 0x44
+            Size: 0x18
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+          {
+            ID: 5
+            Offset: 0x5C
+            Size: 0x4
+            HasReturn: No
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: Yes
+            HasIndirectBranch: No
+          }
+          {
+            ID: 3
+            Offset: 0x60
+            Size: 0xC
+            HasReturn: Yes
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+        ]
+      }
+    ]
+  }
+  Function {
+    At: 0x1006C
+    Name: vector_add
+    BB Ranges [
+      {
+        Base Address: 0x1006C
+        BB Entries [
+          {
+            ID: 2
+            Offset: 0x0
+            Size: 0x44
+            HasReturn: Yes
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+        ]
+      }
+    ]
+  }
+  Function {
+    At: 0x100B0
+    Name: extended_add
+    BB Ranges [
+      {
+        Base Address: 0x100B0
+        BB Entries [
+          {
+            ID: 2
+            Offset: 0x0
+            Size: 0x90
+            HasReturn: Yes
+            HasTailCall: No
+            IsEHPad: No
+            CanFallThrough: No
+            HasIndirectBranch: No
+          }
+        ]
+      }
+    ]
+  }
+]

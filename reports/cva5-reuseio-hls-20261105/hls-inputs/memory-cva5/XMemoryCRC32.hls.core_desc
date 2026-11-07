@@ -1,0 +1,104 @@
+InstructionSet XMemoryCRC32 {
+    architectural_state {
+        register unsigned<32> X[32] [[is_main_reg]];
+        extern unsigned<8> MEM[4294967296] [[is_main_mem]];
+    }
+    instructions {
+        CUSTOM17 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    {
+                        {
+                            unsigned<32> rs1_val = X[rs1];
+                            unsigned<32> rs2_val = X[rs2];
+                            unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2))))))) + ((signed<32>)(0)));
+                            unsigned<32> outp0 = (unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0])));
+                            if ((rd) != (0)) {
+                                X[rd] = outp0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        CUSTOM43 {
+            encoding: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    {
+                        {
+                            unsigned<32> rs1_val = X[rs1];
+                            unsigned<32> rs2_val = X[rs2];
+                            unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)(2))))))) + ((signed<32>)(0)));
+                            unsigned<32> outp0 = (unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0])));
+                            if ((rd) != (0)) {
+                                X[rd] = outp0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        CUSTOM44 {
+            encoding: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    {
+                        {
+                            unsigned<32> rs1_val = X[rs1];
+                            unsigned<32> rs2_val = X[rs2];
+                            unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((rs1_val) + ((signed<32>)(0)));
+                            unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]))))) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)(8))))));
+                            if ((rd) != (0)) {
+                                X[rd] = outp0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        CUSTOM76 {
+            encoding: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    {
+                        {
+                            unsigned<32> rs1_val = X[rs1];
+                            unsigned<32> rs2_val = X[rs2];
+                            unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(rs1_val)))) + ((signed<32>)(0)));
+                            unsigned<32> outp0 = (unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0])));
+                            if ((rd) != (0)) {
+                                X[rd] = outp0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        CUSTOM78 {
+            encoding: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    {
+                        {
+                            unsigned<32> rs1_val = X[rs1];
+                            unsigned<32> rs2_val = X[rs2];
+                            unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((rs1_val) + ((signed<32>)(0)));
+                            unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]))))) ^ ((unsigned<32>)(rs2_val)));
+                            if ((rd) != (0)) {
+                                X[rd] = outp0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

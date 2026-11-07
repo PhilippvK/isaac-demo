@@ -1,0 +1,185 @@
+Starting job d4328436-8fb8-4e97-aa09-842a5538c8f5
+::progress:: 0.06 0.15 Preparing LLVM job
+HEAD is now at bb87e169c [Seal5] Apply patch: legalizer_split
+Logger started on port 35007
+[seal5.flow::INFO] Cleaning Seal5 directories
+Logger on port 35007 stopped.
+[seal5.flow::INFO] Completed clean of Seal5 directories
+Logger started on port 43675
+[seal5.cli::WARNING] ['/jobs/d4328436-8fb8-4e97-aa09-842a5538c8f5/input/XIsaac.seal5.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /jobs/d4328436-8fb8-4e97-aa09-842a5538c8f5/input/XIsaac.seal5.core_desc
+Logger on port 43675 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 42093
+[seal5.cli::WARNING] ['/jobs/d4328436-8fb8-4e97-aa09-842a5538c8f5/input/config.yaml']
+[seal5.flow::INFO] Loading Seal5 inputs
+Logger on port 42093 stopped.
+[seal5.flow::INFO] Processing file: /jobs/d4328436-8fb8-4e97-aa09-842a5538c8f5/input/config.yaml
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 34133
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XIsaac.seal5.m2isarmodel -> XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Filtering XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Inlining functions for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Optimizing XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting registers for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Processing settings for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing YAML for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Processing settings for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting loops for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XIsaac.seal5.seal5model
+INFO:annotate_opcodes:processing set XIsaac
+INFO:annotate_opcodes:processing instruction CUSTOM0
+INFO:annotate_opcodes:processing instruction CUSTOM1
+INFO:annotate_opcodes:processing instruction CUSTOM2
+INFO:annotate_opcodes:processing instruction CUSTOM3
+INFO:annotate_opcodes:processing instruction CUSTOM4
+INFO:annotate_opcodes:processing instruction CUSTOM5
+INFO:annotate_opcodes:processing instruction CUSTOM6
+INFO:annotate_opcodes:processing instruction CUSTOM7
+INFO:annotate_opcodes:processing instruction CUSTOM8
+INFO:annotate_opcodes:processing instruction CUSTOM9
+INFO:annotate_opcodes:processing instruction CUSTOM10
+INFO:annotate_opcodes:processing instruction CUSTOM11
+INFO:annotate_opcodes:processing instruction CUSTOM12
+INFO:annotate_opcodes:processing instruction CUSTOM13
+INFO:annotate_opcodes:processing instruction CUSTOM14
+INFO:annotate_opcodes:processing instruction CUSTOM15
+INFO:annotate_opcodes:processing instruction CUSTOM16
+INFO:annotate_opcodes:processing instruction CUSTOM17
+INFO:annotate_opcodes:processing instruction CUSTOM18
+INFO:annotate_opcodes:processing instruction CUSTOM19
+INFO:annotate_opcodes:processing instruction CUSTOM20
+INFO:annotate_opcodes:processing instruction CUSTOM21
+INFO:annotate_opcodes:processing instruction CUSTOM22
+INFO:annotate_opcodes:processing instruction CUSTOM23
+INFO:annotate_opcodes:processing instruction CUSTOM24
+INFO:annotate_opcodes:processing instruction CUSTOM25
+INFO:annotate_opcodes:processing instruction CUSTOM26
+INFO:annotate_opcodes:processing instruction CUSTOM27
+INFO:annotate_opcodes:processing instruction CUSTOM28
+INFO:annotate_opcodes:processing instruction CUSTOM29
+INFO:annotate_opcodes:processing instruction CUSTOM30
+INFO:annotate_opcodes:processing instruction CUSTOM31
+INFO:annotate_opcodes:processing instruction CUSTOM32
+INFO:annotate_opcodes:processing instruction CUSTOM33
+[seal5.pass_list::INFO] Handle auto_unroll operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XIsaac.seal5.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XIsaac.seal5.seal5model
+Logger on port 34133 stopped.
+[seal5.flow::INFO] Completed tranformation of Seal5 models
+SEAL5 preflight: XIsaac.seal5: 34 instruction(s)
+Logger started on port 34451
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing RISCVFeatures.td patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing RISCVRegisterInfo.td patch for XIsaac.seal5.seal5model
+[seal5.backends.riscv_register_info::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCV field types patches
+[seal5.pass_list::INFO] Writing RISCVInstrInfo.td patch for XIsaac.seal5.seal5model
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM0
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM1
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM2
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM3
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM4
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM5
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM6
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM7
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM8
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM9
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM10
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM11
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM12
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM13
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM14
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM15
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM16
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM17
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM18
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM19
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM20
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM21
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM22
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM23
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM24
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM25
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM26
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM27
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM28
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM29
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM30
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM31
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM32
+[seal5.backends.riscv_instr_info::INFO] writing TableGen for instruction CUSTOM33
+[seal5.pass_list::INFO] Writing intrinsics patches patch for XIsaac.seal5.seal5model
+[seal5.backends.riscv_intrinsics::WARNING] No intrinsics configured; didn't need to invoke intrinsics writer.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVDisassembler.cpp patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing RISCVLegalizerInfo.cpp patch
+[seal5.backends.riscv_gisel_legalizer::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+Logger on port 34451 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 36273
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::WARNING] Undefined patch stage for patch legalizer_split. Defaulting to PHASE_0
+[seal5.flow::INFO] Current stage: PHASE_1
+[seal5.flow::INFO] Applying patch 'seal5_td' on 'llvm'
+[seal5.flow::INFO] Applying patch 'set_td_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_1 patch to /work/llvm/.seal5/patches/stages/PHASE_1.patch
+[seal5.flow::INFO] Current stage: PHASE_2
+[seal5.flow::INFO] Applying patch 'riscv_features_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_field_types' on 'llvm'
+[seal5.tools::WARNING] Marker not found: llvm/lib/Target/RISCV/AsmParser/RISCVAsmParser.cpp, riscv_match_invalid_operands. Retrying without key...
+Traceback (most recent call last):
+  File "/work/venv/bin/seal5", line 8, in <module>
+[seal5.tools::WARNING] Marker not found: llvm/lib/Target/RISCV/AsmParser/RISCVAsmParser.cpp, None. Retrying without key...
+    sys.exit(main())
+  File "/opt/genie-seal5/src/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/opt/genie-seal5/src/seal5/cli/patch.py", line 53, in handle
+    seal5_flow.patch(verbose=args.verbose, stages=[PatchStage(int(i)) for i in args.stages], force=args.force)
+  File "/opt/genie-seal5/src/seal5/flow.py", line 1027, in patch
+    _ = self.apply_patch(patch, force=force)
+  File "/opt/genie-seal5/src/seal5/flow.py", line 918, in apply_patch
+    inject_patches.generate_patch(
+  File "/opt/genie-seal5/src/seal5/tools/inject_patches.py", line 221, in generate_patch
+    fragments.extend(process_artifacts(global_artifacts))
+  File "/opt/genie-seal5/src/seal5/tools/inject_patches.py", line 217, in process_artifacts
+    fragment = generate_patch_fragment(artifact)
+  File "/opt/genie-seal5/src/seal5/tools/inject_patches.py", line 169, in generate_patch_fragment
+    site_line, site_len, start_mark, end_mark = find_site(dest_path, key)
+  File "/opt/genie-seal5/src/seal5/tools/inject_patches.py", line 99, in find_site
+    return find_site(path, None)
+  File "/opt/genie-seal5/src/seal5/tools/inject_patches.py", line 100, in find_site
+    assert False, f"Marker not found: {path}, {key}"
+AssertionError: Marker not found: llvm/lib/Target/RISCV/AsmParser/RISCVAsmParser.cpp, None
+Logger on port 36273 stopped.
+Traceback (most recent call last):
+  File "/app/worker.py", line 167, in run_job
+    run_process([os.getenv("RETARGET_SCRIPT", "/scripts/run_retarget.sh")], job_id, log, env)
+  File "/app/worker.py", line 141, in run_process
+    raise subprocess.CalledProcessError(code, args)
+subprocess.CalledProcessError: Command '['/scripts/run_retarget.sh']' returned non-zero exit status 1.

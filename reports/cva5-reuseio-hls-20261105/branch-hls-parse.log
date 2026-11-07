@@ -1,0 +1,6 @@
+INFO:parser:parsing top level
+INFO:parser:reading instruction load order
+INFO:parser:building architecture model for set XBranch
+INFO:parser:building behavior model for set XBranch
+INFO:parser:Running type inference
+INFO:parser:dumping model

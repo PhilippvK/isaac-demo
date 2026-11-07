@@ -1,0 +1,4 @@
+[1/4] Building C object utils/count/CMakeFiles/count.dir/count.c.o
+[2/4] Linking CXX executable bin/count
+[3/4] Building CXX object utils/not/CMakeFiles/not.dir/not.cpp.o
+[4/4] Linking CXX executable bin/not

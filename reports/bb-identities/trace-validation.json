@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "normal_events": 422,
+  "stage32_choose": [
+    {
+      "event": "cdfg-stage",
+      "function": "choose",
+      "stage": "32",
+      "requested": "0",
+      "selected": "1",
+      "failed_isel": "0",
+      "mbb": "1",
+      "base": "1",
+      "clone": "0",
+      "instructions": "7"
+    },
+    {
+      "event": "cdfg-stage",
+      "function": "choose",
+      "stage": "32",
+      "requested": "0",
+      "selected": "1",
+      "failed_isel": "0",
+      "mbb": "2",
+      "base": "3",
+      "clone": "0",
+      "instructions": "0"
+    },
+    {
+      "event": "cdfg-stage",
+      "function": "choose",
+      "stage": "32",
+      "requested": "0",
+      "selected": "1",
+      "failed_isel": "0",
+      "mbb": "3",
+      "base": "2",
+      "clone": "0",
+      "instructions": "3"
+    }
+  ],
+  "final_ids": {
+    "choose": [
+      1,
+      3,
+      4
+    ],
+    "loop": [
+      1,
+      2,
+      6,
+      7,
+      4,
+      5,
+      8,
+      3
+    ],
+    "dispatch": [
+      1,
+      6,
+      7,
+      2,
+      3,
+      8,
+      4,
+      5
+    ]
+  },
+  "fallback_extended_add_final_ids": [
+    2
+  ],
+  "trace_preserves_object_bytes": true,
+  "no_id_trace_safe": true,
+  "stage_order": [
+    "1",
+    "2",
+    "4",
+    "8",
+    "16",
+    "32",
+    "128",
+    "256",
+    "64"
+  ],
+  "source_commit": "5bd6ab74cd1dc8d09e54ca6000361d020d138aeb",
+  "compiler": "clang version 19.1.7 (git@github.com:PhilippvK/llvm-project.git 5bd6ab74cd1dc8d09e54ca6000361d020d138aeb)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin\nBuild config: +assertions\n",
+  "commands": [
+    [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-cdfg-stage-mask=32",
+      "-mllvm",
+      "-debug-only=bbid-trace",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/verified-trace.o"
+    ],
+    [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-cdfg-stage-mask=32",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/verified-no-trace.o"
+    ],
+    [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-cdfg-stage-mask=32",
+      "-mllvm",
+      "-debug-only=bbid-trace",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/verified-no-ids.o"
+    ],
+    [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-cdfg-stage-mask=32",
+      "-mllvm",
+      "-debug-only=bbid-trace",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/fallback.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/verified-fallback.o"
+    ]
+  ]
+}

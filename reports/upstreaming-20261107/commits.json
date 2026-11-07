@@ -1,0 +1,77 @@
+[
+  {
+    "repo": "M2-ISA-R",
+    "commit": "df47075858c770eb1391e73cdfd435183a40aecf",
+    "subject": "Handle intrinsic references without staticness attributes"
+  },
+  {
+    "repo": "M2-ISA-R",
+    "commit": "79286a326f4260e5c3a0337755e454f65704284c",
+    "subject": "Support branch offsets and interface-constrained instruction allocation"
+  },
+  {
+    "repo": "M2-ISA-R",
+    "commit": "2f32e39fc816aa440dcb848730a4f19f29c66d9c",
+    "subject": "Emit affine memory ranges accepted by legacy HLS consumers"
+  },
+  {
+    "repo": "isaac-toolkit",
+    "commit": "7ec17eb84c5d03b9881887e2af5bf88141877dd0",
+    "subject": "Decode LLVM BB address maps across compiler versions"
+  },
+  {
+    "repo": "isaac-toolkit",
+    "commit": "875aca748a55b364765edc1fc921579f34145f89",
+    "subject": "Honor configured memory and effect-output query limits"
+  },
+  {
+    "repo": "isaac-toolkit",
+    "commit": "4e9da973a363b1c4f7285a25fff3d95e67a43ebc",
+    "subject": "Export self-contained HLS models with SCAIE-V encoding constraints"
+  },
+  {
+    "repo": "memgraph_experiments",
+    "commit": "77179c2ad9c7ea04873b3dc0c0bd9bdd1df59a2c",
+    "subject": "Generate fused scalar memory and conditional branch instructions"
+  },
+  {
+    "repo": "seal5",
+    "commit": "54fe09e280264aaf994f782181a9d495a3b76bf4",
+    "subject": "Adapt min-max legalizer splitting to LLVM 20 and newer"
+  },
+  {
+    "repo": "seal5",
+    "commit": "dfea1af68d155f8f5f8f32f168a11fc9d8e5a4ac",
+    "subject": "Preserve compiler test results and control build parallelism"
+  },
+  {
+    "repo": "seal5",
+    "commit": "8d73694ca615d0d03538ce2c8e7f00e22743c285",
+    "subject": "Generate RISC-V branch and memory DAG patterns with selector checks"
+  },
+  {
+    "repo": ".",
+    "commit": "3a31083ab6c63e17616dcafd4ef88b9beece95b4",
+    "subject": "Pin decoder, encoding, fused-pattern and compiler compatibility fixes"
+  },
+  {
+    "repo": ".",
+    "commit": "309c14812dca22fe4fe97fec88609f4e5081e236",
+    "subject": "Port local compiler retargeting and CDFG export to LLVM 22"
+  },
+  {
+    "repo": ".",
+    "commit": "bd738ed80f0acde804a308c86f0954e9b4792375",
+    "subject": "Keep instruction selection consistent and compare evaluation selectors"
+  },
+  {
+    "repo": ".",
+    "commit": "d27324be4c938bbc2084e2ef18ce7e17d71c8dfc",
+    "subject": "Add optional Arty A7-100 synthesis and physical firmware execution"
+  },
+  {
+    "repo": ".",
+    "commit": "ba65154592d7eeeb78bfedb67ebf1d800187976f",
+    "subject": "Keep CVA5 defaults generic and isolate memory, branch and Arty experiments"
+  }
+]

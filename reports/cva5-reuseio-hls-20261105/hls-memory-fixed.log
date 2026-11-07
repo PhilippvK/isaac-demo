@@ -1,0 +1,62 @@
+OUTPUT_DIR=/experiment/hls-run/memory-fixed
+GEN_DIR=/experiment/hls-inputs/memory-simple-range
+HLS_DIR=/isax-tools
+GUROBI_LIC=
+make BUILD_DIR=/experiment/hls-run/memory-fixed/build_config ISAXES_DIR=/experiment/hls-inputs/memory-simple-range CONFIG_PATH=/experiment/hls-run/memory-fixed/.config OUTPUT_PATH=/experiment/hls-run/memory-fixed gen_config ci CORE=CVA5 ISAXES=XMEMORYCRC32.HLS SIM_EN=n OL2_ENABLE=n SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=CBC USE_OL2_MODEL=y CELL_LIBRARY=/experiment/config/compact.yaml CLOCK_TIME=100 SCHEDULE_TIMEOUT=60 REFINE_TIMEOUT=60 SCHED_ALGO_MS=y SCHED_ALGO_PA=y SCHED_ALGO_RA=y SCHED_ALGO_MI=y
+rm -rf /experiment/hls-run/memory-fixed/build_config/ISAX
+python3 gen_config.py
+python3 gen_ci_config.py
+python3 dispatch.py
+Output folder: ../../experiment/hls-run/memory-fixed
+Building CVA5 with ISAXes:
+csvpath /experiment/hls-run/memory-fixed/build_config/ISAX/XMemoryCRC32.hls/paths.csv
+isax_file_mapping {'ISAX_XMEMORYCRC32.HLS_EN': '/experiment/hls-inputs/memory-simple-range/XMemoryCRC32.hls.core_desc'}
+enabled_isaxes ['ISAX_XMEMORYCRC32.HLS_EN']
+ - XMEMORYCRC32.HLS (associated description: /experiment/hls-inputs/memory-simple-range/XMemoryCRC32.hls.core_desc)
+Running Treenail:
+ - Mapping /experiment/hls-inputs/memory-simple-range/XMemoryCRC32.hls.core_desc to /experiment/hls-run/memory-fixed/mlir/ISAX_XMEMORYCRC32.HLS_EN.mlir
+Running command: '/isax-tools/nailgun/deps/longnail/build/bin/longnail-opt -lower-coredsl-to-lil -max-unroll-factor=16 -schedule-lil="datasheet=/isax-tools/nailgun/deps/longnail/datasheets/CVA5.yaml library=/experiment/config/compact.yaml opTyLibrary=/isax-tools/nailgun/deps/longnail/opTyLibraries/OL2.yaml clockTime=100 schedulingAlgo=MI_PARAMS solver=CBC schedulingTimeout=60 schedRefineTimeout=60 solSelKconfPath=/experiment/hls-run/memory-fixed/Kconfig verbose=false" -o /experiment/hls-run/memory-fixed/scheduling_solutions.mlir /experiment/hls-run/memory-fixed/mlir/ISAX_XMEMORYCRC32.HLS_EN.mlir' failed
+Last 200 lines of the output:
+/experiment/hls-run/memory-fixed/mlir/ISAX_XMEMORYCRC32.HLS_EN.mlir:4:3: error: memory access width (word) doesn't match 'funct3' encoding field
+  coredsl.instruction @CUSTOM17 {lil.enc_immediates = [[["%TREENAIL_WAS_HERE_rs2_4_0", 4, 0, 0]], [["%TREENAIL_WAS_HERE_rs1_4_0", 4, 0, 0]], [["%TREENAIL_WAS_HERE_rd_4_0", 4, 0, 0]]]} ("0", "1", "1", "1", "0", "1", "1", %TREENAIL_WAS_HERE_rs2_4_0 : ui5, %TREENAIL_WAS_HERE_rs1_4_0 : ui5, "0", "0", "0", %TREENAIL_WAS_HERE_rd_4_0 : ui5, "0", "0", "0", "1", "0", "1", "1") {
+  ^
+/experiment/hls-run/memory-fixed/mlir/ISAX_XMEMORYCRC32.HLS_EN.mlir:4:3: note: see current operation: 
+"lil.graph"() <{mask = "0111011----------000-----0001011", name = "CUSTOM17"}> ({
+  %94 = "lil.instr_valid"() {lil.pred_origin = [0 : index]} : () -> i1
+  %95 = "hw.constant"() <{value = 0 : i5}> : () -> i5
+  %96 = "hw.constant"() <{value = 0 : i2}> : () -> i2
+  %97 = "hw.constant"() <{value = 0 : i22}> : () -> i22
+  %98 = "hw.constant"() <{value = true}> {lil.pred = 0 : index} : () -> i1
+  %99:3 = "lil.predicates"() : () -> (i1, i1, i1)
+  %100 = "lil.instr_word"() {lil.pred = 0 : index} : () -> i32
+  %101 = "comb.extract"(%100) <{lowBit = 7 : i32}> {lil.pred = 0 : index} : (i32) -> i5
+  %102 = "lil.read_rs1"() {lil.pred = 0 : index} : () -> i32
+  %103 = "lil.read_rs2"() {lil.pred = 0 : index} : () -> i32
+  %104 = "comb.extract"(%102) <{lowBit = 0 : i32}> : (i32) -> i8
+  %105 = "comb.concat"(%97, %104, %96) : (i22, i8, i2) -> i32
+  %106 = "comb.add"(%103, %105) : (i32, i32) -> i32
+  %107 = "lil.load"(%106) {lil.pred = 0 : index} : (i32) -> i32
+  %108 = "comb.icmp"(%101, %95) <{predicate = 1 : i64}> {lil.pred = 0 : index} : (i5, i5) -> i1
+  "lil.pred_origin"(%99#1, %108) : (i1, i1) -> ()
+  %109 = "comb.xor"(%108, %98) {lil.pred = 0 : index} : (i1, i1) -> i1
+  "lil.pred_origin"(%99#2, %109) : (i1, i1) -> ()
+  %110 = "lil.read_rd"() : () -> i32
+  %111 = "comb.or"(%108) : (i1) -> i1
+  %112 = "hw.constant"() <{value = true}> : () -> i1
+  %113 = "comb.xor"(%111, %112) : (i1, i1) -> i1
+  %114 = "comb.replicate"(%108) {sv.namehint = "replicated_pred"} : (i1) -> i32
+  %115 = "comb.and"(%114, %107) {sv.namehint = "masked_args"} : (i32, i32) -> i32
+  %116 = "comb.replicate"(%113) {sv.namehint = "replicated_pred"} : (i1) -> i32
+  %117 = "comb.and"(%116, %110) {sv.namehint = "masked_args"} : (i32, i32) -> i32
+  %118 = "comb.or"(%115, %117) {sv.namehint = "one_hot_encoded_arg_selection"} : (i32, i32) -> i32
+  %119 = "lil.write_rd"(%118) : (i32) -> none
+  "lil.sink"(%108, %109, %94) {lil.pred = 0 : index} : (i1, i1, i1) -> ()
+}) {lil.enc_immediates = [[["%TREENAIL_WAS_HERE_rs2_4_0", 4, 0, 0]], [["%TREENAIL_WAS_HERE_rs1_4_0", 4, 0, 0]], [["%TREENAIL_WAS_HERE_rd_4_0", 4, 0, 0]]], lil.graph_id = 6 : index, lil.part_relations = [[0 : index, 1 : index, 2 : index]], lil.sharing_group = 1 : index} : () -> ()
+ScheduleLIL: Using datasheet from: /isax-tools/nailgun/deps/longnail/datasheets/CVA5.yaml
+ScheduleLIL: Using operator type library from: /isax-tools/nailgun/deps/longnail/opTyLibraries/OL2.yaml
+ScheduleLIL: Using library from: /experiment/config/compact.yaml
+ScheduleLIL: Using scheduling algorithm: MI_PARAMS
+ScheduleLIL: limiting the schedule time to 60 seconds.
+ScheduleLIL: limiting the schedule refinement time to 60 seconds.
+ERROR: Longnail scheduling failed
+make: *** [Makefile:12: build] Error 104

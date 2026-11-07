@@ -1,0 +1,16 @@
+{
+  "compat-22-labels-rv32.elf": {
+    "text_sha256": "b220429339a13a198240ed6c825c80b3fc714482899906d69566fc5293fb0c1d",
+    "elf_sha256": "fa80a63a176fceed51e83128a58b776c07f4edabe2d0540e2bda47b4a6c060a7"
+  },
+  "compat-22-labels-rv64.elf": {
+    "text_sha256": "908a6cecdbf6c93b7bac352605a9e0968ec71d3e0f3d979e4f03a8d4fd1b7788",
+    "elf_sha256": "093834bb72d78d2127e847b8c9bff7c809aed8aad67173faf3a432b9bd590635"
+  },
+  "clang": {
+    "sha256": "0e55904522610370281bf7f5e01a953aee70ff3c7187e1caf1e0dd736f0ff069"
+  },
+  "llc": {
+    "sha256": "1f25afd27bd5b25cc0263e0a9ebad21cd35cedf1f9bef8fd5f6a4efcd6a90d7c"
+  }
+}

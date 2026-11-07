@@ -1,0 +1,18 @@
+usage: main.py [-h] [-V] [--log {critical,error,warning,info,debug}] [-v]
+               [-n NAME] [--dir DIR]
+               {init,load,setup,transform,reset,clean,patch,build,install,generate,test,deploy,export,wrapper}
+               ...
+
+Seal5 Flow
+
+positional arguments:
+  {init,load,setup,transform,reset,clean,patch,build,install,generate,test,deploy,export,wrapper}
+
+options:
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit
+  --log {critical,error,warning,info,debug}
+  -v, --verbose         Print tool outputs for easier debugging (default:
+                        False)
+  -n NAME, --name NAME  Environment name (default: None)
+  --dir DIR             LLVM directory (default: None

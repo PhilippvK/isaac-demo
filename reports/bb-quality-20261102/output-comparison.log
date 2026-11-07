@@ -1,0 +1,37 @@
+[2026-11-02 21:45:51]::WARNING - Matplotlib created a temporary cache directory at /tmp/matplotlib-1yj5btlv because the default path (/home/ga87puy/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[2026-11-02 21:45:53]::INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+[2026-11-02 21:45:53]::INFO - generated new fontManager
+INFO - generate_cdsl - Generating CDSL...
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-old/combined_index.yml
+0it [00:00, ?it/s]32it [00:00, 4391.51it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-old/combined_index.yml
+0it [00:00, ?it/s]32it [00:00, 5583.56it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-old/combined_index.yml
+0it [00:00, ?it/s]32it [00:00, 6507.21it/s]
+INFO - generate_cdsl - Generating CDSL...
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-new/combined_index.yml
+0it [00:00, ?it/s]32it [00:00, 4568.34it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-new/combined_index.yml
+0it [00:00, ?it/s]32it [00:00, 5408.52it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-new/combined_index.yml
+0it [00:00, ?it/s]32it [00:00, 4261.15it/s]
+crc32 same definitions False same metrics False
+INFO - generate_cdsl - Generating CDSL...
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-old/combined_index.yml
+0it [00:00, ?it/s]105it [00:00, 4452.01it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-old/combined_index.yml
+0it [00:00, ?it/s]105it [00:00, 5415.27it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-old/combined_index.yml
+0it [00:00, ?it/s]105it [00:00, 3955.75it/s]
+INFO - generate_cdsl - Generating CDSL...
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-new/combined_index.yml
+0it [00:00, ?it/s]105it [00:00, 4592.21it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-new/combined_index.yml
+0it [00:00, ?it/s]105it [00:00, 5664.99it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/nettle-sha256/20261102T170300/work-new/combined_index.yml
+0it [00:00, ?it/s]105it [00:00, 4815.29it/s]
+nettle-sha256 same definitions False same metrics False
+Traceback (most recent call last):
+  File "/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/compare_outputs.py", line 32, in <module>
+    assert all(r['identical_semantic_multiset'] and r['identical_profile_metrics'] for r in summary)
+AssertionError

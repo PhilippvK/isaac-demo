@@ -1,0 +1,28 @@
+2026-11-03 11:35:38,294 INFO Included extra file "/etc/supervisor/programs/lab.conf" during parsing
+2026-11-03 11:35:38,294 INFO Included extra file "/etc/supervisor/programs/memgraph.conf" during parsing
+2026-11-03 11:35:38,294 INFO Set uid to user 0 succeeded
+2026-11-03 11:35:38,296 INFO supervisord started with pid 1
+2026-11-03 11:35:39,298 INFO spawned: 'memgraph' with pid 7
+2026-11-03 11:35:39,299 INFO spawned: 'lab' with pid 8
+[2026-11-03 11:35:39.339] [warning] storage_parallel_index_recovery flag is deprecated. Check storage_mode_parallel_schema_recovery for more details.
+[2026-11-03 11:35:39.340] [warning] storage_parallel_index_recovery flag is deprecated. Check storage_mode_parallel_schema_recovery for more details.
+You are running Memgraph v2.14.1
+To get started with Memgraph, visit https://memgr.ph/start
+[2026-11-03 11:35:39.374] [memgraph_log] [warning] Invalid license key string. To use Enterprise features please set it to a valid string using the following query:
+SET DATABASE SETTING "enterprise.license" TO "your-license-key"
+[2026-11-03 11:35:39.384] [memgraph_log] [warning] Replication configuration will NOT be stored. When the server restarts, replication state will be forgotten.
+[2026-11-03 11:35:39.414] [memgraph_log] [warning] No snapshot or WAL file found. For more details, visit https://memgr.ph/durability.
+2026-11-03 11:35:40,416 INFO success: memgraph entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2026-11-03 11:35:40,416 INFO success: lab entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+[2026-11-03 11:35:40.442] INFO: [lab] Lab is running at http://localhost:3000 in platform mode
+<frozen importlib._bootstrap>:228: RuntimeWarning: scipy._lib.messagestream.MessageStream size changed, may indicate binary incompatibility. Expected 56 from C header, got 64 from PyObject
+[2026-11-03 11:35:42.710] [memgraph_log] [warning] Unknown query module file "/usr/lib/memgraph/query_modules/requirements_no_ml.txt". For more details, visit https://memgr.ph/modules.
+[2026-11-03 11:35:43.173] [memgraph_log] [warning] Using non-secure Bolt connection (without SSL). For more details, visit https://memgr.ph/ssl.
+[2026-11-03 11:38:41.243] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...
+[2026-11-03 11:38:41.597] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...
+[2026-11-03 12:16:38.650] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...
+[2026-11-03 12:16:39.294] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...
+[2026-11-04 04:56:09.582] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...
+[2026-11-04 04:56:09.930] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...
+[2026-11-04 04:56:11.589] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...
+[2026-11-04 04:56:11.935] [memgraph_log] [warning] The client didn't supply the credentials field! Trying with ""...

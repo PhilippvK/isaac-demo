@@ -1,0 +1,39 @@
+{
+  "label": "isaac-llvm22-port-f605682a6c674aa6a7722fc65b80c567",
+  "checks": {
+    "fresh_receipts": true,
+    "late_bb_3_rejected": true,
+    "export_preserves_machine_code": true,
+    "wrong_compilation_rejected": true,
+    "changed_source_rejected": true,
+    "duplicate_block_rejected": true,
+    "modified_graph_receipt_rejected": true
+  },
+  "mapping": [
+    {
+      "fixed_id": 0,
+      "mir": "%bb.0"
+    },
+    {
+      "fixed_id": 2,
+      "mir": "%bb.1"
+    }
+  ],
+  "inventory": [
+    {
+      "fixed": 2,
+      "mir": "%bb.1"
+    },
+    {
+      "fixed": 1,
+      "mir": "%bb.2"
+    },
+    {
+      "fixed": 0,
+      "mir": "%bb.0"
+    }
+  ],
+  "late_elf_ids": [
+    3
+  ]
+}

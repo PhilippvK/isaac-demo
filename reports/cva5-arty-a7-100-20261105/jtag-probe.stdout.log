@@ -1,0 +1,52 @@
+
+****** Vivado v2024.1 (64-bit)
+  **** SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Thu Nov  5 14:59:46 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source ../../cfg/cfu_playground/probe_arty.tcl
+# open_hw_manager
+open_hw_manager: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1509.965 ; gain = 146.805 ; free physical = 4186 ; free virtual = 22471
+# connect_hw_server
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2024.1
+  **** Build date : May 22 2024 at 19:19:01
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2024.1.0
+  ****** Build date   : Apr 27 2024-03:40:49
+    **** Build number : 2024.1.1714182049
+      ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.
+      ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+
+# set board_serial [lindex $argv 0]
+# set matches [get_hw_targets *$board_serial*]
+# if {[llength $matches] != 1} {
+#     error "Expected one JTAG target for board serial $board_serial; found $matches"
+# }
+# current_hw_target [lindex $matches 0]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210319C08AE1A
+# foreach device [get_hw_devices] {
+#     puts "ISAAC_HW_DEVICE=$device PART=[get_property PART $device]"
+# }
+ISAAC_HW_DEVICE=xc7a100t_0 PART=xc7a100t
+# close_hw_target
+INFO: [Labtoolstcl 44-464] Closing hw_target localhost:3121/xilinx_tcf/Digilent/210319C08AE1A
+# disconnect_hw_server
+# close_hw_manager
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  5 15:00:19 2026...

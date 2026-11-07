@@ -1,0 +1,66 @@
+Logger started on port 41523
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing gmir for CUSTOM0.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM1.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM2.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM3.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM4.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM5.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM6.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM7.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM8.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM9.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM10.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM11.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM12.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM13.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM14.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM15.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM16.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM17.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM18.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM19.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM20.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM21.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM22.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM23.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM24.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM25.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM26.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM27.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM28.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM29.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM30.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM31.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XIsaac.seal5.seal5model
+Logger on port 41523 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 41347
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 41347 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 34343
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 34343 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 34963
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::WARNING] No tests have been executed!
+Logger on port 34963 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 46355
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 46355 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model

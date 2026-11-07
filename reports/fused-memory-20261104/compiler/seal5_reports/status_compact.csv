@@ -1,0 +1,17 @@
+model,set,xlen,instr,n_success,n_skipped,n_failed,n_total,status
+XMem,XMem,32,MEM_ADDR_LB,15,0,0,15,good
+XMem,XMem,32,MEM_ADDR_LBU,15,0,0,15,good
+XMem,XMem,32,MEM_ADDR_LH,15,0,0,15,good
+XMem,XMem,32,MEM_ADDR_LHU,15,0,0,15,good
+XMem,XMem,32,MEM_ADDR_LW,15,0,0,15,good
+XMem,XMem,32,MEM_LOADADD_LB,15,0,0,15,good
+XMem,XMem,32,MEM_LOADADD_LBU,15,0,0,15,good
+XMem,XMem,32,MEM_LOADADD_LH,15,0,0,15,good
+XMem,XMem,32,MEM_LOADADD_LHU,15,0,0,15,good
+XMem,XMem,32,MEM_LOADADD_LW,15,0,0,15,good
+XMem,XMem,32,MEM_ADDR_SB,15,0,0,15,good
+XMem,XMem,32,MEM_ADDR_SH,15,0,0,15,good
+XMem,XMem,32,MEM_ADDR_SW,15,0,0,15,good
+XMem,XMem,32,MEM_STOREXOR_SB,15,0,0,15,good
+XMem,XMem,32,MEM_STOREXOR_SH,15,0,0,15,good
+XMem,XMem,32,MEM_STOREXOR_SW,15,0,0,15,good

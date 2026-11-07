@@ -1,0 +1,58 @@
+[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:112:5: [0m[0;1;35mwarning: [0m[1mdefault label in switch which covers all enumeration values [-Wcovered-switch-default][0m
+  112 |     default:[0m
+      | [0;1;32m    ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:255:11: [0m[0;1;35mwarning: [0m[1mvariable 'rows' set but not used [-Wunused-but-set-variable][0m
+  255 |       int rows = 0;[0m
+      | [0;1;32m          ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:398:1: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'initializeTargetPassConfigPass'[0m
+  398 | INITIALIZE_PASS_DEPENDENCY(TargetPassConfig)[0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/PassSupport.h:42:45: [0m[0;1;36mnote: [0mexpanded from macro 'INITIALIZE_PASS_DEPENDENCY'[0m
+   42 | #define INITIALIZE_PASS_DEPENDENCY(depName) initialize##depName##Pass(Registry);[0m
+      | [0;1;32m                                            ^
+[0m[1m<scratch space>:111:1: [0m[0;1;36mnote: [0mexpanded from here[0m
+  111 | initializeTargetPassConfigPass[0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:399:1: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'initializeProfileSummaryInfoWrapperPassPass'; did you mean 'ProfileSummaryInfoWrapperPass'?[0m
+  399 | INITIALIZE_PASS_DEPENDENCY(ProfileSummaryInfoWrapperPass)[0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/PassSupport.h:42:45: [0m[0;1;36mnote: [0mexpanded from macro 'INITIALIZE_PASS_DEPENDENCY'[0m
+   42 | #define INITIALIZE_PASS_DEPENDENCY(depName) initialize##depName##Pass(Registry);[0m
+      | [0;1;32m                                            ^
+[0m[1m<scratch space>:113:1: [0m[0;1;36mnote: [0mexpanded from here[0m
+  113 | initializeProfileSummaryInfoWrapperPassPass[0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/Analysis/ProfileSummaryInfo.h:358:16: [0m[0;1;36mnote: [0m'ProfileSummaryInfoWrapperPass' declared here[0m
+  358 | class LLVM_ABI ProfileSummaryInfoWrapperPass : public ImmutablePass {[0m
+      | [0;1;32m               ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:400:1: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'initializeLazyBlockFrequencyInfoPassPass'[0m
+  400 | INITIALIZE_PASS_DEPENDENCY(LazyBlockFrequencyInfoPass)[0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/PassSupport.h:42:45: [0m[0;1;36mnote: [0mexpanded from macro 'INITIALIZE_PASS_DEPENDENCY'[0m
+   42 | #define INITIALIZE_PASS_DEPENDENCY(depName) initialize##depName##Pass(Registry);[0m
+      | [0;1;32m                                            ^
+[0m[1m<scratch space>:115:1: [0m[0;1;36mnote: [0mexpanded from here[0m
+  115 | initializeLazyBlockFrequencyInfoPassPass[0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:401:1: [0m[0;1;31merror: [0m[1mout-of-line definition of 'initializeCDFGPassPass' does not match any declaration in namespace 'llvm'; did you mean 'initializeLazyBPIPassPass'?[0m
+  401 | INITIALIZE_PASS_END([0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/PassSupport.h:51:14: [0m[0;1;36mnote: [0mexpanded from macro 'INITIALIZE_PASS_END'[0m
+   51 |   void llvm::initialize##passName##Pass(PassRegistry &Registry) {              \[0m
+      | [0;1;32m             ^
+[0m[1m<scratch space>:119:1: [0m[0;1;36mnote: [0mexpanded from here[0m
+  119 | initializeCDFGPassPass[0m
+      | [0;1;32m^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/Analysis/LazyBranchProbabilityInfo.h:108:6: [0m[0;1;36mnote: [0m'initializeLazyBPIPassPass' declared here[0m
+  108 | void initializeLazyBPIPassPass(PassRegistry &Registry);[0m
+      | [0;1;32m     ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:728:18: [0m[0;1;35mwarning: [0m[1munused variable 'Imm' [-Wunused-variable][0m
+  728 |             auto Imm = MO.getImm();[0m
+      | [0;1;32m                 ^~~
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:736:18: [0m[0;1;35mwarning: [0m[1munused variable 'Imm' [-Wunused-variable][0m
+  736 |             auto Imm = MO.getCImm();[0m
+      | [0;1;32m                 ^~~
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:744:18: [0m[0;1;35mwarning: [0m[1munused variable 'Imm' [-Wunused-variable][0m
+  744 |             auto Imm = MO.getFPImm();[0m
+      | [0;1;32m                 ^~~
+[0m5 warnings and 4 errors generated.

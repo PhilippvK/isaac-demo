@@ -1,0 +1,52 @@
+CHECK lib/CodeGen/GlobalISel/CMakeFiles/LLVMGlobalISel.dir/CDFGPass.cpp.o
+[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:113:5: [0m[0;1;35mwarning: [0m[1mdefault label in switch which covers all enumeration values [-Wcovered-switch-default][0m
+  113 |     default:[0m
+      | [0;1;32m    ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:256:11: [0m[0;1;35mwarning: [0m[1mvariable 'rows' set but not used [-Wunused-but-set-variable][0m
+  256 |       int rows = 0;[0m
+      | [0;1;32m          ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:729:18: [0m[0;1;35mwarning: [0m[1munused variable 'Imm' [-Wunused-variable][0m
+  729 |             auto Imm = MO.getImm();[0m
+      | [0;1;32m                 ^~~
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:737:18: [0m[0;1;35mwarning: [0m[1munused variable 'Imm' [-Wunused-variable][0m
+  737 |             auto Imm = MO.getCImm();[0m
+      | [0;1;32m                 ^~~
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp:745:18: [0m[0;1;35mwarning: [0m[1munused variable 'Imm' [-Wunused-variable][0m
+  745 |             auto Imm = MO.getFPImm();[0m
+      | [0;1;32m                 ^~~
+[0m5 warnings generated.
+CHECK lib/CodeGen/GlobalISel/CMakeFiles/LLVMGlobalISel.dir/GIMatchTableExecutor.cpp.o
+CHECK lib/CodeGen/GlobalISel/CMakeFiles/LLVMGlobalISel.dir/GlobalISel.cpp.o
+CHECK lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/TargetPassConfig.cpp.o
+CHECK lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ResetMachineFunctionPass.cpp.o
+CHECK lib/CodeGen/AsmPrinter/CMakeFiles/LLVMAsmPrinter.dir/AsmPrinter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp:13:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/CodeGen/AsmPrinter.h:18:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+[1m/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: [0m[0;1;35mwarning: [0m[1m'get_temporary_buffer<llvm::AsmPrinter::Structor>' is deprecated [-Wdeprecated-declarations][0m
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));[0m
+      | [0;1;32m                     ^
+[0m[1m/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: [0m[0;1;36mnote: [0min instantiation of member function 'std::_Temporary_buffer<llvm::AsmPrinter::Structor *, llvm::AsmPrinter::Structor>::_Temporary_buffer' requested here[0m
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);[0m
+      | [0;1;32m              ^
+[0m[1m/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::__stable_sort<llvm::AsmPrinter::Structor *, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp:3528:32)>>' requested here[0m
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,[0m
+      | [0;1;32m                      ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: [0m[0;1;36mnote: [0min instantiation of function template specialization 'std::stable_sort<llvm::AsmPrinter::Structor *, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp:3528:32)>' requested here[0m
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);[0m
+      | [0;1;32m       ^
+[0m[1m/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp:3528:9: [0m[0;1;36mnote: [0min instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVector<llvm::AsmPrinter::Structor, 8> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp:3528:32)>' requested here[0m
+ 3528 |   llvm::stable_sort(Structors, [](const Structor &L, const Structor &R) {[0m
+      | [0;1;32m        ^
+[0m[1m/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: [0m[0;1;36mnote: [0m'get_temporary_buffer<llvm::AsmPrinter::Structor>' has been explicitly marked deprecated here[0m
+   99 |     _GLIBCXX17_DEPRECATED[0m
+      | [0;1;32m    ^
+[0m[1m/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: [0m[0;1;36mnote: [0mexpanded from macro '_GLIBCXX17_DEPRECATED'[0m
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]][0m
+      | [0;1;32m                                 ^
+[0m1 warning generated.
+FAILED []

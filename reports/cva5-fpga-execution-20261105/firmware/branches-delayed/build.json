@@ -1,0 +1,35 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"branches\"",
+    "-DDEBUG_DELAY_CYCLES=600000000u",
+    "-DISAAC_BRANCHES=1",
+    "-DBRANCH_REPEATS=1",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-delayed/firmware.elf"
+  ],
+  "variant": "branches",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "364c6b4608991e0356cf59bb643284651e7d63b34d6732679257970af3549897",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S": "04d68c2064b4e22cf658e6c9e390cf25a8401d49be859537233437095259a3ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/effect_checks.h": "11d336df791f161f8cd1e8cd2657d48cde78566ba094ed93a67e4af55e9d6845",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-delayed/firmware.elf": "4bfd75c3bf8715b100271d27a614a18edcb0c7b842643ba9629b1c00529852b4",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-delayed/firmware.bin": "f62d6b7134afa60f2714bb885c9ba3f87c1864a3a1c40c61f6f262e860018f34",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/firmware/branches-delayed/firmware.coe": "2101734dde09a799192a8ced5f9b9d11f6f4d2b430df0a236c84296f48d25880"
+  }
+}

@@ -1,0 +1,1190 @@
+diff --git a/README.md b/README.md
+index c35307d..6aa6b23 100644
+--- a/README.md
++++ b/README.md
+@@ -92,6 +92,8 @@ isaac_toolkit
+ 
+ ## Usage
+ 
++[ELF/CDFG basic-block count validation](docs/bb_cdfg_validation.md) runs before Memgraph profile-weight annotation.
++
+ ### Prerequisites
+ 
+ Install (optional) APT Requirements:
+diff --git a/docs/bb_cdfg_validation.md b/docs/bb_cdfg_validation.md
+index ca728f1..6b9e6dc 100644
+--- a/docs/bb_cdfg_validation.md
++++ b/docs/bb_cdfg_validation.md
+@@ -49,3 +49,18 @@ The Python `annotate_bb_weights` function accepts the corresponding
+ Warning mode annotates comparable blocks, including count mismatches, but skips
+ missing or ambiguous identities. A session with no comparable blocks is never
+ silently accepted: error mode stops and warning mode logs it.
++
++## Fixed IDs and import receipts
++
++Validation and annotation use the numeric ELF/CDFG `bb_id`. The CDFG's MIR name
++may differ after block creation or renumbering and is retained only for diagnosis.
++Each match is scoped to one module, function, stage and verified import. Ambiguous
++identities cannot be waived with `--mismatch-action warn`; that option only
++relaxes instruction-count validation.
++
++CDFG generation records `cdfg_imports` receipts with ELF/compiler/command/source
++and dependency hashes plus a graph signature. Inputs or graphs that changed,
++missing receipts, old decoder tables, missing blocks and clone identities are
++rejected. Re-run BB analysis, trace mapping, choices and CDFG generation after
++updating the compiler/toolkit. Use `--stage` on annotation if several stages are
++present. Later-created blocks are not guessed from neighboring numbers.
+diff --git a/isaac_toolkit/analysis/dynamic/trace/map_llvm_bbs_new.py b/isaac_toolkit/analysis/dynamic/trace/map_llvm_bbs_new.py
+index 2078e43..ba9bfec 100644
+--- a/isaac_toolkit/analysis/dynamic/trace/map_llvm_bbs_new.py
++++ b/isaac_toolkit/analysis/dynamic/trace/map_llvm_bbs_new.py
+@@ -110,6 +110,8 @@ def map_llvm_bbs_new(sess: Session, force: bool = False, sort_by: str = "weight"
+ 
+     attrs = {
+         "elf_file": elf_artifact.name,
++        "elf_sha256": llvm_bbs_artifact.attrs.get("elf_sha256"),
++        "bb_map_decoder": llvm_bbs_artifact.attrs.get("bb_map_decoder"),
+         "kind": "mapping",
+         "by": __name__,
+     }
+diff --git a/isaac_toolkit/analysis/static/llvm_bbs.py b/isaac_toolkit/analysis/static/llvm_bbs.py
+index 80f1786..df3c081 100644
+--- a/isaac_toolkit/analysis/static/llvm_bbs.py
++++ b/isaac_toolkit/analysis/static/llvm_bbs.py
+@@ -18,7 +18,6 @@
+ #
+ import io
+ import sys
+-import leb128
+ import argparse
+ from pathlib import Path
+ from collections import defaultdict
+@@ -32,6 +31,7 @@ from capstone import Cs, CS_ARCH_RISCV, CS_MODE_RISCV32, CS_MODE_RISCV64, CS_MOD
+ from isaac_toolkit.session import Session
+ from isaac_toolkit.session.artifact import ArtifactFlag, TableArtifact, filter_artifacts
+ from isaac_toolkit.logging import get_logger, set_log_level
++from isaac_toolkit.utils.bb_identity import file_digest
+ 
+ logger = get_logger()
+ 
+@@ -41,6 +41,10 @@ def parse_elf(elf_path):
+     func_to_addrs = defaultdict(list)
+     with open(elf_path, "rb") as f:
+         elffile = ELFFile(f)
++        if elffile['e_type'] == 'ET_REL':
++            raise ValueError('BB address maps must be decoded from a linked ELF, not an unrelocated object')
++        if not elffile.little_endian:
++            raise NotImplementedError('Big-endian BB address maps are not supported')
+ 
+         # extract disassembly to count instructions per bb
+         # see https://isleem.medium.com/create-your-own-disassembler-in-python-pefile-capstone-754f863b2e1c
+@@ -60,6 +64,8 @@ def parse_elf(elf_path):
+         while True:
+             temp = [(x.address, x.size) for x in md.disasm(ops, begin)]
+             valid_pcs_ = set(pc for pc, size in temp)
++            if not temp:
++                raise ValueError(f"Cannot disassemble ELF .text at {begin:#x}; instruction counts are not trustworthy")
+             last = temp[-1]
+             last_pc, last_size = last
+             begin = max(last_pc, begin) + last_size
+@@ -102,26 +108,47 @@ def parse_elf(elf_path):
+         assert llvm_bb_addr_map_raw is not None, "Missing: .llvm_bb_addr_map"
+         llvm_bb_addr_map_raw = llvm_bb_addr_map_raw.data()
+ 
++        symbol_sizes = {}
++        for entries in func_to_addrs.values():
++            for address, size in entries:
++                symbol_sizes[address] = max(symbol_sizes.get(address, 0), size)
++
++        def read_uleb(reader):
++            value = 0
++            for shift in range(0, 64, 7):
++                byte = reader.read(1)
++                if not byte:
++                    raise ValueError("Truncated ULEB128 in BB address map")
++                byte = byte[0]
++                if shift == 63 and byte > 1:
++                    raise ValueError("Oversized ULEB128 in BB address map")
++                value |= (byte & 0x7f) << shift
++                if not byte & 0x80:
++                    return value
++            raise ValueError("Oversized ULEB128 in BB address map")
++
+         def decode_map(data, addr_to_func):
+             ret = {}
+             unknown_count = 0
+             with io.BytesIO(data) as reader:
+-                while True:
++                while reader.tell() < len(data):
+                     # print("reader", reader)
+                     # print("dir(reader)", dir(reader))
+                     version = int.from_bytes(reader.read(1), byteorder="little")
+                     # print("version", version)
+                     # assert version == 2
+                     if version != 2:
+-                        if version == 0:
+-                            break
+                         raise NotImplementedError(f"LLVM_BB_ADDR_MAP version {version}")
+                         # print("!")
+                         # print(reader.read(100))
+                     features = int.from_bytes(reader.read(1), byteorder="little")
+                     # print("features", features)
+-                    assert features == 0
+-                    func_addr = int.from_bytes(reader.read(addr_bytes), byteorder="little")
++                    if features != 0:
++                        raise NotImplementedError(f"Unsupported BB address map features: {features:#x}")
++                    address_data = reader.read(addr_bytes)
++                    if len(address_data) != addr_bytes:
++                        raise ValueError("Truncated BB address map function address")
++                    func_addr = int.from_bytes(address_data, byteorder="little")
+                     # print("func_addr", func_addr)
+                     func_name = addr_to_func.get(func_addr, None)
+                     # print("func_name", func_name)
+@@ -131,7 +158,7 @@ def parse_elf(elf_path):
+                         unknown_count += 1
+                     # TODO: leb128?
+                     # num_bbs = int.from_bytes(reader.read(1), byteorder="little")
+-                    num_bbs = leb128.u.decode_reader(reader)[0]
++                    num_bbs = read_uleb(reader)
+                     # print("num_bbs", num_bbs)
+                     # assert num_bbs > 0
+                     if GISEL:
+@@ -142,28 +169,33 @@ def parse_elf(elf_path):
+                     for i in range(num_bbs):
+                         # print("i", i)
+                         # bb_id = int.from_bytes(reader.read(1), byteorder="little")
+-                        bb_id = leb128.u.decode_reader(reader)[0]
++                        bb_id = read_uleb(reader)
+                         if not GISEL:
+                             assert bb_id < num_bbs
+-                        start_offset = leb128.u.decode_reader(reader)[0]
++                        start_offset = read_uleb(reader)
+                         # print("start_offset", start_offset)
+                         assert start_offset >= 0
+-                        end_offset = leb128.u.decode_reader(reader)[0]
+-                        # print("end_offset", end_offset)
+-                        assert end_offset >= 0
++                        block_size = read_uleb(reader)
++                        assert block_size >= 0
+                         # TODO: leb128?
+                         # metadata = int.from_bytes(reader.read(1), byteorder="little")
+-                        # metadata = leb128.u.decode_reader(reader)[0]
+-                        _ = leb128.u.decode_reader(reader)[0]
++                        # metadata = read_uleb(reader)
++                        _ = read_uleb(reader)
+                         # print("metadata", metadata)
+                         # TODO: decode metadata (is_return, is_call, ...)
+                         # rest = reader.read(1000)
+                         # print("rest", rest)
+                         cur += start_offset
+-                        sz = end_offset - start_offset
++                        # Version 2 stores padding relative to the previous end,
++                        # followed by a size, not an end offset.
++                        sz = block_size
+                         assert sz >= 0
+                         start = cur
+                         end = cur + sz
++                        if symbol_sizes.get(func_addr, 0) and end > func_addr + symbol_sizes[func_addr]:
++                            raise ValueError(f"BB {bb_id} exceeds function {func_name}'s symbol range")
++                        if start < code["sh_addr"] or end > code["sh_addr"] + code["sh_size"]:
++                            raise ValueError(f"BB {bb_id} of {func_name} lies outside .text")
+                         if sz > 0:
+                             pcs = [pc for pc in range(start, end, 2) if pc in valid_pcs]
+                             # valid_pcs_sorted = sorted(list(valid_pcs))
+@@ -176,9 +208,13 @@ def parse_elf(elf_path):
+                             num_instrs = 0
+                         cur += sz
+                         if GISEL:
++                            if str(bb_id) in tmp:
++                                raise ValueError(f"Duplicate BB ID {bb_id} in {func_name}")
+                             tmp[str(bb_id)] = (start, end, sz, num_instrs)
+                         else:
+                             tmp[bb_id] = (start, end, sz, num_instrs)
++                    if func_name in ret:
++                        raise ValueError(f"Ambiguous BB map for function {func_name}")
+                     ret[func_name] = tmp
+             return ret
+ 
+@@ -230,7 +266,10 @@ def analyze_llvm_bbs(sess: Session, force: bool = False):
+     #     pass
+     #     # trace_pc2bb_df = None
+ 
++    elf_hash = file_digest(elf_artifact.path)
+     llvm_bbs = parse_elf(elf_artifact.path)
++    if file_digest(elf_artifact.path) != elf_hash:
++        raise ValueError("ELF changed during BB analysis")
+     # print("llvm_bbs", llvm_bbs)
+     df_data = []
+     for func_name, func_data in llvm_bbs.items():
+@@ -242,6 +281,7 @@ def analyze_llvm_bbs(sess: Session, force: bool = False):
+             new = {
+                 "func_name": func_name,
+                 "bb_name": bb_name,
++                "bb_id": int(bb_name.removeprefix("%bb.")),
+                 "pcs": (start, end),
+                 "size": sz,
+                 "num_instrs": num_instrs,
+@@ -336,6 +376,8 @@ def analyze_llvm_bbs(sess: Session, force: bool = False):
+ 
+     attrs = {
+         "elf_file": elf_artifact.name,
++        "elf_sha256": elf_hash,
++        "bb_map_decoder": 2,
+         "kind": "mapping",
+         "by": "isaac_toolkit.analysis.static.llvm_bbs",
+     }
+diff --git a/isaac_toolkit/backend/memgraph/annotate_bb_weights.py b/isaac_toolkit/backend/memgraph/annotate_bb_weights.py
+index cd357e5..bac81b2 100644
+--- a/isaac_toolkit/backend/memgraph/annotate_bb_weights.py
++++ b/isaac_toolkit/backend/memgraph/annotate_bb_weights.py
+@@ -28,6 +28,8 @@ import pandas as pd
+ from isaac_toolkit.session import Session
+ from isaac_toolkit.session.artifact import ArtifactFlag, TableArtifact, filter_artifacts
+ from isaac_toolkit.logging import get_logger, set_log_level
++from isaac_toolkit.utils.bb_identity import (BBIdentityError, block_id, verified_imports,
++    verify_graph_receipts, resolve_block)
+ 
+ logger = get_logger()
+ 
+@@ -36,26 +38,37 @@ class BBMismatchError(ValueError):
+     """ELF blocks and the imported CDFG cannot safely share profile weights."""
+ 
+ 
+-def graph_bb_counts(driver, label="default", timeout=120):
++def graph_bb_counts(driver, label="default", timeout=120, stage=None, module_name=None, compilation_id=None,
++                    func_name=None, bb_id=None):
+     # Count nodes directly, including instructions with no DFG edges. Input and
+     # constant/label nodes describe operands, not ELF instructions.
+     query = Query(
+         """
+         MATCH (b:BB) WHERE b.session = $label
++          AND ($func_name IS NULL OR b.func_name = $func_name)
++          AND ($bb_id IS NULL OR b.bb_id = $bb_id)
++          AND ($stage IS NULL OR b.stage = $stage)
++          AND ($module_name IS NULL OR b.module_name = $module_name)
++          AND ($compilation_id IS NULL OR b.compilation_id = $compilation_id)
+         OPTIONAL MATCH (i:INSTR)
+         WHERE i.session = $label AND i.func_name = b.func_name
+-          AND i.basic_block = b.name
++          AND i.bb_id = b.bb_id AND i.compilation_id = b.compilation_id
+           AND i.module_name = b.module_name AND i.stage = b.stage
+           AND NOT coalesce(i.op_type, 'instruction') IN ['input', 'constant', 'label']
+-        RETURN b.func_name AS func_name, b.name AS bb_name,
++        RETURN b.func_name AS func_name, b.bb_id AS bb_id,
++               '%bb.' + toString(b.bb_id) AS bb_name,
+                count(DISTINCT b) AS graph_blocks, count(DISTINCT i) AS graph_nodes,
+                collect(DISTINCT b.module_name) AS graph_modules,
+-               collect(DISTINCT b.stage) AS graph_stages
++               collect(DISTINCT b.stage) AS graph_stages,
++               collect(DISTINCT b.name) AS graph_names,
++               collect(DISTINCT b.compilation_id) AS graph_compilations,
++               collect(DISTINCT id(b)) AS graph_block_ids
+     """,
+         timeout=timeout,
+     )
+     with driver.session() as session:
+-        return [dict(record) for record in session.run(query, label=label)]
++        return [dict(record) for record in session.run(query, label=label, stage=stage,
++                module_name=module_name, compilation_id=compilation_id, func_name=func_name, bb_id=bb_id)]
+ 
+ 
+ def compare_bb_counts(elf_bbs, graph_counts, *, relative_tolerance=0.10, absolute_tolerance=5, selected=()):
+@@ -72,10 +85,23 @@ def compare_bb_counts(elf_bbs, graph_counts, *, relative_tolerance=0.10, absolut
+     ):
+         raise ValueError("BB count tolerances must be finite and nonnegative")
+     selected = set(selected)
+-    graph = {(row["func_name"], row["bb_name"]): row for row in graph_counts}
++    graph = {}
++    for row in graph_counts:
++        fixed_id = block_id(row["bb_name"], row.get("bb_id"))
++        key = (row["func_name"], f"%bb.{fixed_id}")
++        if key in graph:
++            # Never overwrite a second module/stage with the same function/ID.
++            old = graph[key]
++            old["graph_blocks"] += row["graph_blocks"]
++            old["graph_nodes"] += row["graph_nodes"]
++            for field in ("graph_modules", "graph_stages", "graph_names", "graph_compilations", "graph_block_ids"):
++                old[field] = old.get(field, []) + row.get(field, [])
++        else:
++            graph[key] = dict(row)
+     elf_groups = {}
+     for row in elf_bbs.to_dict("records"):
+-        elf_groups.setdefault((row["func_name"], row["bb_name"]), []).append(row)
++        fixed_id = block_id(row["bb_name"], row.get("bb_id"))
++        elf_groups.setdefault((row["func_name"], f"%bb.{fixed_id}"), []).append(row)
+     rows = []
+     for key in sorted(elf_groups.keys() | graph.keys() | selected):
+         elf_rows = elf_groups.get(key, [])
+@@ -115,6 +141,9 @@ def compare_bb_counts(elf_bbs, graph_counts, *, relative_tolerance=0.10, absolut
+                 selected=key in selected,
+                 graph_modules=db.get("graph_modules", []) if db else [],
+                 graph_stages=db.get("graph_stages", []) if db else [],
++                graph_names=db.get("graph_names", []) if db else [],
++                graph_compilations=db.get("graph_compilations", []) if db else [],
++                graph_block_ids=db.get("graph_block_ids", []) if db else [],
+             )
+         )
+     return pd.DataFrame(
+@@ -132,6 +161,9 @@ def compare_bb_counts(elf_bbs, graph_counts, *, relative_tolerance=0.10, absolut
+             "selected",
+             "graph_modules",
+             "graph_stages",
++            "graph_names",
++            "graph_compilations",
++            "graph_block_ids",
+         ],
+     )
+ 
+@@ -162,54 +194,45 @@ def enforce_bb_report(report, mismatch_action="error"):
+ 
+ 
+ def anonotate_helper(
+-    driver, func_name, bb_name, num_instrs, freq, rel_weight, label="default", check=True, timeout=120
++    driver, func_name, bb_name, num_instrs, freq, rel_weight, label="default", check=True, timeout=120,
++    stage=None, module_name=None, compilation_id=None,
+ ):
+     if not math.isfinite(num_instrs) or num_instrs <= 0:
+         raise ValueError("Cannot annotate weights without a positive ELF instruction count")
++    bb_id = block_id(bb_name)
++    counts = [r for r in graph_bb_counts(driver, label, timeout, stage, module_name, compilation_id, func_name, bb_id)
++              if r["func_name"] == func_name and r["bb_id"] == bb_id]
++    if len(counts) != 1 or counts[0]["graph_blocks"] != 1:
++        raise BBIdentityError(f"Ambiguous or missing fixed BB identity for {func_name}, {bb_id}")
++    count = counts[0]
++    if any(len(count[k]) != 1 for k in ("graph_modules", "graph_stages", "graph_compilations")):
++        raise BBIdentityError("Annotation requires one verified module/stage/compilation")
++    context = dict(module_name=count["graph_modules"][0], stage=count["graph_stages"][0],
++                   compilation_id=count["graph_compilations"][0])
++    resolved = resolve_block(driver, label, func_name, bb_id, context, timeout)
+     if check:
+-        report = compare_bb_counts(
++        enforce_bb_report(compare_bb_counts(
+             pd.DataFrame([dict(func_name=func_name, bb_name=bb_name, num_instrs=num_instrs)]),
+-            [
+-                row
+-                for row in graph_bb_counts(driver, label, timeout)
+-                if (row["func_name"], row["bb_name"]) == (func_name, bb_name)
+-            ],
+-            selected=[(func_name, bb_name)],
+-        )
+-        enforce_bb_report(report)
+-    params = dict(
+-        func_name=func_name,
+-        bb_name=bb_name,
+-        num_instrs=int(num_instrs),
+-        freq=float(freq),
+-        rel_weight=float(rel_weight),
+-        label=label,
+-        instr_weight=float(rel_weight / num_instrs),
+-    )
++            counts, selected=[(func_name, bb_name)]))
++    params = dict(label=label, func_name=func_name, bb_id=bb_id, **context, **resolved,
++                  num_instrs=int(num_instrs), freq=float(freq), rel_weight=float(rel_weight),
++                  instr_weight=float(rel_weight / num_instrs))
+     with driver.session() as session:
+-        session.run(
+-            Query(
+-                """
+-            MATCH (a:BB)
+-            WHERE a.func_name = $func_name AND a.name = $bb_name AND a.session = $label
+-            SET a.bb_freq = $freq, a.bb_instrs = $num_instrs, a.bb_rel_weight = $rel_weight
+-        """,
+-                timeout=timeout,
+-            ),
+-            **params,
+-        ).consume()
+-        session.run(
+-            Query(
+-                """
+-            MATCH (a:INSTR)
+-            WHERE a.func_name = $func_name AND a.basic_block = $bb_name AND a.session = $label
+-              AND NOT coalesce(a.op_type, 'instruction') IN ['input', 'constant', 'label']
+-            SET a.instr_freq = $freq, a.instr_rel_weight = $instr_weight
+-        """,
+-                timeout=timeout,
+-            ),
+-            **params,
+-        ).consume()
++        with session.begin_transaction(timeout=timeout) as tx:
++            updated = tx.run("""MATCH (a:BB) WHERE id(a) = $graph_block_id
++                AND a.session = $label AND a.func_name = $func_name AND a.bb_id = $bb_id
++                AND a.module_name = $module_name AND a.stage = $stage
++                AND a.compilation_id = $compilation_id
++                SET a.bb_freq = $freq, a.bb_instrs = $num_instrs, a.bb_rel_weight = $rel_weight
++                RETURN count(a) AS updated""", **params).single()
++            if updated is None or updated["updated"] != 1:
++                raise BBIdentityError("BB changed while annotating it")
++            tx.run("""MATCH (a:INSTR) WHERE a.session = $label
++                AND a.func_name = $func_name AND a.bb_id = $bb_id
++                AND a.module_name = $module_name AND a.stage = $stage
++                AND a.compilation_id = $compilation_id AND a.basic_block = $mir_name
++                AND NOT coalesce(a.op_type, 'instruction') IN ['input', 'constant', 'label']
++                SET a.instr_freq = $freq, a.instr_rel_weight = $instr_weight""", **params).consume()
+ 
+ 
+ def annotate_bb_weights(
+@@ -219,6 +242,7 @@ def annotate_bb_weights(
+     relative_tolerance: float = 0.10,
+     absolute_tolerance: float = 5,
+     mismatch_action: str = "error",
++    stage: int = None,
+ ):
+     if mismatch_action not in ("error", "warn"):
+         raise ValueError("mismatch_action must be 'error' or 'warn'")
+@@ -244,6 +268,8 @@ def annotate_bb_weights(
+     driver = GraphDatabase.driver(f"bolt://{memgraph_host}:{memgraph_port}", auth=(user, password))
+     try:
+ 
++        imports = verified_imports(sess, label, stage)
++        verify_graph_receipts(driver, imports, label)
+         artifacts = sess.artifacts
+         llvm_bbs_artifacts = filter_artifacts(
+             artifacts,
+@@ -258,7 +284,9 @@ def annotate_bb_weights(
+             selected = set(zip(choices[0].df["func_name"], choices[0].df["bb_name"]))
+         report = compare_bb_counts(
+             llvm_bbs_df,
+-            graph_bb_counts(driver, label),
++            [row for receipt in imports for row in graph_bb_counts(driver, label,
++                stage=int(receipt["stage"]), module_name=receipt["module_name"],
++                compilation_id=receipt["compilation_id"])],
+             selected=selected,
+             relative_tolerance=relative_tolerance,
+             absolute_tolerance=absolute_tolerance,
+@@ -285,6 +313,7 @@ def annotate_bb_weights(
+             for row in report.to_dict("records")
+             if row["status"] in ("exact", "tolerated", "mismatch")
+         }
++        identities = {(r["func_name"], r["bb_name"]): r for r in report.to_dict("records")}
+         # print("llvm_bbs_df", llvm_bbs_df, llvm_bbs_df.columns)
+         # input("?")
+         for index, row in llvm_bbs_df.iterrows():
+@@ -310,6 +339,9 @@ def annotate_bb_weights(
+                 rel_weight,
+                 label=label,
+                 check=False,
++                stage=identities[(func_name, bb_name)]["graph_stages"][0],
++                module_name=identities[(func_name, bb_name)]["graph_modules"][0],
++                compilation_id=identities[(func_name, bb_name)]["graph_compilations"][0],
+             )
+     finally:
+         driver.close()
+@@ -329,6 +361,7 @@ def handle(args):
+             relative_tolerance=args.relative_tolerance,
+             absolute_tolerance=args.absolute_tolerance,
+             mismatch_action=args.mismatch_action,
++            stage=args.stage,
+         )
+     except BBMismatchError:
+         sess.save()  # Preserve the diagnostic table even when the stage stops.
+@@ -346,6 +379,7 @@ def get_parser():
+     parser.add_argument("--session", "--sess", "-s", type=str, required=True)
+     parser.add_argument("--label", default="default", required=True)
+     parser.add_argument("--force", "-f", action="store_true")
++    parser.add_argument("--stage", type=int, default=None, help="Select one imported CDFG stage")
+     parser.add_argument(
+         "--relative-tolerance",
+         type=float,
+diff --git a/isaac_toolkit/generate/cdfg/memgraph.py b/isaac_toolkit/generate/cdfg/memgraph.py
+index abe62b1..6cf53a9 100644
+--- a/isaac_toolkit/generate/cdfg/memgraph.py
++++ b/isaac_toolkit/generate/cdfg/memgraph.py
+@@ -20,13 +20,22 @@ import os
+ import sys
+ import argparse
+ import subprocess
++import hashlib
++import json
++import shlex
++import shutil
++import tempfile
++import uuid
++
++from neo4j import GraphDatabase, Query
+ from pathlib import Path
+ 
+ import pandas as pd
+ 
+ from isaac_toolkit.session import Session
+-from isaac_toolkit.session.artifact import ArtifactFlag, filter_artifacts
++from isaac_toolkit.session.artifact import ArtifactFlag, TableArtifact, filter_artifacts
+ from isaac_toolkit.logging import get_logger, set_log_level
++from isaac_toolkit.utils.bb_identity import BBIdentityError, file_digest, elf_digest, graph_receipt, require_bb_tables, command_source
+ 
+ logger = get_logger()
+ 
+@@ -51,69 +60,147 @@ def generate_memgraph_cdfg_via_compile_commands(
+     stage: int = 32,
+     force: bool = False,
+ ):
+-    del force
+-    logger.info("Generating Memgraph CDFG via compile commands...")
++    if not label or any(c in label for c in "'\\\n\r"):
++        raise BBIdentityError("CDFG label must be nonempty and contain no quotes, backslashes or newlines")
++    if isinstance(stage, bool) or not isinstance(stage, int) or stage <= 0:
++        raise BBIdentityError("A positive CDFG stage mask is required")
+     artifacts = sess.artifacts
+-    choices_artifacts = filter_artifacts(artifacts, lambda x: x.flags & ArtifactFlag.TABLE and x.name == "choices")
+-    assert len(choices_artifacts) == 1
+-    choices_artifact = choices_artifacts[0]
+-    choices_df = choices_artifact.df
+-    assert len(choices_df) > 0
+-
+-    compile_commands_artifacts = filter_artifacts(
+-        artifacts,
+-        lambda x: x.flags & ArtifactFlag.TABLE and x.attrs.get("kind") == "compile_commands",
+-    )
+-    assert len(compile_commands_artifacts) == 1
+-    compile_commands_artifact = compile_commands_artifacts[0]
+-    compile_commands_df = compile_commands_artifact.df
+-    compile_commands_df["file_resolved"] = compile_commands_df["file"].apply(lambda x: Path(x).resolve())
+-    compile_commands_df["file_name"] = compile_commands_df["file"].apply(lambda x: Path(x).name)
+-
+-    # symbol_map_artifacts = filter_artifacts(
+-    #     artifacts, lambda x: x.flags & ArtifactFlag.TABLE and x.name == "symbol_map"
+-    # )
+-    # symbol_map_df = None
+-    # if len(symbol_map_artifacts) > 0:
+-    #     assert len(symbol_map_artifacts) == 1
+-    #     symbol_map_artifact = symbol_map_artifacts[0]
+-    #     symbol_map_df = symbol_map_artifact.df
+-
+-    files = choices_df["file"].unique()
+-
+-    extra_args = (
+-        f"-mllvm -cdfg-enable=1 -mllvm -cdfg-memgraph-session={label} -mllvm -cdfg-memgraph-purge=0 "
+-        f"-mllvm -cdfg-stage-mask={stage}"
+-    )
+-    config = sess.config
+-    memgraph_config = config.memgraph
+-    memgraph_host = os.environ.get("MEMGRAPH_HOST")
+-    memgraph_port = os.environ.get("MEMGRAPH_PORT")
+-    if memgraph_config is not None:
+-        memgraph_host = memgraph_host or memgraph_config.hostname
+-        memgraph_port = memgraph_port or memgraph_config.port
+-
+-    if memgraph_host is not None:
+-        extra_args += f" -mllvm -cdfg-memgraph-host={memgraph_host}"
+-    if memgraph_port is not None:
+-        extra_args += f" -mllvm -cdfg-memgraph-port={memgraph_port}"
+-
+-    for file in files:
+-        # print("file", file)
+-        if file is None:
+-
+-            logger.warning("Unknown file. Skipping CDFG extraction...")
+-            continue
+-        orig_command, directory = get_command_for_file(compile_commands_df, file)
+-        # print("orig_command", orig_command)
+-        # print("directory", directory)
+-        new_command = f"{orig_command} {extra_args}"
+-        # print("new_command", new_command)
+-        # new_args = new_command.split(" ")
+-        # print("args", new_command)
+-        # print("cwd", directory)
+-        # input(">")
+-        subprocess.run(new_command, check=True, shell=True, cwd=directory)
++    choices = filter_artifacts(artifacts, lambda a: a.flags & ArtifactFlag.TABLE and a.name == "choices")
++    commands = filter_artifacts(artifacts, lambda a: a.flags & ArtifactFlag.TABLE
++                                and a.attrs.get("kind") == "compile_commands")
++    if len(choices) != 1 or len(commands) != 1 or choices[0].df.empty:
++        raise BBIdentityError("Choices and unambiguous compile commands are required")
++    command_df = commands[0].df.copy()
++    command_df["file_resolved"] = command_df.apply(command_source, axis=1)
++    command_df["file_name"] = command_df["file"].map(lambda p: Path(p).name)
++    previous = filter_artifacts(artifacts, lambda a: a.flags & ArtifactFlag.TABLE and a.name == "cdfg_imports")
++    if len(previous) > 1:
++        raise BBIdentityError("Ambiguous CDFG import receipts")
++    receipts = previous[0].df.to_dict("records") if previous else []
++    elf_hash = elf_digest(sess)
++    require_bb_tables(sess, elf_hash)
++    config = sess.config.memgraph
++    host = os.environ.get("MEMGRAPH_HOST") or (config.hostname if config else "localhost")
++    port = os.environ.get("MEMGRAPH_PORT") or (config.port if config else 7687)
++    driver = GraphDatabase.driver(f"bolt://{host}:{port}", auth=(config.user, config.password) if config else ("", ""))
++    try:
++        for source in choices[0].df["file"].unique():
++            if source is None:
++                raise BBIdentityError("Cannot import a choice without its source file")
++            source = str(Path(source).resolve())
++            command, cwd = get_command_for_file(command_df, source)
++            args = shlex.split(command)
++            if Path(args[0]).name in ("ccache", "sccache", "env"):
++                raise BBIdentityError("CDFG provenance requires a direct compiler command, without a wrapper")
++            compiler = args[0]
++            if not Path(compiler).is_absolute():
++                compiler = str(Path(cwd) / compiler) if "/" in compiler else shutil.which(compiler)
++            if not compiler:
++                raise BBIdentityError(f"Compiler not found: {args[0]}")
++            compiler = str(Path(compiler).resolve())
++            compiler_hash = file_digest(compiler)
++            source_hash = file_digest(source)
++            compilation = uuid.uuid4().hex
++            staging = "isaac-import-" + compilation
++            try:
++                with tempfile.TemporaryDirectory(prefix="isaac-cdfg-") as temp:
++                    # Never overwrite the original object or dependency file.
++                    cleaned = [compiler]
++                    i = 1
++                    while i < len(args):
++                        arg = args[i]
++                        if arg in ("-o", "-MF", "-MT", "-MQ"):
++                            i += 2
++                            continue
++                        if arg in ("-MD", "-MMD", "-MP"):
++                            i += 1
++                            continue
++                        if arg.startswith(("-MF", "-MT", "-MQ")):
++                            i += 1
++                            continue
++                        cleaned.append(arg)
++                        i += 1
++                    depfile = Path(temp) / "dependencies.d"
++                    cleaned += ["-o", str(Path(temp) / "cdfg.o"), "-MD", "-MF", str(depfile),
++                                "-mllvm", "-cdfg-enable=1", "-mllvm", "-cdfg-memgraph-session=" + staging,
++                                "-mllvm", "-cdfg-memgraph-purge=0", "-mllvm", f"-cdfg-stage-mask={stage}",
++                                "-mllvm", f"-cdfg-memgraph-host={host}", "-mllvm", f"-cdfg-memgraph-port={port}"]
++                    subprocess.run(cleaned, check=True, cwd=cwd)
++                    dependency_text = depfile.read_text().replace("\\\n", "")
++                    dependencies = {}
++                    for dependency in shlex.split(dependency_text.split(":", 1)[1]):
++                        path = Path(dependency)
++                        path = path if path.is_absolute() else Path(cwd) / path
++                        path = str(path.resolve())
++                        dependencies[path] = file_digest(path)
++                    if dependencies.get(source) != source_hash or file_digest(compiler) != compiler_hash:
++                        raise BBIdentityError("Compiler or source changed during CDFG import")
++                with driver.session() as db:
++                    inventory = [dict(r) for r in db.run(Query("""MATCH (b:BB) WHERE b.session = $staging
++                        RETURN b.func_name AS func, b.bb_id AS bb_id, b.name AS name,
++                               b.module_name AS module, b.stage AS stage,
++                               b.bb_clone_id AS clone, b.bb_identity_version AS version""", timeout=120), staging=staging)]
++                modules = {r["module"] for r in inventory}
++                if len(modules) != 1 or not all(isinstance(m, str) and m for m in modules):
++                    raise BBIdentityError("CDFG module is missing or ambiguous")
++                module = next(iter(modules))
++                module_path = Path(module)
++                if str((module_path if module_path.is_absolute() else Path(cwd) / module_path).resolve()) != source:
++                    raise BBIdentityError("CDFG module does not match the selected source file")
++                identities = set()
++                for row in inventory:
++                    key = (row["func"], row["bb_id"], row["stage"])
++                    if (row["version"] != 1 or row["clone"] != 0 or not isinstance(row["bb_id"], int)
++                            or row["bb_id"] < 0 or not isinstance(row["stage"], int)
++                            or row["stage"] <= 0 or row["stage"] & (row["stage"] - 1)
++                            or not row["stage"] & stage or key in identities):
++                        raise BBIdentityError("Invalid/ambiguous CDFG identity. Rebuild and use the updated LLVM compiler.")
++                    identities.add(key)
++                with driver.session() as db:
++                    invalid = db.run(Query("""MATCH (i:INSTR) WHERE i.session = $staging
++                        OPTIONAL MATCH (b:BB) WHERE b.session = $staging
++                          AND b.func_name = i.func_name AND b.module_name = i.module_name
++                          AND b.stage = i.stage AND b.bb_id = i.bb_id AND b.name = i.basic_block
++                        WITH i, count(b) AS owners WHERE owners <> 1
++                        RETURN count(i) AS invalid""", timeout=120), staging=staging).single()
++                    if invalid is None or invalid["invalid"]:
++                        raise BBIdentityError("CDFG instructions have missing or ambiguous BB ownership")
++                stages = sorted({r["stage"] for r in inventory})
++                if any(r["label"] == label and r["module_name"] == module
++                       and int(r["stage"]) in stages and r["source_file"] != source for r in receipts):
++                    raise BBIdentityError("CDFG module name collision; use unambiguous source paths in compile commands")
++                new_receipts = []
++                for actual_stage in stages:
++                    new_receipts.append(dict(label=label, module_name=module, source_file=source,
++                        stage=actual_stage, compilation_id=compilation, elf_sha256=elf_hash,
++                        compiler=compiler, compiler_sha256=compiler_hash, directory=str(Path(cwd).resolve()),
++                        command_sha256=hashlib.sha256(command.encode()).hexdigest(),
++                        dependencies_json=json.dumps(dependencies, sort_keys=True),
++                        graph_sha256=graph_receipt(driver, staging, module, actual_stage)))
++                if elf_digest(sess) != elf_hash:
++                    raise BBIdentityError("ELF changed during CDFG import")
++                # Only publish a complete import. Failed compilation leaves the
++                # old public graph and receipt intact; stale nodes cannot merge.
++                replaced_modules = sorted({module} | {r["module_name"] for r in receipts
++                    if r["label"] == label and r["source_file"] == source and int(r["stage"]) in stages})
++                with driver.session() as db:
++                    with db.begin_transaction() as tx:
++                        tx.run("""MATCH (n) WHERE (n:BB OR n:INSTR) AND n.session = $label
++                            AND n.module_name IN $modules AND n.stage IN $stages DETACH DELETE n""",
++                            label=label, modules=replaced_modules, stages=stages).consume()
++                        tx.run("""MATCH (n) WHERE n.session = $staging
++                            SET n.session = $label, n.compilation_id = $compilation""",
++                            staging=staging, label=label, compilation=compilation).consume()
++                receipts = [r for r in receipts if not (r["label"] == label and r["module_name"] in replaced_modules
++                                                        and int(r["stage"]) in stages)] + new_receipts
++                sess.add_artifact(TableArtifact("cdfg_imports", pd.DataFrame(receipts),
++                                  attrs={"kind": "provenance", "by": __name__}), override=True)
++                sess.save()
++            finally:
++                with driver.session() as db:
++                    db.run("MATCH (n) WHERE n.session = $staging DETACH DELETE n", staging=staging).consume()
++    finally:
++        driver.close()
+ 
+ 
+ def handle(args):
+diff --git a/isaac_toolkit/generate/ise/choose_bbs.py b/isaac_toolkit/generate/ise/choose_bbs.py
+index 7125947..57d2ab9 100644
+--- a/isaac_toolkit/generate/ise/choose_bbs.py
++++ b/isaac_toolkit/generate/ise/choose_bbs.py
+@@ -166,6 +166,7 @@ def choose_bbs(
+             "func_name": func_name,
+             "file": file,
+             "bb_name": bb_name,
++            "bb_id": int(str(bb_name).removeprefix("%bb.")),
+             "rel_weight": rel_weight,
+             "num_instrs": num_instrs,
+             "freq": freq,
+@@ -184,6 +185,8 @@ def choose_bbs(
+ 
+     attrs = {
+         "elf_file": elf_artifact.name,
++        "elf_sha256": llvm_bbs_artifact.attrs.get("elf_sha256"),
++        "bb_map_decoder": llvm_bbs_artifact.attrs.get("bb_map_decoder"),
+         "kind": "list",
+         "by": __name__,
+     }
+diff --git a/isaac_toolkit/generate/ise/query_candidates_from_db.py b/isaac_toolkit/generate/ise/query_candidates_from_db.py
+index 1d588a5..51dc1d6 100644
+--- a/isaac_toolkit/generate/ise/query_candidates_from_db.py
++++ b/isaac_toolkit/generate/ise/query_candidates_from_db.py
+@@ -38,6 +38,8 @@ from isaac_toolkit.session.artifact import ArtifactFlag, filter_artifacts, Table
+ from isaac_toolkit.utils.graph_utils import memgraph_to_nx
+ from isaac_toolkit.algorithm.ise.identification.maxmiso import maxmiso_algo
+ from isaac_toolkit.logging import get_logger, set_log_level
++from isaac_toolkit.utils.bb_identity import (BBIdentityError, block_id, verified_imports,
++    verify_graph_receipts, context_for_choice, resolve_block)
+ from isaac_toolkit.utils.assign_names import assign_names
+ from isaac_toolkit.utils.combine_pdfs import combine_pdfs
+ 
+@@ -85,14 +87,19 @@ def get_unique_maxmisos(maxmisos):
+     return unique_maxmisos, factors, duplicate_maxmisos
+ 
+ 
+-def get_func_query(session, stage, func_name, timeout=None):
+-    return Query(f"""MATCH p0=(n00:INSTR)-[r01:DFG]->(n01:INSTR)
+-        WHERE n00.func_name = {json.dumps(func_name, ensure_ascii=False)}
+-        AND n00.session = {json.dumps(session, ensure_ascii=False)}
+-        AND n00.stage = {stage}
+-        AND n01.name != "PHI" AND n01.name != "G_PHI"
+-        RETURN p0
+-        """, timeout=timeout)
++def get_func_query(session, stage, func_name, timeout=None, module_name=None, compilation_id=None):
++    def scope(node):
++        parts = [f"{node}.func_name = {json.dumps(func_name)}", f"{node}.session = {json.dumps(session)}",
++                 f"{node}.stage = {int(stage)}"]
++        if module_name is not None:
++            parts.append(f"{node}.module_name = {json.dumps(module_name)}")
++        if compilation_id is not None:
++            parts.append(f"{node}.compilation_id = {json.dumps(compilation_id)}")
++        return " AND ".join(parts)
++    return Query(f"""MATCH (n00:INSTR) WHERE {scope('n00')}
++        OPTIONAL MATCH (n00)-[r01:DFG]->(n01:INSTR)
++        WHERE {scope('n01')} AND NOT n01.name IN ['PHI', 'G_PHI']
++        RETURN n00, r01, n01""", timeout=timeout)
+ 
+ 
+ def get_bbs_query(session, stage, func_name, timeout=None):
+@@ -105,13 +112,21 @@ def get_bbs_query(session, stage, func_name, timeout=None):
+         """, timeout=timeout)
+ 
+ 
+-def get_update_nodes_query(maxmiso_idx, maxmiso_nodes, factor=1):
+-    size = len(maxmiso_nodes)
+-    return Query(f"""
+-        MATCH (n:INSTR)
+-        WHERE id(n) IN {maxmiso_nodes}
+-        SET n.maxmiso_idx = {maxmiso_idx}, n.maxmiso_factor = {factor}, n.maxmiso_size = {size};
+-        """)
++def get_update_nodes_query(maxmiso_idx, maxmiso_nodes, factor=1, **scope):
++    terms = [f"id(n) IN {maxmiso_nodes}"]
++    properties = dict(label="session", func_name="func_name", bb_id="bb_id", stage="stage",
++                      module_name="module_name", compilation_id="compilation_id")
++    for key, value in scope.items():
++        terms.append(f"n.{properties[key]} = {json.dumps(value)}")
++    return Query(f"""MATCH (n:INSTR) WHERE {' AND '.join(terms)}
++        SET n.maxmiso_idx = {maxmiso_idx}, n.maxmiso_factor = {factor}, n.maxmiso_size = {len(maxmiso_nodes)}
++        RETURN count(n) AS updated""")
++
++
++def update_partition(session, query, expected):
++    result = session.run(query).single()
++    if result is None or result["updated"] != expected:
++        raise BBIdentityError("CDFG nodes changed during partition annotation")
+ 
+ 
+ def query_candidates_from_db(
+@@ -167,6 +182,7 @@ def query_candidates_from_db(
+     query_timeout: Optional[float] = None,
+     allowed_reg_classes: Optional[int] = None,
+     query_level_filtering: Optional[bool] = None,
++    n_parallel: Optional[int] = None,
+ ):
+     """Query bounded candidates through memgraph_experiments.
+ 
+@@ -175,6 +191,10 @@ def query_candidates_from_db(
+     before sorting by size. Register classes use the backend bitmask: UNKNOWN=1,
+     GPR=2, FPR=4, CSR=8. Path lengths count edges; width permits repeated slots.
+     """
++    if n_parallel is not None and (
++        isinstance(n_parallel, bool) or not isinstance(n_parallel, int) or n_parallel < 1
++    ):
++        raise ValueError("n_parallel must be a positive integer or None")
+     if query_timeout is not None and (
+         isinstance(query_timeout, bool) or not math.isfinite(query_timeout) or query_timeout <= 0
+     ):
+@@ -216,7 +236,8 @@ def query_candidates_from_db(
+     logger.debug("choices_df", choices_df)
+ 
+     combined_query_metrics_df = pd.DataFrame()
+-    missing_bb_ids = set()
++    imports = verified_imports(sess, label, stage)
++    receipts_checked = False
+     for index, row in choices_df.iterrows():
+         # logger.debug("index", index)
+         # logger.debug("row", row)
+@@ -230,7 +251,9 @@ def query_candidates_from_db(
+         logger.debug("func_name", func_name)
+         logger.debug("bb_name", bb_name)
+ 
+-        bbs_query = get_bbs_query(label, stage, func_name, timeout=query_timeout)
++        bb_id = block_id(bb_name, row.get("bb_id"))
++        context = context_for_choice(imports, row)
++
+ 
+         memgraph_config = sess.config.memgraph
+         memgraph_host = os.environ.get("MEMGRAPH_HOST")
+@@ -243,84 +266,85 @@ def query_candidates_from_db(
+             user = memgraph_config.user
+             password = memgraph_config.password
+ 
+-        driver = GraphDatabase.driver(f"bolt://{memgraph_host}:{memgraph_port}", auth=(user, password))
+-        session = driver.session()
+-        try:
+-            func_query = get_func_query(label, stage, func_name, timeout=query_timeout)
+-            logger.debug("func_query", func_query)
+-            # print("func_query", func_query)
+-            logger.debug("bbs_query", bbs_query)
+-            func_results = session.run(func_query)
+-            func = memgraph_to_nx(func_results)
+-            logger.debug("func", func)
+-            # print("func", func)
+-            # input(">>")
+-            bbs_results = session.run(bbs_query)
+-            bbs_df = bbs_results.to_df()
+-        finally:
+-            session.close()
+-        # logger.debug("bbs_df", bbs_df)
+-        # input(">")
+-        bb_id = int(bb_name.split(".", 1)[1])
+-        assert len(bbs_df) > 0
+-        db_bb_ids = bbs_df["bb_id"].unique()
+-        if bb_id not in db_bb_ids:
+-            logger.warning(f"BB ID {bb_id} not found in DB!")
+-            missing_bb_ids.add((func_name, bb_id))
+-            continue
+-        maxmiso_idxs = []
+-        # TODO: skip maxmisos which are unsuitable?
+-        if isinstance(partition_with_maxmiso, str):
+-            # TODO: Handle 1/0/true/false/...
+-            # TODO: if numeric parse number!
+-            assert partition_with_maxmiso == "auto"
+-            num_instrs_threshold = 250
+-            partition_with_maxmiso = num_instrs > num_instrs_threshold
+-        if partition_with_maxmiso:
+-            bb_nodes = [node for node in func.nodes if func.nodes[node]["properties"]["bb_id"] == bb_id]
+-            # logger.debug("bb_nodes", bb_nodes)
+-            bb = func.subgraph(bb_nodes)
+-            # logger.debug("bb", bb)
+-            maxmisos = maxmiso_algo(bb)
+-            # logger.debug("maxmisos", maxmisos)
+-            # input(">")
+-            unique_maxmisos, factors, duplicate_maxmisos = get_unique_maxmisos(maxmisos)
+-            # TODO: write maxmisos to file?
+-            # maxmiso_node_ids = [[maxmiso.nodes[n]["key"] for n in maxmiso.nodes] for maxmiso in maxmisos]
+-            unique_maxmiso_node_ids = [[maxmiso.nodes[n]["key"] for n in maxmiso.nodes] for maxmiso in unique_maxmisos]
+-            duplicate_maxmiso_node_ids = [
+-                [maxmiso.nodes[n]["key"] for n in maxmiso.nodes] for maxmiso in duplicate_maxmisos
+-            ]
+-            remaining_nodes = set(bb_nodes)
+-            total_idx = 0
++        with GraphDatabase.driver(f"bolt://{memgraph_host}:{memgraph_port}", auth=(user, password)) as driver:
++            if not receipts_checked:
++                verify_graph_receipts(driver, imports, label)
++                receipts_checked = True
++            resolve_block(driver, label, func_name, bb_id, context, query_timeout or 120)
++            update_scope = dict(label=label, func_name=func_name, bb_id=bb_id, **context)
+             session = driver.session()
+             try:
+-                # TODO: make unique optional!
+-                # for i, node_ids in enumerate(maxmiso_node_ids):
+-                for i, node_ids in enumerate(duplicate_maxmiso_node_ids):
+-                    factor = 0
+-                    idx = -1
+-                    # Negative -> ignore
+-                    query = get_update_nodes_query(idx, node_ids, factor=0)
+-                    _ = session.run(query)
+-                    remaining_nodes -= set(node_ids)
+-                for i, node_ids in enumerate(unique_maxmiso_node_ids):
+-                    factor = factors[i]
+-                    query = get_update_nodes_query(total_idx, node_ids, factor=factor)
+-                    maxmiso_idxs.append(total_idx)
+-                    # logger.debug("query", query)
+-                    _ = session.run(query)
+-                    # logger.debug("results3", results3)
+-                    remaining_nodes -= set(node_ids)
+-                    total_idx += 1
+-                logger.debug("remaining_nodes", remaining_nodes)
+-                if len(remaining_nodes) > 0:
+-                    query = get_update_nodes_query(total_idx, list(remaining_nodes), factor=1)
+-                    _ = session.run(query)
+-                    maxmiso_idxs.append(total_idx)
+-                total_idx += 1
++                func_query = get_func_query(label, stage, func_name, timeout=query_timeout,
++                    module_name=context["module_name"], compilation_id=context["compilation_id"])
++                logger.debug("func_query", func_query)
++                # print("func_query", func_query)
++                func_results = session.run(func_query)
++                func = memgraph_to_nx(func_results)
++                logger.debug("func", func)
++                # print("func", func)
++                # input(">>")
+             finally:
+                 session.close()
++            for node in func.nodes:
++                props = func.nodes[node]["properties"]
++                if (props.get("func_name") != func_name or props.get("session") != label
++                        or any(props.get(k) != value for k, value in context.items())):
++                    raise BBIdentityError("Fetched function graph contains nodes outside its verified compilation")
++            if not any(func.nodes[n]["properties"].get("bb_id") == bb_id for n in func.nodes):
++                raise BBIdentityError(f"Fixed BB {bb_id} has no instructions at stage {stage}; refusing to guess")
++            maxmiso_idxs = []
++            # TODO: skip maxmisos which are unsuitable?
++            if isinstance(partition_with_maxmiso, str):
++                # TODO: Handle 1/0/true/false/...
++                # TODO: if numeric parse number!
++                assert partition_with_maxmiso == "auto"
++                num_instrs_threshold = 250
++                partition_with_maxmiso = num_instrs > num_instrs_threshold
++            if partition_with_maxmiso:
++                bb_nodes = [node for node in func.nodes if func.nodes[node]["properties"]["bb_id"] == bb_id]
++                # logger.debug("bb_nodes", bb_nodes)
++                bb = func.subgraph(bb_nodes)
++                # logger.debug("bb", bb)
++                maxmisos = maxmiso_algo(bb)
++                # logger.debug("maxmisos", maxmisos)
++                # input(">")
++                unique_maxmisos, factors, duplicate_maxmisos = get_unique_maxmisos(maxmisos)
++                # TODO: write maxmisos to file?
++                # maxmiso_node_ids = [[maxmiso.nodes[n]["key"] for n in maxmiso.nodes] for maxmiso in maxmisos]
++                unique_maxmiso_node_ids = [[maxmiso.nodes[n]["key"] for n in maxmiso.nodes] for maxmiso in unique_maxmisos]
++                duplicate_maxmiso_node_ids = [
++                    [maxmiso.nodes[n]["key"] for n in maxmiso.nodes] for maxmiso in duplicate_maxmisos
++                ]
++                remaining_nodes = set(bb_nodes)
++                total_idx = 0
++                session = driver.session()
++                try:
++                    # TODO: make unique optional!
++                    # for i, node_ids in enumerate(maxmiso_node_ids):
++                    for i, node_ids in enumerate(duplicate_maxmiso_node_ids):
++                        factor = 0
++                        idx = -1
++                        # Negative -> ignore
++                        query = get_update_nodes_query(idx, node_ids, factor=0, **update_scope)
++                        update_partition(session, query, len(node_ids))
++                        remaining_nodes -= set(node_ids)
++                    for i, node_ids in enumerate(unique_maxmiso_node_ids):
++                        factor = factors[i]
++                        query = get_update_nodes_query(total_idx, node_ids, factor=factor, **update_scope)
++                        maxmiso_idxs.append(total_idx)
++                        # logger.debug("query", query)
++                        update_partition(session, query, len(node_ids))
++                        # logger.debug("results3", results3)
++                        remaining_nodes -= set(node_ids)
++                        total_idx += 1
++                    logger.debug("remaining_nodes", remaining_nodes)
++                    if len(remaining_nodes) > 0:
++                        query = get_update_nodes_query(total_idx, list(remaining_nodes), factor=1, **update_scope)
++                        update_partition(session, query, len(remaining_nodes))
++                        maxmiso_idxs.append(total_idx)
++                    total_idx += 1
++                finally:
++                    session.close()
+ 
+         out_name = f"{func_name}_{bb_name}_0"
+         out_dir = workdir / out_name
+@@ -371,14 +395,19 @@ def query_candidates_from_db(
+             *(["--progress"] if progress else []),
+             *["--times"],
+             *(["--yaml", query_config_yaml] if query_config_yaml is not None else []),
++            *["--host", str(memgraph_host)],
++            *["--port", str(memgraph_port)],
+             *["--session", label],
+             *["--function", func_name],
+             *(["--basic-block", bb_name] if bb_name is not None else []),
+             *["--stage", str(stage)],
++            *["--module-name", context["module_name"]],
++            *["--compilation-id", context["compilation_id"]],
+             *["--output-dir", out_dir],
+             # *["--ignore-const-inputs"],
+             *(["--limit-results", str(limit_results)] if limit_results is not None else []),
+             *(["--query-timeout", str(query_timeout)] if query_timeout is not None else []),
++            *(["--n-parallel", str(n_parallel)] if n_parallel is not None else []),
+             *(["--query-level-filtering" if query_level_filtering else "--no-query-level-filtering"]
+               if query_level_filtering is not None else []),
+             *(["--allowed_reg_classes", str(allowed_reg_classes)] if allowed_reg_classes is not None else []),
+@@ -445,12 +474,6 @@ def query_candidates_from_db(
+         query_metrics_df["basic_block"] = bb_name
+         combined_query_metrics_df = pd.concat([combined_query_metrics_df, query_metrics_df])
+ 
+-    # allow_missing_bb_id = False
+-    allow_missing_bb_id = True
+-    if len(missing_bb_ids) > 0:
+-        assert len(missing_bb_ids) < len(choices_df), "No matching BB IDs found in DB!"
+-        assert allow_missing_bb_id, f"Missing BB ID DB entries: {missing_bb_ids}"
+-
+     combined_query_metrics_file = workdir / "combined_query_metrics.csv"
+     combined_query_metrics_df.to_csv(combined_query_metrics_file, index=False)
+     if new:
+@@ -574,6 +597,7 @@ def handle(args):
+         limit_results=args.limit_results,
+         query_timeout=args.query_timeout,
+         query_level_filtering=args.query_level_filtering,
++        n_parallel=args.n_parallel,
+         MIN_PATH_LENGTH=args.min_path_length,
+         MAX_PATH_LENGTH=args.max_path_length,
+         MAX_PATH_WIDTH=args.max_path_width,
+@@ -603,6 +627,8 @@ def get_parser():
+     parser.add_argument("--workdir", type=str, default=None)
+     parser.add_argument("--label", type=str, default=None)
+     parser.add_argument("--progress", action="store_true", default=None)
++    parser.add_argument("--n-parallel", type=int, default=None,
++                        help="Maximum graph export workers (positive; 1 forces serial export)")
+     parser.add_argument("--stage", type=int, default=8)
+     parser.add_argument("--query-level-filtering", action=argparse.BooleanOptionalAction, default=None,
+                         help="Enable query predicate and memory/branch filtering (backend default: enabled)")
+diff --git a/tests/unit-tests/backend/memgraph/test_bb_validation.py b/tests/unit-tests/backend/memgraph/test_bb_validation.py
+index 491ce81..c392ddd 100644
+--- a/tests/unit-tests/backend/memgraph/test_bb_validation.py
++++ b/tests/unit-tests/backend/memgraph/test_bb_validation.py
+@@ -18,7 +18,9 @@ def elf(*counts):
+ 
+ 
+ def graph(*counts):
+-    return [dict(func_name="f", bb_name=f"%bb.{i}", graph_nodes=n, graph_blocks=1) for i, n in enumerate(counts)]
++    return [dict(func_name="f", bb_name=f"%bb.{i}", bb_id=i, graph_nodes=n, graph_blocks=1,
++                 graph_modules=["module"], graph_stages=[32], graph_compilations=["receipt"],
++                 graph_names=[f"%bb.{i}"], graph_block_ids=[i]) for i, n in enumerate(counts)]
+ 
+ 
+ def test_counts_are_checked_in_both_directions_with_combined_tolerance():
+@@ -81,6 +83,8 @@ def test_invalid_options_fail_before_database_access(monkeypatch, options):
+ 
+ 
+ def test_cold_block_mismatch_stops_all_writes_and_keeps_report(monkeypatch):
++    monkeypatch.setattr(m, "verified_imports", lambda *a: [dict(module_name="module", stage=32, compilation_id="receipt")])
++    monkeypatch.setattr(m, "verify_graph_receipts", lambda *a: None)
+     sess = SimpleNamespace(
+         artifacts=[m.TableArtifact("llvm_bbs_new", elf(10, 100))],
+         config=SimpleNamespace(memgraph=None),
+@@ -108,7 +112,8 @@ def test_count_query_uses_session_scope_and_excludes_operand_nodes():
+     assert m.graph_bb_counts(driver, label) == graph(7)
+     query = session.run.call_args.args[0]
+     assert label not in query.text
+-    assert session.run.call_args.kwargs == {"label": label}
++    assert session.run.call_args.kwargs == dict(label=label, func_name=None, bb_id=None,
++        stage=None, module_name=None, compilation_id=None)
+     assert "OPTIONAL MATCH (i:INSTR)" in query.text
+     assert "['input', 'constant', 'label']" in query.text
+     assert "i.module_name = b.module_name AND i.stage = b.stage" in query.text
+@@ -134,6 +139,8 @@ def test_tolerated_or_explicit_warning_mode_can_annotate(monkeypatch, action, co
+         config=SimpleNamespace(memgraph=None),
+         add_artifact=MagicMock(),
+     )
++    monkeypatch.setattr(m, "verified_imports", lambda *a: [dict(module_name="module", stage=32, compilation_id="receipt")])
++    monkeypatch.setattr(m, "verify_graph_receipts", lambda *a: None)
+     monkeypatch.setattr(m.GraphDatabase, "driver", MagicMock())
+     monkeypatch.setattr(m, "graph_bb_counts", lambda *a, **kw: graph(count))
+     annotate = MagicMock()
+@@ -143,13 +150,34 @@ def test_tolerated_or_explicit_warning_mode_can_annotate(monkeypatch, action, co
+     assert annotate.call_args.kwargs["check"] is False
+ 
+ 
+-def test_weight_writes_bind_names_as_parameters_and_consume_results():
++def test_weight_writes_bind_names_as_parameters_and_consume_results(monkeypatch):
+     driver = MagicMock()
+     session = driver.session.return_value.__enter__.return_value
++    tx = session.begin_transaction.return_value.__enter__.return_value
++    tx.run.return_value.single.return_value = {"updated": 1}
++    rows = graph(10)
++    rows[0]["func_name"] = 'f"quoted'
++    monkeypatch.setattr(m, "graph_bb_counts", lambda *a: rows)
++    monkeypatch.setattr(m, "resolve_block", lambda *a: dict(graph_block_id=42, mir_name="%bb.7"))
+     m.anonotate_helper(driver, 'f"quoted', "%bb.0", 10, 3, 0.2, label="test", check=False)
+-    assert session.run.call_count == 2
+-    assert session.run.return_value.consume.call_count == 2
+-    for call in session.run.call_args_list:
+-        assert 'f"quoted' not in call.args[0].text
++    assert tx.run.call_count == 2
++    assert tx.run.return_value.consume.call_count == 1
++    for call in tx.run.call_args_list:
++        assert 'f"quoted' not in call.args[0]
+         assert call.kwargs["func_name"] == 'f"quoted'
+         assert call.kwargs["instr_weight"] == 0.02
++        assert call.kwargs["bb_id"] == 0
++        assert call.kwargs["mir_name"] == "%bb.7"
++        assert call.kwargs["compilation_id"] == "receipt"
++
++
++def test_missing_receipt_rejects_before_any_weights_are_written(monkeypatch):
++    sess = SimpleNamespace(artifacts=[], config=SimpleNamespace(memgraph=None))
++    driver = MagicMock()
++    monkeypatch.setattr(m.GraphDatabase, "driver", lambda *a, **kw: driver)
++    annotate = MagicMock()
++    monkeypatch.setattr(m, "anonotate_helper", annotate)
++    with pytest.raises(m.BBIdentityError, match="receipt"):
++        m.annotate_bb_weights(sess)
++    annotate.assert_not_called()
++    driver.close.assert_called_once()
+diff --git a/tests/unit-tests/generate/test_query_candidates_from_db.py b/tests/unit-tests/generate/test_query_candidates_from_db.py
+index e72d2fb..d2ec7c7 100644
+--- a/tests/unit-tests/generate/test_query_candidates_from_db.py
++++ b/tests/unit-tests/generate/test_query_candidates_from_db.py
+@@ -27,7 +27,17 @@ def test_parser_options_and_yaml_delegation():
+ def test_subprocess_receives_options(tmp_path, monkeypatch):
+     choices = SimpleNamespace(df=pd.DataFrame([dict(func_name='f', bb_name='%bb.0', rel_weight=1.0, num_instrs=4)]))
+     monkeypatch.setattr(module, 'filter_artifacts', lambda *args: [choices])
+-    monkeypatch.setattr(module, 'memgraph_to_nx', lambda result: nx.DiGraph())
++    graph = nx.DiGraph()
++    graph.add_node(0, properties=dict(func_name='f', session='s', bb_id=0,
++        module_name='module', stage=8, compilation_id='receipt'))
++    monkeypatch.setattr(module, 'memgraph_to_nx', lambda result: graph)
++    monkeypatch.setattr(module, 'verified_imports', lambda *a: [])
++    monkeypatch.setattr(module, 'verify_graph_receipts', lambda *a: None)
++    monkeypatch.setattr(module, 'context_for_choice', lambda *a:
++        dict(module_name='module', stage=8, compilation_id='receipt'))
++    monkeypatch.setattr(module, 'resolve_block', lambda *a: dict(mir_name='%bb.7'))
++    monkeypatch.setenv('MEMGRAPH_HOST', '127.0.0.1')
++    monkeypatch.setenv('MEMGRAPH_PORT', '28763')
+     driver = MagicMock()
+     driver.session.return_value.run.return_value.to_df.return_value = pd.DataFrame({'bb_id': [0]})
+     monkeypatch.setattr(module.GraphDatabase, 'driver', lambda *args, **kwargs: driver)
+@@ -49,13 +59,15 @@ def test_subprocess_receives_options(tmp_path, monkeypatch):
+             IGNORE_NAMES=['PHI', 'COPY'], IGNORE_OP_TYPES=['input', 'label'], allowed_reg_classes=3,
+             ALLOWED_ENC_SIZES=[16, 32],
+         )
+-    for option, value in [('--query-timeout', '2.5'), ('--limit-results', '0'), ('--max-path-width', '4'),
++    for option, value in [('--host', '127.0.0.1'), ('--port', '28763'),
++                          ('--module-name', 'module'), ('--compilation-id', 'receipt'),
++                          ('--query-timeout', '2.5'), ('--limit-results', '0'), ('--max-path-width', '4'),
+                           ('--min-path-length', '0'), ('--max-path-length', '5'), ('--ignore-names', 'PHI,COPY'),
+                           ('--ignore-op-types', 'input,label'), ('--allowed_reg_classes', '3')]:
+         assert captured[captured.index(option) + 1] == value
+     idx = captured.index('--allowed-enc-sizes')
+     assert captured[idx + 1:idx + 3] == ['16', '32']
+-    for call in driver.session.return_value.run.call_args_list:
++    for call in driver.__enter__.return_value.session.return_value.run.call_args_list:
+         assert call.args[0].timeout == 2.5
+ 
+ 

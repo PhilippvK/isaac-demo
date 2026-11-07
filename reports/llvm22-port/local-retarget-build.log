@@ -1,0 +1,9 @@
+Logger started on port 45581
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Logger on port 45581 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (pattern-gen)
+Logger started on port 37833
+[seal5.flow::INFO] Building Seal5 LLVM (llc)
+Logger on port 37833 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (llc)
+docker/seal5_script_local.sh: line 117: c: command not found

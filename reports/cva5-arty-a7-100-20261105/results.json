@@ -1,0 +1,67 @@
+[
+  {
+    "variant": "baseline",
+    "LUTs": 3225.0,
+    "FFs": 1864.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "IOBs": 4.0,
+    "WNS_ns": 3.761,
+    "TNS_ns": 0.0,
+    "core_WNS_ns": 29.61,
+    "timing_met": true,
+    "bitstream": true
+  },
+  {
+    "variant": "crc32-scaiev2-final",
+    "LUTs": 13177.0,
+    "FFs": 4275.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 160.0,
+    "IOBs": 4.0,
+    "WNS_ns": 1.13,
+    "TNS_ns": 0.0,
+    "core_WNS_ns": 20.034,
+    "timing_met": true,
+    "bitstream": true
+  },
+  {
+    "variant": "memory-cva5-final",
+    "LUTs": 3716.0,
+    "FFs": 2067.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "IOBs": 4.0,
+    "WNS_ns": 3.305,
+    "TNS_ns": 0.0,
+    "core_WNS_ns": 30.612,
+    "timing_met": true,
+    "bitstream": true
+  },
+  {
+    "variant": "branches-fixed",
+    "LUTs": 3510.0,
+    "FFs": 1914.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "IOBs": 4.0,
+    "WNS_ns": 3.326,
+    "TNS_ns": 0.0,
+    "core_WNS_ns": 30.138,
+    "timing_met": true,
+    "bitstream": true
+  },
+  {
+    "variant": "store-probes",
+    "LUTs": 3269.0,
+    "FFs": 1950.0,
+    "BRAM_tiles": 130.0,
+    "DSPs": 4.0,
+    "IOBs": 4.0,
+    "WNS_ns": 3.24,
+    "TNS_ns": 0.0,
+    "core_WNS_ns": 31.346,
+    "timing_met": true,
+    "bitstream": true
+  }
+]

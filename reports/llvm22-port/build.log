@@ -1,0 +1,1474 @@
+[1/3145] Building CXX object lib/Demangle/CMakeFiles/LLVMDemangle.dir/Demangle.cpp.o
+[2/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ABIBreak.cpp.o
+[3/3145] Building CXX object lib/Demangle/CMakeFiles/LLVMDemangle.dir/DLangDemangle.cpp.o
+[4/3145] Building CXX object lib/Demangle/CMakeFiles/LLVMDemangle.dir/MicrosoftDemangleNodes.cpp.o
+[5/3145] Building CXX object lib/Demangle/CMakeFiles/LLVMDemangle.dir/RustDemangle.cpp.o
+[6/3145] Building CXX object lib/Demangle/CMakeFiles/LLVMDemangle.dir/MicrosoftDemangle.cpp.o
+[7/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/APFixedPoint.cpp.o
+[8/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/AMDGPUMetadata.cpp.o
+[9/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/APSInt.cpp.o
+[10/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ARMBuildAttributes.cpp.o
+[11/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/AArch64BuildAttributes.cpp.o
+[12/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/AArch64AttributeParser.cpp.o
+[13/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ARMWinEH.cpp.o
+[14/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/AllocToken.cpp.o
+[15/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/AutoConvert.cpp.o
+[16/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/APInt.cpp.o
+[17/3145] Building CXX object lib/Demangle/CMakeFiles/LLVMDemangle.dir/ItaniumDemangle.cpp.o
+[18/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Allocator.cpp.o
+[19/3145] Linking CXX static library lib/libLLVMDemangle.a
+[20/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/APFloat.cpp.o
+[21/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ARMAttributeParser.cpp.o
+[22/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Base64.cpp.o
+[23/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BinaryStreamError.cpp.o
+[24/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BlockFrequency.cpp.o
+[25/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BinaryStreamRef.cpp.o
+[26/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BinaryStreamReader.cpp.o
+[27/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BuryPointer.cpp.o
+[28/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BinaryStreamWriter.cpp.o
+[29/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BranchProbability.cpp.o
+[30/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/COM.cpp.o
+[31/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/circular_raw_ostream.cpp.o
+[32/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Chrono.cpp.o
+[33/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/CachePruning.cpp.o
+[34/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Compression.cpp.o
+[35/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Caching.cpp.o
+[36/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/BalancedPartitioning.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/Support/BalancedPartitioning.h:42:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/Support/raw_ostream.h:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/SmallVector.h:20:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::BPFunctionNode>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::BPFunctionNode *, std::vector<llvm::BPFunctionNode>>, llvm::BPFunctionNode>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::BPFunctionNode *, std::vector<llvm::BPFunctionNode>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:106:33)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::BPFunctionNode *, std::vector<llvm::BPFunctionNode>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:106:33)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:106:9: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::iterator_range<__gnu_cxx::__normal_iterator<llvm::BPFunctionNode *, std::vector<llvm::BPFunctionNode>>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:106:33)>' requested here
+  106 |   llvm::stable_sort(NodesRange, [](const auto &L, const auto &R) {
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::BPFunctionNode>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/Support/BalancedPartitioning.h:42:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/Support/raw_ostream.h:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/SmallVector.h:20:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<float, llvm::BPFunctionNode *>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::pair<float, llvm::BPFunctionNode *> *, std::vector<std::pair<float, llvm::BPFunctionNode *>>>, std::pair<float, llvm::BPFunctionNode *>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::pair<float, llvm::BPFunctionNode *> *, std::vector<std::pair<float, llvm::BPFunctionNode *>>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:249:21)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::pair<float, llvm::BPFunctionNode *> *, std::vector<std::pair<float, llvm::BPFunctionNode *>>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:249:21)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:252:9: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::iterator_range<__gnu_cxx::__normal_iterator<std::pair<float, llvm::BPFunctionNode *> *, std::vector<std::pair<float, llvm::BPFunctionNode *>>>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/BalancedPartitioning.cpp:249:21)>' requested here
+  252 |   llvm::stable_sort(LeftRange, LargerGain);
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<float, llvm::BPFunctionNode *>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+2 warnings generated.
+[37/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ConvertUTF.cpp.o
+[38/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/CRC.cpp.o
+[39/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/CodeGenCoverage.cpp.o
+[40/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ConvertEBCDIC.cpp.o
+[41/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/CrashRecoveryContext.cpp.o
+[42/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/CSKYAttributes.cpp.o
+[43/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ConvertUTFWrapper.cpp.o
+[44/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/CSKYAttributeParser.cpp.o
+[45/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DeltaAlgorithm.cpp.o
+[46/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DeltaTree.cpp.o
+[47/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DataExtractor.cpp.o
+[48/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Debug.cpp.o
+[49/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DivisionByConstantInfo.cpp.o
+[50/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DXILABI.cpp.o
+[51/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DJB.cpp.o
+[52/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DebugCounter.cpp.o
+[53/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DynamicAPInt.cpp.o
+[54/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ELFAttributes.cpp.o
+[55/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/CommandLine.cpp.o
+[56/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DAGDeltaAlgorithm.cpp.o
+[57/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ExtensibleRTTI.cpp.o
+[58/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ExponentialBackoff.cpp.o
+[59/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ErrorHandling.cpp.o
+[60/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Error.cpp.o
+[61/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ELFAttrParserExtended.cpp.o
+[62/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ELFAttrParserCompact.cpp.o
+[63/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/FileCollector.cpp.o
+[64/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/FloatingPointMode.cpp.o
+[65/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/FormattedStream.cpp.o
+[66/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/FileOutputBuffer.cpp.o
+[67/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/FoldingSet.cpp.o
+[68/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/FileUtilities.cpp.o
+[69/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/FormatVariadic.cpp.o
+[70/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Hash.cpp.o
+[71/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/HexagonAttributes.cpp.o
+[72/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/HexagonAttributeParser.cpp.o
+[73/3145] Building C object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3_neon.c.o
+[74/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/GraphWriter.cpp.o
+[75/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/InstructionCost.cpp.o
+[76/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/InitLLVM.cpp.o
+[77/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/GlobPattern.cpp.o
+[78/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/IntEqClasses.cpp.o
+[79/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/IntervalMap.cpp.o
+[80/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/LEB128.cpp.o
+[81/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/KnownFPClass.cpp.o
+[82/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Jobserver.cpp.o
+[83/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Locale.cpp.o
+[84/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/LineIterator.cpp.o
+[85/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/MemAlloc.cpp.o
+[86/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/MathExtras.cpp.o
+[87/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/KnownBits.cpp.o
+[88/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ManagedStatic.cpp.o
+[89/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/MemoryBufferRef.cpp.o
+[90/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/JSON.cpp.o
+[91/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ModRef.cpp.o
+[92/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/LockFileManager.cpp.o
+[93/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/MD5.cpp.o
+[94/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/MemoryBuffer.cpp.o
+[95/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/MSP430Attributes.cpp.o
+[96/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Optional.cpp.o
+[97/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/OptimizedStructLayout.cpp.o
+[98/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/MSP430AttributeParser.cpp.o
+[99/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/OptionStrCmp.cpp.o
+[100/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/NativeFormatting.cpp.o
+[101/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/PrettyStackTrace.cpp.o
+[102/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/PluginLoader.cpp.o
+[103/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/PGOOptions.cpp.o
+[104/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Mustache.cpp.o
+[105/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/RandomNumberGenerator.cpp.o
+[106/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/RewriteBuffer.cpp.o
+[107/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Parallel.cpp.o
+[108/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/RewriteRope.cpp.o
+[109/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Regex.cpp.o
+[110/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/IntegerInclusiveInterval.cpp.o
+[111/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/RISCVAttributes.cpp.o
+[112/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/RISCVISAUtils.cpp.o
+[113/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/RISCVAttributeParser.cpp.o
+[114/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SHA1.cpp.o
+[115/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Signposts.cpp.o
+[116/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ScaledNumber.cpp.o
+[117/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SHA256.cpp.o
+[118/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SmallPtrSet.cpp.o
+[119/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SmallVector.cpp.o
+[120/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SipHash.cpp.o
+[121/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SlowDynamicAPInt.cpp.o
+[122/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ScopedPrinter.cpp.o
+[123/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/StringExtras.cpp.o
+[124/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/StringMap.cpp.o
+[125/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/StringSaver.cpp.o
+[126/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SuffixTreeNode.cpp.o
+[127/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Statistic.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/Statistic.cpp:23:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Statistic.h:32:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/memory:66:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::TrackingStatistic *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::TrackingStatistic **, std::vector<llvm::TrackingStatistic *>>, llvm::TrackingStatistic *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::TrackingStatistic **, std::vector<llvm::TrackingStatistic *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/Statistic.cpp:143:14)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::TrackingStatistic **, std::vector<llvm::TrackingStatistic *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/Statistic.cpp:143:14)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/Statistic.cpp:142:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<llvm::TrackingStatistic *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Support/Statistic.cpp:143:14)>' requested here
+  142 |   llvm::stable_sort(
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::TrackingStatistic *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[128/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SystemUtils.cpp.o
+[129/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SourceMgr.cpp.o
+[130/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/StringRef.cpp.o
+[131/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SuffixTree.cpp.o
+[132/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/TextEncoding.cpp.o
+[133/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/TarWriter.cpp.o
+[134/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/SpecialCaseList.cpp.o
+[135/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ToolOutputFile.cpp.o
+[136/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ThreadPool.cpp.o
+[137/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Twine.cpp.o
+[138/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/TrieRawHashMap.cpp.o
+[139/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Unicode.cpp.o
+[140/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/UnicodeNameToCodepointGenerated.cpp.o
+[141/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Timer.cpp.o
+[142/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/UnicodeCaseFold.cpp.o
+[143/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/TimeProfiler.cpp.o
+[144/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/VersionTuple.cpp.o
+[145/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/UnicodeNameToCodepoint.cpp.o
+[146/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/VirtualOutputBackend.cpp.o
+[147/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/VirtualOutputConfig.cpp.o
+[148/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/VirtualOutputError.cpp.o
+[149/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/VirtualOutputFile.cpp.o
+[150/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/VirtualOutputBackends.cpp.o
+[151/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/WithColor.cpp.o
+[152/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/raw_os_ostream.cpp.o
+[153/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/raw_ostream_proxy.cpp.o
+[154/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/YAMLTraits.cpp.o
+[155/3145] Building C object lib/Support/CMakeFiles/LLVMSupport.dir/regcomp.c.o
+[156/3145] Building C object lib/Support/CMakeFiles/LLVMSupport.dir/regerror.c.o
+[157/3145] Building C object lib/Support/CMakeFiles/LLVMSupport.dir/regfree.c.o
+[158/3145] Building C object lib/Support/CMakeFiles/LLVMSupport.dir/regstrlcpy.c.o
+[159/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/YAMLParser.cpp.o
+[160/3145] Building C object lib/Support/CMakeFiles/LLVMSupport.dir/regexec.c.o
+[161/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Atomic.cpp.o
+[162/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/raw_ostream.cpp.o
+[163/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/raw_socket_stream.cpp.o
+[164/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Errno.cpp.o
+[165/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/xxhash.cpp.o
+[166/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Z3Solver.cpp.o
+[167/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/VirtualFileSystem.cpp.o
+[168/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/DynamicLibrary.cpp.o
+[169/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/ProgramStack.cpp.o
+[170/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Memory.cpp.o
+[171/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Program.cpp.o
+[172/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Valgrind.cpp.o
+[173/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/RWMutex.cpp.o
+[174/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Watchdog.cpp.o
+[175/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/zOSLibFunctions.cpp.o
+[176/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Process.cpp.o
+[177/3145] Building ASM object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3_avx2_x86-64_unix.S.o
+[178/3145] Building ASM object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3_avx512_x86-64_unix.S.o
+[179/3145] Building ASM object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3_sse2_x86-64_unix.S.o
+[180/3145] Building ASM object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3_sse41_x86-64_unix.S.o
+[181/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Threading.cpp.o
+[182/3145] Building C object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3_dispatch.c.o
+[183/3145] Building C object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3_portable.c.o
+[184/3145] Building C object lib/Support/BLAKE3/CMakeFiles/LLVMSupportBlake3.dir/blake3.c.o
+[185/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Path.cpp.o
+[186/3145] Building CXX object lib/Support/CMakeFiles/LLVMSupport.dir/Signals.cpp.o
+[187/3145] Linking CXX static library lib/libLLVMSupport.a
+[188/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/Error.cpp.o
+[189/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/DetailedRecordsBackend.cpp.o
+[190/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/JSONBackend.cpp.o
+[191/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/Parser.cpp.o
+[192/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/Main.cpp.o
+[193/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/StringMatcher.cpp.o
+[194/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/StringToOffsetTable.cpp.o
+[195/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/SetTheory.cpp.o
+[196/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/TableGenBackendSkeleton.cpp.o
+[197/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-min-tblgen.dir/llvm-min-tblgen.cpp.o
+[198/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/TGLexer.cpp.o
+[199/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/TableGenBackend.cpp.o
+[200/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/TGTimer.cpp.o
+[201/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/Attributes.cpp.o
+[202/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/ARMTargetDefEmitter.cpp.o
+[203/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/CodeGenIntrinsics.cpp.o
+[204/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/Record.cpp.o
+[205/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/RISCVTargetDefEmitter.cpp.o
+[206/3145] Building CXX object lib/TableGen/CMakeFiles/LLVMTableGen.dir/TGParser.cpp.o
+[207/3145] Linking CXX static library lib/libLLVMTableGen.a
+[208/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/RuntimeLibcalls.cpp.o
+[209/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/DirectiveEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/DirectiveEmitter.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/TableGen/DirectiveEmitter.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::directive::Spelling>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::directive::Spelling *, std::vector<llvm::directive::Spelling>>, llvm::directive::Spelling>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::directive::Spelling *, std::vector<llvm::directive::Spelling>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/DirectiveEmitter.cpp:373:21)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::directive::Spelling *, std::vector<llvm::directive::Spelling>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/DirectiveEmitter.cpp:373:21)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/DirectiveEmitter.cpp:372:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<llvm::directive::Spelling> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/DirectiveEmitter.cpp:373:21)>' requested here
+  372 |   llvm::stable_sort(List,
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::directive::Spelling>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[210/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/RuntimeLibcallsEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/RuntimeLibcallsEmitter.cpp:11:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/RuntimeLibcalls.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/StringRef.h:16:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<const llvm::RuntimeLibcallImpl *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<const llvm::RuntimeLibcallImpl **, std::vector<const llvm::RuntimeLibcallImpl *>>, const llvm::RuntimeLibcallImpl *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<const llvm::RuntimeLibcallImpl **, std::vector<const llvm::RuntimeLibcallImpl *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/RuntimeLibcallsEmitter.cpp:490:26)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<const llvm::RuntimeLibcallImpl **, std::vector<const llvm::RuntimeLibcallImpl *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/RuntimeLibcallsEmitter.cpp:490:26)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/RuntimeLibcallsEmitter.cpp:490:7: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<const llvm::RuntimeLibcallImpl *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/RuntimeLibcallsEmitter.cpp:490:26)>' requested here
+  490 |       stable_sort(Funcs, [](const RuntimeLibcallImpl *A,
+      |       ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<const llvm::RuntimeLibcallImpl *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[211/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/TableGen.cpp.o
+[212/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/SDNodeProperties.cpp.o
+[213/3145] Generating VCSRevision.h
+[214/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/IntrinsicEmitter.cpp.o
+[215/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/TargetFeaturesEmitter.cpp.o
+[216/3145] Building CXX object lib/Option/CMakeFiles/LLVMOption.dir/Arg.cpp.o
+[217/3145] Building CXX object lib/Option/CMakeFiles/LLVMOption.dir/ArgList.cpp.o
+[218/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/TargetLibraryInfoEmitter.cpp.o
+[219/3145] Building CXX object lib/Option/CMakeFiles/LLVMOption.dir/Option.cpp.o
+[220/3145] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/VTEmitter.cpp.o
+[221/3145] Building CXX object lib/Frontend/Directive/CMakeFiles/LLVMFrontendDirective.dir/Spelling.cpp.o
+[222/3145] Linking CXX executable bin/llvm-min-tblgen
+[223/3145] Building TargetLibraryInfo.inc...
+[224/3145] Building GenVT.inc...
+[225/3145] Building CXX object lib/Extensions/CMakeFiles/LLVMExtensions.dir/Extensions.cpp.o
+[226/3145] Building Attributes.inc...
+[227/3145] Building IntrinsicImpl.inc...
+[228/3145] Building IntrinsicEnums.inc...
+[229/3145] Building CXX object lib/Option/CMakeFiles/LLVMOption.dir/OptTable.cpp.o
+[230/3145] Building IntrinsicsAArch64.h...
+[231/3145] Building CXX object lib/Bitstream/Reader/CMakeFiles/LLVMBitstreamReader.dir/BitstreamReader.cpp.o
+[232/3145] Building IntrinsicsAMDGPU.h...
+[233/3145] Building CXX object lib/DebugInfo/MSF/CMakeFiles/LLVMDebugInfoMSF.dir/MappedBlockStream.cpp.o
+[234/3145] Building IntrinsicsARM.h...
+[235/3145] Building IntrinsicsBPF.h...
+[236/3145] Building IntrinsicsHexagon.h...
+[237/3145] Building IntrinsicsDirectX.h...
+[238/3145] Building IntrinsicsLoongArch.h...
+[239/3145] Building IntrinsicsMips.h...
+[240/3145] Building IntrinsicsR600.h...
+[241/3145] Building IntrinsicsNVPTX.h...
+[242/3145] Building IntrinsicsPowerPC.h...
+[243/3145] Building IntrinsicsRISCV.h...
+[244/3145] Building IntrinsicsS390.h...
+[245/3145] Building IntrinsicsWebAssembly.h...
+[246/3145] Building IntrinsicsVE.h...
+[247/3145] Building ACC.h.inc...
+[248/3145] Building RuntimeLibcalls.inc...
+[249/3145] Building ACC.inc...
+[250/3145] Building OMP.h.inc...
+[251/3145] Building OMP.inc...
+[252/3145] Building IntrinsicsSPIRV.h...
+[253/3145] Building IntrinsicsXCore.h...
+[254/3145] Building CXX object lib/FileCheck/CMakeFiles/LLVMFileCheck.dir/FileCheck.cpp.o
+[255/3145] Building IntrinsicsX86.h...
+[256/3145] Building PPCGenTargetFeatures.inc...
+[257/3145] Building ARMTargetParserDef.inc...
+[258/3145] Building CXX object lib/CodeGenTypes/CMakeFiles/LLVMCodeGenTypes.dir/LowLevelType.cpp.o
+[259/3145] Building AArch64TargetParserDef.inc...
+[260/3145] Building RISCVTargetParserDef.inc...
+[261/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/CodeEmitterGen.cpp.o
+[262/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/CodeGenMapTable.cpp.o
+[263/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/CallingConvEmitter.cpp.o
+[264/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/CTagsEmitter.cpp.o
+[265/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DAGISelEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelEmitter.cpp:13:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<const llvm::PatternToMatch *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<const llvm::PatternToMatch **, std::vector<const llvm::PatternToMatch *>>, const llvm::PatternToMatch *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<const llvm::PatternToMatch **, std::vector<const llvm::PatternToMatch *>>, __gnu_cxx::__ops::_Iter_comp_iter<(anonymous namespace)::PatternSortingPredicate>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<const llvm::PatternToMatch **, std::vector<const llvm::PatternToMatch *>>, (anonymous namespace)::PatternSortingPredicate>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelEmitter.cpp:175:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<const llvm::PatternToMatch *> &, (anonymous namespace)::PatternSortingPredicate>' requested here
+  175 |   llvm::stable_sort(Patterns, PatternSortingPredicate(CGP));
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<const llvm::PatternToMatch *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[266/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/CompressInstEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/CompressInstEmitter.cpp:67:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenInstruction.h:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/BitVector.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<(anonymous namespace)::CompressInstEmitter::CompressPat>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<(anonymous namespace)::CompressInstEmitter::CompressPat *, std::vector<(anonymous namespace)::CompressInstEmitter::CompressPat>>, (anonymous namespace)::CompressInstEmitter::CompressPat>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<(anonymous namespace)::CompressInstEmitter::CompressPat *, std::vector<(anonymous namespace)::CompressInstEmitter::CompressPat>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/CompressInstEmitter.cpp:592:39)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<(anonymous namespace)::CompressInstEmitter::CompressPat *, std::vector<(anonymous namespace)::CompressInstEmitter::CompressPat>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/CompressInstEmitter.cpp:592:39)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/CompressInstEmitter.cpp:592:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<(anonymous namespace)::CompressInstEmitter::CompressPat> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/CompressInstEmitter.cpp:592:39)>' requested here
+  592 |   llvm::stable_sort(CompressPatterns, [EType](const CompressPat &LHS,
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<(anonymous namespace)::CompressInstEmitter::CompressPat>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[267/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/AsmWriterEmitter.cpp.o
+[268/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DAGISelMatcher.cpp.o
+[269/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DecoderTableEmitter.cpp.o
+[270/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DecoderTree.cpp.o
+[271/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DAGISelMatcherOpt.cpp.o
+[272/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DAGISelMatcherGen.cpp.o
+[273/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DAGISelMatcherEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<const llvm::ComplexPattern *, unsigned int>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::pair<const llvm::ComplexPattern *, unsigned int> *, std::vector<std::pair<const llvm::ComplexPattern *, unsigned int>>>, std::pair<const llvm::ComplexPattern *, unsigned int>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::pair<const llvm::ComplexPattern *, unsigned int> *, std::vector<std::pair<const llvm::ComplexPattern *, unsigned int>>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:120:37)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::pair<const llvm::ComplexPattern *, unsigned int> *, std::vector<std::pair<const llvm::ComplexPattern *, unsigned int>>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:120:37)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:120:5: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::pair<const llvm::ComplexPattern *, unsigned int>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:120:37)>' requested here
+  120 |     stable_sort(ComplexPatternList, [](const auto &A, const auto &B) {
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<const llvm::ComplexPattern *, unsigned int>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<std::basic_string<char>, unsigned int>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::pair<std::basic_string<char>, unsigned int> *, std::vector<std::pair<std::basic_string<char>, unsigned int>>>, std::pair<std::basic_string<char>, unsigned int>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::pair<std::basic_string<char>, unsigned int> *, std::vector<std::pair<std::basic_string<char>, unsigned int>>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:129:39)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::pair<std::basic_string<char>, unsigned int> *, std::vector<std::pair<std::basic_string<char>, unsigned int>>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:129:39)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:129:5: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::pair<std::basic_string<char>, unsigned int>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:129:39)>' requested here
+  129 |     stable_sort(PatternPredicateList, [](const auto &A, const auto &B) {
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<std::basic_string<char>, unsigned int>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::TreePattern *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<llvm::TreePattern **, llvm::TreePattern *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<llvm::TreePattern **, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:147:24)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<llvm::TreePattern **, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:147:24)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:147:7: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::TinyPtrVector<llvm::TreePattern *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:147:24)>' requested here
+  147 |       stable_sort(TPs, [](const auto *A, const auto *B) {
+      |       ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::TreePattern *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenDAGPatterns.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<llvm::TreePattern *, unsigned int>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::pair<llvm::TreePattern *, unsigned int> *, std::vector<std::pair<llvm::TreePattern *, unsigned int>>>, std::pair<llvm::TreePattern *, unsigned int>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::pair<llvm::TreePattern *, unsigned int> *, std::vector<std::pair<llvm::TreePattern *, unsigned int>>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:158:32)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::pair<llvm::TreePattern *, unsigned int> *, std::vector<std::pair<llvm::TreePattern *, unsigned int>>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:158:32)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:158:5: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::pair<llvm::TreePattern *, unsigned int>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DAGISelMatcherEmitter.cpp:158:32)>' requested here
+  158 |     stable_sort(PredicateList, [](const auto &A, const auto &B) {
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<llvm::TreePattern *, unsigned int>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+4 warnings generated.
+[274/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/AsmMatcherEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/AsmMatcherEmitter.cpp:98:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenInstAlias.h:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/StringRef.h:16:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::unique_ptr<(anonymous namespace)::MatchableInfo>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::unique_ptr<(anonymous namespace)::MatchableInfo> *, std::vector<std::unique_ptr<(anonymous namespace)::MatchableInfo>>>, std::unique_ptr<(anonymous namespace)::MatchableInfo>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::unique_ptr<(anonymous namespace)::MatchableInfo> *, std::vector<std::unique_ptr<(anonymous namespace)::MatchableInfo>>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/AsmMatcherEmitter.cpp:3354:7)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::unique_ptr<(anonymous namespace)::MatchableInfo> *, std::vector<std::unique_ptr<(anonymous namespace)::MatchableInfo>>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/AsmMatcherEmitter.cpp:3354:7)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/AsmMatcherEmitter.cpp:3352:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::unique_ptr<(anonymous namespace)::MatchableInfo>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/AsmMatcherEmitter.cpp:3354:7)>' requested here
+ 3352 |   llvm::stable_sort(
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::unique_ptr<(anonymous namespace)::MatchableInfo>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[275/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DisassemblerEmitter.cpp.o
+[276/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DFAEmitter.cpp.o
+[277/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DFAPacketizerEmitter.cpp.o
+[278/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DecoderEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DecoderEmitter.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenHwModes.h:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<unsigned int>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<unsigned int *, unsigned int>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<unsigned int *, __gnu_cxx::__ops::_Iter_comp_iter<(anonymous namespace)::LessEncodingIDByWidth>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<unsigned int *, (anonymous namespace)::LessEncodingIDByWidth>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/DecoderEmitter.cpp:334:5: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVector<unsigned int, 0> &, (anonymous namespace)::LessEncodingIDByWidth>' requested here
+  334 |     stable_sort(this->EncodingIDs, LessEncodingIDByWidth(Encodings));
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<unsigned int>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[279/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/ExegesisEmitter.cpp.o
+[280/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/DXILEmitter.cpp.o
+[281/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/llvm-tblgen.cpp.o
+[282/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/InstrDocsEmitter.cpp.o
+[283/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/FastISelEmitter.cpp.o
+[284/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/MacroFusionPredicatorEmitter.cpp.o
+[285/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/OptionRSTEmitter.cpp.o
+[286/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/OptionParserEmitter.cpp.o
+[287/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/PseudoLoweringEmitter.cpp.o
+[288/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/GlobalISelCombinerEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:29:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::gi::Matcher *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, llvm::gi::Matcher *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2690:33)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2690:33)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2690:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<llvm::gi::Matcher *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2690:33)>' requested here
+ 2690 |   llvm::stable_sort(InputRules, [&OpcodeOrder](const Matcher *A,
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::gi::Matcher *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:29:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::gi::RuleMatcher>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::gi::RuleMatcher *, std::vector<llvm::gi::RuleMatcher>>, llvm::gi::RuleMatcher>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::RuleMatcher *, std::vector<llvm::gi::RuleMatcher>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2773:28)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::RuleMatcher *, std::vector<llvm::gi::RuleMatcher>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2773:28)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2773:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<llvm::gi::RuleMatcher> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelCombinerEmitter.cpp:2773:28)>' requested here
+ 2773 |   llvm::stable_sort(Rules, [&](const RuleMatcher &A, const RuleMatcher &B) {
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::gi::RuleMatcher>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+2 warnings generated.
+[289/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/InstrInfoEmitter.cpp.o
+[290/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/RegisterBankEmitter.cpp.o
+[291/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/GlobalISelEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:33:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::gi::Matcher *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, llvm::gi::Matcher *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2270:19)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2270:19)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2269:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<llvm::gi::Matcher *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2270:19)>' requested here
+ 2269 |   llvm::stable_sort(
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::gi::Matcher *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:33:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::gi::RuleMatcher>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::gi::RuleMatcher *, std::vector<llvm::gi::RuleMatcher>>, llvm::gi::RuleMatcher>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::RuleMatcher *, std::vector<llvm::gi::RuleMatcher>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2520:28)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::RuleMatcher *, std::vector<llvm::gi::RuleMatcher>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2520:28)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2520:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<llvm::gi::RuleMatcher> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/GlobalISelEmitter.cpp:2520:28)>' requested here
+ 2520 |   llvm::stable_sort(Rules, [&](const RuleMatcher &A, const RuleMatcher &B) {
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::gi::RuleMatcher>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+2 warnings generated.
+[292/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/WebAssemblyDisassemblerEmitter.cpp.o
+[293/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/SDNodeInfoEmitter.cpp.o
+[294/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/X86InstrMappingEmitter.cpp.o
+[295/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/X86DisassemblerTables.cpp.o
+[296/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/X86ModRMFilters.cpp.o
+[297/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/SearchableTableEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<const llvm::Record *, unsigned int>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::pair<const llvm::Record *, unsigned int> *, std::vector<std::pair<const llvm::Record *, unsigned int>>>, std::pair<const llvm::Record *, unsigned int>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::pair<const llvm::Record *, unsigned int> *, std::vector<std::pair<const llvm::Record *, unsigned int>>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:383:23)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::pair<const llvm::Record *, unsigned int> *, std::vector<std::pair<const llvm::Record *, unsigned int>>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:383:23)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:382:11: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::pair<const llvm::Record *, unsigned int>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:383:23)>' requested here
+  382 |     llvm::stable_sort(Entries,
+      |           ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<const llvm::Record *, unsigned int>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<const llvm::Record *, (anonymous namespace)::GenericEnum::Entry>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<std::pair<const llvm::Record *, (anonymous namespace)::GenericEnum::Entry> *, std::pair<const llvm::Record *, (anonymous namespace)::GenericEnum::Entry>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<std::pair<const llvm::Record *, (anonymous namespace)::GenericEnum::Entry> *, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:671:37)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<std::pair<const llvm::Record *, (anonymous namespace)::GenericEnum::Entry> *, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:671:37)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:671:11: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVector<std::pair<const llvm::Record *, (anonymous namespace)::GenericEnum::Entry>, 0> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:671:37)>' requested here
+  671 |     llvm::stable_sort(SavedEntries, [](const MapVectorEntryTy &LHS,
+      |           ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<const llvm::Record *, (anonymous namespace)::GenericEnum::Entry>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<const llvm::Record *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<const llvm::Record **, std::vector<const llvm::Record *>>, const llvm::Record *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<const llvm::Record **, std::vector<const llvm::Record *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:833:25)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<const llvm::Record **, std::vector<const llvm::Record *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:833:25)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:832:13: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<const llvm::Record *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/SearchableTableEmitter.cpp:833:25)>' requested here
+  832 |       llvm::stable_sort(Table->Entries,
+      |             ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<const llvm::Record *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+3 warnings generated.
+[298/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/X86FoldTablesEmitter.cpp.o
+[299/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/GlobalISel/CodeExpander.cpp.o
+[300/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/X86MnemonicTables.cpp.o
+[301/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/X86RecognizableInstr.cpp.o
+[302/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/GlobalISel/CombinerUtils.cpp.o
+[303/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/RegisterInfoEmitter.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/RegisterInfoEmitter.cpp:15:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/SequenceToOffsetTable.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/StringExtras.h:18:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<const llvm::Record *, std::vector<long>>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::pair<const llvm::Record *, std::vector<long>> *, std::vector<std::pair<const llvm::Record *, std::vector<long>>>>, std::pair<const llvm::Record *, std::vector<long>>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::pair<const llvm::Record *, std::vector<long>> *, std::vector<std::pair<const llvm::Record *, std::vector<long>>>>, __gnu_cxx::__ops::_Iter_comp_iter<llvm::on_first<llvm::LessRecordRegister>>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::pair<const llvm::Record *, std::vector<long>> *, std::vector<std::pair<const llvm::Record *, std::vector<long>>>>, llvm::on_first<llvm::LessRecordRegister>>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/RegisterInfoEmitter.cpp:365:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::pair<const llvm::Record *, std::vector<long>>> &, llvm::on_first<llvm::LessRecordRegister>>' requested here
+  365 |   llvm::stable_sort(DwarfRegNums, on_first<LessRecordRegister>());
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<const llvm::Record *, std::vector<long>>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/RegisterInfoEmitter.cpp:15:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Basic/SequenceToOffsetTable.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/StringExtras.h:18:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<const llvm::CodeGenRegisterClass *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<const llvm::CodeGenRegisterClass **, const llvm::CodeGenRegisterClass *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<const llvm::CodeGenRegisterClass **, __gnu_cxx::__ops::_Iter_comp_iter<BaseClassOrdering>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<const llvm::CodeGenRegisterClass **, BaseClassOrdering>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/RegisterInfoEmitter.cpp:1637:13: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVector<const llvm::CodeGenRegisterClass *> &, BaseClassOrdering>' requested here
+ 1637 |       llvm::stable_sort(BaseClasses, BaseClassOrdering());
+      |             ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<const llvm::CodeGenRegisterClass *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+2 warnings generated.
+[304/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/GlobalISel/CXXPredicates.cpp.o
+[305/3145] Building CXX object utils/TableGen/CMakeFiles/llvm-tblgen.dir/SubtargetEmitter.cpp.o
+[306/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/AsmWriterInst.cpp.o
+[307/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/GlobalISel/GlobalISelMatchTableExecutorEmitter.cpp.o
+[308/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/GlobalISel/PatternParser.cpp.o
+[309/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/GlobalISel/Patterns.cpp.o
+[310/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/CodeGenHwModes.cpp.o
+[311/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/CodeGenInstruction.cpp.o
+[312/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/CodeGenInstAlias.cpp.o
+[313/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/GlobalISel/GlobalISelMatchTable.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp:9:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.h:19:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/../Common/CodeGenDAGPatterns.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/../Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::gi::Matcher *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, llvm::gi::Matcher *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp:582:28)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp:582:10: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::gi::Matcher **, std::vector<llvm::gi::Matcher *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp:582:28)>' requested here
+  582 |     std::stable_sort(F, T, [](Matcher *A, Matcher *B) {
+      |          ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::gi::Matcher *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp:9:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.h:19:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/../Common/CodeGenDAGPatterns.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/../Basic/CodeGenIntrinsics.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::unique_ptr<llvm::gi::OperandPredicateMatcher>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:1580:2: note: in instantiation of member function 'std::_Temporary_buffer<std::_Deque_iterator<std::unique_ptr<llvm::gi::OperandPredicateMatcher>, std::unique_ptr<llvm::gi::OperandPredicateMatcher> &, std::unique_ptr<llvm::gi::OperandPredicateMatcher> *>, std::unique_ptr<llvm::gi::OperandPredicateMatcher>>::_Temporary_buffer' requested here
+ 1580 |         __buf(__first, std::distance(__first, __last));
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:1617:19: note: in instantiation of function template specialization 'std::__stable_partition<std::_Deque_iterator<std::unique_ptr<llvm::gi::OperandPredicateMatcher>, std::unique_ptr<llvm::gi::OperandPredicateMatcher> &, std::unique_ptr<llvm::gi::OperandPredicateMatcher> *>, __gnu_cxx::__ops::_Iter_pred<std::logical_not<std::unique_ptr<llvm::gi::OperandPredicateMatcher>>>>' requested here
+ 1617 |       return std::__stable_partition(__first, __last,
+      |                   ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.h:755:14: note: in instantiation of function template specialization 'std::stable_partition<std::_Deque_iterator<std::unique_ptr<llvm::gi::OperandPredicateMatcher>, std::unique_ptr<llvm::gi::OperandPredicateMatcher> &, std::unique_ptr<llvm::gi::OperandPredicateMatcher> *>, std::logical_not<std::unique_ptr<llvm::gi::OperandPredicateMatcher>>>' requested here
+  755 |         std::stable_partition(Predicates.begin(), Predicates.end(),
+      |              ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/GlobalISel/GlobalISelMatchTable.cpp:770:11: note: in instantiation of member function 'llvm::gi::PredicateListMatcher<llvm::gi::OperandPredicateMatcher>::eraseNullPredicates' requested here
+  770 |       OM->eraseNullPredicates();
+      |           ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::unique_ptr<llvm::gi::OperandPredicateMatcher>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+2 warnings generated.
+[314/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/InfoByHwMode.cpp.o
+[315/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/CodeGenDAGPatterns.cpp.o
+[316/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/CodeGenTarget.cpp.o
+[317/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/OptEmitter.cpp.o
+[318/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/Types.cpp.o
+[319/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/InstructionEncoding.cpp.o
+[320/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/CodeGenSchedule.cpp.o
+[321/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/PredicateExpander.cpp.o
+[322/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/MultiHazardRecognizer.cpp.o
+[323/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/SubtargetFeatureInfo.cpp.o
+[324/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/Utils.cpp.o
+[325/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/CodeGenRegisters.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenHwModes.h:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::CodeGenRegisterClass *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<llvm::CodeGenRegisterClass **, std::vector<llvm::CodeGenRegisterClass *>>, llvm::CodeGenRegisterClass *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<llvm::CodeGenRegisterClass **, std::vector<llvm::CodeGenRegisterClass *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:983:24)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<llvm::CodeGenRegisterClass **, std::vector<llvm::CodeGenRegisterClass *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:983:24)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:1006:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<llvm::CodeGenRegisterClass *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:983:24)>' requested here
+ 1006 |   llvm::stable_sort(SuperRegRCs, WeakSizeOrder);
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::CodeGenRegisterClass *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenHwModes.h:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector> *, std::vector<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector>>>, std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector> *, std::vector<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector>>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:1020:21)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector> *, std::vector<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector>>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:1020:21)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:1019:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:1020:21)>' requested here
+ 1019 |   llvm::stable_sort(SuperRegClasses,
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<llvm::CodeGenRegisterClass *, llvm::BitVector>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenHwModes.h:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<unsigned int>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<unsigned int *, std::vector<unsigned int>>, unsigned int>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<unsigned int *, std::vector<unsigned int>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2237:38)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<unsigned int *, std::vector<unsigned int>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2237:38)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2237:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<unsigned int> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2237:38)>' requested here
+ 2237 |   llvm::stable_sort(RegUnitSetOrder, [this](unsigned ID1, unsigned ID2) {
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<unsigned int>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.h:17:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenHwModes.h:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<const llvm::CodeGenRegisterClass *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<const llvm::CodeGenRegisterClass **, std::vector<const llvm::CodeGenRegisterClass *>>, const llvm::CodeGenRegisterClass *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<const llvm::CodeGenRegisterClass **, std::vector<const llvm::CodeGenRegisterClass *>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2600:33)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<const llvm::CodeGenRegisterClass **, std::vector<const llvm::CodeGenRegisterClass *>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2600:33)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2600:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<const llvm::CodeGenRegisterClass *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/TableGen/Common/CodeGenRegisters.cpp:2600:33)>' requested here
+ 2600 |   llvm::stable_sort(Candidates, [&](const CodeGenRegisterClass *A,
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<const llvm::CodeGenRegisterClass *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+4 warnings generated.
+[326/3145] Building CXX object utils/TableGen/Common/CMakeFiles/obj.LLVMTableGenCommon.dir/VarLenCodeEmitterGen.cpp.o
+[327/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/MBFIWrapper.cpp.o
+[328/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/NonRelocatableStringpool.cpp.o
+[329/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/PatchableFunction.cpp.o
+[330/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/MIRPrintingPass.cpp.o
+[331/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/AbstractCallSite.cpp.o
+[332/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CallBrPrepare.cpp.o
+[333/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CFGuardLongjmp.cpp.o
+[334/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/MacroFusion.cpp.o
+[335/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Assumptions.cpp.o
+[336/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CallingConvLower.cpp.o
+[337/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/BuiltinGCs.cpp.o
+[338/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Comdat.cpp.o
+[339/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/MIRPrinter.cpp.o
+[340/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/BasicBlock.cpp.o
+[341/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Attributes.cpp.o
+[342/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ConstantFPRange.cpp.o
+[343/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ConstantFold.cpp.o
+[344/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ConstantRangeList.cpp.o
+[345/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/AutoUpgrade.cpp.o
+[346/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ConstantRange.cpp.o
+[347/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/AsmWriter.cpp.o
+[348/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ConvergenceVerifier.cpp.o
+[349/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/CycleInfo.cpp.o
+[350/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DataLayout.cpp.o
+[351/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DIBuilder.cpp.o
+[352/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Core.cpp.o
+[353/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DIExpressionOptimizer.cpp.o
+[354/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Constants.cpp.o
+[355/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DiagnosticHandler.cpp.o
+[356/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DebugProgramInstruction.cpp.o
+[357/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DiagnosticPrinter.cpp.o
+[358/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DebugLoc.cpp.o
+[359/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DebugInfo.cpp.o
+[360/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DiagnosticInfo.cpp.o
+[361/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/EHPersonalities.cpp.o
+[362/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DroppedVariableStats.cpp.o
+[363/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DroppedVariableStatsIR.cpp.o
+[364/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/GVMaterializer.cpp.o
+[365/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/GCStrategy.cpp.o
+[366/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/DebugInfoMetadata.cpp.o
+[367/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/FPEnv.cpp.o
+[368/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/NVVMIntrinsicUtils.cpp.o
+[369/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Function.cpp.o
+[370/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Intrinsics.cpp.o
+[371/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/IRPrintingPasses.cpp.o
+[372/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Globals.cpp.o
+[373/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/SSAContext.cpp.o
+[374/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Dominators.cpp.o
+[375/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/IRBuilder.cpp.o
+[376/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/InlineAsm.cpp.o
+[377/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/IntrinsicInst.cpp.o
+[378/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Instruction.cpp.o
+[379/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/LLVMContext.cpp.o
+[380/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/LLVMRemarkStreamer.cpp.o
+[381/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/MDBuilder.cpp.o
+[382/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/MemoryModelRelaxationAnnotations.cpp.o
+[383/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Instructions.cpp.o
+[384/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Mangler.cpp.o
+[385/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/LegacyPassManager.cpp.o
+[386/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/LLVMContextImpl.cpp.o
+[387/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Operator.cpp.o
+[388/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/OptBisect.cpp.o
+[389/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Pass.cpp.o
+[390/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/PassInstrumentation.cpp.o
+[391/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Module.cpp.o
+[392/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ModuleSummaryIndex.cpp.o
+[393/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/PassRegistry.cpp.o
+[394/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/PrintPasses.cpp.o
+[395/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/PassTimingInfo.cpp.o
+[396/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ProfDataUtils.cpp.o
+[397/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/PassManager.cpp.o
+[398/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ProfileSummary.cpp.o
+[399/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ReplaceConstant.cpp.o
+[400/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/PseudoProbe.cpp.o
+[401/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Statepoint.cpp.o
+[402/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/SafepointIRVerifier.cpp.o
+[403/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Use.cpp.o
+[404/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/StructuralHash.cpp.o
+[405/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Metadata.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/IR/Metadata.cpp:13:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/IR/Metadata.h:18:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::pair<unsigned int, llvm::MDNode *>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<std::pair<unsigned int, llvm::MDNode *> *, std::pair<unsigned int, llvm::MDNode *>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<std::pair<unsigned int, llvm::MDNode *> *, __gnu_cxx::__ops::_Iter_comp_iter<llvm::less_first>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<std::pair<unsigned int, llvm::MDNode *> *, llvm::less_first>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/IR/Metadata.cpp:1537:11: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVectorImpl<std::pair<unsigned int, llvm::MDNode *>> &, llvm::less_first>' requested here
+ 1537 |     llvm::stable_sort(Result, less_first());
+      |           ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::pair<unsigned int, llvm::MDNode *>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[406/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/TypedPointerType.cpp.o
+[407/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/User.cpp.o
+[408/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/TypeFinder.cpp.o
+[409/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/VectorTypeUtils.cpp.o
+[410/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/ValueSymbolTable.cpp.o
+[411/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Type.cpp.o
+[412/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/VFABIDemangler.cpp.o
+[413/3145] Building CXX object lib/IRReader/CMakeFiles/LLVMIRReader.dir/IRReader.cpp.o
+[414/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/RuntimeLibcalls.cpp.o
+[415/3145] Building CXX object lib/IRPrinter/CMakeFiles/LLVMIRPrinter.dir/IRPrintingPasses.cpp.o
+[416/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Value.cpp.o
+[417/3145] Building CXX object lib/CGData/CMakeFiles/LLVMCGData.dir/OutlinedHashTree.cpp.o
+[418/3145] Building CXX object lib/CGData/CMakeFiles/LLVMCGData.dir/OutlinedHashTreeRecord.cpp.o
+[419/3145] Building CXX object lib/CGData/CMakeFiles/LLVMCGData.dir/CodeGenDataWriter.cpp.o
+[420/3145] Building CXX object lib/CGData/CMakeFiles/LLVMCGData.dir/CodeGenDataReader.cpp.o
+[421/3145] Building CXX object lib/CGData/CMakeFiles/LLVMCGData.dir/CodeGenData.cpp.o
+[422/3145] Building CXX object lib/CGData/CMakeFiles/LLVMCGData.dir/StableFunctionMap.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMap.cpp:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/CGData/StableFunctionMap.h:19:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::unique_ptr<llvm::StableFunctionMap::StableFunctionEntry>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<std::unique_ptr<llvm::StableFunctionMap::StableFunctionEntry> *, std::unique_ptr<llvm::StableFunctionMap::StableFunctionEntry>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<std::unique_ptr<llvm::StableFunctionMap::StableFunctionEntry> *, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMap.cpp:251:28)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<std::unique_ptr<llvm::StableFunctionMap::StableFunctionEntry> *, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMap.cpp:251:28)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMap.cpp:251:11: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVector<std::unique_ptr<llvm::StableFunctionMap::StableFunctionEntry>> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMap.cpp:251:28)>' requested here
+  251 |     llvm::stable_sort(SFS, [&](const std::unique_ptr<StableFunctionEntry> &L,
+      |           ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::unique_ptr<llvm::StableFunctionMap::StableFunctionEntry>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[423/3145] Building CXX object lib/CGData/CMakeFiles/LLVMCGData.dir/StableFunctionMapRecord.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMapRecord.cpp:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/CGData/StableFunctionMapRecord.h:19:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/CGData/CGDataPatchItem.h:16:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/ArrayRef.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<const llvm::StableFunctionMap::StableFunctionEntry *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<const llvm::StableFunctionMap::StableFunctionEntry **, const llvm::StableFunctionMap::StableFunctionEntry *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<const llvm::StableFunctionMap::StableFunctionEntry **, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMapRecord.cpp:60:20)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<const llvm::StableFunctionMap::StableFunctionEntry **, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMapRecord.cpp:60:20)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMapRecord.cpp:59:9: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVector<const llvm::StableFunctionMap::StableFunctionEntry *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CGData/StableFunctionMapRecord.cpp:60:20)>' requested here
+   59 |   llvm::stable_sort(
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<const llvm::StableFunctionMap::StableFunctionEntry *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[424/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/AllocationOrder.cpp.o
+[425/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/AggressiveAntiDepBreaker.cpp.o
+[426/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/Analysis.cpp.o
+[427/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/AtomicExpandPass.cpp.o
+[428/3145] Building CXX object lib/IR/CMakeFiles/LLVMCore.dir/Verifier.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/IR/Verifier.cpp:50:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/IR/Verifier.h:23:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<InstrProfValueData>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<InstrProfValueData *, std::vector<InstrProfValueData>>, InstrProfValueData>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<InstrProfValueData *, std::vector<InstrProfValueData>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ProfileData/InstrProf.h:1118:18)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<InstrProfValueData *, std::vector<InstrProfValueData>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ProfileData/InstrProf.h:1118:18)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ProfileData/InstrProf.h:1117:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<InstrProfValueData> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ProfileData/InstrProf.h:1118:18)>' requested here
+ 1117 |   llvm::stable_sort(
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<InstrProfValueData>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[429/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BranchRelaxation.cpp.o
+[430/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BreakFalseDeps.cpp.o
+[431/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BasicTargetTransformInfo.cpp.o
+[432/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BranchFolding.cpp.o
+[433/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BasicBlockSections.cpp.o
+[434/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/AssignmentTrackingAnalysis.cpp.o
+[435/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BasicBlockPathCloning.cpp.o
+[436/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BasicBlockSectionsProfileReader.cpp.o
+[437/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/BasicBlockMatchingAndInference.cpp.o
+[438/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CalcSpillWeights.cpp.o
+[439/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CodeGen.cpp.o
+[440/3145] Building CXX object lib/Transforms/AggressiveInstCombine/CMakeFiles/LLVMAggressiveInstCombine.dir/TruncInstCombine.cpp.o
+[441/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CFIFixup.cpp.o
+[442/3145] Building CXX object lib/Transforms/AggressiveInstCombine/CMakeFiles/LLVMAggressiveInstCombine.dir/AggressiveInstCombine.cpp.o
+[443/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CodeGenCommonISel.cpp.o
+[444/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CFIInstrInserter.cpp.o
+[445/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CommandFlags.cpp.o
+[446/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/DeadMachineInstructionElim.cpp.o
+[447/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/DetectDeadLanes.cpp.o
+[448/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CriticalAntiDepBreaker.cpp.o
+[449/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/DroppedVariableStatsMIR.cpp.o
+[450/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/DFAPacketizer.cpp.o
+[451/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ComplexDeinterleavingPass.cpp.o
+[452/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/DwarfEHPrepare.cpp.o
+[453/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/EdgeBundles.cpp.o
+[454/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/EHContGuardTargets.cpp.o
+[455/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/EarlyIfConversion.cpp.o
+[456/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ExecutionDomainFix.cpp.o
+[457/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ExpandReductions.cpp.o
+[458/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ExpandPostRAPseudos.cpp.o
+[459/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ExpandMemCmp.cpp.o
+[460/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ExpandIRInsts.cpp.o
+[461/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/CodeGenPrepare.cpp.o
+[462/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ExpandVectorPredication.cpp.o
+[463/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/FEntryInserter.cpp.o
+[464/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/FaultMaps.cpp.o
+[465/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/GCMetadataPrinter.cpp.o
+[466/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/FuncletLayout.cpp.o
+[467/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/FinalizeISel.cpp.o
+[468/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/MachineFunctionAnalysis.cpp.o
+[469/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/GCMetadata.cpp.o
+[470/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/FixupStatepointCallerSaved.cpp.o
+[471/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/GlobalMerge.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:63:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/CodeGen/GlobalMerge.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/IR/PassManager.h:40:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<llvm::GlobalVariable *>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<llvm::GlobalVariable **, llvm::GlobalVariable *>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<llvm::GlobalVariable **, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:268:16)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<llvm::GlobalVariable **, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:268:16)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:267:9: note: in instantiation of function template specialization 'llvm::stable_sort<llvm::SmallVectorImpl<llvm::GlobalVariable *> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:268:16)>' requested here
+  267 |   llvm::stable_sort(
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<llvm::GlobalVariable *>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:63:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/CodeGen/GlobalMerge.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/IR/PassManager.h:40:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<UsedGlobalSet>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<UsedGlobalSet *, std::vector<UsedGlobalSet>>, UsedGlobalSet>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<UsedGlobalSet *, std::vector<UsedGlobalSet>>, __gnu_cxx::__ops::_Iter_comp_iter<(lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:448:21)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<UsedGlobalSet *, std::vector<UsedGlobalSet>>, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:448:21)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:447:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<UsedGlobalSet> &, (lambda at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/GlobalMerge.cpp:448:21)>' requested here
+  447 |   llvm::stable_sort(UsedGlobalSets,
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<UsedGlobalSet>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+2 warnings generated.
+[472/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/GCRootLowering.cpp.o
+[473/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/HardwareLoops.cpp.o
+[474/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/GlobalMergeFunctions.cpp.o
+[475/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/ImplicitNullChecks.cpp.o
+[476/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/IfConversion.cpp.o
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/IfConversion.cpp:14:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/BranchFolding.h:12:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/DenseMap.h:20:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:21:
+In file included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/Hashing.h:53:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/algorithm:61:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:61:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:263:8: warning: 'get_temporary_buffer<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken>>' is deprecated [-Wdeprecated-declarations]
+  263 |                 std::get_temporary_buffer<value_type>(_M_original_len));
+      |                      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:4996:15: note: in instantiation of member function 'std::_Temporary_buffer<__gnu_cxx::__normal_iterator<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> *, std::vector<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken>>>, std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken>>::_Temporary_buffer' requested here
+ 4996 |       _TmpBuf __buf(__first, (__last - __first + 1) / 2);
+      |               ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_algo.h:5070:23: note: in instantiation of function template specialization 'std::__stable_sort<__gnu_cxx::__normal_iterator<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> *, std::vector<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken>>>, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> &, const std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> &)>>' requested here
+ 5070 |       _GLIBCXX_STD_A::__stable_sort(__first, __last,
+      |                       ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/ADT/STLExtras.h:2112:8: note: in instantiation of function template specialization 'std::stable_sort<__gnu_cxx::__normal_iterator<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> *, std::vector<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken>>>, bool (*)(const std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> &, const std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> &)>' requested here
+ 2112 |   std::stable_sort(adl_begin(Range), adl_end(Range), C);
+      |        ^
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/IfConversion.cpp:1452:9: note: in instantiation of function template specialization 'llvm::stable_sort<std::vector<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken>> &, bool (*)(const std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> &, const std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken> &)>' requested here
+ 1452 |   llvm::stable_sort(Tokens, IfcvtTokenCmp);
+      |         ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/c++/12/bits/stl_tempbuf.h:99:5: note: 'get_temporary_buffer<std::unique_ptr<(anonymous namespace)::IfConverter::IfcvtToken>>' has been explicitly marked deprecated here
+   99 |     _GLIBCXX17_DEPRECATED
+      |     ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/12/../../../../include/x86_64-linux-gnu/c++/12/bits/c++config.h:119:34: note: expanded from macro '_GLIBCXX17_DEPRECATED'
+  119 | # define _GLIBCXX17_DEPRECATED [[__deprecated__]]
+      |                                  ^
+1 warning generated.
+[477/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/IndirectBrExpandPass.cpp.o
+[478/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/InitUndef.cpp.o
+[479/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/InsertCodePrefetch.cpp.o
+[480/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/InterferenceCache.cpp.o
+[481/3145] Building CXX object lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/IntrinsicLowering.cpp.o
+FAILED: lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/IntrinsicLowering.cpp.o 
+/usr/bin/clang++-18 -DHAS_CDFG_PASS -D_DEBUG -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_USE_CXX11_ABI=1 -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/CodeGen -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wc++98-compat-extra-semi -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -Wnon-virtual-dtor -Wdelete-non-virtual-dtor -Wsuggest-override -Wstring-conversion -Wno-pass-failed -Wmisleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -ffunction-sections -fdata-sections -O3 -DNDEBUG -UNDEBUG -fno-exceptions -funwind-tables -fno-rtti -std=c++17 -MD -MT lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/IntrinsicLowering.cpp.o -MF lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/IntrinsicLowering.cpp.o.d -o lib/CodeGen/CMakeFiles/LLVMCodeGen.dir/IntrinsicLowering.cpp.o -c /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/IntrinsicLowering.cpp
+fatal error: error in backend: IO failure on output stream: No space left on device
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.
+Stack dump:
+0.	Program arguments: /usr/bin/clang++-18 -DHAS_CDFG_PASS -D_DEBUG -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_USE_CXX11_ABI=1 -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/CodeGen -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Werror=unguarded-availability-new -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wmissing-field-initializers -pedantic -Wno-long-long -Wc++98-compat-extra-semi -Wimplicit-fallthrough -Wcovered-switch-default -Wno-noexcept-type -W

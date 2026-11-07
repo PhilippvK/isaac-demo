@@ -1,0 +1,1654 @@
+Compiled from "MLIRType.java"
+class de.tudarmstadt.esa.treenail.codegen.MLIRType {
+  int width;
+
+  boolean isSigned;
+
+  private static java.util.Map<java.lang.Integer, de.tudarmstadt.esa.treenail.codegen.MLIRType> unsignedTypes;
+
+  private static java.util.Map<java.lang.Integer, de.tudarmstadt.esa.treenail.codegen.MLIRType> signedTypes;
+
+  static final de.tudarmstadt.esa.treenail.codegen.MLIRType DUMMY;
+
+  static final boolean $assertionsDisabled;
+
+  private de.tudarmstadt.esa.treenail.codegen.MLIRType(int, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: getstatic     #7                  // Field $assertionsDisabled:Z
+       7: ifne          22
+      10: iload_1
+      11: ifgt          22
+      14: new           #13                 // class java/lang/AssertionError
+      17: dup
+      18: invokespecial #15                 // Method java/lang/AssertionError."<init>":()V
+      21: athrow
+      22: aload_0
+      23: iload_1
+      24: putfield      #16                 // Field width:I
+      27: aload_0
+      28: iload_2
+      29: putfield      #20                 // Field isSigned:Z
+      32: return
+
+  static de.tudarmstadt.esa.treenail.codegen.MLIRType getType(int, boolean);
+    Code:
+       0: iload_1
+       1: ifeq          10
+       4: getstatic     #23                 // Field signedTypes:Ljava/util/Map;
+       7: goto          13
+      10: getstatic     #27                 // Field unsignedTypes:Ljava/util/Map;
+      13: astore_2
+      14: aload_2
+      15: iload_0
+      16: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      19: invokeinterface #36,  2           // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+      24: ifne          47
+      27: aload_2
+      28: iload_0
+      29: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      32: new           #8                  // class de/tudarmstadt/esa/treenail/codegen/MLIRType
+      35: dup
+      36: iload_0
+      37: iload_1
+      38: invokespecial #42                 // Method "<init>":(IZ)V
+      41: invokeinterface #45,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      46: pop
+      47: aload_2
+      48: iload_0
+      49: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      52: invokeinterface #49,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      57: checkcast     #8                  // class de/tudarmstadt/esa/treenail/codegen/MLIRType
+      60: areturn
+
+  static de.tudarmstadt.esa.treenail.codegen.MLIRType mapType(com.minres.coredsl.type.CoreDslType);
+    Code:
+       0: getstatic     #7                  // Field $assertionsDisabled:Z
+       3: ifne          21
+       6: aload_0
+       7: invokevirtual #53                 // Method com/minres/coredsl/type/CoreDslType.isIntegerType:()Z
+      10: ifne          21
+      13: new           #13                 // class java/lang/AssertionError
+      16: dup
+      17: invokespecial #15                 // Method java/lang/AssertionError."<init>":()V
+      20: athrow
+      21: aload_0
+      22: checkcast     #59                 // class com/minres/coredsl/type/IntegerType
+      25: astore_1
+      26: aload_1
+      27: invokevirtual #61                 // Method com/minres/coredsl/type/IntegerType.getBitSize:()I
+      30: aload_1
+      31: invokevirtual #65                 // Method com/minres/coredsl/type/IntegerType.isSigned:()Z
+      34: invokestatic  #67                 // Method getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      37: areturn
+
+  public java.lang.String toString();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field isSigned:Z
+       4: ifeq          12
+       7: ldc           #71                 // String si
+       9: goto          14
+      12: ldc           #73                 // String ui
+      14: aload_0
+      15: getfield      #16                 // Field width:I
+      18: invokedynamic #75,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;I)Ljava/lang/String;
+      23: areturn
+
+  static {};
+    Code:
+       0: ldc           #8                  // class de/tudarmstadt/esa/treenail/codegen/MLIRType
+       2: invokevirtual #79                 // Method java/lang/Class.desiredAssertionStatus:()Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putstatic     #7                  // Field $assertionsDisabled:Z
+      16: new           #84                 // class java/util/LinkedHashMap
+      19: dup
+      20: invokespecial #86                 // Method java/util/LinkedHashMap."<init>":()V
+      23: putstatic     #27                 // Field unsignedTypes:Ljava/util/Map;
+      26: new           #84                 // class java/util/LinkedHashMap
+      29: dup
+      30: invokespecial #86                 // Method java/util/LinkedHashMap."<init>":()V
+      33: putstatic     #23                 // Field signedTypes:Ljava/util/Map;
+      36: new           #8                  // class de/tudarmstadt/esa/treenail/codegen/MLIRType
+      39: dup
+      40: ldc           #87                 // int 2147483647
+      42: iconst_0
+      43: invokespecial #42                 // Method "<init>":(IZ)V
+      46: putstatic     #88                 // Field DUMMY:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      49: return
+}
+Compiled from "ExpressionSwitch.java"
+class de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch extends com.minres.coredsl.coreDsl.util.CoreDslSwitch<de.tudarmstadt.esa.treenail.codegen.MLIRValue> {
+  private final com.minres.coredsl.analysis.AnalysisContext ac;
+
+  private final de.tudarmstadt.esa.treenail.codegen.ConstructionContext cc;
+
+  private static final java.util.Map<java.lang.String, java.lang.String> binaryOperatorMap;
+
+  private static final java.util.Map<java.lang.String, java.lang.String> unaryOperatorMap;
+
+  static final boolean $assertionsDisabled;
+
+  de.tudarmstadt.esa.treenail.codegen.ExpressionSwitch(de.tudarmstadt.esa.treenail.codegen.ConstructionContext);
+    Code:
+       0: aload_0
+       1: invokespecial #3                  // Method com/minres/coredsl/coreDsl/util/CoreDslSwitch."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #9                  // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getAnalysisContext:()Lcom/minres/coredsl/analysis/AnalysisContext;
+       9: putfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      12: aload_0
+      13: aload_1
+      14: putfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      17: return
+
+  private int getAddSubResultWidth(de.tudarmstadt.esa.treenail.codegen.MLIRType, de.tudarmstadt.esa.treenail.codegen.MLIRType);
+    Code:
+       0: aload_1
+       1: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+       4: aload_2
+       5: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+       8: if_icmpne     25
+      11: aload_1
+      12: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+      15: aload_2
+      16: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+      19: invokestatic  #35                 // Method java/lang/Math.max:(II)I
+      22: iconst_1
+      23: iadd
+      24: ireturn
+      25: aload_1
+      26: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+      29: ifeq          36
+      32: iconst_0
+      33: goto          37
+      36: iconst_1
+      37: istore_3
+      38: aload_2
+      39: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+      42: ifeq          49
+      45: iconst_0
+      46: goto          50
+      49: iconst_1
+      50: istore        4
+      52: aload_1
+      53: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+      56: iload_3
+      57: iadd
+      58: aload_2
+      59: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+      62: iload         4
+      64: iadd
+      65: invokestatic  #35                 // Method java/lang/Math.max:(II)I
+      68: iconst_1
+      69: iadd
+      70: ireturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseAssignmentExpression(com.minres.coredsl.coreDsl.AssignmentExpression);
+    Code:
+       0: aload_1
+       1: invokeinterface #41,  1           // InterfaceMethod com/minres/coredsl/coreDsl/AssignmentExpression.getTarget:()Lcom/minres/coredsl/coreDsl/Expression;
+       6: astore_2
+       7: aload_1
+       8: invokeinterface #47,  1           // InterfaceMethod com/minres/coredsl/coreDsl/AssignmentExpression.getOperator:()Ljava/lang/String;
+      13: astore_3
+      14: aload_1
+      15: invokeinterface #51,  1           // InterfaceMethod com/minres/coredsl/coreDsl/AssignmentExpression.getValue:()Lcom/minres/coredsl/coreDsl/Expression;
+      20: astore        4
+      22: aload_0
+      23: aload         4
+      25: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      28: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      31: astore        5
+      33: aload_3
+      34: invokevirtual #60                 // Method java/lang/String.length:()I
+      37: iconst_1
+      38: if_icmple     657
+      41: aload_0
+      42: aload_2
+      43: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      46: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      49: astore        6
+      51: aload_3
+      52: iconst_0
+      53: aload_3
+      54: invokevirtual #60                 // Method java/lang/String.length:()I
+      57: iconst_1
+      58: isub
+      59: invokevirtual #66                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+      62: astore        7
+      64: aload         6
+      66: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      69: astore        8
+      71: aload         5
+      73: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      76: astore        9
+      78: aconst_null
+      79: astore        10
+      81: aload         7
+      83: astore        11
+      85: iconst_m1
+      86: istore        12
+      88: aload         11
+      90: invokevirtual #74                 // Method java/lang/String.hashCode:()I
+      93: lookupswitch  { // 10
+                    37: 331
+                    38: 184
+                    42: 297
+                    43: 264
+                    45: 280
+                    47: 314
+                    94: 216
+                   124: 200
+                  1920: 232
+                  1984: 248
+               default: 345
+          }
+     184: aload         11
+     186: ldc           #77                 // String &
+     188: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     191: ifeq          345
+     194: iconst_0
+     195: istore        12
+     197: goto          345
+     200: aload         11
+     202: ldc           #83                 // String |
+     204: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     207: ifeq          345
+     210: iconst_1
+     211: istore        12
+     213: goto          345
+     216: aload         11
+     218: ldc           #85                 // String ^
+     220: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     223: ifeq          345
+     226: iconst_2
+     227: istore        12
+     229: goto          345
+     232: aload         11
+     234: ldc           #87                 // String <<
+     236: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     239: ifeq          345
+     242: iconst_3
+     243: istore        12
+     245: goto          345
+     248: aload         11
+     250: ldc           #89                 // String >>
+     252: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     255: ifeq          345
+     258: iconst_4
+     259: istore        12
+     261: goto          345
+     264: aload         11
+     266: ldc           #91                 // String +
+     268: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     271: ifeq          345
+     274: iconst_5
+     275: istore        12
+     277: goto          345
+     280: aload         11
+     282: ldc           #93                 // String -
+     284: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     287: ifeq          345
+     290: bipush        6
+     292: istore        12
+     294: goto          345
+     297: aload         11
+     299: ldc           #95                 // String *
+     301: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     304: ifeq          345
+     307: bipush        7
+     309: istore        12
+     311: goto          345
+     314: aload         11
+     316: ldc           #97                 // String /
+     318: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     321: ifeq          345
+     324: bipush        8
+     326: istore        12
+     328: goto          345
+     331: aload         11
+     333: ldc           #99                 // String %
+     335: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     338: ifeq          345
+     341: bipush        9
+     343: istore        12
+     345: iload         12
+     347: tableswitch   { // 0 to 9
+                     0: 400
+                     1: 400
+                     2: 400
+                     3: 400
+                     4: 400
+                     5: 407
+                     6: 434
+                     7: 451
+                     8: 481
+                     9: 513
+               default: 612
+          }
+     400: aload         8
+     402: astore        10
+     404: goto          632
+     407: aload_0
+     408: aload         8
+     410: aload         9
+     412: invokevirtual #101                // Method getAddSubResultWidth:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)I
+     415: aload         8
+     417: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     420: aload         9
+     422: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     425: ior
+     426: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     429: astore        10
+     431: goto          632
+     434: aload_0
+     435: aload         8
+     437: aload         9
+     439: invokevirtual #101                // Method getAddSubResultWidth:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)I
+     442: iconst_1
+     443: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     446: astore        10
+     448: goto          632
+     451: aload         8
+     453: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     456: aload         9
+     458: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     461: iadd
+     462: aload         8
+     464: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     467: aload         9
+     469: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     472: ior
+     473: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     476: astore        10
+     478: goto          632
+     481: aload         8
+     483: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     486: aload         9
+     488: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     491: ifeq          498
+     494: iconst_1
+     495: goto          499
+     498: iconst_0
+     499: iadd
+     500: aload         8
+     502: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     505: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     508: astore        10
+     510: goto          632
+     513: aload         8
+     515: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     518: aload         9
+     520: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     523: if_icmpne     552
+     526: aload         8
+     528: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     531: aload         9
+     533: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     536: invokestatic  #109                // Method java/lang/Math.min:(II)I
+     539: aload         8
+     541: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     544: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     547: astore        10
+     549: goto          632
+     552: aload         8
+     554: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+     557: ifeq          584
+     560: aload         8
+     562: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     565: aload         9
+     567: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     570: iconst_1
+     571: iadd
+     572: invokestatic  #109                // Method java/lang/Math.min:(II)I
+     575: iconst_1
+     576: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     579: astore        10
+     581: goto          632
+     584: aload         8
+     586: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     589: iconst_1
+     590: aload         9
+     592: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     595: iconst_1
+     596: isub
+     597: invokestatic  #35                 // Method java/lang/Math.max:(II)I
+     600: invokestatic  #109                // Method java/lang/Math.min:(II)I
+     603: iconst_0
+     604: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     607: astore        10
+     609: goto          632
+     612: getstatic     #112                // Field $assertionsDisabled:Z
+     615: ifne          632
+     618: new           #115                // class java/lang/AssertionError
+     621: dup
+     622: aload_3
+     623: invokedynamic #117,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     628: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+     631: athrow
+     632: aload_0
+     633: getstatic     #124                // Field binaryOperatorMap:Ljava/util/Map;
+     636: aload         7
+     638: invokeinterface #128,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     643: checkcast     #61                 // class java/lang/String
+     646: aload         10
+     648: aload         6
+     650: aload         5
+     652: invokevirtual #134                // Method emitBinaryOp:(Ljava/lang/String;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     655: astore        5
+     657: new           #138                // class de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch
+     660: dup
+     661: aload_0
+     662: aload         5
+     664: invokespecial #140                // Method de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch."<init>":(Lde/tudarmstadt/esa/treenail/codegen/ExpressionSwitch;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)V
+     667: aload_2
+     668: invokevirtual #143                // Method de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch.doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+     671: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+     674: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseIntegerConstant(com.minres.coredsl.coreDsl.IntegerConstant);
+    Code:
+       0: aload_0
+       1: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+       4: aload_1
+       5: invokevirtual #144                // Method com/minres/coredsl/analysis/AnalysisContext.getExpressionType:(Lcom/minres/coredsl/coreDsl/Expression;)Lcom/minres/coredsl/type/CoreDslType;
+       8: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      11: astore_2
+      12: aload_0
+      13: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      16: aload_1
+      17: aload_2
+      18: invokevirtual #154                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getConstantValue:(Lcom/minres/coredsl/coreDsl/Expression;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Ljava/math/BigInteger;
+      21: astore_3
+      22: aload_0
+      23: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      26: aload_3
+      27: aload_2
+      28: invokevirtual #158                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeConst:(Ljava/math/BigInteger;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      31: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseEntityReference(com.minres.coredsl.coreDsl.EntityReference);
+    Code:
+       0: aload_1
+       1: invokeinterface #162,  1          // InterfaceMethod com/minres/coredsl/coreDsl/EntityReference.getTarget:()Lcom/minres/coredsl/coreDsl/NamedEntity;
+       6: astore_2
+       7: aload_0
+       8: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      11: aload_2
+      12: invokevirtual #167                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.hasValue:(Lcom/minres/coredsl/coreDsl/NamedEntity;)Z
+      15: ifeq          27
+      18: aload_0
+      19: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      22: aload_2
+      23: invokevirtual #171                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getValue:(Lcom/minres/coredsl/coreDsl/NamedEntity;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      26: areturn
+      27: aload_0
+      28: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      31: aload_2
+      32: invokevirtual #174                // Method com/minres/coredsl/analysis/AnalysisContext.getDeclaredType:(Lcom/minres/coredsl/coreDsl/NamedEntity;)Lcom/minres/coredsl/type/CoreDslType;
+      35: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      38: astore_3
+      39: aload_0
+      40: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      43: aload_3
+      44: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      47: astore        4
+      49: aload_0
+      50: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      53: ldc           #182                // String %s = coredsl.get @%s : %s
+      55: iconst_3
+      56: anewarray     #184                // class java/lang/Object
+      59: dup
+      60: iconst_0
+      61: aload         4
+      63: aastore
+      64: dup
+      65: iconst_1
+      66: aload_2
+      67: invokeinterface #186,  1          // InterfaceMethod com/minres/coredsl/coreDsl/NamedEntity.getName:()Ljava/lang/String;
+      72: aastore
+      73: dup
+      74: iconst_2
+      75: aload_3
+      76: aastore
+      77: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+      80: aload         4
+      82: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseIndexAccessExpression(com.minres.coredsl.coreDsl.IndexAccessExpression);
+    Code:
+       0: aload_0
+       1: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+       4: aload_1
+       5: invokevirtual #144                // Method com/minres/coredsl/analysis/AnalysisContext.getExpressionType:(Lcom/minres/coredsl/coreDsl/Expression;)Lcom/minres/coredsl/type/CoreDslType;
+       8: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      11: astore_2
+      12: aload_0
+      13: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      16: aload_1
+      17: invokeinterface #195,  1          // InterfaceMethod com/minres/coredsl/coreDsl/IndexAccessExpression.getTarget:()Lcom/minres/coredsl/coreDsl/Expression;
+      22: invokevirtual #144                // Method com/minres/coredsl/analysis/AnalysisContext.getExpressionType:(Lcom/minres/coredsl/coreDsl/Expression;)Lcom/minres/coredsl/type/CoreDslType;
+      25: astore_3
+      26: aload_0
+      27: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      30: aload_2
+      31: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      34: astore        4
+      36: aload_1
+      37: invokeinterface #198,  1          // InterfaceMethod com/minres/coredsl/coreDsl/IndexAccessExpression.getIndex:()Lcom/minres/coredsl/coreDsl/Expression;
+      42: aload_1
+      43: invokeinterface #201,  1          // InterfaceMethod com/minres/coredsl/coreDsl/IndexAccessExpression.getEndIndex:()Lcom/minres/coredsl/coreDsl/Expression;
+      48: aload_3
+      49: aload_0
+      50: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      53: aload_0
+      54: invokestatic  #204                // Method de/tudarmstadt/esa/treenail/codegen/RangeAnalyzer.analyze:(Lcom/minres/coredsl/coreDsl/Expression;Lcom/minres/coredsl/coreDsl/Expression;Lcom/minres/coredsl/type/CoreDslType;Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;Lde/tudarmstadt/esa/treenail/codegen/ExpressionSwitch;)Lde/tudarmstadt/esa/treenail/codegen/RangeAnalyzer$RangeResult;
+      57: astore        5
+      59: aload_3
+      60: invokevirtual #210                // Method com/minres/coredsl/type/CoreDslType.isIntegerType:()Z
+      63: ifeq          124
+      66: aload_0
+      67: aload_1
+      68: invokeinterface #195,  1          // InterfaceMethod com/minres/coredsl/coreDsl/IndexAccessExpression.getTarget:()Lcom/minres/coredsl/coreDsl/Expression;
+      73: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      76: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      79: astore        6
+      81: aload_0
+      82: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      85: ldc           #216                // String %s = coredsl.bitextract %s[%s] : (%s) -> %s
+      87: iconst_5
+      88: anewarray     #184                // class java/lang/Object
+      91: dup
+      92: iconst_0
+      93: aload         4
+      95: aastore
+      96: dup
+      97: iconst_1
+      98: aload         6
+     100: aastore
+     101: dup
+     102: iconst_2
+     103: aload         5
+     105: aastore
+     106: dup
+     107: iconst_3
+     108: aload         6
+     110: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     113: aastore
+     114: dup
+     115: iconst_4
+     116: aload_2
+     117: aastore
+     118: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+     121: aload         4
+     123: areturn
+     124: getstatic     #112                // Field $assertionsDisabled:Z
+     127: ifne          145
+     130: aload_3
+     131: invokevirtual #218                // Method com/minres/coredsl/type/CoreDslType.isAddressSpaceType:()Z
+     134: ifne          145
+     137: new           #115                // class java/lang/AssertionError
+     140: dup
+     141: invokespecial #221                // Method java/lang/AssertionError."<init>":()V
+     144: athrow
+     145: getstatic     #112                // Field $assertionsDisabled:Z
+     148: ifne          173
+     151: aload_1
+     152: invokeinterface #195,  1          // InterfaceMethod com/minres/coredsl/coreDsl/IndexAccessExpression.getTarget:()Lcom/minres/coredsl/coreDsl/Expression;
+     157: instanceof    #163                // class com/minres/coredsl/coreDsl/EntityReference
+     160: ifne          173
+     163: new           #115                // class java/lang/AssertionError
+     166: dup
+     167: ldc           #222                // String NYI: Element access into a temporary object
+     169: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+     172: athrow
+     173: aload_1
+     174: invokeinterface #195,  1          // InterfaceMethod com/minres/coredsl/coreDsl/IndexAccessExpression.getTarget:()Lcom/minres/coredsl/coreDsl/Expression;
+     179: checkcast     #163                // class com/minres/coredsl/coreDsl/EntityReference
+     182: invokeinterface #162,  1          // InterfaceMethod com/minres/coredsl/coreDsl/EntityReference.getTarget:()Lcom/minres/coredsl/coreDsl/NamedEntity;
+     187: astore        6
+     189: getstatic     #112                // Field $assertionsDisabled:Z
+     192: ifne          217
+     195: aload_0
+     196: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     199: aload         6
+     201: invokevirtual #167                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.hasValue:(Lcom/minres/coredsl/coreDsl/NamedEntity;)Z
+     204: ifeq          217
+     207: new           #115                // class java/lang/AssertionError
+     210: dup
+     211: ldc           #224                // String NYI: Element access into local arrays
+     213: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+     216: athrow
+     217: aload_0
+     218: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     221: ldc           #226                // String %s = coredsl.get @%s[%s] : %s
+     223: iconst_4
+     224: anewarray     #184                // class java/lang/Object
+     227: dup
+     228: iconst_0
+     229: aload         4
+     231: aastore
+     232: dup
+     233: iconst_1
+     234: aload         6
+     236: invokeinterface #186,  1          // InterfaceMethod com/minres/coredsl/coreDsl/NamedEntity.getName:()Ljava/lang/String;
+     241: aastore
+     242: dup
+     243: iconst_2
+     244: aload         5
+     246: aastore
+     247: dup
+     248: iconst_3
+     249: aload_2
+     250: aastore
+     251: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+     254: aload         4
+     256: areturn
+
+  private static java.util.AbstractMap$SimpleEntry<java.lang.String, java.lang.String> m(java.lang.String, java.lang.String);
+    Code:
+       0: new           #228                // class java/util/AbstractMap$SimpleEntry
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: invokespecial #230                // Method java/util/AbstractMap$SimpleEntry."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+       9: areturn
+
+  private de.tudarmstadt.esa.treenail.codegen.MLIRValue emitBinaryOp(java.lang.String, de.tudarmstadt.esa.treenail.codegen.MLIRType, de.tudarmstadt.esa.treenail.codegen.MLIRValue, de.tudarmstadt.esa.treenail.codegen.MLIRValue);
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+       4: aload_2
+       5: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       8: astore        5
+      10: aload_1
+      11: ldc           #233                // String hwarith.icmp
+      13: invokevirtual #235                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      16: istore        6
+      18: aload_1
+      19: ldc           #239                // String hwarith.
+      21: invokevirtual #235                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      24: ifeq          91
+      27: iload         6
+      29: ifne          91
+      32: aload_0
+      33: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      36: ldc           #241                // String %s = %s %s, %s : (%s, %s) -> %s
+      38: bipush        7
+      40: anewarray     #184                // class java/lang/Object
+      43: dup
+      44: iconst_0
+      45: aload         5
+      47: aastore
+      48: dup
+      49: iconst_1
+      50: aload_1
+      51: aastore
+      52: dup
+      53: iconst_2
+      54: aload_3
+      55: aastore
+      56: dup
+      57: iconst_3
+      58: aload         4
+      60: aastore
+      61: dup
+      62: iconst_4
+      63: aload_3
+      64: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      67: aastore
+      68: dup
+      69: iconst_5
+      70: aload         4
+      72: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      75: aastore
+      76: dup
+      77: bipush        6
+      79: aload         5
+      81: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      84: aastore
+      85: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+      88: goto          186
+      91: iload         6
+      93: ifeq          107
+      96: aload_0
+      97: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     100: aload_2
+     101: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     104: goto          109
+     107: aload         5
+     109: astore        7
+     111: aload_0
+     112: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     115: ldc           #243                // String %s = %s %s, %s : %s, %s
+     117: bipush        6
+     119: anewarray     #184                // class java/lang/Object
+     122: dup
+     123: iconst_0
+     124: aload         7
+     126: aastore
+     127: dup
+     128: iconst_1
+     129: aload_1
+     130: aastore
+     131: dup
+     132: iconst_2
+     133: aload_3
+     134: aastore
+     135: dup
+     136: iconst_3
+     137: aload         4
+     139: aastore
+     140: dup
+     141: iconst_4
+     142: aload_3
+     143: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     146: aastore
+     147: dup
+     148: iconst_5
+     149: aload         4
+     151: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     154: aastore
+     155: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+     158: iload         6
+     160: ifeq          186
+     163: aload_0
+     164: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     167: ldc           #245                // String %s = hwarith.cast %s : (i1) -> ui1
+     169: iconst_2
+     170: anewarray     #184                // class java/lang/Object
+     173: dup
+     174: iconst_0
+     175: aload         5
+     177: aastore
+     178: dup
+     179: iconst_1
+     180: aload         7
+     182: aastore
+     183: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+     186: aload         5
+     188: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseInfixExpression(com.minres.coredsl.coreDsl.InfixExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #247,  1          // InterfaceMethod com/minres/coredsl/coreDsl/InfixExpression.getLeft:()Lcom/minres/coredsl/coreDsl/Expression;
+       7: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      10: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      13: astore_2
+      14: aload_0
+      15: aload_1
+      16: invokeinterface #252,  1          // InterfaceMethod com/minres/coredsl/coreDsl/InfixExpression.getRight:()Lcom/minres/coredsl/coreDsl/Expression;
+      21: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      24: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      27: astore_3
+      28: aload_0
+      29: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      32: aload_1
+      33: invokevirtual #144                // Method com/minres/coredsl/analysis/AnalysisContext.getExpressionType:(Lcom/minres/coredsl/coreDsl/Expression;)Lcom/minres/coredsl/type/CoreDslType;
+      36: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      39: astore        4
+      41: aload_1
+      42: invokeinterface #255,  1          // InterfaceMethod com/minres/coredsl/coreDsl/InfixExpression.getOperator:()Ljava/lang/String;
+      47: astore        5
+      49: getstatic     #124                // Field binaryOperatorMap:Ljava/util/Map;
+      52: aload         5
+      54: invokeinterface #128,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      59: checkcast     #61                 // class java/lang/String
+      62: astore        6
+      64: getstatic     #112                // Field $assertionsDisabled:Z
+      67: ifne          90
+      70: aload         6
+      72: ifnonnull     90
+      75: new           #115                // class java/lang/AssertionError
+      78: dup
+      79: aload         5
+      81: invokedynamic #256,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      86: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+      89: athrow
+      90: ldc_w         #257                // String &&
+      93: aload         5
+      95: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      98: ifne          112
+     101: ldc_w         #259                // String ||
+     104: aload         5
+     106: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     109: ifeq          125
+     112: getstatic     #261                // Field java/lang/System.err:Ljava/io/PrintStream;
+     115: aload         5
+     117: invokedynamic #267,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     122: invokevirtual #268                // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     125: aload_0
+     126: aload         6
+     128: aload         4
+     130: aload_2
+     131: aload_3
+     132: invokevirtual #134                // Method emitBinaryOp:(Ljava/lang/String;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     135: areturn
+
+  private de.tudarmstadt.esa.treenail.codegen.MLIRValue emitIncrementOrDecrement(de.tudarmstadt.esa.treenail.codegen.MLIRValue, boolean);
+    Code:
+       0: aload_1
+       1: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+       4: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+       7: iconst_1
+       8: iadd
+       9: aload_1
+      10: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      13: getfield      #25                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.isSigned:Z
+      16: ifne          23
+      19: iload_2
+      20: ifeq          27
+      23: iconst_1
+      24: goto          28
+      27: iconst_0
+      28: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      31: astore_3
+      32: aload_0
+      33: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      36: getstatic     #274                // Field java/math/BigInteger.ONE:Ljava/math/BigInteger;
+      39: iconst_1
+      40: iconst_0
+      41: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      44: invokevirtual #158                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeConst:(Ljava/math/BigInteger;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      47: astore        4
+      49: aload_0
+      50: getstatic     #124                // Field binaryOperatorMap:Ljava/util/Map;
+      53: iload_2
+      54: ifeq          62
+      57: ldc           #93                 // String -
+      59: goto          64
+      62: ldc           #91                 // String +
+      64: invokeinterface #128,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      69: checkcast     #61                 // class java/lang/String
+      72: aload_3
+      73: aload_1
+      74: aload         4
+      76: invokevirtual #134                // Method emitBinaryOp:(Ljava/lang/String;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      79: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue casePrefixExpression(com.minres.coredsl.coreDsl.PrefixExpression);
+    Code:
+       0: aload_1
+       1: invokeinterface #280,  1          // InterfaceMethod com/minres/coredsl/coreDsl/PrefixExpression.getOperator:()Ljava/lang/String;
+       6: astore_2
+       7: aload_1
+       8: invokeinterface #283,  1          // InterfaceMethod com/minres/coredsl/coreDsl/PrefixExpression.getOperand:()Lcom/minres/coredsl/coreDsl/Expression;
+      13: astore_3
+      14: aload_0
+      15: aload_3
+      16: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      19: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      22: astore        4
+      24: getstatic     #286                // Field unaryOperatorMap:Ljava/util/Map;
+      27: aload_2
+      28: invokeinterface #289,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+      33: ifeq          89
+      36: aload_0
+      37: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      40: getstatic     #292                // Field java/math/BigInteger.ZERO:Ljava/math/BigInteger;
+      43: iconst_1
+      44: iconst_0
+      45: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      48: invokevirtual #158                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeConst:(Ljava/math/BigInteger;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      51: astore        5
+      53: aload_0
+      54: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      57: aload_1
+      58: invokevirtual #144                // Method com/minres/coredsl/analysis/AnalysisContext.getExpressionType:(Lcom/minres/coredsl/coreDsl/Expression;)Lcom/minres/coredsl/type/CoreDslType;
+      61: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      64: astore        6
+      66: aload_0
+      67: getstatic     #286                // Field unaryOperatorMap:Ljava/util/Map;
+      70: aload_2
+      71: invokeinterface #128,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      76: checkcast     #61                 // class java/lang/String
+      79: aload         6
+      81: aload         5
+      83: aload         4
+      85: invokevirtual #134                // Method emitBinaryOp:(Ljava/lang/String;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      88: areturn
+      89: getstatic     #112                // Field $assertionsDisabled:Z
+      92: ifne          126
+      95: ldc_w         #295                // String ++
+      98: aload_2
+      99: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     102: ifne          126
+     105: ldc_w         #297                // String --
+     108: aload_2
+     109: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     112: ifne          126
+     115: new           #115                // class java/lang/AssertionError
+     118: dup
+     119: ldc_w         #299                // String Prefix expression is neither increment nor decrement
+     122: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+     125: athrow
+     126: aload_0
+     127: aload         4
+     129: ldc_w         #297                // String --
+     132: aload_2
+     133: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     136: invokevirtual #301                // Method emitIncrementOrDecrement:(Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Z)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     139: astore        5
+     141: new           #138                // class de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch
+     144: dup
+     145: aload_0
+     146: aload         5
+     148: invokespecial #140                // Method de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch."<init>":(Lde/tudarmstadt/esa/treenail/codegen/ExpressionSwitch;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)V
+     151: aload_3
+     152: invokevirtual #143                // Method de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch.doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+     155: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+     158: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue casePostfixExpression(com.minres.coredsl.coreDsl.PostfixExpression);
+    Code:
+       0: aload_1
+       1: invokeinterface #305,  1          // InterfaceMethod com/minres/coredsl/coreDsl/PostfixExpression.getOperator:()Ljava/lang/String;
+       6: astore_2
+       7: getstatic     #112                // Field $assertionsDisabled:Z
+      10: ifne          47
+      13: ldc_w         #295                // String ++
+      16: aload_2
+      17: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      20: ifne          47
+      23: ldc_w         #297                // String --
+      26: aload_2
+      27: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      30: ifne          47
+      33: new           #115                // class java/lang/AssertionError
+      36: dup
+      37: aload_2
+      38: invokedynamic #308,  0            // InvokeDynamic #3:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      43: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+      46: athrow
+      47: aload_1
+      48: invokeinterface #309,  1          // InterfaceMethod com/minres/coredsl/coreDsl/PostfixExpression.getOperand:()Lcom/minres/coredsl/coreDsl/Expression;
+      53: astore_3
+      54: aload_0
+      55: aload_3
+      56: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      59: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      62: astore        4
+      64: aload_0
+      65: aload         4
+      67: ldc_w         #297                // String --
+      70: aload_2
+      71: invokevirtual #79                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      74: invokevirtual #301                // Method emitIncrementOrDecrement:(Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Z)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      77: astore        5
+      79: new           #138                // class de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch
+      82: dup
+      83: aload_0
+      84: aload         5
+      86: invokespecial #140                // Method de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch."<init>":(Lde/tudarmstadt/esa/treenail/codegen/ExpressionSwitch;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)V
+      89: aload_3
+      90: invokevirtual #143                // Method de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch$StoreSwitch.doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      93: pop
+      94: aload         4
+      96: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseConcatenationExpression(com.minres.coredsl.coreDsl.ConcatenationExpression);
+    Code:
+       0: aload_1
+       1: invokeinterface #310,  1          // InterfaceMethod com/minres/coredsl/coreDsl/ConcatenationExpression.getParts:()Lorg/eclipse/emf/common/util/EList;
+       6: astore_2
+       7: getstatic     #112                // Field $assertionsDisabled:Z
+      10: ifne          31
+      13: aload_2
+      14: invokeinterface #316,  1          // InterfaceMethod org/eclipse/emf/common/util/EList.size:()I
+      19: iconst_2
+      20: if_icmpge     31
+      23: new           #115                // class java/lang/AssertionError
+      26: dup
+      27: invokespecial #221                // Method java/lang/AssertionError."<init>":()V
+      30: athrow
+      31: aload_0
+      32: aload_2
+      33: iconst_0
+      34: invokeinterface #321,  2          // InterfaceMethod org/eclipse/emf/common/util/EList.get:(I)Ljava/lang/Object;
+      39: checkcast     #324                // class org/eclipse/emf/ecore/EObject
+      42: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      45: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      48: astore_3
+      49: iconst_1
+      50: istore        4
+      52: iload         4
+      54: aload_2
+      55: invokeinterface #316,  1          // InterfaceMethod org/eclipse/emf/common/util/EList.size:()I
+      60: if_icmpge     120
+      63: aload_0
+      64: aload_2
+      65: iload         4
+      67: invokeinterface #321,  2          // InterfaceMethod org/eclipse/emf/common/util/EList.get:(I)Ljava/lang/Object;
+      72: checkcast     #324                // class org/eclipse/emf/ecore/EObject
+      75: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      78: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      81: astore        5
+      83: aload_0
+      84: ldc_w         #326                // String coredsl.concat
+      87: aload_3
+      88: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      91: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+      94: aload         5
+      96: getfield      #70                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRValue.type:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      99: getfield      #31                 // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.width:I
+     102: iadd
+     103: iconst_0
+     104: invokestatic  #105                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.getType:(IZ)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     107: aload_3
+     108: aload         5
+     110: invokevirtual #134                // Method emitBinaryOp:(Ljava/lang/String;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     113: astore_3
+     114: iinc          4, 1
+     117: goto          52
+     120: aload_3
+     121: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseConditionalExpression(com.minres.coredsl.coreDsl.ConditionalExpression);
+    Code:
+       0: aload_0
+       1: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+       4: aload_1
+       5: invokevirtual #144                // Method com/minres/coredsl/analysis/AnalysisContext.getExpressionType:(Lcom/minres/coredsl/coreDsl/Expression;)Lcom/minres/coredsl/type/CoreDslType;
+       8: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      11: astore_2
+      12: aload_0
+      13: aload_1
+      14: invokeinterface #328,  1          // InterfaceMethod com/minres/coredsl/coreDsl/ConditionalExpression.getCondition:()Lcom/minres/coredsl/coreDsl/Expression;
+      19: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      22: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      25: astore_3
+      26: aload_0
+      27: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      30: aload_3
+      31: invokevirtual #333                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeI1Cast:(Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      34: astore        4
+      36: aload_0
+      37: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      40: invokevirtual #337                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getValues:()Ljava/util/Map;
+      43: astore        5
+      45: aload_0
+      46: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      49: invokevirtual #341                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getCounter:()I
+      52: istore        6
+      54: new           #10                 // class de/tudarmstadt/esa/treenail/codegen/ConstructionContext
+      57: dup
+      58: new           #344                // class java/util/LinkedHashMap
+      61: dup
+      62: aload         5
+      64: invokespecial #346                // Method java/util/LinkedHashMap."<init>":(Ljava/util/Map;)V
+      67: new           #349                // class java/util/concurrent/atomic/AtomicInteger
+      70: dup
+      71: iload         6
+      73: invokespecial #351                // Method java/util/concurrent/atomic/AtomicInteger."<init>":(I)V
+      76: aload_0
+      77: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      80: new           #354                // class java/lang/StringBuilder
+      83: dup
+      84: invokespecial #356                // Method java/lang/StringBuilder."<init>":()V
+      87: invokespecial #357                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext."<init>":(Ljava/util/Map;Ljava/util/concurrent/atomic/AtomicInteger;Lcom/minres/coredsl/analysis/AnalysisContext;Ljava/lang/StringBuilder;)V
+      90: astore        7
+      92: new           #10                 // class de/tudarmstadt/esa/treenail/codegen/ConstructionContext
+      95: dup
+      96: new           #344                // class java/util/LinkedHashMap
+      99: dup
+     100: aload         5
+     102: invokespecial #346                // Method java/util/LinkedHashMap."<init>":(Ljava/util/Map;)V
+     105: new           #349                // class java/util/concurrent/atomic/AtomicInteger
+     108: dup
+     109: iload         6
+     111: invokespecial #351                // Method java/util/concurrent/atomic/AtomicInteger."<init>":(I)V
+     114: aload_0
+     115: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+     118: new           #354                // class java/lang/StringBuilder
+     121: dup
+     122: invokespecial #356                // Method java/lang/StringBuilder."<init>":()V
+     125: invokespecial #357                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext."<init>":(Ljava/util/Map;Ljava/util/concurrent/atomic/AtomicInteger;Lcom/minres/coredsl/analysis/AnalysisContext;Ljava/lang/StringBuilder;)V
+     128: astore        8
+     130: iconst_2
+     131: anewarray     #10                 // class de/tudarmstadt/esa/treenail/codegen/ConstructionContext
+     134: dup
+     135: iconst_0
+     136: aload         7
+     138: aastore
+     139: dup
+     140: iconst_1
+     141: aload         8
+     143: aastore
+     144: invokestatic  #360                // InterfaceMethod java/util/stream/Stream.of:([Ljava/lang/Object;)Ljava/util/stream/Stream;
+     147: iconst_2
+     148: anewarray     #366                // class com/minres/coredsl/coreDsl/Expression
+     151: dup
+     152: iconst_0
+     153: aload_1
+     154: invokeinterface #368,  1          // InterfaceMethod com/minres/coredsl/coreDsl/ConditionalExpression.getThenExpression:()Lcom/minres/coredsl/coreDsl/Expression;
+     159: aastore
+     160: dup
+     161: iconst_1
+     162: aload_1
+     163: invokeinterface #371,  1          // InterfaceMethod com/minres/coredsl/coreDsl/ConditionalExpression.getElseExpression:()Lcom/minres/coredsl/coreDsl/Expression;
+     168: aastore
+     169: invokestatic  #360                // InterfaceMethod java/util/stream/Stream.of:([Ljava/lang/Object;)Ljava/util/stream/Stream;
+     172: aload_2
+     173: invokedynamic #374,  0            // InvokeDynamic #4:accept:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Ljava/util/function/BiConsumer;
+     178: invokestatic  #378                // Method com/google/common/collect/Streams.forEachPair:(Ljava/util/stream/Stream;Ljava/util/stream/Stream;Ljava/util/function/BiConsumer;)V
+     181: aload_0
+     182: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     185: aload_2
+     186: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     189: astore        9
+     191: aload_0
+     192: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     195: ldc_w         #384                // String %s = scf.if %s -> (%s) {\n%s} else {\n%s}
+     198: iconst_5
+     199: anewarray     #184                // class java/lang/Object
+     202: dup
+     203: iconst_0
+     204: aload         9
+     206: aastore
+     207: dup
+     208: iconst_1
+     209: aload         4
+     211: aastore
+     212: dup
+     213: iconst_2
+     214: aload_2
+     215: aastore
+     216: dup
+     217: iconst_3
+     218: aload         7
+     220: invokevirtual #386                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getStringBuilder:()Ljava/lang/StringBuilder;
+     223: invokevirtual #390                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     226: iconst_2
+     227: invokevirtual #393                // Method java/lang/String.indent:(I)Ljava/lang/String;
+     230: aastore
+     231: dup
+     232: iconst_4
+     233: aload         8
+     235: invokevirtual #386                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getStringBuilder:()Ljava/lang/StringBuilder;
+     238: invokevirtual #390                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     241: iconst_2
+     242: invokevirtual #393                // Method java/lang/String.indent:(I)Ljava/lang/String;
+     245: aastore
+     246: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+     249: aload         9
+     251: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseCastExpression(com.minres.coredsl.coreDsl.CastExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #397,  1          // InterfaceMethod com/minres/coredsl/coreDsl/CastExpression.getOperand:()Lcom/minres/coredsl/coreDsl/Expression;
+       7: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      10: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      13: astore_2
+      14: aload_0
+      15: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      18: aload_1
+      19: invokevirtual #144                // Method com/minres/coredsl/analysis/AnalysisContext.getExpressionType:(Lcom/minres/coredsl/coreDsl/Expression;)Lcom/minres/coredsl/type/CoreDslType;
+      22: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      25: astore_3
+      26: aload_0
+      27: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      30: aload_2
+      31: aload_3
+      32: invokevirtual #400                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeCast:(Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      35: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseParenthesisExpression(com.minres.coredsl.coreDsl.ParenthesisExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #404,  1          // InterfaceMethod com/minres/coredsl/coreDsl/ParenthesisExpression.getInner:()Lcom/minres/coredsl/coreDsl/Expression;
+       7: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      10: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      13: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue caseFunctionCallExpression(com.minres.coredsl.coreDsl.FunctionCallExpression);
+    Code:
+       0: aload_1
+       1: invokeinterface #409,  1          // InterfaceMethod com/minres/coredsl/coreDsl/FunctionCallExpression.getTarget:()Lcom/minres/coredsl/coreDsl/EntityReference;
+       6: astore_2
+       7: getstatic     #112                // Field $assertionsDisabled:Z
+      10: ifne          31
+      13: aload_2
+      14: instanceof    #163                // class com/minres/coredsl/coreDsl/EntityReference
+      17: ifne          31
+      20: new           #115                // class java/lang/AssertionError
+      23: dup
+      24: ldc_w         #414                // String Indirect call encountered
+      27: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+      30: athrow
+      31: aload_2
+      32: invokeinterface #162,  1          // InterfaceMethod com/minres/coredsl/coreDsl/EntityReference.getTarget:()Lcom/minres/coredsl/coreDsl/NamedEntity;
+      37: astore_3
+      38: getstatic     #112                // Field $assertionsDisabled:Z
+      41: ifne          59
+      44: aload_3
+      45: instanceof    #416                // class com/minres/coredsl/coreDsl/FunctionDefinition
+      48: ifne          59
+      51: new           #115                // class java/lang/AssertionError
+      54: dup
+      55: invokespecial #221                // Method java/lang/AssertionError."<init>":()V
+      58: athrow
+      59: aload_0
+      60: getfield      #15                 // Field ac:Lcom/minres/coredsl/analysis/AnalysisContext;
+      63: aload_3
+      64: checkcast     #416                // class com/minres/coredsl/coreDsl/FunctionDefinition
+      67: invokevirtual #418                // Method com/minres/coredsl/analysis/AnalysisContext.getFunctionSignature:(Lcom/minres/coredsl/coreDsl/FunctionDefinition;)Lcom/minres/coredsl/type/FunctionType;
+      70: astore        4
+      72: aload_1
+      73: invokeinterface #422,  1          // InterfaceMethod com/minres/coredsl/coreDsl/FunctionCallExpression.getArguments:()Lorg/eclipse/emf/common/util/EList;
+      78: invokeinterface #425,  1          // InterfaceMethod org/eclipse/emf/common/util/EList.stream:()Ljava/util/stream/Stream;
+      83: aload_0
+      84: invokedynamic #429,  0            // InvokeDynamic #5:apply:(Lde/tudarmstadt/esa/treenail/codegen/ExpressionSwitch;)Ljava/util/function/Function;
+      89: invokeinterface #433,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      94: invokeinterface #437,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+      99: astore        5
+     101: aload         4
+     103: invokevirtual #441                // Method com/minres/coredsl/type/FunctionType.getParamTypes:()Ljava/util/List;
+     106: invokeinterface #446,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     111: invokedynamic #449,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+     116: invokeinterface #433,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     121: invokeinterface #437,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+     126: astore        6
+     128: aload         5
+     130: invokeinterface #446,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     135: aload         6
+     137: invokeinterface #446,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     142: aload_0
+     143: invokedynamic #452,  0            // InvokeDynamic #7:apply:(Lde/tudarmstadt/esa/treenail/codegen/ExpressionSwitch;)Ljava/util/function/BiFunction;
+     148: invokestatic  #455                // Method com/google/common/collect/Streams.zip:(Ljava/util/stream/Stream;Ljava/util/stream/Stream;Ljava/util/function/BiFunction;)Ljava/util/stream/Stream;
+     151: invokedynamic #459,  0            // InvokeDynamic #8:apply:()Ljava/util/function/Function;
+     156: invokeinterface #433,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     161: ldc_w         #460                // String ,
+     164: invokestatic  #462                // Method java/util/stream/Collectors.joining:(Ljava/lang/CharSequence;)Ljava/util/stream/Collector;
+     167: invokeinterface #468,  2          // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+     172: checkcast     #61                 // class java/lang/String
+     175: astore        7
+     177: aload         6
+     179: invokeinterface #446,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     184: invokedynamic #472,  0            // InvokeDynamic #9:apply:()Ljava/util/function/Function;
+     189: invokeinterface #433,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     194: ldc_w         #460                // String ,
+     197: invokestatic  #462                // Method java/util/stream/Collectors.joining:(Ljava/lang/CharSequence;)Ljava/util/stream/Collector;
+     200: invokeinterface #468,  2          // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+     205: checkcast     #61                 // class java/lang/String
+     208: astore        8
+     210: aload         4
+     212: invokevirtual #473                // Method com/minres/coredsl/type/FunctionType.getReturnType:()Lcom/minres/coredsl/type/CoreDslType;
+     215: invokevirtual #477                // Method com/minres/coredsl/type/CoreDslType.isVoid:()Z
+     218: ifeq          265
+     221: aload_0
+     222: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     225: ldc_w         #480                // String func.call @%s(%s) : (%s) -> ()
+     228: iconst_3
+     229: anewarray     #184                // class java/lang/Object
+     232: dup
+     233: iconst_0
+     234: aload_3
+     235: invokeinterface #186,  1          // InterfaceMethod com/minres/coredsl/coreDsl/NamedEntity.getName:()Ljava/lang/String;
+     240: aastore
+     241: dup
+     242: iconst_1
+     243: aload         7
+     245: aastore
+     246: dup
+     247: iconst_2
+     248: aload         8
+     250: aastore
+     251: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+     254: aload_0
+     255: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     258: getstatic     #482                // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.DUMMY:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     261: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     264: areturn
+     265: aload         4
+     267: invokevirtual #473                // Method com/minres/coredsl/type/FunctionType.getReturnType:()Lcom/minres/coredsl/type/CoreDslType;
+     270: invokestatic  #150                // Method de/tudarmstadt/esa/treenail/codegen/MLIRType.mapType:(Lcom/minres/coredsl/type/CoreDslType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+     273: astore        9
+     275: aload_0
+     276: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     279: aload         9
+     281: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+     284: astore        10
+     286: aload_0
+     287: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+     290: ldc_w         #485                // String %s = func.call @%s(%s) : (%s) -> %s
+     293: iconst_5
+     294: anewarray     #184                // class java/lang/Object
+     297: dup
+     298: iconst_0
+     299: aload         10
+     301: aastore
+     302: dup
+     303: iconst_1
+     304: aload_3
+     305: invokeinterface #186,  1          // InterfaceMethod com/minres/coredsl/coreDsl/NamedEntity.getName:()Ljava/lang/String;
+     310: aastore
+     311: dup
+     312: iconst_2
+     313: aload         7
+     315: aastore
+     316: dup
+     317: iconst_3
+     318: aload         8
+     320: aastore
+     321: dup
+     322: iconst_4
+     323: aload         9
+     325: aastore
+     326: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+     329: aload         10
+     331: areturn
+
+  public de.tudarmstadt.esa.treenail.codegen.MLIRValue defaultCase(org.eclipse.emf.ecore.EObject);
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+       4: ldc_w         #487                // String // unhandled: %s
+       7: iconst_1
+       8: anewarray     #184                // class java/lang/Object
+      11: dup
+      12: iconst_0
+      13: aload_1
+      14: aastore
+      15: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+      18: aload_0
+      19: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+      22: getstatic     #482                // Field de/tudarmstadt/esa/treenail/codegen/MLIRType.DUMMY:Lde/tudarmstadt/esa/treenail/codegen/MLIRType;
+      25: invokevirtual #178                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeAnonymousValue:(Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      28: areturn
+
+  public java.lang.Object defaultCase(org.eclipse.emf.ecore.EObject);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #489                // Method defaultCase:(Lorg/eclipse/emf/ecore/EObject;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object casePostfixExpression(com.minres.coredsl.coreDsl.PostfixExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #493                // Method casePostfixExpression:(Lcom/minres/coredsl/coreDsl/PostfixExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseIndexAccessExpression(com.minres.coredsl.coreDsl.IndexAccessExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #497                // Method caseIndexAccessExpression:(Lcom/minres/coredsl/coreDsl/IndexAccessExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object casePrefixExpression(com.minres.coredsl.coreDsl.PrefixExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #501                // Method casePrefixExpression:(Lcom/minres/coredsl/coreDsl/PrefixExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseCastExpression(com.minres.coredsl.coreDsl.CastExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #505                // Method caseCastExpression:(Lcom/minres/coredsl/coreDsl/CastExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseInfixExpression(com.minres.coredsl.coreDsl.InfixExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #509                // Method caseInfixExpression:(Lcom/minres/coredsl/coreDsl/InfixExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseConcatenationExpression(com.minres.coredsl.coreDsl.ConcatenationExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #513                // Method caseConcatenationExpression:(Lcom/minres/coredsl/coreDsl/ConcatenationExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseConditionalExpression(com.minres.coredsl.coreDsl.ConditionalExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #517                // Method caseConditionalExpression:(Lcom/minres/coredsl/coreDsl/ConditionalExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseAssignmentExpression(com.minres.coredsl.coreDsl.AssignmentExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #521                // Method caseAssignmentExpression:(Lcom/minres/coredsl/coreDsl/AssignmentExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseIntegerConstant(com.minres.coredsl.coreDsl.IntegerConstant);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #525                // Method caseIntegerConstant:(Lcom/minres/coredsl/coreDsl/IntegerConstant;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseFunctionCallExpression(com.minres.coredsl.coreDsl.FunctionCallExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #529                // Method caseFunctionCallExpression:(Lcom/minres/coredsl/coreDsl/FunctionCallExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseEntityReference(com.minres.coredsl.coreDsl.EntityReference);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #533                // Method caseEntityReference:(Lcom/minres/coredsl/coreDsl/EntityReference;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  public java.lang.Object caseParenthesisExpression(com.minres.coredsl.coreDsl.ParenthesisExpression);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #537                // Method caseParenthesisExpression:(Lcom/minres/coredsl/coreDsl/ParenthesisExpression;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       5: areturn
+
+  private de.tudarmstadt.esa.treenail.codegen.MLIRValue lambda$caseFunctionCallExpression$1(de.tudarmstadt.esa.treenail.codegen.MLIRValue, de.tudarmstadt.esa.treenail.codegen.MLIRType);
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field cc:Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;
+       4: aload_1
+       5: aload_2
+       6: invokevirtual #400                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeCast:(Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+       9: areturn
+
+  private static void lambda$caseConditionalExpression$0(de.tudarmstadt.esa.treenail.codegen.MLIRType, de.tudarmstadt.esa.treenail.codegen.ConstructionContext, com.minres.coredsl.coreDsl.Expression);
+    Code:
+       0: new           #16                 // class de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch
+       3: dup
+       4: aload_1
+       5: invokespecial #541                // Method "<init>":(Lde/tudarmstadt/esa/treenail/codegen/ConstructionContext;)V
+       8: aload_2
+       9: invokevirtual #54                 // Method doSwitch:(Lorg/eclipse/emf/ecore/EObject;)Ljava/lang/Object;
+      12: checkcast     #58                 // class de/tudarmstadt/esa/treenail/codegen/MLIRValue
+      15: astore_3
+      16: getstatic     #112                // Field $assertionsDisabled:Z
+      19: ifne          45
+      22: aload_1
+      23: invokevirtual #544                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.getUpdatedEntities:()Ljava/util/Set;
+      26: invokeinterface #548,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+      31: ifne          45
+      34: new           #115                // class java/lang/AssertionError
+      37: dup
+      38: ldc_w         #553                // String NYI: conditional expressions with side-effects
+      41: invokespecial #121                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+      44: athrow
+      45: aload_1
+      46: aload_3
+      47: aload_0
+      48: invokevirtual #400                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.makeCast:(Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;Lde/tudarmstadt/esa/treenail/codegen/MLIRType;)Lde/tudarmstadt/esa/treenail/codegen/MLIRValue;
+      51: astore        4
+      53: aload_1
+      54: ldc_w         #555                // String scf.yield %s : %s
+      57: iconst_2
+      58: anewarray     #184                // class java/lang/Object
+      61: dup
+      62: iconst_0
+      63: aload         4
+      65: aastore
+      66: dup
+      67: iconst_1
+      68: aload_0
+      69: aastore
+      70: invokevirtual #191                // Method de/tudarmstadt/esa/treenail/codegen/ConstructionContext.emitLn:(Ljava/lang/String;[Ljava/lang/Object;)V
+      73: return
+
+  static {};
+    Code:
+       0: ldc           #16                 // class de/tudarmstadt/esa/treenail/codegen/ExpressionSwitch
+       2: invokevirtual #557                // Method java/lang/Class.desiredAssertionStatus:()Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putstatic     #112                // Field $assertionsDisabled:Z
+      16: bipush        18
+      18: anewarray     #562                // class java/util/Map$Entry
+      21: dup
+      22: iconst_0
+      23: ldc           #91                 // String +
+      25: ldc_w         #564                // String hwarith.add
+      28: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+      31: aastore
+      32: dup
+      33: iconst_1
+      34: ldc           #93                 // String -
+      36: ldc_w         #570                // String hwarith.sub
+      39: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+      42: aastore
+      43: dup
+      44: iconst_2
+      45: ldc           #95                 // String *
+      47: ldc_w         #572                // String hwarith.mul
+      50: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+      53: aastore
+      54: dup
+      55: iconst_3
+      56: ldc           #97                 // String /
+      58: ldc_w         #574                // String hwarith.div
+      61: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+      64: aastore
+      65: dup
+      66: iconst_4
+      67: ldc           #99                 // String %
+      69: ldc_w         #576                // String coredsl.mod
+      72: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+      75: aastore
+      76: dup
+      77: iconst_5
+      78: ldc           #77                 // String &
+      80: ldc_w         #578                // String coredsl.and
+      83: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+      86: aastore
+      87: dup
+      88: bipush        6
+      90: ldc_w         #257                // String &&
+      93: ldc_w         #578                // String coredsl.and
+      96: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+      99: aastore
+     100: dup
+     101: bipush        7
+     103: ldc           #83                 // String |
+     105: ldc_w         #580                // String coredsl.or
+     108: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     111: aastore
+     112: dup
+     113: bipush        8
+     115: ldc_w         #259                // String ||
+     118: ldc_w         #580                // String coredsl.or
+     121: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     124: aastore
+     125: dup
+     126: bipush        9
+     128: ldc           #85                 // String ^
+     130: ldc_w         #582                // String coredsl.xor
+     133: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     136: aastore
+     137: dup
+     138: bipush        10
+     140: ldc           #87                 // String <<
+     142: ldc_w         #584                // String coredsl.shift_left
+     145: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     148: aastore
+     149: dup
+     150: bipush        11
+     152: ldc           #89                 // String >>
+     154: ldc_w         #586                // String coredsl.shift_right
+     157: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     160: aastore
+     161: dup
+     162: bipush        12
+     164: ldc_w         #588                // String ==
+     167: ldc_w         #590                // String hwarith.icmp eq
+     170: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     173: aastore
+     174: dup
+     175: bipush        13
+     177: ldc_w         #592                // String !=
+     180: ldc_w         #594                // String hwarith.icmp ne
+     183: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     186: aastore
+     187: dup
+     188: bipush        14
+     190: ldc_w         #596                // String <
+     193: ldc_w         #598                // String hwarith.icmp lt
+     196: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     199: aastore
+     200: dup
+     201: bipush        15
+     203: ldc_w         #600                // String <=
+     206: ldc_w         #602                // String hwarith.icmp le
+     209: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     212: aastore
+     213: dup
+     214: bipush        16
+     216: ldc_w         #604                // String >
+     219: ldc_w         #606                // String hwarith.icmp gt
+     222: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     225: aastore
+     226: dup
+     227: bipush        17
+     229: ldc_w         #608                // String >=
+     232: ldc_w         #610                // String hwarith.icmp ge
+     235: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     238: aastore
+     239: invokestatic  #612                // InterfaceMethod java/util/Map.ofEntries:([Ljava/util/Map$Entry;)Ljava/util/Map;
+     242: putstatic     #124                // Field binaryOperatorMap:Ljava/util/Map;
+     245: iconst_3
+     246: anewarray     #562                // class java/util/Map$Entry
+     249: dup
+     250: iconst_0
+     251: ldc           #93                 // String -
+     253: ldc_w         #570                // String hwarith.sub
+     256: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     259: aastore
+     260: dup
+     261: iconst_1
+     262: ldc_w         #616                // String !
+     265: ldc_w         #594                // String hwarith.icmp ne
+     268: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     271: aastore
+     272: dup
+     273: iconst_2
+     274: ldc_w         #618                // String ~
+     277: ldc_w         #582                // String coredsl.xor
+     280: invokestatic  #566                // Method m:(Ljava/lang/String;Ljava/lang/String;)Ljava/util/AbstractMap$SimpleEntry;
+     283: aastore
+     284: invokestatic  #612                // InterfaceMethod java/util/Map.ofEntries:([Ljava/util/Map$Entry;)Ljava/util/Map;
+     287: putstatic     #286                // Field unaryOperatorMap:Ljava/util/Map;
+     290: return
+}

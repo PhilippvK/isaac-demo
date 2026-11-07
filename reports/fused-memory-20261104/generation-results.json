@@ -1,0 +1,492 @@
+[
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_LB",
+    "kind": "addr",
+    "opcode": "LB",
+    "load": true,
+    "width": 8,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_LBU",
+    "kind": "addr",
+    "opcode": "LBU",
+    "load": true,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_LH",
+    "kind": "addr",
+    "opcode": "LH",
+    "load": true,
+    "width": 16,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_LHU",
+    "kind": "addr",
+    "opcode": "LHU",
+    "load": true,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_LW",
+    "kind": "addr",
+    "opcode": "LW",
+    "load": true,
+    "width": 32,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_LOADADD_LB",
+    "kind": "loadadd",
+    "opcode": "LB",
+    "load": true,
+    "width": 8,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_LOADADD_LBU",
+    "kind": "loadadd",
+    "opcode": "LBU",
+    "load": true,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_LOADADD_LH",
+    "kind": "loadadd",
+    "opcode": "LH",
+    "load": true,
+    "width": 16,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_LOADADD_LHU",
+    "kind": "loadadd",
+    "opcode": "LHU",
+    "load": true,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_LOADADD_LW",
+    "kind": "loadadd",
+    "opcode": "LW",
+    "load": true,
+    "width": 32,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_SB",
+    "kind": "addr",
+    "opcode": "SB",
+    "load": false,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_SH",
+    "kind": "addr",
+    "opcode": "SH",
+    "load": false,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_ADDR_SW",
+    "kind": "addr",
+    "opcode": "SW",
+    "load": false,
+    "width": 32,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_STOREXOR_SB",
+    "kind": "storexor",
+    "opcode": "SB",
+    "load": false,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_STOREXOR_SH",
+    "kind": "storexor",
+    "opcode": "SH",
+    "load": false,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 32,
+    "name": "MEM_STOREXOR_SW",
+    "kind": "storexor",
+    "opcode": "SW",
+    "load": false,
+    "width": 32,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_LB",
+    "kind": "addr",
+    "opcode": "LB",
+    "load": true,
+    "width": 8,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_LBU",
+    "kind": "addr",
+    "opcode": "LBU",
+    "load": true,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_LH",
+    "kind": "addr",
+    "opcode": "LH",
+    "load": true,
+    "width": 16,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_LHU",
+    "kind": "addr",
+    "opcode": "LHU",
+    "load": true,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_LW",
+    "kind": "addr",
+    "opcode": "LW",
+    "load": true,
+    "width": 32,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_LWU",
+    "kind": "addr",
+    "opcode": "LWU",
+    "load": true,
+    "width": 32,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_LD",
+    "kind": "addr",
+    "opcode": "LD",
+    "load": true,
+    "width": 64,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_LOADADD_LB",
+    "kind": "loadadd",
+    "opcode": "LB",
+    "load": true,
+    "width": 8,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_LOADADD_LBU",
+    "kind": "loadadd",
+    "opcode": "LBU",
+    "load": true,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_LOADADD_LH",
+    "kind": "loadadd",
+    "opcode": "LH",
+    "load": true,
+    "width": 16,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_LOADADD_LHU",
+    "kind": "loadadd",
+    "opcode": "LHU",
+    "load": true,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_LOADADD_LW",
+    "kind": "loadadd",
+    "opcode": "LW",
+    "load": true,
+    "width": 32,
+    "signed": true,
+    "operand_names": [
+      "rd",
+      "rs1",
+      "rs2"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_SB",
+    "kind": "addr",
+    "opcode": "SB",
+    "load": false,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_SH",
+    "kind": "addr",
+    "opcode": "SH",
+    "load": false,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_SW",
+    "kind": "addr",
+    "opcode": "SW",
+    "load": false,
+    "width": 32,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_ADDR_SD",
+    "kind": "addr",
+    "opcode": "SD",
+    "load": false,
+    "width": 64,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_STOREXOR_SB",
+    "kind": "storexor",
+    "opcode": "SB",
+    "load": false,
+    "width": 8,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_STOREXOR_SH",
+    "kind": "storexor",
+    "opcode": "SH",
+    "load": false,
+    "width": 16,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  },
+  {
+    "xlen": 64,
+    "name": "MEM_STOREXOR_SW",
+    "kind": "storexor",
+    "opcode": "SW",
+    "load": false,
+    "width": 32,
+    "signed": false,
+    "operand_names": [
+      "rs1",
+      "rs2",
+      "rs3"
+    ]
+  }
+]

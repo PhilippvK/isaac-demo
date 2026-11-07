@@ -1,0 +1,8 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000 DATE=20261105T120000 BENCH=crc32
+INFO - generate_cdsl - Generating CDSL...
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/combined_index.yml
+0it [00:00, ?it/s]116it [00:00, 4249.33it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/combined_index.yml
+0it [00:00, ?it/s]116it [00:00, 4697.19it/s]
+INFO:gen_utils:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/combined_index.yml
+0it [00:00, ?it/s]116it [00:00, 4504.58it/s]

@@ -1,0 +1,59 @@
+[
+  {
+    "mode": "dag",
+    "stages": [
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-mllvm",
+      "-debug-only=bbid-trace",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/pipeline-cases.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/pipeline-dag.o"
+    ]
+  },
+  {
+    "mode": "gisel",
+    "stages": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-mllvm",
+      "-debug-only=bbid-trace",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=1",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/pipeline-cases.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/pipeline-gisel.o"
+    ]
+  }
+]

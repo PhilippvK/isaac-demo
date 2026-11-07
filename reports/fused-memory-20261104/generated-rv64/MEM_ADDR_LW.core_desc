@@ -1,0 +1,25 @@
+import "RVI.core_desc"
+
+InstructionSet MySet extends RV64I {
+    instructions {
+        MEM_ADDR_LW {
+            operands: {
+                unsigned<5> rd [[is_reg]] [[reg_class="GPR"]] [[reg_type="s64"]] [[out]];
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s64"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s64"]] [[in]];
+            }
+            encoding: auto;
+            assembly: {"mem_addr_lw", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+            behavior: {
+                unsigned<64> rs1_val=X[rs1];
+                unsigned<64> rs2_val=X[rs2];
+                unsigned<64> _isaac_mem_addr_0 = (unsigned<64>)((unsigned<64>)(((signed<64>)rs1_val+(signed<64>)rs2_val))+(signed<64>)((0)));
+                unsigned<64> outp0=(unsigned<64>)((unsigned<64>)(signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]));
+                if (rd != 0) { X[rd]=outp0; }
+                
+            }
+        }
+        
+
+    }
+}

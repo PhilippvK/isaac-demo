@@ -1,0 +1,53 @@
+{
+  "recorded_date": "2026-11-04",
+  "llvm22_official_base": "ca7933e47d3a3451d81e72ac174dcb5aa28b59d1",
+  "source_revisions": {
+    ".": "a2e830367ab68b6e6549120f37e563931ecbae9a",
+    "llvm-project": "5cf1dcaad9f876fb463818f1f1094548b3fc64d0",
+    "llvm-project-22": "cb4d54f0690258cf39d92521691af8bdef62a079",
+    "isaac-toolkit": "5b9ec155a38f1aa787c6747cfe8ada50cf917e0b",
+    "seal5": "f8b4ab8f089be1c143b0100159671c1b5802aee4",
+    "M2-ISA-R": "59ba470011fafe5e814a2b9ca9504d8175fe25cc",
+    "M2-ISA-R-new": "3b9d165cffb9bd96076fe5426edcd9cffd4a3081",
+    "llvm-project-22/.seal5/deps/cdsl2llvm": "8cb68410c9fd7de62845494d5b029e924e451921"
+  },
+  "files": {
+    "cfg/seal5/llvm22-isaac.patch": "23ab48243989df9be5824218703430cd2e72d845cd1e8aba30495bbec514f826",
+    "docker/seal5_script_local.sh": "b686982a705228ab8bc28600723a97dbc7d7a59712420a9f1e982b2162214223",
+    "scripts/env.sh": "3cfa17db1ae1e632c81fbcd0ad86902b597efb6bad887580c8d14474daafcf0f",
+    "scripts/flow_seal5.sh": "ceaa63f6dbea5bcddeb5fdd53243970d927822249c618ab01eee36dc2744af6c",
+    "scripts/setup_llvm.sh": "880f1f1319db921b19c13fbdebed14a53bae33642a99fc873dbaf43c4fdec808",
+    "scripts/prepare_llvm22.sh": "149b0ee0454c92ab48e1a3bf782021ecb99f1ccb1bd4c5f93baf277b46491ddb",
+    "cfg/llvm22/sparse-patterns.txt": "4a21c1fd8e5dd6ae99c24de601315100772074ff8cd7755a8486f8ee6ee9613c",
+    "isaac-toolkit/isaac_toolkit/utils/llvm_bb_addr_map.py": "2c186804fa5be0aec88c4a6cf9131bcf0a488c3c854d40c77a5abf3df0def998",
+    "isaac-toolkit/isaac_toolkit/analysis/static/llvm_bbs.py": "6f0114603705d35d219fa002022bee85a6fc7965968dab2bad23903300a33efc",
+    "isaac-toolkit/tests/unit-tests/utils/test_llvm_bb_addr_map.py": "69a0598a18facf2d8e272c7df0026c799d370c8a2f539d1fb283c7d455e3c5d7",
+    "seal5/seal5/utils.py": "30cafede127b4161ec8327a351f9706c5f51a15e93a6b2a651d1f05ff0905c5d",
+    "seal5/seal5/flow.py": "b75bcc444b9e45d0a280695c0d1215a9f8fbce624b86c0e18e2c86d731c672c8",
+    "seal5/seal5/tools/llvm.py": "9ecc94afd6ca65a3dcf91fba8625a93925da7c78dce292c111bf9a8820591267",
+    "seal5/seal5/tools/cdsl2llvm.py": "81d665b66628d6f5abbc8b54530a905cef10a752ac3e934bcc78a3e929bfbd4e",
+    "seal5/seal5/backends/report/test_results/writer.py": "9917fad3e14e0bf30bc10ec4e5dd2cf834a00fecef48a79a79dc5f1186e0f5b4",
+    "seal5/tests/test_legalizer_split.py": "c5973cc685d6b6ef01de0ab4d07af09ce58e9e72f855820fbc7365b26512b4fe",
+    "seal5/tests/test_llvm_test_runner.py": "713a92ba6e87f3460a7bf892edf1cab04cc5b61d31d04a262fa6759defc0cedd",
+    "cfg/seal5/versions/llvm21.yml": "367e4b86936b1d1fbc50c6661f45ae2add75e3a8414963f6435f5989dc2a6de5",
+    "cfg/seal5/versions/llvm22.yml": "5073d94346a45f0cc56db356dd5cf7e5ae8202ddaef7baac713c9a4f69d4c928",
+    "cfg/seal5/versions/llvm20.yml": "9ec39ad8ef865a31a171cb1b7ab010ffb90d498d758c86b33a2af16f4bee7692",
+    "cfg/seal5/versions/llvm19.yml": "c325c6948492368e3226a4a9560f60a4ae8c51c6f714c7cc1c953a84f86b903c",
+    "reports/llvm22-port/seal5-working-tree.patch": "82941a42f357a21ec77c0b8297be0852d88c56ba06f286a6edde76fcf9bee7d8",
+    "reports/llvm22-port/isaac-toolkit-working-tree.patch": "9352e181d623f3831977e75697f7cd41028b4eef3d684663830395758bf1a5c9"
+  },
+  "binaries": {
+    "clang": {
+      "sha256": "8fc883a77ec881d48ccc1fd67c989a1d5f4d1eba9f87279e7eb1ed6a4e247063",
+      "version": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git cb4d54f0690258cf39d92521691af8bdef62a079)\nTarget: unknown\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin\nBuild config: +assertions\n"
+    },
+    "llc": {
+      "sha256": "e019abc25b718a849eea59b2833095dd1459c372cf729e2cac3b393c4cbc9531",
+      "version": "LLVM (http://llvm.org/):\n  LLVM version 22.1.8\n  Optimized build with assertions.\n  Default target: \n  Host CPU: skylake\n\n  Registered Targets:\n    riscv32   - 32-bit RISC-V\n    riscv32be - 32-bit big endian RISC-V\n    riscv64   - 64-bit RISC-V\n    riscv64be - 64-bit big endian RISC-V\n"
+    },
+    "llvm-objdump": {
+      "sha256": "a29a3456aaa3a5529040fac8018b74ef5bf7a439c15fbf20092e60c066645053",
+      "version": "LLVM (http://llvm.org/):\n  LLVM version 22.1.8\n  Optimized build with assertions.\n\n\n  Registered Targets:\n    riscv32   - 32-bit RISC-V\n    riscv32be - 32-bit big endian RISC-V\n    riscv64   - 64-bit RISC-V\n    riscv64be - 64-bit big endian RISC-V\n"
+    }
+  }
+}

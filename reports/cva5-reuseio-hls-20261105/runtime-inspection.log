@@ -1,0 +1,196 @@
+menu "Longnail HLS configuration"
+    depends on !SV_ENTRY_POINT && !NO_ISAX_ENTRY_POINT
+	config LN_CELL_LIBRARY
+		string "Longnail cell library"
+	choice
+		prompt "Longnail operator type model"
+		default LN_OPTY_NO_MODEL
+
+		config LN_OPTY_NO_MODEL
+			bool "No operator type model"
+
+		config LN_OPTY_OL2_MODEL
+			bool "OpenLANE 2 SKY130 operator type model"
+
+		config LN_OPTY_CUSTOM_MODEL
+			bool "Custom operator type model"
+
+		config LN_OPTY_CUSTOM_MODEL_PATH
+			depends on LN_OPTY_CUSTOM_MODEL
+			string "Custom operator type model path"
+	endchoice
+	config LN_CLOCK_PERIOD
+		string "Longnail target clock period"
+		default "20.0"
+	config LN_MAX_LOOP_UNROLL_FACTOR
+		int "Longnail max loop unroll factor"
+		default 16
+	config LN_SCHEDULE_TIMEOUT
+		int "Longnail scheduling timeout in seconds"
+		default 10
+	config LN_REFINE_TIMEOUT
+		int "Longnail schedule refinement timeout in seconds"
+		default 10
+
+	choice
+		prompt "ILP Solver"
+		default LN_SOLVER_USE_CBC
+
+		config LN_SOLVER_USE_CBC
+			bool "Use CBC"
+		config LN_SOLVER_USE_GLPK
+			bool "Use GLPK"
+		config LN_SOLVER_USE_SCIP
+			bool "Use SCIP"
+		config LN_SOLVER_USE_HIGHS
+			bool "Use HiGHS"
+		config LN_SOLVER_USE_GUROBI
+			bool "Use Gurobi (license required)"
+		# config LN_SOLVER_USE_CPLEX
+		# 	bool "Use CPLEX (license required)"
+		config LN_SOLVER_USE_XPRESS
+			bool "Use XPRESS (license required)"
+		config LN_SOLVER_USE_COPT
+			bool "Use COPT (license required)"
+	endchoice
+	config LN_FORCE_MIN_II_SOLUTIONS
+		bool "Longnail always use min II solution"
+		default n
+	config LN_PREDEFINED_SOLUTION_SELECTION
+		depends on !LN_FORCE_MIN_II_SOLUTIONS
+		string "Longnail apply predefined solution selection"
+	menu "Scheduling Algorithm"
+		config LN_SCHED_ALGO_MS
+			bool "Modulo Scheduling"
+			default n
+		config LN_SCHED_ALGO_PA
+			depends on LN_SCHED_ALGO_MS
+			bool "Predicate-aware"
+			default n
+		config LN_SCHED_ALGO_RA
+			depends on LN_SCHED_ALGO_MS
+			bool "Resource-aware"
+			default n
+		config LN_SCHED_ALGO_MI
+			depends on LN_SCHED_ALGO_MS
+			bool "Inter-Instruction sharing"
+			default n
+	endmenu
+	menu "Debugging"
+		config LN_ALWAYS_SHOW_OUTPUT
+			bool "Always show the full output of Longnail invocations"
+			default n
+		config LN_DEBUG_SCHEDULING
+			bool "Enable scheduling debug messages"
+			default n
+		config LN_VERBOSE_SCHEDULING
+			bool "Enable verbose ILP solver messages"
+			default n
+		config LN_DEBUG_HWGEN
+			bool "Enable hw-gen debug messages"
+			default n
+		config LN_DEBUG_PRINT_STATS
+			bool "Enable print-stats debug messages"
+			default n
+	endmenu
+endmenu
+#!/usr/bin/env python3
+import os
+import kconfiglib
+import shutil
+import re
+
+import entrypoint
+import error
+import kconfig
+import longnail
+import scaiev
+import simulation
+
+
+def execute_plugins(entry_point_name):
+    plugin_folder = "plugins"
+    # Walk through the directory, including subdirectories
+    for root, dirs, files in os.walk(plugin_folder):
+        # We calculate the depth by checking the number of separators in the path
+        depth = root[len(plugin_folder):].count(os.sep)
+
+        # We are only interested in directories at depth 1 (directories within the plugin folder)
+        if depth == 1:
+            for file in files:
+                # Check if the file name matches the entry point
+                if file == f"{entry_point_name}.py":
+                    # Use the import statement to import the module by its name
+                    exec(f"import {plugin_folder}.{os.path.basename(root)}.{entry_point_name}")
+                    print(f"INFO: Running {entry_point_name} from {root}")
+                    exec(f"{plugin_folder}.{os.path.basename(root)}.{entry_point_name}.main(globals())")
+
+def create_output_folder(base_path, base_name):
+    # Start with the base path
+    os.makedirs(base_path, exist_ok=True)
+    path = os.path.join(base_path, base_name + "_0")
+    suffix = 1
+
+    # Check if the directory exists, and if so, add a suffix
+    while os.path.exists(path):
+        path = os.path.join(base_path, f"{base_name}_{suffix}")
+        suffix += 1
+
+    # Create the directory
+    os.makedirs(path)
+    return path
+
+def get_output_folder(base_path = "outputs", base_name = "run"):
+    out_dir = os.getenv("OUTPUT_PATH")
+    if out_dir:
+        if not os.path.exists(out_dir):
+            error.exit_error(f"Explicitly specified output path {out_dir} does not exist!", error.USER_ERROR)
+        out_dir = os.path.abspath(out_dir)
+    else:
+        out_dir = create_output_folder(base_path, base_name)
+    return out_dir
+
+def extract_isax_name(mlir_path):
+    if not mlir_path:
+        return None
+    # Extract the isax name directly from the used mlir file
+    # Read the entire file into one string variable
+    with open(mlir_path, 'r') as file:
+        mlir_text = file.read()
+    # Define the regex pattern
+    pattern = r'module\s+@(\w+)\s*\{'
+    # Search for the pattern
+    match = re.search(pattern, mlir_text)
+    # Extract the module name if found
+    if match:
+        isax_name = match.group(1)
+    else:
+        error.exit_error("Could not extract the module's ISAX name", error.INTERNAL_ERROR)
+    return isax_name
+
+if __name__ == "__main__":
+    # Read in Kconfig & .config file
+    kconf = kconfiglib.Kconfig("Kconfig")
+    config_path = os.getenv("CONFIG_PATH") if os.getenv("CONFIG_PATH") else ".config"
+    kconf.load_config(config_path)
+
+    core_name = kconfig.extract_kconfig_enabled(kconfig.extract_core_from_config(kconf.syms))
+    scaiev_core_name = scaiev.select_core(core_name)
+
+    # Package all results in an output folder
+    out_dir = get_output_folder()
+    print(f"Output folder: {os.path.relpath(out_dir, '.')}")
+
+    # Copy config to output folder to simplify reproducing it
+    shutil.copy(config_path, os.path.join(out_dir, "config"))
+
+    mlir_paths, isax_yaml = entrypoint.resolve_mlir_paths(scaiev_core_name, out_dir, kconf.syms)
+
+    mlir_path = None
+    if mlir_paths:
+        # LN mlir to .sv
+    PID    PPID     ELAPSED %CPU COMMAND
+      1       0       10:29  0.0 sleep
+    211       0       00:00  0.0 bash
+    221     211       00:00  0.0 ps
+    222     211       00:00  0.0 tail

@@ -1,0 +1,13 @@
+INFO:etiss_writer:loading models
+INFO:etiss_writer:preprocessing model BranchCore
+INFO:etiss_writer:processing model BranchCore
+INFO:arch_writer:writing architecture struct
+INFO:arch_writer:writing architecture class header
+INFO:arch_writer:writing architecture class file
+INFO:arch_writer:writing architecture specific header
+INFO:arch_writer:writing architecture specific file
+INFO:arch_writer:writing architecture lib
+INFO:arch_writer:writing CMakeLists
+INFO:arch_writer:writing gdbcore
+INFO:instruction_writer:writing functions
+INFO:instruction_writer:writing instructions

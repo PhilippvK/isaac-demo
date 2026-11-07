@@ -1,0 +1,6 @@
+crc32 baseline 4022847 trace entries, custom: {}
+crc32 old 2978355 trace entries, custom: {'custom23': 24, 'custom4': 174080, 'custom15': 174080, 'custom18': 174084, 'custom17': 174080}
+crc32 new 2978355 trace entries, custom: {'custom23': 24, 'custom4': 174080, 'custom15': 174080, 'custom18': 174084, 'custom17': 174080}
+nettle-sha256 baseline 3793818 trace entries, custom: {}
+nettle-sha256 old 2235343 trace entries, custom: {'custom1': 282625, 'custom63': 15200, 'custom62': 15675, 'custom19': 60800, 'custom4': 60800, 'custom17': 60800, 'custom3': 60800, 'custom26': 60800, 'custom15': 60800, 'custom60': 60800, 'custom61': 61275, 'custom65': 60800, 'custom80': 60800, 'custom82': 45600, 'custom36': 45600, 'custom93': 42750, 'custom41': 42750, 'custom40': 31350, 'custom94': 31350}
+nettle-sha256 new 2235343 trace entries, custom: {'custom1': 282625, 'custom63': 15200, 'custom62': 15675, 'custom19': 60800, 'custom4': 60800, 'custom17': 60800, 'custom3': 60800, 'custom26': 60800, 'custom15': 60800, 'custom60': 60800, 'custom61': 61275, 'custom65': 60800, 'custom80': 60800, 'custom82': 45600, 'custom36': 45600, 'custom93': 42750, 'custom41': 42750, 'custom40': 31350, 'custom94': 31350}

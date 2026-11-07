@@ -1,0 +1,428 @@
+Logger started on port 46029
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/generated-rv32/XBranch.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/generated-rv32/XBranch.core_desc
+Logger on port 46029 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 34985
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XBranch.m2isarmodel -> XBranch.seal5model
+[seal5.pass_list::INFO] Filtering XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XBranch.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Inlining functions for XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Optimizing XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XBranch.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting registers for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XBranch.seal5model
+[seal5.pass_list::INFO] Processing settings for XBranch.seal5model
+[seal5.pass_list::INFO] Writing YAML for XBranch.seal5model
+[seal5.pass_list::INFO] Processing settings for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting loops for XBranch.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XBranch.seal5model
+INFO:annotate_opcodes:processing set XBranch
+INFO:annotate_opcodes:processing instruction FUSED_BEQ
+INFO:annotate_opcodes:processing instruction FUSED_BNE
+INFO:annotate_opcodes:processing instruction FUSED_BLT
+INFO:annotate_opcodes:processing instruction FUSED_BGE
+INFO:annotate_opcodes:processing instruction FUSED_BLTU
+INFO:annotate_opcodes:processing instruction FUSED_BGEU
+[seal5.pass_list::INFO] Handle auto_unroll operands for XBranch.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XBranch.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XBranch.seal5model
+[seal5.utils::ERROR] Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/backends/coredsl2/writer.py", line 92, in <module>
+    main()
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/backends/coredsl2/writer.py", line 85, in main
+    metrics = write_cdsl_default(
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/backends/coredsl2/writer.py", line 100, in write_cdsl_default
+    assign_block_access(model_obj)
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/backends/coredsl2/writer.py", line 37, in assign_block_access
+    visitor.generate(instr_def.operation, attribute_info.AccessContext())
+  File "/usr/lib/python3.10/functools.py", line 926, in _method
+    return method.__get__(obj, cls)(*args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/metamodel/utils/scalar_staticness.py", line 33, in _
+    temp = self.generate(stmt, context)
+  File "/usr/lib/python3.10/functools.py", line 926, in _method
+    return method.__get__(obj, cls)(*args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/metamodel/utils/scalar_staticness.py", line 218, in _
+    is_static = bool(expr.ref_or_name.attributes.get("static", False))
+AttributeError: 'str' object has no attribute 'attributes'
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/transform.py", line 57, in handle
+    seal5_flow.transform(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 785, in transform
+    result = pm.run(input_models, settings=self.settings, env=self.prepare_environment(), verbose=verbose)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/passes.py", line 296, in run
+    result = pass_.run(input_models, settings=settings, env=env, verbose=verbose, parent=self)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/passes.py", line 217, in run
+    raise e
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/passes.py", line 192, in run
+    result = future.result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/pass_list.py", line 940, in write_cdsl
+    utils.python(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 201, in python
+    return exec_getout(sys.executable, *args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 144, in exec_getout
+    assert exit_code == 0, "The process returned an non-zero exit code {}! (CMD: `{}`)".format(
+AssertionError: The process returned an non-zero exit code 1! (CMD: `/var/tmp/ga87puy/isaac-demo-new/venv/bin/python3 -m seal5.backends.coredsl2.writer /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model --log warning --output /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/temp/XBranch.core_desc --metrics /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/temp/XBranch.core_desc_coredsl2_writer_metrics.csv`)
+Logger on port 34985 stopped.
+Logger started on port 41861
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Logger on port 41861 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (pattern-gen)
+Logger started on port 45469
+[seal5.flow::INFO] Building Seal5 LLVM (llc)
+Logger on port 45469 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (llc)
+Logger started on port 43539
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XBranch.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XBranch.seal5model
+[seal5.pass_list::INFO] Writing gmir for FUSED_BEQ.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BNE.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BLT.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BGE.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BLTU.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BGEU.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XBranch.seal5model
+Logger on port 43539 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 36823
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XBranch' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 36823 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 45309
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Traceback (most recent call last):
+[seal5.utils::ERROR] [1/1766] Building Attributes.inc...
+[2/1161] Building GenVT.inc...
+[3/660] Building AbstractBasicReader.inc...
+[4/660] Building AbstractBasicWriter.inc...
+[5/660] Building CommentHTMLTags.inc...
+[6/660] Building CommentHTMLTagsProperties.inc...
+[7/660] Building CommentHTMLNamedCharacterReferences.inc...
+[8/660] Building CommentCommandInfo.inc...
+[9/660] Building CommentCommandList.inc...
+[10/657] Generating VCSRevision.h
+[11/657] Building RISCVGenGlobalISel.inc...
+FAILED: lib/Target/RISCV/RISCVGenGlobalISel.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenGlobalISel.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-global-isel -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCVGISel.td --write-if-changed -o RISCVGenGlobalISel.inc -d RISCVGenGlobalISel.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenGlobalISel.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/659d6bac6407d8053395d71f517116517e0dc26b713ed4e5c0b3d04332fe5aac.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCVGISel.td:16:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[12/657] Building RISCVGenRegisterBank.inc...
+FAILED: lib/Target/RISCV/RISCVGenRegisterBank.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenRegisterBank.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-register-bank -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenRegisterBank.inc -d RISCVGenRegisterBank.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenRegisterBank.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/2ab75f0d956bb74b53cea1d3965e14f063e75ca98cb470b999773169004f0f91.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[13/657] Building RISCVGenAsmWriter.inc...
+FAILED: lib/Target/RISCV/RISCVGenAsmWriter.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenAsmWriter.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-asm-writer -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenAsmWriter.inc -d RISCVGenAsmWriter.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenAsmWriter.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/b963fc3a09293b2bce154fb821fa52fb5ed16a673adfbd7ad89d3f888bf5ce6c.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[14/657] Building RISCVGenDisassemblerTables.inc...
+FAILED: lib/Target/RISCV/RISCVGenDisassemblerTables.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenDisassemblerTables.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-disassembler --specialize-decoders-per-bitwidth -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenDisassemblerTables.inc -d RISCVGenDisassemblerTables.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenDisassemblerTables.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/ee6b256a5eabd057b3af0a097c157d53edd2e268ea75e4ec7ef16eb0239060e1.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[15/657] Building RISCVGenCompressInstEmitter.inc...
+FAILED: lib/Target/RISCV/RISCVGenCompressInstEmitter.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenCompressInstEmitter.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-compress-inst-emitter -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenCompressInstEmitter.inc -d RISCVGenCompressInstEmitter.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenCompressInstEmitter.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/a5a2ab7d852e58c61dbc75834b64cfd0f8831b0dadc43924165fbffacbf4fff9.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[16/657] Building RISCVGenExegesis.inc...
+FAILED: lib/Target/RISCV/RISCVGenExegesis.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenExegesis.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-exegesis -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenExegesis.inc -d RISCVGenExegesis.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenExegesis.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/a28b54d2296b733b25972a0906ce81a0649bf5609b871d55e53c8f86a78b213d.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[17/657] Building RISCVTargetParserDef.inc...
+FAILED: include/llvm/TargetParser/RISCVTargetParserDef.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include/llvm/TargetParser/RISCVTargetParserDef.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include/llvm/TargetParser && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-min-tblgen -gen-riscv-target-def -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/TargetParser -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVTargetParserDef.inc -d RISCVTargetParserDef.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include/llvm/TargetParser /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include/llvm/TargetParser /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include/llvm/TargetParser/RISCVTargetParserDef.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/3fbd2416defd1d9aead3ce91819feb2f60d368d3a27c191194971598d808c966.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[18/657] Building RISCVGenAsmMatcher.inc...
+FAILED: lib/Target/RISCV/RISCVGenAsmMatcher.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenAsmMatcher.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-asm-matcher -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenAsmMatcher.inc -d RISCVGenAsmMatcher.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenAsmMatcher.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/fc7f0ffedd7ae17e855294b56e67c60e851f6b99fff10c947695e37aff23972a.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[19/657] Building RISCVGenDAGISel.inc...
+FAILED: lib/Target/RISCV/RISCVGenDAGISel.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenDAGISel.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-dag-isel -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target -omit-comments /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenDAGISel.inc -d RISCVGenDAGISel.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenDAGISel.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/c9c743cfcb1ac8dbe156faad42a7142b1a58677498c6a639dd2488bb1d155418.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+[20/657] Building RISCVGenInstrInfo.inc...
+FAILED: lib/Target/RISCV/RISCVGenInstrInfo.inc /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenInstrInfo.inc 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV && /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-tblgen -gen-instr-info -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/include -I/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/include -I /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td --write-if-changed -o RISCVGenInstrInfo.inc -d RISCVGenInstrInfo.inc.d && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/lib/Target/RISCV/RISCVGenInstrInfo.inc.d /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/CMakeFiles/d/5f83eccd9d085da7beba31f40da355ec1acf820ca1441f32747c1f398f2c3c01.d
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/RISCV.td:110:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5.td:5:
+Included from /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch.td:10:
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td:1:5: error: Value 'GISelShouldIgnore' unknown!
+let GISelShouldIgnore = 1 in {
+    ^
+ninja: build stopped: subcommand failed.
+
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/build.py", line 61, in handle
+    seal5_flow.build(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 695, in build
+    llvm.build_llvm(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/tools/llvm.py", line 284, in build_llvm
+    utils.make(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 196, in make
+    return exec_getout(*cmd, cwd=cwd, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 132, in exec_getout
+    assert exit_code == 0, "The process returned an non-zero exit code {}! (CMD: `{}`)".format(
+AssertionError: The process returned an non-zero exit code 1! (CMD: `ninja clang llvm-config llc lld pattern-gen FileCheck llvm-objdump llvm-as llvm-ar llvm-mc llvm-mca opt count not -j10`)
+Logger on port 45309 stopped.
+Logger started on port 46165
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 46165 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 34605
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 2 tests passed: CodeGen/RISCV/seal5/generated/xbranch.test-attrs.ll, CodeGen/RISCV/seal5/generated/xbranch.test-ext.c
+Logger on port 34605 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 36177
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 36177 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+Logger started on port 40927
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 40927 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 32981
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 2 tests passed: CodeGen/RISCV/seal5/generated/xbranch.test-attrs.ll, CodeGen/RISCV/seal5/generated/xbranch.test-ext.c
+Logger on port 32981 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 42191
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 42191 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+Logger started on port 36765
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/generated-rv32/XBranch.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/generated-rv32/XBranch.core_desc
+Logger on port 36765 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 40783
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XBranch.m2isarmodel -> XBranch.seal5model
+[seal5.pass_list::INFO] Filtering XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XBranch.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Inlining functions for XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Optimizing XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XBranch.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting registers for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XBranch.seal5model
+[seal5.pass_list::INFO] Processing settings for XBranch.seal5model
+[seal5.pass_list::INFO] Writing YAML for XBranch.seal5model
+[seal5.pass_list::INFO] Processing settings for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting loops for XBranch.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XBranch.seal5model
+INFO:annotate_opcodes:processing set XBranch
+INFO:annotate_opcodes:processing instruction FUSED_BEQ
+INFO:annotate_opcodes:processing instruction FUSED_BNE
+INFO:annotate_opcodes:processing instruction FUSED_BLT
+INFO:annotate_opcodes:processing instruction FUSED_BGE
+INFO:annotate_opcodes:processing instruction FUSED_BLTU
+INFO:annotate_opcodes:processing instruction FUSED_BGEU
+[seal5.pass_list::INFO] Handle auto_unroll operands for XBranch.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XBranch.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XBranch.seal5model
+Logger on port 40783 stopped.
+[seal5.flow::INFO] Completed tranformation of Seal5 models
+Logger started on port 36115
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing RISCVFeatures.td patch for XBranch.seal5model
+[seal5.pass_list::INFO] Writing RISCVRegisterInfo.td patch for XBranch.seal5model
+[seal5.backends.riscv_register_info::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCV field types patches
+[seal5.backends.riscv_field_types::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVInstrInfo.td patch for XBranch.seal5model
+[seal5.pass_list::INFO] Writing intrinsics patches patch for XBranch.seal5model
+[seal5.backends.riscv_intrinsics::WARNING] No intrinsics configured; didn't need to invoke intrinsics writer.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVDisassembler.cpp patch for XBranch.seal5model
+[seal5.pass_list::INFO] Writing RISCVLegalizerInfo.cpp patch
+[seal5.backends.riscv_gisel_legalizer::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+Logger on port 36115 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 39029
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_1
+[seal5.flow::INFO] Applying patch 'seal5_td' on 'llvm'
+[seal5.flow::INFO] Applying patch 'set_td_XBranch' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_1 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_1.patch
+[seal5.flow::INFO] Current stage: PHASE_2
+[seal5.flow::INFO] Applying patch 'riscv_features_XBranch' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_instr_info_XBranch' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_disass_XBranch' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_2 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_2.patch
+Logger on port 39029 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 45589
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Logger on port 45589 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (pattern-gen)
+Logger started on port 41537
+[seal5.flow::INFO] Building Seal5 LLVM (llc)
+Logger on port 41537 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (llc)
+Logger started on port 46025
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XBranch.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XBranch.seal5model
+[seal5.pass_list::INFO] Writing gmir for FUSED_BEQ.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BNE.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BLT.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BGE.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BLTU.ll
+[seal5.pass_list::INFO] Writing gmir for FUSED_BGEU.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XBranch.seal5model
+Logger on port 46025 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 43543
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XBranch' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 43543 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 33849
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 33849 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 35077
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 2 tests passed: CodeGen/RISCV/seal5/generated/xbranch.test-attrs.ll, CodeGen/RISCV/seal5/generated/xbranch.test-ext.c
+Logger on port 35077 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 33759
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 33759 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model

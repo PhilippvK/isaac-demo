@@ -1,0 +1,44 @@
+mainmenu "NailGun ISAX integration config"
+
+source "configs/cores_Kconfig"
+source "$BUILD_DIR/ISAX/Kconfig"
+source "configs/LN_Kconfig"
+source "configs/SCAIE-V_Kconfig"
+source "configs/sim_Kconfig"
+source "plugins/*/config/Kconfig"
+source "configs/advanced_Kconfig"
+/isax-tools/nailgun/gen_config.py:14:    isaxes_dir = os.getenv("ISAXES_DIR", "isaxes")
+/isax-tools/nailgun/gen_ci_config.py:18:    isaxes = os.getenv("ISAXES")
+/isax-tools/nailgun/gen_ci_config.py:35:    ilp_solver = os.getenv("LN_ILP_SOLVER")
+/isax-tools/nailgun/gen_ci_config.py:43:    skip_llvm_build = os.getenv("SKIP_AWESOME_LLVM")
+/isax-tools/nailgun/gen_ci_config.py:45:        kconf.syms["SIM_SKIP_AWESOME_LLVM"].set_value(skip_llvm_build)
+/isax-tools/nailgun/gen_ci_config.py:51:    cell_lib = os.getenv("CELL_LIBRARY")
+/isax-tools/nailgun/gen_ci_config.py:53:        kconf.syms["LN_CELL_LIBRARY"].set_value(cell_lib)
+/isax-tools/nailgun/gen_ci_config.py:116:            no_isax = os.getenv("NO_ISAX")
+/isax-tools/nailgun/gen_ci_config.py:118:                kconf.syms["NO_ISAX_ENTRY_POINT"].set_value("y")
+/isax-tools/nailgun/longnail.py:87:    if kconfig_syms['LN_CELL_LIBRARY'].str_value:
+/isax-tools/nailgun/longnail.py:88:        library = os.path.abspath(kconfig_syms['LN_CELL_LIBRARY'].str_value)
+/isax-tools/nailgun/longnail.py:201:    elif (kconfig_core == "CORE_CVA5"):
+/isax-tools/nailgun/longnail.py:202:        return f"{datasheet_folder}/CVA5.yaml"
+BNode.java
+CVA5.java
+CVA6.java
+CoreBackend.java
+Orca.java
+Piccolo.java
+PicoRV32.java
+SCALBackendAPI.java
+VexRiscv.java
+package-info.java
+2:## Welcome to SCAIE-V 2.0: An improved Open-Source SCAlable Interface for ISA Extensions for RISC-V Processors!
+12:## Why 2.0?
+13:The original SCAIE-V repo was updated to support more features, and now it becomes SCAIE-V 2.0. 
+build
+datasheets
+opTyLibraries
+sim
+LN_Kconfig
+SCAIE-V_Kconfig
+advanced_Kconfig
+cores_Kconfig
+sim_Kconfig

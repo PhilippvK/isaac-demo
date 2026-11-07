@@ -1,0 +1,591 @@
+Logger started on port 34313
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/filter.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/git.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/llvm.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/patches.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/riscv.yml', '/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/tools.yml']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/filter.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/git.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/llvm.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/patches.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/riscv.yml
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/tools.yml
+Logger on port 34313 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 35455
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/versions/llvm22.yml']
+Logger on port 35455 stopped.
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/versions/llvm22.yml
+Logger started on port 46253
+[seal5.flow::INFO] Installing Seal5 dependencies
+[seal5.flow::INFO] Generating default patches
+[seal5.flow::INFO] Cloning CDSL2LLVM
+[seal5.settings::INFO] Skipping weak patch 'gitignore'
+[seal5.settings::INFO] Skipping weak patch 'insert_markers_llvm22'
+[seal5.flow::INFO] Adding PatternGen to target LLVM
+Logger on port 46253 stopped.
+[seal5.flow::INFO] Completed installation of Seal5 dependencies
+Logger started on port 39961
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::WARNING] Undefined patch stage for patch legalizer_split. Defaulting to PHASE_0
+[seal5.flow::INFO] Current stage: PHASE_0
+[seal5.flow::INFO] Applying patch 'isaac_cdfg_llvm22' on 'llvm'
+[seal5.flow::INFO] Applying patch 'gitignore' on 'llvm'
+[seal5.flow::INFO] Applying patch 'pattern_gen_backend_support' on 'llvm'
+[seal5.flow::INFO] Applying patch 'insert_markers_llvm22' on 'llvm'
+[seal5.flow::INFO] Applying patch 'pattern_gen_support' on 'llvm'
+[seal5.flow::INFO] Applying patch 'gitlab_ci' on 'llvm'
+[seal5.flow::INFO] Applying patch 'legalizer_split' on 'llvm'
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/patch.py", line 53, in handle
+    seal5_flow.patch(verbose=args.verbose, stages=[PatchStage(int(i)) for i in args.stages], force=args.force)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 1045, in patch
+    _ = self.apply_patch(patch, force=force)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 961, in apply_patch
+    repo.git.apply(file)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/git/cmd.py", line 1175, in <lambda>
+    return lambda *args, **kwargs: self._call_process(name, *args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/git/cmd.py", line 1900, in _call_process
+    return self.execute(call, **exec_kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/venv/lib/python3.10/site-packages/git/cmd.py", line 1682, in execute
+    raise GitCommandError(redacted_command, status, stderr_value, stdout_value)
+git.exc.GitCommandError: Cmd('git') failed due to: exit code(1)
+  cmdline: git apply /var/tmp/ga87puy/isaac-demo-new/seal5/seal5/resources/patches/llvm/legalizer_split.patch
+  stderr: 'error: patch failed: llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp:299
+error: llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp: patch does not apply'
+Logger on port 39961 stopped.
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/patch.py", line 52, in handle
+    seal5_flow = Seal5Flow(args.dir, name=args.name)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 260, in __init__
+    initialize_logging_server(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/logging.py", line 131, in initialize_logging_server
+    _log_server = LogRecordSocketReceiver(HOSTNAME, SEAL5_LOGGING_PORT)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/logging.py", line 228, in __init__
+    super().__init__((host, port), LogRecordStreamHandler)
+  File "/usr/lib/python3.10/socketserver.py", line 448, in __init__
+    self.socket = socket.socket(self.address_family,
+  File "/usr/lib/python3.10/socket.py", line 232, in __init__
+    _socket.socket.__init__(self, family, type, proto, fileno)
+PermissionError: [Errno 1] Operation not permitted
+Logger started on port 34579
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_0
+[seal5.flow::INFO] Applying patch 'legalizer_split' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_0 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_0.patch
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger on port 34579 stopped.
+Logger started on port 43881
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-new/gen/XIsaac.seal5.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334/work-new/gen/XIsaac.seal5.core_desc
+Logger on port 43881 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 37123
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XIsaac.seal5.m2isarmodel -> XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Filtering XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Inlining functions for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Dropping unused for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Optimizing XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting registers for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Processing settings for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing YAML for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Processing settings for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting loops for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XIsaac.seal5.seal5model
+INFO:annotate_opcodes:processing set XIsaac
+INFO:annotate_opcodes:processing instruction CUSTOM0
+INFO:annotate_opcodes:processing instruction CUSTOM1
+INFO:annotate_opcodes:processing instruction CUSTOM2
+INFO:annotate_opcodes:processing instruction CUSTOM3
+INFO:annotate_opcodes:processing instruction CUSTOM4
+INFO:annotate_opcodes:processing instruction CUSTOM5
+INFO:annotate_opcodes:processing instruction CUSTOM6
+INFO:annotate_opcodes:processing instruction CUSTOM7
+INFO:annotate_opcodes:processing instruction CUSTOM8
+INFO:annotate_opcodes:processing instruction CUSTOM9
+INFO:annotate_opcodes:processing instruction CUSTOM10
+INFO:annotate_opcodes:processing instruction CUSTOM11
+INFO:annotate_opcodes:processing instruction CUSTOM12
+INFO:annotate_opcodes:processing instruction CUSTOM13
+INFO:annotate_opcodes:processing instruction CUSTOM14
+INFO:annotate_opcodes:processing instruction CUSTOM15
+INFO:annotate_opcodes:processing instruction CUSTOM16
+INFO:annotate_opcodes:processing instruction CUSTOM17
+INFO:annotate_opcodes:processing instruction CUSTOM18
+INFO:annotate_opcodes:processing instruction CUSTOM19
+INFO:annotate_opcodes:processing instruction CUSTOM20
+INFO:annotate_opcodes:processing instruction CUSTOM21
+INFO:annotate_opcodes:processing instruction CUSTOM22
+INFO:annotate_opcodes:processing instruction CUSTOM23
+INFO:annotate_opcodes:processing instruction CUSTOM24
+INFO:annotate_opcodes:processing instruction CUSTOM25
+INFO:annotate_opcodes:processing instruction CUSTOM26
+INFO:annotate_opcodes:processing instruction CUSTOM27
+INFO:annotate_opcodes:processing instruction CUSTOM28
+INFO:annotate_opcodes:processing instruction CUSTOM29
+INFO:annotate_opcodes:processing instruction CUSTOM30
+INFO:annotate_opcodes:processing instruction CUSTOM31
+[seal5.pass_list::INFO] Handle auto_unroll operands for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XIsaac.seal5.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Infering types for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XIsaac.seal5.seal5model
+Logger on port 37123 stopped.
+[seal5.flow::INFO] Completed tranformation of Seal5 models
+Logger started on port 35659
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing RISCVFeatures.td patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing RISCVRegisterInfo.td patch for XIsaac.seal5.seal5model
+[seal5.backends.riscv_register_info::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCV field types patches
+[seal5.pass_list::INFO] Writing RISCVInstrInfo.td patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing intrinsics patches patch for XIsaac.seal5.seal5model
+[seal5.backends.riscv_intrinsics::WARNING] No intrinsics configured; didn't need to invoke intrinsics writer.
+[seal5.pass_list::WARNING] No patches found!
+[seal5.pass_list::INFO] Writing RISCVDisassembler.cpp patch for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing RISCVLegalizerInfo.cpp patch
+[seal5.backends.riscv_gisel_legalizer::WARNING] No patches generated. No index file will be written.
+[seal5.pass_list::WARNING] No patches found!
+Logger on port 35659 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 43635
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_1
+[seal5.flow::INFO] Applying patch 'seal5_td' on 'llvm'
+[seal5.flow::INFO] Applying patch 'set_td_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_1 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_1.patch
+[seal5.flow::INFO] Current stage: PHASE_2
+[seal5.flow::INFO] Applying patch 'riscv_features_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_field_types' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_instr_info_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Applying patch 'riscv_disass_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_2 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_2.patch
+Logger on port 43635 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 38711
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Traceback (most recent call last):
+[seal5.utils::ERROR] [1/1163] Creating /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/NATIVE...
+[2/1163] Generating VCSRevision.h
+[3/1163] Building CXX object utils/TableGen/Basic/CMakeFiles/obj.LLVMTableGenBasic.dir/TargetFeaturesEmitter.cpp.o
+[4/1163] Linking CXX executable bin/llvm-min-tblgen
+[5/1163] Configuring NATIVE LLVM...
+FAILED: NATIVE/CMakeCache.txt /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/NATIVE/CMakeCache.txt 
+cd /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/NATIVE && /nas/ei/share/TUEIEDAprojects/SystemDesign/tools/cmake/3.24.4/bin/cmake -G Ninja -DCMAKE_MAKE_PROGRAM=/usr/bin/ninja -DCMAKE_C_COMPILER_LAUNCHER= -DCMAKE_CXX_COMPILER_LAUNCHER= -DCMAKE_C_COMPILER=/usr/bin/clang-18 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-18 /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm -DLLVM_TARGET_IS_CROSSCOMPILE_HOST=TRUE -DLLVM_TARGETS_TO_BUILD="RISCV" -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="" -DLLVM_DEFAULT_TARGET_TRIPLE="" -DLLVM_TARGET_ARCH="host" -DLLVM_ENABLE_PROJECTS="clang;lld" -DLLVM_EXTERNAL_PROJECTS="" -DLLVM_ENABLE_RUNTIMES="" -DLLVM_TEMPORARILY_ALLOW_OLD_TOOLCHAIN="OFF" -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_TABLEGEN_FLAGS="" -DPYTHON_EXECUTABLE="" -DCMAKE_BUILD_TYPE=Release -DLLVM_EXTERNAL_CLANG_SOURCE_DIR=/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/../clang
+Re-run cmake no build system arguments
+-- The C compiler identification is Clang 18.1.8
+-- The CXX compiler identification is Clang 18.1.8
+-- The ASM compiler identification is Clang with GNU-like command-line
+-- Found assembler: /usr/bin/clang-18
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/clang-18 - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++-18 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- bolt project is disabled
+-- clang project is enabled
+-- clang-tools-extra project is disabled
+-- compiler-rt project is disabled
+-- cross-project-tests project is disabled
+-- libclc project is disabled
+-- lld project is enabled
+-- lldb project is disabled
+-- mlir project is disabled
+-- openmp project is disabled
+-- polly project is disabled
+-- flang project is disabled
+-- libc project is disabled
+-- Found Python3: /var/tmp/ga87puy/isaac-demo-new/venv/bin/python3.10 (found suitable version "3.10.12", minimum required is "3.0") found components: Interpreter 
+-- Performing Test LLVM_LIBSTDCXX_MIN
+-- Performing Test LLVM_LIBSTDCXX_MIN - Success
+-- Performing Test LLVM_LIBSTDCXX_SOFT_ERROR
+-- Performing Test LLVM_LIBSTDCXX_SOFT_ERROR - Success
+-- Looking for __GLIBC__
+-- Looking for __GLIBC__ - found
+-- Looking for valgrind/valgrind.h
+-- Looking for valgrind/valgrind.h - found
+-- Looking for FE_ALL_EXCEPT
+-- Looking for FE_ALL_EXCEPT - found
+-- Looking for FE_INEXACT
+-- Looking for FE_INEXACT - found
+-- Performing Test HAVE_BUILTIN_THREAD_POINTER
+-- Performing Test HAVE_BUILTIN_THREAD_POINTER - Success
+-- Looking for CrashReporterClient.h
+-- Looking for CrashReporterClient.h - not found
+-- Looking for linux/magic.h
+-- Looking for linux/magic.h - found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Looking for pthread_rwlock_init in pthread
+-- Looking for pthread_rwlock_init in pthread - found
+-- Looking for pthread_mutex_lock in pthread
+-- Looking for pthread_mutex_lock in pthread - found
+-- Looking for dlopen in dl
+-- Looking for dlopen in dl - found
+-- Looking for shm_open in rt
+-- Looking for shm_open in rt - found
+-- Looking for pfm_initialize in pfm
+-- Looking for pfm_initialize in pfm - not found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") 
+-- Looking for compress2
+-- Looking for compress2 - found
+-- Found LibXml2: /usr/lib/x86_64-linux-gnu/libxml2.so (found version "2.9.13") 
+-- Looking for xmlReadMemory
+-- Looking for xmlReadMemory - found
+-- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
+-- Looking for arc4random
+-- Looking for arc4random - not found
+-- Looking for backtrace
+-- Looking for backtrace - found
+-- backtrace facility detected in default set of libraries
+-- Found Backtrace: /usr/include  
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW - Success
+-- Looking for __register_frame
+-- Looking for __register_frame - found
+-- Looking for __deregister_frame
+-- Looking for __deregister_frame - found
+-- Looking for __unw_add_dynamic_fde
+-- Looking for __unw_add_dynamic_fde - not found
+-- Looking for _Unwind_Backtrace
+-- Looking for _Unwind_Backtrace - found
+-- Looking for getpagesize
+-- Looking for getpagesize - found
+-- Looking for sysconf
+-- Looking for sysconf - found
+-- Looking for getrusage
+-- Looking for getrusage - found
+-- Looking for isatty
+-- Looking for isatty - found
+-- Looking for futimens
+-- Looking for futimens - found
+-- Looking for futimes
+-- Looking for futimes - found
+-- Looking for getauxval
+-- Looking for getauxval - found
+-- Looking for sigaltstack
+-- Looking for sigaltstack - found
+-- Looking for mallctl
+-- Looking for mallctl - not found
+-- Looking for mallinfo
+-- Looking for mallinfo - found
+-- Looking for mallinfo2
+-- Looking for mallinfo2 - found
+-- Looking for malloc_zone_statistics
+-- Looking for malloc_zone_statistics - not found
+-- Looking for posix_spawn
+-- Looking for posix_spawn - found
+-- Looking for pread
+-- Looking for pread - found
+-- Looking for sbrk
+-- Looking for sbrk - found
+-- Looking for strerror_r
+-- Looking for strerror_r - found
+-- Looking for strerror_s
+-- Looking for strerror_s - not found
+-- Looking for setenv
+-- Looking for setenv - found
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC - Success
+-- Looking for pthread_getname_np
+-- Looking for pthread_getname_np - found
+-- Looking for pthread_setname_np
+-- Looking for pthread_setname_np - found
+-- Looking for pthread_get_name_np
+-- Looking for pthread_get_name_np - not found
+-- Looking for pthread_set_name_np
+-- Looking for pthread_set_name_np - not found
+-- Looking for dlopen
+-- Looking for dlopen - found
+-- Looking for proc_pid_rusage
+-- Looking for proc_pid_rusage - not found
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB - Success
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB - Success
+-- Performing Test LLVM_HAS_ATOMICS
+-- Performing Test LLVM_HAS_ATOMICS - Success
+-- LLVM host triple: x86_64-unknown-linux-gnu
+-- Native target X86 is not selected; lli will not JIT code
+-- Threads enabled.
+-- Doxygen disabled.
+-- Ninja version: 1.10.1
+-- Could NOT find OCaml (missing: OCAMLFIND OCAML_VERSION OCAML_STDLIB_PATH) 
+-- Could NOT find OCaml (missing: OCAMLFIND OCAML_VERSION OCAML_STDLIB_PATH) 
+-- OCaml bindings disabled.
+-- Found Python module pygments
+-- Found Python module pygments.lexers.c_cpp
+-- Found Python module yaml
+-- LLVM default target triple: 
+-- Performing Test LLVM_USES_LIBSTDCXX
+-- Performing Test LLVM_USES_LIBSTDCXX - Success
+-- Performing Test LLVM_DEFAULT_TO_GLIBCXX_USE_CXX11_ABI
+-- Performing Test LLVM_DEFAULT_TO_GLIBCXX_USE_CXX11_ABI - Success
+-- Performing Test C_SUPPORTS_FPIC
+-- Performing Test C_SUPPORTS_FPIC - Success
+-- Performing Test CXX_SUPPORTS_FPIC
+-- Performing Test CXX_SUPPORTS_FPIC - Success
+-- Building with -fPIC
+-- Performing Test C_SUPPORTS_FNO_SEMANTIC_INTERPOSITION
+-- Performing Test C_SUPPORTS_FNO_SEMANTIC_INTERPOSITION - Success
+-- Performing Test CXX_SUPPORTS_FNO_SEMANTIC_INTERPOSITION
+-- Performing Test CXX_SUPPORTS_FNO_SEMANTIC_INTERPOSITION - Success
+-- Performing Test SUPPORTS_FVISIBILITY_INLINES_HIDDEN_FLAG
+-- Performing Test SUPPORTS_FVISIBILITY_INLINES_HIDDEN_FLAG - Success
+-- Performing Test C_SUPPORTS_CXX98_COMPAT_EXTRA_SEMI_FLAG
+-- Performing Test C_SUPPORTS_CXX98_COMPAT_EXTRA_SEMI_FLAG - Success
+-- Performing Test CXX_SUPPORTS_CXX98_COMPAT_EXTRA_SEMI_FLAG
+-- Performing Test CXX_SUPPORTS_CXX98_COMPAT_EXTRA_SEMI_FLAG - Success
+-- Performing Test CXX_SUPPORTS_SUGGEST_OVERRIDE_FLAG
+-- Performing Test CXX_SUPPORTS_SUGGEST_OVERRIDE_FLAG - Success
+-- Performing Test CXX_WSUGGEST_OVERRIDE_ALLOWS_ONLY_FINAL
+-- Performing Test CXX_WSUGGEST_OVERRIDE_ALLOWS_ONLY_FINAL - Success
+-- Performing Test C_WCOMMENT_ALLOWS_LINE_WRAP
+-- Performing Test C_WCOMMENT_ALLOWS_LINE_WRAP - Success
+-- Performing Test C_SUPPORTS_MISLEADING_INDENTATION_FLAG
+-- Performing Test C_SUPPORTS_MISLEADING_INDENTATION_FLAG - Success
+-- Performing Test CXX_SUPPORTS_MISLEADING_INDENTATION_FLAG
+-- Performing Test CXX_SUPPORTS_MISLEADING_INDENTATION_FLAG - Success
+-- Performing Test C_SUPPORTS_CTAD_MAYBE_UNSPPORTED_FLAG
+-- Performing Test C_SUPPORTS_CTAD_MAYBE_UNSPPORTED_FLAG - Success
+-- Performing Test CXX_SUPPORTS_CTAD_MAYBE_UNSPPORTED_FLAG
+-- Performing Test CXX_SUPPORTS_CTAD_MAYBE_UNSPPORTED_FLAG - Success
+-- Performing Test LINKER_SUPPORTS_COLOR_DIAGNOSTICS
+-- Performing Test LINKER_SUPPORTS_COLOR_DIAGNOSTICS - Failed
+-- Looking for os_signpost_interval_begin
+-- Looking for os_signpost_interval_begin - not found
+-- Looking for flock
+-- Looking for flock - found
+-- Linker detection: GNU ld
+-- Performing Test LLVM_LINKER_SUPPORTS_B_SYMBOLIC_FUNCTIONS
+-- Performing Test LLVM_LINKER_SUPPORTS_B_SYMBOLIC_FUNCTIONS - Success
+-- Performing Test HAS_WERROR_GLOBAL_CTORS
+-- Performing Test HAS_WERROR_GLOBAL_CTORS - Success
+-- Performing Test LLVM_HAS_NOGLOBAL_CTOR_MUTEX
+-- Performing Test LLVM_HAS_NOGLOBAL_CTOR_MUTEX - Success
+-- Looking for __x86_64__
+-- Looking for __x86_64__ - found
+-- Found Git: /usr/bin/git (found version "2.34.1") 
+-- Looking for logf128
+-- Looking for logf128 - not found
+-- Targeting RISCV
+-- LLD version: 22.1.8
+-- Looking for sys/resource.h
+-- Looking for sys/resource.h - found
+-- Looking for dlfcn.h
+-- Looking for dlfcn.h - found
+-- Looking for dladdr
+-- Looking for dladdr - found
+-- Clang version: 22.1.8
+-- Looking for include file sys/inotify.h
+-- Looking for include file sys/inotify.h - found
+-- Performing Test HAVE_LINKER_FLAG_LONG_PLT
+-- Performing Test HAVE_LINKER_FLAG_LONG_PLT - Failed
+CMake Error at /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/clang/CMakeLists.txt:556 (add_subdirectory):
+  The source directory
+
+    /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/clang/docs
+
+  does not contain a CMakeLists.txt file.
+
+
+CMake Error at CMakeLists.txt:1379 (add_subdirectory):
+  add_subdirectory given source "examples" which is not an existing
+  directory.
+
+
+CMake Error at CMakeLists.txt:1411 (add_subdirectory):
+  The source directory
+
+    /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/docs
+
+  does not contain a CMakeLists.txt file.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/NATIVE/CMakeFiles/CMakeOutput.log".
+See also "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/NATIVE/CMakeFiles/CMakeError.log".
+ninja: build stopped: subcommand failed.
+
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/build.py", line 61, in handle
+    seal5_flow.build(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 695, in build
+    llvm.build_llvm(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/tools/llvm.py", line 282, in build_llvm
+    utils.make(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 196, in make
+    return exec_getout(*cmd, cwd=cwd, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 132, in exec_getout
+    assert exit_code == 0, "The process returned an non-zero exit code {}! (CMD: `{}`)".format(
+AssertionError: The process returned an non-zero exit code 1! (CMD: `ninja pattern-gen -j10`)
+Logger on port 38711 stopped.
+Logger started on port 45581
+[seal5.flow::INFO] Building Seal5 LLVM (pattern-gen)
+Logger on port 45581 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (pattern-gen)
+Logger started on port 37833
+[seal5.flow::INFO] Building Seal5 LLVM (llc)
+Logger on port 37833 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (llc)
+docker/seal5_script_local.sh: line 117: c: command not found
+Logger started on port 41523
+[seal5.flow::INFO] Generating Seal5 patches
+[seal5.pass_list::INFO] Writing CDSL for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing LLVM-IR for XIsaac.seal5.seal5model
+[seal5.pass_list::INFO] Writing gmir for CUSTOM0.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM1.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM2.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM3.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM4.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM5.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM6.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM7.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM8.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM9.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM10.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM11.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM12.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM13.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM14.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM15.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM16.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM17.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM18.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM19.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM20.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM21.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM22.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM23.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM24.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM25.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM26.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM27.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM28.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM29.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM30.ll
+[seal5.pass_list::INFO] Writing gmir for CUSTOM31.ll
+[seal5.pass_list::INFO] Writing TableGen patterns for XIsaac.seal5.seal5model
+Logger on port 41523 stopped.
+[seal5.flow::INFO] Completed generation of Seal5 patches
+Logger started on port 41347
+[seal5.flow::INFO] Applying Seal5 patches
+[seal5.flow::INFO] Current stage: PHASE_3
+[seal5.flow::INFO] Current stage: PHASE_4
+[seal5.flow::INFO] Applying patch 'tblgen_patterns_XIsaac.seal5' on 'llvm'
+[seal5.flow::INFO] Writing combined PHASE_4 patch to /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/patches/stages/PHASE_4.patch
+[seal5.flow::INFO] Current stage: PHASE_5
+Logger on port 41347 stopped.
+[seal5.flow::INFO] Completed application of Seal5 patches
+Logger started on port 34343
+[seal5.flow::INFO] Building Seal5 LLVM (all)
+Logger on port 34343 stopped.
+[seal5.flow::INFO] Completed build of Seal5 LLVM (all)
+Logger started on port 34963
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::WARNING] No tests have been executed!
+Logger on port 34963 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 46355
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 46355 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+Logger started on port 34495
+[seal5.flow::INFO] Testing Seal5 LLVM
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+[seal5.utils::ERROR] llvm-lit: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/utils/lit/lit/llvm/subst.py:133: fatal: Did not find count in /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin
+
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/test.py", line 62, in handle
+    seal5_flow.test(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 1128, in test
+    passed_tests, failing_tests = llvm.test_llvm(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/tools/llvm.py", line 317, in test_llvm
+    out = utils.exec_getout(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 132, in exec_getout
+    assert exit_code == 0, "The process returned an non-zero exit code {}! (CMD: `{}`)".format(
+AssertionError: The process returned an non-zero exit code 2! (CMD: `/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/build/release/bin/llvm-lit --verbose /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/test/CodeGen/RISCV/seal5/generated/xisaac.test-attrs.ll`)
+Logger on port 34495 stopped.
+Logger started on port 34225
+[seal5.flow::INFO] Testing Seal5 LLVM
+[seal5.flow::INFO] 26 tests passed: CodeGen/RISCV/seal5/generated/xisaac.test-attrs.ll, CodeGen/RISCV/seal5/generated/xisaac.test-ext.c, CodeGen/RISCV/seal5/generated/CUSTOM0.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM1.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM2.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM3.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM4.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM5.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM6.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM7.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM8.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM9.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM10.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM11.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM12.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM13.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM14.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM15.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM16.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM17.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM18.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM25.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM26.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM27.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM28.test-cg.ll, CodeGen/RISCV/seal5/generated/CUSTOM29.test-cg.ll
+Logger on port 34225 stopped.
+[seal5.flow::INFO] Completed test of Seal5 LLVM
+Logger started on port 40491
+[seal5.flow::INFO] Exporting Seal5 artifacts
+Logger on port 40491 stopped.
+[seal5.flow::INFO] Completed export of Seal5 artifacts
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model
+[fallback::DEBUG] loading model: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XIsaac.seal5.seal5model

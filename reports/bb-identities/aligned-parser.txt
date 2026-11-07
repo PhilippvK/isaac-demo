@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<stdin>", line 6, in <module>
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/analysis/static/llvm_bbs.py", line 185, in parse_elf
+    llvm_bb_addr_map = decode_map(llvm_bb_addr_map_raw, addr_to_func)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/analysis/static/llvm_bbs.py", line 164, in decode_map
+    assert sz >= 0
+AssertionError

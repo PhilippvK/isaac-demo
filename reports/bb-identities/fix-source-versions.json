@@ -1,0 +1,47 @@
+{
+  "recorded_utc": "2026-11-02T14:54:02.824463+00:00",
+  "submodule_heads": {
+    "isaac-toolkit": "439c6ec2d84df0ace1303c85fa56496f796097a8",
+    "memgraph_experiments": "6a92f1105a7388f9ba97721a823c18f7730a5ef6",
+    "llvm-project": "5bd6ab74cd1dc8d09e54ca6000361d020d138aeb"
+  },
+  "source_sha256": {
+    "isaac-toolkit/README.md": "2132c797f660613b80bb6abd4e26cf0f0296a0299487c733d9a1b1f015254945",
+    "isaac-toolkit/docs/bb_cdfg_validation.md": "2a7e5bf22b8a6220d8dd4cd6de9db56267fb93550b12417adbc43de27665e574",
+    "isaac-toolkit/isaac_toolkit/analysis/dynamic/trace/map_llvm_bbs_new.py": "54d36cc5dbd974c4c3dd35d937ab16afa1ecafb0d74bfd3655c68d8bbf27c129",
+    "isaac-toolkit/isaac_toolkit/analysis/static/llvm_bbs.py": "9a548cf36815ee05168c264106cd4dc2596b18eb225e10d191185107a3408b4e",
+    "isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py": "58d47f57b9af5d866f5a9ac16d5fae18f9c2d1f88d7885f59a7b137f32d18148",
+    "isaac-toolkit/isaac_toolkit/generate/cdfg/memgraph.py": "d5addc1155b8ac3d5652a20713efe6df460e882f177ce11d1ca1e7d741c11441",
+    "isaac-toolkit/isaac_toolkit/generate/ise/choose_bbs.py": "a140c853d03c53c5bd723e8c900b12501ca4f88ea3baaf78e7116724205be5ba",
+    "isaac-toolkit/isaac_toolkit/generate/ise/query_candidates_from_db.py": "6842f62f76f2748d3c5a5ca3bed2de91ed2643b6d6596e99a8ac36e1da4a2406",
+    "isaac-toolkit/isaac_toolkit/utils/bb_identity.py": "434f2446674cdacff151fd39ef0881048c0d2c62ffc2e29492cc1c0657319999",
+    "memgraph_experiments/README.md": "1ffe90cc336d723c40d83108ea4fe9eff6c5e4b734d1892ba895b1d7787e653c",
+    "memgraph_experiments/requirements.txt": "2594b50b4b077bd5026a491ca94cbc7d6a057e13d8d76bba33e2270fdfbd2f60",
+    "memgraph_experiments/tool/cmdline.py": "717e80b79b7c733632dfcce55755b9fffd9f46ac9eb04a12117e813534abf47e",
+    "memgraph_experiments/tool/main.py": "fab55d6b09d0cbc897301bb3e5288b041eb4444bd5e1b50681db6b817e8a3342",
+    "memgraph_experiments/tool/queries.py": "5f7c9db3a065127e21a3a6774ca09046c5590aba9ff2f59527ca9efba49c7dbb",
+    "memgraph_experiments/tool/settings.py": "fcda47d5e20c3226cac372d9d22d5a2491be3a1f26120e00fbffb4b93aced43a",
+    "memgraph_experiments/tool/stages/query_candidates.py": "88fe85c9002eeb4494f1d1dfdae2299e76c0ae670ce84440f0d5aa86f82f856b",
+    "memgraph_experiments/tool/stages/query_func.py": "21790e4e59564865da5190cac35f2f6c72e596f3106d2f304410a455e6abeda5",
+    "memgraph_experiments/tool/stages/write_io_subs.py": "ebaf456d11cde7adf6697b9e96a4202e34c179fbc7b7bed985092d86326f1b23",
+    "memgraph_experiments/tool/stages/write_pie.py": "9e02b6281c261c428bd7f0cdfc963e769d40971bb83913ae71acb71763e2366a",
+    "memgraph_experiments/tool/stages/write_subs.py": "fc60e9098ca8e9d528feac94dcecb78ab95d37754276ca4e49f06f4e87349975",
+    "memgraph_experiments/tool/export_utils.py": "52fb765d5daa2536b8f96424d08ddaaffdbd6dc542c2737fea1b5fb9c3c06179",
+    "llvm-project/llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp": "1655581747a9fe71c9ed02a07a347427b06eb263c2f73992db6e7e0c116d13ec",
+    "llvm-project/llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp": "d163d553fdbf52339786e70ef25c4a8ec72cd95fe46d68a0a5f2543ba6e73e36",
+    "llvm-project/llvm/lib/CodeGen/MachineBasicBlock.cpp": "322bc842df15acdad49438c9522f0261bc3228a627212101bb318bad8552a67e",
+    "llvm-project/llvm/lib/CodeGen/MachineFunction.cpp": "947873e59855ccc02e3c20232a7e22dd9d36bb76d45a23a4f66288fe1a381b12",
+    "llvm-project/llvm/lib/CodeGen/ResetMachineFunctionPass.cpp": "6d6175e2135c39ab9affb0b864a4c3c5a89fde812d6c61cb18b388a431c317ff",
+    "llvm-project/llvm/docs/BBIDTracing.rst": "f5d2a0252f5158964a91e4801c458a72d126eee24560830a5b94db3c7a07dba0"
+  },
+  "checks": [
+    "Modified Python files parsed with ast.parse",
+    "git diff --check in root and all three changed submodules",
+    "LLVM clang/llc build completed",
+    "Local clang component installed; previous executable backed up"
+  ],
+  "not_run": [
+    "Unit/regression test suites",
+    "Live database end-to-end workflow"
+  ]
+}

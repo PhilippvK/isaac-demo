@@ -1,0 +1,7 @@
+[fallback::INFO] Initializing Seal5
+[fallback::INFO] Updating LLVM Repository
+[fallback::DEBUG] Refreshing LLVM repository: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22
+[fallback::DEBUG] Creating Seal5 directories
+Logger started on port 44261
+Logger on port 44261 stopped.
+Prepared local Seal5 state; build directory reused: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build

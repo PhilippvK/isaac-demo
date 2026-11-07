@@ -1,0 +1,101 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Nov  6 10:37:15 2026
+# Process ID: 69
+# Current directory: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-ila
+# Command line: vivado -mode batch -source ../../create_ila.tcl
+# Log file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-ila/vivado.log
+# Journal file: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-ila/vivado.jou
+# Running On        :ryloth.eda.cit.tum.de
+# Platform          :Ubuntu
+# Operating System  :Ubuntu 22.04.2 LTS
+# Processor Detail  :Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz
+# CPU Frequency     :1929.162 MHz
+# CPU Physical cores:8
+# CPU Logical cores :16
+# Host memory       :33388 MB
+# Swap memory       :1073 MB
+# Total Virtual     :34462 MB
+# Available Virtual :24783 MB
+#-----------------------------------------------------------
+CRITICAL WARNING: [Common 17-741] No write access right to the local Tcl store at '/home/ga87puy/.Xilinx/Vivado/2024.1/XilinxTclStore'. XilinxTclStore is reverted to the installation area. If you want to use local Tcl Store, please change the access right and relaunch Vivado.
+source ../../create_ila.tcl
+# set_param general.maxThreads 4
+# open_checkpoint ../branches-packed/synthesized.dcp
+Command: open_checkpoint ../branches-packed/synthesized.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1406.707 ; gain = 0.000 ; free physical = 7071 ; free virtual = 23268
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Device 21-9227] Part: xc7a100tcsg324-1 does not have CEAM library.
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1812.598 ; gain = 0.000 ; free physical = 6677 ; free virtual = 22875
+INFO: [Netlist 29-17] Analyzing 701 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2024.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1896.105 ; gain = 1.000 ; free physical = 6578 ; free virtual = 22775
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2360.777 ; gain = 0.000 ; free physical = 6119 ; free virtual = 22317
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2360.777 ; gain = 0.000 ; free physical = 6119 ; free virtual = 22316
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2360.777 ; gain = 0.000 ; free physical = 6118 ; free virtual = 22316
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2360.777 ; gain = 0.000 ; free physical = 6118 ; free virtual = 22316
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2456.824 ; gain = 96.047 ; free physical = 6132 ; free virtual = 22330
+Read Physdb Files: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2456.824 ; gain = 96.047 ; free physical = 6132 ; free virtual = 22330
+Restored from archive | CPU: 0.050000 secs | Memory: 1.093430 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2456.824 ; gain = 96.047 ; free physical = 6132 ; free virtual = 22330
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2456.824 ; gain = 0.000 ; free physical = 6132 ; free virtual = 22330
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 177 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 8 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 54 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 48 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 7 instances
+  RAM64X1S => RAM64X1S (RAMS64E): 60 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2024.1 (64-bit) build 5076996
+open_checkpoint: Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 2456.824 ; gain = 1050.117 ; free physical = 6132 ; free virtual = 22330
+# set clk [get_nets -quiet clk20]
+# if {[llength $clk] != 1} {error "Missing core clock: $clk"}
+# set probe_pc {}
+# set probe_oldest {}
+# for {set bit 2} {$bit < 32} {incr bit} {
+#  foreach {signal variable} {core_RdPC_2_to_scal probe_pc oldest_pc probe_oldest} {
+#   set name [format {cpu/cva5/cva5_wrapper/cva5/%s[%d]} $signal $bit]
+#   set net [get_nets -quiet -hierarchical -filter [format {NAME == "%s"} $name]]
+#   if {[llength $net] != 1} {error "Expected one net for $name: $net"}
+#   lappend $variable [lindex $net 0]
+#  }
+# }
+# set p0 [get_nets -quiet -hierarchical -filter {NAME =~ *core_WrPC_validReq_2_from_scal}]
+# set p1 [get_nets -quiet -hierarchical -filter {NAME =~ *fetch_wrPCValid}]
+# if {![llength $p0] || ![llength $p1]} {error "Missing redirect flags: $p0 / $p1"}
+# set probe_flags [list [lindex $p0 0] [lindex $p1 0]]
+# create_debug_core isaac_ila ila
+# set_property C_DATA_DEPTH 1024 [get_debug_cores isaac_ila]
+# set_property port_width 30 [get_debug_ports isaac_ila/probe0]
+# connect_debug_port isaac_ila/clk $clk
+# connect_debug_port isaac_ila/probe0 $probe_pc
+# create_debug_port isaac_ila probe
+# set_property port_width 30 [get_debug_ports isaac_ila/probe1]
+# connect_debug_port isaac_ila/probe1 $probe_oldest
+# create_debug_port isaac_ila probe
+# set_property port_width 2 [get_debug_ports isaac_ila/probe2]
+# connect_debug_port isaac_ila/probe2 $probe_flags
+# set hub [get_debug_cores -quiet dbg_hub]
+# if {[llength $hub]} {
+#  set_property C_CLK_INPUT_FREQ_HZ 20000000 $hub
+#  connect_debug_port dbg_hub/clk $clk
+# }
+ERROR: [Vivado 12-206] Validation error: '20000000' not with in range of 25000000-650000000
+INFO: [Common 17-206] Exiting Vivado at Fri Nov  6 10:37:41 2026...

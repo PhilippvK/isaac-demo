@@ -1,0 +1,14 @@
+[2J
+********************************************************
+********************************************************
+**        Avnet/Digilent Arty Evaluation Board        **
+**        LEDs and switches GPIO Demonstration        **
+********************************************************
+********************************************************
+**
+Choose Task:
+BTN0: Print PWM value.
+BTN1: 'Cylon' LED display.
+BTN2: Scrolling LED display.
+BTN3: Return to this menu.
+

@@ -1,0 +1,36 @@
+[
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c",
+    "arm": "baseline",
+    "returncode": 0,
+    "custom_instruction_occurrences": 0,
+    "custom_instruction_names": []
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c",
+    "arm": "extended",
+    "returncode": 0,
+    "custom_instruction_occurrences": 1,
+    "custom_instruction_names": [
+      "custom6"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c",
+    "arm": "baseline",
+    "returncode": 0,
+    "custom_instruction_occurrences": 0,
+    "custom_instruction_names": []
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c",
+    "arm": "extended",
+    "returncode": 0,
+    "custom_instruction_occurrences": 6,
+    "custom_instruction_names": [
+      "custom17",
+      "custom19",
+      "custom20"
+    ]
+  }
+]

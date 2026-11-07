@@ -1,0 +1,42 @@
+{
+  "scope": "standalone five-instruction HLS probe; not original full-set encodings",
+  "requirement": "Longnail CVA5 word access requires funct3=010",
+  "collision_check": true,
+  "assignments": [
+    {
+      "instruction": "CUSTOM17",
+      "original_code": "0x7600000b",
+      "target_code": "0x7600200b",
+      "mask": "0xfe00707f",
+      "funct3": 2
+    },
+    {
+      "instruction": "CUSTOM43",
+      "original_code": "0xfc00500b",
+      "target_code": "0xfc00200b",
+      "mask": "0xfe00707f",
+      "funct3": 2
+    },
+    {
+      "instruction": "CUSTOM44",
+      "original_code": "0xa200500b",
+      "target_code": "0xa200200b",
+      "mask": "0xfe00707f",
+      "funct3": 2
+    },
+    {
+      "instruction": "CUSTOM76",
+      "original_code": "0xfe00500b",
+      "target_code": "0xfe00200b",
+      "mask": "0xfe00707f",
+      "funct3": 2
+    },
+    {
+      "instruction": "CUSTOM78",
+      "original_code": "0x4000300b",
+      "target_code": "0x4000200b",
+      "mask": "0xfe00707f",
+      "funct3": 2
+    }
+  ]
+}

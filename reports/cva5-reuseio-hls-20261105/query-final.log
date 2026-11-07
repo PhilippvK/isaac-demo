@@ -1,0 +1,726 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000 DATE=20261105T120000 BENCH=crc32
+INFO - query_candidates_from_db - Querying candidates from DB...
+INFO:settings:Initializing default settings
+INFO:settings:Initializing settings from yaml
+INFO:settings:Initializing settings from args
+INFO:validate_settings:Validating settings...
+INFO:timing:<Settings Validation> took 0.000 seconds
+INFO:main:Running queries...
+INFO:connect_db:Connecting to DB...
+INFO:timing:<Connect to DB> took 0.000 seconds
+INFO:query_func:Exporting queries...
+INFO:timing:<Query func from DB> took 0.004 seconds
+INFO:query_candidates:Exporting queries...
+INFO:timing:<Query candidates from DB> took 0.042 seconds
+INFO:convert_func:Converting func graph to NX...
+INFO:timing:<Conversion to NX (func)> took 0.011 seconds
+INFO:convert_candidates:Converting candidates to NX...
+INFO:timing:<Conversion to NX (candidates)> took 0.087 seconds
+INFO:generate_subgraphs:Generating subgraphs...
+0it [00:00, ?it/s]98it [00:00, 49321.07it/s]
+INFO:generate_subgraphs:Exporting query metrics...
+INFO:timing:<Subgraph Generation> took 0.005 seconds
+INFO:relabel_nodes:Relabeling nodes...
+INFO:timing:<Relabeling> took 0.010 seconds
+INFO:dump_func_graph:Exporting GF graph...
+INFO:timing:<Dumping GF graph> took 0.009 seconds
+INFO:analyze_io:Collecting I/O details...
+  0%|          | 0/98 [00:00<?, ?it/s] 60%|██████    | 59/98 [00:00<00:00, 584.47it/s]100%|██████████| 98/98 [00:00<00:00, 595.14it/s]
+INFO:timing:<I/O Analysis> took 0.165 seconds
+INFO:create_hashes:Creating SubHashes...
+  0%|          | 0/98 [00:00<?, ?it/s]100%|██████████| 98/98 [00:00<00:00, 1656.80it/s]
+INFO:timing:<SubHash Creation> took 0.059 seconds
+INFO:check_iso:Checking isomorphism...
+  0%|          | 0/1 [00:00<?, ?it/s]                                       0%|          | 0/3 [00:00<?, ?it/s]                                       0%|          | 0/11 [00:00<?, ?it/s]                                        0%|          | 0/6 [00:00<?, ?it/s]                                       0%|          | 0/11 [00:00<?, ?it/s]                                        0%|          | 0/12 [00:00<?, ?it/s]                                        0%|          | 0/11 [00:00<?, ?it/s]                                        0%|          | 0/13 [00:00<?, ?it/s]                                        0%|          | 0/8 [00:00<?, ?it/s]                                       0%|          | 0/13 [00:00<?, ?it/s]                                        0%|          | 0/3 [00:00<?, ?it/s]                                       0%|          | 0/5 [00:00<?, ?it/s]                                       0%|          | 0/1 [00:00<?, ?it/s]                                     INFO:timing:<Isomorphism Check> took 0.031 seconds
+INFO:check_overlaps:Checking overlaps...
+INFO:timing:<Overlap Check> took 0.030 seconds
+INFO:detect_predicates:Detecting Predicates...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 919.75it/s]
+INFO:timing:<Predicate Detection> took 0.054 seconds
+INFO:detect_registers:Detecting Registers...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 5393.26it/s]
+INFO:timing:<Register Detection> took 0.009 seconds
+INFO:schedule_subs:Scheduling Subs...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 3175.74it/s]
+INFO:timing:<Schedule Subs> took 0.016 seconds
+INFO:filter_subs:Filtering subgraphs...
+  0%|          | 0/49 [00:00<?, ?it/s]100%|██████████| 49/49 [00:00<00:00, 6739.94it/s]
+INFO:timing:<Filtering subgraphs> took 0.008 seconds
+INFO:assign_io_names:Determining IO names...
+  0%|          | 0/45 [00:00<?, ?it/s]100%|██████████| 45/45 [00:00<00:00, 1655.47it/s]
+INFO:timing:<Determining IO names> took 0.029 seconds
+INFO:analyze_const:Analyzing constants...
+  0%|          | 0/27 [00:00<?, ?it/s]100%|██████████| 27/27 [00:00<00:00, 7847.97it/s]
+INFO:timing:<Analyze Constants> took 0.005 seconds
+INFO:const_hist:Creating Constants Histograms...
+  0%|          | 0/27 [00:00<?, ?it/s]
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/27 [00:00<?, ?it/s][A
+                                      [A100%|██████████| 27/27 [00:00<00:00, 613.97it/s]
+INFO:timing:<Creating Constants Histograms> took 0.045 seconds
+INFO:generate_variations:Generating variations...
+  0%|          | 0/27 [00:00<?, ?it/s] 30%|██▉       | 8/27 [00:00<00:00, 78.69it/s] 63%|██████▎   | 17/27 [00:00<00:00, 84.93it/s]100%|██████████| 27/27 [00:00<00:00, 105.74it/s]
+  0%|          | 0/107 [00:00<?, ?it/s] 28%|██▊       | 30/107 [00:00<00:00, 296.95it/s] 56%|█████▌    | 60/107 [00:00<00:00, 224.84it/s] 79%|███████▊  | 84/107 [00:00<00:00, 195.34it/s] 98%|█████████▊| 105/107 [00:00<00:00, 160.43it/s]100%|██████████| 107/107 [00:00<00:00, 183.91it/s]
+INFO:timing:<Variation generation> took 0.840 seconds
+INFO:create_fullhash:Creating FullHashes...
+  0%|          | 0/268 [00:00<?, ?it/s] 72%|███████▏  | 194/268 [00:00<00:00, 1934.85it/s]100%|██████████| 268/268 [00:00<00:00, 1969.01it/s]
+INFO:timing:<FullHash Creation> took 0.141 seconds
+INFO:filter_subs_operands:Filtering subgraphs (Operands)...
+  0%|          | 0/268 [00:00<?, ?it/s]100%|██████████| 268/268 [00:00<00:00, 11910.84it/s]
+INFO:timing:<Filtering subgraphs (Operands)> took 0.025 seconds
+INFO:filter_subs_encoding:Filtering subgraphs (Encoding)...
+  0%|          | 0/157 [00:00<?, ?it/s]100%|██████████| 157/157 [00:00<00:00, 12281.66it/s]
+INFO:timing:<Filtering subgraphs (Encoding)> took 0.015 seconds
+INFO:filter_subs_weights:Filtering subgraphs (Weights)...
+  0%|          | 0/87 [00:00<?, ?it/s]100%|██████████| 87/87 [00:00<00:00, 12741.08it/s]
+INFO:timing:<Filtering subgraphs (Weights)> took 0.009 seconds
+INFO:generate_tree:Generation of Tree...
+  0%|          | 0/87 [00:00<?, ?it/s]  2%|▏         | 2/87 [00:00<00:04, 19.12it/s]  5%|▍         | 4/87 [00:00<00:04, 19.22it/s]  7%|▋         | 6/87 [00:00<00:04, 19.33it/s]  9%|▉         | 8/87 [00:00<00:04, 19.16it/s] 11%|█▏        | 10/87 [00:00<00:04, 18.89it/s] 14%|█▍        | 12/87 [00:00<00:04, 18.63it/s] 16%|█▌        | 14/87 [00:00<00:03, 18.62it/s] 18%|█▊        | 16/87 [00:00<00:04, 17.06it/s] 21%|██        | 18/87 [00:00<00:04, 17.12it/s] 23%|██▎       | 20/87 [00:01<00:03, 17.54it/s] 25%|██▌       | 22/87 [00:01<00:03, 17.77it/s] 28%|██▊       | 24/87 [00:01<00:03, 18.04it/s] 30%|██▉       | 26/87 [00:01<00:03, 18.02it/s] 32%|███▏      | 28/87 [00:01<00:03, 18.15it/s] 34%|███▍      | 30/87 [00:01<00:03, 18.30it/s] 37%|███▋      | 32/87 [00:01<00:02, 18.41it/s] 39%|███▉      | 34/87 [00:01<00:02, 18.59it/s] 41%|████▏     | 36/87 [00:02<00:03, 16.32it/s] 44%|████▎     | 38/87 [00:02<00:02, 16.86it/s] 46%|████▌     | 40/87 [00:02<00:02, 17.36it/s] 48%|████▊     | 42/87 [00:02<00:02, 17.76it/s] 51%|█████     | 44/87 [00:02<00:02, 18.15it/s] 53%|█████▎    | 46/87 [00:02<00:02, 18.33it/s] 55%|█████▌    | 48/87 [00:02<00:02, 18.49it/s] 57%|█████▋    | 50/87 [00:02<00:01, 18.66it/s] 60%|█████▉    | 52/87 [00:02<00:01, 18.87it/s] 62%|██████▏   | 54/87 [00:02<00:01, 18.97it/s] 64%|██████▍   | 56/87 [00:03<00:01, 15.98it/s] 67%|██████▋   | 58/87 [00:03<00:01, 16.43it/s] 69%|██████▉   | 60/87 [00:03<00:01, 16.97it/s] 71%|███████▏  | 62/87 [00:03<00:01, 17.27it/s] 74%|███████▎  | 64/87 [00:03<00:01, 17.59it/s] 76%|███████▌  | 66/87 [00:03<00:01, 17.94it/s] 78%|███████▊  | 68/87 [00:03<00:01, 18.07it/s] 80%|████████  | 70/87 [00:03<00:00, 18.21it/s] 83%|████████▎ | 72/87 [00:04<00:00, 18.45it/s] 85%|████████▌ | 74/87 [00:04<00:00, 17.96it/s] 87%|████████▋ | 76/87 [00:04<00:00, 17.76it/s] 90%|████████▉ | 78/87 [00:04<00:00, 17.72it/s] 92%|█████████▏| 80/87 [00:04<00:00, 17.90it/s] 94%|█████████▍| 82/87 [00:04<00:00, 18.32it/s] 97%|█████████▋| 84/87 [00:04<00:00, 18.54it/s] 99%|█████████▉| 86/87 [00:04<00:00, 18.78it/s]100%|██████████| 87/87 [00:04<00:00, 18.01it/s]
+INFO:timing:<Tree Generation> took 4.831 seconds
+INFO:generate_cdsl:Generation of CDSL...
+  0%|          | 0/87 [00:00<?, ?it/s]100%|██████████| 87/87 [00:00<00:00, 2583.52it/s]
+INFO:timing:<CDSL Generation> took 0.034 seconds
+INFO:generate_flat:Generation of FLAT...
+  0%|          | 0/87 [00:00<?, ?it/s]100%|██████████| 87/87 [00:00<00:00, 4428.83it/s]
+INFO:timing:<FLAT Generation> took 0.020 seconds
+INFO:finalize_df:Finalizing DataFrame...
+INFO:timing:<Finish DF> took 0.001 seconds
+INFO:apply_styles:Applying styles...
+  0%|          | 0/87 [00:00<?, ?it/s]100%|██████████| 87/87 [00:00<00:00, 8540.97it/s]
+INFO:timing:<Apply Styles> took 0.012 seconds
+INFO:write_subs:Exporting subgraphs...
+  0%|          | 0/87 [00:00<?, ?it/s] 25%|██▌       | 22/87 [00:00<00:00, 208.87it/s]100%|██████████| 87/87 [00:00<00:00, 761.83it/s]
+INFO:timing:<Subgraph Export> took 0.162 seconds
+INFO:write_io_subs:Exporting I/O subgraphs...
+  0%|          | 0/87 [00:00<?, ?it/s]  1%|          | 1/87 [00:00<00:10,  8.08it/s]100%|██████████| 87/87 [00:00<00:00, 475.44it/s]
+INFO:timing:<Dumping I/O Subgraphs> took 0.253 seconds
+INFO:write_dfs:Exporting Global DataFrame...
+INFO:write_dfs:Exporting Subs DataFrame...
+INFO:timing:<Dump DFs> took 0.020 seconds
+INFO:write_pie:Generating PieChart...
+INFO:write_pie:Exporting PieChart...
+INFO:choreographer.browsers.chromium:Chromium init'ed with kwargs {}
+INFO:choreographer.browsers.chromium:Found chromium path: /usr/bin/google-chrome
+INFO:choreographer.utils._tmpfile:Temp directory created: /tmp/tmp1_dx7viv.
+INFO:choreographer.browser_async:Opening browser.
+INFO:choreographer.utils._tmpfile:Temp directory created: /tmp/tmp7v126anr.
+INFO:choreographer.browsers.chromium:Temporary directory at: /tmp/tmp7v126anr
+INFO:kaleido.kaleido:Conforming 1 to file:///tmp/tmp1_dx7viv/index.html
+INFO:kaleido.kaleido:Getting tab from queue (has 1)
+INFO:kaleido.kaleido:Got FF99
+INFO:kaleido.kaleido:Getting tab from queue (has 0)
+INFO:kaleido.kaleido:Getting tab from queue (has 0)
+INFO:kaleido.kaleido:Getting tab from queue (has 0)
+INFO:kaleido.kaleido:Reloading tab FF99 before return.
+INFO:kaleido.kaleido:Putting tab FF99 back (queue size: 0).
+INFO:kaleido.kaleido:Got FF99
+INFO:kaleido.kaleido:Reloading tab FF99 before return.
+INFO:kaleido.kaleido:Putting tab FF99 back (queue size: 0).
+INFO:kaleido.kaleido:Got FF99
+INFO:kaleido.kaleido:Reloading tab FF99 before return.
+INFO:kaleido.kaleido:Putting tab FF99 back (queue size: 0).
+INFO:kaleido.kaleido:Got FF99
+INFO:kaleido.kaleido:Reloading tab FF99 before return.
+INFO:kaleido.kaleido:Putting tab FF99 back (queue size: 0).
+INFO:kaleido.kaleido:Waiting for all cleanups to finish.
+INFO:kaleido.kaleido:Exiting Kaleido.
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:choreographer.browser_async:Closing browser.
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:choreographer.browser_async:Closing browser.
+INFO:kaleido.kaleido:Cancelling tasks.
+INFO:kaleido.kaleido:Exiting Kaleido/Choreo.
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:kaleido.kaleido:Cancelling tasks.
+INFO:kaleido.kaleido:Exiting Kaleido/Choreo.
+INFO:timing:<Dump Pie> took 4.031 seconds
+INFO:write_sankey:Exporting Sankey chart...
+INFO:timing:<Dump Sankey chart> took 0.003 seconds
+INFO:write_index:Writing Index File...
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:timing:<Write Index> took 0.800 seconds
+settings.read_hdf5 False <class 'bool'>
+Execution Time Summary:
+- Settings Validation: 0.000 sec (0.0%)
+- Connect to DB: 0.000 sec (0.0%)
+- Query func from DB: 0.004 sec (0.0%)
+- Query candidates from DB: 0.042 sec (0.4%)
+- Conversion to NX (func): 0.011 sec (0.1%)
+- Conversion to NX (candidates): 0.087 sec (0.7%)
+- Subgraph Generation: 0.005 sec (0.0%)
+- Relabeling: 0.010 sec (0.1%)
+- Dumping GF graph: 0.009 sec (0.1%)
+- I/O Analysis: 0.165 sec (1.4%)
+- SubHash Creation: 0.059 sec (0.5%)
+- Isomorphism Check: 0.031 sec (0.3%)
+- Overlap Check: 0.030 sec (0.3%)
+- Predicate Detection: 0.054 sec (0.5%)
+- Register Detection: 0.009 sec (0.1%)
+- Schedule Subs: 0.016 sec (0.1%)
+- Filtering subgraphs: 0.008 sec (0.1%)
+- Determining IO names: 0.029 sec (0.2%)
+- Analyze Constants: 0.005 sec (0.0%)
+- Creating Constants Histograms: 0.045 sec (0.4%)
+- Variation generation: 0.840 sec (7.1%)
+- FullHash Creation: 0.141 sec (1.2%)
+- Filtering subgraphs (Operands): 0.025 sec (0.2%)
+- Filtering subgraphs (Encoding): 0.015 sec (0.1%)
+- Filtering subgraphs (Weights): 0.009 sec (0.1%)
+- Tree Generation: 4.831 sec (40.9%)
+- CDSL Generation: 0.034 sec (0.3%)
+- FLAT Generation: 0.020 sec (0.2%)
+- Finish DF: 0.001 sec (0.0%)
+- Apply Styles: 0.012 sec (0.1%)
+- Subgraph Export: 0.162 sec (1.4%)
+- Dumping I/O Subgraphs: 0.253 sec (2.1%)
+- Dump DFs: 0.020 sec (0.2%)
+- Dump Pie: 4.031 sec (34.1%)
+- Dump Sankey chart: 0.003 sec (0.0%)
+- Write Index: 0.800 sec (6.8%)
+INFO:settings:Initializing default settings
+INFO:settings:Initializing settings from yaml
+INFO:settings:Initializing settings from args
+INFO:validate_settings:Validating settings...
+INFO:timing:<Settings Validation> took 0.000 seconds
+INFO:main:Running queries...
+INFO:connect_db:Connecting to DB...
+INFO:timing:<Connect to DB> took 0.000 seconds
+INFO:query_func:Exporting queries...
+INFO:timing:<Query func from DB> took 0.004 seconds
+INFO:query_candidates:Exporting queries...
+INFO:timing:<Query candidates from DB> took 0.043 seconds
+INFO:convert_func:Converting func graph to NX...
+INFO:timing:<Conversion to NX (func)> took 0.020 seconds
+INFO:convert_candidates:Converting candidates to NX...
+INFO:timing:<Conversion to NX (candidates)> took 0.029 seconds
+INFO:generate_subgraphs:Generating subgraphs...
+0it [00:00, ?it/s]42it [00:00, 60494.77it/s]
+INFO:generate_subgraphs:Exporting query metrics...
+INFO:timing:<Subgraph Generation> took 0.004 seconds
+INFO:relabel_nodes:Relabeling nodes...
+INFO:timing:<Relabeling> took 0.005 seconds
+INFO:dump_func_graph:Exporting GF graph...
+INFO:timing:<Dumping GF graph> took 0.015 seconds
+INFO:analyze_io:Collecting I/O details...
+  0%|          | 0/42 [00:00<?, ?it/s]100%|██████████| 42/42 [00:00<00:00, 586.98it/s]
+INFO:timing:<I/O Analysis> took 0.072 seconds
+INFO:create_hashes:Creating SubHashes...
+  0%|          | 0/42 [00:00<?, ?it/s]100%|██████████| 42/42 [00:00<00:00, 1691.76it/s]
+INFO:timing:<SubHash Creation> took 0.025 seconds
+INFO:check_iso:Checking isomorphism...
+  0%|          | 0/1 [00:00<?, ?it/s]                                       0%|          | 0/6 [00:00<?, ?it/s]                                       0%|          | 0/9 [00:00<?, ?it/s]                                       0%|          | 0/10 [00:00<?, ?it/s]                                        0%|          | 0/10 [00:00<?, ?it/s]                                        0%|          | 0/6 [00:00<?, ?it/s]                                     INFO:timing:<Isomorphism Check> took 0.012 seconds
+INFO:check_overlaps:Checking overlaps...
+INFO:timing:<Overlap Check> took 0.013 seconds
+INFO:detect_predicates:Detecting Predicates...
+  0%|          | 0/22 [00:00<?, ?it/s]100%|██████████| 22/22 [00:00<00:00, 869.26it/s]
+INFO:timing:<Predicate Detection> took 0.026 seconds
+INFO:detect_registers:Detecting Registers...
+  0%|          | 0/22 [00:00<?, ?it/s]100%|██████████| 22/22 [00:00<00:00, 5049.78it/s]
+INFO:timing:<Register Detection> took 0.005 seconds
+INFO:schedule_subs:Scheduling Subs...
+  0%|          | 0/22 [00:00<?, ?it/s]100%|██████████| 22/22 [00:00<00:00, 3207.88it/s]
+INFO:timing:<Schedule Subs> took 0.007 seconds
+INFO:filter_subs:Filtering subgraphs...
+  0%|          | 0/22 [00:00<?, ?it/s]100%|██████████| 22/22 [00:00<00:00, 6007.47it/s]
+INFO:timing:<Filtering subgraphs> took 0.004 seconds
+INFO:assign_io_names:Determining IO names...
+  0%|          | 0/22 [00:00<?, ?it/s]100%|██████████| 22/22 [00:00<00:00, 1043.58it/s]
+INFO:timing:<Determining IO names> took 0.023 seconds
+INFO:analyze_const:Analyzing constants...
+  0%|          | 0/22 [00:00<?, ?it/s]100%|██████████| 22/22 [00:00<00:00, 7814.59it/s]
+INFO:timing:<Analyze Constants> took 0.004 seconds
+INFO:const_hist:Creating Constants Histograms...
+  0%|          | 0/22 [00:00<?, ?it/s]
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A
+  0%|          | 0/22 [00:00<?, ?it/s][A
+                                      [A100%|██████████| 22/22 [00:00<00:00, 681.52it/s]
+INFO:timing:<Creating Constants Histograms> took 0.034 seconds
+INFO:generate_variations:Generating variations...
+  0%|          | 0/22 [00:00<?, ?it/s]100%|██████████| 22/22 [00:00<00:00, 854.19it/s]
+  0%|          | 0/31 [00:00<?, ?it/s] 90%|█████████ | 28/31 [00:00<00:00, 260.28it/s]100%|██████████| 31/31 [00:00<00:00, 218.39it/s]
+INFO:timing:<Variation generation> took 0.171 seconds
+INFO:create_fullhash:Creating FullHashes...
+  0%|          | 0/80 [00:00<?, ?it/s]100%|██████████| 80/80 [00:00<00:00, 2013.96it/s]
+INFO:timing:<FullHash Creation> took 0.043 seconds
+INFO:filter_subs_operands:Filtering subgraphs (Operands)...
+  0%|          | 0/80 [00:00<?, ?it/s]100%|██████████| 80/80 [00:00<00:00, 11550.58it/s]
+INFO:timing:<Filtering subgraphs (Operands)> took 0.009 seconds
+INFO:filter_subs_encoding:Filtering subgraphs (Encoding)...
+  0%|          | 0/68 [00:00<?, ?it/s]100%|██████████| 68/68 [00:00<00:00, 11791.98it/s]
+INFO:timing:<Filtering subgraphs (Encoding)> took 0.008 seconds
+INFO:filter_subs_weights:Filtering subgraphs (Weights)...
+  0%|          | 0/40 [00:00<?, ?it/s]100%|██████████| 40/40 [00:00<00:00, 12663.96it/s]
+INFO:timing:<Filtering subgraphs (Weights)> took 0.005 seconds
+INFO:generate_tree:Generation of Tree...
+  0%|          | 0/40 [00:00<?, ?it/s]  5%|▌         | 2/40 [00:00<00:02, 14.05it/s] 10%|█         | 4/40 [00:00<00:02, 16.57it/s] 15%|█▌        | 6/40 [00:00<00:01, 17.64it/s] 20%|██        | 8/40 [00:00<00:01, 18.07it/s] 25%|██▌       | 10/40 [00:00<00:01, 18.22it/s] 30%|███       | 12/40 [00:00<00:01, 18.13it/s] 35%|███▌      | 14/40 [00:00<00:01, 18.32it/s] 40%|████      | 16/40 [00:00<00:01, 18.57it/s] 45%|████▌     | 18/40 [00:00<00:01, 18.78it/s] 50%|█████     | 20/40 [00:01<00:01, 17.37it/s] 55%|█████▌    | 22/40 [00:01<00:01, 17.45it/s] 60%|██████    | 24/40 [00:01<00:00, 18.01it/s] 65%|██████▌   | 26/40 [00:01<00:00, 18.46it/s] 70%|███████   | 28/40 [00:01<00:00, 18.72it/s] 75%|███████▌  | 30/40 [00:01<00:00, 18.71it/s] 80%|████████  | 32/40 [00:01<00:00, 18.67it/s] 85%|████████▌ | 34/40 [00:01<00:00, 18.70it/s] 90%|█████████ | 36/40 [00:01<00:00, 18.68it/s] 95%|█████████▌| 38/40 [00:02<00:00, 18.77it/s]100%|██████████| 40/40 [00:02<00:00, 15.98it/s]100%|██████████| 40/40 [00:02<00:00, 17.76it/s]
+INFO:timing:<Tree Generation> took 2.253 seconds
+INFO:generate_cdsl:Generation of CDSL...
+  0%|          | 0/40 [00:00<?, ?it/s]100%|██████████| 40/40 [00:00<00:00, 2486.43it/s]
+INFO:timing:<CDSL Generation> took 0.016 seconds
+INFO:generate_flat:Generation of FLAT...
+  0%|          | 0/40 [00:00<?, ?it/s]100%|██████████| 40/40 [00:00<00:00, 4274.34it/s]
+INFO:timing:<FLAT Generation> took 0.010 seconds
+INFO:finalize_df:Finalizing DataFrame...
+INFO:timing:<Finish DF> took 0.001 seconds
+INFO:apply_styles:Applying styles...
+  0%|          | 0/40 [00:00<?, ?it/s]100%|██████████| 40/40 [00:00<00:00, 8258.94it/s]
+INFO:timing:<Apply Styles> took 0.006 seconds
+INFO:write_subs:Exporting subgraphs...
+  0%|          | 0/40 [00:00<?, ?it/s]100%|██████████| 40/40 [00:00<00:00, 400.37it/s]
+INFO:timing:<Subgraph Export> took 0.147 seconds
+INFO:write_io_subs:Exporting I/O subgraphs...
+  0%|          | 0/40 [00:00<?, ?it/s]  2%|▎         | 1/40 [00:00<00:05,  7.73it/s]100%|██████████| 40/40 [00:00<00:00, 238.45it/s]
+INFO:timing:<Dumping I/O Subgraphs> took 0.253 seconds
+INFO:write_dfs:Exporting Global DataFrame...
+INFO:write_dfs:Exporting Subs DataFrame...
+INFO:timing:<Dump DFs> took 0.008 seconds
+INFO:write_pie:Generating PieChart...
+INFO:write_pie:Exporting PieChart...
+INFO:choreographer.browsers.chromium:Chromium init'ed with kwargs {}
+INFO:choreographer.browsers.chromium:Found chromium path: /usr/bin/google-chrome
+INFO:choreographer.utils._tmpfile:Temp directory created: /tmp/tmp260eshar.
+INFO:choreographer.browser_async:Opening browser.
+INFO:choreographer.utils._tmpfile:Temp directory created: /tmp/tmpvjunsdlc.
+INFO:choreographer.browsers.chromium:Temporary directory at: /tmp/tmpvjunsdlc
+INFO:kaleido.kaleido:Conforming 1 to file:///tmp/tmp260eshar/index.html
+INFO:kaleido.kaleido:Getting tab from queue (has 1)
+INFO:kaleido.kaleido:Got 8313
+INFO:kaleido.kaleido:Getting tab from queue (has 0)
+INFO:kaleido.kaleido:Getting tab from queue (has 0)
+INFO:kaleido.kaleido:Getting tab from queue (has 0)
+INFO:kaleido.kaleido:Reloading tab 8313 before return.
+INFO:kaleido.kaleido:Putting tab 8313 back (queue size: 0).
+INFO:kaleido.kaleido:Got 8313
+INFO:kaleido.kaleido:Reloading tab 8313 before return.
+INFO:kaleido.kaleido:Putting tab 8313 back (queue size: 0).
+INFO:kaleido.kaleido:Got 8313
+INFO:kaleido.kaleido:Reloading tab 8313 before return.
+INFO:kaleido.kaleido:Putting tab 8313 back (queue size: 0).
+INFO:kaleido.kaleido:Got 8313
+INFO:kaleido.kaleido:Reloading tab 8313 before return.
+INFO:kaleido.kaleido:Putting tab 8313 back (queue size: 0).
+INFO:kaleido.kaleido:Waiting for all cleanups to finish.
+INFO:kaleido.kaleido:Exiting Kaleido.
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:choreographer.browser_async:Closing browser.
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:choreographer.browser_async:Closing browser.
+INFO:kaleido.kaleido:Cancelling tasks.
+INFO:kaleido.kaleido:Exiting Kaleido/Choreo.
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:kaleido.kaleido:Cancelling tasks.
+INFO:kaleido.kaleido:Exiting Kaleido/Choreo.
+INFO:timing:<Dump Pie> took 4.086 seconds
+INFO:write_sankey:Exporting Sankey chart...
+INFO:timing:<Dump Sankey chart> took 0.002 seconds
+INFO:write_index:Writing Index File...
+INFO:choreographer.utils._tmpfile:TemporaryDirectory.cleanup() worked.
+INFO:choreographer.utils._tmpfile:shutil.rmtree worked.
+INFO:timing:<Write Index> took 0.408 seconds
+settings.read_hdf5 False <class 'bool'>
+Execution Time Summary:
+- Settings Validation: 0.000 sec (0.0%)
+- Connect to DB: 0.000 sec (0.0%)
+- Query func from DB: 0.004 sec (0.1%)
+- Query candidates from DB: 0.043 sec (0.6%)
+- Conversion to NX (func): 0.020 sec (0.3%)
+- Conversion to NX (candidates): 0.029 sec (0.4%)
+- Subgraph Generation: 0.004 sec (0.0%)
+- Relabeling: 0.005 sec (0.1%)
+- Dumping GF graph: 0.015 sec (0.2%)
+- I/O Analysis: 0.072 sec (0.9%)
+- SubHash Creation: 0.025 sec (0.3%)
+- Isomorphism Check: 0.012 sec (0.2%)
+- Overlap Check: 0.013 sec (0.2%)
+- Predicate Detection: 0.026 sec (0.3%)
+- Register Detection: 0.005 sec (0.1%)
+- Schedule Subs: 0.007 sec (0.1%)
+- Filtering subgraphs: 0.004 sec (0.1%)
+- Determining IO names: 0.023 sec (0.3%)
+- Analyze Constants: 0.004 sec (0.1%)
+- Creating Constants Histograms: 0.034 sec (0.4%)
+- Variation generation: 0.171 sec (2.2%)
+- FullHash Creation: 0.043 sec (0.6%)
+- Filtering subgraphs (Operands): 0.009 sec (0.1%)
+- Filtering subgraphs (Encoding): 0.008 sec (0.1%)
+- Filtering subgraphs (Weights): 0.005 sec (0.1%)
+- Tree Generation: 2.253 sec (29.0%)
+- CDSL Generation: 0.016 sec (0.2%)
+- FLAT Generation: 0.010 sec (0.1%)
+- Finish DF: 0.001 sec (0.0%)
+- Apply Styles: 0.006 sec (0.1%)
+- Subgraph Export: 0.147 sec (1.9%)
+- Dumping I/O Subgraphs: 0.253 sec (3.3%)
+- Dump DFs: 0.008 sec (0.1%)
+- Dump Pie: 4.086 sec (52.6%)
+- Dump Sankey chart: 0.002 sec (0.0%)
+- Write Index: 0.408 sec (5.3%)
+INFO:combine_index:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/rand_beebs_%bb.0_0/index.yml
+  0%|          | 0/87 [00:00<?, ?it/s]100%|██████████| 87/87 [00:00<00:00, 16569.24it/s]
+INFO:combine_index:Loading input /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/runs/crc32/20261105T120000/work/benchmark_body_%bb.3_0/index.yml
+  0%|          | 0/40 [00:00<?, ?it/s]100%|██████████| 40/40 [00:00<00:00, 19670.79it/s]
+INFO:combine_index:Loaded 127 candidates from 2 files...
+INFO:combine_index:Detecting duplicates...
+  0%|          | 0/8 [00:00<?, ?it/s]                                       0%|          | 0/3 [00:00<?, ?it/s]                                       0%|          | 0/33 [00:00<?, ?it/s]                                        0%|          | 0/46 [00:00<?, ?it/s] 87%|████████▋ | 40/46 [00:00<00:00, 398.74it/s]                                                  0%|          | 0/1 [00:00<?, ?it/s]                                       0%|          | 0/3 [00:00<?, ?it/s]                                       0%|          | 0/9 [00:00<?, ?it/s]                                       0%|          | 0/6 [00:00<?, ?it/s]                                       0%|          | 0/18 [00:00<?, ?it/s]                                      INFO:combine_index:Dropping 0 duplicates out of 127 candidates...
+0it [00:00, ?it/s]
+0it [00:00, ?it/s][A127it [00:00, 4714.79it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5926.66it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 4584.29it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5559.25it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7386.08it/s]
+5it [00:00, 42.86it/s]
+0it [00:00, ?it/s][A127it [00:00, 5143.75it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5271.57it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 4715.83it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 4875.27it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5095.97it/s]
+10it [00:00, 40.68it/s]
+0it [00:00, ?it/s][A127it [00:00, 4479.55it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 4606.18it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 4739.24it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5198.26it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5315.13it/s]
+15it [00:00, 39.40it/s]
+0it [00:00, ?it/s][A127it [00:00, 5498.54it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5593.17it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5761.28it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5962.29it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 4928.68it/s]
+20it [00:00, 40.85it/s]
+0it [00:00, ?it/s][A127it [00:00, 5073.40it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5158.30it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6193.63it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6394.75it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6498.12it/s]
+25it [00:00, 42.38it/s]
+0it [00:00, ?it/s][A127it [00:00, 6668.04it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6857.14it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5676.25it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5826.70it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5888.40it/s]
+30it [00:00, 44.17it/s]
+0it [00:00, ?it/s][A127it [00:00, 5743.08it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5902.30it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6043.67it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5487.83it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5597.75it/s]
+35it [00:00, 44.44it/s]
+0it [00:00, ?it/s][A127it [00:00, 5728.75it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6274.90it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6126.17it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6229.04it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 8441.78it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 8068.53it/s]
+41it [00:00, 46.91it/s]
+0it [00:00, ?it/s][A127it [00:00, 6213.06it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6741.38it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 6822.19it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7097.06it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7363.01it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7770.18it/s]
+47it [00:01, 49.21it/s]
+0it [00:00, ?it/s][A127it [00:00, 8028.04it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7261.23it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7362.60it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7770.06it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7941.15it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7778.34it/s]
+53it [00:01, 52.27it/s]
+0it [00:00, ?it/s][A127it [00:00, 8003.80it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 8551.97it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 8436.84it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 8652.83it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7428.41it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 7744.19it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 8144.65it/s]
+60it [00:01, 55.72it/s]
+0it [00:00, ?it/s][A127it [00:00, 8645.38it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 9171.75it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 9855.07it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 8807.05it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 9322.96it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 9639.81it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 10189.50it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 10634.81it/s]
+68it [00:01, 61.27it/s]
+0it [00:00, ?it/s][A127it [00:00, 11372.74it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 12460.56it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 13132.08it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 9424.23it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 9952.29it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 10415.84it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 10977.59it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 11577.66it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 12153.80it/s]
+77it [00:01, 68.78it/s]
+0it [00:00, ?it/s][A127it [00:00, 12521.19it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 13352.63it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 13939.31it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 14485.93it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 12903.99it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 13417.21it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 13759.28it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 14502.49it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 12808.73it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 15042.26it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 17500.38it/s]
+88it [00:01, 80.25it/s]
+0it [00:00, ?it/s][A127it [00:00, 16608.77it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 15108.82it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 18584.77it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 19744.85it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 16925.95it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 16298.28it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 19444.30it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 5611.26it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 14969.13it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 16599.98it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 19445.01it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 22913.78it/s]
+100it [00:01, 90.87it/s]
+0it [00:00, ?it/s][A127it [00:00, 22914.76it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 20653.58it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 22846.95it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 23753.69it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 22485.29it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 24131.40it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 28403.36it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 30407.39it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 33596.76it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 30013.33it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 33344.39it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 41778.56it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 46783.47it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 46497.61it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 54376.95it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 44223.88it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 56071.22it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 68108.50it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 100656.96it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 72070.98it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 97132.86it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 80843.32it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 100315.75it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 149670.30it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 232711.49it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 247641.38it/s]
+
+0it [00:00, ?it/s][A127it [00:00, 3267954.65it/s]
+127it [00:01, 72.46it/s]
+INFO:combine_index:Dropping 11 name_isos out of 127 remaining candidates...
+INFO:combine_index:Exporting overlaps...
+INFO:combine_index:Exporting sankey diagram...
+INFO:combine_index:Sorting candidates by IsoWeight...
+INFO:combine_index:Keeping TOPK=170 candidates...
+Pairwise overlaps:
+   x  y nodes  size
+0  0  1    {}     0

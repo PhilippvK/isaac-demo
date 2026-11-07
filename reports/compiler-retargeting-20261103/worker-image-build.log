@@ -1,0 +1,197 @@
+#0 building with "default" instance using docker driver
+
+#1 [worker-llvm internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.45kB 0.0s done
+#1 DONE 0.0s
+
+#2 [worker-llvm internal] load metadata for docker.io/philippvk/isaac-quickstart-seal5:latest
+#2 DONE 0.0s
+
+#3 [worker-llvm internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [worker-llvm  1/15] FROM docker.io/philippvk/isaac-quickstart-seal5:latest
+#4 DONE 0.0s
+
+#5 [worker-llvm internal] load build context
+#5 transferring context: 11.85kB done
+#5 DONE 0.0s
+
+#6 [worker-llvm  2/15] WORKDIR /app
+#6 CACHED
+
+#7 [worker-llvm  4/15] RUN cp /work/llvm/.seal5/settings.yml /opt/seal5-baseline.yml
+#7 CACHED
+
+#8 [worker-llvm  6/15] COPY llvm/requirements.txt .
+#8 CACHED
+
+#9 [worker-llvm  3/15] RUN git -C /work/llvm merge-base --is-ancestor 5bd6ab74cd1dc8d09e54ca6000361d020d138aeb seal5-default-stage0
+#9 CACHED
+
+#10 [worker-llvm  5/15] RUN apt-get update && apt-get install -y zstd tar
+#10 CACHED
+
+#11 [worker-llvm  7/15] RUN pip install -r requirements.txt
+#11 CACHED
+
+#12 [worker-llvm  8/15] COPY worker.py job_state.py ./
+#12 CACHED
+
+#13 [worker-llvm  9/15] COPY llvm/prepare.py /scripts/prepare_llvm.py
+#13 DONE 0.1s
+
+#14 [worker-llvm 10/15] COPY llvm/run_retarget.sh /scripts/run_retarget.sh
+#14 DONE 0.0s
+
+#15 [worker-llvm 11/15] COPY seal5-main/install.sh /opt/genie-seal5/install.sh
+#15 DONE 0.1s
+
+#16 [worker-llvm 12/15] COPY seal5-main/configure_baseline.py /opt/genie-seal5/configure_baseline.py
+#16 DONE 0.0s
+
+#17 [worker-llvm 13/15] RUN bash /opt/genie-seal5/install.sh
+#17 0.778 Cloning into '/opt/m2isar'...
+#17 2.157 Note: switching to '59ba470011fafe5e814a2b9ca9504d8175fe25cc'.
+#17 2.157 
+#17 2.157 You are in 'detached HEAD' state. You can look around, make experimental
+#17 2.157 changes and commit them, and you can discard any commits you make in this
+#17 2.157 state without impacting any branches by switching back to a branch.
+#17 2.157 
+#17 2.157 If you want to create a new branch to retain commits you create, you may
+#17 2.157 do so (now or later) by using -c with the switch command. Example:
+#17 2.157 
+#17 2.157   git switch -c <new-branch-name>
+#17 2.157 
+#17 2.157 Or undo this operation with:
+#17 2.157 
+#17 2.157   git switch -
+#17 2.157 
+#17 2.157 Turn off this advice by setting config variable advice.detachedHead to false
+#17 2.157 
+#17 2.157 HEAD is now at 59ba470 Merge pull request #129 from tum-ei-eda/genie-spike-guarded-behavior
+#17 2.159 Cloning into '/opt/genie-seal5/src'...
+#17 3.768 Note: switching to '168b81be68c752a96238c8f504b88346bc38a55c'.
+#17 3.768 
+#17 3.768 You are in 'detached HEAD' state. You can look around, make experimental
+#17 3.768 changes and commit them, and you can discard any commits you make in this
+#17 3.768 state without impacting any branches by switching back to a branch.
+#17 3.768 
+#17 3.768 If you want to create a new branch to retain commits you create, you may
+#17 3.768 do so (now or later) by using -c with the switch command. Example:
+#17 3.768 
+#17 3.768   git switch -c <new-branch-name>
+#17 3.768 
+#17 3.768 Or undo this operation with:
+#17 3.768 
+#17 3.768   git switch -
+#17 3.768 
+#17 3.768 Turn off this advice by setting config variable advice.detachedHead to false
+#17 3.768 
+#17 3.768 HEAD is now at 168b81b Merge branch 'main' of github.com:tum-ei-eda/seal5
+#17 4.629 Obtaining file:///opt/m2isar
+#17 4.629   Installing build dependencies: started
+#17 8.171   Installing build dependencies: finished with status 'done'
+#17 8.173   Checking if build backend supports build_editable: started
+#17 8.409   Checking if build backend supports build_editable: finished with status 'done'
+#17 8.411   Getting requirements to build editable: started
+#17 8.929   Getting requirements to build editable: finished with status 'done'
+#17 8.931   Preparing editable metadata (pyproject.toml): started
+#17 9.605   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#17 9.608 Obtaining file:///opt/genie-seal5/src
+#17 9.613   Installing build dependencies: started
+#17 13.08   Installing build dependencies: finished with status 'done'
+#17 13.08   Checking if build backend supports build_editable: started
+#17 13.48   Checking if build backend supports build_editable: finished with status 'done'
+#17 13.48   Getting requirements to build editable: started
+#17 14.27   Getting requirements to build editable: finished with status 'done'
+#17 14.28   Preparing editable metadata (pyproject.toml): started
+#17 15.07   Preparing editable metadata (pyproject.toml): finished with status 'done'
+#17 15.08 Requirement already satisfied: antlr4-python3-runtime==4.13.1 in /work/venv/lib/python3.10/site-packages (from m2isar==0.1.7.dev127+g59ba47001) (4.13.1)
+#17 15.08 Requirement already satisfied: numpy in /work/venv/lib/python3.10/site-packages (from m2isar==0.1.7.dev127+g59ba47001) (2.2.6)
+#17 15.08 Requirement already satisfied: pyelftools in /work/venv/lib/python3.10/site-packages (from m2isar==0.1.7.dev127+g59ba47001) (0.33)
+#17 15.08 Requirement already satisfied: tqdm in /work/venv/lib/python3.10/site-packages (from m2isar==0.1.7.dev127+g59ba47001) (4.70.1)
+#17 15.08 Requirement already satisfied: antlr4-tools in /work/venv/lib/python3.10/site-packages (from m2isar==0.1.7.dev127+g59ba47001) (0.2.2)
+#17 15.08 Requirement already satisfied: mako in /work/venv/lib/python3.10/site-packages (from m2isar==0.1.7.dev127+g59ba47001) (1.4.3)
+#17 15.10 Requirement already satisfied: pyyaml in /work/venv/lib/python3.10/site-packages (from seal5==0.3.4.dev288+g168b81be6) (6.0.3)
+#17 15.10 Requirement already satisfied: dacite in /work/venv/lib/python3.10/site-packages (from seal5==0.3.4.dev288+g168b81be6) (1.9.2)
+#17 15.10 Requirement already satisfied: psutil in /work/venv/lib/python3.10/site-packages (from seal5==0.3.4.dev288+g168b81be6) (7.2.2)
+#17 15.10 Requirement already satisfied: importlib_resources in /work/venv/lib/python3.10/site-packages (from seal5==0.3.4.dev288+g168b81be6) (7.1.0)
+#17 15.10 Requirement already satisfied: tabulate in /work/venv/lib/python3.10/site-packages (from seal5==0.3.4.dev288+g168b81be6) (0.10.0)
+#17 15.10 Requirement already satisfied: gitpython in /work/venv/lib/python3.10/site-packages (from seal5==0.3.4.dev288+g168b81be6) (3.2.1)
+#17 15.10 Requirement already satisfied: pandas in /work/venv/lib/python3.10/site-packages (from seal5==0.3.4.dev288+g168b81be6) (2.3.3)
+#17 15.11 Requirement already satisfied: install-jdk in /work/venv/lib/python3.10/site-packages (from antlr4-tools->m2isar==0.1.7.dev127+g59ba47001) (1.1.0)
+#17 15.14 Requirement already satisfied: gitdb<5,>=4.0.1 in /work/venv/lib/python3.10/site-packages (from gitpython->seal5==0.3.4.dev288+g168b81be6) (4.0.12)
+#17 15.17 Requirement already satisfied: MarkupSafe>=2.0 in /work/venv/lib/python3.10/site-packages (from mako->m2isar==0.1.7.dev127+g59ba47001) (3.0.4)
+#17 15.32 Requirement already satisfied: tzdata>=2022.7 in /work/venv/lib/python3.10/site-packages (from pandas->seal5==0.3.4.dev288+g168b81be6) (2026.6)
+#17 15.33 Requirement already satisfied: pytz>=2020.1 in /work/venv/lib/python3.10/site-packages (from pandas->seal5==0.3.4.dev288+g168b81be6) (2026.6)
+#17 15.33 Requirement already satisfied: python-dateutil>=2.8.2 in /work/venv/lib/python3.10/site-packages (from pandas->seal5==0.3.4.dev288+g168b81be6) (3.0.0)
+#17 15.40 Requirement already satisfied: smmap<6,>=3.0.1 in /work/venv/lib/python3.10/site-packages (from gitdb<5,>=4.0.1->gitpython->seal5==0.3.4.dev288+g168b81be6) (5.0.3)
+#17 15.40 Requirement already satisfied: six>=1.6 in /work/venv/lib/python3.10/site-packages (from python-dateutil>=2.8.2->pandas->seal5==0.3.4.dev288+g168b81be6) (1.17.0)
+#17 15.41 Building wheels for collected packages: m2isar, seal5
+#17 15.41   Building editable for m2isar (pyproject.toml): started
+#17 16.12   Building editable for m2isar (pyproject.toml): finished with status 'done'
+#17 16.12   Created wheel for m2isar: filename=m2isar-0.1.7.dev127+g59ba47001-0.editable-py3-none-any.whl size=9907 sha256=17533b1320cff41befb039a091f26c86a4d4912384d21ff6f07180af7df3c48f
+#17 16.12   Stored in directory: /tmp/pip-ephem-wheel-cache-m7_gqn0p/wheels/a8/61/7d/b6047589c6ab71220a396e09e328d7a7dd265aa02c43d35b0e
+#17 16.13   Building editable for seal5 (pyproject.toml): started
+#17 17.34   Building editable for seal5 (pyproject.toml): finished with status 'done'
+#17 17.34   Created wheel for seal5: filename=seal5-0.3.4.dev288+g168b81be6-0.editable-py3-none-any.whl size=11764 sha256=f66ea4ec94035e285933510f2eaefa512568e5df71cc7258beaa86aa887b4d61
+#17 17.35   Stored in directory: /tmp/pip-ephem-wheel-cache-m7_gqn0p/wheels/54/a8/f4/5451a7d7b6fd19315c932c1bac5504bb086ba4c84e92a63f7d
+#17 17.35 Successfully built m2isar seal5
+#17 17.46 Installing collected packages: m2isar, seal5
+#17 17.46   Attempting uninstall: m2isar
+#17 17.46     Found existing installation: m2isar 0.1.6
+#17 17.53     Uninstalling m2isar-0.1.6:
+#17 17.62       Successfully uninstalled m2isar-0.1.6
+#17 17.65   Attempting uninstall: seal5
+#17 17.65     Found existing installation: seal5 0+g168b81be68c7
+#17 17.65     Uninstalling seal5-0+g168b81be68c7:
+#17 17.74       Successfully uninstalled seal5-0+g168b81be68c7
+#17 17.76 Successfully installed m2isar-0.1.7.dev127+g59ba47001 seal5-0.3.4.dev288+g168b81be6
+#17 17.80 
+#17 17.80 [notice] A new release of pip is available: 23.0.1 -> 26.2.2
+#17 17.80 [notice] To update, run: pip install --upgrade pip
+#17 20.14 No broken requirements found.
+#17 DONE 20.4s
+
+#18 [worker-llvm 14/15] RUN chmod +x /scripts/run_retarget.sh
+#18 DONE 1.1s
+
+#19 [worker-llvm 15/15] RUN git clone https://github.com/tum-ei-eda/etiss_arch_riscv.git /tools/etiss_arch_riscv &&     git -C /tools/etiss_arch_riscv fetch origin 45e3067fcaac9e1cd79c4a008fa570c60055af92 &&     git -C /tools/etiss_arch_riscv checkout FETCH_HEAD &&     git -C /tools/etiss_arch_riscv submodule update --init --recursive
+#19 0.836 Cloning into '/tools/etiss_arch_riscv'...
+#19 2.164 From https://github.com/tum-ei-eda/etiss_arch_riscv
+#19 2.164  * branch            45e3067fcaac9e1cd79c4a008fa570c60055af92 -> FETCH_HEAD
+#19 2.176 Note: switching to 'FETCH_HEAD'.
+#19 2.176 
+#19 2.176 You are in 'detached HEAD' state. You can look around, make experimental
+#19 2.176 changes and commit them, and you can discard any commits you make in this
+#19 2.176 state without impacting any branches by switching back to a branch.
+#19 2.176 
+#19 2.176 If you want to create a new branch to retain commits you create, you may
+#19 2.176 do so (now or later) by using -c with the switch command. Example:
+#19 2.176 
+#19 2.176   git switch -c <new-branch-name>
+#19 2.176 
+#19 2.176 Or undo this operation with:
+#19 2.176 
+#19 2.176   git switch -
+#19 2.176 
+#19 2.176 Turn off this advice by setting config variable advice.detachedHead to false
+#19 2.176 
+#19 2.176 HEAD is now at 45e3067 update rv_base
+#19 2.414 Submodule 'rv_base' (https://github.com/tum-ei-eda/RISCV_ISA_CoreDSL) registered for path 'rv_base'
+#19 2.421 Cloning into '/tools/etiss_arch_riscv/rv_base'...
+#19 3.785 Submodule path 'rv_base': checked out '749b7cbdde9596a119b3f580039c58e40d5614d5'
+#19 DONE 3.9s
+
+#20 [worker-llvm] exporting to image
+#20 exporting layers
+#20 exporting layers 0.7s done
+#20 writing image sha256:ee32cb521e0e8759ca85a4900d0fa75175da4c4d84dee5978c8c1fd60480482c
+#20 writing image sha256:ee32cb521e0e8759ca85a4900d0fa75175da4c4d84dee5978c8c1fd60480482c done
+#20 naming to docker.io/library/isaac-docker-service-worker-llvm done
+#20 DONE 0.7s
+
+#21 [worker-llvm] resolving provenance for metadata file
+#21 DONE 0.0s

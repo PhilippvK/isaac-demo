@@ -1,0 +1,6 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/bb-quality-20261102/runs/crc32/20261102T160334 DATE=20261102T160334 BENCH=crc32
+usage: client.py [-h] --tag TAG [--output OUT_DIR] [--session SESSION]
+                 [--force] [--host HOST] [--port PORT]
+                 [--log {critical,error,warning,info,debug}] [--verbose]
+                 files [files ...]
+client.py: error: the following arguments are required: --tag

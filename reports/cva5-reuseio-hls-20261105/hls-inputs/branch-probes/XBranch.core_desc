@@ -1,0 +1,107 @@
+import "/var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVI.core_desc"
+InstructionSet XBranch extends RV32I {
+    instructions {
+        FUSED_BEQ [[no_cont]] [[cond]] {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                signed<13> offset [[is_imm]] [[in]] [[is_branch_offs]];
+            }
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'd0 :: 1'd0 :: 1'd0 :: offset[4:1] :: offset[11:11] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"fused_beq", "{name(rs1)}, {name(rs2)}, {offset}"};
+            behavior: {
+                
+                
+                if ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(unsigned<32>)(X[rs1])&(unsigned<32>)(unsigned<32>)(X[rs2]))))==(unsigned<32>)((7))) { PC = (unsigned<32>)(PC + (signed<32>)(offset)); }
+                
+            }
+        }
+        
+
+        FUSED_BNE [[no_cont]] [[cond]] {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                signed<13> offset [[is_imm]] [[in]] [[is_branch_offs]];
+            }
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd1 :: offset[4:1] :: offset[11:11] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"fused_bne", "{name(rs1)}, {name(rs2)}, {offset}"};
+            behavior: {
+                
+                
+                if ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(unsigned<32>)(X[rs1])&(unsigned<32>)(unsigned<32>)(X[rs2]))))!=(unsigned<32>)((7))) { PC = (unsigned<32>)(PC + (signed<32>)(offset)); }
+                
+            }
+        }
+        
+
+        FUSED_BLT [[no_cont]] [[cond]] {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                signed<13> offset [[is_imm]] [[in]] [[is_branch_offs]];
+            }
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd1 :: 1'd0 :: offset[4:1] :: offset[11:11] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"fused_blt", "{name(rs1)}, {name(rs2)}, {offset}"};
+            behavior: {
+                
+                
+                if ((signed<32>)((unsigned<32>)(((unsigned<32>)(unsigned<32>)(X[rs1])&(unsigned<32>)(unsigned<32>)(X[rs2]))))<(signed<32>)((7))) { PC = (unsigned<32>)(PC + (signed<32>)(offset)); }
+                
+            }
+        }
+        
+
+        FUSED_BGE [[no_cont]] [[cond]] {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                signed<13> offset [[is_imm]] [[in]] [[is_branch_offs]];
+            }
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'd1 :: 1'd0 :: 1'd0 :: offset[4:1] :: offset[11:11] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"fused_bge", "{name(rs1)}, {name(rs2)}, {offset}"};
+            behavior: {
+                
+                
+                if ((signed<32>)((unsigned<32>)(((unsigned<32>)(unsigned<32>)(X[rs1])&(unsigned<32>)(unsigned<32>)(X[rs2]))))>=(signed<32>)((7))) { PC = (unsigned<32>)(PC + (signed<32>)(offset)); }
+                
+            }
+        }
+        
+
+        FUSED_BLTU [[no_cont]] [[cond]] {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                signed<13> offset [[is_imm]] [[in]] [[is_branch_offs]];
+            }
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'd0 :: 1'd0 :: 1'd1 :: offset[4:1] :: offset[11:11] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"fused_bltu", "{name(rs1)}, {name(rs2)}, {offset}"};
+            behavior: {
+                
+                
+                if ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(unsigned<32>)(X[rs1])&(unsigned<32>)(unsigned<32>)(X[rs2]))))<(unsigned<32>)((7))) { PC = (unsigned<32>)(PC + (signed<32>)(offset)); }
+                
+            }
+        }
+        
+
+        FUSED_BGEU [[no_cont]] [[cond]] {
+            operands: {
+                unsigned<5> rs1 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                unsigned<5> rs2 [[is_reg]] [[reg_class="GPR"]] [[reg_type="s32"]] [[in]];
+                signed<13> offset [[is_imm]] [[in]] [[is_branch_offs]];
+            }
+            encoding: offset[12:12] :: offset[10:5] :: rs2[4:0] :: rs1[4:0] :: 1'd0 :: 1'd1 :: 1'd0 :: offset[4:1] :: offset[11:11] :: 1'd0 :: 1'd0 :: 1'd0 :: 1'd1 :: 1'd0 :: 1'd1 :: 1'd1;
+            assembly: {"fused_bgeu", "{name(rs1)}, {name(rs2)}, {offset}"};
+            behavior: {
+                
+                
+                if ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(unsigned<32>)(X[rs1])&(unsigned<32>)(unsigned<32>)(X[rs2]))))>=(unsigned<32>)((7))) { PC = (unsigned<32>)(PC + (signed<32>)(offset)); }
+                
+            }
+        }
+        
+
+    }
+}

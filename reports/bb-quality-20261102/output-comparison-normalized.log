@@ -1,0 +1,5 @@
+[2026-11-02 21:46:40]::WARNING - Matplotlib created a temporary cache directory at /tmp/matplotlib-7d82fgf5 because the default path (/home/ga87puy/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+[2026-11-02 21:46:42]::INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+[2026-11-02 21:46:43]::INFO - generated new fontManager
+crc32 same definitions True same metrics True
+nettle-sha256 same definitions True same metrics True

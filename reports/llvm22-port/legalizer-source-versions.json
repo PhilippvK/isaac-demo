@@ -1,0 +1,22 @@
+[
+  {
+    "major": 19,
+    "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-19.1.7/llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp",
+    "sha256": "e784903a748fe64cdd33d20d149c76b5338e5f2e916270709763e6bc14bdcb96"
+  },
+  {
+    "major": 20,
+    "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-20.1.8/llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp",
+    "sha256": "ff45882ae89fa35a3c072a755aa7b146e6cdf1133ca190bb6abf0f6040bf9ddd"
+  },
+  {
+    "major": 21,
+    "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-21.1.8/llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp",
+    "sha256": "206fc2dbea039c99588ea9862893e17c1b50e28820d21c3b365d786e541f7315"
+  },
+  {
+    "major": 22,
+    "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-22.1.8/llvm/lib/Target/RISCV/GISel/RISCVLegalizerInfo.cpp",
+    "sha256": "b30168b2c52535aea6fab41028bacc5302e8d7370ecc894dcdf4fc530c73a2db"
+  }
+]

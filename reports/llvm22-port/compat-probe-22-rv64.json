@@ -1,0 +1,87 @@
+[
+  {
+    "major": 22,
+    "xlen": 64,
+    "version": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git cb4d54f0690258cf39d92521691af8bdef62a079)\nTarget: unknown\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin\nBuild config: +assertions\n",
+    "flag": "-fbasic-block-address-map",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-address-map",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-22-address-map-rv64.o"
+    ],
+    "compile_returncode": 1,
+    "stderr": "clang: error: unsupported option '-fbasic-block-address-map' for target 'riscv64-unknown-unknown-elf'\n"
+  },
+  {
+    "major": 22,
+    "xlen": 64,
+    "version": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git cb4d54f0690258cf39d92521691af8bdef62a079)\nTarget: unknown\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin\nBuild config: +assertions\n",
+    "flag": "-fbasic-block-sections=labels",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang",
+      "--target=riscv64-unknown-elf",
+      "-march=rv64im",
+      "-mabi=lp64",
+      "-O2",
+      "-ffreestanding",
+      "-fno-unwind-tables",
+      "-fno-asynchronous-unwind-tables",
+      "-fbasic-block-sections=labels",
+      "-c",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-input.c",
+      "-o",
+      "/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/compat-22-labels-rv64.o"
+    ],
+    "compile_returncode": 0,
+    "stderr": "clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]\n",
+    "format_versions": [
+      5
+    ],
+    "blocks": {
+      "choose": {
+        "0": [
+          70032,
+          70040,
+          8,
+          2
+        ],
+        "1": [
+          70040,
+          70060,
+          20,
+          5
+        ],
+        "2": [
+          70060,
+          70076,
+          16,
+          4
+        ]
+      },
+      "_start": {
+        "0": [
+          70076,
+          70104,
+          28,
+          7
+        ],
+        "1": [
+          70104,
+          70108,
+          4,
+          1
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,356 @@
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+BBIDTRACE event=create function=choose mbb=-1 base=0 clone=0
+BBIDTRACE event=cdfg-stage function=choose stage=16 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=11
+BBIDTRACE event=create function=choose mbb=-1 base=1 clone=0
+BBIDTRACE event=create function=choose mbb=-1 base=2 clone=0
+BBIDTRACE event=cdfg-stage function=choose stage=32 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=9
+BBIDTRACE event=cdfg-stage function=choose stage=32 requested=0 selected=0 failed_isel=0 mbb=1 base=2 clone=0 instructions=0
+BBIDTRACE event=cdfg-stage function=choose stage=32 requested=0 selected=0 failed_isel=0 mbb=2 base=1 clone=0 instructions=3
+BBIDTRACE event=create function=choose mbb=-1 base=3 clone=0
+BBIDTRACE event=cdfg-stage function=choose stage=128 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=7
+BBIDTRACE event=cdfg-stage function=choose stage=128 requested=0 selected=0 failed_isel=0 mbb=3 base=3 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=choose stage=128 requested=0 selected=0 failed_isel=0 mbb=1 base=2 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=choose stage=128 requested=0 selected=0 failed_isel=0 mbb=2 base=1 clone=0 instructions=3
+BBIDTRACE event=renumber-before function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=3 base=3 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=1 base=2 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=2 base=1 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=1 base=3 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=3 base=1 clone=0
+BBIDTRACE event=cdfg-stage function=choose stage=256 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=7
+BBIDTRACE event=cdfg-stage function=choose stage=256 requested=0 selected=0 failed_isel=0 mbb=1 base=3 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=choose stage=256 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=choose stage=256 requested=0 selected=0 failed_isel=0 mbb=3 base=1 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=choose stage=64 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=5
+BBIDTRACE event=cdfg-stage function=choose stage=64 requested=0 selected=0 failed_isel=0 mbb=1 base=3 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=choose stage=64 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=choose stage=64 requested=0 selected=0 failed_isel=0 mbb=3 base=1 clone=0 instructions=1
+BBIDTRACE event=renumber-before function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=1 base=3 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=3 base=1 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=1 base=3 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=3 base=1 clone=0
+BBIDTRACE event=erase function=choose mbb=3 base=1 clone=0
+BBIDTRACE event=delete function=choose mbb=-1 base=1 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=1 base=3 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=1 base=2 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=2 base=3 clone=0
+BBIDTRACE event=create function=loop mbb=-1 base=0 clone=0
+BBIDTRACE event=create function=loop mbb=-1 base=1 clone=0
+BBIDTRACE event=create function=loop mbb=-1 base=2 clone=0
+BBIDTRACE event=create function=loop mbb=-1 base=3 clone=0
+BBIDTRACE event=create function=loop mbb=-1 base=4 clone=0
+BBIDTRACE event=create function=loop mbb=-1 base=5 clone=0
+BBIDTRACE event=create function=loop mbb=-1 base=6 clone=0
+BBIDTRACE event=cdfg-stage function=loop stage=16 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=12
+BBIDTRACE event=cdfg-stage function=loop stage=16 requested=0 selected=0 failed_isel=0 mbb=1 base=1 clone=0 instructions=5
+BBIDTRACE event=cdfg-stage function=loop stage=16 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=loop stage=16 requested=0 selected=0 failed_isel=0 mbb=3 base=3 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=16 requested=0 selected=0 failed_isel=0 mbb=4 base=4 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=16 requested=0 selected=0 failed_isel=0 mbb=5 base=5 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=16 requested=0 selected=0 failed_isel=0 mbb=6 base=6 clone=0 instructions=6
+BBIDTRACE event=cdfg-stage function=loop stage=32 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=12
+BBIDTRACE event=cdfg-stage function=loop stage=32 requested=0 selected=0 failed_isel=0 mbb=1 base=1 clone=0 instructions=5
+BBIDTRACE event=cdfg-stage function=loop stage=32 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=loop stage=32 requested=0 selected=0 failed_isel=0 mbb=3 base=3 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=32 requested=0 selected=0 failed_isel=0 mbb=4 base=4 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=32 requested=0 selected=0 failed_isel=0 mbb=5 base=5 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=32 requested=0 selected=0 failed_isel=0 mbb=6 base=6 clone=0 instructions=6
+BBIDTRACE event=create function=loop mbb=-1 base=7 clone=0
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=10
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=7 base=7 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=1 base=1 clone=0 instructions=5
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=3 base=3 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=4 base=4 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=5 base=5 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=128 requested=0 selected=0 failed_isel=0 mbb=6 base=6 clone=0 instructions=6
+BBIDTRACE event=renumber-before function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=7 base=7 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=1 base=1 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=3 base=3 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=4 base=4 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=5 base=5 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=6 base=6 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=2 base=1 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=3 base=2 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=6 base=5 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=7 base=6 clone=0
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=10
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=1 base=7 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=2 base=1 clone=0 instructions=5
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=3 base=2 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=4 base=3 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=5 base=4 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=6 base=5 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=256 requested=0 selected=0 failed_isel=0 mbb=7 base=6 clone=0 instructions=6
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=1 base=7 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=2 base=1 clone=0 instructions=4
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=3 base=2 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=4 base=3 clone=0 instructions=6
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=5 base=4 clone=0 instructions=6
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=6 base=5 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=loop stage=64 requested=0 selected=0 failed_isel=0 mbb=7 base=6 clone=0 instructions=5
+BBIDTRACE event=renumber-before function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=2 base=1 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=3 base=2 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=6 base=5 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=7 base=6 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=2 base=1 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=3 base=2 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=6 base=5 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=7 base=6 clone=0
+BBIDTRACE event=move-before function=loop mbb=2 base=1 clone=0 other_mbb=4 other_base=3 other_clone=0
+BBIDTRACE event=renumber-before function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=3 base=2 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=2 base=1 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=6 base=5 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=7 base=6 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=3 base=1 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=6 base=5 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=7 base=6 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=3 base=1 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=6 base=5 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=7 base=6 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=1 base=1 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=6 base=7 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=7 base=2 clone=0
+BBIDTRACE event=create function=dispatch mbb=-1 base=0 clone=0
+BBIDTRACE event=create function=dispatch mbb=-1 base=1 clone=0
+BBIDTRACE event=create function=dispatch mbb=-1 base=2 clone=0
+BBIDTRACE event=create function=dispatch mbb=-1 base=3 clone=0
+BBIDTRACE event=create function=dispatch mbb=-1 base=4 clone=0
+BBIDTRACE event=create function=dispatch mbb=-1 base=5 clone=0
+BBIDTRACE event=create function=dispatch mbb=-1 base=6 clone=0
+BBIDTRACE event=cdfg-stage function=dispatch stage=16 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=7
+BBIDTRACE event=cdfg-stage function=dispatch stage=16 requested=0 selected=0 failed_isel=0 mbb=5 base=5 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=16 requested=0 selected=0 failed_isel=0 mbb=6 base=6 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=16 requested=0 selected=0 failed_isel=0 mbb=1 base=1 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=16 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=dispatch stage=16 requested=0 selected=0 failed_isel=0 mbb=3 base=3 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=dispatch stage=16 requested=0 selected=0 failed_isel=0 mbb=4 base=4 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=32 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=7
+BBIDTRACE event=cdfg-stage function=dispatch stage=32 requested=0 selected=0 failed_isel=0 mbb=5 base=5 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=32 requested=0 selected=0 failed_isel=0 mbb=6 base=6 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=32 requested=0 selected=0 failed_isel=0 mbb=1 base=1 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=32 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=8
+BBIDTRACE event=cdfg-stage function=dispatch stage=32 requested=0 selected=0 failed_isel=0 mbb=3 base=3 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=dispatch stage=32 requested=0 selected=0 failed_isel=0 mbb=4 base=4 clone=0 instructions=3
+BBIDTRACE event=create function=dispatch mbb=-1 base=7 clone=0
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=5
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=7 base=7 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=5 base=5 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=6 base=6 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=1 base=1 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=2 base=2 clone=0 instructions=7
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=3 base=3 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=dispatch stage=128 requested=0 selected=0 failed_isel=0 mbb=4 base=4 clone=0 instructions=3
+BBIDTRACE event=renumber-before function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=7 base=7 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=5 base=5 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=6 base=6 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=1 base=1 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=2 base=2 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=3 base=3 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=4 base=4 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=4 base=1 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=5 base=2 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=7 base=4 clone=0
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=5
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=1 base=7 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=2 base=5 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=3 base=6 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=4 base=1 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=5 base=2 clone=0 instructions=7
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=6 base=3 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=dispatch stage=256 requested=0 selected=0 failed_isel=0 mbb=7 base=4 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=0 base=0 clone=0 instructions=4
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=1 base=7 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=2 base=5 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=3 base=6 clone=0 instructions=3
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=4 base=1 clone=0 instructions=2
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=5 base=2 clone=0 instructions=6
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=6 base=3 clone=0 instructions=1
+BBIDTRACE event=cdfg-stage function=dispatch stage=64 requested=0 selected=0 failed_isel=0 mbb=7 base=4 clone=0 instructions=1
+BBIDTRACE event=renumber-before function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=4 base=1 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=5 base=2 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=7 base=4 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=4 base=1 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=5 base=2 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=7 base=4 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=4 base=1 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=5 base=2 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=7 base=4 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=4 base=1 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=5 base=2 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=7 base=4 clone=0
+BBIDTRACE event=erase function=dispatch mbb=7 base=4 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=4 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=4 base=1 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=5 base=2 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=1 base=7 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=1 base=5 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=2 base=6 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=3 base=1 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=4 base=2 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=5 base=7 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=1 base=2 clone=0
+BBIDTRACE event=renumber-before function=choose mbb=2 base=3 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=1 base=2 clone=0
+BBIDTRACE event=renumber-after function=choose mbb=2 base=3 clone=0
+BBIDTRACE event=emit function=choose mbb=0 base=0 clone=0 map_version=5
+BBIDTRACE event=emit function=choose mbb=1 base=2 clone=0 map_version=5
+BBIDTRACE event=emit function=choose mbb=2 base=3 clone=0 map_version=5
+BBIDTRACE event=clear function=choose mbb=0 base=0 clone=0
+BBIDTRACE event=clear function=choose mbb=1 base=2 clone=0
+BBIDTRACE event=clear function=choose mbb=2 base=3 clone=0
+BBIDTRACE event=delete function=choose mbb=-1 base=0 clone=0
+BBIDTRACE event=delete function=choose mbb=-1 base=2 clone=0
+BBIDTRACE event=delete function=choose mbb=-1 base=3 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=1 base=1 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=6 base=7 clone=0
+BBIDTRACE event=renumber-before function=loop mbb=7 base=2 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=1 base=1 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=2 base=5 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=3 base=6 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=6 base=7 clone=0
+BBIDTRACE event=renumber-after function=loop mbb=7 base=2 clone=0
+BBIDTRACE event=emit function=loop mbb=0 base=0 clone=0 map_version=5
+BBIDTRACE event=emit function=loop mbb=1 base=1 clone=0 map_version=5
+BBIDTRACE event=emit function=loop mbb=2 base=5 clone=0 map_version=5
+BBIDTRACE event=emit function=loop mbb=3 base=6 clone=0 map_version=5
+BBIDTRACE event=emit function=loop mbb=4 base=3 clone=0 map_version=5
+BBIDTRACE event=emit function=loop mbb=5 base=4 clone=0 map_version=5
+BBIDTRACE event=emit function=loop mbb=6 base=7 clone=0 map_version=5
+BBIDTRACE event=emit function=loop mbb=7 base=2 clone=0 map_version=5
+BBIDTRACE event=clear function=loop mbb=0 base=0 clone=0
+BBIDTRACE event=clear function=loop mbb=1 base=1 clone=0
+BBIDTRACE event=clear function=loop mbb=2 base=5 clone=0
+BBIDTRACE event=clear function=loop mbb=3 base=6 clone=0
+BBIDTRACE event=clear function=loop mbb=4 base=3 clone=0
+BBIDTRACE event=clear function=loop mbb=5 base=4 clone=0
+BBIDTRACE event=clear function=loop mbb=6 base=7 clone=0
+BBIDTRACE event=clear function=loop mbb=7 base=2 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=0 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=1 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=5 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=6 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=3 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=4 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=7 clone=0
+BBIDTRACE event=delete function=loop mbb=-1 base=2 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=1 base=5 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=2 base=6 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=3 base=1 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=4 base=2 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=5 base=7 clone=0
+BBIDTRACE event=renumber-before function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=1 base=5 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=2 base=6 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=3 base=1 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=4 base=2 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=5 base=7 clone=0
+BBIDTRACE event=renumber-after function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=emit function=dispatch mbb=0 base=0 clone=0 map_version=5
+BBIDTRACE event=emit function=dispatch mbb=1 base=5 clone=0 map_version=5
+BBIDTRACE event=emit function=dispatch mbb=2 base=6 clone=0 map_version=5
+BBIDTRACE event=emit function=dispatch mbb=3 base=1 clone=0 map_version=5
+BBIDTRACE event=emit function=dispatch mbb=4 base=2 clone=0 map_version=5
+BBIDTRACE event=emit function=dispatch mbb=5 base=7 clone=0 map_version=5
+BBIDTRACE event=emit function=dispatch mbb=6 base=3 clone=0 map_version=5
+BBIDTRACE event=clear function=dispatch mbb=0 base=0 clone=0
+BBIDTRACE event=clear function=dispatch mbb=1 base=5 clone=0
+BBIDTRACE event=clear function=dispatch mbb=2 base=6 clone=0
+BBIDTRACE event=clear function=dispatch mbb=3 base=1 clone=0
+BBIDTRACE event=clear function=dispatch mbb=4 base=2 clone=0
+BBIDTRACE event=clear function=dispatch mbb=5 base=7 clone=0
+BBIDTRACE event=clear function=dispatch mbb=6 base=3 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=0 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=5 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=6 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=1 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=2 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=7 clone=0
+BBIDTRACE event=delete function=dispatch mbb=-1 base=3 clone=0

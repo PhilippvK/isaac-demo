@@ -1,0 +1,111 @@
+Logger started on port 38763
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/cfg/seal5/optional/fused-branches.yml']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/cfg/seal5/optional/fused-branches.yml
+Logger on port 38763 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 46029
+[seal5.cli::WARNING] ['/var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/generated-rv32/XBranch.core_desc']
+[seal5.flow::INFO] Loading Seal5 inputs
+[seal5.flow::INFO] Processing file: /var/tmp/ga87puy/isaac-demo-new/reports/fused-branches-20261104/generated-rv32/XBranch.core_desc
+Logger on port 46029 stopped.
+[seal5.flow::INFO] Completed load of Seal5 inputs
+Logger started on port 34985
+[seal5.flow::INFO] Tranforming Seal5 models
+[seal5.pass_list::INFO] Converting XBranch.m2isarmodel -> XBranch.seal5model
+[seal5.pass_list::INFO] Filtering XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Eliminating op MOD RFS for XBranch.seal5model
+[seal5.pass_list::INFO] Eliminating rd == 0 for XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Inlining functions for XBranch.seal5model
+[seal5.pass_list::INFO] Dropping unused for XBranch.seal5model
+[seal5.pass_list::INFO] Optimizing XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Simplifying trivial slices for XBranch.seal5model
+[seal5.pass_list::INFO] Adding excplicit truncations for XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting constraints for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting registers for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting register operands for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting immediate operands for XBranch.seal5model
+[seal5.pass_list::INFO] Collecting operand types for XBranch.seal5model
+[seal5.pass_list::INFO] Processing settings for XBranch.seal5model
+[seal5.pass_list::INFO] Writing YAML for XBranch.seal5model
+[seal5.pass_list::INFO] Processing settings for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting side effects for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting inouts for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting loops for XBranch.seal5model
+[seal5.pass_list::INFO] Annotating opcodes for XBranch.seal5model
+INFO:annotate_opcodes:processing set XBranch
+INFO:annotate_opcodes:processing instruction FUSED_BEQ
+INFO:annotate_opcodes:processing instruction FUSED_BNE
+INFO:annotate_opcodes:processing instruction FUSED_BLT
+INFO:annotate_opcodes:processing instruction FUSED_BGE
+INFO:annotate_opcodes:processing instruction FUSED_BLTU
+INFO:annotate_opcodes:processing instruction FUSED_BGEU
+[seal5.pass_list::INFO] Handle auto_unroll operands for XBranch.seal5model
+[seal5.pass_list::INFO] Generating auto-intrincics for XBranch.seal5model
+instrinsics_settings_new IntrinsicsSettings(intrinsics=None)
+[seal5.pass_list::INFO] Writing YAML for XBranch.seal5model
+[seal5.pass_list::INFO] Infering types for XBranch.seal5model
+[seal5.pass_list::INFO] Detecting imm leafs for XBranch.seal5model
+[seal5.pass_list::INFO] Writing CDSL for XBranch.seal5model
+[seal5.utils::ERROR] Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/backends/coredsl2/writer.py", line 92, in <module>
+    main()
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/backends/coredsl2/writer.py", line 85, in main
+    metrics = write_cdsl_default(
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/backends/coredsl2/writer.py", line 100, in write_cdsl_default
+    assign_block_access(model_obj)
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/backends/coredsl2/writer.py", line 37, in assign_block_access
+    visitor.generate(instr_def.operation, attribute_info.AccessContext())
+  File "/usr/lib/python3.10/functools.py", line 926, in _method
+    return method.__get__(obj, cls)(*args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/metamodel/utils/scalar_staticness.py", line 33, in _
+    temp = self.generate(stmt, context)
+  File "/usr/lib/python3.10/functools.py", line 926, in _method
+    return method.__get__(obj, cls)(*args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/M2-ISA-R/m2isar/metamodel/utils/scalar_staticness.py", line 218, in _
+    is_static = bool(expr.ref_or_name.attributes.get("static", False))
+AttributeError: 'str' object has no attribute 'attributes'
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 87, in <module>
+    sys.exit(main(args=sys.argv[1:]))  # pragma: no cover
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/main.py", line 78, in main
+    args.func(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/cli/transform.py", line 57, in handle
+    seal5_flow.transform(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/flow.py", line 785, in transform
+    result = pm.run(input_models, settings=self.settings, env=self.prepare_environment(), verbose=verbose)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/passes.py", line 296, in run
+    result = pass_.run(input_models, settings=settings, env=env, verbose=verbose, parent=self)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/passes.py", line 217, in run
+    raise e
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/passes.py", line 192, in run
+    result = future.result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/pass_list.py", line 940, in write_cdsl
+    utils.python(
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 201, in python
+    return exec_getout(sys.executable, *args, **kwargs)
+  File "/var/tmp/ga87puy/isaac-demo-new/seal5/seal5/utils.py", line 144, in exec_getout
+    assert exit_code == 0, "The process returned an non-zero exit code {}! (CMD: `{}`)".format(
+AssertionError: The process returned an non-zero exit code 1! (CMD: `/var/tmp/ga87puy/isaac-demo-new/venv/bin/python3 -m seal5.backends.coredsl2.writer /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/models/XBranch.seal5model --log warning --output /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/temp/XBranch.core_desc --metrics /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/.seal5/temp/XBranch.core_desc_coredsl2_writer_metrics.csv`)
+Logger on port 34985 stopped.

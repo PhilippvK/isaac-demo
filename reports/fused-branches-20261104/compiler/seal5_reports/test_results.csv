@@ -1,0 +1,3 @@
+model,set,xlen,instr,test_kind,test_file,test_fmt,result
+XBranch,XBranch,32,,attrs,CodeGen/RISCV/seal5/generated/xbranch.test-attrs.ll,ll,PASS
+XBranch,XBranch,32,,ext,CodeGen/RISCV/seal5/generated/xbranch.test-ext.c,c,PASS

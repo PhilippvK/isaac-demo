@@ -1,0 +1,85 @@
+OUTPUT_DIR=/experiment/hls-run/branches-fixed
+GEN_DIR=/experiment/hls-inputs/branch-probes
+HLS_DIR=/isax-tools
+GUROBI_LIC=
+make BUILD_DIR=/experiment/hls-run/branches-fixed/build_config ISAXES_DIR=/experiment/hls-inputs/branch-probes CONFIG_PATH=/experiment/hls-run/branches-fixed/.config OUTPUT_PATH=/experiment/hls-run/branches-fixed gen_config ci CORE=CVA5 ISAXES=XBRANCH.HLS SIM_EN=n OL2_ENABLE=n SKIP_AWESOME_LLVM=y LN_ILP_SOLVER=CBC USE_OL2_MODEL=y CELL_LIBRARY=/experiment/config/compact.yaml CLOCK_TIME=100 SCHEDULE_TIMEOUT=60 REFINE_TIMEOUT=60 SCHED_ALGO_MS=y SCHED_ALGO_PA=y SCHED_ALGO_RA=y SCHED_ALGO_MI=y
+rm -rf /experiment/hls-run/branches-fixed/build_config/ISAX
+python3 gen_config.py
+python3 gen_ci_config.py
+python3 dispatch.py
+Output folder: ../../experiment/hls-run/branches-fixed
+Building CVA5 with ISAXes:
+csvpath /experiment/hls-run/branches-fixed/build_config/ISAX/XBranch/paths.csv
+csvpath /experiment/hls-run/branches-fixed/build_config/ISAX/XBranch.hls/paths.csv
+isax_file_mapping {'ISAX_XBRANCH_EN': '/experiment/hls-inputs/branch-probes/XBranch.core_desc', 'ISAX_XBRANCH.HLS_EN': '/experiment/hls-inputs/branch-probes/XBranch.hls.core_desc'}
+enabled_isaxes ['ISAX_XBRANCH.HLS_EN']
+ - XBRANCH.HLS (associated description: /experiment/hls-inputs/branch-probes/XBranch.hls.core_desc)
+Running Treenail:
+ - Mapping /experiment/hls-inputs/branch-probes/XBranch.hls.core_desc to /experiment/hls-run/branches-fixed/mlir/ISAX_XBRANCH.HLS_EN.mlir
+Building SCAIE-V...
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------------------< [0;36mSCAIEV:SCAIEV[0;1m >----------------------------[m
+[[1;34mINFO[m] [1mBuilding SCAIEV 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mSCAIEV[0;1m ---[m
+[[1;33mWARNING[m] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[[1;34mINFO[m] skip non existing resourceDirectory /isax-tools/deps/scaie-v/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.8.1:compile[m [1m(default-compile)[m @ [36mSCAIEV[0;1m ---[m
+[[1;33mWARNING[m] *********************************************************************************************************************************************
+[[1;33mWARNING[m] * [1mRequired filename-based automodules detected: [commons-cli-1.3.1.jar]. Please don't publish this project to a public artifact repository![m *
+[[1;33mWARNING[m] *********************************************************************************************************************************************
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;33mWARNING[m] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[[1;34mINFO[m] Compiling 120 source files to /isax-tools/deps/scaie-v/target/classes
+[[1;34mINFO[m] /isax-tools/deps/scaie-v/src/scaiev/coreconstr/CoreDatab.java: Some input files use unchecked or unsafe operations.
+[[1;34mINFO[m] /isax-tools/deps/scaie-v/src/scaiev/coreconstr/CoreDatab.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mSCAIEV[0;1m ---[m
+[[1;33mWARNING[m] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[[1;34mINFO[m] skip non existing resourceDirectory /isax-tools/deps/scaie-v/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.8.1:testCompile[m [1m(default-testCompile)[m @ [36mSCAIEV[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;33mWARNING[m] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[[1;34mINFO[m] Compiling 3 source files to /isax-tools/deps/scaie-v/target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:3.2.5:test[m [1m(default-test)[m @ [36mSCAIEV[0;1m ---[m
+[[1;34mINFO[m] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[[1;34mINFO[m] 
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m]  T E S T S
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m] Running scaiev.pipeline.[1mPipelineTest[m
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m132[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.343 s -- in scaiev.pipeline.[1mPipelineTest[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Results:
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1;32mTests run: 132, Failures: 0, Errors: 0, Skipped: 0[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:2.4:jar[m [1m(default-jar)[m @ [36mSCAIEV[0;1m ---[m
+[[1;34mINFO[m] Building jar: /isax-tools/deps/scaie-v/target/SCAIEV-0.0.1-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-assembly-plugin:3.6.0:single[m [1m(assemble-all)[m @ [36mSCAIEV[0;1m ---[m
+[[1;34mINFO[m] Building jar: /isax-tools/deps/scaie-v/target/SCAIEV-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  6.458 s
+[[1;34mINFO[m] Finished at: 2026-11-05T08:31:30Z
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+Invoking SCAIEV:
+INFO : Generating SCAL for core: CVA5
+[SCAL] writing composition log to CommonLogicModule_log.dot
+INFO : Updating CommonLogicModule.sv
+INFO : Generating interface for: [RdFlush=[decode=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"], executesv1=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"], issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], WrPC_validReq=[issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], RdPC=[issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], RdStall=[decode=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"], executesv1=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"], issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], RdInstr=[decode=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"], issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], WrPC=[issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], WrFlush=[decode=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], RdInStageValid=[decode=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"], executesv1=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"], issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], RdRS1=[issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]], RdRS2=[issue=["FUSED_BGEU", "FUSED_BNE", "FUSED_BLT", "FUSED_BLTU", "FUSED_BEQ", "FUSED_BGE"]]]
+INFO : Updating core/cva5_wrapper.sv
+INFO : Updating core/cva5_wrapper_verilog.v
+INFO : Updating core/scaiev_config.sv
+INFO : Updating core/scaiev_glue.sv
+ - Creating wrapper module
+ - Building the extended core
+INFO: Running synthesis_plugin from plugins/openlane

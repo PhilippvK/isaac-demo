@@ -1,0 +1,1 @@
+{'selector': 'dag', 'validation': True, 'differential_cases': 4096, 'custom_sites': 16, 'custom_executions': 2048, 'trace_instructions': 5277301, 'trace_sha256': '7166667b6855dfd7040118cc35015b07b42095b48b6060b28ed90f323947eb1a'}

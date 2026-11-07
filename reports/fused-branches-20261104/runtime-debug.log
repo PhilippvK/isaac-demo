@@ -1,0 +1,83 @@
+=== Setting up configurations ===
+Initializer::loadIni(): Ini sucessfully loaded /experiment/etiss/install/examples/base.ini
+Initializer::loadIni(): Ini sucessfully loaded /tmp/etiss_dynamic_F2Q8S9Xw06.ini
+Initializer::loadIni(): Ini sucessfully loaded /experiment/etiss/runtime-debug.ini
+  Load Configs from .ini files:
+ETISS: Info: Created new config container: global
+ETISS: Info:   [BoolConfigurations]
+ETISS: Info:     arch.enable_semihosting=true,
+ETISS: Info:     arch.or1k.ignore_sr_iee=false,
+ETISS: Info:     etiss.enable_dmi=false,
+ETISS: Info:     etiss.exit_on_loop=true,
+ETISS: Warning:     etiss.load_integrated_libraries=true,true,   Multi values. Take only LAST one!
+ETISS: Warning:     etiss.log_pc=false,true,   Multi values. Take only LAST one!
+ETISS: Warning:     jit.debug=false,true,   Multi values. Take only LAST one!
+ETISS: Info:     jit.gcc.cleanup=true,
+ETISS: Warning:     jit.verify=false,false,   Multi values. Take only LAST one!
+ETISS: Info:     plugin.printinstruction.print_to_file=true,
+ETISS: Info:     simple_mem_system.error_on_invalid_access=true,
+ETISS: Info:     testing=false,
+ETISS: Info:   [IntConfigurations]
+ETISS: Warning:     arch.cpu_cycle_time_ps=31250,31250,   Multi values. Take only LAST one!
+ETISS: Info:     arch.or1k.if_stall_cycles=0,
+ETISS: Info:     arch.rv32imacfdpv.mstatus_fs=1,
+ETISS: Info:     etiss.max_block_size=100,
+ETISS: Info:     ETISS::CPU_quantum_ps=100000,
+ETISS: Info:     ETISS::sim_mode=0,
+ETISS: Info:     ETISS::write_pc_trace_from_time_us=0,
+ETISS: Info:     ETISS::write_pc_trace_until_time_us=3000000,
+ETISS: Warning:     simple_mem_system.memseg_length_00=0x00080000,8388608,   Multi values. Take only LAST one!
+ETISS: Warning:     simple_mem_system.memseg_length_01=0x00080000,67108864,   Multi values. Take only LAST one!
+ETISS: Warning:     simple_mem_system.memseg_origin_00=0x00000000,16777216,   Multi values. Take only LAST one!
+ETISS: Warning:     simple_mem_system.memseg_origin_01=0x00080000,25165824,   Multi values. Take only LAST one!
+ETISS: Info:     vp::simulation_time_us=20000000,
+ETISS: Info:   [StringConfigurations]
+ETISS: Info:     arch.cpu=BranchCore,
+ETISS: Warning:     etiss.output_path_prefix=,,   Multi values. Take only LAST one!
+ETISS: Warning:     jit.type=TCCJIT,TCCJIT,   Multi values. Take only LAST one!
+ETISS: Info:     vp.elf_file=/experiment/branch-tests.elf,
+=== Finished setting up configurations ===
+
+=== Setting up test system ===
+  Setting up Memory
+ETISS: Info: The memory segment is allocated uninitialized with length 0x800000 !
+ETISS: Info: New Memory segment added: 1 - [0x00000000017fffff - 0x0000000001000000]
+ETISS: Info: The memory segment is allocated uninitialized with length 0x4000000 !
+ETISS: Info: New Memory segment added: 2 - [0x00000000057fffff - 0x0000000001800000]
+ETISS: Info: Assuming CPU architecture BranchCore as set in configuration file. ELF architecture field will be ignored
+ETISS: Info: Initialized the memory segment 0 - RX[0x0000000001000000 - 0x000000000100c4c3] from ELF-file
+ETISS: Info: Initialized the memory segment 1 - R[0x000000000100c4c4 - 0x000000000100c527] from ELF-file
+ETISS: Info: Initialized the memory segment 2 - RW[0x0000000001800000 - 0x0000000001800137] from ELF-file
+  Setting up CPUCore
+  CPU start address: 0x1000000
+ETISS: Warning: no core number provided for core, using 0
+=== Finished Setting up test system ===
+
+=== Setting up plug-ins ===
+ETISS: Info:   Adding Plugin Logger
+
+ETISS: Info: plugin.logger.logaddr not set on the command line. Checking in .ini file.
+ETISS: Info:     options[plugin.logger.logaddr] = 0x80000000
+
+
+ETISS: Info: plugin.logger.logmask not set on the command line. Checking in .ini file.
+ETISS: Info:     options[plugin.logger.logmask] = 0x80000000
+
+
+ETISS: Info: Plugin "Logger" loaded via library interface "ETISSINCLUDED"
+
+ETISS: Info:   Adding Plugin PrintInstruction
+
+ETISS: Info: Plugin "PrintInstruction" loaded via library interface "ETISSINCLUDED"
+
+ETISS: Info:  Adding JIT "TCCJIT"
+=== Setting up plug-ins ===
+
+
+=== Simulation start ===
+ETISS: Info: Init Plugin InterruptHandler{COROUTINE}
+ETISS: Info: Init Plugin Logger{SYSTEMWRAPPER}
+ETISS: Info: Init Plugin PrintInstruction{TRANSLATION}
+ETISS: Info: Init Plugin TracePrinter{COROUTINE}
+ETISS: Error: dbus read error, PC = 0x00000000, address 0x00000000, length 2
+Instruction bus read error while translating!

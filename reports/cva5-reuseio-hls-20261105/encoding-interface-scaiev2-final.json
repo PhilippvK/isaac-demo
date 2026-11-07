@@ -1,0 +1,31 @@
+{
+  "interface": "scaiev2",
+  "decode_mask": 4261441663,
+  "fixed_bits": [
+    {
+      "name": "set/XIsaac/CUSTOM17",
+      "code": 8192,
+      "mask": 28672
+    },
+    {
+      "name": "set/XIsaac/CUSTOM43",
+      "code": 8192,
+      "mask": 28672
+    },
+    {
+      "name": "set/XIsaac/CUSTOM44",
+      "code": 8192,
+      "mask": 28672
+    },
+    {
+      "name": "set/XIsaac/CUSTOM76",
+      "code": 8192,
+      "mask": 28672
+    },
+    {
+      "name": "set/XIsaac/CUSTOM78",
+      "code": 8192,
+      "mask": 28672
+    }
+  ]
+}

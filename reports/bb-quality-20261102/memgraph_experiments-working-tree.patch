@@ -1,0 +1,500 @@
+diff --git a/README.md b/README.md
+index c886a1c..f3ffa6a 100644
+--- a/README.md
++++ b/README.md
+@@ -1,5 +1,23 @@
+ # memgraph_experiments
+ 
++## Export performance
++
++Static pie images use one batched Plotly export for the requested PDF/PNG
++formats. This requires Plotly >= 6.1.1 and Kaleido >= 1.0.0. CSV, HTML and pickle
++exports retain their filenames and artifact entries, and `PLOTLY_MATHJAX` is
++still respected.
++
++Candidate graph exports run serially for batches of at most eight graphs and
++for pickle-only output. Larger DOT/PDF/PNG batches use a process pool. Set
++`--n-parallel 4` (also available through ISAAC Toolkit), or the top-level YAML key
++`n_parallel: 4`, to bound graph export workers. `1` forces serial export; omitted
++or null uses the CPU count, capped at the number of graphs to export. This limit
++applies to each graph export stage; it is not a limit across independent tool
++processes. Export stages finish before the index is written, and worker failures
++propagate to the caller.
++
++## Candidate queries
++
+ Candidate queries support configurable edge lengths (`--min-path-length`,
+ `--max-path-length`) and path width (`--max-path-width`). Width is the number of
+ path slots; slots may repeat, so narrower candidates remain eligible. The Python
+@@ -40,3 +58,20 @@ loads plus stores, matching the final filter. Missing predicate properties mean
+ false. Pseudos are rejected only when the configured predicate mask disallows
+ them. Final candidate filtering remains necessary for I/O and backend legality.
+ Filtering before a finite result limit can change the traversal-order sample.
++
++## Basic block identity
++
++`--basic-block %bb.N` denotes the **fixed ELF BB ID**, not the mutable MIR
++number. Queries resolve one BB and bind its exact session, module, stage and
++compilation ID. `--module-name` and `--compilation-id` can select that scope
++explicitly; otherwise the tool requires an unambiguous scope in the DB. Missing,
++legacy, cloned or duplicate BB identities are rejected. Function queries retain
++isolated instructions and constrain both endpoints; candidate DFS stays inside
++the selected block and compilation. Result metadata records `fixed_bb_id`,
++`mir_bb_name`, `module_name` and `compilation_id` separately.
++
++ISAAC Toolkit additionally checks import receipts against the ELF, compiler,
++compile command, source/header dependencies and graph contents. Existing graphs
++must be regenerated with the updated LLVM exporter and toolkit. This identifies
++compiler blocks; later instruction movement/splits/merges can still change their
++contents, so the BB count checks remain necessary.
+diff --git a/requirements.txt b/requirements.txt
+index 14d075b..1a6a148 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -4,8 +4,8 @@ pygraphviz
+ neo4j>=5.8.0
+ matplotlib
+ anytree
+-plotly
+-kaleido
++plotly>=6.1.1
++kaleido>=1.0.0
+ black
+ pandas
+ numpy
+diff --git a/tests/test_queries.py b/tests/test_queries.py
+index fc7241d..4d7413c 100644
+--- a/tests/test_queries.py
++++ b/tests/test_queries.py
+@@ -42,6 +42,13 @@ class CandidateQueriesTest(unittest.TestCase):
+         for args in ({'limit': 0}, {'max_nodes': 0}, {'min_path_length': 2, 'max_nodes': 2}):
+             self.assertIn('LIMIT 0', self.query(**args))
+ 
++    def test_positive_predicate_caps_use_memgraph_compatible_reduce(self):
++        q = self.query(max_loads=1, max_stores=2, max_mems=3, max_branches=1)
++        self.assertIn('reduce(total = 0, node IN all_nodes', q)
++        self.assertIn('CASE WHEN coalesce(node.mayLoad, false) THEN 1 ELSE 0 END', q)
++        self.assertNotIn('size([node IN', q)
++        self.assertNotIn('reduce(', self.query(max_loads=1, query_level_filtering=False))
++
+     def test_invalid_bounds(self):
+         for args in ({'max_path_width': 0}, {'max_path_width': True}, {'min_path_length': -1},
+                      {'min_path_length': 4}, {'limit': -1}, {'min_nodes': 4, 'max_nodes': 2}):
+diff --git a/tests/test_queries_memgraph.py b/tests/test_queries_memgraph.py
+index dfd46cc..7c2fcae 100644
+--- a/tests/test_queries_memgraph.py
++++ b/tests/test_queries_memgraph.py
+@@ -29,7 +29,7 @@ class MemgraphQueriesTest(unittest.TestCase):
+             with driver.session() as s, s.begin_transaction(timeout=15) as tx:
+                 for n in range(7):
+                     tx.run('CREATE (:INSTR {session:$session, func_name:$func, stage:8, bb_id:0, '
+-                           'basic_block:"entry", name:$name, out_reg_class:$reg, op_type:"instruction", test_id:$id})',
++                           'module_name:"m", compilation_id:"c", basic_block:"entry", name:$name, out_reg_class:$reg, op_type:"instruction", test_id:$id})',
+                            session=session, func='f' if n != 5 else 'other', name='BAD' if n == 4 else 'ADD',
+                            reg='fpr32' if n == 6 else 'gpr', id=n).consume()
+                 for a, b in edges:
+@@ -53,7 +53,7 @@ class MemgraphQueriesTest(unittest.TestCase):
+                         for record in tx.run(q):
+                             actual.add(frozenset(n['test_id'] for p in record.values() for n in p.nodes))
+                         self.assertEqual(expected, actual, (width, si, so))
+-                # No commit: the test graph is rolled back by the context manager.
++                tx.rollback()  # Neo4j commits successful transaction contexts by default.
+ 
+ 
+     def test_limit_after_minimum_node_filter(self):
+@@ -61,9 +61,9 @@ class MemgraphQueriesTest(unittest.TestCase):
+         label = 'limit-test-' + uuid.uuid4().hex
+         with GraphDatabase.driver(os.environ['MEMGRAPH_TEST_URI'], auth=('', '')) as driver:
+             with driver.session() as session, session.begin_transaction(timeout=15) as tx:
+-                tx.run('CREATE (a:INSTR {session:$label, func_name:"f", stage:8, bb_id:0}), '
+-                       '(b:INSTR {session:$label, func_name:"f", stage:8, bb_id:0}), '
+-                       '(c:INSTR {session:$label, func_name:"f", stage:8, bb_id:0}), '
++                tx.run('CREATE (a:INSTR {session:$label, func_name:"f", stage:8, bb_id:0, module_name:"m", compilation_id:"c"}), '
++                       '(b:INSTR {session:$label, func_name:"f", stage:8, bb_id:0, module_name:"m", compilation_id:"c"}), '
++                       '(c:INSTR {session:$label, func_name:"f", stage:8, bb_id:0, module_name:"m", compilation_id:"c"}), '
+                        '(a)-[:DFG]->(b), (b)-[:DFG]->(c)', label=label).consume()
+                 for limit in (0, 1, 3):
+                     query = generate_candidates_query(label, 'f', None, 1, 2, 1, [], [],
+@@ -72,3 +72,53 @@ class MemgraphQueriesTest(unittest.TestCase):
+                     self.assertEqual(len(records), 0 if limit == 0 else 1)
+                     for record in records:
+                         self.assertEqual(len(record['p0'].nodes), 3)
++                tx.rollback()
++
++    def test_positive_predicate_caps_match_exhaustive_paths(self):
++        from neo4j import GraphDatabase
++        label = 'caps-' + uuid.uuid4().hex
++        edges = [(0, 1), (1, 2), (0, 2), (2, 3), (1, 3)]
++        flags = [dict(mayLoad=True), dict(mayStore=True),
++                 dict(mayLoad=True, mayStore=True), dict(isBranch=True)]
++        paths = []
++        def visit(path):
++            if len(path) > 1:
++                paths.append(path)
++            if len(path) < 4:
++                for a, b in edges:
++                    if a == path[-1] and b not in path:
++                        visit(path + [b])
++        for n in range(4):
++            visit([n])
++        with GraphDatabase.driver(os.environ['MEMGRAPH_TEST_URI'], auth=('', '')) as driver:
++            with driver.session() as session, session.begin_transaction(timeout=15) as tx:
++                try:
++                    for n, properties in enumerate(flags):
++                        tx.run('CREATE (n:INSTR {session:$label, func_name:"f", stage:8, bb_id:0, '
++                               'module_name:"m", compilation_id:"c", test_id:$id}) SET n += $props',
++                               label=label, id=n, props=properties).consume()
++                    for a, b in edges:
++                        tx.run('MATCH (a:INSTR {session:$label,test_id:$a}), '
++                               '(b:INSTR {session:$label,test_id:$b}) CREATE (a)-[:DFG]->(b)',
++                               label=label, a=a, b=b).consume()
++                    for width in (1, 2):
++                        for caps in ((1, 1, 2, 1), (0, 1, 1, 0), (2, 2, 3, 1)):
++                            for enabled in (False, True):
++                                expected = set()
++                                for combo in itertools.product(paths, repeat=width):
++                                    if len({p[-1] for p in combo}) != 1:
++                                        continue
++                                    nodes = frozenset(itertools.chain.from_iterable(combo))
++                                    loads = sum(bool(flags[n].get('mayLoad')) for n in nodes)
++                                    stores = sum(bool(flags[n].get('mayStore')) for n in nodes)
++                                    branches = sum(bool(flags[n].get('isBranch')) for n in nodes)
++                                    if not enabled or all(v <= c for v, c in zip((loads, stores, loads+stores, branches), caps)):
++                                        expected.add(nodes)
++                                query = generate_candidates_query(label, 'f', '%bb.0', 1, 3, width, [], [],
++                                    module_name='m', compilation_id='c', query_level_filtering=enabled,
++                                    max_loads=caps[0], max_stores=caps[1], max_mems=caps[2], max_branches=caps[3])
++                                actual = {frozenset(n['test_id'] for p in record.values() for n in p.nodes)
++                                          for record in tx.run(query)}
++                                self.assertEqual(expected, actual, (width, caps, enabled))
++                finally:
++                    tx.rollback()
+diff --git a/tool/cmdline.py b/tool/cmdline.py
+index a3b9528..27f385f 100644
+--- a/tool/cmdline.py
++++ b/tool/cmdline.py
+@@ -12,8 +12,12 @@ def handle_cmdline():
+     parser.add_argument("--times", action="store_true", default=None, help="TODO")
+     parser.add_argument("--append-times", action="store_true", default=None, help="TODO")
+     parser.add_argument("--progress", action="store_true", default=None, help="TODO")
++    parser.add_argument("--n-parallel", type=int, default=None,
++                        help="Maximum graph export workers (positive; 1 forces serial export)")
+     parser.add_argument("--host", default=None, help="TODO")
+     parser.add_argument("--port", type=int, default=None, help="TODO")
++    parser.add_argument("--module-name", default=None, help="Exact CDFG translation unit")
++    parser.add_argument("--compilation-id", default=None, help="Exact verified CDFG import")
+     parser.add_argument("--session", default=None, help="TODO")
+     parser.add_argument("--query-timeout", type=float, default=None, help="Candidate query timeout in seconds (positive)")
+     parser.add_argument("--query-level-filtering", action=argparse.BooleanOptionalAction, default=None,
+diff --git a/tool/main.py b/tool/main.py
+index bde5e70..2338f06 100644
+--- a/tool/main.py
++++ b/tool/main.py
+@@ -106,6 +106,10 @@ def init_global_df(settings, ts):
+     global_df["func"] = [settings.query.func]
+     global_df["bb"] = [settings.query.bb]
+     global_df["stage"] = [settings.query.stage]
++    global_df["module_name"] = [settings.query.module_name]
++    global_df["compilation_id"] = [settings.query.compilation_id]
++    global_df["fixed_bb_id"] = [int(settings.query.bb[4:]) if settings.query.bb is not None else None]
++    global_df["mir_bb_name"] = [settings.query.mir_bb_name]
+     global_df["limit_results"] = [settings.query.limit_results]
+     global_df["min_path_len"] = [settings.query.min_path_len]
+     global_df["max_path_len"] = [settings.query.max_path_len]
+diff --git a/tool/queries.py b/tool/queries.py
+index 29be300..2982c80 100644
+--- a/tool/queries.py
++++ b/tool/queries.py
+@@ -1,5 +1,6 @@
+ """Bounded Memgraph candidate traversal queries."""
+ from typing import List, Optional
++import re
+ 
+ from .enums import CDFGStage, InstrPredicate
+ from .types import RegisterClass
+@@ -17,17 +18,24 @@ def _integer(name, value, minimum=0):
+ 
+ 
+ def generate_func_query(
+-    session: str, func: str, fix_cycles: bool = True, stage: CDFGStage = CDFGStage.STAGE_3, cross_bb: bool = False
++    session: str, func: str, fix_cycles: bool = True, stage: CDFGStage = CDFGStage.STAGE_3,
++    cross_bb: bool = False, module_name: Optional[str] = None, compilation_id: Optional[str] = None,
+ ):
+     rel_suffix = "" if cross_bb else ":DFG"
+-    ret = f"""MATCH p0=(n00:INSTR)-[r01{rel_suffix}]->(n01:INSTR)
+-WHERE n00.func_name = {_literal(func)}
+-AND n00.session = {_literal(session)}
+-AND n00.stage = {_integer('stage', stage)}
+-"""
++    def scope(node):
++        terms = [f'{node}:INSTR', f'{node}.func_name = {_literal(func)}',
++                 f'{node}.session = {_literal(session)}', f'{node}.stage = {_integer("stage", stage)}']
++        if module_name is not None:
++            terms.append(f'{node}.module_name = {_literal(module_name)}')
++        if compilation_id is not None:
++            terms.append(f'{node}.compilation_id = {_literal(compilation_id)}')
++        return ' AND '.join(terms)
++    ret = f"MATCH (n00:INSTR) WHERE {scope('n00')}\n"
++    ret += f"OPTIONAL MATCH (n00)-[r01{rel_suffix}]->(n01:INSTR)\nWHERE {scope('n01')}\n"
++    ret += "AND n01.module_name = n00.module_name AND n01.compilation_id = n00.compilation_id\n"
+     if fix_cycles:
+         ret += "AND NOT n01.name IN ['PHI', 'G_PHI']\n"
+-    return ret + "RETURN p0;"
++    return ret + "RETURN n00, r01, n01;"
+ 
+ 
+ def generate_candidates_query(
+@@ -55,6 +63,8 @@ def generate_candidates_query(
+     max_stores: Optional[int] = None,
+     max_mems: Optional[int] = None,
+     max_branches: Optional[int] = None,
++    module_name: Optional[str] = None,
++    compilation_id: Optional[str] = None,
+ ):
+     """Return width path slots (repetition permits narrower candidates).
+ 
+@@ -91,10 +101,9 @@ def generate_candidates_query(
+ 
+     bb_id = None
+     if bb is not None and use_bb_id:
+-        try:
+-            bb_id = int(bb.split('.', 1)[1])
+-        except (ValueError, IndexError, AttributeError) as exc:
+-            raise ValueError('bb must have the form %bb.<integer> when use_bb_id=True') from exc
++        if not re.fullmatch(r'%bb\.(0|[1-9][0-9]*)', str(bb)):
++            raise ValueError('bb must be a nonnegative fixed ID spelled %bb.<integer>')
++        bb_id = int(bb[4:])
+ 
+     # Match detect_predicates: absent properties mean false. Only internal
+     # candidate nodes are checked; external operand producers remain eligible.
+@@ -123,6 +132,10 @@ def generate_candidates_query(
+ 
+     def predicate(node):
+         terms = [f'{node}:INSTR', f'{node}.session = {_literal(session)}', f'{node}.stage = {stage}']
++        if module_name is not None:
++            terms.append(f'{node}.module_name = {_literal(module_name)}')
++        if compilation_id is not None:
++            terms.append(f'{node}.compilation_id = {_literal(compilation_id)}')
+         if func is not None:
+             terms.append(f'{node}.func_name = {_literal(func)}')
+         if bb is not None:
+@@ -159,7 +172,7 @@ def generate_candidates_query(
+                 start = anchor
+         # DFS filters execute at every expansion, before path combinations form.
+         # Memgraph includes the candidate node in partial; reject repeat visits.
+-        filt = predicate('node') + ' AND single(visited IN nodes(partial) WHERE visited = node)'
++        filt = predicate('node') + f' AND node.module_name = {anchor}.module_name AND node.compilation_id = {anchor}.compilation_id' + ' AND single(visited IN nodes(partial) WHERE visited = node)'
+         if max_nodes is not None:
+             partial_nodes = 'nodes(partial)' if union is None else f'collections.union({union}, nodes(partial))'
+             filt += f' AND size({partial_nodes}) <= {max_nodes}'
+@@ -187,7 +200,7 @@ def generate_candidates_query(
+             if cap is None or cap == 0:
+                 continue
+             def count(flag):
+-                return f'size([node IN all_nodes WHERE coalesce(node.{flag}, false)])'
++                return f'reduce(total = 0, node IN all_nodes | total + CASE WHEN coalesce(node.{flag}, false) THEN 1 ELSE 0 END)'
+             # #Mems is loads + stores: a node with both flags counts twice.
+             total = f'({count("mayLoad")} + {count("mayStore")})' if prop == 'memory' else count(prop)
+             checks.append(f'{total} <= {cap}')
+diff --git a/tool/settings.py b/tool/settings.py
+index 6ffdf3b..39d3d23 100644
+--- a/tool/settings.py
++++ b/tool/settings.py
+@@ -171,6 +171,9 @@ class MemgraphSettings(YAMLSettings):
+ 
+ @dataclass
+ class QuerySettings(YAMLSettings):
++    module_name: Optional[str] = None
++    compilation_id: Optional[str] = None
++    mir_bb_name: Optional[str] = None
+     session: Optional[str] = None
+     func: Optional[str] = None
+     bb: Optional[str] = None
+@@ -422,6 +425,7 @@ class Settings(YAMLSettings):
+         settings_ = Settings(
+             out=str(Path(args.output_dir).resolve()),
+             progress=args.progress,
++            n_parallel=getattr(args, "n_parallel", None),
+             times=args.times,
+             append_times=args.append_times,
+             halt_on_error=args.halt_on_error,
+@@ -455,6 +459,8 @@ class Settings(YAMLSettings):
+                 port=args.port,
+             ),
+             query=QuerySettings(
++                module_name=getattr(args, "module_name", None),
++                compilation_id=getattr(args, "compilation_id", None),
+                 session=args.session,
+                 func=args.function,
+                 bb=args.basic_block,
+@@ -518,6 +524,10 @@ class Settings(YAMLSettings):
+         return settings
+ 
+     def validate(self):
++        if self.n_parallel is not None and (
++            isinstance(self.n_parallel, bool) or not isinstance(self.n_parallel, int) or self.n_parallel < 1
++        ):
++            raise ValueError("n_parallel must be a positive integer or null")
+         assert self.out_dir is not None
+         assert self.out_dir.is_dir(), f"out ({self.out}) is not a directory"
+         assert self.query.func is not None
+diff --git a/tool/stages/query_candidates.py b/tool/stages/query_candidates.py
+index c1ecdcb..3560481 100644
+--- a/tool/stages/query_candidates.py
++++ b/tool/stages/query_candidates.py
+@@ -35,6 +35,8 @@ def query_candidates(settings: Settings, driver):
+             max_stores=settings.filters.max_stores,
+             max_mems=settings.filters.max_mems,
+             max_branches=settings.filters.max_branches,
++            module_name=settings.query.module_name,
++            compilation_id=settings.query.compilation_id,
+         )
+         queries.append(query)
+         results = run_query(driver, query, timeout=settings.query.timeout_seconds)
+diff --git a/tool/stages/query_func.py b/tool/stages/query_func.py
+index 6c274d7..dfeccde 100644
+--- a/tool/stages/query_func.py
++++ b/tool/stages/query_func.py
+@@ -1,4 +1,7 @@
+ import logging
++import re
++
++from neo4j import Query
+ 
+ from ..settings import Settings
+ from ..memgraph import run_query
+@@ -8,10 +11,34 @@ logger = logging.getLogger("query_func")
+ 
+ 
+ def query_func(settings: Settings, driver):
+-    query_func = generate_func_query(settings.query.session, settings.query.func, stage=settings.query.stage)
++    params = dict(label=settings.query.session, func=settings.query.func, stage=int(settings.query.stage),
++                  module=settings.query.module_name, compilation=settings.query.compilation_id, bb_id=None)
++    if settings.query.bb is not None:
++        if not re.fullmatch(r'%bb\.(0|[1-9][0-9]*)', str(settings.query.bb)):
++            raise ValueError("Expected a fixed BB ID spelled %bb.<integer>")
++        params["bb_id"] = int(settings.query.bb[4:])
++    with driver.session() as session:
++        blocks = [dict(r) for r in session.run(Query("""MATCH (b:BB)
++            WHERE b.session = $label AND b.func_name = $func AND b.stage = $stage
++              AND ($module IS NULL OR b.module_name = $module)
++              AND ($compilation IS NULL OR b.compilation_id = $compilation)
++              AND ($bb_id IS NULL OR b.bb_id = $bb_id)
++            RETURN b.module_name AS module, b.compilation_id AS compilation,
++                   b.bb_id AS bb_id, b.name AS mir_name, b.bb_clone_id AS clone, b.bb_identity_version AS version""",
++            timeout=settings.query.timeout_seconds), **params)]
++    scopes = {(b["module"], b["compilation"]) for b in blocks}
++    if len(scopes) != 1 or any(not m or not c for m, c in scopes):
++        raise ValueError("Missing/ambiguous CDFG module or import; select a verified compilation")
++    if any(b["version"] != 1 or b["clone"] != 0 or not isinstance(b["bb_id"], int) or b["bb_id"] < 0
++           for b in blocks) or len({b["bb_id"] for b in blocks}) != len(blocks):
++        raise ValueError("Invalid or duplicated fixed BB identities; regenerate the CDFG")
++    settings.query.module_name, settings.query.compilation_id = next(iter(scopes))
++    settings.query.mir_bb_name = blocks[0]["mir_name"] if settings.query.bb is not None else None
++    query = generate_func_query(settings.query.session, settings.query.func, stage=settings.query.stage,
++                                module_name=settings.query.module_name,
++                                compilation_id=settings.query.compilation_id)
+     if settings.write.queries:
+         logger.info("Exporting queries...")
+         with open(settings.out_dir / "query_func.cypher", "w") as f:
+-            f.write(query_func)
+-    func_results = run_query(driver, query_func)
+-    return func_results
++            f.write(query)
++    return run_query(driver, query, timeout=settings.query.timeout_seconds)
+diff --git a/tool/stages/write_io_subs.py b/tool/stages/write_io_subs.py
+index 81b3df1..d383247 100644
+--- a/tool/stages/write_io_subs.py
++++ b/tool/stages/write_io_subs.py
+@@ -1,10 +1,8 @@
+ import logging
+ import pickle
+-from concurrent.futures import ProcessPoolExecutor
+-
+-from tqdm import tqdm
+ 
+ from ..enums import ExportFormat
++from ..export_utils import export_graphs
+ from ..graph_utils import graph_to_file
+ 
+ logger = logging.getLogger("write_io_subs")
+@@ -29,13 +27,4 @@ def write_io_subs(settings, io_subs, subs_df, index_artifacts):
+     logger.info("Exporting I/O subgraphs...")
+     filtered_subs_df = subs_df[(subs_df["Status"] & settings.write.io_sub_flt.value) > 0].copy()
+     io_subs_iter = [(i, io_sub) for i, io_sub in enumerate(io_subs) if i in filtered_subs_df.index]
+-    # for i, io_sub in enumerate(tqdm(io_subs, disable=not settings.progress)):
+-    with ProcessPoolExecutor(settings.n_parallel) as pool:
+-        futures = []
+-        for i, io_sub in io_subs_iter:
+-            future = pool.submit(worker, i, io_sub, settings)
+-            futures.append(future)
+-        for future in tqdm(futures, disable=not settings.progress):
+-            # TODO: except failing?
+-            i, update = future.result()
+-            index_artifacts[i].update(update)
++    export_graphs(worker, io_subs_iter, settings, settings.write.io_sub_fmt, index_artifacts)
+diff --git a/tool/stages/write_pie.py b/tool/stages/write_pie.py
+index a6e16d7..d15c53b 100644
+--- a/tool/stages/write_pie.py
++++ b/tool/stages/write_pie.py
+@@ -20,12 +20,15 @@ def write_pie(settings, subs_df, index_artifacts):
+     pie_df, pie_fig = generate_pie_chart(filtered_subs_df)
+     pie2_df, pie2_fig = generate_pie2_chart(filtered_subs_df)
+     logger.info("Exporting PieChart...")
+-    if settings.write.pie_fmt & ExportFormat.PDF:
+-        pie_fig.write_image(settings.out_dir / "pie.pdf")
+-        pie2_fig.write_image(settings.out_dir / "pie2.pdf")
+-    if settings.write.pie_fmt & ExportFormat.PNG:
+-        pie_fig.write_image(settings.out_dir / "pie.png")
+-        pie2_fig.write_image(settings.out_dir / "pie2.png")
++    figures, destinations = [], []
++    for flag, extension in ((ExportFormat.PDF, "pdf"), (ExportFormat.PNG, "png")):
++        if settings.write.pie_fmt & flag:
++            figures.extend((pie_fig, pie2_fig))
++            destinations.extend(
++                (settings.out_dir / f"pie.{extension}", settings.out_dir / f"pie2.{extension}")
++            )
++    if figures:
++        pio.write_images(fig=figures, file=destinations)
+     if settings.write.pie_fmt & ExportFormat.HTML:
+         pie_fig.write_html(settings.out_dir / "pie.html")
+         pie2_fig.write_html(settings.out_dir / "pie2.html")
+diff --git a/tool/stages/write_subs.py b/tool/stages/write_subs.py
+index f5d4b7d..a32a6a8 100644
+--- a/tool/stages/write_subs.py
++++ b/tool/stages/write_subs.py
+@@ -1,19 +1,14 @@
+ import logging
+ import pickle
+-from concurrent.futures import ProcessPoolExecutor
+-
+-from tqdm import tqdm
+-
+ 
+ from ..enums import ExportFormat
++from ..export_utils import export_graphs
+ from ..graph_utils import graph_to_file
+ 
+ logger = logging.getLogger("write_subs")
+ 
+ 
+ def worker(i, sub, settings):
+-    # if i not in filtered_subs_df.index:
+-    #     continue
+     ret = {}
+     if settings.write.sub.fmt & ExportFormat.DOT:
+         graph_to_file(sub, settings.out_dir / f"sub{i}.dot")
+@@ -32,12 +27,4 @@ def write_subs(settings, subs, subs_df, index_artifacts):
+     logger.info("Exporting subgraphs...")
+     filtered_subs_df = subs_df[(subs_df["Status"] & settings.write.sub.flt.value) > 0].copy()
+     subs_iter = [(i, sub) for i, sub in enumerate(subs) if i in filtered_subs_df.index]
+-    with ProcessPoolExecutor(settings.n_parallel) as pool:
+-        futures = []
+-        for i, sub in subs_iter:
+-            future = pool.submit(worker, i, sub, settings)
+-            futures.append(future)
+-        for future in tqdm(futures, disable=not settings.progress):
+-            # TODO: except failing?
+-            i, update = future.result()
+-            index_artifacts[i].update(update)
++    export_graphs(worker, subs_iter, settings, settings.write.sub.fmt, index_artifacts)

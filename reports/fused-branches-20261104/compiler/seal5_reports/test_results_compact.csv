@@ -1,0 +1,2 @@
+model,set,xlen,instr,n_pass,n_fail,n_tests,state
+XBranch,XBranch,32,,2,0,2,good

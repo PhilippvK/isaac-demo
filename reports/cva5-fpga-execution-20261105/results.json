@@ -1,0 +1,212 @@
+{
+  "board": "Arty A7-100",
+  "part": "xc7a100tcsg324-1",
+  "core_clock_hz": 20000000,
+  "reference_crc": "65842ca9",
+  "embench_verification": 11433,
+  "executions": {
+    "baseline": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/baseline-latency1/cva5_arty_top.bit",
+      "pairs": [],
+      "uart_log": "execution/baseline/uart.log"
+    },
+    "baseline-addressed": {
+      "passed": true,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/baseline-addressed/cva5_arty_top.bit",
+      "pairs": [],
+      "uart_log": "execution/baseline-addressed/uart.log"
+    },
+    "board-final": {
+      "passed": true,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/cva5_arty_top.bit",
+      "pairs": [
+        {
+          "run": 0,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15392,
+          "ise_cycles": 13348
+        },
+        {
+          "run": 1,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 2,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 3,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 4,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        }
+      ],
+      "uart_log": "execution/board-final/uart.log"
+    },
+    "branches-debug": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-debug-init/firmware.bit",
+      "pairs": [],
+      "uart_log": "execution/branches-debug/uart.log"
+    },
+    "branches-final": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-packed/cva5_arty_top.bit",
+      "pairs": [],
+      "uart_log": "execution/branches-final/uart.log"
+    },
+    "branches-handshake": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-handshake/cva5_arty_top.bit",
+      "pairs": [],
+      "uart_log": "execution/branches-handshake/uart.log"
+    },
+    "branches-ila": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-ila/debug.bit",
+      "pairs": [],
+      "uart_log": "execution/branches-ila/uart.log"
+    },
+    "branches-original": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches/cva5_arty_top.bit",
+      "pairs": [],
+      "uart_log": "execution/branches-original/uart.log"
+    },
+    "branches-rotated": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-rotated-init/firmware.bit",
+      "pairs": [],
+      "uart_log": "execution/branches-rotated/uart.log"
+    },
+    "branches-transition": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/branches-delayed-init/firmware.bit",
+      "pairs": [],
+      "uart_log": "execution/branches-transition/uart.log"
+    },
+    "full": {
+      "passed": true,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-addressed/cva5_arty_top.bit",
+      "pairs": [
+        {
+          "run": 0,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15392,
+          "ise_cycles": 13348
+        },
+        {
+          "run": 1,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 2,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 3,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 4,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        }
+      ],
+      "uart_log": "execution/full/uart.log"
+    },
+    "full-final": {
+      "passed": true,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/full-final/cva5_arty_top.bit",
+      "pairs": [
+        {
+          "run": 0,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15392,
+          "ise_cycles": 13348
+        },
+        {
+          "run": 1,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 2,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 3,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        },
+        {
+          "run": 4,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15384,
+          "ise_cycles": 13336
+        }
+      ],
+      "uart_log": "execution/full-final/uart.log"
+    },
+    "stores": {
+      "passed": false,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/stores/cva5_arty_top.bit",
+      "pairs": [],
+      "uart_log": "execution/stores/uart.log"
+    },
+    "stores-final": {
+      "passed": true,
+      "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/cva5-fpga-execution-20261105/builds/stores-sized/cva5_arty_top.bit",
+      "pairs": [],
+      "uart_log": "execution/stores-final/uart.log"
+    }
+  },
+  "performance": {
+    "steady_pairs": 4,
+    "native_cycles": 15384.0,
+    "ise_cycles": 13336.0,
+    "cycles_saved": 2048.0,
+    "cycle_reduction_percent": 13.312532501300051,
+    "speedup": 1.1535692861427715,
+    "native_ms": 0.7692,
+    "ise_ms": 0.6668,
+    "selection": "explicit generated CUSTOM17 intrinsic, GCC -O2; not automatic LLVM retargeting"
+  }
+}

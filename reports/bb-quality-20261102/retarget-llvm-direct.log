@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 440, in <module>
+    main(sys.argv[1:])
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 436, in main
+    handle(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 402, in handle
+    run_retargeting_service(
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/retargeting/service/client.py", line 371, in run_retargeting_service
+    raise RuntimeError(f"Retargeting job {job_id} failed; see {log_file}")
+RuntimeError: Retargeting job d4328436-8fb8-4e97-aa09-842a5538c8f5 failed; see reports/bb-quality-20261102/retarget/llvm/d4328436-8fb8-4e97-aa09-842a5538c8f5_logs.txt

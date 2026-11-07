@@ -1,0 +1,7 @@
+{
+  "corrected_branch_patterns_present": true,
+  "matching_patch_members": [
+    "patches/llvm/tblgen_patterns_XBranch.patch",
+    "patches/stages/PHASE_4.patch"
+  ]
+}

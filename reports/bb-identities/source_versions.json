@@ -1,0 +1,16 @@
+{
+  "commit": "5bd6ab74cd1dc8d09e54ca6000361d020d138aeb",
+  "compiler": "clang version 19.1.7 (git@github.com:PhilippvK/llvm-project.git 5bd6ab74cd1dc8d09e54ca6000361d020d138aeb)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin\nBuild config: +assertions\n",
+  "source_sha256": {
+    "llvm/lib/CodeGen/MachineFunction.cpp": "947873e59855ccc02e3c20232a7e22dd9d36bb76d45a23a4f66288fe1a381b12",
+    "llvm/lib/CodeGen/MachineBasicBlock.cpp": "322bc842df15acdad49438c9522f0261bc3228a627212101bb318bad8552a67e",
+    "llvm/lib/CodeGen/ResetMachineFunctionPass.cpp": "6d6175e2135c39ab9affb0b864a4c3c5a89fde812d6c61cb18b388a431c317ff",
+    "llvm/lib/CodeGen/GlobalISel/CDFGPass.cpp": "86b8871a9ff7b1681dad384d887ba6d07c514eb54bcdee2326f79848585d8e32",
+    "llvm/lib/CodeGen/AsmPrinter/AsmPrinter.cpp": "1655581747a9fe71c9ed02a07a347427b06eb263c2f73992db6e7e0c116d13ec",
+    "llvm/docs/BBIDTracing.rst": "f5d2a0252f5158964a91e4801c458a72d126eee24560830a5b94db3c7a07dba0"
+  },
+  "build_logs": [
+    "build.log",
+    "build-incremental.log"
+  ]
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "case": "gisel-O0",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O0",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/gisel-O0.o"
+    ]
+  },
+  {
+    "case": "gisel-O1",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O1",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/gisel-O1.o"
+    ]
+  },
+  {
+    "case": "gisel-O2",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/gisel-O2.o"
+    ]
+  },
+  {
+    "case": "gisel-O3",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O3",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fglobal-isel",
+      "-mllvm",
+      "-global-isel-abort=0",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/gisel-O3.o"
+    ]
+  },
+  {
+    "case": "dag-O0",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O0",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fno-global-isel",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/dag-O0.o"
+    ]
+  },
+  {
+    "case": "dag-O1",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O1",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fno-global-isel",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/dag-O1.o"
+    ]
+  },
+  {
+    "case": "dag-O2",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O2",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fno-global-isel",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/dag-O2.o"
+    ]
+  },
+  {
+    "case": "dag-O3",
+    "command": [
+      "/var/tmp/ga87puy/isaac-demo-new/llvm-project/build/bin/clang",
+      "--target=riscv32",
+      "-march=rv32im",
+      "-mabi=ilp32",
+      "-O3",
+      "-g",
+      "-fbasic-block-sections=labels",
+      "-fno-global-isel",
+      "-mllvm",
+      "-print-after-all",
+      "-c",
+      "/tmp/isaac-bbid-investigation/cases.c",
+      "-o",
+      "/tmp/isaac-bbid-investigation/dag-O3.o"
+    ]
+  }
+]

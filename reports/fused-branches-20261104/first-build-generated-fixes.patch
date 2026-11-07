@@ -1,0 +1,120 @@
+diff --git a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td
+index c6238369..94100592 100644
+--- a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td
++++ b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BEQ.td
+@@ -1,13 +1,11 @@
+-let GISelShouldIgnore = 1 in {
+ let Predicates = [HasStdExtXBranch, IsRV32] in {
+ 
+ let hasSideEffects = 0, mayLoad = 0, mayStore = 0, isBranch = 1, isTerminator = 1, isCodeGenOnly = 1, Format = InstFormatB, Constraints = "" in def FUSED_BEQ_ : RVInst_FUSED_BEQ<(outs ), (ins GPR:$rs1, GPR:$rs2, patterngen_btarget:$offset)>;
+ 
+-def : Pat<
+-	(brcond (i32 (setcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETEQ)), bb:$offset),
++let GISelShouldIgnore = 1 in def : Pat<
++	(riscv_brcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETEQ, bb:$offset),
+ 	(FUSED_BEQ_ GPR:$rs1, GPR:$rs2, bb:$offset)>;
+ 
+ }
+ 
+-}
+ 
+diff --git a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGE.td b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGE.td
+index d7b170f7..8187e5fe 100644
+--- a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGE.td
++++ b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGE.td
+@@ -1,13 +1,11 @@
+-let GISelShouldIgnore = 1 in {
+ let Predicates = [HasStdExtXBranch, IsRV32] in {
+ 
+ let hasSideEffects = 0, mayLoad = 0, mayStore = 0, isBranch = 1, isTerminator = 1, isCodeGenOnly = 1, Format = InstFormatB, Constraints = "" in def FUSED_BGE_ : RVInst_FUSED_BGE<(outs ), (ins GPR:$rs1, GPR:$rs2, patterngen_btarget:$offset)>;
+ 
+-def : Pat<
+-	(brcond (i32 (setcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 6)), SETGT)), bb:$offset),
++let GISelShouldIgnore = 1 in def : Pat<
++	(riscv_brcc (i32 (i32 6)), (i32 (and GPR:$rs2, GPR:$rs1)), SETLT, bb:$offset),
+ 	(FUSED_BGE_ GPR:$rs1, GPR:$rs2, bb:$offset)>;
+ 
+ }
+ 
+-}
+ 
+diff --git a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGEU.td b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGEU.td
+index d4cbe76a..c8443c80 100644
+--- a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGEU.td
++++ b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BGEU.td
+@@ -1,13 +1,11 @@
+-let GISelShouldIgnore = 1 in {
+ let Predicates = [HasStdExtXBranch, IsRV32] in {
+ 
+ let hasSideEffects = 0, mayLoad = 0, mayStore = 0, isBranch = 1, isTerminator = 1, isCodeGenOnly = 1, Format = InstFormatB, Constraints = "" in def FUSED_BGEU_ : RVInst_FUSED_BGEU<(outs ), (ins GPR:$rs1, GPR:$rs2, patterngen_btarget:$offset)>;
+ 
+-def : Pat<
+-	(brcond (i32 (setcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 6)), SETUGT)), bb:$offset),
++let GISelShouldIgnore = 1 in def : Pat<
++	(riscv_brcc (i32 (i32 6)), (i32 (and GPR:$rs2, GPR:$rs1)), SETULT, bb:$offset),
+ 	(FUSED_BGEU_ GPR:$rs1, GPR:$rs2, bb:$offset)>;
+ 
+ }
+ 
+-}
+ 
+diff --git a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLT.td b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLT.td
+index 2527d0b2..8d2269c7 100644
+--- a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLT.td
++++ b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLT.td
+@@ -1,13 +1,11 @@
+-let GISelShouldIgnore = 1 in {
+ let Predicates = [HasStdExtXBranch, IsRV32] in {
+ 
+ let hasSideEffects = 0, mayLoad = 0, mayStore = 0, isBranch = 1, isTerminator = 1, isCodeGenOnly = 1, Format = InstFormatB, Constraints = "" in def FUSED_BLT_ : RVInst_FUSED_BLT<(outs ), (ins GPR:$rs1, GPR:$rs2, patterngen_btarget:$offset)>;
+ 
+-def : Pat<
+-	(brcond (i32 (setcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETLT)), bb:$offset),
++let GISelShouldIgnore = 1 in def : Pat<
++	(riscv_brcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETLT, bb:$offset),
+ 	(FUSED_BLT_ GPR:$rs1, GPR:$rs2, bb:$offset)>;
+ 
+ }
+ 
+-}
+ 
+diff --git a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLTU.td b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLTU.td
+index 4fce8d2b..96a000b6 100644
+--- a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLTU.td
++++ b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BLTU.td
+@@ -1,13 +1,11 @@
+-let GISelShouldIgnore = 1 in {
+ let Predicates = [HasStdExtXBranch, IsRV32] in {
+ 
+ let hasSideEffects = 0, mayLoad = 0, mayStore = 0, isBranch = 1, isTerminator = 1, isCodeGenOnly = 1, Format = InstFormatB, Constraints = "" in def FUSED_BLTU_ : RVInst_FUSED_BLTU<(outs ), (ins GPR:$rs1, GPR:$rs2, patterngen_btarget:$offset)>;
+ 
+-def : Pat<
+-	(brcond (i32 (setcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETULT)), bb:$offset),
++let GISelShouldIgnore = 1 in def : Pat<
++	(riscv_brcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETULT, bb:$offset),
+ 	(FUSED_BLTU_ GPR:$rs1, GPR:$rs2, bb:$offset)>;
+ 
+ }
+ 
+-}
+ 
+diff --git a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BNE.td b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BNE.td
+index 1d2165b0..a56d91b7 100644
+--- a/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BNE.td
++++ b/llvm/lib/Target/RISCV/seal5/XBranch/FUSED_BNE.td
+@@ -1,13 +1,11 @@
+-let GISelShouldIgnore = 1 in {
+ let Predicates = [HasStdExtXBranch, IsRV32] in {
+ 
+ let hasSideEffects = 0, mayLoad = 0, mayStore = 0, isBranch = 1, isTerminator = 1, isCodeGenOnly = 1, Format = InstFormatB, Constraints = "" in def FUSED_BNE_ : RVInst_FUSED_BNE<(outs ), (ins GPR:$rs1, GPR:$rs2, patterngen_btarget:$offset)>;
+ 
+-def : Pat<
+-	(brcond (i32 (setcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETNE)), bb:$offset),
++let GISelShouldIgnore = 1 in def : Pat<
++	(riscv_brcc (i32 (and GPR:$rs2, GPR:$rs1)), (i32 (i32 7)), SETNE, bb:$offset),
+ 	(FUSED_BNE_ GPR:$rs1, GPR:$rs2, bb:$offset)>;
+ 
+ }
+ 
+-}
+ 

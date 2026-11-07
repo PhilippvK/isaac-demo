@@ -1,0 +1,41 @@
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: -fglobal-isel support for the 'riscv32' architecture is incomplete [-Wglobal-isel]
+DEBUG - save_artifacts - Saving artifacts...
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - add_artifact - Adding artifact to session
+clang-22: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang-22: warning: -fglobal-isel support for the 'riscv32' architecture is incomplete [-Wglobal-isel]
+DEBUG - add_artifact - Adding artifact to session
+DEBUG - save_artifacts - Saving artifacts...
+DEBUG - save - Exporting artifact 'identity.elf' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-02ea6701ee6447ad894324ffb3367255/elf/identity.elf'
+DEBUG - save - Exporting artifact 'llvm_bbs' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-02ea6701ee6447ad894324ffb3367255/table/llvm_bbs.pkl'
+DEBUG - save - Exporting artifact 'llvm_bbs_new' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-02ea6701ee6447ad894324ffb3367255/table/llvm_bbs_new.pkl'
+DEBUG - save - Exporting artifact 'choices' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-02ea6701ee6447ad894324ffb3367255/table/choices.pkl'
+DEBUG - save - Exporting artifact 'compile_commands' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-02ea6701ee6447ad894324ffb3367255/table/compile_commands.pkl'
+DEBUG - save - Exporting artifact 'cdfg_imports' to '/var/tmp/ga87puy/isaac-demo-new/reports/llvm22-port/identity-session-02ea6701ee6447ad894324ffb3367255/table/cdfg_imports.pkl'
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: -fglobal-isel support for the 'riscv32' architecture is incomplete [-Wglobal-isel]
+{
+  "checks": {
+    "fresh_receipts": true,
+    "late_bb_4_rejected": true,
+    "export_preserves_machine_code": true,
+    "wrong_compilation_rejected": true,
+    "changed_source_rejected": true,
+    "duplicate_block_rejected": true,
+    "modified_graph_receipt_rejected": true
+  },
+  "mapping": [
+    {
+      "fixed_id": 1,
+      "mir": "%bb.1"
+    },
+    {
+      "fixed_id": 3,
+      "mir": "%bb.2"
+    }
+  ]
+}

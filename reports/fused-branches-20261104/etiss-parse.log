@@ -1,0 +1,112 @@
+INFO:parser:parsing top level
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVC.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVD.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVF.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVI.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVM.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/tum_mod.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/tum_rva.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RISCVBase.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RVA.core_desc
+INFO:visit_importer:importing file /var/tmp/ga87puy/isaac-demo-new/etiss_arch_riscv/rv_base/RISCVEncoding.core_desc
+INFO:parser:reading instruction load order
+INFO:parser:building architecture model for core BranchCore
+INFO:parser:building behavior model for core BranchCore
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LUI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AUIPC
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction JAL
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction JALR
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LB
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LH
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LBU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LHU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction ADDI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SLTI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SLTIU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction XORI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction ORI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction ANDI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SLLI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SRLI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SRAI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction ADD
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SUB
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SLL
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SLT
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SLTU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction XOR
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SRL
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SRA
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction OR
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AND
+WARNING:infer_operands:operand rs1 is used as both a register index and an immediate in instruction CADDI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CLI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CLUI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CLWSP
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CMV
+WARNING:infer_operands:operand rs1 is used as both a register index and an immediate in instruction CJR
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CADD
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction MUL
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction MULH
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction MULHSU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction MULHU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction DIV
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction DIVU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction REM
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction REMU
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRW
+WARNING:infer_operands:operand rs1 is used as both a register index and an immediate in instruction CSRRS
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRS
+WARNING:infer_operands:operand rs1 is used as both a register index and an immediate in instruction CSRRC
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRC
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRWI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRSI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRCI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FCVT_W_S
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FCVT_WU_S
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FEQ_S
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FLT_S
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FLE_S
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FCLASS_S
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FMV_X_W
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FEQ_D
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FLT_D
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FLE_D
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FCVT_W_D
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction FCVT_WU_D
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LRW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SCW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOSWAPW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOADDW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOXORW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOANDW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOORW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOMINW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOMAXW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOMINUW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction AMOMAXUW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction LRW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction SCW
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRW
+WARNING:infer_operands:operand rs1 is used as both a register index and an immediate in instruction CSRRS
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRS
+WARNING:infer_operands:operand rs1 is used as both a register index and an immediate in instruction CSRRC
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRC
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRWI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRSI
+WARNING:infer_operands:operand rd is used as both a register index and an immediate in instruction CSRRCI
+WARNING:parser:instr LRW from extension RV32A was overwritten by LRW from tum_rva
+WARNING:parser:instr SCW from extension RV32A was overwritten by SCW from tum_rva
+WARNING:parser:instr CSRRW from extension Zicsr was overwritten by CSRRW from tum_csr
+WARNING:parser:instr CSRRS from extension Zicsr was overwritten by CSRRS from tum_csr
+WARNING:parser:instr CSRRC from extension Zicsr was overwritten by CSRRC from tum_csr
+WARNING:parser:instr CSRRWI from extension Zicsr was overwritten by CSRRWI from tum_csr
+WARNING:parser:instr CSRRSI from extension Zicsr was overwritten by CSRRSI from tum_csr
+WARNING:parser:instr CSRRCI from extension Zicsr was overwritten by CSRRCI from tum_csr
+WARNING:parser:instr EBREAK from extension RV32I was overwritten by EBREAK from tum_semihosting
+WARNING:parser:instr MRET from extension RV32I was overwritten by MRET from tum_ret
+WARNING:parser:instr ECALL from extension RV32I was overwritten by ECALL from tum_ret
+WARNING:parser:instr WFI from extension RV32I was overwritten by WFI from tum_ret
+INFO:parser:Running type inference
+INFO:parser:dumping model
