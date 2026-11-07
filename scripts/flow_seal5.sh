@@ -2,9 +2,9 @@
 
 set -e
 
-DIR=$(readlink -f $1)
-DATE=$(basename $DIR)
-BENCH=$(basename $(dirname $DIR))
+DIR=$(readlink -f "$1")
+DATE=$(basename "$DIR")
+BENCH=$(basename "$(dirname "$DIR")")
 LABEL=isaac-demo-$BENCH-$DATE
 
 echo DIR=$DIR DATE=$DATE BENCH=$BENCH
@@ -27,6 +27,9 @@ else
   MODE="local"
 fi
 DEST_DIR=$WORK/$MODE/
+if [[ "$MODE" == local && "${LLVM_MAJOR:-19}" != 19 ]]; then
+  DEST_DIR=$DEST_DIR/llvm${LLVM_MAJOR}/
+fi
 
 mkdir -p $DEST_DIR
 
@@ -72,8 +75,19 @@ else
     SUFFIX=""
 fi
 
-CDSL_FILES=""
-CFG_FILES="$(pwd)/cfg/seal5/patches.yml $(pwd)/cfg/seal5/llvm.yml $(pwd)/cfg/seal5/git.yml $(pwd)/cfg/seal5/filter.yml $(pwd)/cfg/seal5/tools.yml $(pwd)/cfg/seal5/riscv.yml"
+CDSL_FILES=()
+CFG_FILES=()
+for cfg in patches llvm git filter tools riscv; do
+  CFG_FILES+=("${CONFIG_DIR:-$(pwd)/cfg}/seal5/$cfg.yml")
+done
+
+if [[ "${FUSED_MEMORY:-0}" == 1 ]]; then
+  CFG_FILES+=("${CONFIG_DIR:-$(pwd)/cfg}/seal5/optional/fused-memory.yml")
+fi
+
+if [[ "${FUSED_BRANCHES:-0}" == 1 ]]; then
+  CFG_FILES+=("${CONFIG_DIR:-$(pwd)/cfg}/seal5/optional/fused-branches.yml")
+fi
 
 for set_name in ${SET_NAME//;/ }
 do
@@ -83,7 +97,7 @@ do
     else
         CDSL_FILE=$GEN_DIR/$set_name.core_desc
     fi
-    CDSL_FILES="$CDSL_FILES $CDSL_FILE"
+    CDSL_FILES+=("$CDSL_FILE")
 done
 
 
@@ -95,27 +109,38 @@ if [[ "$MODE" == "service" ]]
 then
   SERVICE_HOST=${SERVICE_HOST:-localhost}
   export PYTHONUNBUFFERED=1
-  # ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python3 -m isaac_toolkit.retargeting.service.client llvm $DEST_DIR $CDSL_FILES $CFG_FILES
-  ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python3 -u -m isaac_toolkit.retargeting.service.client --tag llvm --output "$DEST_DIR" $CDSL_FILES $CFG_FILES
+  # ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python3 -m isaac_toolkit.retargeting.service.client llvm $DEST_DIR "${CDSL_FILES[@]}" "${CFG_FILES[@]}"
+  ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS HOST=$SERVICE_HOST python3 -u -m isaac_toolkit.retargeting.service.client --tag llvm --output "$DEST_DIR" "${CDSL_FILES[@]}" "${CFG_FILES[@]}"
 elif [[ "$MODE" == "docker" ]]
 then
-  $DOCKER_PREFIX docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR $CDSL_FILES $CFG_FILES
+  $DOCKER_PREFIX docker run -i --rm -v $(pwd):$(pwd) $SEAL5_IMAGE $DEST_DIR "${CDSL_FILES[@]}" "${CFG_FILES[@]}"
 else
   if [[ "$IN_FULL_DOCKER" == "1" ]]
   then
-    $SEAL5_SCRIPT $DEST_DIR $CDSL_FILES $CFG_FILES
+    "$SEAL5_SCRIPT" "$DEST_DIR" "${CDSL_FILES[@]}" "${CFG_FILES[@]}"
   else
-    if [[ -e "$LLVM_DIR/.git" ]]
-    then
-      LLVM_REPO=$LLVM_DIR
-    else
-      LLVM_REPO="https://github.com/PhilippvK/llvm-project.git"
+    LOCAL_LLVM_DIR=${LLVM_DIR}
+    if [[ "${LLVM_MAJOR:-19}" != 19 && "$LOCAL_LLVM_DIR" == "$(pwd)/llvm-project" ]]; then
+      if [[ "${LLVM_MAJOR}" == 22 ]]; then
+        LOCAL_LLVM_DIR="$(pwd)/llvm-project-22"
+      else
+        LOCAL_LLVM_DIR=""
+      fi
     fi
-    TEMP_DIR=$WORK/local/temp
+    if [[ -e "$LOCAL_LLVM_DIR/.git" ]]
+    then
+      LLVM_REPO=${LLVM_REPO:-$LOCAL_LLVM_DIR}
+    else
+      LLVM_REPO=${LLVM_REPO:-"https://github.com/llvm/llvm-project.git"}
+    fi
+    TEMP_DIR=$WORK/local/temp/llvm${LLVM_MAJOR:-19}
     mkdir -p $TEMP_DIR
     TEMP_SEAL5_HOME=$TEMP_DIR/seal5_llvm
-    echo MGCLIENT_ROOT=$MGCLIENT_INSTALL_DIR ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS SEAL5_HOME=$TEMP_SEAL5_HOME CCACHE=$CCACHE CCACHE_DIR=$CCACHE_DIR SEAL5_CFG_DIR=$CONFIG_DIR/seal5 SEAL5_DIR=$SEAL5_DIR LLVM_REPO=$LLVM_REPO LLVM_REF=isaac-llvm19.1.7 CLONE_DEPTH=2 CLEANUP=1 $SEAL5_SCRIPT_LOCAL $DEST_DIR $CDSL_FILES $CFG_FILES
-    MGCLIENT_ROOT=$MGCLIENT_INSTALL_DIR ENABLE_CDFG_PASS=$ENABLE_CDFG_PASS SEAL5_HOME=$TEMP_SEAL5_HOME CCACHE=$CCACHE CCACHE_DIR=$CCACHE_DIR SEAL5_CFG_DIR=$CONFIG_DIR/seal5 SEAL5_DIR=$SEAL5_DIR LLVM_REPO=$LLVM_REPO LLVM_REF=isaac-llvm19.1.7 CLONE_DEPTH=2 CLEANUP=1 $SEAL5_SCRIPT_LOCAL $DEST_DIR $CDSL_FILES $CFG_FILES
+    MGCLIENT_ROOT="$MGCLIENT_INSTALL_DIR" ENABLE_CDFG_PASS="$ENABLE_CDFG_PASS" \
+      SEAL5_HOME="$TEMP_SEAL5_HOME" CCACHE="${CCACHE:-0}" CCACHE_DIR="$CCACHE_DIR" \
+      SEAL5_CFG_DIR="$CONFIG_DIR/seal5" SEAL5_DIR="$SEAL5_DIR" LLVM_REPO="$LLVM_REPO" \
+      LLVM_MAJOR="${LLVM_MAJOR:-19}" LLVM_REF="${LLVM_REF:-}" CLONE_DEPTH="${CLONE_DEPTH:-2}" \
+      CLEANUP="${CLEANUP:-0}" "$SEAL5_SCRIPT_LOCAL" "$DEST_DIR" "${CDSL_FILES[@]}" "${CFG_FILES[@]}"
   fi
   # TODO: cleanup?
 fi

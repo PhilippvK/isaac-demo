@@ -25,6 +25,27 @@ patches:
     stage: 0
     priority: 90
     onlyif: "settings.llvm.state.version.major == 19"
+  - name: insert_markers_llvm20
+    target: llvm
+    stage: 0
+    priority: 90
+    onlyif: "settings.llvm.state.version.major == 20"
+  - name: insert_markers_llvm21
+    target: llvm
+    stage: 0
+    priority: 90
+    onlyif: "settings.llvm.state.version.major == 21"
+  - name: insert_markers_llvm22
+    target: llvm
+    stage: 0
+    priority: 90
+    onlyif: "settings.llvm.state.version.major == 22"
+  - name: isaac_cdfg_llvm22
+    target: llvm
+    stage: 0
+    priority: 110
+    onlyif: "settings.llvm.state.version.major == 22"
+    file: llvm22-isaac.patch
   - name: legalizer_split
   # TODO:  automatially select patch depending on llvm version
   # generated patch (TODO: implement)

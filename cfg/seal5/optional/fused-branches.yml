@@ -1,0 +1,12 @@
+# Enable with FUSED_BRANCHES=1 scripts/flow_seal5.sh RUN_DIR.
+# Generated branches use SelectionDAG TableGen patterns only.
+passes:
+  overrides:
+    explicit_register_names:
+      enabled: true
+    normalize_subscripts:
+      enabled: true
+    detect_branches:
+      enabled: true
+    check_pattern_support:
+      allow_branches: true

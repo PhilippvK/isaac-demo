@@ -1,0 +1,14 @@
+# Scalar integer memory fusions using normal TableGen patterns and GI import.
+passes:
+  overrides:
+    explicit_memory_names:
+      enabled: true
+    explicit_register_names:
+      enabled: true
+    normalize_subscripts:
+      enabled: true
+    check_pattern_support:
+      allow_memory: true
+    behav_to_pat:
+      dag_only_memory: false
+      added_complexity: 10
