@@ -20,7 +20,8 @@ UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 
-GLOBAL_ISEL=${GLOBAL_ISEL:-0}
+source "$(dirname "${BASH_SOURCE[0]}")/isel_config.sh"
+isaac_select_isel "$DIR" eval
 
 BACKEND=${BACKEND:-"none"}
 

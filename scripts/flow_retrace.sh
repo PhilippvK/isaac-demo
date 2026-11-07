@@ -21,7 +21,8 @@ ABI=${ABI:-ilp32d}
 UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
-GLOBAL_ISEL=${GLOBAL_ISEL:-0}
+source "$(dirname "${BASH_SOURCE[0]}")/isel_config.sh"
+isaac_select_isel "$DIR" eval
 BACKEND=${BACKEND:-"none"}
 
 FINAL=${FINAL:-0}
@@ -39,6 +40,9 @@ else
   SEAL5_MODE="local"
 fi
 SEAL5_DEST_DIR=$WORK/$SEAL5_MODE/
+if [[ "$SEAL5_MODE" == local && "${LLVM_MAJOR:-19}" != 19 ]]; then
+  SEAL5_DEST_DIR=$SEAL5_DEST_DIR/llvm${LLVM_MAJOR}/
+fi
 
 USE_ETISS_DOCKER=${USE_ETISS_DOCKER:-1}
 if [[ "$USE_ETISS_DOCKER" == "1" ]]
@@ -97,7 +101,7 @@ else
     SUFFIX=""
 fi
 
-RUN2=${RUN}_new${SUFFIX}
+RUN2=${RUN}_new${SUFFIX}${EVAL_SUFFIX}
 
 if [[ "$BUILD_ARCH" == "1" ]]
 then
@@ -144,3 +148,5 @@ isaac_retarget_args
 python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 --label $LABEL-trace2${SUFFIX} "${ISAAC_RETARGET_ARGS[@]}" -c llvm.install_dir=$LLVM_INSTALL_DIR -c $TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL "${EXTRA_ARGS[@]}"
 
 python3 -m mlonmcu.cli.main export --run -f -- $RUN2
+
+isaac_record_isel "$RUN2"

@@ -22,7 +22,8 @@ UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 ARCH=${ARCH:-rv32imfd}
 ABI=${ABI:-ilp32d}
-GLOBAL_ISEL=${GLOBAL_ISEL:-0}
+source "$(dirname "${BASH_SOURCE[0]}")/isel_config.sh"
+isaac_select_isel "$DIR" eval
 
 BACKEND=${BACKEND:-"none"}
 LAYOUT=${LAYOUT:-default}

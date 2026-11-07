@@ -20,7 +20,8 @@ UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
 
-GLOBAL_ISEL=${GLOBAL_ISEL:-0}
+source "$(dirname "${BASH_SOURCE[0]}")/isel_config.sh"
+isaac_select_isel "$DIR" eval
 
 BACKEND=${BACKEND:-"none"}
 
@@ -39,6 +40,9 @@ else
   SEAL5_MODE="local"
 fi
 SEAL5_DEST_DIR=$WORK/$SEAL5_MODE/
+if [[ "$SEAL5_MODE" == local && "${LLVM_MAJOR:-19}" != 19 ]]; then
+  SEAL5_DEST_DIR=$SEAL5_DEST_DIR/llvm${LLVM_MAJOR}/
+fi
 
 USE_ETISS_DOCKER=${USE_ETISS_DOCKER:-1}
 if [[ "$USE_ETISS_DOCKER" == "1" ]]
@@ -99,8 +103,8 @@ else
     SUFFIX=""
 fi
 
-RUN_COMPARE=${RUN}_compare${SUFFIX}
-RUN_COMPARE_MEM=${RUN}_compare_mem${SUFFIX}
+RUN_COMPARE=${RUN}_compare${SUFFIX}${EVAL_SUFFIX}
+RUN_COMPARE_MEM=${RUN}_compare_mem${SUFFIX}${EVAL_SUFFIX}
 
 REPORT_COMPARE=$RUN_COMPARE/report.csv
 REPORT_COMPARE_MEM=$RUN_COMPARE_MEM/report.csv
@@ -163,4 +167,7 @@ python3 -m mlonmcu.cli.main export --session -f -- $RUN_COMPARE_MEM
 # export LLVM_INSTALL_DIR
 # LABEL=$LABEL-mem MEM_ONLY=1 scripts/mlonmcu_wrapper.sh $RUN_COMPARE_MEM $BENCH
 
-python3 -m isaac_toolkit.utils.analyze_compare ${REPORT_COMPARE} --mem-report ${REPORT_COMPARE_MEM} --print-df --output ${DIR}/compare${SUFFIX}.csv
+python3 -m isaac_toolkit.utils.analyze_compare ${REPORT_COMPARE} --mem-report ${REPORT_COMPARE_MEM} --print-df --output ${DIR}/compare${SUFFIX}${EVAL_SUFFIX}.csv
+
+isaac_record_isel "$RUN_COMPARE"
+isaac_record_isel "$RUN_COMPARE_MEM"

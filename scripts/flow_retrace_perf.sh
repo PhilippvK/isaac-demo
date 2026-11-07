@@ -21,7 +21,8 @@ ABI=${ABI:-ilp32d}
 UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
 CORE_NAME=${ISAAC_CORE_NAME:-XIsaacCore}
-GLOBAL_ISEL=${GLOBAL_ISEL:-0}
+source "$(dirname "${BASH_SOURCE[0]}")/isel_config.sh"
+isaac_select_isel "$DIR" eval
 BACKEND=${BACKEND:-"none"}
 
 FINAL=${FINAL:-0}
@@ -142,3 +143,5 @@ echo python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.ex
 python3 -m mlonmcu.cli.main flow run $BENCH --target $PERF_TARGET -c run.export_optional=1 -c $PERF_TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -f llvm_basic_block_sections --label $LABEL-trace-perf2${SUFFIX} -c etissvp.script=$ETISS_PERF_SCRIPT -c etiss.script=$ETISS_PERF_SCRIPT -c etiss_perf.cpu_arch=$CORE_NAME -c llvm.install_dir=$LLVM_INSTALL_DIR -c $PERF_TARGET.arch=$FULL_ARCH -c mlif.global_isel=$GLOBAL_ISEL "${EXTRA_ARGS[@]}" -f perf_sim -c perf_sim.core=$PERF_UARCH -c etiss_perf.src_dir=$ETISS_DIR -c etiss_perf.exe=$ETISS_PERF_EXE -c etiss_perf.install_dir=$ETISS_PERF_INSTALL_DIR
 
 python3 -m mlonmcu.cli.main export --run -f -- $RUN2
+
+isaac_record_isel "$RUN2"

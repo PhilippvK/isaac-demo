@@ -11,6 +11,8 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 RUN=$DIR/run
 SESS=$DIR/sess
 WORK=$DIR/work
+source "$(dirname "${BASH_SOURCE[0]}")/isel_config.sh"
+isaac_select_isel "$DIR" eval
 
 FORCE_ARGS=""
 
@@ -49,11 +51,11 @@ else
     SUFFIX=""
 fi
 
-RUN2=${RUN}_new${SUFFIX}
-SESS2=${SESS}_new${SUFFIX}
+RUN2=${RUN}_new${SUFFIX}${EVAL_SUFFIX}
+SESS2=${SESS}_new${SUFFIX}${EVAL_SUFFIX}
 
-RUN_COMPARE=${RUN}_compare
-RUN_COMPARE_MEM=${RUN}_compare_mem
+RUN_COMPARE=${RUN}_compare${SUFFIX}${EVAL_SUFFIX}
+RUN_COMPARE_MEM=${RUN}_compare_mem${SUFFIX}${EVAL_SUFFIX}
 REPORT_COMPARE=$RUN_COMPARE/report.csv
 REPORT_COMPARE_MEM=$RUN_COMPARE_MEM/report.csv
 
@@ -68,7 +70,7 @@ python3 -m isaac_toolkit.frontend.disass.objdump $RUN2/generic_mlonmcu.dump --se
 # Import instruction names from original session
 NAMES_CSV=$WORK/names${SUFFIX}.csv
 ISE_INSTRS_PKL_OLD=$SESS/table/ise_instrs.pkl
-ISE_INSTRS_PKL_NEW=$WORK/ise_instrs.pkl
+ISE_INSTRS_PKL_NEW=$WORK/ise_instrs${SUFFIX}${EVAL_SUFFIX}.pkl
 python3 scripts/update_ise_instrs_pkl.py $ISE_INSTRS_PKL_OLD --out $ISE_INSTRS_PKL_NEW --names-csv $NAMES_CSV
 
 python3 -m isaac_toolkit.frontend.ise.instrs $ISE_INSTRS_PKL_NEW --session $SESS2 $FORCE_ARGS
@@ -99,9 +101,15 @@ python3 -m isaac_toolkit.eval.ise.util --sess $SESS2 $FORCE_ARGS
 python3 -m isaac_toolkit.eval.ise.compare_bench --sess $SESS2 --report $REPORT_COMPARE --mem-report $REPORT_COMPARE_MEM $FORCE_ARGS
 python3 -m isaac_toolkit.eval.ise.compare_sess --sess $SESS2 --with $SESS $FORCE_ARGS
 # TODO: move to isaac-toolkit
+if [[ -z "$EVAL_SUFFIX" ]]; then
 python3 $SCRIPTS_DIR/diff_summary.py $DIR > $DIR/diff_summary.txt
 which diff-so-fancy && python3 $SCRIPTS_DIR/diff_summary.py $DIR --fancy > $DIR/diff_summary_fancy.txt || :
+fi
 # python3 -m isaac_toolkit.eval.ise.score.total --sess $SESS2
 # python3 -m isaac_toolkit.eval.ise.summary --sess $SESS2  # -> combine all data into single table/plot/pdf?
 
-python3 scripts/calc_util_score.py --dynamic-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --static-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --out $WORK/util_score${SUFFIX}.csv
+python3 scripts/calc_util_score.py --dynamic-counts-custom-pkl $SESS2/table/dynamic_counts_custom.pkl --static-counts-custom-pkl $SESS2/table/static_counts_custom.pkl --out $WORK/util_score${SUFFIX}${EVAL_SUFFIX}.csv
+
+if [[ -f "$RUN2/instruction-selector.json" ]]; then
+    cp "$RUN2/instruction-selector.json" "$SESS2/instruction-selector.json"
+fi

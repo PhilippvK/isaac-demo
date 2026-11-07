@@ -16,7 +16,8 @@ ARCH=${ARCH:-rv32imfd}
 ABI=${ABI:-ilp32d}
 UNROLL=${UNROLL:-auto}
 OPTIMIZE=${OPTIMIZE:-3}
-GLOBAL_ISEL=${GLOBAL_ISEL:-0}
+source "$(dirname "${BASH_SOURCE[0]}")/isel_config.sh"
+isaac_select_isel "$DIR" eval
 
 BACKEND=${BACKEND:-"none"}
 LAYOUT=${LAYOUT:-default}
@@ -66,3 +67,5 @@ echo python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_
 python3 -m mlonmcu.cli.main flow run $BENCH --target $TARGET -c run.export_optional=1 -c $TARGET.arch=$ARCH -c $TARGET.abi=$ABI -c mlif.debug_symbols=1 $VERBOSE_ARGS -c mlif.toolchain=llvm -f llvm_basic_block_sections -f log_instrs -c log_instrs.to_file=1 -c mlif.num_threads=$(nproc) -c mlif.unroll_loops=$UNROLL -c mlif.optimize=$OPTIMIZE -c mlif.global_isel=$GLOBAL_ISEL --label $LABEL-trace $EXTRA_ARGS -c cmake.exe=/opt/cmake/bin/cmake
 
 python3 -m mlonmcu.cli.main export --run -f -- $RUN
+
+isaac_record_isel "$RUN"
