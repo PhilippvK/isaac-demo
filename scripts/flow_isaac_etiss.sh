@@ -82,6 +82,7 @@ else
     fi
 fi
 EXTRA_ARGS=""
+EXTRA_ARGS="$EXTRA_ARGS --encoding-interface ${ISAAC_ENCODING_INTERFACE:-generic}"
 if [[ "${ISAAC_ENCODING_POLICY:-auto}" == "cfu" ]]
 then
     EXTRA_ARGS="$EXTRA_ARGS --encoding-policy cfu --encoding-manifest $WORK/cfu_manifest.json"

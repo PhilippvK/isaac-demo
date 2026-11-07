@@ -11,7 +11,7 @@ echo DIR=$DIR DATE=$DATE BENCH=$BENCH
 WORK=$DIR/work
 
 # TODO: expose
-SET_NAME=${ISAAX_SET_NAME:-XIsaac}
+SET_NAME=${ISAAC_SET_NAME:-${ISAAX_SET_NAME:-XIsaac}}
 # TOOLS_PATH=${TUDA_TOOLS_PATH:-/work/git/tuda/isax-tools-integration5}
 TOOLS_PATH=/work/git/tuda/isax-tools-integration-july2025
 HLS_IMAGE=${HLS_IMAGE:-philippvk/hls-quickstart:latest}
