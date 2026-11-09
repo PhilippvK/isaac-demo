@@ -36,3 +36,10 @@ EOF
         printf '\nFPGA resource and routed timing report: [%s](%s)\n' "$relative" "$relative" >> "$DIR/ci_report.md"
     done
 fi
+
+# Optional Nailgun RTL measurements are separate from ISS instruction estimates.
+for measurements in "$DIR"/rtl_sim*/metrics.csv; do
+    [[ -f "$measurements" ]] || continue
+    relative=${measurements#"$DIR"/}
+    printf '\nNailgun RTL benchmark measurements: [%s](%s)\n' "$relative" "$relative" >> "$DIR/ci_report.md"
+done

@@ -91,6 +91,11 @@ ISAAC_TOPK=${ISAAC_TOPK}
 ISAAC_PARTITION_WITH_MAXMISO=${ISAAC_PARTITION_WITH_MAXMISO}
 ISAAC_ENCODING_POLICY=${ISAAC_ENCODING_POLICY:-auto}
 ISAAC_GNU_INSTALL_DIR=${ISAAC_GNU_INSTALL_DIR:-}
+RTL_SIM_ENABLE=${RTL_SIM_ENABLE:-0}
+RTL_SIM_CORE=${RTL_SIM_CORE:-}
+RTL_SIM_VARIANTS="${RTL_SIM_VARIANTS:-baseline default}"
+RTL_SIM_VERILATOR=${RTL_SIM_VERILATOR:-verilator}
+RTL_SIM_MAX_CYCLES=${RTL_SIM_MAX_CYCLES:-100000000}
 HLS_ENABLE=${HLS_ENABLE}
 HLS_SKIP_BASELINE=${HLS_SKIP_BASELINE}
 HLS_SKIP_DEFAULT=${HLS_SKIP_DEFAULT}
@@ -208,6 +213,16 @@ then
 fi
 if [[ "$CFU_EVALUATION" == 1 ]]; then
     STEPS="${STEPS%;report_0};cfu_0_filtered_selected;report_0"
+fi
+# Opt-in RTL validation immediately after each real HLS stage.
+if [[ ${RTL_SIM_ENABLE:-0} == 1 ]]; then
+    expanded=""
+    IFS=';' read -ra requested_steps <<< "$STEPS"
+    for requested_step in "${requested_steps[@]}"; do
+        expanded+="${expanded:+;}$requested_step"
+        case "$requested_step" in hls_0|hls_0_*) expanded+=";${requested_step/hls_0/rtl_sim_0}" ;; esac
+    done
+    STEPS=$expanded
 fi
 STEPS=($(echo $STEPS | tr ';' ' '|tr -s ' '))
 echo "STEPS=${STEPS[@]}"
@@ -761,6 +776,17 @@ lookup_script() {
     elif [[ "$STEP" == "cfu_0_filtered_selected" ]]
     then
         echo -n "FILTERED=1 SELECTED=1 bash ./scripts/flow_cfu.sh"
+    elif [[ "$STEP" == rtl_sim_0* ]]
+    then
+        case "$STEP" in
+            rtl_sim_0) echo -n "bash ./scripts/flow_rtl_sim.sh" ;;
+            rtl_sim_0_filtered) echo -n "FILTERED=1 bash ./scripts/flow_rtl_sim.sh" ;;
+            rtl_sim_0_filtered_selected) echo -n "FILTERED=1 SELECTED=1 bash ./scripts/flow_rtl_sim.sh" ;;
+            rtl_sim_0_filtered2_selected) echo -n "FILTERED2=1 SELECTED=1 bash ./scripts/flow_rtl_sim.sh" ;;
+            rtl_sim_0_prelim) echo -n "PRELIM=1 bash ./scripts/flow_rtl_sim.sh" ;;
+            rtl_sim_0_final) echo -n "FINAL=1 bash ./scripts/flow_rtl_sim.sh" ;;
+            *) echo "Unknown RTL simulation step: $STEP" >&2; exit 2 ;;
+        esac
     elif [[ "$STEP" == "report_0" ]]
     then
         echo -n "./scripts/flow_report.sh"

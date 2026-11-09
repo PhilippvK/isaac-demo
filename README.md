@@ -158,6 +158,26 @@ real Nailgun/SCAIE-V RTL generation, firmware execution in RTL simulation,
 known initial failures, and cycle/instruction measurements. This does not add
 an Arty FPGA shell for Vex or change the board running the CVA5 image.
 
+#### Nailgun RTL benchmark simulation
+
+CVA5 and VEX_5S have a shared RTL execution stage for the actual MLIF extraction
+benchmarks, with native and retargeted variants, result validation, cycle
+measurements and bounded execution. No FPGA board or Vivado is needed.
+
+```bash
+export RTL_SIM_VERILATOR=/path/to/verilator-5.040/bin/verilator
+scripts/full_flow.sh crc32 latest rtl_sim_0
+# Or insert simulation after each HLS stage:
+export RTL_SIM_ENABLE=1
+```
+
+Run tracing, compiler retargeting and HLS first. Use the matching step suffix,
+such as `rtl_sim_0_filtered_selected`, for a selected extension. See the
+[RTL simulation guide](scripts/rtl_sim/README.md) for setup, target/runtime
+constraints and overrides, and the
+[integration validation report](reports/rtl-sim-integration-20261109/report.md)
+for CRC32/SHA256 and generated memory ISE execution.
+
 #### CVA5 presets
 
 Select the corresponding file under `cfg/flow/paper/`:

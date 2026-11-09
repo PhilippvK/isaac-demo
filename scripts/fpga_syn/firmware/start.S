@@ -16,6 +16,10 @@ sw zero, 0(t0)
 addi t0, t0, 4
 j 1b
 2: call main
+#ifdef ISAAC_RTL_SIM_EXIT
+li t0, 0x60000018
+sw a0, 0(t0)
+#endif
 3: j 3b
 .balign 4
 trap_entry:

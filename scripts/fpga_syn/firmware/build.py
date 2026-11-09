@@ -2,6 +2,7 @@
 import argparse,hashlib,json,subprocess
 from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__)
+p.add_argument('--rtl-sim',action='store_true',help='Return main status through the RTL simulation exit register')
 p.add_argument('--delay-cycles',type=int,default=0)
 p.add_argument('--branch-repeats',type=int,default=1)
 p.add_argument('--core-label',default='CVA5')
@@ -15,6 +16,7 @@ if not 0<=a.delay_cycles<2**32:p.error('delay-cycles must fit an unsigned 32-bit
 root=Path(__file__).resolve().parents[3];src=Path(__file__).resolve().parent;out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
 cc=root/'install/gnu_cfu/bin/riscv32-unknown-elf-gcc';objcopy=cc.with_name('riscv32-unknown-elf-objcopy');objdump=cc.with_name('riscv32-unknown-elf-objdump')
 extra=([f'-DDEBUG_DELAY_CYCLES={a.delay_cycles}u'] if a.delay_cycles else []);inputs=[src/'start.S',src/'board.c',src/'arty.ld']
+if a.rtl_sim:extra += ['-DISAAC_RTL_SIM_EXIT=1']
 extra += [f'-DBOARD_CORE_NAME="{a.core_label}"']
 if a.cycle_counter_address is not None:
  if not 0<=a.cycle_counter_address<2**32 or a.cycle_counter_address%4:p.error('cycle-counter-address must be a 32-bit word-aligned address')

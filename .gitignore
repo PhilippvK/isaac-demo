@@ -18,3 +18,7 @@ xvlog.log
 /tmp/
 __pycache__/
 *.pyc
+
+# Reusable RTL simulator sources (override run*/work* patterns).
+!scripts/rtl_sim/run.py
+!scripts/rtl_sim/runtime/
