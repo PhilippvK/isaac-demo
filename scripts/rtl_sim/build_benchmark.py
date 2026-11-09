@@ -78,10 +78,23 @@ def build(
             cleaned.append(arg)
             j += 1
         if isel:
-            cleaned = [
-                x for x in cleaned if x not in ("-fglobal-isel", "-fno-global-isel")
-            ]
-            cleaned.append("-fglobal-isel" if isel == "gisel" else "-fno-global-isel")
+            selected = [cleaned[0]]
+            j = 1
+            while j < len(cleaned):
+                arg = cleaned[j]
+                if arg in ("-fglobal-isel", "-fno-global-isel"):
+                    j += 1
+                    continue
+                if arg == "-mllvm" and j + 1 < len(cleaned) and cleaned[j + 1].startswith(
+                    ("-global-isel=", "-global-isel-abort=")
+                ):
+                    j += 2
+                    continue
+                selected.append(arg)
+                j += 1
+            # -fglobal-isel appends abort=2 inside Clang, overriding user -mllvm
+            # options. Set backend options directly, as MLIF does when tracing.
+            cleaned = selected + ["-mllvm", "-global-isel=" + str(int(isel == "gisel"))]
             if isel == "gisel":
                 cleaned += ["-mllvm", "-global-isel-abort=1"]
         obj = output / f"benchmark_{i}.o"
