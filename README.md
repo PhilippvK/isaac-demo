@@ -161,7 +161,7 @@ an Arty FPGA shell for Vex or change the board running the CVA5 image.
 #### Nailgun RTL benchmark simulation
 
 CVA5 and VEX_5S have a shared RTL execution stage for the actual MLIF extraction
-benchmarks, with native and retargeted variants, result validation, cycle
+benchmarks through the native MLonMCU `nailgun` target, with native and retargeted variants, result validation, cycle
 measurements and bounded execution. No FPGA board or Vivado is needed.
 
 ```bash

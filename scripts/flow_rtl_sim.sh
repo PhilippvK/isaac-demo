@@ -60,10 +60,29 @@ for variant in "${variants[@]}"; do
         : "${ARCH:?Set ARCH to the base architecture used for extraction}"
         args+=(--compiler "$compiler" --arch "${RTL_SIM_ARCH:-${ARCH}_xisaac}" --abi "${ABI:-ilp32}")
     fi
-    python3 "$ROOT/scripts/rtl_sim/build_benchmark.py" "$commands" "$dest/$variant/firmware" --gnu "$gnu" "${args[@]}" > "$dest/$variant-build.log" 2>&1
+    if [[ ${RTL_SIM_BUILD_MODE:-mlonmcu} == replay ]]; then
+        python3 "$ROOT/scripts/rtl_sim/build_benchmark.py" "$commands" "$dest/$variant/firmware" --gnu "$gnu" "${args[@]}" > "$dest/$variant-build.log" 2>&1
+    elif [[ ${RTL_SIM_BUILD_MODE:-mlonmcu} == mlonmcu ]]; then
+        build_compiler=$compiler
+        [[ -x $build_compiler ]] || build_compiler=${RTL_SIM_BASE_COMPILER:-${LLVM_INSTALL_DIR:-$ROOT/install/llvm}/bin/clang}
+        build_arch=${RTL_SIM_BASE_ARCH:-${ARCH:-rv32im_zicsr_zifencei}}
+        [[ $variant == baseline ]] || build_arch=${RTL_SIM_ARCH:-${ARCH}_xisaac}
+        python3 "$ROOT/scripts/rtl_sim/build_mlonmcu.py" "${RTL_SIM_BENCHMARK:-$(basename "$(dirname "$DIR")")}" "$dest/$variant/firmware" \
+            --compiler "$build_compiler" --gnu "$gnu" --arch "$build_arch" --abi "${ABI:-ilp32}" --isel "$ISAAC_SELECTED_ISEL" \
+            --backend "${BACKEND:-none}" --optimize "${OPTIMIZE:-3}" --unroll "${UNROLL:-auto}" --extra-args="${RTL_SIM_MLONMCU_ARGS:-}" \
+            --run --core "$core" --rtl "$rtl" --verilator "${RTL_SIM_VERILATOR:-verilator}" \
+            --max-cycles "${RTL_SIM_MAX_CYCLES:-100000000}" --timeout "${RTL_SIM_TIMEOUT:-600}" \
+            --jobs "${RTL_SIM_JOBS:-4}" --data-wait "${RTL_SIM_DATA_WAIT:-0}" \
+            --ram-size "${RTL_SIM_RAM_SIZE:-262144}" --stack-size "${RTL_SIM_STACK_SIZE:-8192}" \
+            --heap-size "${RTL_SIM_HEAP_SIZE:-4096}" > "$dest/$variant-build.log" 2>&1
+    else
+        echo "Unknown RTL_SIM_BUILD_MODE: $RTL_SIM_BUILD_MODE" >&2; exit 2
+    fi
     isaac_record_isel "$dest/$variant"
-    python3 "$ROOT/scripts/rtl_sim/run.py" --core "$core" --rtl "$rtl" \
-        --firmware "$dest/$variant/firmware/benchmark.bin" --output "$dest/$variant" \
-        --verilator "${RTL_SIM_VERILATOR:-verilator}" --max-cycles "${RTL_SIM_MAX_CYCLES:-100000000}" \
-        --data-wait "${RTL_SIM_DATA_WAIT:-0}" --timeout "${RTL_SIM_TIMEOUT:-600}" --jobs "${RTL_SIM_JOBS:-4}"
+    if [[ ${RTL_SIM_BUILD_MODE:-mlonmcu} == replay ]]; then
+        python3 "$ROOT/scripts/rtl_sim/run.py" --core "$core" --rtl "$rtl" \
+            --firmware "$dest/$variant/firmware/benchmark.bin" --output "$dest/$variant" \
+            --verilator "${RTL_SIM_VERILATOR:-verilator}" --max-cycles "${RTL_SIM_MAX_CYCLES:-100000000}" \
+            --ram-size "${RTL_SIM_RAM_SIZE:-262144}" --data-wait "${RTL_SIM_DATA_WAIT:-0}" --timeout "${RTL_SIM_TIMEOUT:-600}" --jobs "${RTL_SIM_JOBS:-4}"
+    fi
 done

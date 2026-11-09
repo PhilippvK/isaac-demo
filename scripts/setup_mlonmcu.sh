@@ -21,3 +21,5 @@ python3 -m mlonmcu.cli.main setup -g
 python3 -m pip install -r "$MLONMCU_HOME/requirements_addition.txt"
 
 python3 -m mlonmcu.cli.main setup -v --rebuild
+
+python3 "$TOP_DIR/scripts/rtl_sim/prepare_mlif.py" "$MLONMCU_HOME/deps/src/mlif" --environment "$MLONMCU_HOME/environment.yml"

@@ -36,6 +36,7 @@ extern "C" void isaac_write(unsigned int addr, unsigned int data, unsigned int m
 int main(int argc,char **argv) {
     Verilated::commandArgs(argc,argv);
     if(argc<3) {std::cerr<<"Usage: simulator firmware.bin max_cycles\n";return 2;}
+    if(argc>3) ram.resize(std::strtoull(argv[3],nullptr,0));
     std::ifstream f(argv[1],std::ios::binary);
     std::vector<char> bytes((std::istreambuf_iterator<char>(f)),std::istreambuf_iterator<char>());
     if(!f || bytes.empty() || bytes.size()>ram.size()) {std::cerr<<"Invalid firmware size\n";return 2;}

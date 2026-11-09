@@ -21,7 +21,15 @@ def sha(path):
 
 
 def build(
-    commands, output, gnu, compiler=None, mappings=(), arch=None, abi=None, isel=None
+    commands,
+    output,
+    gnu,
+    compiler=None,
+    mappings=(),
+    arch=None,
+    abi=None,
+    isel=None,
+    bench_dag=True,
 ):
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -85,8 +93,12 @@ def build(
                 if arg in ("-fglobal-isel", "-fno-global-isel"):
                     j += 1
                     continue
-                if arg == "-mllvm" and j + 1 < len(cleaned) and cleaned[j + 1].startswith(
-                    ("-global-isel=", "-global-isel-abort=")
+                if (
+                    arg == "-mllvm"
+                    and j + 1 < len(cleaned)
+                    and cleaned[j + 1].startswith(
+                        ("-global-isel=", "-global-isel-abort=")
+                    )
                 ):
                     j += 2
                     continue
@@ -97,6 +109,8 @@ def build(
             cleaned = selected + ["-mllvm", "-global-isel=" + str(int(isel == "gisel"))]
             if isel == "gisel":
                 cleaned += ["-mllvm", "-global-isel-abort=1"]
+                if bench_dag and str(source).endswith("/lib/bench/bench.c"):
+                    cleaned += ["-mllvm", "-global-isel=0"]
         obj = output / f"benchmark_{i}.o"
         run([*cleaned, "-c", str(source), "-o", str(obj)], source)
         objects.append(obj)
@@ -163,6 +177,13 @@ def build(
         "link_command": link,
         "linker_sha256": sha(RUNTIME / "link.ld"),
         "elf_sha256": sha(elf),
+        "selector_exceptions": [
+            r["source"]
+            for r in records
+            if isel == "gisel"
+            and bench_dag
+            and r["source"].endswith("/lib/bench/bench.c")
+        ],
         "instruction_selector": isel or "preserved from compile commands",
         "runtime": "RTL MMIO, 256 KiB at 0x80000000; original benchmark checks retained",
     }

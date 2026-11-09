@@ -35,7 +35,17 @@ folder. `report_0` links these measurements in the normal CI report. Use
 
 ### Benchmark runtime
 
-The exported `run/compile_commands.json` is replayed. The benchmark sources,
+The default `RTL_SIM_BUILD_MODE=mlonmcu` invokes MLonMCU's native `nailgun`
+target, including its normal frontend/backend generation, CMake dependency
+build, link, execution and requested postprocessing. Compilation-command replay
+remains available as `RTL_SIM_BUILD_MODE=replay` for historical experiments.
+
+The native target supports the normal MLIF entry point, C++ constructors and
+destructors, newlib heap services, ROM input data and raw stdout output data.
+RAM/heap/stack sizes are configurable. It does not provide a filesystem or
+interactive stdin. Automatic MLIF output selection uses stdout when available.
+
+For the legacy replay mode, the exported `run/compile_commands.json` is replayed. The benchmark sources,
 MLIF main, result verification, optimization options, and selected instruction
 selector are retained. GISel runs request strict selection so compiler failures
 are reported instead of silently changing selectors. ETISS startup/trap/platform sources are replaced, and
@@ -47,7 +57,7 @@ This rebuild is necessary: extraction ELF images use ETISS addresses and
 semihosting. Their machine-code layout changes when linked for RTL. Rebuilt
 firmware hashes and compile commands record exactly what was executed.
 
-The current runtime supports the MLIF generic C benchmark entry point, including
+The legacy replay backend supports the MLIF generic C benchmark entry point, including
 Embench. Source/include paths must still exist. It does not reconstruct deleted
 generated sources or additional CMake-linked frontend libraries. Floating-point
 or compressed ISA builds must be rebuilt for an ISA supported by the chosen
@@ -78,7 +88,11 @@ Use Verilator **5.040** (validated); the host's 4.038 cannot compile CVA5 interf
 - `RTL_SIM_CORE`: `cva5` or `vex` (default: HLS core).
 - `RTL_SIM_HLS_DIR`: HLS root containing `baseline`, `default`, etc.
 - `RTL_SIM_RTL_DIR`: explicit generated RTL directory for a single variant.
-- `RTL_SIM_COMPILE_COMMANDS`: alternate extraction export.
+- `RTL_SIM_BUILD_MODE`: `mlonmcu` (default) or `replay`.
+- `RTL_SIM_MLONMCU_ARGS`: extra native MLonMCU features/configuration/postprocessors.
+- `RTL_SIM_BENCHMARK`: optional workload/model override (default: experiment benchmark).
+- `RTL_SIM_RAM_SIZE`, `RTL_SIM_STACK_SIZE`, `RTL_SIM_HEAP_SIZE`: native runtime limits.
+- `RTL_SIM_COMPILE_COMMANDS`: alternate extraction export for replay mode.
 - `RTL_SIM_COMPILER`, `RTL_SIM_ARCH`: retargeted compiler/extended architecture.
 - `RTL_SIM_BASE_ARCH`: optional native ISA override; `ABI` defaults to ILP32.
 - `RTL_SIM_GNU`: GCC/newlib installation (default: ISAAC GNU installation).
@@ -109,3 +123,37 @@ post-main idle loop with an exit-status write. Build a matching memory/branch/
 store probe using `scripts/fpga_syn/firmware/build.py --rtl-sim ...`, then pass
 its `firmware.bin` to `run.py`. These supplemental probes remain separate from
 the extraction benchmark and its MLIF verification.
+
+## Native MLonMCU target setup
+
+The MLonMCU submodule contains the `nailgun` target. The MLIF dependency changes
+are preserved in `cfg/mlif/nailgun.patch`; normal `setup_mlonmcu.sh` applies them.
+For an existing installation:
+
+```bash
+python scripts/rtl_sim/prepare_mlif.py "$MLONMCU_HOME/deps/src/mlif" \
+  --environment "$MLONMCU_HOME/environment.yml"
+python -m mlonmcu.cli.main flow run crc32 --backend none --target nailgun \
+  -c mlif.toolchain=llvm -c mlif.global_isel=1 \
+  -c nailgun.runner="$PWD/scripts/rtl_sim/run.py" \
+  -c nailgun.core=vex \
+  -c nailgun.rtl_dir=/path/to/generated/VexRiscv_5s
+```
+
+For CVA5 use `nailgun.core=cva5` and `nailgun.verilator=/path/to/verilator-5.040`.
+The supplied RTL path may be a core directory or its parent. LLVM/GNU paths and
+model/backend dependencies use normal MLonMCU configuration.
+
+### LLVM22 GISel exception
+
+Both `-global-isel-abort=0` and `=2` still abort in `RegBankSelect` for MLIF's
+`lib/bench/bench.c`. An assertion bypasses ordinary selector fallback. MLIF now
+appends `-global-isel=0` **only for that file** when GISel is enabled. The option
+`GLOBAL_ISEL_BENCH_DAG` is recorded during CMake configuration and can be disabled
+with `nailgun.bench_dag=0` to reproduce the compiler issue. Benchmark sources
+retain GISel. The same one-file exception is present in legacy replay mode.
+
+The native target has been exercised with Embench CRC32/SHA256, the separate
+MLonMCU example frontend, GCC, LLVM GISel, and a C++ constructor/heap/destructor
+fixture. Full TFLM/TVM model execution still needs validation with their backend
+dependencies; compatibility with every frontend is not claimed by these checks.

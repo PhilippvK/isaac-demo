@@ -26,6 +26,7 @@ def run(
     timeout=300,
     jobs=4,
     data_wait=0,
+    ram_size=262144,
 ):
     rtl = Path(rtl).resolve()
     firmware = Path(firmware).resolve()
@@ -93,6 +94,8 @@ def run(
                 staged = output / src.name
                 staged.write_text(text)
                 sources[i] = staged
+    if ram_size < 4096 or ram_size > 0x10000000:
+        raise ValueError("RAM size must be between 4 KiB and 256 MiB")
     obj = output / "obj_dir"
     command = [
         verilator,
@@ -131,6 +134,7 @@ def run(
         "compile_command": command,
         "max_cycles": max_cycles,
         "data_wait_states": data_wait,
+        "ram_size": ram_size,
         "passed": False,
     }
     try:
@@ -144,12 +148,12 @@ def run(
             )
         with (output / "uart.log").open("w") as log:
             result = subprocess.run(
-                [str(obj / "simulator"), str(firmware), str(max_cycles)],
+                [str(obj / "simulator"), str(firmware), str(max_cycles), str(ram_size)],
                 stdout=log,
                 stderr=subprocess.STDOUT,
                 timeout=timeout,
             )
-        text = (output / "uart.log").read_text()
+        text = (output / "uart.log").read_text(errors="replace")
         match = re.search(
             r"ISAAC_RTL_RESULT exit=(\d+) cycles=(\d+) retired=(\d+) completed=(\d+) passed=(\d+)",
             text,
@@ -191,6 +195,7 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--verilator", default="verilator")
     p.add_argument("--max-cycles", type=int, default=100000000)
+    p.add_argument("--ram-size", type=int, default=262144)
     p.add_argument("--data-wait", type=int, default=0)
     p.add_argument("--timeout", type=int, default=300)
     p.add_argument("--jobs", type=int, default=4)

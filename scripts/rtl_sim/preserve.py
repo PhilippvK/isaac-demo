@@ -19,13 +19,20 @@ def preserve(source, destination, variants):
             for name in (
                 "execution.json",
                 "uart.log",
+                "uart.bin",
                 "compile.log",
                 "instruction-selector.json",
                 "firmware/build.json",
                 "firmware/benchmark.elf",
                 "firmware/benchmark.bin",
+                "firmware/mlonmcu/compile_commands.json",
+                "firmware/mlonmcu/report.csv",
             )
         ]
+    for variant in variants:
+        export = source / variant / "firmware/mlonmcu"
+        for pattern in ("*.npy", "*.yml"):
+            names += [str(path.relative_to(source)) for path in export.glob(pattern)]
     for name in names:
         path = source / name
         if path.is_file():

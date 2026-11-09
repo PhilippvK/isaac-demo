@@ -22,7 +22,7 @@ def summarize(root, variants=None):
             else {"passed": False, "error": "Missing execution report"}
         )
         uart = (
-            (path.parent / "uart.log").read_text()
+            (path.parent / "uart.log").read_text(errors="replace")
             if (path.parent / "uart.log").exists()
             else ""
         )
