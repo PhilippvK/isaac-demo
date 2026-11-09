@@ -49,3 +49,5 @@ time of the experiment. Current opt-in equivalents are
 `cva5_reuseio_mem_branch` and `cva5_reuseio_mem_branch_arty_a7_100t`.
 The current original preset disables memory/branch effects and uses a generic
 FPGA target. Board-only selection is `cva5_reuseio_arty_a7_100t`.
+
+- [VEX_5S without reuse-I/O: HLS and RTL execution](vex-5s-hls-20261107/report.md).

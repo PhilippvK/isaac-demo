@@ -1,0 +1,3790 @@
+candidates:
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM0.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM0.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM0.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM0.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub19.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub19.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree19.pkl
+  id: 11
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 3.0
+    '#InputNodes': 2.0
+    '#Instrs': 4.0
+    '#Isos': 2.0
+    '#IsosNO': 0.0
+    '#Loads': 1.0
+    '#Mems': 1.0
+    '#Nodes': 4.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 4.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 2
+    - 1
+    - 9
+    ConstantNodes:
+    - 58
+    - 86
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    - false
+    ConstantValues:
+    - 2
+    - 0
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: adb2f05e76904d6b3711aa7c52609372a1df228a
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: ec5d11fd9df61da92147cc03f8b46835
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 8
+    - 36
+    InstrName: CUSTOM0
+    Instrs:
+    - SLLI
+    - LW
+    - ADD
+    - ANDI
+    IsoNodes:
+    - 1
+    - 2
+    - 3
+    - 4
+    IsoWeight: 0.17384496161190072
+    Isos:
+    - 20
+    - 21
+    IsosNO: []
+    LoadNodes:
+    - 1
+    Nodes:
+    - 3
+    - 1
+    - 2
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 112
+    - 8
+    - 36
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 112
+    Parent: .nan
+    Predicates: 257
+    Predicates (str): InstrPredicate.IS_COMMUTABLE|MAY_LOAD
+    Registers: 2
+    ScheduleLength: 5.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 89d266cb5fa13444d3e55efac3406214
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    - LW
+    - ANDI
+    Variations: 0
+    Weight: 0.17384496161190072
+    result: 19
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM1.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM1.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM1.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM1.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub63.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub63.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree63.pkl
+  id: 0
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 3.0
+    '#InputNodes': 2.0
+    '#Instrs': 4.0
+    '#Isos': 2.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 4.0
+    '#Operands': .nan
+    '#OutputNodes': 2.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 4.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    - 1
+    - 7
+    ConstantNodes:
+    - 19
+    - 19
+    - 16
+    ConstantSigns:
+    - false
+    - false
+    - false
+    ConstantValues:
+    - 1
+    - 1
+    - 57
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 84dff4eac2431a94e8d6b02588188338e33450d4
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: b14c1d9696513674f490a0a205b17e9b
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 12
+    InstrName: CUSTOM1
+    Instrs:
+    - SLLI
+    - SRLI
+    - ADDI
+    - ADD
+    IsoNodes:
+    - 3
+    - 4
+    - 5
+    - 8
+    IsoWeight: 0.1738449616119007
+    Isos:
+    - 64
+    - 65
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 3
+    - 8
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 127
+    - 6
+    - 12
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 127
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 5.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: b25802d5cb660d49c452c09db3dc56b8
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - ADDI
+    - SLLI
+    - SRLI
+    Variations: 0
+    Weight: 0.1738449616119007
+    result: 63
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM2.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM2.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM2.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM2.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub26.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub26.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree26.pkl
+  id: 12
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 2
+    - 9
+    ConstantNodes:
+    - 58
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 2
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: c3df479be0a5cade72f3757a644a32000db993c9
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 99dbdd8facea89174ad3b6901b1b0490
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 17
+    - 92
+    InstrName: CUSTOM2
+    Instrs:
+    - SLLI
+    - XOR
+    - ANDI
+    IsoNodes:
+    - 3
+    - 4
+    - 8
+    IsoWeight: 0.13038372120892555
+    Isos:
+    - 30
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 8
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 119
+    - 17
+    - 92
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 119
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: e71e1ba556abc82174480d1d65167985
+    TerminatorNodes: []
+    UniqueInstrs:
+    - XOR
+    - ANDI
+    - SLLI
+    Variations: 0
+    Weight: 0.13038372120892555
+    result: 26
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM3.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM3.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM3.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM3.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub29.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub29.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree29.pkl
+  id: 13
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 1.0
+    '#Mems': 1.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    - 4
+    ConstantNodes:
+    - 86
+    - 71
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 0
+    - 8
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 5aa0bfbb8c3bdcc773e3f2cd80ae9bf914e92012
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 494bcfdd94fd13620839fc191d9d3c09
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 2
+    - 92
+    InstrName: CUSTOM3
+    Instrs:
+    - XOR
+    - LW
+    - SRLI
+    IsoNodes:
+    - 0
+    - 1
+    - 32
+    IsoWeight: 0.13038372120892555
+    Isos: []
+    IsosNO: []
+    LoadNodes:
+    - 1
+    Nodes:
+    - 0
+    - 1
+    - 32
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 122
+    - 2
+    - 92
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 122
+    Parent: .nan
+    Predicates: 257
+    Predicates (str): InstrPredicate.IS_COMMUTABLE|MAY_LOAD
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: c594f7b03e648e019f382505d78cf5ac
+    TerminatorNodes: []
+    UniqueInstrs:
+    - SRLI
+    - XOR
+    - LW
+    Variations: 0
+    Weight: 0.13038372120892555
+    result: 29
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM4.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM4.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM4.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM4.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub31.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub31.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree31.pkl
+  id: 14
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 2
+    - 9
+    ConstantNodes:
+    - 58
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 2
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 57a25181f25b5e612096a8040a498752f37649ca
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: ad7355b7252560f7fe9f76b23d871a64
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 8
+    - 36
+    InstrName: CUSTOM4
+    Instrs:
+    - SLLI
+    - ADD
+    - ANDI
+    IsoNodes:
+    - 2
+    - 3
+    - 4
+    IsoWeight: 0.13038372120892555
+    Isos:
+    - 32
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 2
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 124
+    - 8
+    - 36
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 124
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: f408ccb298359cac95a173cc242bff50
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    - ANDI
+    Variations: 0
+    Weight: 0.13038372120892555
+    result: 31
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM5.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM5.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM5.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM5.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub33.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub33.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree33.pkl
+  id: 15
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 1.0
+    '#Mems': 1.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 2
+    - 1
+    ConstantNodes:
+    - 58
+    - 86
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 2
+    - 0
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 6b779c53b5f5b5f71194d3e2592890f6f55d8b7d
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 23f97c3bb1e38d61b0ad41da4fb36131
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 4
+    - 36
+    InstrName: CUSTOM5
+    Instrs:
+    - SLLI
+    - ADD
+    - LW
+    IsoNodes:
+    - 1
+    - 2
+    - 3
+    IsoWeight: 0.13038372120892555
+    Isos:
+    - 34
+    IsosNO: []
+    LoadNodes:
+    - 1
+    Nodes:
+    - 3
+    - 2
+    - 1
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 126
+    - 4
+    - 36
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 126
+    Parent: .nan
+    Predicates: 257
+    Predicates (str): InstrPredicate.IS_COMMUTABLE|MAY_LOAD
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 198f5e96596ef1bbc609af19629e569e
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    - LW
+    Variations: 0
+    Weight: 0.13038372120892555
+    result: 33
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM6.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM6.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM6.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM6.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub44.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub44.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree44.pkl
+  id: 22
+  metrics:
+    enc_score: 0.99609375
+    enc_weight: 0.00390625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 9
+    ConstantNodes:
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 8.0
+    EncodingFootprint (32 bits): 0.68
+    EncodingWeight (32 bits): 0.00390625
+    Freq: 174080.0
+    FullHash: 45bdca1325646a1a52dfa6288666590b2e4b7974
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 99dbdd8facea89174ad3b6901b1b0490
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 17
+    - 92
+    InstrName: CUSTOM6
+    Instrs:
+    - SLLI
+    - XOR
+    - ANDI
+    IsoNodes:
+    - 3
+    - 4
+    - 8
+    IsoWeight: 0.13038372120892555
+    Isos:
+    - 30
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 8
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 2
+    OperandEncBitsSum: 17.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm2
+    OperandNodes:
+    - 119
+    - 17
+    - 92
+    - 138
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 119
+    Parent: 26.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: e71e1ba556abc82174480d1d65167985
+    TerminatorNodes: []
+    UniqueInstrs:
+    - XOR
+    - ANDI
+    - SLLI
+    Variations: 16
+    Weight: 0.13038372120892555
+    result: 44
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM7.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM7.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM7.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM7.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub45.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub45.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree45.pkl
+  id: 23
+  metrics:
+    enc_score: 0.96875
+    enc_weight: 0.03125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 9
+    ConstantNodes:
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 5.0
+    EncodingFootprint (32 bits): 0.8
+    EncodingWeight (32 bits): 0.03125
+    Freq: 174080.0
+    FullHash: a476a3d77b739bb1888d80be5297079089b7319b
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 99dbdd8facea89174ad3b6901b1b0490
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 17
+    - 92
+    InstrName: CUSTOM7
+    Instrs:
+    - SLLI
+    - XOR
+    - ANDI
+    IsoNodes:
+    - 3
+    - 4
+    - 8
+    IsoWeight: 0.13038372120892555
+    Isos:
+    - 30
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 8
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 20.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm5
+    OperandNodes:
+    - 119
+    - 17
+    - 92
+    - 139
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 119
+    Parent: 26.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: e71e1ba556abc82174480d1d65167985
+    TerminatorNodes: []
+    UniqueInstrs:
+    - XOR
+    - ANDI
+    - SLLI
+    Variations: 16
+    Weight: 0.13038372120892555
+    result: 45
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM8.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM8.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM8.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM8.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub47.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub47.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree47.pkl
+  id: 24
+  metrics:
+    enc_score: 0.99609375
+    enc_weight: 0.00390625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 9
+    ConstantNodes:
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 8.0
+    EncodingFootprint (32 bits): 0.68
+    EncodingWeight (32 bits): 0.00390625
+    Freq: 174080.0
+    FullHash: 5f487ecf71766816ae9d4227ba2f9e9254eaa737
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: ad7355b7252560f7fe9f76b23d871a64
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 8
+    - 36
+    InstrName: CUSTOM8
+    Instrs:
+    - SLLI
+    - ADD
+    - ANDI
+    IsoNodes:
+    - 2
+    - 3
+    - 4
+    IsoWeight: 0.13038372120892555
+    Isos:
+    - 32
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 2
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 2
+    OperandEncBitsSum: 17.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm2
+    OperandNodes:
+    - 124
+    - 8
+    - 36
+    - 141
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 124
+    Parent: 31.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: f408ccb298359cac95a173cc242bff50
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    - ANDI
+    Variations: 16
+    Weight: 0.13038372120892555
+    result: 47
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM9.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM9.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM9.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM9.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub48.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub48.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree48.pkl
+  id: 25
+  metrics:
+    enc_score: 0.96875
+    enc_weight: 0.03125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 9
+    ConstantNodes:
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 5.0
+    EncodingFootprint (32 bits): 0.8
+    EncodingWeight (32 bits): 0.03125
+    Freq: 174080.0
+    FullHash: faa04a7dd69c2bdadf7dc2c16445db13904388ad
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: ad7355b7252560f7fe9f76b23d871a64
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 8
+    - 36
+    InstrName: CUSTOM9
+    Instrs:
+    - SLLI
+    - ADD
+    - ANDI
+    IsoNodes:
+    - 2
+    - 3
+    - 4
+    IsoWeight: 0.13038372120892555
+    Isos:
+    - 32
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 2
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 20.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm5
+    OperandNodes:
+    - 124
+    - 8
+    - 36
+    - 142
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 124
+    Parent: 31.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: f408ccb298359cac95a173cc242bff50
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    - ANDI
+    Variations: 16
+    Weight: 0.13038372120892555
+    result: 48
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM10.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM10.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM10.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM10.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub80.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub80.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree80.pkl
+  id: 1
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 2.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    - 1
+    ConstantNodes:
+    - 19
+    - 19
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 1
+    - 1
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 51ffc06d65f5129e504054082106ce4b99fd9fca
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: f7287caa30f62601b0dd9829cc0a153f
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 8
+    InstrName: CUSTOM10
+    Instrs:
+    - SLLI
+    - SRLI
+    - ADD
+    IsoNodes:
+    - 3
+    - 4
+    - 5
+    IsoWeight: 0.13038372120892552
+    Isos:
+    - 81
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 3
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 146
+    - 6
+    - 8
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 146
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 45b99754808d3b81cd21bdbd8e19bb47
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    - SRLI
+    Variations: 0
+    Weight: 0.13038372120892552
+    result: 80
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM11.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM11.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM11.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM11.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub86.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub86.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree86.pkl
+  id: 2
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    - 7
+    ConstantNodes:
+    - 19
+    - 16
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 1
+    - 57
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 103a4af361229ee4363b3b78cf6bf5873eb6a2f2
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: d6d55135343b603a6cb1adb065234087
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 12
+    InstrName: CUSTOM11
+    Instrs:
+    - SLLI
+    - ADDI
+    - ADD
+    IsoNodes:
+    - 4
+    - 5
+    - 8
+    IsoWeight: 0.13038372120892552
+    Isos:
+    - 87
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 8
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 156
+    - 6
+    - 12
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 156
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 51768610185912654579c11b9c16d090
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - ADDI
+    - SLLI
+    Variations: 0
+    Weight: 0.13038372120892552
+    result: 86
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM12.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM12.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM12.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM12.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub115.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub115.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree115.pkl
+  id: 7
+  metrics:
+    enc_score: 0.998046875
+    enc_weight: 0.001953125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 7
+    ConstantNodes:
+    - 16
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 57
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 9.0
+    EncodingFootprint (32 bits): 0.64
+    EncodingWeight (32 bits): 0.001953125
+    Freq: 174080.0
+    FullHash: a117ccdff4383357dafbcfec8c481306725ad727
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: d6d55135343b603a6cb1adb065234087
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 12
+    InstrName: CUSTOM12
+    Instrs:
+    - SLLI
+    - ADDI
+    - ADD
+    IsoNodes:
+    - 4
+    - 5
+    - 8
+    IsoWeight: 0.13038372120892552
+    Isos:
+    - 87
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 8
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 1
+    OperandEncBitsSum: 16.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm1
+    OperandNodes:
+    - 156
+    - 6
+    - 12
+    - 187
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 156
+    Parent: 86.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 51768610185912654579c11b9c16d090
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - ADDI
+    - SLLI
+    Variations: 16
+    Weight: 0.13038372120892552
+    result: 115
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM13.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM13.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM13.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM13.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub116.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub116.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree116.pkl
+  id: 8
+  metrics:
+    enc_score: 0.96875
+    enc_weight: 0.03125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 3.0
+    '#Isos': 1.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 3.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 3.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 7
+    ConstantNodes:
+    - 16
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 57
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 5.0
+    EncodingFootprint (32 bits): 0.8
+    EncodingWeight (32 bits): 0.03125
+    Freq: 174080.0
+    FullHash: cfd533ba8610a6e895a1aabebbf883d77f42ba5d
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: d6d55135343b603a6cb1adb065234087
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 12
+    InstrName: CUSTOM13
+    Instrs:
+    - SLLI
+    - ADDI
+    - ADD
+    IsoNodes:
+    - 4
+    - 5
+    - 8
+    IsoWeight: 0.13038372120892552
+    Isos:
+    - 87
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 8
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 20.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm5
+    OperandNodes:
+    - 156
+    - 6
+    - 12
+    - 188
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 156
+    Parent: 86.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 4.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 51768610185912654579c11b9c16d090
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - ADDI
+    - SLLI
+    Variations: 16
+    Weight: 0.13038372120892552
+    result: 116
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM14.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM14.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM14.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM14.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub35.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub35.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree35.pkl
+  id: 16
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 4
+    ConstantNodes:
+    - 71
+    ConstantSigns:
+    - false
+    ConstantValues:
+    - 8
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 7b18494b54b9cf9c52c9f43fefac6f0946908913
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 11141598d505b1e6b78c5b6fca6d10a1
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 1
+    - 92
+    InstrName: CUSTOM14
+    Instrs:
+    - XOR
+    - SRLI
+    IsoNodes:
+    - 0
+    - 32
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 0
+    - 32
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 128
+    - 1
+    - 92
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 128
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 928f560366a63fac343dd77f295e28ff
+    TerminatorNodes: []
+    UniqueInstrs:
+    - SRLI
+    - XOR
+    Variations: 0
+    Weight: 0.08692248080595036
+    result: 35
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM15.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM15.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM15.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM15.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub36.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub36.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree36.pkl
+  id: 17
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 1.0
+    '#Mems': 1.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    ConstantNodes:
+    - 86
+    ConstantSigns:
+    - false
+    ConstantValues:
+    - 0
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 67055e341d789dfd976493f932621fddff6db605
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 9c124892fc74c73d2bbefb7e9fda5b7e
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 3
+    - 36
+    InstrName: CUSTOM15
+    Instrs:
+    - ADD
+    - LW
+    IsoNodes:
+    - 1
+    - 2
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes:
+    - 1
+    Nodes:
+    - 2
+    - 1
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 129
+    - 3
+    - 36
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 129
+    Parent: .nan
+    Predicates: 257
+    Predicates (str): InstrPredicate.IS_COMMUTABLE|MAY_LOAD
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 26563bc8caa0e6ab73024ffe0bf8ea64
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - LW
+    Variations: 0
+    Weight: 0.08692248080595036
+    result: 36
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM16.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM16.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM16.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM16.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub37.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub37.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree37.pkl
+  id: 18
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 1.0
+    '#Mems': 1.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    ConstantNodes:
+    - 86
+    ConstantSigns:
+    - false
+    ConstantValues:
+    - 0
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: a26a7e5baf20404ed9c15de0680ff175aca56ab6
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 2d31cb48be05f7b9617e9a68eb93ae51
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 2
+    - 32
+    InstrName: CUSTOM16
+    Instrs:
+    - XOR
+    - LW
+    IsoNodes:
+    - 0
+    - 1
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes:
+    - 1
+    Nodes:
+    - 0
+    - 1
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 130
+    - 2
+    - 32
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 130
+    Parent: .nan
+    Predicates: 257
+    Predicates (str): InstrPredicate.IS_COMMUTABLE|MAY_LOAD
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 47ae4ff29bba2780932edf2ee1d764c9
+    TerminatorNodes: []
+    UniqueInstrs:
+    - XOR
+    - LW
+    Variations: 0
+    Weight: 0.08692248080595036
+    result: 37
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM17.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM17.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM17.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM17.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub38.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub38.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree38.pkl
+  id: 19
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 9
+    ConstantNodes:
+    - 65
+    ConstantSigns:
+    - false
+    ConstantValues:
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 9dc8387d15d75de2119b74de9a9e5f1dd12ed100
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 51c303f426197540e0758750f8af9a2e
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 17
+    - 92
+    InstrName: CUSTOM17
+    Instrs:
+    - XOR
+    - ANDI
+    IsoNodes:
+    - 8
+    - 4
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 8
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 131
+    - 17
+    - 92
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 131
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 9c315bd34cdd8ff7210586127e57b249
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ANDI
+    - XOR
+    Variations: 0
+    Weight: 0.08692248080595036
+    result: 38
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM18.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM18.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM18.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM18.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub39.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub39.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree39.pkl
+  id: 20
+  metrics:
+    enc_score: 0.999969482421875
+    enc_weight: 3.0517578125e-05
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 1.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 2
+    - 9
+    ConstantNodes:
+    - 58
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 2
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 15.0
+    EncodingFootprint (32 bits): 0.4
+    EncodingWeight (32 bits): 3.0517578125e-05
+    Freq: 174080.0
+    FullHash: 70c1a434062def0d428f1d40a8d9f92b363e2cad
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: b15192c480341381e6f94fc2e428d8cf
+    InputNames:
+    - inp0
+    InputNodes:
+    - 8
+    InstrName: CUSTOM18
+    Instrs:
+    - SLLI
+    - ANDI
+    IsoNodes:
+    - 3
+    - 4
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    OperandEncBitsSum: 10.0
+    OperandNames:
+    - rd
+    - rs1
+    OperandNodes:
+    - 132
+    - 8
+    OperandRegClasses:
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 132
+    Parent: .nan
+    Predicates: 0
+    Predicates (str): InstrPredicate.NONE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 9908de1122f4cc5e49b9b4edf3c74054
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ANDI
+    - SLLI
+    Variations: 0
+    Weight: 0.08692248080595036
+    result: 39
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM19.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM19.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM19.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM19.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub40.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub40.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree40.pkl
+  id: 21
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 2
+    ConstantNodes:
+    - 58
+    ConstantSigns:
+    - false
+    ConstantValues:
+    - 2
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: e92e8be328c8df97cb8fe7001b3df6c40831fa04
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 7425edf13ec9ddc5022bf254cc444efb
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 4
+    - 36
+    InstrName: CUSTOM19
+    Instrs:
+    - SLLI
+    - ADD
+    IsoNodes:
+    - 2
+    - 3
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 2
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 133
+    - 4
+    - 36
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 133
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 4ddafd00eac0b15eb2d99c2af4e9e14b
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    Variations: 0
+    Weight: 0.08692248080595036
+    result: 40
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM20.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM20.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM20.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM20.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub50.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub50.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree50.pkl
+  id: 26
+  metrics:
+    enc_score: 0.984375
+    enc_weight: 0.015625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 0.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits: []
+    ConstantNodes: []
+    ConstantSigns:
+    - false
+    ConstantValues: []
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 6.0
+    EncodingFootprint (32 bits): 0.76
+    EncodingWeight (32 bits): 0.015625
+    Freq: 174080.0
+    FullHash: 2549e1b5ee45c267a66ce4551fe3850fb6c2a5df
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 11141598d505b1e6b78c5b6fca6d10a1
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 1
+    - 92
+    InstrName: CUSTOM20
+    Instrs:
+    - XOR
+    - SRLI
+    IsoNodes:
+    - 0
+    - 32
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 0
+    - 32
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 4
+    OperandEncBitsSum: 19.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm4
+    OperandNodes:
+    - 128
+    - 1
+    - 92
+    - 144
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 128
+    Parent: 35.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 928f560366a63fac343dd77f295e28ff
+    TerminatorNodes: []
+    UniqueInstrs:
+    - SRLI
+    - XOR
+    Variations: 16
+    Weight: 0.08692248080595036
+    result: 50
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM21.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM21.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM21.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM21.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub51.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub51.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree51.pkl
+  id: 27
+  metrics:
+    enc_score: 0.96875
+    enc_weight: 0.03125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 0.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits: []
+    ConstantNodes: []
+    ConstantSigns:
+    - false
+    ConstantValues: []
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 5.0
+    EncodingFootprint (32 bits): 0.8
+    EncodingWeight (32 bits): 0.03125
+    Freq: 174080.0
+    FullHash: 6191c4ade3cebae9490f464e7c0d46deeebcdb7a
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 11141598d505b1e6b78c5b6fca6d10a1
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 1
+    - 92
+    InstrName: CUSTOM21
+    Instrs:
+    - XOR
+    - SRLI
+    IsoNodes:
+    - 0
+    - 32
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 0
+    - 32
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 20.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm5
+    OperandNodes:
+    - 128
+    - 1
+    - 92
+    - 145
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 128
+    Parent: 35.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 928f560366a63fac343dd77f295e28ff
+    TerminatorNodes: []
+    UniqueInstrs:
+    - SRLI
+    - XOR
+    Variations: 16
+    Weight: 0.08692248080595036
+    result: 51
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM22.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM22.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM22.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM22.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub55.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub55.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree55.pkl
+  id: 28
+  metrics:
+    enc_score: 0.9998779296875
+    enc_weight: 0.0001220703125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 1.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 9
+    ConstantNodes:
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 13.0
+    EncodingFootprint (32 bits): 0.48
+    EncodingWeight (32 bits): 0.0001220703125
+    Freq: 174080.0
+    FullHash: 2af3121bcbadd2d77e9a7d5079a45abb781f739d
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: b15192c480341381e6f94fc2e428d8cf
+    InputNames:
+    - inp0
+    InputNodes:
+    - 8
+    InstrName: CUSTOM22
+    Instrs:
+    - SLLI
+    - ANDI
+    IsoNodes:
+    - 3
+    - 4
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 2
+    OperandEncBitsSum: 12.0
+    OperandNames:
+    - rd
+    - rs1
+    - uimm2
+    OperandNodes:
+    - 132
+    - 8
+    - 149
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 132
+    Parent: 39.0
+    Predicates: 0
+    Predicates (str): InstrPredicate.NONE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 9908de1122f4cc5e49b9b4edf3c74054
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ANDI
+    - SLLI
+    Variations: 16
+    Weight: 0.08692248080595036
+    result: 55
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM23.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM23.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM23.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM23.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub56.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub56.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree56.pkl
+  id: 29
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 1.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 9
+    ConstantNodes:
+    - 65
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 255
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 52798294dcf4b82499eaaaf9a92019da08d51132
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: b15192c480341381e6f94fc2e428d8cf
+    InputNames:
+    - inp0
+    InputNodes:
+    - 8
+    InstrName: CUSTOM23
+    Instrs:
+    - SLLI
+    - ANDI
+    IsoNodes:
+    - 3
+    - 4
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 4
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - uimm5
+    OperandNodes:
+    - 132
+    - 8
+    - 150
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 132
+    Parent: 39.0
+    Predicates: 0
+    Predicates (str): InstrPredicate.NONE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 9908de1122f4cc5e49b9b4edf3c74054
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ANDI
+    - SLLI
+    Variations: 16
+    Weight: 0.08692248080595036
+    result: 56
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM24.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM24.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM24.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM24.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub59.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub59.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree59.pkl
+  id: 30
+  metrics:
+    enc_score: 0.99609375
+    enc_weight: 0.00390625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 0.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits: []
+    ConstantNodes: []
+    ConstantSigns:
+    - false
+    ConstantValues: []
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 8.0
+    EncodingFootprint (32 bits): 0.68
+    EncodingWeight (32 bits): 0.00390625
+    Freq: 174080.0
+    FullHash: 87b54223cb3b695b9c6e7e75ecd03f9e9ddb2567
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 7425edf13ec9ddc5022bf254cc444efb
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 4
+    - 36
+    InstrName: CUSTOM24
+    Instrs:
+    - SLLI
+    - ADD
+    IsoNodes:
+    - 2
+    - 3
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 2
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 2
+    OperandEncBitsSum: 17.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm2
+    OperandNodes:
+    - 133
+    - 4
+    - 36
+    - 153
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 133
+    Parent: 40.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 4ddafd00eac0b15eb2d99c2af4e9e14b
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    Variations: 16
+    Weight: 0.08692248080595036
+    result: 59
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM25.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM25.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM25.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM25.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/io_sub60.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/sub60.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/benchmark_body_%bb.3_0/tree60.pkl
+  id: 31
+  metrics:
+    enc_score: 0.96875
+    enc_weight: 0.03125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 0.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits: []
+    ConstantNodes: []
+    ConstantSigns:
+    - false
+    ConstantValues: []
+    Constraints: []
+    DateTime: 20261107T063038
+    EncodingBitsLeft (32 bits): 5.0
+    EncodingFootprint (32 bits): 0.8
+    EncodingWeight (32 bits): 0.03125
+    Freq: 174080.0
+    FullHash: 15d8c1dc7cc66cf3e66681dfc36d51bf459ce17e
+    GlobalHash: a0dcf7841ff21fec102c330910297742f1925088
+    IOSubHash: 7425edf13ec9ddc5022bf254cc444efb
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 4
+    - 36
+    InstrName: CUSTOM25
+    Instrs:
+    - SLLI
+    - ADD
+    IsoNodes:
+    - 2
+    - 3
+    IsoWeight: 0.08692248080595036
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 3
+    - 2
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 20.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm5
+    OperandNodes:
+    - 133
+    - 4
+    - 36
+    - 154
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 133
+    Parent: 40.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 4ddafd00eac0b15eb2d99c2af4e9e14b
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    Variations: 16
+    Weight: 0.08692248080595036
+    result: 60
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM26.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM26.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM26.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM26.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub90.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub90.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree90.pkl
+  id: 3
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 7
+    ConstantNodes:
+    - 16
+    ConstantSigns:
+    - false
+    ConstantValues:
+    - 57
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 5843e675938550bcf4224ad8f2612a0a0bc56c33
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: 3c911c8855a8828646ff238326a98f78
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 12
+    InstrName: CUSTOM26
+    Instrs:
+    - ADDI
+    - ADD
+    IsoNodes:
+    - 8
+    - 5
+    IsoWeight: 0.08692248080595034
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 8
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 160
+    - 6
+    - 12
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 160
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 62fa5e52737968b920e8c1d3187fa795
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - ADDI
+    Variations: 0
+    Weight: 0.08692248080595034
+    result: 90
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM27.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM27.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM27.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM27.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub92.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub92.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree92.pkl
+  id: 4
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 10
+    ConstantNodes:
+    - 15
+    ConstantSigns:
+    - true
+    ConstantValues:
+    - -403
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: b30328f30b2488ad9a07a465fb90616c3fe49006
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: 928e8987d6099426658e668069daf8e9
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 9
+    - 10
+    InstrName: CUSTOM27
+    Instrs:
+    - ADDI
+    - MUL
+    IsoNodes:
+    - 6
+    - 7
+    IsoWeight: 0.08692248080595034
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 7
+    - 6
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 162
+    - 9
+    - 10
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 162
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: a7889a6a037821a0001905ecf0d3327c
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADDI
+    - MUL
+    Variations: 0
+    Weight: 0.08692248080595034
+    result: 92
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM28.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM28.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM28.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM28.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub93.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub93.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree93.pkl
+  id: 5
+  metrics:
+    enc_score: 0.9990234375
+    enc_weight: 0.0009765625
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 1.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    ConstantNodes:
+    - 19
+    ConstantSigns:
+    - false
+    ConstantValues:
+    - 1
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 10.0
+    EncodingFootprint (32 bits): 0.6
+    EncodingWeight (32 bits): 0.0009765625
+    Freq: 174080.0
+    FullHash: 53af860a8e7dddef5c4f54b53c94fd5c86742c08
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: a0bbc823f096d7adc2f434b94442dfd5
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 8
+    InstrName: CUSTOM28
+    Instrs:
+    - SLLI
+    - ADD
+    IsoNodes:
+    - 4
+    - 5
+    IsoWeight: 0.08692248080595034
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 15.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    OperandNodes:
+    - 163
+    - 6
+    - 8
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 163
+    Parent: .nan
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: fec92df588a800be8bee7da8a2e29520
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    Variations: 0
+    Weight: 0.08692248080595034
+    result: 93
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM29.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM29.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM29.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM29.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub97.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub97.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree97.pkl
+  id: 6
+  metrics:
+    enc_score: 0.999969482421875
+    enc_weight: 3.0517578125e-05
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 2.0
+    '#InputNodes': 1.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 2.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits:
+    - 1
+    - 1
+    ConstantNodes:
+    - 19
+    - 19
+    ConstantSigns:
+    - false
+    - false
+    ConstantValues:
+    - 1
+    - 1
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 15.0
+    EncodingFootprint (32 bits): 0.4
+    EncodingWeight (32 bits): 3.0517578125e-05
+    Freq: 174080.0
+    FullHash: 8a1c76bd7f28f864546f8b7aa3e6331e04b7462c
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: ce4b8e789eb89d7df108166b53f91edc
+    InputNames:
+    - inp0
+    InputNodes:
+    - 5
+    InstrName: CUSTOM29
+    Instrs:
+    - SLLI
+    - SRLI
+    IsoNodes:
+    - 3
+    - 4
+    IsoWeight: 0.08692248080595034
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 3
+    OperandDirs:
+    - OUT
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    OperandEncBitsSum: 10.0
+    OperandNames:
+    - rd
+    - rs1
+    OperandNodes:
+    - 169
+    - 5
+    OperandRegClasses:
+    - GPR
+    - GPR
+    OperandTypes:
+    - REG
+    - REG
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 169
+    Parent: .nan
+    Predicates: 0
+    Predicates (str): InstrPredicate.NONE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: 0d1bab02a2e2a03b38d3a4956d820879
+    TerminatorNodes: []
+    UniqueInstrs:
+    - SLLI
+    - SRLI
+    Variations: 0
+    Weight: 0.08692248080595034
+    result: 97
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM30.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM30.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM30.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM30.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub123.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub123.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree123.pkl
+  id: 9
+  metrics:
+    enc_score: 0.998046875
+    enc_weight: 0.001953125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 0.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits: []
+    ConstantNodes: []
+    ConstantSigns:
+    - false
+    ConstantValues: []
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 9.0
+    EncodingFootprint (32 bits): 0.64
+    EncodingWeight (32 bits): 0.001953125
+    Freq: 174080.0
+    FullHash: a3de53e2b4a70d1d755cc5b2066c4ef578c99a0e
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: a0bbc823f096d7adc2f434b94442dfd5
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 8
+    InstrName: CUSTOM30
+    Instrs:
+    - SLLI
+    - ADD
+    IsoNodes:
+    - 4
+    - 5
+    IsoWeight: 0.08692248080595034
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 1
+    OperandEncBitsSum: 16.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm1
+    OperandNodes:
+    - 163
+    - 6
+    - 8
+    - 195
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 163
+    Parent: 93.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: fec92df588a800be8bee7da8a2e29520
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    Variations: 16
+    Weight: 0.08692248080595034
+    result: 123
+- artifacts:
+    cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM31.core_desc
+    cdsl_encoded: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM31.encoded.core_desc
+    flat: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM31.flat
+    fuse_cdsl: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/gen/CUSTOM31.fuse_core_desc
+    io_sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/io_sub124.pkl
+    sub: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/sub124.pkl
+    tree: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000/work/rand_beebs_%bb.0_0/tree124.pkl
+  id: 10
+  metrics:
+    enc_score: 0.96875
+    enc_weight: 0.03125
+  properties:
+    '#Branches': 0.0
+    '#ConstantNodes': 0.0
+    '#InputNodes': 2.0
+    '#Instrs': 2.0
+    '#Isos': 0.0
+    '#IsosNO': 0.0
+    '#Loads': 0.0
+    '#Mems': 0.0
+    '#Nodes': 2.0
+    '#Operands': .nan
+    '#OutputNodes': 1.0
+    '#Stores': 0.0
+    '#Terminators': 0.0
+    '#UniqueInstrs': 2.0
+    BranchNodes: []
+    ConstantMinBits: []
+    ConstantNodes: []
+    ConstantSigns:
+    - false
+    ConstantValues: []
+    Constraints: []
+    DateTime: 20261107T063031
+    EncodingBitsLeft (32 bits): 5.0
+    EncodingFootprint (32 bits): 0.8
+    EncodingWeight (32 bits): 0.03125
+    Freq: 174080.0
+    FullHash: 92781b4791550d537838a4fbad4bfea80e9f21c3
+    GlobalHash: 50c8eeb3bbe91827e5af2dd7b7104b9b9f861efe
+    IOSubHash: a0bbc823f096d7adc2f434b94442dfd5
+    InputNames:
+    - inp0
+    - inp1
+    InputNodes:
+    - 6
+    - 8
+    InstrName: CUSTOM31
+    Instrs:
+    - SLLI
+    - ADD
+    IsoNodes:
+    - 4
+    - 5
+    IsoWeight: 0.08692248080595034
+    Isos: []
+    IsosNO: []
+    LoadNodes: []
+    Nodes:
+    - 4
+    - 5
+    OperandDirs:
+    - OUT
+    - IN
+    - IN
+    - IN
+    OperandEncBits:
+    - 5
+    - 5
+    - 5
+    - 5
+    OperandEncBitsSum: 20.0
+    OperandNames:
+    - rd
+    - rs1
+    - rs2
+    - uimm5
+    OperandNodes:
+    - 163
+    - 6
+    - 8
+    - 196
+    OperandRegClasses:
+    - GPR
+    - GPR
+    - GPR
+    - null
+    OperandTypes:
+    - REG
+    - REG
+    - REG
+    - IMM
+    OutputNames:
+    - outp0
+    OutputNodes:
+    - 163
+    Parent: 93.0
+    Predicates: 256
+    Predicates (str): InstrPredicate.IS_COMMUTABLE
+    Registers: 2
+    ScheduleLength: 3.0
+    Status: 1
+    Status (str): ExportFilter.SELECTED
+    StoreNodes: []
+    SubHash: fec92df588a800be8bee7da8a2e29520
+    TerminatorNodes: []
+    UniqueInstrs:
+    - ADD
+    - SLLI
+    Variations: 16
+    Weight: 0.08692248080595034
+    result: 124
+global:
+  artifacts: []
+  properties:
+  - allowed_enc_sizes:
+    - 32
+    bb: '%bb.0'
+    candidate_count: 11
+    compilation_id: 2aacfaeaaa234580bf8c6e82f06dd475
+    fixed_bb_id: 0
+    func: rand_beebs
+    ignore_names:
+    - G_PHI
+    - PHI
+    - COPY
+    - PseudoCALLIndirect
+    - PseudoLGA
+    - Select_GPR_Using_CC_GPR
+    - LUI
+    - PseudoMovAddr
+    - IMPLICIT_DEF
+    ignore_op_types:
+    - input
+    - constant
+    - label
+    instr_predicates: 511
+    limit_results: 100000
+    max_branches: 1
+    max_enc_footprint: 1.0
+    max_enc_weight: 1.0
+    max_inputs: 4
+    max_loads: 1
+    max_mems: 1
+    max_nodes: 1000
+    max_outputs: 2
+    max_path_len: 9
+    max_path_width: 2
+    max_stores: 1
+    min_enc_bits_left: 5
+    min_inputs: 1
+    min_iso_weight: 0.028249806261933866
+    min_nodes: 1
+    min_outputs: 0
+    min_path_len: 1
+    mir_bb_name: '%bb.0'
+    module_name: /var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c
+    session: isaac-demo-crc32-20261107T120000
+    stage: 32
+    timestamp: 20261107T063031
+    xlen: 32
+  - allowed_enc_sizes:
+    - 32
+    bb: '%bb.3'
+    candidate_count: 21
+    compilation_id: 83564e7120b4430298126ff268703437
+    fixed_bb_id: 3
+    func: benchmark_body
+    ignore_names:
+    - G_PHI
+    - PHI
+    - COPY
+    - PseudoCALLIndirect
+    - PseudoLGA
+    - Select_GPR_Using_CC_GPR
+    - LUI
+    - PseudoMovAddr
+    - IMPLICIT_DEF
+    ignore_op_types:
+    - input
+    - constant
+    - label
+    instr_predicates: 511
+    limit_results: 100000
+    max_branches: 1
+    max_enc_footprint: 1.0
+    max_enc_weight: 1.0
+    max_inputs: 4
+    max_loads: 1
+    max_mems: 1
+    max_nodes: 1000
+    max_outputs: 2
+    max_path_len: 9
+    max_path_width: 2
+    max_stores: 1
+    min_enc_bits_left: 5
+    min_inputs: 1
+    min_iso_weight: 0.015961031076735955
+    min_nodes: 1
+    min_outputs: 0
+    min_path_len: 1
+    mir_bb_name: '%bb.3'
+    module_name: /var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c
+    session: isaac-demo-crc32-20261107T120000
+    stage: 32
+    timestamp: 20261107T063038
+    xlen: 32

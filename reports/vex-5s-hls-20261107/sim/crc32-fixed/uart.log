@@ -1,0 +1,23 @@
+ISAAC VEX_5S BOOT full
+RAM PASS
+ISAAC_KERNEL native instructions=13325 cycles=15374
+CRC32=65842ca9 verify=00002ca9 cycles=00003c18
+ZERO REGISTER PASS
+MEMORY PASS checks=00000500
+ISAAC_KERNEL native instructions=13325 cycles=15374
+ISAAC_KERNEL ise instructions=10253 cycles=15374 ise_ops=1024
+PAIR run=00000000 native=65842ca9 ise=65842ca9 native_cycles=00003c17 ise_cycles=00003c18
+ISAAC_KERNEL native instructions=13325 cycles=15374
+ISAAC_KERNEL ise instructions=10253 cycles=15374 ise_ops=1024
+PAIR run=00000001 native=65842ca9 ise=65842ca9 native_cycles=00003c17 ise_cycles=00003c18
+ISAAC_KERNEL native instructions=13325 cycles=15374
+ISAAC_KERNEL ise instructions=10253 cycles=15374 ise_ops=1024
+PAIR run=00000002 native=65842ca9 ise=65842ca9 native_cycles=00003c17 ise_cycles=00003c18
+ISAAC_KERNEL native instructions=13325 cycles=15374
+ISAAC_KERNEL ise instructions=10253 cycles=15374 ise_ops=1024
+PAIR run=00000003 native=65842ca9 ise=65842ca9 native_cycles=00003c17 ise_cycles=00003c18
+ISAAC_KERNEL native instructions=13325 cycles=15374
+ISAAC_KERNEL ise instructions=10253 cycles=15374 ise_ops=1024
+PAIR run=00000004 native=65842ca9 ise=65842ca9 native_cycles=00003c17 ise_cycles=00003c18
+PASS
+ISAAC_SIM_PASS cycles=220476

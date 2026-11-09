@@ -1,0 +1,162 @@
+From 723433e8436dc694ef928cb598b1efcc19ea4eff Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Mon, 9 Nov 2026 09:35:41 +0100
+Subject: [PATCH] Export x0-safe HLS writeback without a destination-read port
+
+---
+ README.md                                     | 12 +++
+ .../generate/iss/generate_etiss_core.py       | 13 ++++
+ isaac_toolkit/generate/iss/hls_registers.py   | 73 +++++++++++++++++++
+ 3 files changed, 98 insertions(+)
+ create mode 100644 isaac_toolkit/generate/iss/hls_registers.py
+
+diff --git a/README.md b/README.md
+index 6aa6b23..648fd50 100644
+--- a/README.md
++++ b/README.md
+@@ -92,6 +92,18 @@ isaac_toolkit
+ 
+ ## Usage
+ 
++### HLS cores without a destination-read port
++
++`generate_etiss_core --hls-core-discards-x0-writes` removes canonical
++`if (rd != 0) X[rd] = ...` guards from the private HLS model when the target
++core itself suppresses writes to x0. This prevents HLS from introducing an
++`RdRD` port to preserve the previous destination. Genuine destination reads
++are rejected. The compiler and simulator models retain their guards and the
++instruction encodings are unchanged. The option is off by default; verify the
++core's x0 write suppression before enabling it. A per-set
++`*.hls_core_contract.json` records the setting and removed guards.
++
++
+ [ELF/CDFG basic-block count validation](docs/bb_cdfg_validation.md) runs before Memgraph profile-weight annotation.
+ 
+ ### Prerequisites
+diff --git a/isaac_toolkit/generate/iss/generate_etiss_core.py b/isaac_toolkit/generate/iss/generate_etiss_core.py
+index 160a457..af3209c 100644
+--- a/isaac_toolkit/generate/iss/generate_etiss_core.py
++++ b/isaac_toolkit/generate/iss/generate_etiss_core.py
+@@ -317,6 +317,7 @@ def generate_etiss_core(
+     encoding_opcodes=None,
+     encoding_reservations=(),
+     encoding_interface="generic",
++    hls_core_discards_x0_writes=False,
+ ):
+     from m2isar.backends.coredsl2.writer import gen_cdsl_code
+ 
+@@ -657,6 +658,15 @@ def generate_etiss_core(
+                 instr_def.name = instr_def.mnemonic.upper().replace(".", "_")
+         from .hls_immediates import normalize_hls_immediates
+         normalize_hls_immediates(model_obj.sets[set_name], xlen)
++        normalized = []
++        if hls_core_discards_x0_writes:
++            from .hls_registers import normalize_hls_zero_write_guards
++            normalized = normalize_hls_zero_write_guards(model_obj.sets[set_name])
++        (gen_dir / f"{set_name}.hls_core_contract.json").write_text(json.dumps({
++            "core_discards_x0_writes": bool(hls_core_discards_x0_writes),
++            "removed_zero_write_guards": normalized,
++            "genuine_destination_reads_rejected": bool(hls_core_discards_x0_writes),
++        }, indent=2) + "\n")
+         set_hls_cdsl_code = gen_cdsl_code(model_obj, with_includes=False, legacy=True)
+         with open(set_hls_out_cdsl_file, "w") as f:
+             f.write(set_hls_includes_code)
+@@ -744,6 +754,7 @@ def handle(args):
+         encoding_opcodes=args.encoding_opcode,
+         encoding_reservations=args.encoding_reserve,
+         encoding_interface=args.encoding_interface,
++        hls_core_discards_x0_writes=args.hls_core_discards_x0_writes,
+     )
+     if sess is not None:
+         sess.save()
+@@ -781,6 +792,8 @@ def get_parser():
+     parser.add_argument("--encoding-policy", choices=["auto", "cfu"], default="auto")
+     parser.add_argument("--encoding-interface", choices=["generic", "scaiev2"], default="generic",
+                         help="Apply interface discriminator constraints before shared allocation")
++    parser.add_argument("--hls-core-discards-x0-writes", action="store_true",
++                        help="HLS only: remove canonical x0 write guards; requires core-enforced x0 write suppression")
+     parser.add_argument("--encoding-manifest", type=str, default=None,
+                         help="Auto: input planner manifest; CFU: persistent CFU ledger")
+     parser.add_argument("--encoding-opcode", action="append", type=lambda value: int(value, 0),
+diff --git a/isaac_toolkit/generate/iss/hls_registers.py b/isaac_toolkit/generate/iss/hls_registers.py
+new file mode 100644
+index 0000000..c5008dd
+--- /dev/null
++++ b/isaac_toolkit/generate/iss/hls_registers.py
+@@ -0,0 +1,73 @@
++"""Adapt RISC-V writeback to cores that suppress x0 writes themselves."""
++from m2isar.metamodel import arch, attribute_info, behav
++
++
++def normalize_hls_zero_write_guards(instruction_set):
++    """Remove only canonical x0 guards in a private HLS model.
++
++    The caller must establish that the core discards writes to register zero.
++    Otherwise predicated writeback requires reading the old destination value,
++    which introduces an RdRD port even for instructions without reuse-I/O.
++    Genuine destination-register reads are rejected rather than discarded.
++    """
++    changed = []
++
++    def ungroup(node):
++        while isinstance(node, behav.Group):
++            node = node.expr
++        return node
++
++    def rewrite(node, instruction):
++        if isinstance(node, behav.Conditional) and len(node.conds) == len(node.stmts) == 1:
++            condition = ungroup(node.conds[0])
++            block = node.stmts[0]
++            statements = block.statements if isinstance(block, behav.Operation) else [block]
++            if len(statements) == 1 and isinstance(statements[0], behav.Assignment):
++                target = statements[0].target
++                if (isinstance(target, behav.IndexedReference)
++                        and isinstance(target.reference, arch.RegisterBank)
++                        and attribute_info.RegisterAttribute.IS_MAIN_REG in target.reference.attributes
++                        and target.right is None):
++                    index = ungroup(target.index)
++                    if (isinstance(index, behav.NamedReference)
++                            and isinstance(index.reference, arch.BitFieldDescr)
++                            and isinstance(condition, behav.BinaryOperation)
++                            and condition.op.value == "!="):
++                        left, right = ungroup(condition.left), ungroup(condition.right)
++                        if (isinstance(left, behav.NamedReference)
++                                and left.reference is index.reference
++                                and isinstance(right, behav.Literal) and int(right.value) == 0):
++                            changed.append(instruction.name)
++                            return rewrite(block, instruction)
++        if isinstance(node, behav.BaseNode):
++            for key, value in list(vars(node).items()):
++                if isinstance(value, behav.BaseNode):
++                    setattr(node, key, rewrite(value, instruction))
++                elif isinstance(value, list):
++                    setattr(node, key, [rewrite(v, instruction) for v in value])
++        return node
++
++    def check_reads(node, output_fields, instruction):
++        if isinstance(node, behav.Assignment):
++            check_reads(node.expr, output_fields, instruction)
++            return
++        if isinstance(node, behav.IndexedReference) and isinstance(node.reference, arch.RegisterBank):
++            index = ungroup(node.index)
++            if isinstance(index, behav.NamedReference) and index.reference.name in output_fields:
++                raise ValueError(f"HLS instruction {instruction.name} genuinely reads its destination")
++        if isinstance(node, behav.BaseNode):
++            for value in vars(node).values():
++                if isinstance(value, behav.BaseNode):
++                    check_reads(value, output_fields, instruction)
++                elif isinstance(value, (list, tuple)):
++                    for child in value:
++                        check_reads(child, output_fields, instruction)
++
++    for instruction in instruction_set.instructions.values():
++        outputs = {name for name, operand in instruction.operands.items()
++                   if attribute_info.OperandAttribute.IS_REG in operand.attributes
++                   and (attribute_info.OperandAttribute.OUT in operand.attributes
++                        or attribute_info.OperandAttribute.INOUT in operand.attributes)}
++        instruction.operation = rewrite(instruction.operation, instruction)
++        check_reads(instruction.operation, outputs, instruction)
++    return changed
+-- 
+2.34.1
+

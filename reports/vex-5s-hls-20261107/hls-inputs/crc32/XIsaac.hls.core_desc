@@ -1,0 +1,460 @@
+
+
+InstructionSet XIsaac {
+    architectural_state {
+        register unsigned<32> X[32] [[is_main_reg]];
+        extern unsigned<8> MEM[4294967296] [[is_main_mem]];
+    }
+    instructions {
+        CUSTOM0 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2))))))) + ((signed<32>)(0)));
+                    unsigned<32> outp0 = (unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0])));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM1 {
+            encoding: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM2 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)(rs2_val))))) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM3 {
+            encoding: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((rs1_val) + ((signed<32>)(0)));
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]))))) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)(8))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM4 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM5 {
+            encoding: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)(2))))))) + ((signed<32>)(0)));
+                    unsigned<32> outp0 = (unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0])));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM6 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: uimm2[1:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm2}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)(rs2_val))))) & ((unsigned<32>)(255))))) << ((unsigned<32>)((unsigned<2>)(uimm2))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM7 {
+            encoding: 1'b0 :: 1'b1 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)(rs2_val))))) & ((unsigned<32>)(255))))) << ((unsigned<32>)((unsigned<5>)(uimm5))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM8 {
+            encoding: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: uimm2[1:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm2}";
+            behavior: {
+                {
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)((unsigned<2>)(uimm2)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM9 {
+            encoding: 1'b1 :: 1'b1 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}";
+            behavior: {
+                {
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)((unsigned<5>)(uimm5)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM10 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM11 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM12 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: uimm1[0:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm1}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)((unsigned<1>)(uimm1))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM13 {
+            encoding: 1'b1 :: 1'b0 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57)))))))) << ((unsigned<32>)((unsigned<5>)(uimm5))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM14 {
+            encoding: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)(8))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM15 {
+            encoding: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)(((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(rs1_val)))) + ((signed<32>)(0)));
+                    unsigned<32> outp0 = (unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0])));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM16 {
+            encoding: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> _isaac_mem_addr_0 = (unsigned<32>)((rs1_val) + ((signed<32>)(0)));
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)((unsigned<32>)((signed<32>)(MEM[_isaac_mem_addr_0+3:_isaac_mem_addr_0]))))) ^ ((unsigned<32>)(rs2_val)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM17 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)(rs2_val))))) & ((unsigned<32>)(255)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM18 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)(2)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM19 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)(2))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM20 {
+            encoding: 1'b0 :: 1'b1 :: 1'b0 :: uimm4[3:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm4}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)((unsigned<4>)(uimm4)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM21 {
+            encoding: 1'b1 :: 1'b1 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)(rs1_val)) ^ ((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs2_val)) >> ((unsigned<32>)((unsigned<5>)(uimm5)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM22 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: uimm2[1:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {uimm2}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)((unsigned<2>)(uimm2))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM23 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: uimm5[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {uimm5}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) & ((unsigned<32>)(255))))) << ((unsigned<32>)((unsigned<5>)(uimm5))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM24 {
+            encoding: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b0 :: uimm2[1:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm2}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)((unsigned<2>)(uimm2)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM25 {
+            encoding: 1'b0 :: 1'b0 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)((unsigned<5>)(uimm5)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM26 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(57))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM27 {
+            encoding: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((signed<32>)(rs1_val)) * ((signed<32>)((unsigned<32>)(((signed<32>)(rs2_val)) + ((signed<32>)(-(403)))))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM28 {
+            encoding: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM29 {
+            encoding: 1'b0 :: 1'b0 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b0 :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((unsigned<32>)(rs1_val)) << ((unsigned<32>)(1))))) >> ((unsigned<32>)(1)));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM30 {
+            encoding: 1'b0 :: 1'b1 :: 1'b1 :: 1'b0 :: 1'b0 :: 1'b0 :: uimm1[0:0] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm1}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)((unsigned<1>)(uimm1))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+        CUSTOM31 {
+            encoding: 1'b1 :: 1'b0 :: uimm5[4:0] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: rd[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rd)}, {name(rs1)}, {name(rs2)}, {uimm5}";
+            behavior: {
+                {
+                    unsigned<32> rs1_val = X[rs1];
+                    unsigned<32> rs2_val = X[rs2];
+                    unsigned<32> outp0 = (unsigned<32>)(((unsigned<32>)((unsigned<32>)(((signed<32>)(rs1_val)) + ((signed<32>)(rs2_val))))) << ((unsigned<32>)((unsigned<5>)(uimm5))));
+                    if ((rd) != (0)) {
+                        X[rd] = outp0;
+                    }
+                }
+            }
+        }
+    }
+}
+

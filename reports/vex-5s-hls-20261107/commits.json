@@ -1,0 +1,17 @@
+[
+  {
+    "repo": "isaac-toolkit",
+    "commit": "723433e8436dc694ef928cb598b1efcc19ea4eff",
+    "subject": "Export x0-safe HLS writeback without a destination-read port"
+  },
+  {
+    "repo": ".",
+    "commit": "3f38b1a604719aa260a857fd76c1f4afdb84efb0",
+    "subject": "Add isolated Vex effect experiments and fix SCAIE-V subword stores"
+  },
+  {
+    "repo": ".",
+    "commit": "5c53904256ffd564b382ccb08d709d1ebeb3e625",
+    "subject": "Generalize execution firmware for target counters and generated ISE names"
+  }
+]

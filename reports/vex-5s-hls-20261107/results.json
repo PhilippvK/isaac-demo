@@ -1,0 +1,699 @@
+{
+  "workload": "CRC32",
+  "target": "VEX_5S",
+  "reuse_io": false,
+  "hls": {
+    "crc32-fixed": {
+      "instructions": [
+        {
+          "name": "CUSTOM0",
+          "latency": 4,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM10",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM11",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM12",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM13",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM14",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM15",
+          "latency": 4,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM16",
+          "latency": 4,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM17",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM18",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM19",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM1",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM20",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM21",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM22",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM23",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM24",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM25",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM26",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM27",
+          "latency": 4,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM28",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM29",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM2",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM30",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM31",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM3",
+          "latency": 4,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM4",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM5",
+          "latency": 4,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM6",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM7",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM8",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "CUSTOM9",
+          "latency": 3,
+          "II": 1
+        }
+      ],
+      "count": 32,
+      "has_unwanted_rd_read": false
+    },
+    "branches": {
+      "instructions": [
+        {
+          "name": "FUSED_BEQ",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "FUSED_BGEU",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "FUSED_BGE",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "FUSED_BLTU",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "FUSED_BLT",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "FUSED_BNE",
+          "latency": 3,
+          "II": 1
+        }
+      ],
+      "count": 6,
+      "has_unwanted_rd_read": false
+    },
+    "stores-fixed": {
+      "instructions": [
+        {
+          "name": "STORE_XOR_SB",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "STORE_XOR_SH",
+          "latency": 3,
+          "II": 1
+        },
+        {
+          "name": "STORE_XOR_SW",
+          "latency": 3,
+          "II": 1
+        }
+      ],
+      "count": 3,
+      "has_unwanted_rd_read": false
+    }
+  },
+  "executions": {
+    "baseline": {
+      "passed": true,
+      "job": "baseline",
+      "branch_repeats": 1,
+      "data_wait_states": 0,
+      "elapsed_seconds": 7.858205653727055,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "a3c06dc3a4594448dfe524db9282bd4d34930612e71f32c61b1b8fcfe54a389b",
+      "loaded_memory_sha256": "b85f9c701e5205f0b5d95d1724274b74e1cb7c3f0c3823132bee7fcf319cc655",
+      "rtl_sha256": {
+        "hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+        "hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+        "hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3"
+      },
+      "log": "sim/baseline/uart.log",
+      "pairs": [],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        }
+      ],
+      "ise_kernels": [],
+      "zero_register_check_passed": false
+    },
+    "branches": {
+      "passed": true,
+      "job": "branches",
+      "branch_repeats": 1,
+      "elapsed_seconds": 10.625252611935139,
+      "simulation": "Icarus RTL, zero-wait AHB RAM and UART; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "357e14a4513f1931ff7b390fe68a30714912229cce1e5ab94b3d014b76ba87d3",
+      "rtl_sha256": {
+        "hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+        "hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+        "hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+        "sim/tb.sv": "535fbf013ec128805c9e5ccc619e61b3e3247ea543866035eb8224f55751a7a8",
+        "hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+      },
+      "loaded_memory_sha256": "1e54efbf46257153cabbdfcba61ec1f0fc95368f90acdd962733af09d585ea09",
+      "log": "sim/branches/uart.log",
+      "pairs": [],
+      "native_kernels": [],
+      "ise_kernels": [],
+      "branch_checks": 84,
+      "zero_register_check_passed": false
+    },
+    "branches-repeat16": {
+      "passed": true,
+      "job": "branches",
+      "branch_repeats": 16,
+      "data_wait_states": 0,
+      "elapsed_seconds": 24.605515375733376,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "23cef33be38f89a3027a44aff31570af89eab5d073043c0a69058d05ee2c67e7",
+      "loaded_memory_sha256": "33ddc0a210650bc9fc305db800a35c9e5e0f1fa990f876847de764a8bdce47fe",
+      "rtl_sha256": {
+        "hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+        "hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+        "hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+      },
+      "log": "sim/branches-repeat16/uart.log",
+      "pairs": [],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        }
+      ],
+      "ise_kernels": [],
+      "branch_checks": 1344,
+      "zero_register_check_passed": false
+    },
+    "branches-repeat16-wait1": {
+      "passed": true,
+      "job": "branches",
+      "branch_repeats": 16,
+      "data_wait_states": 1,
+      "elapsed_seconds": 25.460944086313248,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "ef0363943089f99140626536f0e7376a4ea695ba30231f81fec74fc9752d123a",
+      "rtl_sha256": {
+        "hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+        "hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+        "hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+      },
+      "loaded_memory_sha256": "33ddc0a210650bc9fc305db800a35c9e5e0f1fa990f876847de764a8bdce47fe",
+      "log": "sim/branches-repeat16-wait1/uart.log",
+      "pairs": [],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        }
+      ],
+      "ise_kernels": [],
+      "branch_checks": 1344,
+      "zero_register_check_passed": false
+    },
+    "crc32-fixed": {
+      "passed": true,
+      "job": "crc32-fixed",
+      "branch_repeats": 1,
+      "data_wait_states": 0,
+      "elapsed_seconds": 65.03988955169916,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "432a2c6d43e27ecf02ed00d2361718ce0913e6aac8247f4be417787fd30da43a",
+      "rtl_sha256": {
+        "hls-run/crc32-fixed/VexRiscv_5s/VexRiscv.v": "eacac6e1583efe6c20f0c05003a48963e380befe2894db0928a80887ee7c4e00",
+        "hls-run/crc32-fixed/VexRiscv_5s/Vex_top.sv": "f3632941d5a3638c4a7446dbd9473278585b6be3066a7cd98669fa36f7831450",
+        "hls-run/crc32-fixed/VexRiscv_5s/CommonLogicModule.sv": "84ff3eeecf760284717e4a0a1a873ce4c956def9ff93521084b8b8c29b9ddad5",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/crc32-fixed/ISAX_XIsaac.sv": "4e364bf0af846a27bed46ade1e4351a04ed473de3acccc74f9c4c29d53c8bfe6"
+      },
+      "loaded_memory_sha256": "f297444ab3732d754ded15026679518afcbd0767fcf3c137ded43d5a49d9077c",
+      "log": "sim/crc32-fixed/uart.log",
+      "pairs": [
+        {
+          "run": 0,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15383,
+          "ise_cycles": 15384
+        },
+        {
+          "run": 1,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15383,
+          "ise_cycles": 15384
+        },
+        {
+          "run": 2,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15383,
+          "ise_cycles": 15384
+        },
+        {
+          "run": 3,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15383,
+          "ise_cycles": 15384
+        },
+        {
+          "run": 4,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 15383,
+          "ise_cycles": 15384
+        }
+      ],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        },
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        },
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        },
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        },
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        },
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        }
+      ],
+      "ise_kernels": [
+        {
+          "instructions": 10253,
+          "cycles": 15374,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 15374,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 15374,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 15374,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 15374,
+          "ise_ops": 1024
+        }
+      ],
+      "load_checks": 1280,
+      "zero_register_check_passed": true
+    },
+    "crc32-fixed-wait1": {
+      "passed": true,
+      "job": "crc32-fixed",
+      "branch_repeats": 1,
+      "data_wait_states": 1,
+      "elapsed_seconds": 64.986981831491,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "4d27b99519597b557b28de21b926c1866d3f2ca7ae3183f9ab5bc0e5dd4c2855",
+      "rtl_sha256": {
+        "hls-run/crc32-fixed/VexRiscv_5s/VexRiscv.v": "eacac6e1583efe6c20f0c05003a48963e380befe2894db0928a80887ee7c4e00",
+        "hls-run/crc32-fixed/VexRiscv_5s/Vex_top.sv": "f3632941d5a3638c4a7446dbd9473278585b6be3066a7cd98669fa36f7831450",
+        "hls-run/crc32-fixed/VexRiscv_5s/CommonLogicModule.sv": "84ff3eeecf760284717e4a0a1a873ce4c956def9ff93521084b8b8c29b9ddad5",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/crc32-fixed/ISAX_XIsaac.sv": "4e364bf0af846a27bed46ade1e4351a04ed473de3acccc74f9c4c29d53c8bfe6"
+      },
+      "loaded_memory_sha256": "f297444ab3732d754ded15026679518afcbd0767fcf3c137ded43d5a49d9077c",
+      "log": "sim/crc32-fixed-wait1/uart.log",
+      "pairs": [
+        {
+          "run": 0,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 16408,
+          "ise_cycles": 16409
+        },
+        {
+          "run": 1,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 16408,
+          "ise_cycles": 16409
+        },
+        {
+          "run": 2,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 16408,
+          "ise_cycles": 16409
+        },
+        {
+          "run": 3,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 16408,
+          "ise_cycles": 16409
+        },
+        {
+          "run": 4,
+          "native_crc": 1703161001,
+          "ise_crc": 1703161001,
+          "native_cycles": 16408,
+          "ise_cycles": 16409
+        }
+      ],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        },
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        },
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        },
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        },
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        },
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        }
+      ],
+      "ise_kernels": [
+        {
+          "instructions": 10253,
+          "cycles": 16398,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 16398,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 16398,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 16398,
+          "ise_ops": 1024
+        },
+        {
+          "instructions": 10253,
+          "cycles": 16398,
+          "ise_ops": 1024
+        }
+      ],
+      "load_checks": 1280,
+      "zero_register_check_passed": true
+    },
+    "stores": {
+      "passed": false,
+      "job": "stores",
+      "branch_repeats": 1,
+      "data_wait_states": 0,
+      "elapsed_seconds": 8.966981194913387,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "10ff2238965724a25c41b3325294ee45e43447b5e7d7c9f393bc9b3ee1bfae23",
+      "rtl_sha256": {
+        "hls-run/stores/VexRiscv_5s/VexRiscv.v": "519cca9a91e8af6cde0e809e3f540e6804896df6b643460ec6df101f8ae4dcd8",
+        "hls-run/stores/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+        "hls-run/stores/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/stores/ISAX_XStoreProbe.sv": "2f7926549d4a59c7c89968bda483e3d90ca5a53094a21760131d3adb19f2dde6"
+      },
+      "loaded_memory_sha256": "f522f80953b14cca8dc81f7482a8e7c5ba980f527958f88dc00366db402f9989",
+      "log": "sim/stores/uart.log",
+      "pairs": [],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        }
+      ],
+      "ise_kernels": [],
+      "native_store_checks": 6,
+      "zero_register_check_passed": false
+    },
+    "stores-fixed": {
+      "passed": true,
+      "job": "stores-fixed",
+      "branch_repeats": 1,
+      "data_wait_states": 0,
+      "elapsed_seconds": 9.317950211465359,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "9c0e5959ebe1c2edc7589006cea912a0934d77893d342248937e6869914d0479",
+      "rtl_sha256": {
+        "hls-run/stores-fixed/VexRiscv_5s/VexRiscv.v": "5b607e7acfe8de3a6783d9cc6937b10f56b5e07609c62a6c2efee2a8e676e2b2",
+        "hls-run/stores-fixed/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+        "hls-run/stores-fixed/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/stores-fixed/ISAX_XStoreProbe.sv": "e227d0fe594317cf48a6fce563fbb6e3ac0375cf9c89d48fba63c529bcbc8f44"
+      },
+      "loaded_memory_sha256": "f522f80953b14cca8dc81f7482a8e7c5ba980f527958f88dc00366db402f9989",
+      "log": "sim/stores-fixed/uart.log",
+      "pairs": [],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 15374
+        }
+      ],
+      "ise_kernels": [],
+      "store_checks": 48,
+      "native_store_checks": 6,
+      "zero_register_check_passed": false
+    },
+    "stores-fixed-wait1": {
+      "passed": true,
+      "job": "stores-fixed",
+      "branch_repeats": 1,
+      "data_wait_states": 1,
+      "elapsed_seconds": 9.368617303669453,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "5fa0a0a7d26944607661ec16eece45071a95a9c66e62fdd245edc455ea8d3fd7",
+      "rtl_sha256": {
+        "hls-run/stores-fixed/VexRiscv_5s/VexRiscv.v": "5b607e7acfe8de3a6783d9cc6937b10f56b5e07609c62a6c2efee2a8e676e2b2",
+        "hls-run/stores-fixed/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+        "hls-run/stores-fixed/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/stores-fixed/ISAX_XStoreProbe.sv": "e227d0fe594317cf48a6fce563fbb6e3ac0375cf9c89d48fba63c529bcbc8f44"
+      },
+      "loaded_memory_sha256": "f522f80953b14cca8dc81f7482a8e7c5ba980f527958f88dc00366db402f9989",
+      "log": "sim/stores-fixed-wait1/uart.log",
+      "pairs": [],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        }
+      ],
+      "ise_kernels": [],
+      "store_checks": 48,
+      "native_store_checks": 6,
+      "zero_register_check_passed": false
+    },
+    "stores-wait1": {
+      "passed": false,
+      "job": "stores",
+      "branch_repeats": 1,
+      "data_wait_states": 1,
+      "elapsed_seconds": 8.913842879235744,
+      "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+      "firmware_sha256": "261d3e297367bb79ac91dfb3978e7623f156c8e48ea2ae7f83a44230d9414356",
+      "rtl_sha256": {
+        "hls-run/stores/VexRiscv_5s/VexRiscv.v": "519cca9a91e8af6cde0e809e3f540e6804896df6b643460ec6df101f8ae4dcd8",
+        "hls-run/stores/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+        "hls-run/stores/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+        "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+        "hls-run/stores/ISAX_XStoreProbe.sv": "2f7926549d4a59c7c89968bda483e3d90ca5a53094a21760131d3adb19f2dde6"
+      },
+      "loaded_memory_sha256": "8fcf6f4790096348553b0270528f9a60e80eccad7d6660cb2a85f05d1fed8f34",
+      "log": "sim/stores-wait1/uart.log",
+      "pairs": [],
+      "native_kernels": [
+        {
+          "instructions": 13325,
+          "cycles": 16398
+        }
+      ],
+      "ise_kernels": [],
+      "zero_register_check_passed": false
+    }
+  },
+  "performance": {
+    "crc32-fixed": {
+      "data_wait_states": 0,
+      "native_instructions": 13325.0,
+      "ise_instructions": 10253,
+      "instructions_saved": 3072.0,
+      "instruction_reduction_percent": 23.054409005628518,
+      "native_retirement_cycles": 15374.0,
+      "ise_retirement_cycles": 15374,
+      "ise_invocations_per_kernel": 1024,
+      "native_timer_cycles": 15383,
+      "ise_timer_cycles": 15384
+    },
+    "crc32-fixed-wait1": {
+      "data_wait_states": 1,
+      "native_instructions": 13325.0,
+      "ise_instructions": 10253,
+      "instructions_saved": 3072.0,
+      "instruction_reduction_percent": 23.054409005628518,
+      "native_retirement_cycles": 16398.0,
+      "ise_retirement_cycles": 16398,
+      "ise_invocations_per_kernel": 1024,
+      "native_timer_cycles": 16408,
+      "ise_timer_cycles": 16409
+    }
+  },
+  "store_ab_control_identical_firmware": true,
+  "fpga_synthesis_executed": false,
+  "physical_fpga_execution": false,
+  "compiler_selection": "GCC -O2 with explicit generated load intrinsics; not automatic LLVM selection"
+}

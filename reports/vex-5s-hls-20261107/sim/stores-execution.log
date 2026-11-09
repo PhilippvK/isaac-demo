@@ -1,0 +1,26 @@
+ISAAC VEX_5S BOOT stores
+RAM PASS
+ISAAC_KERNEL native instructions=13325 cycles=15374
+CRC32=65842ca9 verify=00002ca9 cycles=00003c18
+STORE BEGIN probe=00000000
+STORE FAIL input=00000001 got=a5c30018 want=a5c35418
+FAIL
+FATAL: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/sim/tb.sv:79: ISAAC_SIM_FAIL
+       Time: 384615000 Scope: tb
+
+{
+  "passed": false,
+  "job": "stores",
+  "branch_repeats": 1,
+  "data_wait_states": 0,
+  "elapsed_seconds": 9.016341790556908,
+  "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+  "firmware_sha256": "abd8c2fb4a8b26927c2328a123423195b7deb5ad11e4684fcc18dfdeb8c9de1b",
+  "rtl_sha256": {
+    "hls-run/stores/VexRiscv_5s/VexRiscv.v": "519cca9a91e8af6cde0e809e3f540e6804896df6b643460ec6df101f8ae4dcd8",
+    "hls-run/stores/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+    "hls-run/stores/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+    "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+    "hls-run/stores/ISAX_XStoreProbe.sv": "2f7926549d4a59c7c89968bda483e3d90ca5a53094a21760131d3adb19f2dde6"
+  }
+}

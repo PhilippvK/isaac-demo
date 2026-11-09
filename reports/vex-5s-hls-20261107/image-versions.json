@@ -1,0 +1,16 @@
+{
+  "base": {
+    "image": "philippvk/isaac-quickstart-hls:latest",
+    "id": "sha256:433db8b314c646fe47ea33c649b91e6484fb98ab68feee281fe200304816f6b2",
+    "repo_digests": [
+      "philippvk/isaac-quickstart-hls@sha256:40e063cb86db7a6c36c5c1f11a412506a6866423df06087a36e82ba598d54c79"
+    ]
+  },
+  "vex_store_fix": {
+    "image": "isaac-quickstart-hls-vex5:local",
+    "id": "sha256:3540a2e5d1dd47051ee542eb3e8e7f5cada1952c34a59abc7ba4ad8675b5d466",
+    "repo_digests": []
+  },
+  "generator_patch_sha256": "e14c5a753b69ed5cdd6314996f6f807c3e4ced5e7a933f0eea93d1f0d197fb53",
+  "patched_source_sha256": "ebd47bb077de876dc18c5bc043152a645eaf52f317400cfca867d5d15ed16ffe"
+}

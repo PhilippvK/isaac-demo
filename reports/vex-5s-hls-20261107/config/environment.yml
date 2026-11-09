@@ -1,0 +1,291 @@
+cleanup:
+  auto: false
+  keep: 100
+flags:
+  tflmc.exe:
+  - x86
+frameworks:
+  default: tvm
+  tflm:
+    backends:
+      default: tflmi
+      tflmi:
+        enabled: false
+        features:
+          debug_arena: false
+    enabled: false
+    features:
+      cmsisnn: false
+      muriscvnn: false
+  tvm:
+    backends:
+      default: tvmaot
+      tvmaot:
+        enabled: false
+        features:
+          autotuned: false
+          debug_arena: false
+          disable_legalize: false
+          moiopt: false
+          unpacked_api: false
+          usmp: false
+      tvmaotplus:
+        enabled: false
+        features:
+          autotuned: false
+          debug_arena: false
+          disable_legalize: false
+          moiopt: false
+      tvmllvm:
+        enabled: false
+        features:
+          autotuned: false
+          disable_legalize: false
+          moiopt: false
+      tvmrt:
+        enabled: false
+        features:
+          autotuned: false
+          debug_arena: false
+          disable_legalize: false
+          moiopt: false
+    enabled: false
+    features:
+      cmsisnnbyoc: false
+      muriscvnnbyoc: false
+frontends:
+  cmsis_dsp:
+    enabled: true
+  cmsis_nn:
+    enabled: true
+  coremark:
+    enabled: true
+  crypto_bench:
+    enabled: true
+  dhrystone:
+    enabled: true
+  embench:
+    enabled: true
+  embench_dsp:
+    enabled: true
+  embench_iot:
+    enabled: true
+  example:
+    enabled: true
+  layergen:
+    enabled: false
+  onnx:
+    enabled: false
+  packed:
+    enabled: false
+    features:
+      packed: false
+      packing: false
+  paddle:
+    enabled: false
+  pb:
+    enabled: false
+  relay:
+    enabled: false
+    features:
+      relayviz: false
+  taclebench:
+    enabled: true
+  tflite:
+    enabled: false
+    features:
+      split_layers: false
+      validate: false
+      visualize: false
+home: /var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/environment
+logging:
+  level: DEBUG
+  rotate: false
+  to_file: false
+paths:
+  deps: /var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps
+  logs: logs
+  models:
+  - /var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/models
+  - /home/ga87puy/.config/mlonmcu/models
+  plugins: plugins
+  results: results
+  temp: temp
+platforms:
+  espidf:
+    enabled: false
+    features:
+      debug: true
+  microtvm:
+    enabled: false
+    features: []
+  mlif:
+    enabled: true
+    features:
+      benchmark: true
+      debug: true
+      validate: true
+  tvm:
+    enabled: false
+    features:
+      autotune: true
+      benchmark: true
+      tvm_profile: true
+      tvm_rpc: true
+  zephyr:
+    enabled: false
+    features:
+      debug: true
+postprocesses:
+  use: null
+repos:
+  cmsis:
+    ref: a75f01746df18bb5b929dfb8dc6c9407fac3a0f3
+    url: https://github.com/ARM-software/CMSIS_5.git
+  cmsisnn:
+    ref: 040da18234b597867bd54d736ca4ceae545b2853
+    url: https://github.com/ARM-software/CMSIS-NN.git
+  dtc:
+    ref: main
+    url: https://github.com/dgibson/dtc.git
+  embench:
+    ref: d9b30cdf805133bef9db5f7ecf84ae1ce8124291
+    url: https://github.com/embench/embench-iot.git
+  embench_dsp:
+    ref: rc1
+    url: https://github.com/embench/embench-dsp.git
+  embench_iot:
+    ref: embench-2.0-branch
+    url: https://github.com/embench/embench-iot.git
+  espidf:
+    options:
+      recursive: true
+    ref: release/v4.4
+    url: https://github.com/espressif/esp-idf.git
+  etiss:
+    ref: 739573d5f12798074bc7d375a46c005f23f59f67
+    url: https://github.com/tum-ei-eda/etiss.git
+  layergen:
+    ref: 8d27988fe3a50838521e7c7fb42193da717c5830
+    url: https://github.com/PhilippvK/ml-layer-gen.git
+  microtvm_etiss:
+    ref: b1e53bdae24bb35e53d7cdad2917a9090f7fa933
+    url: https://github.com/PhilippvK/microtvm-etiss-template.git
+  microtvm_spike:
+    ref: ffba460345f5b8682e2a6cb315699ff872c6221e
+    url: https://github.com/PhilippvK/microtvm-spike-template.git
+  mlif:
+    ref: isaac-demo-rebased
+    url: https://github.com/tum-ei-eda/mlonmcu-sw.git
+  muriscvnn:
+    ref: 71800396c2a07202265a8f92c85c33845a369494
+    url: https://github.com/tum-ei-eda/muriscv-nn.git
+  spike:
+    ref: 0bc176b3fca43560b9e8586cdbc41cfde073e17a
+    url: https://github.com/riscv-software-src/riscv-isa-sim.git
+  spikepk:
+    ref: 7e9b671c0415dfd7b562ac934feb9380075d4aa2
+    url: https://github.com/riscv-software-src/riscv-pk.git
+  taclebench:
+    ref: master
+    url: https://github.com/tacle/tacle-bench.git
+  tensorflow:
+    ref: 93d4b1ccc6e0d1a9062acb1d79f21505daf9d940
+    url: https://github.com/tensorflow/tflite-micro.git
+  tflite_pack:
+    ref: 2d31cafc941d3889b042af9c0a72b5f768ac4606
+    url: https://github.com/tum-ei-eda/tflite-pack.git
+  tvm:
+    options:
+      recursive: false
+      submodules:
+      - 3rdparty/dmlc-core
+      - 3rdparty/dlpack
+      - 3rdparty/libbacktrace
+    ref: isaac
+    url: https://github.com/PhilippvK/tvm.git
+  tvm_extensions:
+    ref: 859bbc89519b610d8adcdba0869d8b087887aabd
+    url: https://github.com/tum-ei-eda/tvm_extensions.git
+  zephyr:
+    ref: v3.2.0
+    url: https://github.com/zephyrproject-rtos/zephyr.git
+targets:
+  corstone300:
+    enabled: false
+    features:
+      arm_dsp: true
+      arm_mvei: true
+      ethosu: false
+  default: etiss
+  etiss:
+    enabled: true
+    features:
+      etissdbg: false
+      gdbserver: true
+      log_instrs: true
+      trace: true
+  etiss_pulpino:
+    enabled: true
+    features:
+      etissdbg: false
+      gdbserver: true
+      log_instrs: true
+      trace: true
+  host_x86:
+    enabled: true
+    features:
+      gdbserver: true
+  microtvm_arduino:
+    enabled: false
+  microtvm_espidf:
+    enabled: false
+  microtvm_etiss:
+    enabled: false
+  microtvm_host:
+    enabled: false
+  microtvm_spike:
+    enabled: false
+  microtvm_zephyr:
+    enabled: false
+  ovpsim:
+    enabled: false
+    features:
+      log_instrs: true
+      pext: false
+      vext: false
+  riscv_qemu:
+    enabled: true
+    features:
+      vext: false
+  spike:
+    enabled: false
+    features:
+      cachesim: true
+      log_instrs: true
+      pext: false
+      vext: false
+  tvm_cpu:
+    enabled: true
+toolchains:
+  gcc: true
+  llvm: true
+vars:
+  allow_extensions: false
+  boost.use_system: true
+  cmake.keep_build_dir: false
+  cmake.keep_src_dir: false
+  cmake.use_system: true
+  etiss.experimental_print_to_file: true
+  etiss.install_dir: /var/tmp/ga87puy/isaac-demo-new/install/etiss
+  etiss.keep_build_dir: false
+  etiss.src_dir: /var/tmp/ga87puy/isaac-demo-new/etiss
+  etissvp.exe: /var/tmp/ga87puy/isaac-demo-new/install/etiss/bin/bare_etiss_processor
+  etissvp.script: /var/tmp/ga87puy/isaac-demo-new/install/etiss/bin/run_helper.sh
+  llvm.install_dir: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build
+  riscv_gcc_rv32.dl_url: https://github.com/PhilippvK/riscv-tools/releases/download/gnu_2025.08.08_min/riscv32-unknown-elf-ubuntu-22.04-rv32gc_ilp32d.tar.xz
+  runs_per_stage: true
+  spike.full: false
+  spike.keep_build_dir: false
+  cmake.exe: /var/tmp/ga87puy/isaac-demo-new/reports/llvm-version-ise-20261104/cmake.sh
+  riscv_gcc_rv32.install_dir: /var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu

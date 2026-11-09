@@ -1,0 +1,9 @@
+START trace
+DONE trace
+START isaac_load
+DONE isaac_load
+START isaac_analyze
+DONE isaac_analyze
+START isaac_pick
+DONE isaac_pick
+START isaac_cdfg

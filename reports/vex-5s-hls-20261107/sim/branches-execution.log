@@ -1,0 +1,28 @@
+ISAAC VEX_5S BOOT branches
+RAM PASS
+CRC32=65842ca9 verify=00002ca9 cycles=00003c19
+BRANCH BEGIN probe=00000000
+BRANCH BEGIN probe=00000001
+BRANCH BEGIN probe=00000002
+BRANCH BEGIN probe=00000003
+BRANCH BEGIN probe=00000004
+BRANCH BEGIN probe=00000005
+BRANCH PASS checks=00000054
+PASS
+ISAAC_SIM_PASS cycles=42410
+
+{
+  "passed": true,
+  "job": "branches",
+  "branch_repeats": 1,
+  "elapsed_seconds": 10.625252611935139,
+  "simulation": "Icarus RTL, zero-wait AHB RAM and UART; wrapper cycle counter at 0x60000010",
+  "firmware_sha256": "357e14a4513f1931ff7b390fe68a30714912229cce1e5ab94b3d014b76ba87d3",
+  "rtl_sha256": {
+    "hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+    "hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+    "hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+    "sim/tb.sv": "535fbf013ec128805c9e5ccc619e61b3e3247ea543866035eb8224f55751a7a8",
+    "hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+  }
+}

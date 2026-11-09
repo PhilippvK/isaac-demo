@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"baseline\"",
+    "-DBOARD_CORE_NAME=\"VEX_5S\"",
+    "-DBOARD_CYCLE_COUNTER_ADDRESS=1610612752u",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/baseline/firmware.elf"
+  ],
+  "variant": "baseline",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "5e23a5cccb7e385e0f6a513273f36dd81c5a1998365375ee490aff61d0259d37",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/baseline/firmware.elf": "a3c06dc3a4594448dfe524db9282bd4d34930612e71f32c61b1b8fcfe54a389b",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/baseline/firmware.bin": "be09e2f4f54103e3ebe584098f60f00596bbfe1794bbe752fb4ac39b7dd65972",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/baseline/firmware.coe": "d300728fe62ef2a0234bf678178579f432acd02e385f81559088708a53bfc86c"
+  }
+}

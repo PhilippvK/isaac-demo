@@ -1,0 +1,6 @@
+ISAAC VEX_5S BOOT baseline
+RAM PASS
+ISAAC_KERNEL native instructions=13325 cycles=15374
+CRC32=65842ca9 verify=00002ca9 cycles=00003c1a
+PASS
+ISAAC_SIM_PASS cycles=37119

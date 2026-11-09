@@ -1,0 +1,3 @@
+func_name,bb_name,elf_instrs,graph_nodes,graph_blocks,difference,allowance,status,severe,selected,graph_modules,graph_stages,graph_names,graph_compilations,graph_block_ids
+benchmark_body,%bb.3,10.0,15.0,1.0,5.0,6.0,tolerated,False,True,['/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c'],[32],['%bb.3'],['83564e7120b4430298126ff268703437'],[11053]
+rand_beebs,%bb.0,13.0,14.0,1.0,1.0,6.3,tolerated,False,True,['/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c'],[32],['%bb.0'],['2aacfaeaaa234580bf8c6e82f06dd475'],[10689]

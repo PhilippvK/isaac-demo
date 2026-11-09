@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"branches\"",
+    "-DBOARD_CORE_NAME=\"VEX_5S\"",
+    "-DBOARD_CYCLE_COUNTER_ADDRESS=1610612752u",
+    "-DISAAC_BRANCHES=1",
+    "-DBRANCH_REPEATS=16",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/branches-repeat16/firmware.elf"
+  ],
+  "variant": "branches",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "d90e38b114cbdfcb4ea9762deccfc5b0eec2485f5e712a9faa3d631dd7fc4314",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "5e23a5cccb7e385e0f6a513273f36dd81c5a1998365375ee490aff61d0259d37",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S": "04d68c2064b4e22cf658e6c9e390cf25a8401d49be859537233437095259a3ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/effect_checks.h": "82ae29aadc30381dc42d56bb53bb4aee0c39f93a565969596b6a5412e3789e90",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/branches-repeat16/firmware.elf": "23cef33be38f89a3027a44aff31570af89eab5d073043c0a69058d05ee2c67e7",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/branches-repeat16/firmware.bin": "ecca9d0f3d9e3213012558d375ea74e405b30d969ca77bf01718e72fd042a134",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/firmware/branches-repeat16/firmware.coe": "3df97224c2b48bb25944ee243a22cb812f0971969e86720b15cffc6ea126cdfd"
+  }
+}

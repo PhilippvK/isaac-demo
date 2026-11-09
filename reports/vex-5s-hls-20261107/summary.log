@@ -1,0 +1,39 @@
+{
+  "performance": {
+    "crc32-fixed": {
+      "data_wait_states": 0,
+      "native_instructions": 13325.0,
+      "ise_instructions": 10253,
+      "instructions_saved": 3072.0,
+      "instruction_reduction_percent": 23.054409005628518,
+      "native_retirement_cycles": 15374.0,
+      "ise_retirement_cycles": 15374,
+      "ise_invocations_per_kernel": 1024,
+      "native_timer_cycles": 15383,
+      "ise_timer_cycles": 15384
+    },
+    "crc32-fixed-wait1": {
+      "data_wait_states": 1,
+      "native_instructions": 13325.0,
+      "ise_instructions": 10253,
+      "instructions_saved": 3072.0,
+      "instruction_reduction_percent": 23.054409005628518,
+      "native_retirement_cycles": 16398.0,
+      "ise_retirement_cycles": 16398,
+      "ise_invocations_per_kernel": 1024,
+      "native_timer_cycles": 16408,
+      "ise_timer_cycles": 16409
+    }
+  },
+  "store_ab_control_identical_firmware": true,
+  "functional_passes": [
+    "baseline",
+    "branches",
+    "branches-repeat16",
+    "branches-repeat16-wait1",
+    "crc32-fixed",
+    "crc32-fixed-wait1",
+    "stores-fixed",
+    "stores-fixed-wait1"
+  ]
+}

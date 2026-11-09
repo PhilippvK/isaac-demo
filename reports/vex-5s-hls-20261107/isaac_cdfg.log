@@ -1,0 +1,27 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/runs/crc32/20261107T120000 DATE=20261107T120000 BENCH=crc32
+clang-22: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang-22: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang-22: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang-22: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+INFO - annotate_bb_weights - Annotating BB weights...
+INFO - enforce_bb_report - ELF/CDFG BB count validation: {'not_exported': 39, 'missing_elf': 23, 'tolerated': 9, 'mismatch': 2, 'exact': 1}
+WARNING - enforce_bb_report - 23 CDFG blocks have no ELF block with the same function/BB identity; see bb_cdfg_validation for coverage details
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 412, in <module>
+    main(sys.argv[1:])
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 408, in main
+    handle(args)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 357, in handle
+    annotate_bb_weights(
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 310, in annotate_bb_weights
+    enforce_bb_report(report, mismatch_action)
+  File "/var/tmp/ga87puy/isaac-demo-new/isaac-toolkit/isaac_toolkit/backend/memgraph/annotate_bb_weights.py", line 192, in enforce_bb_report
+    raise BBMismatchError(message)
+__main__.BBMismatchError: ELF/CDFG BB validation failed: 2 invalid blocks, 12 comparable blocks. Check the CDFG stage, ELF, and session label.
+     func_name bb_name  elf_instrs  graph_nodes  graph_blocks  difference  allowance   status  severe  selected                                                                                    graph_modules graph_stages graph_names                 graph_compilations graph_block_ids
+benchmark_body   %bb.1        11.0          2.0           1.0         9.0        6.1 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c]         [32]     [%bb.1] [83564e7120b4430298126ff268703437]         [11051]
+benchmark_body   %bb.5        11.0          3.0           1.0         8.0        6.1 mismatch    True     False [/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c]         [32]     [%bb.5] [83564e7120b4430298126ff268703437]         [11055]

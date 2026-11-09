@@ -1,0 +1,28 @@
+ISAAC VEX_5S BOOT stores
+RAM PASS
+ISAAC_KERNEL native instructions=13325 cycles=15374
+CRC32=65842ca9 verify=00002ca9 cycles=00003c18
+NATIVE STORE PASS checks=00000006
+STORE BEGIN probe=00000000
+STORE BEGIN probe=00000001
+STORE BEGIN probe=00000002
+STORE PASS checks=00000030
+PASS
+ISAAC_SIM_PASS cycles=41026
+
+{
+  "passed": true,
+  "job": "stores-fixed",
+  "branch_repeats": 1,
+  "data_wait_states": 0,
+  "elapsed_seconds": 9.317950211465359,
+  "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+  "firmware_sha256": "9c0e5959ebe1c2edc7589006cea912a0934d77893d342248937e6869914d0479",
+  "rtl_sha256": {
+    "hls-run/stores-fixed/VexRiscv_5s/VexRiscv.v": "5b607e7acfe8de3a6783d9cc6937b10f56b5e07609c62a6c2efee2a8e676e2b2",
+    "hls-run/stores-fixed/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+    "hls-run/stores-fixed/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+    "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+    "hls-run/stores-fixed/ISAX_XStoreProbe.sv": "e227d0fe594317cf48a6fce563fbb6e3ac0375cf9c89d48fba63c529bcbc8f44"
+  }
+}

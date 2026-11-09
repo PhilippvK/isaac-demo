@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "job": "branches",
+  "branch_repeats": 16,
+  "data_wait_states": 0,
+  "elapsed_seconds": 24.605515375733376,
+  "simulation": "Icarus RTL, AHB RAM/UART with selectable data wait states; wrapper cycle counter at 0x60000010",
+  "firmware_sha256": "23cef33be38f89a3027a44aff31570af89eab5d073043c0a69058d05ee2c67e7",
+  "loaded_memory_sha256": "33ddc0a210650bc9fc305db800a35c9e5e0f1fa990f876847de764a8bdce47fe",
+  "rtl_sha256": {
+    "hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+    "hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+    "hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+    "sim/tb.sv": "803b7ae9003d13125eb42bf82f2ff132fb894c877a95f0f294f41dce9f651ac3",
+    "hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+  }
+}

@@ -1,0 +1,20 @@
+InstructionSet XStoreProbe {
+architectural_state { register unsigned<32> X[32] [[is_main_reg]]; extern unsigned<8> MEM[4294967296] [[is_main_mem]]; }
+instructions {
+STORE_XOR_SB {
+encoding: 7'b0000000 :: rs2[4:0] :: rs1[4:0] :: 3'd0 :: 5'b00000 :: 7'b0101011;
+assembly: "{name(rs1)}, {name(rs2)}";
+behavior: { unsigned<32> addr = X[rs1]; MEM[addr] = (unsigned<8>)(X[rs2] ^ (unsigned<32>)7); }
+}
+STORE_XOR_SH {
+encoding: 7'b0000000 :: rs2[4:0] :: rs1[4:0] :: 3'd1 :: 5'b00000 :: 7'b0101011;
+assembly: "{name(rs1)}, {name(rs2)}";
+behavior: { unsigned<32> addr = X[rs1]; MEM[addr+1:addr] = (unsigned<16>)(X[rs2] ^ (unsigned<32>)7); }
+}
+STORE_XOR_SW {
+encoding: 7'b0000000 :: rs2[4:0] :: rs1[4:0] :: 3'd2 :: 5'b00000 :: 7'b0101011;
+assembly: "{name(rs1)}, {name(rs2)}";
+behavior: { unsigned<32> addr = X[rs1]; MEM[addr+3:addr] = (unsigned<32>)(X[rs2] ^ (unsigned<32>)7); }
+}
+}
+}

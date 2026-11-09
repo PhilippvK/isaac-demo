@@ -1,0 +1,75 @@
+InstructionSet XBranch {
+    architectural_state {
+        register unsigned<32> X[32] [[is_main_reg]];
+        register unsigned<32> PC [[is_pc]];
+    }
+    instructions {
+        FUSED_BEQ [[no_cont]] [[cond]] {
+            encoding: offset_hls_packed[11:11] :: offset_hls_packed[9:4] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b0 :: offset_hls_packed[3:0] :: offset_hls_packed[10:10] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset_hls_packed}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) == ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(((signed<32>)((signed<12>)(offset_hls_packed))) << (1))));
+                    }
+                }
+            }
+        }
+        FUSED_BNE [[no_cont]] [[cond]] {
+            encoding: offset_hls_packed[11:11] :: offset_hls_packed[9:4] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b1 :: offset_hls_packed[3:0] :: offset_hls_packed[10:10] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset_hls_packed}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) != ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(((signed<32>)((signed<12>)(offset_hls_packed))) << (1))));
+                    }
+                }
+            }
+        }
+        FUSED_BLT [[no_cont]] [[cond]] {
+            encoding: offset_hls_packed[11:11] :: offset_hls_packed[9:4] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b1 :: 1'b0 :: offset_hls_packed[3:0] :: offset_hls_packed[10:10] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset_hls_packed}";
+            behavior: {
+                {
+                    if (((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) < ((signed<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(((signed<32>)((signed<12>)(offset_hls_packed))) << (1))));
+                    }
+                }
+            }
+        }
+        FUSED_BGE [[no_cont]] [[cond]] {
+            encoding: offset_hls_packed[11:11] :: offset_hls_packed[9:4] :: rs2[4:0] :: rs1[4:0] :: 1'b1 :: 1'b0 :: 1'b0 :: offset_hls_packed[3:0] :: offset_hls_packed[10:10] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset_hls_packed}";
+            behavior: {
+                {
+                    if (((signed<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) >= ((signed<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(((signed<32>)((signed<12>)(offset_hls_packed))) << (1))));
+                    }
+                }
+            }
+        }
+        FUSED_BLTU [[no_cont]] [[cond]] {
+            encoding: offset_hls_packed[11:11] :: offset_hls_packed[9:4] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b0 :: 1'b1 :: offset_hls_packed[3:0] :: offset_hls_packed[10:10] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset_hls_packed}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) < ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(((signed<32>)((signed<12>)(offset_hls_packed))) << (1))));
+                    }
+                }
+            }
+        }
+        FUSED_BGEU [[no_cont]] [[cond]] {
+            encoding: offset_hls_packed[11:11] :: offset_hls_packed[9:4] :: rs2[4:0] :: rs1[4:0] :: 1'b0 :: 1'b1 :: 1'b0 :: offset_hls_packed[3:0] :: offset_hls_packed[10:10] :: 1'b0 :: 1'b0 :: 1'b0 :: 1'b1 :: 1'b0 :: 1'b1 :: 1'b1;
+            assembly: "{name(rs1)}, {name(rs2)}, {offset_hls_packed}";
+            behavior: {
+                {
+                    if (((unsigned<32>)((unsigned<32>)(((unsigned<32>)((unsigned<32>)(X[rs1]))) & ((unsigned<32>)((unsigned<32>)(X[rs2])))))) >= ((unsigned<32>)(7))) {
+                        PC = (unsigned<32>)((PC) + ((signed<32>)(((signed<32>)((signed<12>)(offset_hls_packed))) << (1))));
+                    }
+                }
+            }
+        }
+    }
+}
+
