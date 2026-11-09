@@ -23,6 +23,17 @@ static int effect_checks(void) {
 #endif
 #ifdef ISAAC_STORES
 static int effect_checks(void) {
+ for (u32 i=0;i<6;i++) {
+  u32 lane=i<4?i:(i-4)*2,original=0xa5c36f18u,value=0xfedc8765u;
+  scratch[0]=0x11223344u;scratch[1]=original;scratch[2]=0x55667788u;
+  u32 addr=(u32)&scratch[1]+lane;
+  if (i<4) __asm__ volatile("sb %1,0(%0)"::"r"(addr),"r"(value):"memory");
+  else __asm__ volatile("sh %1,0(%0)"::"r"(addr),"r"(value):"memory");
+  u32 mask=(i<4?0xffu:0xffffu)<<(lane*8);
+  u32 want=(original&~mask)|((value<<(lane*8))&mask);
+  if (scratch[1]!=want||scratch[0]!=0x11223344u||scratch[2]!=0x55667788u) {puts_uart("NATIVE STORE FAIL\r\n");return 1;}
+ }
+ puts_uart("NATIVE STORE PASS checks=00000006\r\n");
  for (u32 mode=0;mode<3;mode++) {
   puts_uart("STORE BEGIN probe=");hex(mode);puts_uart("\r\n");
   for (u32 i=0;i<16;i++) {
