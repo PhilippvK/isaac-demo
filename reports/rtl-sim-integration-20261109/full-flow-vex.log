@@ -1,0 +1,41 @@
+BENCH=crc32
+DATE=20261109T000000
+STEPS=rtl_sim_0
+DATE=20261109T000000
+NEW=0
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow/crc32//20261109T000000
+STEPS=rtl_sim_0
+Running step: rtl_sim_0
+Executing: bash ./scripts/flow_rtl_sim.sh /var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow/crc32//20261109T000000
+{
+  "core": "vex",
+  "verilator_version": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+  "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-vex-crc32/baseline/firmware/benchmark.bin",
+  "firmware_sha256": "c91e97e4dd54dff0d3ad538576c08d266b7aa5177972923c088d902ed548f825",
+  "adapter_sha256": "91b316dfb51274c7c66811ee9679c53910f171da0d7520a43a9927c756c31f6f",
+  "host_sha256": "1d49e0d9b9f640632ac95b042ff1b3853b3da89f6a709aa0973e2c5aa65ebc7f",
+  "max_cycles": 100000000,
+  "data_wait_states": 0,
+  "passed": true,
+  "exit_status": 0,
+  "cycles": 5074004,
+  "retired": 4197416,
+  "completed": 1,
+  "returncode": 0,
+  "elapsed_seconds": 1.5385381132364273
+}
+{
+  "baseline": {
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 86,
+      "Setup Instructions": 57,
+      "Run Cycles": 5051140,
+      "Run Instructions": 4179696,
+      "Deinit Cycles": 59,
+      "Deinit Instructions": 42,
+      "Total Cycles": 5051558,
+      "Total Instructions": 4180006
+    }
+  }
+}

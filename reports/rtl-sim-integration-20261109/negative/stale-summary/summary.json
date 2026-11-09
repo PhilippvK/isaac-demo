@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "default": {
+      "passed": false,
+      "status": "not executed",
+      "benchmark_metrics": {},
+      "benchmark_verified": false
+    }
+  },
+  "passed": false
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "path": "preserved-vex/metrics.csv",
+    "matches": true,
+    "sha256": "1976bc0b5646013c5bed37847b90f0023c8b2a0df55caddf36519a2aa89edb13"
+  },
+  {
+    "path": "preserved-vex/baseline-build.log",
+    "matches": true,
+    "sha256": "3984a5dfe4aa40ab4ca9d20abf88f52d0fc762b553b6761f8cf23efe53bae7a1"
+  },
+  {
+    "path": "preserved-vex/summary.json",
+    "matches": true,
+    "sha256": "714ed4535854927e7bf0a355762b681e63645a377d5c583b4b8bec07d03119b0"
+  },
+  {
+    "path": "preserved-vex/baseline/compile.log",
+    "matches": true,
+    "sha256": "9a80dcffb01377b61845f7185551926b570b607ef1bc48c68fbcf3377aed6ad1"
+  },
+  {
+    "path": "preserved-vex/baseline/instruction-selector.json",
+    "matches": true,
+    "sha256": "7b7d0d8d413e9b5504f1462b67d0ffafb510489585d8968f28f32d3e81714666"
+  },
+  {
+    "path": "preserved-vex/baseline/uart.log",
+    "matches": true,
+    "sha256": "393a767e952b0a92587efb7bdb0b9b533656f02c995b20a77ed87b6f44816667"
+  },
+  {
+    "path": "preserved-vex/baseline/execution.json",
+    "matches": true,
+    "sha256": "301769ed29b6ec120603bcbb0887a9a7655b13befc9eaf5a827925b1f1a441a9"
+  },
+  {
+    "path": "preserved-vex/baseline/firmware/build.json",
+    "matches": true,
+    "sha256": "2f42dcf820cdaf69adf69337710a21f15820023413793aa6379a4771e98dc313"
+  },
+  {
+    "path": "preserved-vex/baseline/firmware/benchmark.elf",
+    "matches": true,
+    "sha256": "19847fc272814066ab622734c453c6600e60a28f2c5fb3e68a22f0d9c8a459ff"
+  },
+  {
+    "path": "preserved-vex/baseline/firmware/benchmark.bin",
+    "matches": true,
+    "sha256": "c91e97e4dd54dff0d3ad538576c08d266b7aa5177972923c088d902ed548f825"
+  },
+  {
+    "path": "preserved-cva5/metrics.csv",
+    "matches": true,
+    "sha256": "85672179317f3f0e0a62e73ef8657ecbb47adce096b011a7d6830dfa66522ee7"
+  },
+  {
+    "path": "preserved-cva5/baseline-build.log",
+    "matches": true,
+    "sha256": "4f29056dc4d45a7bb1f6903a91943421e7d84105629cbc12c527650e14e53ce0"
+  },
+  {
+    "path": "preserved-cva5/summary.json",
+    "matches": true,
+    "sha256": "1c856ee20542a2dcef03bc4b352e37496ad28e9c6069557c336c99cc886ce918"
+  },
+  {
+    "path": "preserved-cva5/baseline/compile.log",
+    "matches": true,
+    "sha256": "e868c83afb8a914107b88dcaf4977b43aab354a57d40709d4cca3eaa2bb81586"
+  },
+  {
+    "path": "preserved-cva5/baseline/instruction-selector.json",
+    "matches": true,
+    "sha256": "7b7d0d8d413e9b5504f1462b67d0ffafb510489585d8968f28f32d3e81714666"
+  },
+  {
+    "path": "preserved-cva5/baseline/uart.log",
+    "matches": true,
+    "sha256": "1fe0e39fdaa884b3af63b70ecaa9b0ec319b312b4f1b95f8199ac5778e34fd5a"
+  },
+  {
+    "path": "preserved-cva5/baseline/execution.json",
+    "matches": true,
+    "sha256": "c4a206c18f5571943a644b6a6459fa7fb4cd747e1005b046ade538bb1605f3b8"
+  },
+  {
+    "path": "preserved-cva5/baseline/firmware/build.json",
+    "matches": true,
+    "sha256": "6ab968798f0b115f538b023e712e4b11dce32c35e70067867b4ea31f88bc0559"
+  },
+  {
+    "path": "preserved-cva5/baseline/firmware/benchmark.elf",
+    "matches": true,
+    "sha256": "5fd88b2f70b9b99cd26263f9bd464c1ad5bf5556d2c9d9478562d652418b6a11"
+  },
+  {
+    "path": "preserved-cva5/baseline/firmware/benchmark.bin",
+    "matches": true,
+    "sha256": "0cba804a9685bb4f0f444c0cd13d6dce74625ed39990ebfdbf5fd127019f93fd"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"full\"",
+    "-DISAAC_RTL_SIM_EXIT=1",
+    "-DBOARD_CORE_NAME=\"VEX_5S\"",
+    "-DBOARD_CYCLE_COUNTER_ADDRESS=1610612752u",
+    "-DISAAC_MEMORY_HEADER=\"/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-memory/memory.h\"",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-memory/firmware.elf"
+  ],
+  "variant": "full",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "ec76a710972221460ab7d43f693211e31d9a7298c00db5a54e36f1f41747d6ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "5e23a5cccb7e385e0f6a513273f36dd81c5a1998365375ee490aff61d0259d37",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "reports/vex-5s-hls-20261107/hls-inputs/crc32-fixed/XIsaac.hls.core_desc": "a076f3a9f28e88269fd79cbbe3b521b201fc843916e9438babd2477e77bbe806",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-memory/memory.h": "92fb27a6eaf226befaa2cec51e6a13d2328e839af70692277ccd16ee44e23991",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-memory/firmware.elf": "6e2f902caafe71b09d3f8fc39e30d42bffe02ce080b059ded4492ef6c9202971",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-memory/firmware.bin": "9083afe8e95f2d608505308890446e0a386399ae36e6367be7ee95e2cb25e028",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-memory/firmware.coe": "59b5c5eaaa7a0db8afc32cf3dacdc155f6be046a032b861e6eb1071628d71470"
+  }
+}

@@ -1,0 +1,6 @@
+make: Entering directory '/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-cva5-sha256/baseline/obj_dir'
+make: Nothing to be done for 'default'.
+make: Leaving directory '/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-cva5-sha256/baseline/obj_dir'
+- V e r i l a t i o n   R e p o r t: Verilator 5.040 2025-08-30 rev v5.040
+- Verilator: Built from 0.000 MB sources in 0 modules, into 0.000 MB in 0 C++ files needing 0.000 MB
+- Verilator: Walltime 0.014 s (elab=0.000, cvt=0.000, bld=0.012); cpu 0.002 s on 4 threads; alloced 19.336 MB

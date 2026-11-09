@@ -1,0 +1,1 @@
+/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/../lib/gcc/riscv32-unknown-elf/15.1.0/../../../../riscv32-unknown-elf/bin/ld: warning: /var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-branches/firmware.elf has a LOAD segment with RWX permissions

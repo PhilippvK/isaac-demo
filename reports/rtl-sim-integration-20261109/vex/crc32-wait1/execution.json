@@ -1,0 +1,48 @@
+{
+  "core": "vex",
+  "verilator_version": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+  "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/firmware/crc32/benchmark.bin",
+  "firmware_sha256": "c91e97e4dd54dff0d3ad538576c08d266b7aa5177972923c088d902ed548f825",
+  "rtl_source_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "staged_rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "adapter_sha256": "91b316dfb51274c7c66811ee9679c53910f171da0d7520a43a9927c756c31f6f",
+  "host_sha256": "1d49e0d9b9f640632ac95b042ff1b3853b3da89f6a709aa0973e2c5aa65ebc7f",
+  "compile_command": [
+    "verilator",
+    "--cc",
+    "--exe",
+    "--build",
+    "-j",
+    "4",
+    "-Wno-fatal",
+    "--top-module",
+    "sim_top",
+    "-GDATA_WAIT_STATES=1",
+    "--Mdir",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/vex/crc32-wait1/obj_dir",
+    "-o",
+    "simulator",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/vex.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/host.cpp"
+  ],
+  "max_cycles": 100000000,
+  "data_wait_states": 1,
+  "passed": true,
+  "exit_status": 0,
+  "cycles": 5426165,
+  "retired": 4197489,
+  "completed": 1,
+  "returncode": 0,
+  "elapsed_seconds": 3.4498387426137924
+}

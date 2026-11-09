@@ -1,0 +1,41 @@
+BENCH=nettle-sha256
+DATE=20261109T000000
+STEPS=rtl_sim_0
+DATE=20261109T000000
+NEW=0
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow/nettle-sha256//20261109T000000
+STEPS=rtl_sim_0
+Running step: rtl_sim_0
+Executing: bash ./scripts/flow_rtl_sim.sh /var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow/nettle-sha256//20261109T000000
+{
+  "core": "cva5",
+  "verilator_version": "Verilator 5.040 2025-08-30 rev v5.040",
+  "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-cva5-sha256/baseline/firmware/benchmark.bin",
+  "firmware_sha256": "0cba804a9685bb4f0f444c0cd13d6dce74625ed39990ebfdbf5fd127019f93fd",
+  "adapter_sha256": "1489bc863ab92591bb6044329e833b9350e60a176a92b534da7bc917b45591cc",
+  "host_sha256": "1d49e0d9b9f640632ac95b042ff1b3853b3da89f6a709aa0973e2c5aa65ebc7f",
+  "max_cycles": 100000000,
+  "data_wait_states": 0,
+  "passed": true,
+  "exit_status": 0,
+  "cycles": 4862222,
+  "retired": 4323408,
+  "completed": 1,
+  "returncode": 0,
+  "elapsed_seconds": 5.009830094873905
+}
+{
+  "baseline": {
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 100,
+      "Setup Instructions": 56,
+      "Run Cycles": 4839579,
+      "Run Instructions": 4305511,
+      "Deinit Cycles": 61,
+      "Deinit Instructions": 42,
+      "Total Cycles": 4840115,
+      "Total Instructions": 4305886
+    }
+  }
+}

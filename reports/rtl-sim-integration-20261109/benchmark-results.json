@@ -1,0 +1,66 @@
+[
+  {
+    "core": "vex",
+    "benchmark": "crc32",
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 86,
+      "Setup Instructions": 57,
+      "Run Cycles": 5051140,
+      "Run Instructions": 4179696,
+      "Deinit Cycles": 59,
+      "Deinit Instructions": 42,
+      "Total Cycles": 5051558,
+      "Total Instructions": 4180006
+    },
+    "execution": "vex/crc32-baseline/execution.json"
+  },
+  {
+    "core": "vex",
+    "benchmark": "nettle-sha256",
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 85,
+      "Setup Instructions": 56,
+      "Run Cycles": 4753937,
+      "Run Instructions": 4305511,
+      "Deinit Cycles": 59,
+      "Deinit Instructions": 42,
+      "Total Cycles": 4754429,
+      "Total Instructions": 4305886
+    },
+    "execution": "vex/nettle-sha256-baseline/execution.json"
+  },
+  {
+    "core": "cva5",
+    "benchmark": "crc32",
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 101,
+      "Setup Instructions": 57,
+      "Run Cycles": 4180440,
+      "Run Instructions": 4179696,
+      "Deinit Cycles": 61,
+      "Deinit Instructions": 42,
+      "Total Cycles": 4180896,
+      "Total Instructions": 4180006
+    },
+    "execution": "cva5/crc32-baseline/execution.json"
+  },
+  {
+    "core": "cva5",
+    "benchmark": "nettle-sha256",
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 100,
+      "Setup Instructions": 56,
+      "Run Cycles": 4839579,
+      "Run Instructions": 4305511,
+      "Deinit Cycles": 61,
+      "Deinit Instructions": 42,
+      "Total Cycles": 4840115,
+      "Total Instructions": 4305886
+    },
+    "execution": "cva5/nettle-sha256-baseline/execution.json"
+  }
+]

@@ -1,0 +1,4 @@
+make: Entering directory '/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/vex/crc32-baseline/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -Os -c -o host.o /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/host.cpp
+g++    host.o verilated.o verilated_dpi.o Vsim_top__ALL.a      -o simulator
+make: Leaving directory '/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/vex/crc32-baseline/obj_dir'

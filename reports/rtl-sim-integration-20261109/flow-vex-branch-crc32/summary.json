@@ -1,0 +1,131 @@
+{
+  "variants": {
+    "baseline": {
+      "core": "vex",
+      "verilator_version": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+      "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-vex-branch-crc32/baseline/firmware/benchmark.bin",
+      "firmware_sha256": "c91e97e4dd54dff0d3ad538576c08d266b7aa5177972923c088d902ed548f825",
+      "rtl_source_sha256": {
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+      },
+      "staged_rtl_sha256": {
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+      },
+      "adapter_sha256": "91b316dfb51274c7c66811ee9679c53910f171da0d7520a43a9927c756c31f6f",
+      "host_sha256": "1d49e0d9b9f640632ac95b042ff1b3853b3da89f6a709aa0973e2c5aa65ebc7f",
+      "compile_command": [
+        "verilator",
+        "--cc",
+        "--exe",
+        "--build",
+        "-j",
+        "4",
+        "-Wno-fatal",
+        "--top-module",
+        "sim_top",
+        "-GDATA_WAIT_STATES=0",
+        "--Mdir",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-vex-branch-crc32/baseline/obj_dir",
+        "-o",
+        "simulator",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/VexRiscv.v",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/Vex_top.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/CommonLogicModule.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/ISAX_XBranch.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/vex.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/host.cpp"
+      ],
+      "max_cycles": 100000000,
+      "data_wait_states": 0,
+      "passed": true,
+      "exit_status": 0,
+      "cycles": 5074004,
+      "retired": 4197416,
+      "completed": 1,
+      "returncode": 0,
+      "elapsed_seconds": 3.4637989178299904,
+      "benchmark_metrics": {
+        "Setup Cycles": 86,
+        "Setup Instructions": 57,
+        "Run Cycles": 5051140,
+        "Run Instructions": 4179696,
+        "Deinit Cycles": 59,
+        "Deinit Instructions": 42,
+        "Total Cycles": 5051558,
+        "Total Instructions": 4180006
+      },
+      "benchmark_verified": true,
+      "run_cycle_reduction": 0.0
+    },
+    "default": {
+      "core": "vex",
+      "verilator_version": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+      "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-vex-branch-crc32/default/firmware/benchmark.bin",
+      "firmware_sha256": "c91e97e4dd54dff0d3ad538576c08d266b7aa5177972923c088d902ed548f825",
+      "rtl_source_sha256": {
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+      },
+      "staged_rtl_sha256": {
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+      },
+      "adapter_sha256": "91b316dfb51274c7c66811ee9679c53910f171da0d7520a43a9927c756c31f6f",
+      "host_sha256": "1d49e0d9b9f640632ac95b042ff1b3853b3da89f6a709aa0973e2c5aa65ebc7f",
+      "compile_command": [
+        "verilator",
+        "--cc",
+        "--exe",
+        "--build",
+        "-j",
+        "4",
+        "-Wno-fatal",
+        "--top-module",
+        "sim_top",
+        "-GDATA_WAIT_STATES=0",
+        "--Mdir",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-vex-branch-crc32/default/obj_dir",
+        "-o",
+        "simulator",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/VexRiscv.v",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/Vex_top.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/CommonLogicModule.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/ISAX_XBranch.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/vex.sv",
+        "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/host.cpp"
+      ],
+      "max_cycles": 100000000,
+      "data_wait_states": 0,
+      "passed": true,
+      "exit_status": 0,
+      "cycles": 5074004,
+      "retired": 4197416,
+      "completed": 1,
+      "returncode": 0,
+      "elapsed_seconds": 3.3987554609775543,
+      "benchmark_metrics": {
+        "Setup Cycles": 86,
+        "Setup Instructions": 57,
+        "Run Cycles": 5051140,
+        "Run Instructions": 4179696,
+        "Deinit Cycles": 59,
+        "Deinit Instructions": 42,
+        "Total Cycles": 5051558,
+        "Total Instructions": 4180006
+      },
+      "benchmark_verified": true,
+      "run_cycle_reduction": 0.0
+    }
+  },
+  "passed": true
+}

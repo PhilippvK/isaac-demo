@@ -1,0 +1,37 @@
+{
+  "command": [
+    "/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc",
+    "-march=rv32im_zicsr_zifencei",
+    "-mabi=ilp32",
+    "-O2",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-pic",
+    "-msmall-data-limit=0",
+    "-nostdlib",
+    "-Wl,--no-relax",
+    "-DBOARD_VARIANT=\"branches\"",
+    "-DISAAC_RTL_SIM_EXIT=1",
+    "-DBOARD_CORE_NAME=\"VEX_5S\"",
+    "-DBOARD_CYCLE_COUNTER_ADDRESS=1610612752u",
+    "-DISAAC_BRANCHES=1",
+    "-DBRANCH_REPEATS=16",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S",
+    "-Wl,-T,/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c",
+    "-o",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-branches/firmware.elf"
+  ],
+  "variant": "branches",
+  "sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/start.S": "ec76a710972221460ab7d43f693211e31d9a7298c00db5a54e36f1f41747d6ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/board.c": "5e23a5cccb7e385e0f6a513273f36dd81c5a1998365375ee490aff61d0259d37",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/arty.ld": "4007b696c7923a874b50a8820d619bdc1c033c008b45124290880a1012c4e7ad",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/branch_probes.S": "04d68c2064b4e22cf658e6c9e390cf25a8401d49be859537233437095259a3ea",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn/firmware/effect_checks.h": "82ae29aadc30381dc42d56bb53bb4aee0c39f93a565969596b6a5412e3789e90",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-branches/firmware.elf": "9c3d0402dcefe57e72ef74f05b8232b21ab7a205989a4c816ed41cc6456013c1",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-branches/firmware.bin": "5eb2df56d693ba8fd6ca75991dd6b8d99c9e6b1df4570ac33787446c246a867b",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-branches/firmware.coe": "bd9ec7011a2930327795f85e6405ace0b123a1cd3ae23c863f8051e7895e3f53"
+  }
+}

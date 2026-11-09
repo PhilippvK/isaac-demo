@@ -1,0 +1,51 @@
+{
+  "core": "vex",
+  "verilator_version": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+  "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/firmware/vex-memory/firmware.bin",
+  "firmware_sha256": "9083afe8e95f2d608505308890446e0a386399ae36e6367be7ee95e2cb25e028",
+  "rtl_source_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/VexRiscv.v": "eacac6e1583efe6c20f0c05003a48963e380befe2894db0928a80887ee7c4e00",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/Vex_top.sv": "f3632941d5a3638c4a7446dbd9473278585b6be3066a7cd98669fa36f7831450",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/CommonLogicModule.sv": "84ff3eeecf760284717e4a0a1a873ce4c956def9ff93521084b8b8c29b9ddad5",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/ISAX_XIsaac.sv": "4e364bf0af846a27bed46ade1e4351a04ed473de3acccc74f9c4c29d53c8bfe6"
+  },
+  "staged_rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/VexRiscv.v": "eacac6e1583efe6c20f0c05003a48963e380befe2894db0928a80887ee7c4e00",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/Vex_top.sv": "f3632941d5a3638c4a7446dbd9473278585b6be3066a7cd98669fa36f7831450",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/CommonLogicModule.sv": "84ff3eeecf760284717e4a0a1a873ce4c956def9ff93521084b8b8c29b9ddad5",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/ISAX_XIsaac.sv": "4e364bf0af846a27bed46ade1e4351a04ed473de3acccc74f9c4c29d53c8bfe6"
+  },
+  "adapter_sha256": "91b316dfb51274c7c66811ee9679c53910f171da0d7520a43a9927c756c31f6f",
+  "host_sha256": "1d49e0d9b9f640632ac95b042ff1b3853b3da89f6a709aa0973e2c5aa65ebc7f",
+  "compile_command": [
+    "verilator",
+    "--cc",
+    "--exe",
+    "--build",
+    "-j",
+    "4",
+    "-Wno-fatal",
+    "--top-module",
+    "sim_top",
+    "-GDATA_WAIT_STATES=1",
+    "--Mdir",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/probes/vex-memory/obj_dir",
+    "-o",
+    "simulator",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/VexRiscv.v",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/Vex_top.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/CommonLogicModule.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/ISAX_XIsaac.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/vex.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/host.cpp"
+  ],
+  "max_cycles": 100000000,
+  "data_wait_states": 1,
+  "passed": true,
+  "exit_status": 0,
+  "cycles": 239834,
+  "retired": 170555,
+  "completed": 1,
+  "returncode": 0,
+  "elapsed_seconds": 2.242875561118126
+}

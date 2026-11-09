@@ -1,0 +1,13 @@
+{
+  ".": "66a6fe8561477fbab60d1d0e5deb237328e994b2",
+  "isaac-toolkit": "723433e8436dc694ef928cb598b1efcc19ea4eff",
+  "memgraph_experiments": "77179c2ad9c7ea04873b3dc0c0bd9bdd1df59a2c",
+  "M2-ISA-R": "2f32e39fc816aa440dcb848730a4f19f29c66d9c",
+  "seal5": "8d73694ca615d0d03538ce2c8e7f00e22743c285",
+  "llvm-project-22": "cad0b2de32c91d20d4e0c39b7de194894f307107",
+  "install/mlonmcu/deps/src/mlif": "9f0b47e853254038b402297db105823514a8d8a6",
+  "install/mlonmcu/deps/src/benchmarks/embench": "d9b30cdf805133bef9db5f7ecf84ae1ce8124291",
+  "verilator": "5.040, commit 51cdf52d0f3a3e59b51fd87762646a851e9f4aff (CVA5); 4.038 (Vex)",
+  "integration_commit": "8f1c5a3ea35216577043ee2bf7e54cd7bb87025d",
+  "selector_fix_commit": "f795a1b5a5fd305e16c31834f11de1d9578b2e76"
+}

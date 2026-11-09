@@ -1,0 +1,17 @@
+{
+  "core": "vex",
+  "verilator_version": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+  "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/firmware/crc32/benchmark.bin",
+  "firmware_sha256": "c91e97e4dd54dff0d3ad538576c08d266b7aa5177972923c088d902ed548f825",
+  "adapter_sha256": "91b316dfb51274c7c66811ee9679c53910f171da0d7520a43a9927c756c31f6f",
+  "host_sha256": "1d49e0d9b9f640632ac95b042ff1b3853b3da89f6a709aa0973e2c5aa65ebc7f",
+  "max_cycles": 1000,
+  "data_wait_states": 0,
+  "passed": false,
+  "exit_status": 0,
+  "cycles": 1000,
+  "retired": 785,
+  "completed": 0,
+  "returncode": 1,
+  "elapsed_seconds": 2.080973908305168
+}

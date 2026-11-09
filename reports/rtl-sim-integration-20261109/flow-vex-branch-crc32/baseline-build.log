@@ -1,0 +1,28 @@
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/embench/embench.c:10:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+   10 | void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+      |                                                 ^~~~~~~~~~~~~~~~~~
+/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/embench/embench.c:15:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+   15 | void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+      |                                                 ^~~~~~~~~~~~~~~~~~
+2 warnings generated.
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/../lib/gcc/riscv32-unknown-elf/15.1.0/../../../../riscv32-unknown-elf/bin/ld: warning: /var/tmp/ga87puy/isaac-demo-new/reports/rtl-sim-integration-20261109/flow-vex-branch-crc32/baseline/firmware/benchmark.elf has a LOAD segment with RWX permissions

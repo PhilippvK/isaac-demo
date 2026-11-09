@@ -1,0 +1,32 @@
+{
+  "CUSTOM17": {
+    "code": "0x200b",
+    "opcode": 11,
+    "funct3": 2,
+    "funct7": 0
+  },
+  "CUSTOM43": {
+    "code": "0x8000200b",
+    "opcode": 11,
+    "funct3": 2,
+    "funct7": 64
+  },
+  "CUSTOM44": {
+    "code": "0x4000200b",
+    "opcode": 11,
+    "funct3": 2,
+    "funct7": 32
+  },
+  "CUSTOM76": {
+    "code": "0xc000200b",
+    "opcode": 11,
+    "funct3": 2,
+    "funct7": 96
+  },
+  "CUSTOM78": {
+    "code": "0x2000200b",
+    "opcode": 11,
+    "funct3": 2,
+    "funct7": 16
+  }
+}
