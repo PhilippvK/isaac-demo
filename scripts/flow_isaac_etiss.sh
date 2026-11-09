@@ -83,6 +83,9 @@ else
 fi
 EXTRA_ARGS=""
 EXTRA_ARGS="$EXTRA_ARGS --encoding-interface ${ISAAC_ENCODING_INTERFACE:-generic}"
+if [[ "${ISAAC_HLS_CORE_DISCARDS_X0_WRITES:-0}" == 1 ]]; then
+    EXTRA_ARGS="$EXTRA_ARGS --hls-core-discards-x0-writes"
+fi
 if [[ "${ISAAC_ENCODING_POLICY:-auto}" == "cfu" ]]
 then
     EXTRA_ARGS="$EXTRA_ARGS --encoding-policy cfu --encoding-manifest $WORK/cfu_manifest.json"

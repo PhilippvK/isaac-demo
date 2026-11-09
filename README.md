@@ -138,6 +138,26 @@ This runs compare, retrace and reanalysis for each selector, retaining
 measured instruction counts, static ISE sites and dynamic ISE use. Discovery
 is shared; this does not compare separately discovered instruction sets.
 
+#### VEX_5S without reuse-I/O
+
+The original `vex_5s` candidate policy is unchanged. The separate
+`cfg/flow/paper/vex_5s_mem_branch.env` preset enables experimental scalar
+memory and branch candidates with **reuse-I/O disabled**. It uses an explicit
+Vex x0 writeback contract, SCAIE-V encoding constraints, CBC scheduling, and no
+ASIP/FPGA synthesis by default.
+
+Build the local HLS image containing the Vex subword-store generator fix:
+
+```bash
+docker build -f docker/Dockerfile_hls_vex -t isaac-quickstart-hls-vex5:local .
+```
+
+The preset selects this image; `VEX5_HLS_IMAGE` overrides it. See the
+[Vex experiment](reports/vex-5s-hls-20261107/report.md) for CRC32 discovery,
+real Nailgun/SCAIE-V RTL generation, firmware execution in RTL simulation,
+known initial failures, and cycle/instruction measurements. This does not add
+an Arty FPGA shell for Vex or change the board running the CVA5 image.
+
 #### CVA5 presets
 
 Select the corresponding file under `cfg/flow/paper/`:

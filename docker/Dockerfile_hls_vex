@@ -1,0 +1,5 @@
+# Build from the repository root with: docker build -f docker/Dockerfile_hls_vex -t isaac-quickstart-hls-vex5:local .
+ARG BASE_IMAGE=philippvk/isaac-quickstart-hls@sha256:40e063cb86db7a6c36c5c1f11a412506a6866423df06087a36e82ba598d54c79
+FROM ${BASE_IMAGE}
+COPY cfg/hls/patches/scaiev-vex-subword-stores.patch /tmp/scaiev-vex-subword-stores.patch
+RUN cd /isax-tools/deps/scaie-v && patch --batch --forward --dry-run -p1 < /tmp/scaiev-vex-subword-stores.patch && patch --batch --forward -p1 < /tmp/scaiev-vex-subword-stores.patch

@@ -1,0 +1,38 @@
+--- a/src/scaiev/backend/VexRiscv.java
++++ b/src/scaiev/backend/VexRiscv.java
+@@ -597,14 +597,14 @@
+           writedata += "                        dBusAccess.cmd.data   := 0 ;\n";
+         if (op_stage_instr.containsKey(BNode.WrMem))
+           writedata += "                        when(io." + language.CreateNodeName(BNode.WrMem_validReq, stages[memStageNum], "") + ") {\n"
+-                       + "                            dBusAccess.cmd.data := io." +
+-                       language.CreateNodeName(BNode.WrMem, stages[memStageNum], "") + "\n"
++                       + "                            dBusAccess.cmd.data := " +
++                       formatStoreData("io." + language.CreateNodeName(BNode.WrMem, stages[memStageNum], "")) + "\n"
+                        + "                        }\n";
+         if (op_stage_instr.containsKey(BNode.WrMem_spawn))
+           writedata += "                        when(io." + language.CreateNodeName(BNode.WrMem_spawn_validReq, stages[spawnStageNum], "") +
+                        ") {\n"
+-                       + "                            dBusAccess.cmd.data := io." +
+-                       language.CreateNodeName(BNode.WrMem_spawn, stages[spawnStageNum], "") + "\n"
++                       + "                            dBusAccess.cmd.data := " +
++                       formatStoreData("io." + language.CreateNodeName(BNode.WrMem_spawn, stages[spawnStageNum], "")) + "\n"
+                        + "                        }\n";
+       } else
+         writedata += "                        dBusAccess.cmd.data   := 0 ;\n";
+@@ -1199,5 +1199,16 @@
+                      language.CreateNodeName(BNode.WrStall, startSpawnStage, ""),
+                  vexInterfaceStageNames[startSpawnStage.getStagePos()], BNode.ISAX_spawnAllowed, startSpawnStage);
+   }
++
++  // DBusSimpleBus expects replicated subword data, as native stores provide.
++  private String formatStoreData(String value) {
++    String byteValue = value + "(7 downto 0)";
++    String halfValue = value + "(15 downto 0)";
++    return "dBusAccess.cmd.size.mux(\n"
++        + "                                U(0) -> (" + byteValue + " ## " + byteValue + " ## " + byteValue + " ## " + byteValue + "),\n"
++        + "                                U(1) -> (" + halfValue + " ## " + halfValue + "),\n"
++        + "                                default -> " + value + "\n"
++        + "                            )";
++  }
+ }
+ 

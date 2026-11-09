@@ -1,0 +1,8 @@
+**
+!docker/
+!docker/Dockerfile_hls_vex
+!docker/Dockerfile_hls_vex.dockerignore
+!cfg/
+!cfg/hls/
+!cfg/hls/patches/
+!cfg/hls/patches/scaiev-vex-subword-stores.patch
