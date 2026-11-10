@@ -1,0 +1,24 @@
+BENCH=hello_world
+DATE=20261109T000000
+STEPS=rtl_sim_0
+DATE=20261109T000000
+NEW=0
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/flow/hello_world//20261109T000000
+STEPS=rtl_sim_0
+Running step: rtl_sim_0
+Executing: bash ./scripts/flow_rtl_sim.sh /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/flow/hello_world//20261109T000000
+{
+  "baseline": {
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 59,
+      "Setup Instructions": 42,
+      "Run Cycles": 788,
+      "Run Instructions": 594,
+      "Deinit Cycles": 59,
+      "Deinit Instructions": 42,
+      "Total Cycles": 1154,
+      "Total Instructions": 870
+    }
+  }
+}

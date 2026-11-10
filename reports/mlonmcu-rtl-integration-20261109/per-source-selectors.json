@@ -1,0 +1,92 @@
+[
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/drivers/fake_input.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/dummy.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/exit.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/printing.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/targets/nailgun.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/targets/target.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/bench.c",
+    "selector": "dag",
+    "flags": [
+      "-global-isel=1",
+      "-global-isel=0"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/embench/embench.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/generic/main.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/cmake/targets/nailgun/start.S",
+    "selector": "assembly",
+    "flags": []
+  },
+  {
+    "source": "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/cmake/targets/nailgun/platform.c",
+    "selector": "gisel",
+    "flags": [
+      "-global-isel=1"
+    ]
+  }
+]

@@ -1,0 +1,111 @@
+{
+  "native-flow": {
+    "passed": true,
+    "metrics": {
+      "Setup Cycles": 59,
+      "Setup Instructions": 42,
+      "Run Cycles": 788,
+      "Run Instructions": 594,
+      "Deinit Cycles": 59,
+      "Deinit Instructions": 42,
+      "Total Cycles": 1154,
+      "Total Instructions": 870
+    }
+  },
+  "native-cva5-flow": {
+    "passed": true,
+    "metrics": {
+      "Setup Cycles": 115,
+      "Setup Instructions": 62,
+      "Run Cycles": 4528614,
+      "Run Instructions": 4179706,
+      "Deinit Cycles": 61,
+      "Deinit Instructions": 42,
+      "Total Cycles": 4529078,
+      "Total Instructions": 4180020
+    }
+  },
+  "cpp": {
+    "passed": true,
+    "binary_uart_preserved": true,
+    "constructor_heap_and_destructor": true,
+    "artifacts": [
+      "nailgun_execution.json",
+      "nailgun_uart.log",
+      "nailgun_compile.log",
+      "nailgun_uart.bin"
+    ]
+  },
+  "fallback": [
+    {
+      "abort": 0,
+      "returncode": 1,
+      "command": [
+        "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang",
+        "-DMLONMCU_TARGET_ETISS",
+        "-D__riscv__",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/.",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/targets/.",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/.",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/../targets",
+        "--target=riscv32",
+        "-O3",
+        "-DNDEBUG",
+        "-O3",
+        "-g",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-march=rv32im_zicsr_zifencei",
+        "-mabi=ilp32",
+        "--target=riscv32",
+        "--gcc-toolchain=/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu",
+        "--sysroot=/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/riscv32-unknown-elf",
+        "-fno-unroll-loops",
+        "-fbasic-block-sections=labels",
+        "-o",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/fallback.o",
+        "-c",
+        "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/bench.c",
+        "-mllvm",
+        "-global-isel=1",
+        "-mllvm",
+        "-global-isel-abort=0"
+      ]
+    },
+    {
+      "abort": 2,
+      "returncode": 1,
+      "command": [
+        "/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang",
+        "-DMLONMCU_TARGET_ETISS",
+        "-D__riscv__",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/.",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/targets/.",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/.",
+        "-I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/../targets",
+        "--target=riscv32",
+        "-O3",
+        "-DNDEBUG",
+        "-O3",
+        "-g",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-march=rv32im_zicsr_zifencei",
+        "-mabi=ilp32",
+        "--target=riscv32",
+        "--gcc-toolchain=/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu",
+        "--sysroot=/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/riscv32-unknown-elf",
+        "-fno-unroll-loops",
+        "-fbasic-block-sections=labels",
+        "-o",
+        "/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/fallback.o",
+        "-c",
+        "/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/bench.c",
+        "-mllvm",
+        "-global-isel=1",
+        "-mllvm",
+        "-global-isel-abort=2"
+      ]
+    }
+  ]
+}

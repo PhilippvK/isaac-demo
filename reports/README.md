@@ -53,3 +53,5 @@ FPGA target. Board-only selection is `cva5_reuseio_arty_a7_100t`.
 - [VEX_5S without reuse-I/O: HLS and RTL execution](vex-5s-hls-20261107/report.md).
 
 - [Integrated CVA5/Vex RTL benchmark execution](rtl-sim-integration-20261109/report.md).
+
+- [Native MLonMCU RTL target and scoped GISel workaround](mlonmcu-rtl-integration-20261109/report.md).

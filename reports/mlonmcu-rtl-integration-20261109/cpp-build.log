@@ -1,0 +1,9 @@
+[ 17%] Built target target_support
+Consolidate compiler generated dependencies of target generic_mlonmcu
+[ 23%] Building CXX object generic/CMakeFiles/generic_mlonmcu.dir/main.cpp.obj
+[ 47%] Built target support
+[ 70%] Built target example
+[ 70%] Built target bench
+[ 82%] Built target mlonmcu_support
+[ 88%] Linking CXX executable ../bin/generic_mlonmcu
+[100%] Built target generic_mlonmcu

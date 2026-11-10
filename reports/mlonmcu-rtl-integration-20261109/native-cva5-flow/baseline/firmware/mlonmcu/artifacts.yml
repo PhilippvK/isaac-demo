@@ -1,0 +1,100 @@
+artifacts:
+- archive: false
+  flags:
+  - model
+  - dummy
+  fmt: 2048
+  name: dummy_model
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/dummy_model
+- archive: false
+  flags:
+  - metrics
+  fmt: 4
+  name: load_metrics.csv
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/load_metrics.csv
+- archive: false
+  flags: []
+  fmt: 2048
+  name: generic_mlonmcu
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/generic_mlonmcu
+- archive: false
+  flags:
+  - lld
+  fmt: 4
+  name: generic_mlonmcu.map
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/generic_mlonmcu.map
+- archive: false
+  flags:
+  - llvm
+  fmt: 4
+  name: generic_mlonmcu.dump
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/generic_mlonmcu.dump
+- archive: false
+  flags:
+  - llvm
+  fmt: 4
+  name: generic_mlonmcu.srcdump
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/generic_mlonmcu.srcdump
+- archive: false
+  flags:
+  - llvm
+  fmt: 4
+  name: compile_commands.json
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/compile_commands.json
+- archive: false
+  flags: []
+  fmt: 4
+  name: mlif_out.log
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/mlif_out.log
+- archive: false
+  flags:
+  - metrics
+  fmt: 4
+  name: compile_metrics.csv
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/compile_metrics.csv
+- archive: false
+  flags: []
+  fmt: 4
+  name: nailgun_execution.json
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/nailgun_execution.json
+- archive: false
+  flags: []
+  fmt: 4
+  name: nailgun_uart.log
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/nailgun_uart.log
+- archive: false
+  flags: []
+  fmt: 4
+  name: nailgun_compile.log
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/nailgun_compile.log
+- archive: false
+  flags: []
+  fmt: 2048
+  name: nailgun_uart.bin
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/nailgun_uart.bin
+- archive: false
+  flags: []
+  fmt: 4
+  name: nailgun_out.log
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/nailgun_out.log
+- archive: false
+  flags:
+  - metrics
+  fmt: 4
+  name: run_metrics.csv
+  optional: false
+  path: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/27/runs/0/run_metrics.csv

@@ -1,0 +1,114 @@
+[
+  {
+    "file": "native-flow-report/metrics.csv",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline-build.log",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/summary.json",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/compile.log",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/uart.bin",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/instruction-selector.json",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/uart.log",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/execution.json",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/firmware/build.json",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/firmware/benchmark.elf",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/firmware/benchmark.bin",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/firmware/mlonmcu/compile_commands.json",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/firmware/mlonmcu/report.csv",
+    "identical": true
+  },
+  {
+    "file": "native-flow-report/baseline/firmware/mlonmcu/artifacts.yml",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/metrics.csv",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline-build.log",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/summary.json",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/compile.log",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/uart.bin",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/instruction-selector.json",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/uart.log",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/execution.json",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/firmware/build.json",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/firmware/benchmark.elf",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/firmware/benchmark.bin",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/firmware/mlonmcu/compile_commands.json",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/firmware/mlonmcu/report.csv",
+    "identical": true
+  },
+  {
+    "file": "native-cva5-report/baseline/firmware/mlonmcu/artifacts.yml",
+    "identical": true
+  }
+]

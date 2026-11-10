@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 59,
+      "Setup Instructions": 42,
+      "Run Cycles": 788,
+      "Run Instructions": 594,
+      "Deinit Cycles": 59,
+      "Deinit Instructions": 42,
+      "Total Cycles": 1154,
+      "Total Instructions": 870
+    }
+  }
+}

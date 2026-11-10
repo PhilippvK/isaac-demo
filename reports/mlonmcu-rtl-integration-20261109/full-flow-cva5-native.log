@@ -1,0 +1,24 @@
+BENCH=crc32
+DATE=20261109T000000
+STEPS=rtl_sim_0
+DATE=20261109T000000
+NEW=0
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/flow/crc32//20261109T000000
+STEPS=rtl_sim_0
+Running step: rtl_sim_0
+Executing: bash ./scripts/flow_rtl_sim.sh /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/flow/crc32//20261109T000000
+{
+  "baseline": {
+    "verified": true,
+    "metrics": {
+      "Setup Cycles": 115,
+      "Setup Instructions": 62,
+      "Run Cycles": 4528614,
+      "Run Instructions": 4179706,
+      "Deinit Cycles": 61,
+      "Deinit Instructions": 42,
+      "Total Cycles": 4529078,
+      "Total Instructions": 4180020
+    }
+  }
+}

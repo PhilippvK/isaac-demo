@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "binary_uart_preserved": true,
+  "constructor_heap_and_destructor": true,
+  "artifacts": [
+    "nailgun_execution.json",
+    "nailgun_uart.log",
+    "nailgun_compile.log",
+    "nailgun_uart.bin"
+  ]
+}

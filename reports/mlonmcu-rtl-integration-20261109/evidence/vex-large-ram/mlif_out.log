@@ -1,0 +1,56 @@
+-- The C compiler identification is GNU 15.1.0
+-- The CXX compiler identification is GNU 15.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The ASM compiler identification is GNU
+-- Found assembler: /var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/riscv32-unknown-elf-gcc
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    DATA_SRC
+    EXTEND_ATTRS
+    QUIET
+    RISCV_ATTR
+    RISCV_CPU
+    RISCV_FEATURES
+    SRC_DIR
+
+
+-- Build files have been written to: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/23/runs/0/mlif
+[  5%] Building C object lib/targets/CMakeFiles/target_support.dir/nailgun.c.obj
+[ 11%] Building C object lib/targets/CMakeFiles/target_support.dir/target.c.obj
+[ 17%] Linking C static library libtarget_support.a
+[ 17%] Built target target_support
+[ 29%] Building C object lib/support/CMakeFiles/support.dir/dummy.c.obj
+[ 29%] Building C object lib/support/CMakeFiles/support.dir/exit.c.obj
+[ 35%] Building C object lib/support/CMakeFiles/support.dir/printing.c.obj
+[ 41%] Linking C static library libsupport.a
+[ 41%] Built target support
+[ 47%] Building C object lib/bench/CMakeFiles/bench.dir/bench.c.obj
+[ 52%] Building C object lib/example/CMakeFiles/example.dir/hello_world.c.obj
+[ 58%] Linking C static library libexample.a
+[ 64%] Linking C static library libbench.a
+[ 64%] Built target example
+[ 64%] Built target bench
+[ 70%] Building C object lib/CMakeFiles/mlonmcu_support.dir/drivers/fake_input.c.obj
+[ 76%] Linking C static library libmlonmcu_support.a
+[ 76%] Built target mlonmcu_support
+Scanning dependencies of target generic_mlonmcu
+[ 82%] Building C object generic/CMakeFiles/generic_mlonmcu.dir/main.c.obj
+[ 88%] Building ASM object generic/CMakeFiles/generic_mlonmcu.dir/__/cmake/targets/nailgun/start.S.obj
+[ 94%] Building C object generic/CMakeFiles/generic_mlonmcu.dir/__/cmake/targets/nailgun/platform.c.obj
+[100%] Linking C executable ../bin/generic_mlonmcu
+/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/bin/../lib/gcc/riscv32-unknown-elf/15.1.0/../../../../riscv32-unknown-elf/bin/ld: warning: ../bin/generic_mlonmcu has a LOAD segment with RWX permissions
+Invoking: Objdump (ASM)
+Invoking: Objdump (SRC)
+[100%] Built target generic_mlonmcu

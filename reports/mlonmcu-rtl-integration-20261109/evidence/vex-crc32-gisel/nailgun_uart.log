@@ -1,0 +1,13 @@
+Program start.
+# Setup Cycles: 93
+# Setup Instructions: 62
+# Run Cycles: 5225232
+# Run Instructions: 4179706
+# Deinit Cycles: 59
+# Deinit Instructions: 42
+# Total Cycles: 5225654
+# Total Instructions: 4180020
+Program finish.
+MLONMCU EXIT: 0
+
+ISAAC_RTL_RESULT exit=0 cycles=5248742 retired=4197926 completed=1 passed=1

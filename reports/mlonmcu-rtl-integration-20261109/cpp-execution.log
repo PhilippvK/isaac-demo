@@ -1,0 +1,18 @@
+{
+  "core": "vex",
+  "verilator_version": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+  "firmware": "/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/cpp-firmware.bin",
+  "firmware_sha256": "2cfeca87a98a9de3f33ed8ac76ebe40378bd059ee620652709a83f7b72243282",
+  "adapter_sha256": "91b316dfb51274c7c66811ee9679c53910f171da0d7520a43a9927c756c31f6f",
+  "host_sha256": "9ed6992a99b406b24cd6545a7b27f5471f320c8578770acf4a36db4ac20036eb",
+  "max_cycles": 100000000,
+  "data_wait_states": 0,
+  "ram_size": 262144,
+  "passed": true,
+  "exit_status": 0,
+  "cycles": 6937,
+  "retired": 5317,
+  "completed": 1,
+  "returncode": 0,
+  "elapsed_seconds": 0.07341040670871735
+}

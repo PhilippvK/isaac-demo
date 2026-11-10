@@ -1,0 +1,10 @@
+make: Entering directory '/tmp/tmp2hwjroqk/nailgun_sim/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -Os -c -o host.o /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/host.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vsim_top.cpp Vsim_top_sim_top.cpp Vsim_top_top.cpp Vsim_top_VexRiscv.cpp Vsim_top__Dpi.cpp Vsim_top__Slow.cpp Vsim_top_sim_top__Slow.cpp Vsim_top_top__Slow.cpp Vsim_top_VexRiscv__Slow.cpp Vsim_top__Syms.cpp > Vsim_top__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -Os -c -o Vsim_top__ALL.o Vsim_top__ALL.cpp
+ar -cr Vsim_top__ALL.a Vsim_top__ALL.o
+ranlib Vsim_top__ALL.a
+g++    host.o verilated.o verilated_dpi.o Vsim_top__ALL.a      -o simulator
+make: Leaving directory '/tmp/tmp2hwjroqk/nailgun_sim/obj_dir'

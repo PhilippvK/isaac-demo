@@ -1,0 +1,14 @@
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-09 15:13:13]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-15]  Processing stage LOAD
+INFO - [session-15]  Processing stage COMPILE
+INFO - [session-15]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-15] Done processing runs
+INFO - Report:
+   Run  Model Frontend Platform   Target  End-to-End Runtime [s]  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI   Run CPI  Total CPI  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s] Features                                             Config Postprocesses Comment
+0    0  crc32  embench     mlif  nailgun                3.427564            93                  62     5225232           4179706             59                   42       5225654             4180020        1.5  1.250143    1.25015        True            3.428611      69348       2572           3180     66164         4      1712                 860                0.881599             0.000009       []  {'embench.use_inout_data': False, 'embench.gen...            []       -

@@ -1,0 +1,453 @@
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/cva5_wrapper.sv:260:13: Instance has missing pin: 'WrRD_spawn_issue_addr_o'
+  260 | scaiev_glue scaiev_glue (
+      |             ^~~~~~~~~~~
+                     /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/scaiev_glue.sv:20:29: ... Location of port declaration
+   20 |         output logic [12:0] WrRD_spawn_issue_addr_o
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~
+                     ... For warning description see https://verilator.org/warn/PINMISSING?v=5.040
+                     ... Use "/* verilator lint_off PINMISSING */" and lint_on around source to disable this message.
+%Warning-PINMISSING: /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:175:26: Instance has missing pin: 'RdPipeInto_stage_executesv1_2_o'
+  175 |     cva5_wrapper_verilog cva5 (
+      |                          ^~~~
+                     /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:144:16: ... Location of port declaration
+  144 | , output wire  RdPipeInto_stage_executesv1_2_o, 
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:175:26: Instance has missing pin: 'RdPipeInto_stage_executecva_2_o'
+  175 |     cva5_wrapper_verilog cva5 (
+      |                          ^~~~
+                     /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:146:14: ... Location of port declaration
+  146 | output wire  RdPipeInto_stage_executecva_2_o, 
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:175:26: Instance has missing pin: 'glueToSCAL_IValid_cond_all_1_o'
+  175 |     cva5_wrapper_verilog cva5 (
+      |                          ^~~~
+                     /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:148:14: ... Location of port declaration
+  148 | output wire  glueToSCAL_IValid_cond_all_1_o, 
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:175:26: Instance has missing pin: 'glueToSCAL_IValid_cond_all_2_o'
+  175 |     cva5_wrapper_verilog cva5 (
+      |                          ^~~~
+                     /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:150:14: ... Location of port declaration
+  150 | output wire  glueToSCAL_IValid_cond_all_2_o, 
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:175:26: Instance has missing pin: 'glueToSCAL_IValid_cond_all_3_o'
+  175 |     cva5_wrapper_verilog cva5 (
+      |                          ^~~~
+                     /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:152:14: ... Location of port declaration
+  152 | output wire  glueToSCAL_IValid_cond_all_3_o 
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_awsize'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:47:41: ... Location of port declaration
+   47 |  output wire [2:0]                      m_axi_awsize,
+      |                                         ^~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_awburst'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:48:41: ... Location of port declaration
+   48 |  output wire [1:0]                      m_axi_awburst,
+      |                                         ^~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_awcache'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:50:41: ... Location of port declaration
+   50 |  output wire [3:0]                      m_axi_awcache,
+      |                                         ^~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_arsize'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:72:41: ... Location of port declaration
+   72 |  output wire [2:0]                      m_axi_arsize,
+      |                                         ^~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_arburst'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:73:41: ... Location of port declaration
+   73 |  output wire [1:0]                      m_axi_arburst,
+      |                                         ^~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_arcache'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:75:41: ... Location of port declaration
+   75 |  output wire [3:0]                      m_axi_arcache,
+      |                                         ^~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_awid'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:90:41: ... Location of port declaration
+   90 |  output wire [5:0]                      m_axi_cache_awid,
+      |                                         ^~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_awaddr'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:91:41: ... Location of port declaration
+   91 |  output wire [31:0]                     m_axi_cache_awaddr,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_awlen'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:93:41: ... Location of port declaration
+   93 |  output wire [7:0]                      m_axi_cache_awlen,
+      |                                         ^~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_awsize'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:94:41: ... Location of port declaration
+   94 |  output wire [2:0]                      m_axi_cache_awsize,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_awburst'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:95:41: ... Location of port declaration
+   95 |  output wire [1:0]                      m_axi_cache_awburst,
+      |                                         ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_awcache'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:97:41: ... Location of port declaration
+   97 |  output wire [3:0]                      m_axi_cache_awcache,
+      |                                         ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_awprot'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:98:41: ... Location of port declaration
+   98 |  output wire [2:0]                      m_axi_cache_awprot,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_wdata'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:103:41: ... Location of port declaration
+  103 |  output wire [31:0]                     m_axi_cache_wdata,
+      |                                         ^~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_wstrb'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:104:41: ... Location of port declaration
+  104 |  output wire [3:0]                      m_axi_cache_wstrb,
+      |                                         ^~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_wlast'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:105:41: ... Location of port declaration
+  105 |  output wire                            m_axi_cache_wlast,
+      |                                         ^~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_bready'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:108:41: ... Location of port declaration
+  108 |  output wire                            m_axi_cache_bready,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_arid'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:115:41: ... Location of port declaration
+  115 |  output wire [5:0]                      m_axi_cache_arid,
+      |                                         ^~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_araddr'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:116:41: ... Location of port declaration
+  116 |  output wire [31:0]                     m_axi_cache_araddr,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_arlen'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:118:41: ... Location of port declaration
+  118 |  output wire [7:0]                      m_axi_cache_arlen,
+      |                                         ^~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_arsize'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:119:41: ... Location of port declaration
+  119 |  output wire [2:0]                      m_axi_cache_arsize,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_arburst'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:120:41: ... Location of port declaration
+  120 |  output wire [1:0]                      m_axi_cache_arburst,
+      |                                         ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_arcache'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:122:41: ... Location of port declaration
+  122 |  output wire [3:0]                      m_axi_cache_arcache,
+      |                                         ^~~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_arprot'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:123:41: ... Location of port declaration
+  123 |  output wire [2:0]                      m_axi_cache_arprot,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-PINMISSING: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:29:11: Instance has missing pin: 'm_axi_cache_rready'
+   29 |  cva5_top dut(.clk(clk),.rst(rst),
+      |           ^~~
+                     /tmp/tmpj55efgme/nailgun_sim/CVA5_top.v:127:41: ... Location of port declaration
+  127 |  output wire                            m_axi_cache_rready,
+      |                                         ^~~~~~~~~~~~~~~~~~
+%Warning-IMPLICIT: /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:160:8: Signal definition not found, creating implicitly: 'instruction_bram_clk'
+                                                                            : ... Suggested alternative: 'instruction_bram_en'
+  160 | assign instruction_bram_clk = clk;
+      |        ^~~~~~~~~~~~~~~~~~~~
+                   ... For warning description see https://verilator.org/warn/IMPLICIT?v=5.040
+                   ... Use "/* verilator lint_off IMPLICIT */" and lint_on around source to disable this message.
+%Warning-IMPLICIT: /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:161:8: Signal definition not found, creating implicitly: 'instruction_bram_rst'
+                                                                            : ... Suggested alternative: 'instruction_bram_en'
+  161 | assign instruction_bram_rst = rst;
+      |        ^~~~~~~~~~~~~~~~~~~~
+%Warning-IMPLICIT: /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:162:8: Signal definition not found, creating implicitly: 'data_bram_clk'
+                                                                            : ... Suggested alternative: 'data_bram_we'
+  162 | assign data_bram_clk = clk;
+      |        ^~~~~~~~~~~~~
+%Warning-IMPLICIT: /tmp/tmpj55efgme/nailgun_sim/cva5_wrapper_verilog.v:163:8: Signal definition not found, creating implicitly: 'data_bram_rst'
+                                                                            : ... Suggested alternative: 'data_bram_we'
+  163 | assign data_bram_rst = rst;
+      |        ^~~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/store_queue.sv:261:34: Operator EQ expects 32 bits on the RHS, but RHS's VARREF 'sq_index' generates 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.load_store_unit_block.lsq_block.sq_block'
+  261 |             else if (sq.push && i==sq_index)
+      |                                  ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.040
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:71:65: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   71 |     assign read_addr_for_toggle_mem_set[0] = decode_phys_rs_addr[RS1];
+      |                                                                 ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.040
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:72:65: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   72 |     assign read_addr_for_toggle_mem_set[1] = decode_phys_rs_addr[RS2];
+      |                                                                 ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:73:67: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   73 |     assign read_addr_for_toggle_mem_set[2] = rf_issue.phys_rs_addr[RS1];
+      |                                                                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:74:67: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   74 |     assign read_addr_for_toggle_mem_set[3] = rf_issue.phys_rs_addr[RS2];
+      |                                                                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:81:24: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   81 |     assign decode_inuse[RS1] = id_inuse_from_toggle_mem_set[0];
+      |                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:82:24: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   82 |     assign decode_inuse[RS2] = id_inuse_from_toggle_mem_set[1];
+      |                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:83:26: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   83 |     assign rf_issue.inuse[RS1] = id_inuse_from_toggle_mem_set[2];
+      |                          ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/register_file.sv:84:26: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                        : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.register_file_block'
+   84 |     assign rf_issue.inuse[RS2] = id_inuse_from_toggle_mem_set[3];
+      |                          ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:196:19: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  196 |     assign rs_addr[RS1] = (!scaiev_decode_inject && !scaiev.decode_RS1_override) ? selected_instruction[19:15] : scaiev.decode_rdReg_RS1;
+      |                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:197:19: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  197 |     assign rs_addr[RS2] = (!scaiev_decode_inject && !scaiev.decode_RS2_override) ? selected_instruction[24:20] : scaiev.decode_rdReg_RS2;
+      |                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:277:19: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  277 |     assign uses_rs[RS1] = (opcode_trim inside {JALR_T, BRANCH_T, LOAD_T, STORE_T, ARITH_IMM_T, ARITH_T, AMO_T} && !is_scaiev_isax_stdencoding) | is_csr | scaiev_uses_rs1 | scaiev.decode_rdReg;
+      |                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:278:19: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  278 |     assign uses_rs[RS2] = (opcode_trim inside {BRANCH_T, ARITH_T, AMO_T} && !is_scaiev_isax_stdencoding) | scaiev_uses_rs2 | scaiev.decode_rdReg; 
+      |                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:287:45: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  287 |     assign scaiev.decode_RS1_valid = uses_rs[RS1];
+      |                                             ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:288:42: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  288 |     assign scaiev.decode_RS1_id = rs_addr[RS1];
+      |                                          ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:291:45: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  291 |     assign scaiev.decode_RS2_valid = uses_rs[RS2] || (opcode_trim inside {STORE_T});
+      |                                             ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:292:42: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  292 |     assign scaiev.decode_RS2_id = rs_addr[RS2];
+      |                                          ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:464:66: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  464 |     assign alu_inputs.shift_amount = alu_imm_type ? issue_rs_addr[RS2] : rf.data[RS2][4:0];
+      |                                                                  ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:464:81: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  464 |     assign alu_inputs.shift_amount = alu_imm_type ? issue_rs_addr[RS2] : rf.data[RS2][4:0];
+      |                                                                                 ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:465:38: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  465 |     assign alu_inputs.arith = rf.data[RS1][XLEN-1] & issue.instruction[30]; 
+      |                                      ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:466:43: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  466 |     assign alu_inputs.shifter_in = rf.data[RS1];
+      |                                           ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:474:38: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  474 |     assign alu_inputs.in1 = {(rf.data[RS1][XLEN-1] & ~issue.fn3[0]), rf.data[RS1]}; 
+      |                                      ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:474:77: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  474 |     assign alu_inputs.in1 = {(rf.data[RS1][XLEN-1] & ~issue.fn3[0]), rf.data[RS1]}; 
+      |                                                                             ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:475:90: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  475 |     assign alu_rs2_data = alu_imm_type ? 32'(signed'(issue.instruction[31:20])) : rf.data[RS2];
+      |                                                                                          ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:550:35: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  550 |     assign ls_inputs.rs1 = rf.data[RS1];
+      |                                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:551:35: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  551 |     assign ls_inputs.rs2 = rf.data[RS2];
+      |                                   ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:552:48: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  552 |     assign ls_inputs.forwarded_store = rf.inuse[RS2];
+      |                                                ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:554:86: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  554 |     wire store_forward_is_from_instruction = !rd_scaiev_decoupled_table[issue_rs_addr[RS2]];
+      |                                                                                      ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:561:88: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  561 |             ls_inputs.store_forward_id.id.instruction.id = rd_to_id_table[issue_rs_addr[RS2]];
+      |                                                                                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:563:77: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  563 |             ls_inputs.store_forward_id.id.register_addr = issue_phys_rs_addr[RS2];
+      |                                                                             ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:577:31: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  577 |     assign rs1_link = (rs_addr[RS1] inside {1,5});
+      |                               ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:579:32: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  579 |     assign rs1_eq_rd = (rs_addr[RS1] == rd_addr);
+      |                                ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:629:41: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  629 |     assign branch_inputs.rs1 = {(rf.data[RS1][31] & br_use_signed), rf.data[RS1]};
+      |                                         ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:629:76: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  629 |     assign branch_inputs.rs1 = {(rf.data[RS1][31] & br_use_signed), rf.data[RS1]};
+      |                                                                            ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:630:41: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  630 |     assign branch_inputs.rs2 = {(rf.data[RS2][31] & br_use_signed), rf.data[RS2]};
+      |                                         ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:630:76: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  630 |     assign branch_inputs.rs2 = {(rf.data[RS2][31] & br_use_signed), rf.data[RS2]};
+      |                                                                            ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:683:70: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  683 |         assign csr_inputs.data = issue.fn3[2] ? {27'b0, issue_rs_addr[RS1]} : rf.data[RS1];
+      |                                                                      ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:683:86: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  683 |         assign csr_inputs.data = issue.fn3[2] ? {27'b0, issue_rs_addr[RS1]} : rf.data[RS1];
+      |                                                                                      ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:685:82: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  685 |         assign csr_inputs.writes = ~((issue.fn3[1:0] == CSR_RC) && (issue_rs_addr[RS1] == 0));
+      |                                                                                  ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:691:40: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  691 |         assign mul_inputs.rs1 = rf.data[RS1];
+      |                                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:692:40: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  692 |         assign mul_inputs.rs2 = rf.data[RS2];
+      |                                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:723:64: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  723 |             && (prev_div_rs_addr[1'(RS1)] == issue_phys_rs_addr[RS1])
+      |                                                                ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:724:64: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  724 |             && (prev_div_rs_addr[1'(RS2)] == issue_phys_rs_addr[RS2])
+      |                                                                ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:739:40: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  739 |         assign div_inputs.rs1 = rf.data[RS1];
+      |                                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:740:40: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  740 |         assign div_inputs.rs2 = rf.data[RS2];
+      |                                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:748:43: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  748 |         assign scaiev_inputs.rs1 = rf.data[RS1];
+      |                                           ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:749:43: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  749 |         assign scaiev_inputs.rs2 = rf.data[RS2];
+      |                                           ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:762:53: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  762 |         assign scaiev.issue_RS1_valid = !rs_conflict[RS1];
+      |                                                     ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:763:42: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  763 |         assign scaiev.issue_RS1 = rf.data[RS1];
+      |                                          ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:764:53: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  764 |         assign scaiev.issue_RS2_valid = !rs_conflict[RS2];
+      |                                                     ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/decode_and_issue.sv:765:42: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                            : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.decode_and_issue_block'
+  765 |         assign scaiev.issue_RS2 = rf.data[RS2];
+      |                                          ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/renamer.sv:195:56: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                   : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.renamer_block'
+  195 |     assign spec_table_read_addr[1:2] = '{decode.rs_addr[RS1], decode.rs_addr[RS2]};
+      |                                                        ^
+%Warning-WIDTHTRUNC: /var/tmp/ga87puy/isaac-demo-new/reports/cva5-reuseio-hls-20261105/hls-run/baseline/CVA5/core/renamer.sv:195:77: Bit extraction of array[1:0] requires 1 bit index, not 2 bits.
+                                                                                                                                   : ... note: In instance 'sim_top.dut.cva5.cva5_wrapper.cva5.renamer_block'
+  195 |     assign spec_table_read_addr[1:2] = '{decode.rs_addr[RS1], decode.rs_addr[RS2]};
+      |                                                                             ^
+%Warning-WIDTHEXPAND: /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/cva5.sv:28:23: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 2 bits.
+                                                                                   : ... note: In instance 'sim_top'
+   28 |  assign retired = rst ? 0 : dut.cva5.cva5_wrapper.cva5.retire.count;
+      |                       ^
+make: Entering directory '/tmp/tmpj55efgme/nailgun_sim/obj_dir'
+ccache g++  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -Os  -c -o host.o /var/tmp/ga87puy/isaac-demo-new/scripts/rtl_sim/host.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -c -o verilated.o /tmp/isaac-verilator-5.040/include/verilated.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -c -o verilated_dpi.o /tmp/isaac-verilator-5.040/include/verilated_dpi.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -c -o verilated_threads.o /tmp/isaac-verilator-5.040/include/verilated_threads.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -x c++-header Vsim_top__pch.h -o Vsim_top__pch.h.fast.gch
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -x c++-header Vsim_top__pch.h -o Vsim_top__pch.h.slow.gch
+echo "" > Vsim_top__ALL.verilator_deplist.tmp
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.slow -c -o Vsim_top_vm_classes_Slow_0.o Vsim_top_vm_classes_Slow_0.cpp
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.slow -c -o Vsim_top___024root__DepSet_h25cf915e__0__Slow.o Vsim_top___024root__DepSet_h25cf915e__0__Slow.cpp
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.slow -c -o Vsim_top___024root__DepSet_h9a1654b3__0__Slow.o Vsim_top___024root__DepSet_h9a1654b3__0__Slow.cpp
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.slow -c -o Vsim_top_vm_classes_Slow_1.o Vsim_top_vm_classes_Slow_1.cpp
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.slow -c -o Vsim_top_vm_classes_Slow_2.o Vsim_top_vm_classes_Slow_2.cpp
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.slow -c -o Vsim_top_vm_classes_Slow_3.o Vsim_top_vm_classes_Slow_3.cpp
+ccache g++   -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.slow -c -o Vsim_top__Syms.o Vsim_top__Syms.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.fast -c -o Vsim_top.o Vsim_top.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.fast -c -o Vsim_top___024root__DepSet_h25cf915e__0.o Vsim_top___024root__DepSet_h25cf915e__0.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.fast -c -o Vsim_top___024root__DepSet_h25cf915e__1.o Vsim_top___024root__DepSet_h25cf915e__1.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.fast -c -o Vsim_top_vm_classes_1.o Vsim_top_vm_classes_1.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.fast -c -o Vsim_top_vm_classes_2.o Vsim_top_vm_classes_2.cpp
+ccache g++ -Os  -I.  -MMD -I/tmp/isaac-verilator-5.040/include -I/tmp/isaac-verilator-5.040/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -include Vsim_top__pch.h.fast -c -o Vsim_top__Dpi.o Vsim_top__Dpi.cpp
+g++    host.o verilated.o verilated_dpi.o verilated_threads.o Vsim_top__ALL.a    -pthread -lpthread -latomic   -o simulator
+rm Vsim_top__ALL.verilator_deplist.tmp
+make: Leaving directory '/tmp/tmpj55efgme/nailgun_sim/obj_dir'
+- V e r i l a t i o n   R e p o r t: Verilator 5.040 2025-08-30 rev v5.040
+- Verilator: Built from 29.207 MB sources in 106 modules, into 2.503 MB in 153 C++ files needing 0.002 MB
+- Verilator: Walltime 3.228 s (elab=0.116, cvt=0.483, bld=2.509); cpu 0.763 s on 4 threads; alloced 376.559 MB

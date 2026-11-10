@@ -1,0 +1,198 @@
+From 713f9e8a6c48a61810e5e49b2e8acf8ed453d432 Mon Sep 17 00:00:00 2001
+From: Philipp van Kempen <philipp.van-kempen@tum.de>
+Date: Mon, 9 Nov 2026 16:20:46 +0100
+Subject: [PATCH] Add Nailgun bare-metal runtime and scoped GISel accounting
+ workaround
+
+---
+ cmake/targets/nailgun.cmake         | 16 ++++++++++
+ cmake/targets/nailgun/link.ld.in    | 17 +++++++++++
+ cmake/targets/nailgun/platform.c    | 45 +++++++++++++++++++++++++++++
+ cmake/targets/nailgun/start.S       | 29 +++++++++++++++++++
+ cmake/toolchains/gcc_nailgun.cmake  |  1 +
+ cmake/toolchains/llvm_nailgun.cmake |  4 +++
+ lib/bench/CMakeLists.txt            |  8 +++++
+ lib/targets/nailgun.c               |  1 +
+ 8 files changed, 121 insertions(+)
+ create mode 100644 cmake/targets/nailgun.cmake
+ create mode 100644 cmake/targets/nailgun/link.ld.in
+ create mode 100644 cmake/targets/nailgun/platform.c
+ create mode 100644 cmake/targets/nailgun/start.S
+ create mode 100644 cmake/toolchains/gcc_nailgun.cmake
+ create mode 100644 cmake/toolchains/llvm_nailgun.cmake
+ create mode 100644 lib/targets/nailgun.c
+
+diff --git a/cmake/targets/nailgun.cmake b/cmake/targets/nailgun.cmake
+new file mode 100644
+index 0000000..3781bb2
+--- /dev/null
++++ b/cmake/targets/nailgun.cmake
+@@ -0,0 +1,16 @@
++# Bare-metal runtime shared by the generated CVA5 and VEX_5S RTL targets.
++SET(CMAKE_SYSTEM_NAME Generic)
++SET(CMAKE_SYSTEM_PROCESSOR riscv)
++SET(NAILGUN_RAM_ORIGIN 0x80000000 CACHE STRING "Core reset / RAM address")
++SET(NAILGUN_RAM_SIZE 262144 CACHE STRING "Simulation RAM capacity in bytes")
++SET(NAILGUN_STACK_SIZE 8192 CACHE STRING "Reserved stack capacity in bytes")
++SET(NAILGUN_HEAP_SIZE 4096 CACHE STRING "Minimum heap capacity in bytes")
++SET(NAILGUN_RUNTIME_DIR ${CMAKE_CURRENT_LIST_DIR}/nailgun)
++CONFIGURE_FILE(${NAILGUN_RUNTIME_DIR}/link.ld.in ${CMAKE_BINARY_DIR}/nailgun.ld @ONLY)
++SET(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
++MACRO(COMMON_ADD_EXECUTABLE TARGET_NAME)
++ ADD_EXECUTABLE(${TARGET_NAME} ${ARGN} ${NAILGUN_RUNTIME_DIR}/start.S ${NAILGUN_RUNTIME_DIR}/platform.c)
++ TARGET_COMPILE_DEFINITIONS(${TARGET_NAME} PRIVATE NAILGUN_STACK_SIZE=${NAILGUN_STACK_SIZE})
++ TARGET_LINK_OPTIONS(${TARGET_NAME} PRIVATE -nostartfiles -Wl,--no-relax -T${CMAKE_BINARY_DIR}/nailgun.ld)
++ TARGET_LINK_LIBRARIES(${TARGET_NAME} PRIVATE c m gcc)
++ENDMACRO()
+diff --git a/cmake/targets/nailgun/link.ld.in b/cmake/targets/nailgun/link.ld.in
+new file mode 100644
+index 0000000..78c6c10
+--- /dev/null
++++ b/cmake/targets/nailgun/link.ld.in
+@@ -0,0 +1,17 @@
++OUTPUT_ARCH(riscv)
++ENTRY(_start)
++MEMORY { RAM (rwx) : ORIGIN = @NAILGUN_RAM_ORIGIN@, LENGTH = @NAILGUN_RAM_SIZE@ }
++SECTIONS {
++ . = ORIGIN(RAM);
++ .text : { KEEP(*(.text.start)) *(.text .text.*) } > RAM
++ .rodata : { *(.rodata .rodata.*) } > RAM
++ .preinit_array : { PROVIDE_HIDDEN(__preinit_array_start = .); KEEP(*(.preinit_array)) PROVIDE_HIDDEN(__preinit_array_end = .); } > RAM
++ .init_array : { PROVIDE_HIDDEN(__init_array_start = .); KEEP(*(SORT_BY_INIT_PRIORITY(.init_array.*))) KEEP(*(.init_array)) PROVIDE_HIDDEN(__init_array_end = .); } > RAM
++ .fini_array : { PROVIDE_HIDDEN(__fini_array_start = .); KEEP(*(SORT_BY_INIT_PRIORITY(.fini_array.*))) KEEP(*(.fini_array)) PROVIDE_HIDDEN(__fini_array_end = .); } > RAM
++ .data : { *(.data .data.*) *(.sdata .sdata.*) } > RAM
++ . = ALIGN(16);
++ PROVIDE(__global_pointer$ = . + 0x800);
++ .bss (NOLOAD) : { __bss_start = .; *(.bss .bss.* .sbss .sbss.*) *(COMMON) . = ALIGN(4); __bss_end = .; } > RAM
++ __stack_top = ORIGIN(RAM) + LENGTH(RAM) - 16;
++ ASSERT(__bss_end + @NAILGUN_STACK_SIZE@ + @NAILGUN_HEAP_SIZE@ < __stack_top, "Insufficient Nailgun RAM for static data, heap and stack")
++}
+diff --git a/cmake/targets/nailgun/platform.c b/cmake/targets/nailgun/platform.c
+new file mode 100644
+index 0000000..8b07c69
+--- /dev/null
++++ b/cmake/targets/nailgun/platform.c
+@@ -0,0 +1,45 @@
++/* Host services supplied by the RTL simulation bus adapter, not semihosting. */
++#include <stdint.h>
++#include <stddef.h>
++#include <sys/stat.h>
++#include <sys/time.h>
++#include <errno.h>
++#define REG(a) (*(volatile uint32_t *)(a))
++uint64_t target_cycles(void) { return REG(0x60000010); }
++uint64_t target_instructions(void) { return REG(0x60000014); }
++uint64_t target_time(void) { return target_cycles(); }
++int _write(int fd, const void *buf, size_t n) {
++  (void)fd; const unsigned char *s = buf;
++  for (size_t i=0; i<n; ++i) REG(0x60000004)=s[i];
++  return n;
++}
++__attribute__((noreturn)) void _exit(int status) {
++  REG(0x60000018)=(uint32_t)status;
++  for (;;) __asm__ volatile("nop");
++}
++void trap_report(uint32_t cause, uint32_t pc, uint32_t value) {
++  REG(0x60000020)=cause; REG(0x60000024)=pc; REG(0x60000028)=value;
++  _exit(128);
++}
++#ifndef NAILGUN_STACK_SIZE
++#define NAILGUN_STACK_SIZE 8192
++#endif
++extern char __bss_end[], __stack_top[];
++void *_sbrk(ptrdiff_t incr) {
++  static char *end; if (!end) end=__bss_end;
++  if (incr<0 || incr>(__stack_top-NAILGUN_STACK_SIZE-end)) { errno=ENOMEM; return (void *)-1; }
++  char *old=end; end+=incr; return old;
++}
++int _close(int fd) { (void)fd; return -1; }
++int _fstat(int fd, struct stat *s) { (void)fd; s->st_mode=S_IFCHR; return 0; }
++int _isatty(int fd) { (void)fd; return 1; }
++int _lseek(int fd, int off, int whence) { (void)fd; (void)off; (void)whence; return 0; }
++int _read(int fd, void *buf, size_t n) { (void)fd; (void)buf; (void)n; return 0; }
++int _getpid(void) { return 1; }
++int _kill(int pid, int sig) { (void)pid; (void)sig; errno=EINVAL; return -1; }
++int _gettimeofday(struct timeval *tv, void *tz) {
++  (void)tz; uint64_t t=target_cycles(); tv->tv_sec=t/1000000; tv->tv_usec=t%1000000; return 0;
++}
++
++void _init(void) {}
++void _fini(void) {}
+diff --git a/cmake/targets/nailgun/start.S b/cmake/targets/nailgun/start.S
+new file mode 100644
+index 0000000..37a8afb
+--- /dev/null
++++ b/cmake/targets/nailgun/start.S
+@@ -0,0 +1,29 @@
++.section .text.start,"ax",@progbits
++.globl _start
++_start:
++.option push
++.option norelax
++la gp, __global_pointer$
++.option pop
++la sp, __stack_top
++csrw mie, zero
++la t0, trap_entry
++csrw mtvec, t0
++la t0, __bss_start
++la t1, __bss_end
++1: bgeu t0, t1, 2f
++sw zero, 0(t0)
++addi t0, t0, 4
++j 1b
++2: la a0, __libc_fini_array
++call atexit
++call __libc_init_array
++call main
++call exit
++3: j 3b
++.balign 4
++trap_entry:
++csrr a0, mcause
++csrr a1, mepc
++csrr a2, mtval
++tail trap_report
+diff --git a/cmake/toolchains/gcc_nailgun.cmake b/cmake/toolchains/gcc_nailgun.cmake
+new file mode 100644
+index 0000000..7970cae
+--- /dev/null
++++ b/cmake/toolchains/gcc_nailgun.cmake
+@@ -0,0 +1 @@
++INCLUDE(${CMAKE_CURRENT_LIST_DIR}/gcc_generic_riscv.cmake)
+diff --git a/cmake/toolchains/llvm_nailgun.cmake b/cmake/toolchains/llvm_nailgun.cmake
+new file mode 100644
+index 0000000..d8c13dd
+--- /dev/null
++++ b/cmake/toolchains/llvm_nailgun.cmake
+@@ -0,0 +1,4 @@
++SET(CMAKE_C_COMPILER_TARGET riscv32-unknown-elf)
++SET(CMAKE_CXX_COMPILER_TARGET riscv32-unknown-elf)
++SET(CMAKE_ASM_COMPILER_TARGET riscv32-unknown-elf)
++INCLUDE(${CMAKE_CURRENT_LIST_DIR}/llvm_generic_riscv.cmake)
+diff --git a/lib/bench/CMakeLists.txt b/lib/bench/CMakeLists.txt
+index 56c0758..56df210 100644
+--- a/lib/bench/CMakeLists.txt
++++ b/lib/bench/CMakeLists.txt
+@@ -3,3 +3,11 @@ PROJECT(bench)
+ COMMON_ADD_LIBRARY(${PROJECT_NAME} STATIC bench.c)
+ TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PRIVATE .)
+ TARGET_LINK_LIBRARIES(${PROJECT_NAME} PRIVATE target_support support)
++
++# RV32 LLVM22 RegBankSelect asserts for the i64 accounting in this file even
++# with GISel fallback enabled. Keep the workload on the requested selector.
++OPTION(GLOBAL_ISEL_BENCH_DAG "Use DAG only for bench.c when GISel is enabled" ON)
++IF(GLOBAL_ISEL AND GLOBAL_ISEL_BENCH_DAG)
++ SET_PROPERTY(SOURCE bench.c APPEND PROPERTY COMPILE_OPTIONS "-mllvm" "-global-isel=0")
++ MESSAGE(STATUS "GISel exception: lib/bench/bench.c uses SelectionDAG")
++ENDIF()
+diff --git a/lib/targets/nailgun.c b/lib/targets/nailgun.c
+new file mode 100644
+index 0000000..6dcec59
+--- /dev/null
++++ b/lib/targets/nailgun.c
+@@ -0,0 +1 @@
++/* Nailgun target services are supplied by cmake/targets/nailgun/platform.c. */
+-- 
+2.34.1
+

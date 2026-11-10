@@ -1,0 +1,66 @@
+clang: warning: no multilib structure encoded for Arm, Aarch64 and PPC targets [-Wmultilib-not-found]
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/llvm/lib/CodeGen/RegisterBankInfo.cpp:569: bool llvm::RegisterBankInfo::ValueMapping::verify(const RegisterBankInfo &, TypeSize) const: Assertion `(MeaningfulBitWidth.isScalable() || OrigValueBitWidth >= MeaningfulBitWidth) && "Meaningful bits not covered by the mapping"' failed.
+PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace, preprocessed source, and associated run script.
+Stack dump:
+0.	Program arguments: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang -DMLONMCU_TARGET_ETISS -D__riscv__ -I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/. -I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/targets/. -I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/. -I/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/support/../targets --target=riscv32 -O3 -DNDEBUG -O3 -g -ffunction-sections -fdata-sections -march=rv32im_zicsr_zifencei -mabi=ilp32 --target=riscv32 --gcc-toolchain=/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu --sysroot=/var/tmp/ga87puy/isaac-demo-new/install/gnu_cfu/riscv32-unknown-elf -fno-unroll-loops -fbasic-block-sections=labels -o /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/fallback.o -c /var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/bench.c -mllvm -global-isel=1 -mllvm -global-isel-abort=2
+1.	<eof> parser at end of file
+2.	Code generation
+3.	Running pass 'Function Pass Manager' on module '/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/bench/bench.c'.
+4.	Running pass 'RegBankSelect' on function '@start_bench'
+Stack dump without symbol names (ensure you have llvm-symbolizer in your PATH or set the environment var `LLVM_SYMBOLIZER_PATH` to point to it):
+0  clang     0x00005627c34d18b8 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) + 40
+1  clang     0x00005627c34cf0d5 llvm::sys::RunSignalHandlers() + 293
+2  clang     0x00005627c343d266
+3  libc.so.6 0x00007fa2a871c520
+4  libc.so.6 0x00007fa2a87709fc pthread_kill + 300
+5  libc.so.6 0x00007fa2a871c476 raise + 22
+6  libc.so.6 0x00007fa2a87027f3 abort + 211
+7  libc.so.6 0x00007fa2a870271b
+8  libc.so.6 0x00007fa2a8713e96
+9  clang     0x00005627c2b6742a llvm::RegisterBankInfo::ValueMapping::verify(llvm::RegisterBankInfo const&, llvm::TypeSize) const + 858
+10 clang     0x00005627c2b66315 llvm::RegisterBankInfo::InstructionMapping::verify(llvm::MachineInstr const&) const + 405
+11 clang     0x00005627c451e0db llvm::RegBankSelect::assignInstr(llvm::MachineInstr&) + 523
+12 clang     0x00005627c451e4da llvm::RegBankSelect::assignRegisterBanks(llvm::MachineFunction&) + 330
+13 clang     0x00005627c451e7e0 llvm::RegBankSelect::runOnMachineFunction(llvm::MachineFunction&) + 320
+14 clang     0x00005627c29f4906 llvm::MachineFunctionPass::runOnFunction(llvm::Function&) + 1190
+15 clang     0x00005627c2fd4358 llvm::FPPassManager::runOnFunction(llvm::Function&) + 712
+16 clang     0x00005627c2fdc242 llvm::FPPassManager::runOnModule(llvm::Module&) + 50
+17 clang     0x00005627c2fd4dfc llvm::legacy::PassManagerImpl::run(llvm::Module&) + 1900
+18 clang     0x00005627c36f2ad2 clang::emitBackendOutput(clang::CompilerInstance&, clang::CodeGenOptions&, llvm::StringRef, llvm::Module*, clang::BackendAction, llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>, std::unique_ptr<llvm::raw_pwrite_stream, std::default_delete<llvm::raw_pwrite_stream>>, clang::BackendConsumer*) + 5410
+19 clang     0x00005627c3c9dba0 clang::BackendConsumer::HandleTranslationUnit(clang::ASTContext&) + 1520
+20 clang     0x00005627c5131b09 clang::ParseAST(clang::Sema&, bool, bool) + 617
+21 clang     0x00005627c3f31016 clang::FrontendAction::Execute() + 38
+22 clang     0x00005627c3e9dc1d clang::CompilerInstance::ExecuteAction(clang::FrontendAction&) + 1117
+23 clang     0x00005627c402a64b clang::ExecuteCompilerInvocation(clang::CompilerInstance*) + 379
+24 clang     0x00005627c241bedb cc1_main(llvm::ArrayRef<char const*>, char const*, void*) + 6731
+25 clang     0x00005627c2418083
+26 clang     0x00005627c241a3ad
+27 clang     0x00005627c3d06a89
+28 clang     0x00005627c343cf06 llvm::CrashRecoveryContext::RunSafely(llvm::function_ref<void ()>) + 150
+29 clang     0x00005627c3d06012 clang::driver::CC1Command::Execute(llvm::ArrayRef<std::optional<llvm::StringRef>>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>*, bool*) const + 242
+30 clang     0x00005627c3cc7d97 clang::driver::Compilation::ExecuteCommand(clang::driver::Command const&, clang::driver::Command const*&, bool) const + 263
+31 clang     0x00005627c3cc8097 clang::driver::Compilation::ExecuteJobs(clang::driver::JobList const&, llvm::SmallVectorImpl<std::pair<int, clang::driver::Command const*>>&, bool) const + 135
+32 clang     0x00005627c3ce3798 clang::driver::Driver::ExecuteCompilation(clang::driver::Compilation&, llvm::SmallVectorImpl<std::pair<int, clang::driver::Command const*>>&) + 328
+33 clang     0x00005627c241795b clang_main(int, char**, llvm::ToolContext const&) + 6523
+34 clang     0x00005627c2426ff7 main + 87
+35 libc.so.6 0x00007fa2a8703d90
+36 libc.so.6 0x00007fa2a8703e40 __libc_start_main + 128
+37 clang     0x00005627c2415b95 _start + 37
+clang: error: clang frontend command failed with exit code 134 (use -v to see invocation)
+clang version 22.1.8 (https://github.com/llvm/llvm-project.git cad0b2de32c91d20d4e0c39b7de194894f307107)
+Target: riscv32--
+Thread model: posix
+InstalledDir: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin
+Build config: +assertions
+clang: warning: argument '-fbasic-block-sections=labels' is deprecated, use '-fbasic-block-address-map' instead [-Wdeprecated]
+clang: note: diagnostic msg: 
+********************
+
+PLEASE ATTACH THE FOLLOWING FILES TO THE BUG REPORT:
+Preprocessed source(s) and associated run script(s) are located at:
+clang: note: diagnostic msg: /tmp/bench-dc5c5c.c
+clang: note: diagnostic msg: /tmp/bench-dc5c5c.sh
+clang: note: diagnostic msg: 
+
+********************

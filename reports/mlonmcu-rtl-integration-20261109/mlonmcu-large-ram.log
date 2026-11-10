@@ -1,0 +1,14 @@
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[2026-11-09 15:16:31]::INFO - NumExpr defaulting to 16 threads.
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-23]  Processing stage LOAD
+INFO - [session-23]  Processing stage COMPILE
+INFO - [session-23]  Processing stage RUN
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-23] Done processing runs
+INFO - Report:
+   Run        Model Frontend Platform   Target  End-to-End Runtime [s]  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI   Run CPI  Total CPI  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Load Stage Time [s] Features                                             Config Postprocesses Comment
+0    0  hello_world  example     mlif  nailgun                 2.15106            62                  45         752               571             62                   45          1144                 866   1.377778  1.316988   1.321016        True            2.152098      67900       2560           2188     65708         4      1712                 848                0.637445             0.000009       []  {'example.use_inout_data': False, 'example.gen...            []       -

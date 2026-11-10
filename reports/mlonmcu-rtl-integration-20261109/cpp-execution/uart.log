@@ -1,0 +1,5 @@
+C++ constructor/heap check: 0
+MLONMCU EXIT: 0
+C++ destructor check: PASS
+
+ISAAC_RTL_RESULT exit=0 cycles=6937 retired=5317 completed=1 passed=1

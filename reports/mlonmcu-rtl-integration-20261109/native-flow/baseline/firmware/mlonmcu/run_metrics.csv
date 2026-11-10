@@ -1,0 +1,2 @@
+End-to-End Runtime [s],_Setup Cycles_,_Setup Instructions_,_Run Cycles_,_Run Instructions_,_Deinit Cycles_,_Deinit Instructions_,Total Cycles,Total Instructions,_Setup CPI_,_Run CPI_,Total CPI,Validation,_Run Stage Time [s]_
+2.1244819164276123,59,42,788,594,59,42,1154,870,1.4047619047619047,1.3265993265993266,1.3264367816091953,True,2.1255276203155518

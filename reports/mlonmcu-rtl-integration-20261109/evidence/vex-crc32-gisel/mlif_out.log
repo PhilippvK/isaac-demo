@@ -1,0 +1,86 @@
+-- The C compiler identification is Clang 22.1.8
+-- The CXX compiler identification is Clang 22.1.8
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- GISel exception: lib/bench/bench.c uses SelectionDAG
+-- The ASM compiler identification is Clang with GNU-like command-line
+-- Found assembler: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    DATA_SRC
+    EXTEND_ATTRS
+    QUIET
+    RISCV_CPU
+    RISCV_FEATURES
+    SRC_DIR
+
+
+-- Build files have been written to: /var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif
+[  5%] Building C object lib/targets/CMakeFiles/target_support.dir/nailgun.c.obj
+[ 10%] Building C object lib/targets/CMakeFiles/target_support.dir/target.c.obj
+[ 15%] Linking C static library libtarget_support.a
+[ 15%] Built target target_support
+[ 21%] Building C object lib/support/CMakeFiles/support.dir/dummy.c.obj
+[ 26%] Building C object lib/support/CMakeFiles/support.dir/exit.c.obj
+[ 31%] Building C object lib/support/CMakeFiles/support.dir/printing.c.obj
+[ 36%] Linking C static library libsupport.a
+[ 36%] Built target support
+[ 42%] Building C object lib/bench/CMakeFiles/bench.dir/bench.c.obj
+[ 52%] Building C object lib/embench/CMakeFiles/embench.dir/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/support/beebsc.c.obj
+[ 57%] Building C object lib/embench/CMakeFiles/embench.dir/embench.c.obj
+[ 57%] Building C object lib/embench/CMakeFiles/embench.dir/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/benchmarks/embench/src/crc32/crc_32.c.obj
+/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/embench/embench.c:10:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+   10 | void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+      |                                                 ^~~~~~~~~~~~~~~~~~
+/var/tmp/ga87puy/isaac-demo-new/install/mlonmcu/deps/src/mlif/lib/embench/embench.c:15:49: warning: unknown attribute 'externally_visible' ignored [-Wunknown-attributes]
+   15 | void __attribute__ ((noinline)) __attribute__ ((externally_visible))
+      |                                                 ^~~~~~~~~~~~~~~~~~
+2 warnings generated.
+[ 63%] Linking C static library libbench.a
+[ 68%] Linking C static library libembench.a
+[ 68%] Built target bench
+[ 68%] Built target embench
+[ 73%] Building C object lib/CMakeFiles/mlonmcu_support.dir/drivers/fake_input.c.obj
+[ 78%] Linking C static library libmlonmcu_support.a
+[ 78%] Built target mlonmcu_support
+Scanning dependencies of target generic_mlonmcu
+[ 84%] Building C object generic/CMakeFiles/generic_mlonmcu.dir/main.c.obj
+[ 89%] Building ASM object generic/CMakeFiles/generic_mlonmcu.dir/__/cmake/targets/nailgun/start.S.obj
+[ 94%] Building C object generic/CMakeFiles/generic_mlonmcu.dir/__/cmake/targets/nailgun/platform.c.obj
+warning: Instruction selection used fallback path for _exit [-Wbackend-plugin]
+warning: Instruction selection used fallback path for trap_report [-Wbackend-plugin]
+2 warnings generated.
+[100%] Linking C executable ../bin/generic_mlonmcu
+Invoking: Objdump (ASM)
+Invoking: Objdump (SRC)
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/extenddftf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/libgcc2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/divdf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/muldf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/unordtf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/letf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/subdf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/adddf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/floatsidf.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/fixdfsi.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/ledf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/eqdf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/gedf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/getf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/eqtf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/multf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/fixtfsi.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/floatsitf.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/mlonmcu-rtl-integration-20261109/temp/sessions/15/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/subtf3.c
+[100%] Built target generic_mlonmcu
