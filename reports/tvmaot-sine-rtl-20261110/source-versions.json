@@ -1,0 +1,13 @@
+{
+  "mlonmcu": "4d03f7f4eea738dac890cf6f17610ea81cff5e01",
+  "install/mlonmcu/deps/src/mlif": "713f9e8a6c48a61810e5e49b2e8acf8ed453d432",
+  "llvm-project-22": "cad0b2de32c91d20d4e0c39b7de194894f307107",
+  "tvm": {
+    "version": "0.18.0",
+    "source": "/var/tmp/ga87puy/cfu_tvm/tumeda-new/fau-tum-cfu-collab/tvm",
+    "commit": "da8cb455b2115e51bb5e81d2940c2a7df97194e3",
+    "library": "/var/tmp/ga87puy/cfu_tvm/tumeda-new/fau-tum-cfu-collab/tvm/build_gcc12/libtvm.so"
+  },
+  "model_sha256": "74b1afd0b7fa5704502a9167da9cb12591def74acd1006f596bfcac67f63d4c4",
+  "main_base_commit": "3db944beea97c3eb4ed9af1952ac85a0c9f45ec1"
+}

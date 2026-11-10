@@ -1,0 +1,106 @@
+-- The C compiler identification is Clang 22.1.8
+-- The CXX compiler identification is Clang 22.1.8
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- GISel exception: lib/bench/bench.c uses SelectionDAG
+-- The ASM compiler identification is Clang with GNU-like command-line
+-- Found assembler: /var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/clang
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    DATA_SRC
+    EXTEND_ATTRS
+    QUIET
+    RISCV_CPU
+    RISCV_FEATURES
+
+
+-- Build files have been written to: /var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif
+[  2%] Building C object lib/targets/CMakeFiles/target_support.dir/nailgun.c.obj
+[  5%] Building C object lib/ml_interface/v2/CMakeFiles/tvm_extension.dir/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/codegen/host/src/default_lib0.c.obj
+[  8%] Building C object lib/targets/CMakeFiles/target_support.dir/target.c.obj
+[ 11%] Building C object lib/ml_interface/v2/CMakeFiles/tvm_extension.dir/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/codegen/host/src/default_lib1.c.obj
+[ 14%] Building C object lib/ml_interface/v2/CMakeFiles/tvm_extension.dir/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/codegen/host/src/default_lib2.c.obj
+[ 17%] Linking C static library libtarget_support.a
+[ 17%] Built target target_support
+[ 20%] Building C object lib/support/CMakeFiles/support.dir/dummy.c.obj
+[ 23%] Building C object lib/support/CMakeFiles/support.dir/exit.c.obj
+[ 26%] Building C object lib/support/CMakeFiles/support.dir/printing.c.obj
+[ 29%] Linking C static library libtvm_extension.a
+[ 32%] Linking C static library libsupport.a
+[ 32%] Built target tvm_extension
+[ 35%] Building C object lib/ml_interface/v2/CMakeFiles/tvm_aot_rt.dir/var/tmp/ga87puy/cfu_tvm/tumeda-new/fau-tum-cfu-collab/tvm/src/runtime/crt/common/crt_backend_api.c.obj
+[ 38%] Building C object lib/ml_interface/v2/CMakeFiles/tvm_aot_rt.dir/var/tmp/ga87puy/cfu_tvm/tumeda-new/fau-tum-cfu-collab/tvm/src/runtime/crt/memory/stack_allocator.c.obj
+[ 38%] Built target support
+[ 41%] Building C object lib/bench/CMakeFiles/bench.dir/bench.c.obj
+[ 44%] Building C object lib/ml_interface/v2/CMakeFiles/ml_interface_base.dir/ml_interface_base.c.obj
+[ 47%] Linking C static library libtvm_aot_rt.a
+[ 50%] Linking C static library libml_interface_base.a
+[ 52%] Linking C static library libbench.a
+[ 52%] Built target tvm_aot_rt
+[ 52%] Built target ml_interface_base
+[ 55%] Building C object lib/ml_interface/v2/mlifio/CMakeFiles/mlifio.dir/mlifio.c.obj
+[ 55%] Built target bench
+[ 58%] Linking C static library libmlifio.a
+[ 58%] Built target mlifio
+[ 61%] Building CXX object lib/ml_interface/v2/CMakeFiles/model_support.dir/__/__/__/model_support.cpp.obj
+[ 64%] Linking CXX static library libmodel_support.a
+[ 64%] Built target model_support
+[ 67%] Building C object lib/ml_interface/v2/CMakeFiles/model_support_base.dir/support.c.obj
+[ 70%] Linking CXX static library libmodel_support_base.a
+[ 70%] Built target model_support_base
+[ 73%] Building C object lib/ml_interface/v2/CMakeFiles/ml_interface.dir/ml_interface.c.obj
+[ 76%] Building C object lib/ml_interface/v2/CMakeFiles/ml_interface.dir/ml_interface_tvm.c.obj
+[ 79%] Building C object lib/ml_interface/v2/CMakeFiles/ml_interface.dir/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/aot_wrapper.c.obj
+/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/aot_wrapper.c:72:1: warning: function declared 'noreturn' should not return [-Winvalid-noreturn]
+   72 | }
+      | ^
+1 warning generated.
+[ 82%] Linking CXX static library libml_interface.a
+[ 82%] Built target ml_interface
+[ 85%] Building C object lib/CMakeFiles/mlonmcu_support.dir/drivers/fake_input.c.obj
+[ 88%] Linking CXX static library libmlonmcu_support.a
+[ 88%] Built target mlonmcu_support
+Scanning dependencies of target generic_mlonmcu
+[ 91%] Building C object generic/CMakeFiles/generic_mlonmcu.dir/main.c.obj
+[ 94%] Building ASM object generic/CMakeFiles/generic_mlonmcu.dir/__/cmake/targets/nailgun/start.S.obj
+[ 97%] Building C object generic/CMakeFiles/generic_mlonmcu.dir/__/cmake/targets/nailgun/platform.c.obj
+warning: Instruction selection used fallback path for _exit [-Wbackend-plugin]
+warning: Instruction selection used fallback path for trap_report [-Wbackend-plugin]
+2 warnings generated.
+[100%] Linking CXX executable ../bin/generic_mlonmcu
+Invoking: Objdump (ASM)
+Invoking: Objdump (SRC)
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/extenddftf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/libgcc2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/divdf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/muldf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/unordtf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/letf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/subdf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/adddf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/floatsidf.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/fixdfsi.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/ledf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/eqdf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/gedf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/getf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/eqtf2.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/multf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/fixtfsi.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/floatsitf.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/subtf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/mulsf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/addsf3.c
+/var/tmp/ga87puy/isaac-demo-new/llvm-project-22/build/bin/llvm-objdump: warning: '/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/temp/sessions/11/runs/0/mlif/bin/generic_mlonmcu': failed to find source /tmp/tmp.lIQ8equvHv/gnu/build/build-gcc-newlib-stage2/riscv32-unknown-elf/libgcc/../../../../gcc/libgcc/soft-fp/gesf2.c
+[100%] Built target generic_mlonmcu

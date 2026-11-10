@@ -157,3 +157,19 @@ The native target has been exercised with Embench CRC32/SHA256, the separate
 MLonMCU example frontend, GCC, LLVM GISel, and a C++ constructor/heap/destructor
 fixture. Full TFLM/TVM model execution still needs validation with their backend
 dependencies; compatibility with every frontend is not claimed by these checks.
+
+### TVM AOT model validation
+
+Use `mlif.template_version=v2` with generated model input/output support. The
+legacy v1 template does not consume that generated support file. For example:
+
+```bash
+python -m mlonmcu.cli.main flow run sine_model --backend tvmaot --target nailgun \
+  -f validate_new --post validate_outputs \
+  -c 'validate_outputs.validate_metrics=allclose(atol=1e-06,rtol=1e-06)' \
+  -c mlif.template_version=v2 -c gen_data.number=4
+```
+
+Configure the TVM source/build/Python paths and the Nailgun runner/RTL as above.
+For scalar regression models, use numerical metrics such as `allclose`; default
+classification top-k metrics do not establish numerical correctness.

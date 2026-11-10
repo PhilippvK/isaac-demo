@@ -55,3 +55,5 @@ FPGA target. Board-only selection is `cva5_reuseio_arty_a7_100t`.
 - [Integrated CVA5/Vex RTL benchmark execution](rtl-sim-integration-20261109/report.md).
 
 - [Native MLonMCU RTL target and scoped GISel workaround](mlonmcu-rtl-integration-20261109/report.md).
+
+- [TVM AOT sine model numerical validation on Vex and CVA5](tvmaot-sine-rtl-20261110/report.md).

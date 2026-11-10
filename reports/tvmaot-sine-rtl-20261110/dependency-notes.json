@@ -1,0 +1,5 @@
+{
+  "tflite_schema": "2.18.0",
+  "source": "/var/tmp/ga87puy/cfu_tvm/tumeda-new/fau-tum-cfu-collab/venv/lib/python3.10/site-packages/tflite",
+  "copied_to": "/var/tmp/ga87puy/isaac-demo-new/reports/tvmaot-sine-rtl-20261110/dependencies/python/tflite"
+}

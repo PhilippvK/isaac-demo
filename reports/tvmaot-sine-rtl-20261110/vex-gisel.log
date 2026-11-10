@@ -1,0 +1,15 @@
+/var/tmp/ga87puy/isaac-demo-new/mlonmcu/mlonmcu/environment/templates.py:24: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+INFO - Loading environment cache from file
+INFO - Successfully initialized cache
+INFO - [session-11]  Processing stage LOAD
+INFO - [session-11]  Processing stage BUILD
+INFO - [session-11]  Processing stage COMPILE
+INFO - [session-11]  Processing stage RUN
+INFO - [session-11]  Processing stage POSTPROCESS
+INFO - All runs completed successfuly!
+INFO - Postprocessing session report
+INFO - [session-11] Done processing runs
+INFO - Report:
+   Run       Model Frontend Framework Backend Platform   Target  End-to-End Runtime [s]  Setup Cycles  Setup Instructions  Run Cycles  Run Instructions  Deinit Cycles  Deinit Instructions  Total Cycles  Total Instructions  Setup CPI   Run CPI  Total CPI  Validation  Run Stage Time [s]  Total ROM  Total RAM  ROM read-only  ROM code  ROM misc  RAM data  RAM zero-init data  Compile Stage Time [s]  Workspace Size [B]  Build Stage Time [s]  Load Stage Time [s]                                           Features                                             Config       Postprocesses Comment allclose(atol=1e-06,rtol=1e-06)
+0    0  sine_model   tflite       tvm  tvmaot     mlif  nailgun                2.273168           104                  75       52219             42715             59                   42        272190              224229   1.386667  1.222498   1.213893        True            2.274209      74760       2756           3696     71060         4      1720                1036                1.323314                 160              9.405697             0.000123  [get_outputs, gen_data, set_inputs, validate_n...  {'sine_model.output_types': {'Identity': 'floa...  [validate_outputs]       -                      4/4 (100%)

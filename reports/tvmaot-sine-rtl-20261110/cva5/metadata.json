@@ -1,0 +1,86 @@
+{
+  "modules": {
+    "default": {
+      "executors": [
+        "aot"
+      ],
+      "export_datetime": "2026-11-10 06:30:26Z",
+      "external_dependencies": [
+        {
+          "short_name": "tvm_standalone_crt",
+          "url": "./runtime",
+          "url_type": "mlf_path",
+          "version_spec": "0.18.0"
+        }
+      ],
+      "memory": {
+        "functions": {
+          "main": [
+            {
+              "constants_size_bytes": 0,
+              "device": 1,
+              "inputs": {
+                "dense_2_input": {
+                  "dtype": "float32",
+                  "size": 4
+                }
+              },
+              "io_size_bytes": 268,
+              "outputs": {
+                "Identity": {
+                  "dtype": "float32",
+                  "size": 4
+                }
+              },
+              "workspace_size_bytes": 160
+            }
+          ],
+          "operator_functions": [
+            {
+              "function_name": "tvmgen_default_fused_nn_contrib_dense_pack_add_nn_relu",
+              "workspace": [
+                {
+                  "device": 1,
+                  "workspace_size_bytes": 32
+                }
+              ]
+            },
+            {
+              "function_name": "tvmgen_default_fused_nn_contrib_dense_pack_add_nn_relu_1",
+              "workspace": [
+                {
+                  "device": 1,
+                  "workspace_size_bytes": 32
+                }
+              ]
+            },
+            {
+              "function_name": "tvmgen_default_fused_reshape",
+              "workspace": [
+                {
+                  "device": 1,
+                  "workspace_size_bytes": 0
+                }
+              ]
+            },
+            {
+              "function_name": "tvmgen_default_fused_nn_contrib_dense_pack_add",
+              "workspace": [
+                {
+                  "device": 1,
+                  "workspace_size_bytes": 16
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "model_name": "default",
+      "style": "full-model",
+      "target": [
+        "c -keys=cpu -constants-byte-alignment=16 -mcpu=generic-rv32 -model=etiss-rv32im-zicsr-zifencei -workspace-byte-alignment=16"
+      ]
+    }
+  },
+  "version": 7
+}
