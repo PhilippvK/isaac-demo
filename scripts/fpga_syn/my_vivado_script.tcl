@@ -11,18 +11,24 @@ create_project -force -part ${PART} CVA5IP ./vivado/CVA5IP
 create_ip -name blk_mem_gen -vendor xilinx.com -library ip -version 8.4 \
           -module_name blk_mem_gen_0
 
-# Configure the IP
-set_property -dict [list \
-    CONFIG.Memory_Type {Single_Port_RAM} \
-    CONFIG.Write_Width_A {32} \
-    CONFIG.Write_Depth_A {65536} \
-    CONFIG.Use_Byte_Write_Enable {true} \
-    CONFIG.Byte_Size {8} \
+# Select mode before setting widths/byte enables: mode changes reset IP defaults.
+set vex [expr {[info exists env(FPGA_SYN_CORE)] && $env(FPGA_SYN_CORE) eq "VEX_5S"}]
+if {$vex} {
+    set_property CONFIG.Memory_Type {True_Dual_Port_RAM} [get_ips blk_mem_gen_0]
+} else {
+    set_property CONFIG.Memory_Type {Single_Port_RAM} [get_ips blk_mem_gen_0]
+}
+set_property -dict [list CONFIG.Use_Byte_Write_Enable {true} CONFIG.Byte_Size {8} \
+    CONFIG.Write_Width_A {32} CONFIG.Read_Width_A {32} CONFIG.Write_Depth_A {65536} \
     CONFIG.Register_PortA_Output_of_Memory_Primitives {false} \
-    CONFIG.Register_PortA_Output_of_Memory_Core {false} \
-    CONFIG.Operating_Mode_A {WRITE_FIRST} \
-] [get_ips blk_mem_gen_0]
-
+    CONFIG.Register_PortA_Output_of_Memory_Core {false} CONFIG.Operating_Mode_A {WRITE_FIRST}] [get_ips blk_mem_gen_0]
+if {$vex} {
+    set_property -dict [list CONFIG.Write_Width_B {32} CONFIG.Read_Width_B {32} \
+        CONFIG.Enable_B {Use_ENB_Pin} CONFIG.Assume_Synchronous_Clk {true} \
+        CONFIG.Register_PortB_Output_of_Memory_Primitives {false} \
+        CONFIG.Register_PortB_Output_of_Memory_Core {false}] [get_ips blk_mem_gen_0]
+}
+if {![get_property CONFIG.Use_Byte_Write_Enable [get_ips blk_mem_gen_0]]} {error "RAM requires byte write enables"}
 if {[info exists env(FPGA_SYN_INIT_COE)] && $env(FPGA_SYN_INIT_COE) ne ""} {
     set_property -dict [list CONFIG.Load_Init_File true CONFIG.Coe_File [file normalize $env(FPGA_SYN_INIT_COE)]] [get_ips blk_mem_gen_0]
 }
@@ -70,14 +76,21 @@ foreach file [split $file_list "\n"] {
     lappend rtl_files $file
 }
 
+# Nailgun emits extension modules next to the core directory.
+foreach extension [glob -nocomplain [file join $parent_dir .. ISAX_*.sv]] {
+    if {[lsearch -exact $rtl_files $extension] < 0} {lappend rtl_files $extension}
+}
+
 # add_files -force {blk_mem_gen_0.xci}
 add_files -force $rtl_files
 if {[info exists env(FPGA_SYN_BOARD)] && $env(FPGA_SYN_BOARD) eq "arty_a7_100"} {
+    if {$env(FPGA_SYN_CORE) eq "CVA5"} {
     # The shell terminates cache AXI because this configuration disables caches.
     set config_file [lsearch -inline -glob $rtl_files */cva5_config.sv]
     set fh [open $config_file r]; set config [read $fh]; close $fh
     foreach option {INCLUDE_ICACHE INCLUDE_DCACHE INCLUDE_IBUS} {
         if {![regexp "${option}\\s*:\\s*0" $config]} {error "Arty shell requires $option disabled"}
+    }
     }
     source [file join $ROOT_PATH fpga_syn boards arty_a7_100 setup.tcl]
 }
@@ -112,6 +125,6 @@ report_utilization -hierarchical -file reports/utilization_hier_impl.rpt
 report_drc -file reports/drc_impl.rpt
 write_checkpoint -force routed.dcp
 if {[info exists env(FPGA_SYN_BOARD)] && $env(FPGA_SYN_BOARD) eq "arty_a7_100"} {
-    write_bitstream -force cva5_arty_top.bit
+    write_bitstream -force ${TOPLEVEL}.bit
 }
 close_project

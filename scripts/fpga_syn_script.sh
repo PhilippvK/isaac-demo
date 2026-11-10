@@ -39,8 +39,11 @@ fi
 
 CONSTRAINTS_FILE_DEFAULT=$SCRIPTS_DIR/fpga_syn/constraints/$CORE/$TOP_NAME.xdc
 if [[ "$BOARD" == "arty_a7_100" ]]; then
-    [[ "$CORE" == "CVA5" ]] || { echo "Arty shell supports CVA5 only"; exit 2; }
-    TOP_NAME=cva5_arty_top
+    case "$CORE" in
+        CVA5) TOP_NAME=cva5_arty_top ;;
+        VEX_5S) TOP_NAME=vex_arty_top ;;
+        *) echo "Unsupported Arty core: $CORE"; exit 2 ;;
+    esac
     CONSTRAINTS_FILE_DEFAULT=$SCRIPTS_DIR/fpga_syn/boards/arty_a7_100/board.xdc
 elif [[ "$BOARD" != "generic" ]]; then
     echo "Unsupported FPGA_SYN_BOARD: $BOARD"; exit 2
@@ -71,6 +74,7 @@ export CLOCK_PERIOD=${CLK_SPEED}
 export CONSTRAINTS_FILE=$(readlink -f $CONSTRAINTS_FILE)
 export TOPLEVEL=$TOP_NAME
 export PART
+export FPGA_SYN_CORE=$CORE
 
 cd $OUT_DIR
 vivado -mode batch -source $SCRIPTS_DIR/fpga_syn/my_vivado_script.tcl
