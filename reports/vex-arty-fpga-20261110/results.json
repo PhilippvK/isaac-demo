@@ -1,0 +1,39 @@
+{
+  "clock_hz": 20000000,
+  "part": "xc7a100tcsg324-1",
+  "physical_board": "210319C08AE1",
+  "sine_board_passed": true,
+  "crc32_board_passed": true,
+  "memory_checks": 1280,
+  "paired_native_cycles": [
+    16408,
+    16408,
+    16408,
+    16408,
+    16408
+  ],
+  "paired_ise_cycles": [
+    16409,
+    16409,
+    16409,
+    16409,
+    16409
+  ],
+  "speedup": 0.9999390578341154,
+  "baseline": {
+    "luts": 1654,
+    "registers": 1030,
+    "bram_tiles": 64,
+    "dsps": 4,
+    "wns_ns": 2.554,
+    "core_setup_slack_ns": 24.891
+  },
+  "extended_crc32": {
+    "luts": 3350,
+    "registers": 1117,
+    "bram_tiles": 64,
+    "dsps": 7,
+    "wns_ns": 0.593,
+    "core_setup_slack_ns": 21.94
+  }
+}

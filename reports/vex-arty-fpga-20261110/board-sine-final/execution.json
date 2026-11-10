@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "protocol": "mlonmcu",
+  "numerical": {
+    "passed": true,
+    "outputs": [
+      0.032038986682891846,
+      0.952165424823761,
+      -0.04688292741775513,
+      -1.0133159160614014
+    ],
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/vex-arty-fpga-20261110/baseline-final/vex_arty_top.bit",
+  "uart": "Program start.\n-?-P;\u0003=-!-\n-?-\u001d\ufffds?-!-\n-?-P\b@\ufffd-!-\n-?-V\ufffd\ufffd\ufffd-!-\n# Setup Cycles: 122\n# Setup Instructions: 75\n# Run Cycles: 57909\n# Run Instructions: 42715\n# Deinit Cycles: 72\n# Deinit Instructions: 42\n# Total Cycles: 370022\n# Total Instructions: 224229\nProgram finish.\nMLONMCU EXIT: 0\n",
+  "elapsed_seconds": 21.945973843336105,
+  "programming": "volatile FPGA configuration; no flash"
+}

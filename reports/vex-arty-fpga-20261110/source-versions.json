@@ -1,0 +1,7 @@
+{
+  "demo_implementation_commit": "9968b0c3a8f72c82389a1ca93b56f59807663289",
+  "base_experiment_commit": "c14e55c",
+  "vivado": "2024.1",
+  "hls_inputs": "reports/vex-5s-hls-20261107",
+  "sine_firmware": "reports/tvmaot-sine-rtl-20261110/vex/generic_mlonmcu"
+}

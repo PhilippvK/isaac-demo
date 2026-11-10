@@ -1,0 +1,57 @@
+
+****** Vivado v2024.1 (64-bit)
+  **** SW Build 5076996 on Wed May 22 18:36:09 MDT 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Tue Nov 10 08:22:26 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /var/tmp/ga87puy/isaac-demo-new/scripts//fpga_syn/my_vivado_script.tcl
+# set_param general.maxThreads 4
+# set ROOT_PATH      $env(ROOT_PATH)
+# set FILES_TXT $env(FILES_TXT)
+# set CONSTRAINTS_FILE $env(CONSTRAINTS_FILE)
+# set TOPLEVEL       $env(TOPLEVEL)
+# set PART       $env(PART)
+# create_project -force -part ${PART} CVA5IP ./vivado/CVA5IP
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1491.863 ; gain = 137.836 ; free physical = 6779 ; free virtual = 23175
+# create_ip -name blk_mem_gen -vendor xilinx.com -library ip -version 8.4 \
+#           -module_name blk_mem_gen_0
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/nfs/tools/xilinx/Vivado/2024.1/data/ip'.
+# set_property -dict [list \
+#     CONFIG.Memory_Type {Single_Port_RAM} \
+#     CONFIG.Write_Width_A {32} \
+#     CONFIG.Write_Depth_A {65536} \
+#     CONFIG.Use_Byte_Write_Enable {true} \
+#     CONFIG.Byte_Size {8} \
+#     CONFIG.Register_PortA_Output_of_Memory_Primitives {false} \
+#     CONFIG.Register_PortA_Output_of_Memory_Core {false} \
+#     CONFIG.Operating_Mode_A {WRITE_FIRST} \
+# ] [get_ips blk_mem_gen_0]
+# if {[info exists env(FPGA_SYN_INIT_COE)] && $env(FPGA_SYN_INIT_COE) ne ""} {
+#     set_property -dict [list CONFIG.Load_Init_File true CONFIG.Coe_File [file normalize $env(FPGA_SYN_INIT_COE)]] [get_ips blk_mem_gen_0]
+# }
+INFO: [IP_Flow 19-3484] Absolute path of file '/var/tmp/ga87puy/isaac-demo-new/reports/vex-arty-fpga-20261110/firmware/sine.coe' provided. It will be converted relative to IP Instance files '../../../../../../../firmware/sine.coe'
+# if {[info exists env(FPGA_SYN_CORE)] && $env(FPGA_SYN_CORE) eq "VEX_5S"} {
+#     set_property -dict [list CONFIG.Memory_Type {True_Dual_Port_RAM} CONFIG.Write_Width_B {32} CONFIG.Read_Width_B {32} CONFIG.Enable_B {Use_ENB_Pin} CONFIG.Register_PortB_Output_of_Memory_Primitives {false} CONFIG.Register_PortB_Output_of_Memory_Core {false}] [get_ips blk_mem_gen_0]
+#     # Changing memory type resets byte-write settings in Block Memory Generator.
+#     set_property -dict [list CONFIG.Use_Byte_Write_Enable {true} CONFIG.Byte_Size {8} CONFIG.Assume_Synchronous_Clk {true}] [get_ips blk_mem_gen_0]
+#     if {![get_property CONFIG.Use_Byte_Write_Enable [get_ips blk_mem_gen_0]]} {error "Vex RAM requires byte write enables"}
+# }
+ERROR: [IP_Flow 19-3478] Validation failed for parameter 'Coe File(Coe_File)' with current value '../../../../../../../firmware/sine.coe' for IP 'blk_mem_gen_0'. The actual entries: 00013197 , for Memory Initialization vector should not be larger than Write Width A.
+INFO: [IP_Flow 19-3438] Customization errors found on 'blk_mem_gen_0'. Restoring to previous valid configuration.
+INFO: [Common 17-17] undo 'set_property'
+ERROR: [Common 17-39] 'set_property' failed due to earlier errors.
+
+    while executing
+"rdi::add_properties -dict {CONFIG.Use_Byte_Write_Enable true CONFIG.Byte_Size 8 CONFIG.Assume_Synchronous_Clk true} blk_mem_gen_0"
+    invoked from within
+"set_property -dict [list CONFIG.Use_Byte_Write_Enable {true} CONFIG.Byte_Size {8} CONFIG.Assume_Synchronous_Clk {true}] [get_ips blk_mem_gen_0]"
+    invoked from within
+"if {[info exists env(FPGA_SYN_CORE)] && $env(FPGA_SYN_CORE) eq "VEX_5S"} {
+    set_property -dict [list CONFIG.Memory_Type {True_Dual_Port_RAM} CONFIG..."
+    (file "/var/tmp/ga87puy/isaac-demo-new/scripts//fpga_syn/my_vivado_script.tcl" line 30)
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 10 08:22:52 2026...

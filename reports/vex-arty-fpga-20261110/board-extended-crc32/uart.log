@@ -1,0 +1,11 @@
+ISAAC VEX_5S BOOT full
+RAM PASS
+CRC32=65842ca9 verify=00002ca9 cycles=0000401a
+ZERO REGISTER PASS
+MEMORY PASS checks=00000500
+PAIR run=00000000 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019
+PAIR run=00000001 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019
+PAIR run=00000002 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019
+PAIR run=00000003 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019
+PAIR run=00000004 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019
+PASS

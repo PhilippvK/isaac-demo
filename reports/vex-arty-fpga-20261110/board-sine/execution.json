@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "protocol": "mlonmcu",
+  "numerical": {
+    "passed": false,
+    "outputs": [],
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/vex-arty-fpga-20261110/baseline/vex_arty_top.bit",
+  "uart": "\u0015GR\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0012!\ufffdC\ufffd~V\ufffd)\u0011m\u0002\ufffd\"\ufffd\u0002\ufffdF(?\n\ufffd\ufffd\ufffd4\ufffd\ufffdy\ufffd\ufffd\ufffd\ufffd\u007f\ufffd\ufffd\ufffd\u0432\ufffd\ufffd0\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdy\ufffd\ufffd\ufffd\ufffdM\ufffdB\u000b\u0017\ufffdB\ufffd\ufffdc\ufffdB\ufffd\ufffd\u0017a\ufffd\ufffd\ufffd\ufffd\u0011B\ufffd\ufffda\ufffd\u0012s\ufffd\ufffdB\ufffd\ufffd\ufffd\ufffdbs\ufffd\ufffds\ufffd\"c\ufffd\ufffdc\ufffd\u0012c\ufffd\ufffds\ufffdbc\ufffd\ufffdB\u0012a\ufffd\u0012s\ufffdW\ufffd\ufffd\ufffd\ufffd\ufffdB\ufffd\ufffd\ufffd\ufffd\ufffdB#\ufffd\ufffda\ufffdB#\ufffdbs\ufffd\u0012a\ufffd\ufffda\ufffdB#\ufffdbc\ufffd\ufffd\ufffd\ufffd\u0012a\u0004@\ufffd\ufffd\ufffd:\ufffd\u0012T\ufffd\ufffd\u0491yW\ufffd\ufffd",
+  "elapsed_seconds": 45.4127040207386,
+  "programming": "volatile FPGA configuration; no flash"
+}

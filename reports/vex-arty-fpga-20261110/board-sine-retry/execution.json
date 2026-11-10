@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "protocol": "mlonmcu",
+  "numerical": {
+    "passed": false,
+    "outputs": [],
+    "atol": 1e-06,
+    "rtol": 1e-06
+  },
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/vex-arty-fpga-20261110/baseline/vex_arty_top.bit",
+  "uart": "",
+  "elapsed_seconds": 44.630771927535534,
+  "programming": "volatile FPGA configuration; no flash"
+}

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "outputs": [
+    0.032038986682891846,
+    0.952165424823761,
+    -0.04688292741775513,
+    -1.0133159160614014
+  ],
+  "identical_to_previous_rtl": true,
+  "simulation": "behavioral RAM and clock primitive substitutes; exact synthesized board shell and generated CPU"
+}

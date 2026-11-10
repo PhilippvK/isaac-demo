@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "protocol": "probe",
+  "numerical": null,
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/vex-arty-fpga-20261110/extended-crc32/vex_arty_top.bit",
+  "uart": "ISAAC VEX_5S BOOT full\r\nRAM PASS\r\nCRC32=65842ca9 verify=00002ca9 cycles=0000401a\r\nZERO REGISTER PASS\r\nMEMORY PASS checks=00000500\r\nPAIR run=00000000 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019\r\nPAIR run=00000001 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019\r\nPAIR run=00000002 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019\r\nPAIR run=00000003 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019\r\nPAIR run=00000004 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00004019\r\nPASS\r\n",
+  "elapsed_seconds": 28.934004619717598,
+  "programming": "volatile FPGA configuration; no flash"
+}
