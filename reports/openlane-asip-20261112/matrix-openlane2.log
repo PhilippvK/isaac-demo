@@ -1,0 +1,28 @@
+[
+  {
+    "pdk": "sky130A",
+    "variant": "baseline",
+    "cell_area": 182048.3488,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -9.132762360418594,
+    "hold_wns_ns": 0,
+    "hold_violating_paths": 0,
+    "setup_timing_met": false,
+    "hold_timing_met": true,
+    "timing_met": false,
+    "area_ratio": 1.0
+  },
+  {
+    "pdk": "sky130A",
+    "variant": "crc32",
+    "cell_area": 239086.8032,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -13.738412574208697,
+    "hold_wns_ns": 0,
+    "hold_violating_paths": 0,
+    "setup_timing_met": false,
+    "hold_timing_met": true,
+    "timing_met": false,
+    "area_ratio": 1.3133148681434237
+  }
+]

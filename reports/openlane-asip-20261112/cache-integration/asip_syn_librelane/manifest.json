@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "tool": "librelane",
+    "pdk": "sky130A",
+    "sha256": {
+      "tool.log": "4e949e492c232d0a2671350f04e0f88e929b2cb99075f87beab3b8bb39fcc7c3",
+      "metrics.csv": "790320960c2b69e68d7c49dd70b0532b33d8eadd971269d6e89fadb55e012ccc",
+      "version.log": "d4d13344773d64b4b192ed1d53bbced1dc76dd4863cefe816048a20925d50ea4",
+      "artifacts.tar.gz": "992e6889e554a788e90ed4400b5d8a32025fc7282d7191584d14fcf4b6052d98",
+      "metrics.json": "9ea57bb8161bce1063caef3eb5baf531fc1e0500f3d2fb7d9eb0d2a760c4adfc",
+      "config.json": "73fbf060dbc1a1956b1703ef4e1f276911fd7bf0e72f538f9c12b969f087359e",
+      "execution.json": "76420747658ece46662702664432cd6fc603c21f7a9ba43804c02ab8f411c677"
+    }
+  }
+}

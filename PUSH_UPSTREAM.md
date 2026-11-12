@@ -84,3 +84,21 @@ evidence commit preserves the eight-run evaluation under
 Open library downloads and compiled databases remain local in
 `install/asip-libs/` and can be regenerated with the documented helper.
 Concurrent submodule pointer edits were excluded from the ASIP commits.
+
+## Independent OpenLane2 / LibreLane follow-up
+
+Demo commit `9b3be24` integrates both controllers as independent `syn_0`
+backends, with presets, collection, cache validation and evidence preservation.
+The accompanying evidence commit retains the four real Sky130 synthesis runs
+and reproduction inputs under `reports/openlane-asip-20261112/`. All four
+map successfully; all fail the requested 10 ns setup target. OpenLane2 validation
+uses the documented isolated Yosys API adapter.
+
+Only the demo repository needs pushing for this addition:
+
+```bash
+git push origin main
+```
+
+No dependency commits or submodule pointer changes are included. The PDK,
+container image and isolated controller install remain local and are not pushed.

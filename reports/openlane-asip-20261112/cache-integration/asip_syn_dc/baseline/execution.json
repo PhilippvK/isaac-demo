@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "status": "complete",
+  "pdk": "nangate45",
+  "core": "VEX_5S",
+  "clock_period_ns": 10.0,
+  "library": "/var/tmp/ga87puy/isaac-demo-new/install/asip-libs/nangate45/NangateOpenCellLibrary_typical.db",
+  "library_sha256": "41f6ff336695fd5ec34a1881badcba64deeeab972bb07c42db11d2b1a3bee629",
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "constraints": "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/constraints.tcl",
+  "constraints_sha256": "26ce5c4689eb8aaab47a714787e3b1bcb8e24a35166de878b2605a2c7bb14ab6",
+  "synthesis_script_sha256": "dd30b74081a0ede642ff0af81211ff83a4454db2adcce7a5c2fc065ee525693c",
+  "dc_shell": "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+  "electrical_settings": {
+    "driver": "INV_X2",
+    "pin": "ZN",
+    "load": 33.4,
+    "dont_use": "NangateOpenCellLibrary/SDFF*"
+  },
+  "boundary": "core and extension, external memory excluded",
+  "physical_design": false,
+  "command": [
+    "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+    "-f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/asip-synthesis-20261112/evaluation/nangate45/baseline/synthesize.tcl"
+  ],
+  "elapsed_seconds": 191.75814916938543,
+  "metrics": {
+    "cell_area": 22979.739843,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": 0.0041708946
+  },
+  "timing_met": false,
+  "reports_revalidated": true,
+  "setup_timing_met": true,
+  "hold_timing_met": false,
+  "hold_wns_ns": -0.16,
+  "hold_violating_paths": 2061,
+  "artifacts_sha256": {
+    "out/top.v": "2d0cdef72db983d9e23b5d2fb04ccd608634d54d6fbf69d2bc6c770467aff0d5",
+    "out/top.ddc": "1d1bbce9da03789484468d1a36b639ad85070f3026dba7610ef7f8c554cda729",
+    "out/top.sdf": "71c1369cc4b2593046ef93ca861d379c6d1028a6dd59009782cf347eba34b22f",
+    "out/top.sdc": "b9b9c780cfbd3af1d7f0f6978bd499c5731cbd48f43044b02510ae723add86ba"
+  }
+}

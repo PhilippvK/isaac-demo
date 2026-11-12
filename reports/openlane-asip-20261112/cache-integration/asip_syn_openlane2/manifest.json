@@ -1,0 +1,15 @@
+{
+  "baseline": {
+    "tool": "openlane",
+    "pdk": "sky130A",
+    "sha256": {
+      "tool.log": "75326021b0bc1469f1a9e8de5260153ce5efb3e90db58247ef7cafa6662f7734",
+      "metrics.csv": "a6454e659dcd136e14c481286413f9275d13c853348d84344a24123d2168f227",
+      "version.log": "7f1a10c110f69d3e4892c8a23c9e0c3367e4375179c344e137e4df15a2ddd140",
+      "artifacts.tar.gz": "cfc1e85823f577491901915bb0e6415d47321d6bc01793b059a2798a8f0323fe",
+      "metrics.json": "f7cb67b521a5c45fcd09267b695dc9b7a7e40e4e8cffa520e3a451b150dad61a",
+      "config.json": "24796b312760d40d02a28f44efddb97c2a64fe0fb9ed0accc3b4a479e6c80830",
+      "execution.json": "9a7fe448c6f66a51570ccc3d96ddeed86437290939c3f9123e6d5226b4d01340"
+    }
+  }
+}

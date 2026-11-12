@@ -1,0 +1,2 @@
+variant,area_total,tool,pdk,clock_period_ns,setup_slack_ns,hold_wns_ns,setup_timing_met,hold_timing_met,timing_met
+baseline,22979.739843,synopsys,nangate45,10.0,0.0041708946,-0.16,True,False,False

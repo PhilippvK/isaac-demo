@@ -1,0 +1,42 @@
+[
+  {
+    "engine": "librelane",
+    "variant": "baseline",
+    "cell_area": 182048.3488,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -9.976901365230189,
+    "setup_met": false,
+    "hold_met": true,
+    "hold_wns_ns": 0
+  },
+  {
+    "engine": "librelane",
+    "variant": "crc32",
+    "cell_area": 239086.8032,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -14.808317657908969,
+    "setup_met": false,
+    "hold_met": true,
+    "hold_wns_ns": 0
+  },
+  {
+    "engine": "openlane2",
+    "variant": "baseline",
+    "cell_area": 182048.3488,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -9.132762360418594,
+    "setup_met": false,
+    "hold_met": true,
+    "hold_wns_ns": 0
+  },
+  {
+    "engine": "openlane2",
+    "variant": "crc32",
+    "cell_area": 239086.8032,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -13.738412574208697,
+    "setup_met": false,
+    "hold_met": true,
+    "hold_wns_ns": 0
+  }
+]

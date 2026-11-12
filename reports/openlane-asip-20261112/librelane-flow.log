@@ -1,0 +1,195 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow DATE=librelane-flow BENCH=openlane-asip-20261112
+{
+  "passed": true,
+  "status": "complete",
+  "tool": "librelane",
+  "core": "VEX_5S",
+  "pdk": "sky130A",
+  "scl": "sky130_fd_sc_hd",
+  "clock_period_ns": 10.0,
+  "boundary": "core and extension; external RAM excluded",
+  "physical_design": false,
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "headers_sha256": {},
+  "config_sha256": "73fbf060dbc1a1956b1703ef4e1f276911fd7bf0e72f538f9c12b969f087359e",
+  "pdk_root": "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks",
+  "pdk_resolved": "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A",
+  "pdk_config_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A/libs.tech/openlane/config.tcl": "a00287a567d1ced4860e52a9b92d6c5320330b3acd69b1a93f6e78b0f1de4e33",
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/config.tcl": "27c7a27f73ca7511427a545238e502abe2d33ff9360b85b78484b8bc7e84dd4b"
+  },
+  "runner_sha256": "b9df6649baf9e5d941fbf188cf21079ef6eae7f46580851375ea2866a8aec23e",
+  "requested_steps": [
+    "Yosys.JsonHeader",
+    "Yosys.Synthesis",
+    "Checker.YosysUnmappedCells",
+    "Checker.YosysSynthChecks",
+    "OpenROAD.CheckSDCFiles",
+    "OpenROAD.STAPrePNR"
+  ],
+  "docker_image": "ghcr.io/librelane/librelane@sha256:4bc9042ba177f73f275b5b39e7d372a07d3f4043f548a0ba7f640097b7205051",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "isaac-asip-ed998868d5afff2a",
+    "--network",
+    "none",
+    "--user",
+    "3650933:3000000",
+    "-e",
+    "HOME=/tmp",
+    "--mount",
+    "type=bind,source=/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/baseline,target=/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/baseline",
+    "--mount",
+    "type=bind,source=/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks,target=/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks,readonly",
+    "-w",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/baseline",
+    "--entrypoint",
+    "librelane",
+    "ghcr.io/librelane/librelane@sha256:4bc9042ba177f73f275b5b39e7d372a07d3f4043f548a0ba7f640097b7205051",
+    "--manual-pdk",
+    "--pdk-root",
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks",
+    "--pdk",
+    "sky130A",
+    "--scl",
+    "sky130_fd_sc_hd",
+    "--run-tag",
+    "asip",
+    "--jobs",
+    "4",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/baseline/config.json"
+  ],
+  "tool_version": "LibreLane v3.0.16\n\nCopyright \u00a92025-2026 LibreLane Contributors\n\nAdapted from OpenLane 2.0\nCopyright \u00a92020-2025 Efabless Corporation\n\nAvailable under the Apache License, version 2. Included with the source code,\nbut you can also get a copy at https://www.apache.org/licenses/LICENSE-2.0\n\nIncluded tools and utilities may be distributed under stricter licenses.",
+  "artifacts_sha256": {
+    "runs/asip/final/nl/top.nl.v": "9347b687808491fbfd842d5ff3db7c9efc124ebf8664db6911b02c260a76725d",
+    "runs/asip/final/metrics.json": "6f2ada531be5a7f0aa210f41a540e51411f1a5cf39315fed563ded3705bda872",
+    "runs/asip/6-openroad-staprepnr/state_out.json": "811449724090c115c1caff415fe87ae1d6fdcf045da0b3ce46408b3c01831b93",
+    "runs/asip/resolved.json": "0776f09c8d71038a10d8121e671537fa5242dcb077aa1481488f1df68be151b5"
+  },
+  "metrics": {
+    "cell_area": 182048.3488,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -9.976901365230189
+  },
+  "setup_timing_met": false,
+  "hold_timing_met": true,
+  "timing_met": false,
+  "hold_wns_ns": 0,
+  "sta_state": "runs/asip/6-openroad-staprepnr/state_out.json",
+  "completed_steps": [
+    "Yosys.JsonHeader",
+    "Yosys.Synthesis",
+    "Checker.YosysUnmappedCells",
+    "Checker.YosysSynthChecks",
+    "OpenROAD.CheckSDCFiles",
+    "OpenROAD.STAPrePNR"
+  ],
+  "elapsed_seconds": 71.29828041046858
+}
+{
+  "passed": true,
+  "status": "complete",
+  "tool": "librelane",
+  "core": "VEX_5S",
+  "pdk": "sky130A",
+  "scl": "sky130_fd_sc_hd",
+  "clock_period_ns": 10.0,
+  "boundary": "core and extension; external RAM excluded",
+  "physical_design": false,
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/VexRiscv.v": "eacac6e1583efe6c20f0c05003a48963e380befe2894db0928a80887ee7c4e00",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/Vex_top.sv": "f3632941d5a3638c4a7446dbd9473278585b6be3066a7cd98669fa36f7831450",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/CommonLogicModule.sv": "84ff3eeecf760284717e4a0a1a873ce4c956def9ff93521084b8b8c29b9ddad5",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/ISAX_XIsaac.sv": "4e364bf0af846a27bed46ade1e4351a04ed473de3acccc74f9c4c29d53c8bfe6"
+  },
+  "headers_sha256": {},
+  "config_sha256": "365ec3a3e8b75bb2e604036f61fbbc9bafa5ee6888fea618173dbe9937c9e4bb",
+  "pdk_root": "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks",
+  "pdk_resolved": "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A",
+  "pdk_config_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A/libs.tech/openlane/config.tcl": "a00287a567d1ced4860e52a9b92d6c5320330b3acd69b1a93f6e78b0f1de4e33",
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/config.tcl": "27c7a27f73ca7511427a545238e502abe2d33ff9360b85b78484b8bc7e84dd4b"
+  },
+  "runner_sha256": "56b969a3f770ba3f8380feacee9bdf08dffb03675878e78798ddc87a05b0e171",
+  "requested_steps": [
+    "Yosys.JsonHeader",
+    "Yosys.Synthesis",
+    "Checker.YosysUnmappedCells",
+    "Checker.YosysSynthChecks",
+    "OpenROAD.CheckSDCFiles",
+    "OpenROAD.STAPrePNR"
+  ],
+  "docker_image": "ghcr.io/librelane/librelane@sha256:4bc9042ba177f73f275b5b39e7d372a07d3f4043f548a0ba7f640097b7205051",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "isaac-asip-a1a21d5479699b8f",
+    "--network",
+    "none",
+    "--user",
+    "3650933:3000000",
+    "-e",
+    "HOME=/tmp",
+    "--mount",
+    "type=bind,source=/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/default,target=/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/default",
+    "--mount",
+    "type=bind,source=/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks,target=/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks,readonly",
+    "-w",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/default",
+    "--entrypoint",
+    "librelane",
+    "ghcr.io/librelane/librelane@sha256:4bc9042ba177f73f275b5b39e7d372a07d3f4043f548a0ba7f640097b7205051",
+    "--manual-pdk",
+    "--pdk-root",
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks",
+    "--pdk",
+    "sky130A",
+    "--scl",
+    "sky130_fd_sc_hd",
+    "--run-tag",
+    "asip",
+    "--jobs",
+    "4",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/librelane-flow/work/docker/asip_syn/default/config.json"
+  ],
+  "tool_version": "LibreLane v3.0.16\n\nCopyright \u00a92025-2026 LibreLane Contributors\n\nAdapted from OpenLane 2.0\nCopyright \u00a92020-2025 Efabless Corporation\n\nAvailable under the Apache License, version 2. Included with the source code,\nbut you can also get a copy at https://www.apache.org/licenses/LICENSE-2.0\n\nIncluded tools and utilities may be distributed under stricter licenses.",
+  "artifacts_sha256": {
+    "runs/asip/final/nl/top.nl.v": "2c4a6f16dd4b29ac8a9f36da1da06813397747fd66a640225432c87cf5b70a4c",
+    "runs/asip/final/metrics.json": "ede3ee3ae05a39da089f6c0459b4c8704f34a79b2e280cb7780351e7971110cf",
+    "runs/asip/6-openroad-staprepnr/state_out.json": "a207654646afe4ab4069137fc39ba4a023dd4f1d31562220d7be561fb6c32dba",
+    "runs/asip/resolved.json": "46983b0f4e469b31c82daa7f7f423453cfee3ebaece89de86ee8139073e8f154"
+  },
+  "metrics": {
+    "cell_area": 239086.8032,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": -14.808317657908969
+  },
+  "setup_timing_met": false,
+  "hold_timing_met": true,
+  "timing_met": false,
+  "hold_wns_ns": 0,
+  "sta_state": "runs/asip/6-openroad-staprepnr/state_out.json",
+  "completed_steps": [
+    "Yosys.JsonHeader",
+    "Yosys.Synthesis",
+    "Checker.YosysUnmappedCells",
+    "Checker.YosysSynthChecks",
+    "OpenROAD.CheckSDCFiles",
+    "OpenROAD.STAPrePNR"
+  ],
+  "elapsed_seconds": 118.02872744202614
+}
+    variant   area_total  ... area_scaiev_overhead area_scaiev_overhead_rel
+0  baseline  182048.3488  ...                  NaN                      NaN
+1   default  239086.8032  ...                  NaN                      NaN
+
+[2 rows x 20 columns]

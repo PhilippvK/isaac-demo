@@ -1,0 +1,77 @@
+[18:08:02] WARNING  The following warnings have been generated:  __main__.py:155
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'GPIO_PADS_PREFIX' is deprecated. Please                    
+                    check the docs for the usage on the                         
+                    replacement variable 'GPIO_PAD_CELLS'.                      
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'TRACKS_INFO_FILE' is deprecated. Please                    
+                    check the docs for the usage on the                         
+                    replacement variable 'FP_TRACKS_INFO'.                      
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'STD_CELL_GROUND_PINS' is deprecated. Please                
+                    check the docs for the usage on the                         
+                    replacement variable 'SCL_GROUND_PINS'.                     
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'STD_CELL_POWER_PINS' is deprecated. Please                 
+                    check the docs for the usage on the                         
+                    replacement variable 'SCL_POWER_PINS'.                      
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'TRISTATE_CELL_PREFIX' is deprecated. Please                
+                    check the docs for the usage on the                         
+                    replacement variable 'TRISTATE_CELLS'.                      
+[18:08:02] WARNING  The configuration variable 'CELLS_LEF' is    __main__.py:157
+                    deprecated. Please check the docs for the                   
+                    usage on the replacement variable                           
+                    'CELL_LEFS'.                                                
+[18:08:02] WARNING  The configuration variable 'GDS_FILES' is    __main__.py:157
+                    deprecated. Please check the docs for the                   
+                    usage on the replacement variable                           
+                    'CELL_GDS'.                                                 
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'NO_SYNTH_CELL_LIST' is deprecated. Please                  
+                    check the docs for the usage on the                         
+                    replacement variable                                        
+                    'SYNTH_EXCLUDED_CELL_FILE'.                                 
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'DRC_EXCLUDE_CELL_LIST' is deprecated.                      
+                    Please check the docs for the usage on the                  
+                    replacement variable                                        
+                    'PNR_EXCLUDED_CELL_FILE'.                                   
+[18:08:02] WARNING  The configuration variable 'FP_WELLTAP_CELL' __main__.py:157
+                    is deprecated. Please check the docs for the                
+                    usage on the replacement variable                           
+                    'WELLTAP_CELL'.                                             
+[18:08:02] WARNING  The configuration variable 'FP_ENDCAP_CELL'  __main__.py:157
+                    is deprecated. Please check the docs for the                
+                    usage on the replacement variable                           
+                    'ENDCAP_CELL'.                                              
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'TRISTATE_BUFFER_MAP' is deprecated. Please                 
+                    check the docs for the usage on the                         
+                    replacement variable 'SYNTH_TRISTATE_MAP'.                  
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'CARRY_SELECT_ADDER_MAP' is deprecated.                     
+                    Please check the docs for the usage on the                  
+                    replacement variable 'SYNTH_CSA_MAP'.                       
+[18:08:02] WARNING  The configuration variable                   __main__.py:157
+                    'RIPPLE_CARRY_ADDER_MAP' is deprecated.                     
+                    Please check the docs for the usage on the                  
+                    replacement variable 'SYNTH_RCA_MAP'.                       
+[18:08:02] WARNING  The configuration variable 'FULL_ADDER_MAP'  __main__.py:157
+                    is deprecated. Please check the docs for the                
+                    usage on the replacement variable                           
+                    'SYNTH_FA_MAP'.                                             
+[18:08:02] ERROR    Errors have occurred while loading the PDK   __main__.py:158
+                    configuration files.                                        
+[18:08:02] ERROR    Path provided for variable                   __main__.py:160
+                    'GPIO_PADS_LEF[0]' is invalid:                              
+                    '/var/tmp/ga87puy/isaac-demo-new/install/asi                
+                    p-pdks/sky130A/libs.ref/sky130_fd_io/lef/sky                
+                    130_fd_io.lef' does not exist                               
+[18:08:02] ERROR    Path provided for variable                   __main__.py:160
+                    'GPIO_PADS_VERILOG[0]' is invalid:                          
+                    '/var/tmp/ga87puy/isaac-demo-new/install/asi                
+                    p-pdks/sky130A/libs.ref/sky130_fd_io/verilog                
+                    /sky130_ef_io.v' does not exist                             
+[18:08:02] ERROR    OpenLane will now quit. Please check your    __main__.py:162
+                    configuration.                                              

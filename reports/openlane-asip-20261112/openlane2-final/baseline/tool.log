@@ -1,0 +1,114 @@
+[18:18:41] INFO     Starting a new run of the 'Custom Sequential     flow.py:628
+                    Flow' flow with the tag 'asip'.                             
+[18:18:41] INFO     Starting…                                  sequential.py:294
+───────────────────────────── Generate JSON Header ─────────────────────────────
+[18:18:41] VERBOSE  Running 'Yosys.JsonHeader' at                   step.py:1122
+                    'runs/asip/1-yosys-jsonheader'…                             
+[18:18:41] VERBOSE  Logging subprocess to                           step.py:1318
+                    'runs/asip/1-yosys-jsonheader/yosys-jsonheader.             
+                    log'…                                                       
+Traceback (most recent call last):                                              
+File "/openlane2/openlane/scripts/pyosys/json_header.py", line 84, in <module>  
+json_header()                                                                   
+~~~~~~~~~~~^^                                                                   
+File                                                                            
+"/nix/store/7zqpr7slgvjfjcqfabb2fmlpvc8k23ax-python3-3.13.9-env/lib/python3.13/s
+ite-packages/click/core.py", line 1442, in __call__                             
+return self.main(*args, **kwargs)                                               
+~~~~~~~~~^^^^^^^^^^^^^^^^^                                                      
+File                                                                            
+"/nix/store/7zqpr7slgvjfjcqfabb2fmlpvc8k23ax-python3-3.13.9-env/lib/python3.13/s
+ite-packages/click/core.py", line 1363, in main                                 
+rv = self.invoke(ctx)                                                           
+File                                                                            
+"/nix/store/7zqpr7slgvjfjcqfabb2fmlpvc8k23ax-python3-3.13.9-env/lib/python3.13/s
+ite-packages/click/core.py", line 1226, in invoke                               
+return ctx.invoke(self.callback, **ctx.params)                                  
+~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                         
+File                                                                            
+"/nix/store/7zqpr7slgvjfjcqfabb2fmlpvc8k23ax-python3-3.13.9-env/lib/python3.13/s
+ite-packages/click/core.py", line 794, in invoke                                
+return callback(*args, **kwargs)                                                
+File "/openlane2/openlane/scripts/pyosys/json_header.py", line 54, in           
+json_header                                                                     
+d.add_blackbox_models(                                                          
+~~~~~~~~~~~~~~~~~~~~~^                                                          
+blackbox_models,                                                                
+^^^^^^^^^^^^^^^^                                                                
+includes=includes,                                                              
+^^^^^^^^^^^^^^^^^^                                                              
+defines=defines,                                                                
+^^^^^^^^^^^^^^^^                                                                
+)                                                                               
+^                                                                               
+File "/openlane2/openlane/scripts/pyosys/ys_common.py", line 132, in            
+_Design_add_blackbox_models                                                     
+self.run_pass(                                                                  
+~~~~~~~~~~~~~^                                                                  
+"read_verilog", "-sv", "-lib", *include_args, *define_args, model               
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^               
+)                                                                               
+^                                                                               
+File "/openlane2/openlane/scripts/pyosys/ys_common.py", line 32, in             
+_Design_run_pass                                                                
+ys.Pass.call__YOSYS_NAMESPACE_RTLIL_Design__std_vector_string_(self,            
+list(command))                                                                  
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                  
+AttributeError: type object 'pyosys.libyosys.Pass' has no attribute             
+'call__YOSYS_NAMESPACE_RTLIL_Design__std_vector_string_'                        
+                                                                                
+/----------------------------------------------------------------------------\  
+|  yosys -- Yosys Open SYnthesis Suite                                       |  
+|  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |  
+|  Distributed under an ISC-like license, type "license" to see terms        |  
+\----------------------------------------------------------------------------/  
+Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2   
+-fPIC -O3)                                                                      
+ERROR: Python interpreter encountered an exception.                             
+[18:18:41] ERROR    Subprocess had a non-zero exit.                 step.py:1364
+[18:18:41] ERROR    Last 10 line(s):                                step.py:1369
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^             
+                    ^^^^^^^^^^^^^^^^^^^                                         
+                    AttributeError: type object                                 
+                    'pyosys.libyosys.Pass' has no attribute                     
+                    'call__YOSYS_NAMESPACE_RTLIL_Design__std_vector             
+                    _string_'                                                   
+                                                                                
+                     /---------------------------------------------             
+                    -------------------------------\                            
+                     |  yosys -- Yosys Open SYnthesis Suite                     
+                    |                                                           
+                     |  Copyright (C) 2012 - 2026  Claire Xenia                 
+                    Wolf <claire@yosyshq.com>         |                         
+                     |  Distributed under an ISC-like license, type             
+                    "license" to see terms        |                             
+                     \---------------------------------------------             
+                    -------------------------------/                            
+                     Yosys 0.62 (git sha1                                       
+                    7326bb7d6641500ecb285c291a54a662cb1e76cf,                   
+                    clang++ 21.1.2 -fPIC -O3)                                   
+                    ERROR: Python interpreter encountered an                    
+                    exception.                                                  
+[18:18:41] ERROR    Full log file:                                  step.py:1372
+                    'runs/asip/1-yosys-jsonheader/yosys-jsonheader.             
+                    log'                                                        
+Custom Sequential Flow - Stage 1 - Generate JSON Header              0/6 0:00:00
+[18:18:41] ERROR    The following error was encountered while    __main__.py:187
+                    running the flow:                                           
+                    Generate JSON Header: subprocess (1,                        
+                    ['yosys', '-y',                                             
+                    '/openlane2/openlane/scripts/pyosys/json_hea                
+                    der.py', '--', '--config-in',                               
+                    '/var/tmp/ga87puy/isaac-demo-new/reports/ope                
+                    nlane-asip-20261112/openlane2-final/baseline                
+                    /runs/asip/1-yosys-jsonheader/config.json',                 
+                    '--extra-in',                                               
+                    '/var/tmp/ga87puy/isaac-demo-new/reports/ope                
+                    nlane-asip-20261112/openlane2-final/baseline                
+                    /runs/asip/1-yosys-jsonheader/extra.json',                  
+                    '--output',                                                 
+                    '/var/tmp/ga87puy/isaac-demo-new/reports/ope                
+                    nlane-asip-20261112/openlane2-final/baseline                
+                    /runs/asip/1-yosys-jsonheader/top.h.json'])                 
+                    failed                                                      
+[18:18:41] ERROR    OpenLane will now quit.                      __main__.py:188

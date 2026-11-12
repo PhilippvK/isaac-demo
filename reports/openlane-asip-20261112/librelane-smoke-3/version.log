@@ -1,0 +1,2 @@
+docker: Error response from daemon: invalid mount config for type "bind": stat /nfs/TUEIEDAscratch/ga87puy/work/.volare: permission denied.
+See 'docker run --help'.

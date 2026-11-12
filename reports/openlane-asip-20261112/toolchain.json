@@ -1,0 +1,10 @@
+{
+  "librelane": "3.0.16",
+  "image": "ghcr.io/librelane/librelane@sha256:4bc9042ba177f73f275b5b39e7d372a07d3f4043f548a0ba7f640097b7205051",
+  "openlane2_controller": "2.3.10",
+  "openlane2_wheel_sha256": "83d19d7b9b589c10349576701d0cd69bbed7e8f1ad4ee384b7ff9f4dce2a79ee",
+  "openlane2_adapter": "openlane2-yosys-api.patch",
+  "yosys": "0.62 (7326bb7d6641500ecb285c291a54a662cb1e76cf)",
+  "openroad": "2026-02-17",
+  "pdk_source": "/nas/ei/share/TUEIEDAscratch/ga87puy/work/.volare/volare/sky130/versions/bdc9412b3e468c102d01b7cf6337be06ec6e9c9a/sky130A"
+}

@@ -1,0 +1,52 @@
+{
+  "passed": false,
+  "status": "failed",
+  "tool": "openlane",
+  "core": "VEX_5S",
+  "pdk": "sky130A",
+  "scl": "sky130_fd_sc_hd",
+  "clock_period_ns": 10.0,
+  "boundary": "core and extension; external RAM excluded",
+  "physical_design": false,
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "headers_sha256": {},
+  "config_sha256": "33cc457df322fc7d632e4ccda3998b8234256af21abd7063fe92c55fec44db10",
+  "pdk_root": "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks",
+  "pdk_resolved": "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A",
+  "pdk_config_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A/libs.tech/openlane/config.tcl": "a00287a567d1ced4860e52a9b92d6c5320330b3acd69b1a93f6e78b0f1de4e33",
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd/config.tcl": "27c7a27f73ca7511427a545238e502abe2d33ff9360b85b78484b8bc7e84dd4b"
+  },
+  "runner_sha256": "56b969a3f770ba3f8380feacee9bdf08dffb03675878e78798ddc87a05b0e171",
+  "requested_steps": [
+    "Yosys.JsonHeader",
+    "Yosys.Synthesis",
+    "Checker.YosysUnmappedCells",
+    "Checker.YosysSynthChecks",
+    "OpenROAD.CheckSDCFiles",
+    "OpenROAD.STAPrePNR"
+  ],
+  "command": [
+    "bash",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-launch.sh",
+    "--manual-pdk",
+    "--pdk-root",
+    "/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks",
+    "--pdk",
+    "sky130A",
+    "--scl",
+    "sky130_fd_sc_hd",
+    "--run-tag",
+    "asip",
+    "--jobs",
+    "4",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-flow/work/docker/asip_syn/baseline/config.json"
+  ],
+  "tool_version": "OpenLane v2.3.10\n\nCopyright \u00a92020-2023 Efabless Corporation and other contributors.\n\nAvailable under the Apache License, version 2. Included with the source code,\nbut you can also get a copy at https://www.apache.org/licenses/LICENSE-2.0\n\nIncluded tools and utilities may be distributed under stricter licenses.",
+  "error": "Command '['bash', '/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-launch.sh', '--manual-pdk', '--pdk-root', '/var/tmp/ga87puy/isaac-demo-new/install/asip-pdks', '--pdk', 'sky130A', '--scl', 'sky130_fd_sc_hd', '--run-tag', 'asip', '--jobs', '4', '/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-flow/work/docker/asip_syn/baseline/config.json']' returned non-zero exit status 1.",
+  "elapsed_seconds": 1.725709930062294
+}

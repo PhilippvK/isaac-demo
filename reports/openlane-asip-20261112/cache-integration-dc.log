@@ -1,0 +1,5 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/cache-integration DATE=cache-integration BENCH=openlane-asip-20261112
+    variant    area_total  ... hold_timing_met timing_met
+0  baseline  22979.739843  ...           False      False
+
+[1 rows x 10 columns]

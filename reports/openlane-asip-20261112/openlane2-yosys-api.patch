@@ -1,0 +1,11 @@
+--- a/openlane/scripts/pyosys/ys_common.py
++++ b/openlane/scripts/pyosys/ys_common.py
+@@ -29,7 +29,7 @@
+ 
+ 
+ def _Design_run_pass(self, *command):
+-    ys.Pass.call__YOSYS_NAMESPACE_RTLIL_Design__std_vector_string_(self, list(command))
++    ys.Pass.call(self, command)
+ 
+ 
+ ys.Design.run_pass = _Design_run_pass  # type: ignore

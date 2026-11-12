@@ -1,0 +1,3 @@
+variant,area_total,tool,pdk,clock_period_ns,setup_slack_ns,hold_wns_ns,setup_timing_met,hold_timing_met,timing_met,area_isax,area_scaiev,area_isax_rel,area_scaiev_rel,area_total_overhead,area_total_overhead_rel,area_isax_overhead,area_isax_overhead_rel,area_scaiev_overhead,area_scaiev_overhead_rel
+baseline,182048.3488,librelane,sky130A,10.0,-9.976901365230189,0,False,True,False,,,,,0.0,0.0,,,,
+default,239086.8032,librelane,sky130A,10.0,-14.808317657908969,0,False,True,False,,,,,57038.45439999999,0.3133148681434236,,,,

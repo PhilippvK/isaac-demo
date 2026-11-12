@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "version": 2,
+    "flow": [
+      "Yosys.JsonHeader",
+      "Yosys.Synthesis",
+      "Checker.YosysUnmappedCells",
+      "Checker.YosysSynthChecks",
+      "OpenROAD.CheckSDCFiles",
+      "OpenROAD.STAPrePNR"
+    ]
+  },
+  "DESIGN_NAME": "top",
+  "VERILOG_FILES": [
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-compatible/default/rtl/0/VexRiscv.v",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-compatible/default/rtl/0/Vex_top.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-compatible/default/rtl/0/CommonLogicModule.sv",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-compatible/default/rtl/1/ISAX_XIsaac.sv"
+  ],
+  "VERILOG_INCLUDE_DIRS": [
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-compatible/default/rtl/0",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/openlane-asip-20261112/openlane2-compatible/default/rtl/1"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 10.0,
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+  "SYNTH_STRATEGY": "AREA 0",
+  "IO_DELAY_CONSTRAINT": 20,
+  "CLOCK_UNCERTAINTY_CONSTRAINT": 0.25,
+  "CLOCK_TRANSITION_CONSTRAINT": 0.15,
+  "OUTPUT_CAP_LOAD": 33.4,
+  "DEFAULT_CORNER": "nom_tt_025C_1v80",
+  "STA_CORNERS": [
+    "nom_tt_025C_1v80"
+  ]
+}
