@@ -43,3 +43,10 @@ for measurements in "$DIR"/rtl_sim*/metrics.csv; do
     relative=${measurements#"$DIR"/}
     printf '\nNailgun RTL benchmark measurements: [%s](%s)\n' "$relative" "$relative" >> "$DIR/ci_report.md"
 done
+
+# ASIP results include backend identity and separate setup/hold status.
+for measurements in "$DIR"/asip_syn*/metrics.csv; do
+    [[ -f "$measurements" ]] || continue
+    relative=${measurements#"$DIR"/}
+    printf '\nASIP synthesis measurements: [%s](%s)\n' "$relative" "$relative" >> "$DIR/ci_report.md"
+done

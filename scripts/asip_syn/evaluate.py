@@ -10,7 +10,8 @@ from pathlib import Path
 import subprocess
 import sys
 
-from run import collect_results, sha
+from run import collect_results as collect_dc_results, sha
+from openlane_run import collect_results as collect_openlane_results
 
 HERE = Path(__file__).resolve().parent
 VARIANTS = {"baseline": "baseline", "crc32": "crc32-fixed", "branches": "branches", "stores": "stores-fixed"}
@@ -20,10 +21,11 @@ DB_NAMES = {"nangate45": "NangateOpenCellLibrary_typical.db", "sky130hd": "sky13
 def evaluate(args):
     args.output.mkdir(parents=True, exist_ok=True)
     rows = []
-    for pdk in args.pdks:
+    pdks = args.pdks or (list(DB_NAMES) if args.tool == "synopsys" else ["sky130A"])
+    for pdk in pdks:
         # Keep technology stages sequential: establish Nangate first.
-        db = args.libraries / pdk / DB_NAMES[pdk]
-        if not db.is_file():
+        db = args.libraries / pdk / DB_NAMES[pdk] if args.tool == "synopsys" else None
+        if db is not None and not db.is_file():
             subprocess.run(
                 [
                     sys.executable,
@@ -42,36 +44,55 @@ def evaluate(args):
             out = args.output / pdk / variant
             command = [
                 sys.executable,
-                str(HERE / "run.py"),
+                str(HERE / ("run.py" if args.tool == "synopsys" else "openlane_run.py")),
                 "--rtl",
                 str(args.rtl / VARIANTS[variant]),
                 "--output",
                 str(out),
                 "--pdk",
                 pdk,
-                "--library",
-                str(db),
                 "--clock-ns",
                 str(args.clock_ns),
                 "--jobs",
                 str(args.jobs),
-                "--dc-shell",
-                args.dc_shell,
             ]
+            if args.tool == "synopsys":
+                command += ["--library", str(db), "--dc-shell", args.dc_shell]
+            else:
+                command += [
+                    "--engine",
+                    "librelane" if args.tool == "librelane" else "openlane",
+                    "--pdk-root",
+                    str(args.pdk_root),
+                ]
+                for option in ("docker_image", "command", "scl", "corner"):
+                    value = getattr(args, option)
+                    if value:
+                        command += ["--" + option.replace("_", "-"), value]
             out.parent.mkdir(parents=True, exist_ok=True)
             if args.resume and (out / "execution.json").is_file():
                 meta = json.loads((out / "execution.json").read_text())
-                if meta["library_sha256"] != sha(db) or meta["clock_period_ns"] != args.clock_ns:
+                if (db is not None and meta["library_sha256"] != sha(db)) or meta["clock_period_ns"] != args.clock_ns:
                     raise ValueError("Resume library or clock does not match")
                 if any(sha(Path(path)) != digest for path, digest in meta["rtl_sha256"].items()):
                     raise ValueError("Resume RTL source hash mismatch")
-                for name, key in (
-                    ("synthesize.tcl", "synthesis_script_sha256"),
-                    ("constraints.tcl", "constraints_sha256"),
-                ):
-                    if sha(out / name) != meta[key]:
-                        raise ValueError(f"Resume {name} hash mismatch")
-                collect_results(out, meta)
+                if args.tool == "synopsys":
+                    if meta.get("tool", "synopsys") != "synopsys":
+                        raise ValueError("Resume backend mismatch")
+                    for name, key in (
+                        ("synthesize.tcl", "synthesis_script_sha256"),
+                        ("constraints.tcl", "constraints_sha256"),
+                    ):
+                        if sha(out / name) != meta[key]:
+                            raise ValueError(f"Resume {name} hash mismatch")
+                    collect_dc_results(out, meta)
+                else:
+                    expected = "librelane" if args.tool == "librelane" else "openlane"
+                    if meta.get("tool") != expected or sha(out / "config.json") != meta["config_sha256"]:
+                        raise ValueError("Resume backend/config mismatch")
+                    if any(sha(Path(path)) != digest for path, digest in meta["pdk_config_sha256"].items()):
+                        raise ValueError("Resume PDK configuration hash mismatch")
+                    collect_openlane_results(out, meta)
                 meta["reports_revalidated"] = True
                 (out / "execution.json").write_text(json.dumps(meta, indent=2) + "\n")
             else:
@@ -109,7 +130,13 @@ def main():
     p.add_argument("--rtl", type=Path, required=True, help="HLS root with baseline/crc32-fixed/etc.")
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--libraries", type=Path, default=Path("install/asip-libs"))
-    p.add_argument("--pdks", nargs="+", choices=DB_NAMES, default=list(DB_NAMES))
+    p.add_argument("--tool", choices=["synopsys", "ol2", "openlane2", "librelane"], default="synopsys")
+    p.add_argument("--pdks", nargs="+", help="Defaults to Nangate/Sky130 for DC; sky130A for OpenLane")
+    p.add_argument("--pdk-root", type=Path, default=Path(os.environ.get("PDK_ROOT", "~/.volare")).expanduser())
+    p.add_argument("--docker-image")
+    p.add_argument("--command")
+    p.add_argument("--scl")
+    p.add_argument("--corner")
     p.add_argument("--variants", nargs="+", choices=VARIANTS, default=list(VARIANTS))
     p.add_argument("--resume", action="store_true", help="Revalidate and reuse complete synthesis outputs")
     p.add_argument("--clock-ns", type=float, default=10)
@@ -120,6 +147,8 @@ def main():
     args = p.parse_args()
     if args.clock_ns <= 0 or args.parallel <= 0 or args.jobs <= 0:
         p.error("Clock period and worker counts must be positive")
+    if args.tool == "synopsys" and args.pdks and any(pdk not in DB_NAMES for pdk in args.pdks):
+        p.error("Unsupported DC PDK")
     evaluate(args)
 
 

@@ -5,6 +5,31 @@ ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 output=${1:?Usage: asip_syn_script.sh OUTPUT RTL [CORE PDK CLOCK_NS CONSTRAINTS]}
 rtl=${2:?Missing RTL directory}
 core=${3:-VEX_5S}
+tool=${ASIP_SYN_TOOL:-synopsys}
+case "$tool" in
+  ol2|openlane|openlane2|librelane)
+    engine=openlane; [[ $tool != librelane ]] || engine=librelane
+    args=(--rtl "$rtl" --output "$output" --core "$core" --engine "$engine"
+          --pdk "${4:-${ASIP_SYN_OL2_PDK:-sky130A}}"
+          --pdk-root "${ASIP_SYN_OL2_PDK_ROOT:-${PDK_ROOT:-$HOME/.volare}}"
+          --clock-ns "${5:-${ASIP_SYN_OL2_CLOCK_NS:-10}}"
+          --jobs "${ASIP_SYN_JOBS:-4}" --timeout "${ASIP_SYN_TIMEOUT:-3600}")
+    [[ -z ${ASIP_SYN_OL2_SCL:-} ]] || args+=(--scl "$ASIP_SYN_OL2_SCL")
+    [[ -z ${ASIP_SYN_OL2_PDK_MOUNT_SOURCE:-} ]] || args+=(--pdk-mount-source "$ASIP_SYN_OL2_PDK_MOUNT_SOURCE")
+    [[ -z ${ASIP_SYN_OL2_CORNER:-} ]] || args+=(--corner "$ASIP_SYN_OL2_CORNER")
+    [[ -z ${ASIP_SYN_OL2_COMMAND:-} ]] || args+=(--command "$ASIP_SYN_OL2_COMMAND")
+    [[ -z ${ASIP_SYN_OL2_DOCKER_IMAGE:-} ]] || args+=(--docker-image "$ASIP_SYN_OL2_DOCKER_IMAGE")
+    [[ -z ${ASIP_SYN_OL2_STRATEGY:-} ]] || args+=(--strategy "$ASIP_SYN_OL2_STRATEGY")
+    if [[ -n ${6:-} ]]; then
+      if [[ -f $6 ]]; then args+=(--constraints "$6")
+      elif [[ $(realpath -m -- "$6") != "$(realpath -m -- "$output/constraints.sdc")" ]]; then
+        echo "Missing constraints file: $6" >&2; exit 2
+      fi
+    fi
+    exec "${ASIP_SYN_PYTHON:-python3}" "$ROOT/scripts/asip_syn/openlane_run.py" "${args[@]}" ;;
+  synopsys|dc) ;;
+  *) echo "Unsupported ASIP_SYN_TOOL: $tool" >&2; exit 2 ;;
+esac
 pdk=${4:-nangate45}
 case "$pdk" in
   NangateOpenCellLibrary|nangate45) pdk=nangate45; library_name=NangateOpenCellLibrary_typical.db ;;

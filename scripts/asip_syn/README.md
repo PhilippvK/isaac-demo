@@ -1,4 +1,4 @@
-# Design Compiler ASIP synthesis
+# ASIP synthesis backends
 
 This flow maps a generated core plus its instruction extensions into an explicit
 standard-cell library. The FPGA shell, RAM, UART and board clock/reset logic are
@@ -122,3 +122,90 @@ interpret it as workload energy. A synthesis timing result is not measured
 silicon frequency. Existing RTL/FPGA tests validate the source design; this
 flow alone does not establish mapped-netlist equivalence. No external RAM area,
 physical routing, clock tree, parasitic extraction or signoff corners are included.
+
+## Independent OpenLane2 and LibreLane target
+
+Select `ASIP_SYN_TOOL=librelane` or `ASIP_SYN_TOOL=ol2` (`openlane2` and
+`openlane` are aliases). These run as the normal `syn_0` synthesis stage after
+RTL generation, independently of Nailgun's HLS plugin. The opt-in
+`vex_5s_librelane.env` and `vex_5s_openlane2.env` presets disable
+`HLS_NAILGUN_OL2_ENABLE` and select the corresponding standalone target.
+
+```bash
+source scripts/env.sh
+source cfg/flow/paper/vex_5s_librelane.env
+export ASIP_SYN_OL2_PDK_ROOT=/path/to/complete/pdk/root
+# Use a native installation, with tools available in that environment:
+export ASIP_SYN_OL2_COMMAND='/path/to/python -m librelane'
+scripts/full_flow.sh crc32 latest syn_0
+```
+
+For a pinned Docker runtime instead of a native command:
+
+```bash
+unset ASIP_SYN_OL2_COMMAND
+export ASIP_SYN_OL2_DOCKER_IMAGE=ghcr.io/librelane/librelane@sha256:4bc9042ba177f73f275b5b39e7d372a07d3f4043f548a0ba7f640097b7205051
+```
+
+The Docker mode runs under the caller's UID/GID, with only the run directory
+writable and the PDK mounted read-only. Network access is disabled inside the
+flow container. A local or manually installed PDK is required; a Liberty-only
+installation from the DC helper is insufficient. Install a full PDK with the
+engine's documented Volare/Ciel workflow first. A Docker daemon must be able to
+traverse the mount source; NFS root-squash can require a local selected-library
+cache. `ASIP_SYN_OL2_PDK_MOUNT_SOURCE` optionally supplies the daemon's path alias.
+Native installations do not need this setting.
+
+The explicit custom flow is: Yosys JSON header, synthesis, unmapped-cell checker,
+synthesis-check checker, SDC validation and OpenROAD pre-PnR STA. It stops before
+floorplanning. No checker is disabled. A negative timing result remains a
+successful mapping measurement, with `setup_timing_met`, `hold_timing_met` and
+`timing_met` reported separately. Missing/non-finite metrics, missing STA state,
+unmapped cells and failed synthesis checks fail the target.
+
+Sky130 aliases `sky130` and `sky130hd` map to `sky130A` / `sky130_fd_sc_hd`.
+The default analysis corner for Sky130 is `nom_tt_025C_1v80`. Other installed
+PDKs require a valid `--scl`/`ASIP_SYN_OL2_SCL` and their own configuration;
+PDK defaults apply unless a corner is specified. Nangate45 is not silently
+mapped to Sky130: provide a complete compatible Nangate PDK if using that name.
+The current validation covers Sky130/VEX_5S; CVA5/VEX_4S are accepted interfaces
+but have not been validated with this backend in this change.
+
+Additional settings:
+
+- `ASIP_SYN_OL2_CORE_NAME`, `ASIP_SYN_OL2_CLOCK_NS`, `ASIP_SYN_OL2_PDK`.
+- `ASIP_SYN_OL2_SCL`, `ASIP_SYN_OL2_CORNER`, `ASIP_SYN_OL2_STRATEGY` (default `AREA 0`).
+- `ASIP_SYN_JOBS`, `ASIP_SYN_TIMEOUT`, `ASIP_SYN_PYTHON` apply to either backend.
+- `ASIP_SYN_HLS_DIR`, `ASIP_SYN_OUTPUT_DIR`, `ASIP_SYN_REPORT_DIR` override inputs,
+  work outputs and preserved evidence. Baseline/default/shared skips and
+  `ASIP_SYN_BASELINE_USE` work across the backends; mixed backend/library/clock
+  comparisons are rejected when collecting metadata. Reusable baselines must
+  contain `execution.json`; metrics-only legacy caches need regeneration.
+
+OpenLane/LibreLane work directories are separate from DC's legacy directory:
+`work/MODE/asip_syn_openlane2_SUFFIX` and `asip_syn_librelane_SUFFIX`, versus
+DC's `asip_syn_SUFFIX`.
+Selected reports and compressed final views are preserved outside `work/` and
+linked by `report_0`. Selection suffixes are applied consistently to HLS inputs,
+synthesis outputs and evidence. Fmax search is explicitly unsupported; use
+period sweeps instead of the former placeholder path.
+
+Both backends produce the legacy `metrics.csv` columns plus `execution.json`.
+The normal aggregate CSV now retains backend identity, library and timing
+status. Component area remains blank when optimization merges hierarchy.
+Final native state, resolved configuration, library hashes and mapped views
+are preserved. The matrix evaluator also accepts `--tool librelane` or
+`--tool ol2`, with `--pdk-root`, `--docker-image` or `--command` and optional
+`--scl`/`--corner`. Use separate output directories per backend.
+
+Use a matching controller/tool installation. OpenLane2 2.3.10's Pyosys interface
+is incompatible with Yosys 0.62 out of the box. The validation-only controller
+overlay uses the single API adapter saved with the experiment; the backend
+does not patch installed tools automatically. A normal matching OpenLane2
+installation can be used directly, or use LibreLane's pinned complete runtime.
+
+See [the independent-target validation report](../../reports/openlane-asip-20261112/report.md)
+for tool/PDK versions, actual synthesis results and reproduction commands.
+Upstream references: [LibreLane custom flows](https://librelane.readthedocs.io/en/latest/usage/writing_custom_flows.html),
+[Docker installation](https://librelane.readthedocs.io/en/latest/installation/docker_installation/index.html),
+and [OpenLane2 custom flows](https://openlane2.readthedocs.io/en/stable/usage/writing_custom_flows.html).

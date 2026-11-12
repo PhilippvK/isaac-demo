@@ -501,3 +501,9 @@ The [Design Compiler guide](scripts/asip_syn/README.md) describes reproducible
 Nangate45 and Sky130 library preparation and matched baseline/extension area
 and timing evaluation. Nangate45 remains the default. Use `ASIP_SYN_LIBRARY`
 for an existing `.db` or the pinned open-library preparation helper.
+
+OpenLane2/LibreLane can also be selected as independent ASIP synthesis targets
+with `ASIP_SYN_TOOL=ol2` or `librelane`. Use the Vex `vex_5s_openlane2.env` or
+`vex_5s_librelane.env` preset and the normal `syn_0` stage. The
+[backend guide](scripts/asip_syn/README.md#independent-openlane2-and-librelane-target)
+explains native/Docker setup, PDK requirements, metrics and preserved evidence.
