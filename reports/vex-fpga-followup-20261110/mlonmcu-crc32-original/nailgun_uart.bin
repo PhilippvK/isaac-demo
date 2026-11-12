@@ -1,0 +1,11 @@
+Program start.
+# Setup Cycles: 108
+# Setup Instructions: 62
+# Run Cycles: 5573423
+# Run Instructions: 4179706
+# Deinit Cycles: 72
+# Deinit Instructions: 42
+# Total Cycles: 5573941
+# Total Instructions: 4180020
+Program finish.
+MLONMCU EXIT: 0

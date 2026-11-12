@@ -1,0 +1,180 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
+| Date         : Tue Nov 10 11:25:14 2026
+| Host         : ryloth.eda.cit.tum.de running 64-bit Ubuntu 22.04.2 LTS
+| Command      : report_utilization -hierarchical -file reports/utilization_hier_impl.rpt
+| Design       : vex_arty_top
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------------------------+----------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|                   Instance                   |                             Module                             | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------------------------------+----------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| vex_arty_top                                 |                                                          (top) |       3350 |       3306 |      44 |    0 | 1117 |     64 |      0 |          7 |
+|   (vex_arty_top)                             |                                                          (top) |         64 |         64 |       0 |    0 |  190 |      0 |      0 |          0 |
+|   dut                                        |                                                            top |       3014 |       2970 |      44 |    0 |  919 |      0 |      0 |          7 |
+|     (dut)                                    |                                                            top |         11 |         11 |       0 |    0 |    0 |      0 |      0 |          0 |
+|     VexRiscv_inst                            |                                                       VexRiscv |       2983 |       2939 |      44 |    0 |  891 |      0 |      0 |          4 |
+|       (VexRiscv_inst)                        |                                                       VexRiscv |       2756 |       2712 |      44 |    0 |  858 |      0 |      0 |          4 |
+|       IBusSimplePlugin_rspJoin_rspBuffer_c   |                                           StreamFifoLowLatency |        232 |        232 |       0 |    0 |   33 |      0 |      0 |          0 |
+|     isax_xisaac                              |                                                    ISAX_XIsaac |         18 |         18 |       0 |    0 |   17 |      0 |      0 |          3 |
+|       inst_ISAX_XIsaac_SharingGroup_10       |                                    ISAX_XIsaac_SharingGroup_10 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|       inst_ISAX_XIsaac_SharingGroup_16       |                                    ISAX_XIsaac_SharingGroup_16 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|       inst_ISAX_XIsaac_SharingGroup_25       |                                    ISAX_XIsaac_SharingGroup_25 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|       inst_ISAX_XIsaac_SharingGroup_26       |                                    ISAX_XIsaac_SharingGroup_26 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|       inst_ISAX_XIsaac_SharingGroup_28       |                                    ISAX_XIsaac_SharingGroup_28 |         15 |         15 |       0 |    0 |   17 |      0 |      0 |          3 |
+|         (inst_ISAX_XIsaac_SharingGroup_28)   |                                    ISAX_XIsaac_SharingGroup_28 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|         inst_mul_32                          |                                                         mul_32 |         15 |         15 |       0 |    0 |   17 |      0 |      0 |          3 |
+|       inst_ISAX_XIsaac_SharingGroup_9        |                                     ISAX_XIsaac_SharingGroup_9 |          3 |          3 |       0 |    0 |    0 |      0 |      0 |          0 |
+|     scal                                     |                                                           SCAL |          3 |          3 |       0 |    0 |   11 |      0 |      0 |          0 |
+|   memory                                     |                                                  blk_mem_gen_0 |        272 |        272 |       0 |    0 |    8 |     64 |      0 |          0 |
+|     U0                                       |                                blk_mem_gen_0blk_mem_gen_v8_4_8 |        272 |        272 |       0 |    0 |    8 |     64 |      0 |          0 |
+|       inst_blk_mem_gen                       |                          blk_mem_gen_0blk_mem_gen_v8_4_8_synth |        272 |        272 |       0 |    0 |    8 |     64 |      0 |          0 |
+|         gnbram.gnativebmg.native_blk_mem_gen |                                   blk_mem_gen_0blk_mem_gen_top |        272 |        272 |       0 |    0 |    8 |     64 |      0 |          0 |
+|           valid.cstr                         |                          blk_mem_gen_0blk_mem_gen_generic_cstr |        272 |        272 |       0 |    0 |    8 |     64 |      0 |          0 |
+|             has_mux_a.A                      |                                   blk_mem_gen_0blk_mem_gen_mux |        128 |        128 |       0 |    0 |    4 |      0 |      0 |          0 |
+|             has_mux_b.B                      |                                 blk_mem_gen_0blk_mem_gen_mux_0 |        128 |        128 |       0 |    0 |    4 |      0 |      0 |          0 |
+|             ramloop[0].ram.r                 |                            blk_mem_gen_0blk_mem_gen_prim_width |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |                     blk_mem_gen_0blk_mem_gen_prim_wrapper_init |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[10].ram.r                |            blk_mem_gen_0blk_mem_gen_prim_width__parameterized0 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_118 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[11].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_1 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_117 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[12].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_2 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_116 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[13].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_3 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_115 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[14].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_4 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_114 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[15].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_5 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_113 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[16].ram.r                |           blk_mem_gen_0blk_mem_gen_prim_width__parameterized15 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |    blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized15 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[17].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_6 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_112 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[18].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_7 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_111 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[19].ram.r                |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_8 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_110 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[1].ram.r                 |          blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_9 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_109 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[20].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_10 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_108 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[21].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_11 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_107 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[22].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_12 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_106 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[23].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_13 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_105 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[24].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_14 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_104 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[25].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_15 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_103 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[26].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_16 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_102 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[27].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_17 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_101 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[28].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_18 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  | blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_100 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[29].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_19 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_99 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[2].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_20 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_98 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[30].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_21 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_97 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[31].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_22 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_96 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[32].ram.r                |           blk_mem_gen_0blk_mem_gen_prim_width__parameterized31 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |    blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized31 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[33].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_23 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_95 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[34].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_24 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_94 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[35].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_25 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_93 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[36].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_26 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_92 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[37].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_27 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_91 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[38].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_28 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_90 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[39].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_29 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_89 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[3].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_30 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_88 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[40].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_31 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_87 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[41].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_32 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_86 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[42].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_33 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_85 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[43].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_34 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_84 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[44].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_35 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_83 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[45].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_36 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_82 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[46].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_37 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_81 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[47].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_38 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_80 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[48].ram.r                |           blk_mem_gen_0blk_mem_gen_prim_width__parameterized47 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |    blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized47 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[49].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_39 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_79 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[4].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_40 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_78 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[50].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_41 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_77 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[51].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_42 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_76 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[52].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_43 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_75 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[53].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_44 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_74 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[54].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_45 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_73 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[55].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_46 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_72 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[56].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_47 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_71 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[57].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_48 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_70 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[58].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_49 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_69 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[59].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_50 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_68 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[5].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_51 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_67 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[60].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_52 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_66 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[61].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_53 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_65 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[62].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_54 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_64 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[63].ram.r                |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_55 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_63 |          2 |          2 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[6].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_56 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_62 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[7].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_57 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_61 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[8].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_58 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |  blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0_60 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|             ramloop[9].ram.r                 |         blk_mem_gen_0blk_mem_gen_prim_width__parameterized0_59 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
+|               prim_init.ram                  |     blk_mem_gen_0blk_mem_gen_prim_wrapper_init__parameterized0 |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
++----------------------------------------------+----------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

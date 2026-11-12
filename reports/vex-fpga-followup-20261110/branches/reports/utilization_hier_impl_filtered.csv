@@ -1,0 +1,7 @@
+Module,Total LUTs,Logic LUTs,LUTRAMs,SRLs,FFs,RAMB36,RAMB18,DSP Blocks
+(top),1764,1720,44,0,1036,64,0,4
+ISAX_XBranch,11,11,0,0,0,0,0,0
+ISAX_XBranch_SharingGroup_1,11,11,0,0,0,0,0,0
+ISAX_XBranch_SharingGroup_3,0,0,0,0,0,0,0,0
+ISAX_XBranch_SharingGroup_4,0,0,0,0,0,0,0,0
+SCAL,5,5,0,0,6,0,0,0

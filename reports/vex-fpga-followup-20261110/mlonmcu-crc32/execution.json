@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "status": "complete",
+  "execution": "fpga",
+  "core": "vex",
+  "board": "arty_a7_100",
+  "clock_hz": 20000000,
+  "firmware": "/tmp/tmphsmidpov/nailgun_fpga/firmware.bin",
+  "firmware_sha256": "01ef1dc4d6e8b598389d8b3be716dd30a41ea3587217c17957de6fa4bd447b5a",
+  "rtl_source_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "synthesis_command": [
+    "bash",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/fpga_syn_script.sh",
+    "/tmp/tmphsmidpov/nailgun_fpga/synthesis",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s",
+    "VEX_5S",
+    "xc7a100tcsg324-1",
+    "50"
+  ],
+  "bitstream_sha256": "02f4138ebd60bde1c17f5dccc33cefcc3a894875ab4c599b502917b6b6353922",
+  "board_execution": {
+    "passed": true,
+    "protocol": "mlonmcu",
+    "numerical": null,
+    "program_returncode": 0,
+    "board_serial": "210319C08AE1",
+    "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+    "baudrate": 115200,
+    "bitstream": "/tmp/tmphsmidpov/nailgun_fpga/synthesis/vex_arty_top.bit",
+    "uart": "Program start.\n# Setup Cycles: 108\n# Setup Instructions: 62\n# Run Cycles: 5573423\n# Run Instructions: 4179706\n# Deinit Cycles: 72\n# Deinit Instructions: 42\n# Total Cycles: 5573941\n# Total Instructions: 4180020\nProgram finish.\nMLONMCU EXIT: 0\n",
+    "elapsed_seconds": 24.01340265572071,
+    "programming": "volatile FPGA configuration; no flash"
+  },
+  "elapsed_seconds": 233.91350480914116
+}

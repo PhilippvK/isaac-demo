@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "protocol": "probe",
+  "numerical": null,
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/vex-fpga-followup-20261110/crc-index-fpga/vex_arty_top.bit",
+  "uart": "\u001b[2J\n\r********************************************************\n\r********************************************************\n\r**        Avnet/Digilent Arty Evaluation Board        **\n\r**        LEDs and switches GPIO Demonstration        **\n\r********************************************************\n\r********************************************************\r\n**\r\nChoose Task:\r\nBTN0: Print PWM value.\r\nBTN1: 'Cylon' LED display.\r\nBTN2: Scrolling LED display.\r\nBTN3: Return to this menu.\r\n\r\nISAAC VEX_5S BOOT full\r\nRAM PASS\r\nCRC32=65842ca9 verify=00002ca9 cycles=0000401a\r\nZERO REGISTER PASS\r\nMEMORY PASS checks=00000500\r\nPAIR run=00000000 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00003819\r\nPAIR run=00000001 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00003819\r\nPAIR run=00000002 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00003819\r\nPAIR run=00000003 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00003819\r\nPAIR run=00000004 native=65842ca9 ise=65842ca9 native_cycles=00004018 ise_cycles=00003819\r\nPASS\r\n",
+  "elapsed_seconds": 34.06927003711462,
+  "programming": "volatile FPGA configuration; no flash"
+}

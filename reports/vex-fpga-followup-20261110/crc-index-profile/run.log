@@ -1,0 +1,5 @@
+SHELL_PASS cycles=   1243149 retired=    682451
+- reports/vex-fpga-followup-20261110/crc-profile/tb.sv:30: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.040 2025-08-30
+- Verilator: $finish at 12ms; walltime 1.439 s; speed 8.964 ms/s
+- Verilator: cpu 1.387 s on 1 threads; alloced 126 MB

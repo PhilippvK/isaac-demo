@@ -1,0 +1,3 @@
+Module,Total LUTs,Logic LUTs,LUTRAMs,SRLs,FFs,RAMB36,RAMB18,DSP Blocks,Total LUTs (rel.),Logic LUTs (rel.),LUTRAMs (rel.),SRLs (rel.),FFs (rel.),RAMB36 (rel.),RAMB18 (rel.),DSP Blocks (rel.)
+(top),1732,1688,44,0,1036,64,0,4,1.0,1.0,1.0,,1.0,1.0,,1.0
+SCAL,1,1,0,0,3,0,0,0,0.0005773672055427252,0.0005924170616113745,0.0,,0.0028957528957528956,0.0,,0.0

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "protocol": "probe",
+  "numerical": null,
+  "program_returncode": 0,
+  "board_serial": "210319C08AE1",
+  "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0",
+  "baudrate": 115200,
+  "bitstream": "/var/tmp/ga87puy/isaac-demo-new/reports/vex-fpga-followup-20261110/stores/vex_arty_top.bit",
+  "uart": "ISAAC VEX_5S BOOT stores\r\nRAM PASS\r\nCRC32=65842ca9 verify=00002ca9 cycles=00004019\r\nNATIVE STORE PASS checks=00000006\r\nSTORE BEGIN probe=00000000\r\nSTORE BEGIN probe=00000001\r\nSTORE BEGIN probe=00000002\r\nSTORE PASS checks=00000030\r\nPASS\r\n",
+  "elapsed_seconds": 24.678504705429077,
+  "programming": "volatile FPGA configuration; no flash"
+}

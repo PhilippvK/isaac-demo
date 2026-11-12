@@ -1,0 +1,50 @@
+{
+  "board_serial": "210319C08AE1",
+  "clock_hz": 20000000,
+  "crc_index_pairs": [
+    {
+      "run": 0,
+      "native": 1703161001,
+      "ise": 1703161001,
+      "native_cycles": 16408,
+      "ise_cycles": 14361,
+      "cycle_reduction": 0.12475621647976598
+    },
+    {
+      "run": 1,
+      "native": 1703161001,
+      "ise": 1703161001,
+      "native_cycles": 16408,
+      "ise_cycles": 14361,
+      "cycle_reduction": 0.12475621647976598
+    },
+    {
+      "run": 2,
+      "native": 1703161001,
+      "ise": 1703161001,
+      "native_cycles": 16408,
+      "ise_cycles": 14361,
+      "cycle_reduction": 0.12475621647976598
+    },
+    {
+      "run": 3,
+      "native": 1703161001,
+      "ise": 1703161001,
+      "native_cycles": 16408,
+      "ise_cycles": 14361,
+      "cycle_reduction": 0.12475621647976598
+    },
+    {
+      "run": 4,
+      "native": 1703161001,
+      "ise": 1703161001,
+      "native_cycles": 16408,
+      "ise_cycles": 14361,
+      "cycle_reduction": 0.12475621647976598
+    }
+  ],
+  "crc_index_passed": true,
+  "branch_checks": 1344,
+  "custom_store_checks": 48,
+  "memory_checks": 1280
+}
