@@ -494,3 +494,10 @@ git submodule update --init --recursive -- seal5 etiss mlonmcu isaac-toolkit mem
 Performance measurements, BB identity/compiler traces, and decoder/mapping notes
 are retained under [reports/](reports/README.md), including selected evidence and
 reproducers. They do not depend on temporary-directory retention.
+
+### ASIP standard-cell synthesis
+
+The [Design Compiler guide](scripts/asip_syn/README.md) describes reproducible
+Nangate45 and Sky130 library preparation and matched baseline/extension area
+and timing evaluation. Nangate45 remains the default. Use `ASIP_SYN_LIBRARY`
+for an existing `.db` or the pinned open-library preparation helper.
