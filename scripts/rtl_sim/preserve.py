@@ -33,6 +33,8 @@ def preserve(source, destination, variants):
         export = source / variant / "firmware/mlonmcu"
         for pattern in ("*.npy", "*.yml"):
             names += [str(path.relative_to(source)) for path in export.glob(pattern)]
+    for variant in variants:
+        names += [str(path.relative_to(source)) for path in (source / variant).glob("fpga_*") if path.is_file()]
     for name in names:
         path = source / name
         if path.is_file():

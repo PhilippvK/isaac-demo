@@ -14,6 +14,11 @@ import sys
 root = Path(__file__).resolve().parents[2]
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument("--run", action="store_true")
+p.add_argument("--execution", choices=["rtl", "fpga"], default="rtl")
+p.add_argument("--fpga-uart-container")
+p.add_argument("--fpga-vivado", default="/nfs/tools/xilinx/Vivado/2024.1/bin/vivado")
+p.add_argument("--fpga-board-serial", default="210319C08AE1")
+p.add_argument("--fpga-port", default="/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0")
 p.add_argument("--core", choices=["vex", "cva5"], default="cva5")
 p.add_argument("--rtl", type=Path)
 p.add_argument("--verilator", default="verilator")
@@ -82,7 +87,9 @@ if a.run:
     if not a.rtl:
         raise ValueError("--run requires --rtl")
     runtime = {
+        "execution": a.execution,
         "runner": root / "scripts/rtl_sim/run.py",
+        "fpga_runner": root / "scripts/fpga_syn/run.py",
         "rtl_dir": a.rtl.resolve(),
         "core": a.core,
         "verilator": a.verilator,
@@ -91,6 +98,11 @@ if a.run:
         "jobs": a.jobs,
         "data_wait": a.data_wait,
     }
+    if a.execution == "fpga":
+        runtime.update(fpga_vivado=a.fpga_vivado, fpga_board_serial=a.fpga_board_serial,
+                       fpga_port=a.fpga_port)
+        if a.fpga_uart_container:
+            runtime["fpga_uart_container"] = a.fpga_uart_container
     for name, value in runtime.items():
         command += ["-c", f"nailgun.{name}={value}"]
     command += ["-c", "mlif.fail_on_error=1"]
@@ -162,6 +174,8 @@ manifest = {
 if a.run:
     for name in ("execution.json", "uart.log", "compile.log", "uart.bin"):
         shutil.copyfile(export / ("nailgun_" + name), out.parent / name)
+    for path in export.glob("nailgun_fpga_*"):
+        shutil.copyfile(path, out.parent / path.name.removeprefix("nailgun_"))
     import csv
 
     with (export / "report.csv").open() as stream:

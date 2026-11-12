@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Execute the extraction benchmark on generated Nailgun RTL, without FPGA tools.
+# Execute the extraction benchmark using the selected Nailgun RTL or FPGA runner.
 set -euo pipefail
 DIR=$(realpath "${1:?Usage: flow_rtl_sim.sh EXPERIMENT_DIR}")
 ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
@@ -14,10 +14,15 @@ fi
 if [[ ${SELECTED:-0} == 1 && ( $suffix == _filtered || $suffix == _filtered2 ) ]]; then suffix+=_selected; fi
 core=${RTL_SIM_CORE:-${HLS_NAILGUN_CORE_NAME:-${RTL_TARGET:-CVA5}}}
 case "$core" in CVA5|cva5) core=cva5 ;; VEX_5S|vex_5s|VexRiscv_5s|vex) core=vex ;; *) echo "Unsupported RTL core: $core" >&2; exit 2 ;; esac
+execution=${RTL_SIM_EXECUTION:-rtl}
+case "$execution" in rtl) stage=rtl_sim ;; fpga) stage=fpga_run ;; *) echo "Unsupported execution: $execution" >&2; exit 2 ;; esac
+if [[ $execution == fpga && ${RTL_SIM_BUILD_MODE:-mlonmcu} != mlonmcu ]]; then
+    echo 'FPGA execution requires native MLonMCU build mode' >&2; exit 2
+fi
 mode=local; [[ ${USE_HLS_DOCKER:-0} == 1 ]] && mode=docker
 hls=${RTL_SIM_HLS_DIR:-$DIR/work/$mode/hls$suffix}
 commands=${RTL_SIM_COMPILE_COMMANDS:-$DIR/run/compile_commands.json}
-dest=${RTL_SIM_OUTPUT_DIR:-$DIR/work/rtl_sim$suffix$EVAL_SUFFIX}
+dest=${RTL_SIM_OUTPUT_DIR:-$DIR/work/$stage$suffix$EVAL_SUFFIX}
 seal_mode=local
 if [[ ${USE_SEAL5_SERVICE:-0} == 1 ]]; then seal_mode=service
 elif [[ ${USE_SEAL5_DOCKER:-0} == 1 ]]; then seal_mode=docker
@@ -41,7 +46,7 @@ PYINIT
 finish_rtl_sim() {
     local stage_status=$? report_status=0
     python3 "$ROOT/scripts/rtl_sim/summarize.py" "$dest" --variants "${variants[@]}" || report_status=$?
-    python3 "$ROOT/scripts/rtl_sim/preserve.py" "$dest" "${RTL_SIM_REPORT_DIR:-$DIR/rtl_sim$suffix$EVAL_SUFFIX}" "${variants[@]}" || report_status=$?
+    python3 "$ROOT/scripts/rtl_sim/preserve.py" "$dest" "${RTL_SIM_REPORT_DIR:-$DIR/$stage$suffix$EVAL_SUFFIX}" "${variants[@]}" || report_status=$?
     if [[ $stage_status != 0 ]]; then exit "$stage_status"; fi
     exit "$report_status"
 }
@@ -52,6 +57,13 @@ for variant in "${variants[@]}"; do
     rtl=$hls/$variant/rtl
     [[ -f $rtl/files.txt ]] || rtl=$hls/$variant/output
     [[ -n ${RTL_SIM_RTL_DIR:-} ]] && rtl=$RTL_SIM_RTL_DIR
+    runtime_args=(--execution "$execution")
+    if [[ $execution == fpga ]]; then
+        [[ -z ${FPGA_RUN_UART_CONTAINER:-} ]] || runtime_args+=(--fpga-uart-container "$FPGA_RUN_UART_CONTAINER")
+        [[ -z ${FPGA_RUN_VIVADO:-} ]] || runtime_args+=(--fpga-vivado "$FPGA_RUN_VIVADO")
+        [[ -z ${FPGA_RUN_BOARD_SERIAL:-} ]] || runtime_args+=(--fpga-board-serial "$FPGA_RUN_BOARD_SERIAL")
+        [[ -z ${FPGA_RUN_PORT:-} ]] || runtime_args+=(--fpga-port "$FPGA_RUN_PORT")
+    fi
     args=(--isel "$ISAAC_SELECTED_ISEL")
     if [[ -x $compiler ]]; then args+=(--compiler "$compiler"); fi
     if [[ -n ${ARCH:-} ]]; then args+=(--arch "${RTL_SIM_BASE_ARCH:-$ARCH}" --abi "${ABI:-ilp32}"); fi
@@ -70,7 +82,7 @@ for variant in "${variants[@]}"; do
         python3 "$ROOT/scripts/rtl_sim/build_mlonmcu.py" "${RTL_SIM_BENCHMARK:-$(basename "$(dirname "$DIR")")}" "$dest/$variant/firmware" \
             --compiler "$build_compiler" --gnu "$gnu" --arch "$build_arch" --abi "${ABI:-ilp32}" --isel "$ISAAC_SELECTED_ISEL" \
             --backend "${BACKEND:-none}" --optimize "${OPTIMIZE:-3}" --unroll "${UNROLL:-auto}" --extra-args="${RTL_SIM_MLONMCU_ARGS:-}" \
-            --run --core "$core" --rtl "$rtl" --verilator "${RTL_SIM_VERILATOR:-verilator}" \
+            --run "${runtime_args[@]}" --core "$core" --rtl "$rtl" --verilator "${RTL_SIM_VERILATOR:-verilator}" \
             --max-cycles "${RTL_SIM_MAX_CYCLES:-100000000}" --timeout "${RTL_SIM_TIMEOUT:-600}" \
             --jobs "${RTL_SIM_JOBS:-4}" --data-wait "${RTL_SIM_DATA_WAIT:-0}" \
             --ram-size "${RTL_SIM_RAM_SIZE:-262144}" --stack-size "${RTL_SIM_STACK_SIZE:-8192}" \

@@ -155,8 +155,7 @@ docker build -f docker/Dockerfile_hls_vex -t isaac-quickstart-hls-vex5:local .
 The preset selects this image; `VEX5_HLS_IMAGE` overrides it. See the
 [Vex experiment](reports/vex-5s-hls-20261107/report.md) for CRC32 discovery,
 real Nailgun/SCAIE-V RTL generation, firmware execution in RTL simulation,
-known initial failures, and cycle/instruction measurements. This does not add
-an Arty FPGA shell for Vex or change the board running the CVA5 image.
+known initial failures, and cycle/instruction measurements. The separate `vex_5s_arty_a7_100t` preset provides the validated Vex Arty shell.
 
 #### Nailgun RTL benchmark simulation
 
@@ -177,6 +176,13 @@ such as `rtl_sim_0_filtered_selected`, for a selected extension. See the
 constraints and overrides, and the
 [integration validation report](reports/rtl-sim-integration-20261109/report.md)
 for CRC32/SHA256 and generated memory ISE execution.
+
+For Vex Arty hardware execution, use `scripts/full_flow.sh crc32 latest fpga_run_0`
+after generating matching RTL and compiler artifacts. This explicit stage invokes
+MLonMCU firmware generation, Vivado synthesis, volatile programming and validation.
+See the same guide for board settings and the
+[hardware follow-up results](reports/vex-fpga-followup-20261110/report.md).
+
 
 #### CVA5 presets
 

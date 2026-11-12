@@ -49,7 +49,12 @@ __attribute__((noinline)) static u32 crc_ise(void) {
  u32 crc=~0u,seed=0;
  for (u32 i=0;i<1024;i++) {
   seed=(seed*1103515245u+12345u)&0x7fffffffu;
+#ifdef ise_crc_index
+  u32 offset=ise_crc_index(crc,seed>>16);
+  crc=*(volatile u32 *)((u32)table+offset)^(crc>>8);
+#else
   crc=ise_crc_masked(crc^(seed>>16),(u32)table)^(crc>>8);
+#endif
  }
  return ~crc;
 }

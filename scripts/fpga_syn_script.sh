@@ -77,7 +77,7 @@ export PART
 export FPGA_SYN_CORE=$CORE
 
 cd $OUT_DIR
-vivado -mode batch -source $SCRIPTS_DIR/fpga_syn/my_vivado_script.tcl
+"${FPGA_SYN_VIVADO:-vivado}" -mode batch -source $SCRIPTS_DIR/fpga_syn/my_vivado_script.tcl
 cd -
 
 # check if expected files have been generated

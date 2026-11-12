@@ -8,6 +8,7 @@ p.add_argument('--branch-repeats',type=int,default=1)
 p.add_argument('--core-label',default='CVA5')
 p.add_argument('--cycle-counter-address',type=lambda value:int(value,0))
 p.add_argument('--memory-coredsl',type=Path)
+p.add_argument('--crc-index-name',help='Use this arithmetic CRC index ISE followed by a native load')
 p.add_argument('--memory-names',nargs=5)
 p.add_argument('variant',choices=['baseline','full','memory','branches','stores']);p.add_argument('output',type=Path)
 a=p.parse_args()
@@ -24,7 +25,7 @@ if a.cycle_counter_address is not None:
 if a.variant in ('full','memory'):
  coredsl=a.memory_coredsl or root/'reports/cva5-reuseio-hls-20261105/hls-inputs'/('crc32-scaiev2-final/XIsaac.hls.core_desc' if a.variant=='full' else 'memory-cva5/XMemoryCRC32.hls.core_desc')
  header=out/'memory.h'
- subprocess.run(['python3',str(src/'memory_header.py'),str(coredsl),str(header)]+(['--names',*a.memory_names] if a.memory_names else []),check=True)
+ subprocess.run(['python3',str(src/'memory_header.py'),str(coredsl),str(header)]+(['--names',*a.memory_names] if a.memory_names else [])+(['--crc-index-name',a.crc_index_name] if a.crc_index_name else []),check=True)
  extra+=[f'-DISAAC_MEMORY_HEADER="{header}"'];inputs += [coredsl,header]
 if a.variant=='branches':extra+=['-DISAAC_BRANCHES=1',f'-DBRANCH_REPEATS={a.branch_repeats}',str(src/'branch_probes.S')];inputs += [src/'branch_probes.S',src/'effect_checks.h']
 if a.variant=='stores':extra+=['-DISAAC_STORES=1'];inputs += [src/'effect_checks.h']

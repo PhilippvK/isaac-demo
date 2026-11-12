@@ -12,6 +12,7 @@ import subprocess
 import termios
 import time
 import tty
+import tempfile
 
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('bitstream',type=Path);p.add_argument('output',type=Path)
@@ -24,7 +25,12 @@ p.add_argument('--timeout',type=float,default=240)
 p.add_argument('--protocol',choices=['probe','mlonmcu'],default='probe')
 p.add_argument('--boot-banner',default='ISAAC CVA5 BOOT')
 p.add_argument('--expected-results',type=Path,help='Numerical results JSON containing a samples list')
-a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
+a=p.parse_args()
+if not re.fullmatch(r'[A-Za-z0-9_-]+',a.board_serial):p.error('Invalid board serial')
+# Cooperating runners must serialize both capture and programming, not just JTAG.
+board_lock=open(Path(tempfile.gettempdir())/f'isaac-arty-{os.getuid()}-{a.board_serial}.lock','a')
+fcntl.flock(board_lock,fcntl.LOCK_EX)
+a.output.mkdir(parents=True,exist_ok=True)
 bit=a.bitstream.resolve();out=a.output.resolve()
 stream=None;old=None;proc=None
 if a.uart_container:

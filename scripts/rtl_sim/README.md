@@ -155,8 +155,8 @@ retain GISel. The same one-file exception is present in legacy replay mode.
 
 The native target has been exercised with Embench CRC32/SHA256, the separate
 MLonMCU example frontend, GCC, LLVM GISel, and a C++ constructor/heap/destructor
-fixture. Full TFLM/TVM model execution still needs validation with their backend
-dependencies; compatibility with every frontend is not claimed by these checks.
+fixture. TVM AOT sine execution has also passed numerical validation in RTL and on
+the Vex Arty board. TFLM and compatibility with every frontend remain unverified.
 
 ### TVM AOT model validation
 
@@ -173,3 +173,45 @@ python -m mlonmcu.cli.main flow run sine_model --backend tvmaot --target nailgun
 Configure the TVM source/build/Python paths and the Nailgun runner/RTL as above.
 For scalar regression models, use numerical metrics such as `allclose`; default
 classification top-k metrics do not establish numerical correctness.
+
+## FPGA execution through MLonMCU
+
+Use the explicit `fpga_run_0` stage for VEX_5S on Arty A7-100T:
+
+```bash
+export FPGA_RUN_UART_CONTAINER=philippvk/isaac-quickstart-hls:latest
+scripts/full_flow.sh crc32 latest fpga_run_0
+# Matching selection suffixes are supported, for example:
+scripts/full_flow.sh crc32 latest fpga_run_0_filtered_selected
+```
+
+This stage builds native MLonMCU firmware, synthesizes initialized BRAM, checks
+routed timing, programs volatile FPGA configuration, and captures/validates UART.
+It requires Vivado and a connected board. It uses the same `RTL_SIM_*` workload,
+compiler, variant, memory and output overrides described above. Replay mode is
+unsupported. Results default to `work/fpga_run_SUFFIX[_isel_SELECTOR]` and a
+preserved `fpga_run_SUFFIX[_isel_SELECTOR]` directory. SPI flash is not written.
+
+`FPGA_RUN_TIMEOUT` defaults to 1800 seconds per runner invocation. Optional
+`FPGA_RUN_VIVADO`, `FPGA_RUN_BOARD_SERIAL`, and `FPGA_RUN_PORT` override the
+Vivado executable, board serial and UART device. The current board runtime
+supports Vex with exactly 256 KiB RAM; CVA5 FPGA execution is rejected because
+its board shell does not implement the native runtime counter interface.
+
+To select hardware in a direct MLonMCU invocation, replace the RTL runner
+settings with:
+
+```bash
+-c nailgun.execution=fpga -c nailgun.core=vex \
+-c nailgun.fpga_runner="$PWD/scripts/fpga_syn/run.py" \
+-c nailgun.rtl_dir=/path/to/generated/VexRiscv_5s \
+-c nailgun.fpga_uart_container=philippvk/isaac-quickstart-hls:latest \
+-c nailgun.timeout=1800 -c run.export_optional=1
+```
+
+Model outputs retain their raw binary frames for normal MLonMCU decoding and
+numerical validation. Exported artifacts include timing/utilization/DRC reports;
+optional artifacts include the bitstream and routed checkpoint. Board runners
+serialize UART capture and programming for the same user and board serial.
+See the [hardware follow-up report](../../reports/vex-fpga-followup-20261110/report.md)
+for validated CRC32, sine, branch/store probes and the intrinsic comparison.

@@ -787,6 +787,17 @@ lookup_script() {
             rtl_sim_0_final) echo -n "FINAL=1 bash ./scripts/flow_rtl_sim.sh" ;;
             *) echo "Unknown RTL simulation step: $STEP" >&2; exit 2 ;;
         esac
+    elif [[ "$STEP" == fpga_run_0* ]]
+    then
+        case "$STEP" in
+            fpga_run_0) echo -n "bash ./scripts/flow_fpga_run.sh" ;;
+            fpga_run_0_filtered) echo -n "FILTERED=1 bash ./scripts/flow_fpga_run.sh" ;;
+            fpga_run_0_filtered_selected) echo -n "FILTERED=1 SELECTED=1 bash ./scripts/flow_fpga_run.sh" ;;
+            fpga_run_0_filtered2_selected) echo -n "FILTERED2=1 SELECTED=1 bash ./scripts/flow_fpga_run.sh" ;;
+            fpga_run_0_prelim) echo -n "PRELIM=1 bash ./scripts/flow_fpga_run.sh" ;;
+            fpga_run_0_final) echo -n "FINAL=1 bash ./scripts/flow_fpga_run.sh" ;;
+            *) echo "Unknown FPGA execution step: $STEP" >&2; exit 2 ;;
+        esac
     elif [[ "$STEP" == "report_0" ]]
     then
         echo -n "./scripts/flow_report.sh"
