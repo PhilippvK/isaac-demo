@@ -1,0 +1,43 @@
+ 
+****************************************
+Report : area
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 10:00:34 2026
+****************************************
+
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /var/tmp/ga87puy/isaac-demo-new/install/asip-libs/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.db)
+
+Number of ports:                          306
+Number of nets:                         17187
+Number of cells:                        16517
+Number of combinational cells:          14412
+Number of sequential cells:              2105
+Number of macros/black boxes:               0
+Number of buf/inv:                       2624
+Number of references:                      73
+
+Combinational area:              82809.418810
+Buf/Inv area:                    11394.678042
+Noncombinational area:           42972.462654
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                125781.881464
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area             Local cell area
+                                  --------------------  ------------------------------ 
+Hierarchical cell                 Absolute     Percent  Combi-      Noncombi-   Black-
+                                  Total        Total    national    national    boxes   Design
+--------------------------------  -----------  -------  ----------  ----------  ------  ---------
+top                               125781.8815    100.0  82809.4188  42972.4627  0.0000  top
+--------------------------------  -----------  -------  ----------  ----------  ------  ---------
+Total                                                   82809.4188  42972.4627  0.0000
+
+1

@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "status": "complete",
+  "pdk": "sky130hd",
+  "core": "VEX_5S",
+  "clock_period_ns": 10.0,
+  "library": "/var/tmp/ga87puy/isaac-demo-new/install/asip-libs/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.db",
+  "library_sha256": "52bc43694e1e79b68c06fb907bf84ee46ffe503c1d0bb98a95b3196dcc7c4425",
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "constraints": "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/constraints.tcl",
+  "constraints_sha256": "26ce5c4689eb8aaab47a714787e3b1bcb8e24a35166de878b2605a2c7bb14ab6",
+  "synthesis_script_sha256": "ef9a4ccced7c36d890d1dfa164f602fcf80e17114fdef18ace7610a141238085",
+  "dc_shell": "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+  "electrical_settings": {
+    "driver": "sky130_fd_sc_hd__inv_2",
+    "pin": "Y",
+    "load": 0.0334,
+    "dont_use": "*/sky130_fd_sc_hd__probe* */sky130_fd_sc_hd__lpflow*"
+  },
+  "boundary": "core and extension, external memory excluded",
+  "physical_design": false,
+  "command": [
+    "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+    "-f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/asip-synthesis-20261112/evaluation/sky130hd/baseline/synthesize.tcl"
+  ],
+  "hold_wns_ns": -0.0,
+  "hold_violating_paths": 0,
+  "metrics": {
+    "cell_area": 124566.966296,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": 0.0002059937
+  },
+  "setup_timing_met": true,
+  "hold_timing_met": true,
+  "timing_met": true,
+  "elapsed_seconds": 220.71784418821335,
+  "reports_revalidated": true,
+  "artifacts_sha256": {
+    "out/top.v": "0e8e891a3d58494b09c52155e14bd0bb422455a99a29a2a613cf1a3b56f22df5",
+    "out/top.ddc": "fbb1bedc27a7d5996f7cf002c5c65815a92fac3ff82a4e6b52140b599b78fe5e",
+    "out/top.sdf": "9da790de66eaf8bbd4e0036c01d2f91df84a9af4d53cb06a1ba147c8f9d3cf3c",
+    "out/top.sdc": "6862ed5c7b2e8a595dc1febd4ffb3e7f1867c0659b34886f61b0a11d20e9e5e4"
+  }
+}

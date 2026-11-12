@@ -1,0 +1,58 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:56:32 2026
+****************************************
+
+
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /var/tmp/ga87puy/isaac-demo-new/install/asip-libs/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.db)
+
+
+Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+top                    Small             sky130_fd_sc_hd__tt_025C_1v80
+
+
+Global Operating Voltage = 1.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   8.6533 mW   (96%)
+  Net Switching Power  = 405.2088 uW    (4%)
+                         ---------
+Total Dynamic Power    =   9.0585 mW  (100%)
+
+Cell Leakage Power     =  44.2569 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      8.3848            0.0000            0.0000            8.3848  (  92.56%)  i
+register       7.6465e-02        5.0462e-02           17.1490            0.1269  (   1.40%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      0.1920            0.3547           27.1080            0.5467  (   6.04%)
+--------------------------------------------------------------------------------------------------
+Total              8.6532 mW         0.4052 mW        44.2569 nW         9.0585 mW
+1

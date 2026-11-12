@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "status": "complete",
+  "pdk": "nangate45",
+  "core": "VEX_5S",
+  "clock_period_ns": 10.0,
+  "library": "/var/tmp/ga87puy/isaac-demo-new/install/asip-libs/nangate45/NangateOpenCellLibrary_typical.db",
+  "library_sha256": "41f6ff336695fd5ec34a1881badcba64deeeab972bb07c42db11d2b1a3bee629",
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/VexRiscv.v": "52e7d4d4eda950389dd7a7d96e607e2947a74bfdd62b8127664fdd158807e83f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/Vex_top.sv": "a23ef0c9a298d60e54102b74e990908e6c8bc31324973e0014659eeca8e65021",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/VexRiscv_5s/CommonLogicModule.sv": "424dc385957a15a6d6ee44aa05bad6717a9a4aba4a76aeb03643afec0df66260",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/branches/ISAX_XBranch.sv": "a4d810eb8e4440d9aca33c8c53ee78f2eac215cc86074deef784518bdc5058b0"
+  },
+  "constraints": "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/constraints.tcl",
+  "constraints_sha256": "26ce5c4689eb8aaab47a714787e3b1bcb8e24a35166de878b2605a2c7bb14ab6",
+  "synthesis_script_sha256": "dd30b74081a0ede642ff0af81211ff83a4454db2adcce7a5c2fc065ee525693c",
+  "dc_shell": "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+  "electrical_settings": {
+    "driver": "INV_X2",
+    "pin": "ZN",
+    "load": 33.4,
+    "dont_use": "NangateOpenCellLibrary/SDFF*"
+  },
+  "boundary": "core and extension, external memory excluded",
+  "physical_design": false,
+  "command": [
+    "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+    "-f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/asip-synthesis-20261112/evaluation/nangate45/branches/synthesize.tcl"
+  ],
+  "elapsed_seconds": 132.3950327038765,
+  "metrics": {
+    "cell_area": 23200.785838,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": 0.0069556236
+  },
+  "timing_met": false,
+  "reports_revalidated": true,
+  "setup_timing_met": true,
+  "hold_timing_met": false,
+  "hold_wns_ns": -0.16,
+  "hold_violating_paths": 2065,
+  "artifacts_sha256": {
+    "out/top.v": "0714d753007b4f86f0bbcd29287e60bd7ebe635af6849483122aff9b129dfa2e",
+    "out/top.ddc": "b51c3f661fe4062e9387c1aed6e44566025c3adb0ae31ff6bacd845a57e3af0f",
+    "out/top.sdf": "e2a347c7aa517b35fdbd5761967f1ad055a773565041e2c3f383b161fde35bbd",
+    "out/top.sdc": "66ecb400ddb325d5d49cf048a278c772b9f454e5d39c89b391bc117c0f9549d0"
+  }
+}

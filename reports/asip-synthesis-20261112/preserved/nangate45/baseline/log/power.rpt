@@ -1,0 +1,58 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:45:20 2026
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /var/tmp/ga87puy/isaac-demo-new/install/asip-libs/nangate45/NangateOpenCellLibrary_typical.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+top                    5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   1.9729 mW   (90%)
+  Net Switching Power  = 230.9737 uW   (10%)
+                         ---------
+Total Dynamic Power    =   2.2039 mW  (100%)
+
+Cell Leakage Power     = 512.2739 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network  1.7392e+03            0.0000            0.0000        1.7392e+03  (  64.03%)  i
+register          76.7482           27.9011        1.6502e+05          269.6709  (   9.93%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational    156.9661          203.0720        3.4725e+05          707.2917  (  26.04%)
+--------------------------------------------------------------------------------------------------
+Total          1.9729e+03 uW       230.9730 uW     5.1227e+05 nW     2.7162e+03 uW
+1

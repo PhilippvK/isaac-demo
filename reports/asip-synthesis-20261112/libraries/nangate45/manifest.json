@@ -1,0 +1,9 @@
+{
+  "pdk": "nangate45",
+  "source": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/a47d4fdc6534cb3cdfdd9ff76737a899a5bb2ee0/flow/platforms/nangate45/lib/NangateOpenCellLibrary_typical.lib",
+  "revision": "a47d4fdc6534cb3cdfdd9ff76737a899a5bb2ee0",
+  "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+  "db_sha256": "41f6ff336695fd5ec34a1881badcba64deeeab972bb07c42db11d2b1a3bee629",
+  "lc_shell": "/nfs/tools/synopsys/lc/X-2025.06-SP3/bin/lc_shell",
+  "version": "X-2025.06-SP3 for linux64 - Jan 15, 2026"
+}

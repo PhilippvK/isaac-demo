@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "status": "complete",
+  "pdk": "sky130hd",
+  "core": "VEX_5S",
+  "clock_period_ns": 10.0,
+  "library": "/var/tmp/ga87puy/isaac-demo-new/install/asip-libs/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.db",
+  "library_sha256": "52bc43694e1e79b68c06fb907bf84ee46ffe503c1d0bb98a95b3196dcc7c4425",
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/VexRiscv_5s/VexRiscv.v": "5b607e7acfe8de3a6783d9cc6937b10f56b5e07609c62a6c2efee2a8e676e2b2",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/ISAX_XStoreProbe.sv": "e227d0fe594317cf48a6fce563fbb6e3ac0375cf9c89d48fba63c529bcbc8f44"
+  },
+  "constraints": "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/constraints.tcl",
+  "constraints_sha256": "26ce5c4689eb8aaab47a714787e3b1bcb8e24a35166de878b2605a2c7bb14ab6",
+  "synthesis_script_sha256": "ef9a4ccced7c36d890d1dfa164f602fcf80e17114fdef18ace7610a141238085",
+  "dc_shell": "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+  "electrical_settings": {
+    "driver": "sky130_fd_sc_hd__inv_2",
+    "pin": "Y",
+    "load": 0.0334,
+    "dont_use": "*/sky130_fd_sc_hd__probe* */sky130_fd_sc_hd__lpflow*"
+  },
+  "boundary": "core and extension, external memory excluded",
+  "physical_design": false,
+  "command": [
+    "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+    "-f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/asip-synthesis-20261112/evaluation/sky130hd/stores/synthesize.tcl"
+  ],
+  "hold_wns_ns": -0.0,
+  "hold_violating_paths": 0,
+  "metrics": {
+    "cell_area": 125781.881464,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": 0.0010251999
+  },
+  "setup_timing_met": true,
+  "hold_timing_met": true,
+  "timing_met": true,
+  "elapsed_seconds": 200.9568390622735,
+  "reports_revalidated": true,
+  "artifacts_sha256": {
+    "out/top.v": "4cc31f2aeb580759fe3b445f03fc64325a7c71011cdc8fe42752490edeebf74d",
+    "out/top.ddc": "67124c2ebd9034577f37b88259eb080a5f2e0a59477a7156ed9a2d640c50c2b7",
+    "out/top.sdf": "3b3d0a46b4e15873d8b3083e99d75e05b0c9ca3a1cc65c75039ec5f8dbdfba96",
+    "out/top.sdc": "d2a121e8ec3de12e454abf803643198a777f5aebfd2eecc29a1af3b96ca04c41"
+  }
+}

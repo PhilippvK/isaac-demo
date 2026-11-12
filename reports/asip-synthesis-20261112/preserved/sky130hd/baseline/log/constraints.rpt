@@ -1,0 +1,63 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:56:31 2026
+****************************************
+
+
+   max_transition
+
+                             Required        Actual
+   Net                      Transition     Transition        Slack
+   -----------------------------------------------------------------
+   n4629                        0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6344/A          0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6350/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6353/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6356/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6365/A          0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6369/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6375/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6381/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6422/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6425/B1         0.75           0.76          -0.01  (VIOLATED)
+       PIN :   U6343/Y          0.75           0.76          -0.01  (VIOLATED)
+   n12122                       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[3]        0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[12]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[31]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[23]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[24]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[25]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[26]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[29]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[15]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[22]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[27]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[30]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+
+   -----------------------------------------------------------------
+   Total                      14                 -0.02  
+
+   max_fanout
+
+                             Required        Actual
+   Net                        Fanout         Fanout          Slack
+   -----------------------------------------------------------------
+   n185                        10.00          20.00         -10.00  (VIOLATED)
+
+   -----------------------------------------------------------------
+   Total                      1                 -10.00  
+
+   max_leakage_power
+
+                             Required        Actual
+   Design                   Leakage Power  Leakage Power     Slack
+   -----------------------------------------------------------------
+   top                          0.00          44.99         -44.99  (VIOLATED)
+
+
+1

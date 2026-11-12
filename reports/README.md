@@ -61,3 +61,5 @@ FPGA target. Board-only selection is `cva5_reuseio_arty_a7_100t`.
 - [VEX_5S Arty A7-100T synthesis and hardware execution (2026-11-10)](vex-arty-fpga-20261110/report.md)
 
 - [Vex FPGA CRC32 acceleration, branch/store probes and native MLonMCU execution](vex-fpga-followup-20261110/report.md).
+
+- [Nangate45 and Sky130 matched Design Compiler ASIP evaluation](asip-synthesis-20261112/report.md).

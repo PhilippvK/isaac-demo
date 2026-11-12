@@ -1,0 +1,44 @@
+ 
+****************************************
+Report : area
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:47:32 2026
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /var/tmp/ga87puy/isaac-demo-new/install/asip-libs/nangate45/NangateOpenCellLibrary_typical.db)
+
+Number of ports:                          817
+Number of nets:                         15416
+Number of cells:                        13012
+Number of combinational cells:          10903
+Number of sequential cells:              2105
+Number of macros/black boxes:               0
+Number of buf/inv:                       2076
+Number of references:                      21
+
+Combinational area:              13617.338156
+Buf/Inv area:                     1286.109992
+Noncombinational area:            9583.447682
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 23200.785838
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ----------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-  Black-
+                                  Total       Total    national    national   boxes   Design
+--------------------------------  ----------  -------  ----------  ---------  ------  ---------
+top                               23200.7858    100.0    206.9480    27.1320  0.0000  top
+VexRiscv_inst                     22966.7058     99.0  13410.3902  9556.3157  0.0000  VexRiscv
+--------------------------------  ----------  -------  ----------  ---------  ------  ---------
+Total                                                  13617.3382  9583.4477  0.0000
+
+1

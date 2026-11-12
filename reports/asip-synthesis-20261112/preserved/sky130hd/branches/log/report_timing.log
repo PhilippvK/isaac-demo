@@ -1,0 +1,1442 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 10
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:59:52 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
+Wire Load Model Mode: top
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: VexRiscv_inst/execute_to_memory_MUL_LH_reg[33]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]/CLK (sky130_fd_sc_hd__dfxtp_4)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]/Q (sky130_fd_sc_hd__dfxtp_4)
+                                                      0.4211038947
+                                                                 0.4211038947 r
+  U2093/Y (sky130_fd_sc_hd__inv_2)                    0.0700922906
+                                                                 0.4911961854 f
+  U2239/Y (sky130_fd_sc_hd__nor2_1)                   0.1148561537
+                                                                 0.6060523391 r
+  U324/Y (sky130_fd_sc_hd__inv_1)                     0.0531626344
+                                                                 0.6592149734 f
+  U3090/Y (sky130_fd_sc_hd__nor2_1)                   0.1449072957
+                                                                 0.8041222692 r
+  U323/Y (sky130_fd_sc_hd__inv_1)                     0.0740640163
+                                                                 0.8781862855 f
+  U3091/Y (sky130_fd_sc_hd__nor2_1)                   0.2044227719
+                                                                 1.0826090574 r
+  U272/X (sky130_fd_sc_hd__clkbuf_1)                  0.3085539341
+                                                                 1.3911629915 r
+  U4086/Y (sky130_fd_sc_hd__a22oi_1)                  0.1098978519
+                                                                 1.5010608435 f
+  U4089/Y (sky130_fd_sc_hd__nand4_1)                  0.0932346582
+                                                                 1.5942955017 r
+  U4096/Y (sky130_fd_sc_hd__nor2_1)                   0.0523051023
+                                                                 1.6466006041 f
+  U4115/Y (sky130_fd_sc_hd__a31oi_1)                  0.1141741276
+                                                                 1.7607747316 r
+  U4116/Y (sky130_fd_sc_hd__o21ai_1)                  0.0947885513
+                                                                 1.8555632830 f
+  U4118/Y (sky130_fd_sc_hd__a21oi_2)                  0.3603667021
+                                                                 2.2159299850 r
+  U956/X (sky130_fd_sc_hd__buf_2)                     0.3265771866
+                                                                 2.5425071716 r
+  U11206/Y (sky130_fd_sc_hd__xnor2_1)                 0.2185897827
+                                                                 2.7610969543 r
+  U2307/Y (sky130_fd_sc_hd__nor2b_1)                  0.4997582436
+                                                                 3.2608551979 r
+  U740/Y (sky130_fd_sc_hd__clkinvlp_2)                0.2253310680
+                                                                 3.4861862659 f
+  U330/Y (sky130_fd_sc_hd__clkinvlp_2)                0.2022237778
+                                                                 3.6884100437 r
+  U12220/Y (sky130_fd_sc_hd__a222oi_1)                0.1065032482
+                                                                 3.7949132919 f
+  U12221/Y (sky130_fd_sc_hd__o21ai_1)                 0.1117434502
+                                                                 3.9066567421 r
+  U12222/X (sky130_fd_sc_hd__xor2_1)                  0.0946116447
+                                                                 4.0012683868 f
+  U12291/COUT (sky130_fd_sc_hd__ha_1)                 0.2234568596
+                                                                 4.2247252464 f
+  U12299/SUM (sky130_fd_sc_hd__fa_1)                  0.4998612404
+                                                                 4.7245864868 r
+  U12295/SUM (sky130_fd_sc_hd__fa_1)                  0.4254245758
+                                                                 5.1500110626 f
+  U1264/X (sky130_fd_sc_hd__or2_0)                    0.2277259827
+                                                                 5.3777370453 f
+  U12294/Y (sky130_fd_sc_hd__a21oi_1)                 0.2138490677
+                                                                 5.5915861130 r
+  U12303/Y (sky130_fd_sc_hd__o21ai_1)                 0.1312789917
+                                                                 5.7228651047 f
+  U12307/Y (sky130_fd_sc_hd__a21oi_1)                 0.2054963112
+                                                                 5.9283614159 r
+  U12309/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.0456976891 f
+  U12314/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.2495512962 r
+  U12316/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 6.3668851852 f
+  U1234/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 6.5707387924 r
+  U12322/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.6880750656 f
+  U12327/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.8919286728 r
+  U12329/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.0092649460 f
+  U12333/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 7.2131185532 r
+  U12335/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 7.3304524422 f
+  U1230/Y (sky130_fd_sc_hd__a21oi_1)                  0.2025518417
+                                                                 7.5330042839 r
+  U12340/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.6503405571 f
+  U12344/Y (sky130_fd_sc_hd__a21oi_1)                 0.2025518417
+                                                                 7.8528923988 r
+  U12346/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.9702286720 f
+  U1219/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038540840
+                                                                 8.1740827560 r
+  U12351/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173372269
+                                                                 8.2914199829 f
+  U12356/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038545609
+                                                                 8.4952745438 r
+  U12358/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173343658
+                                                                 8.6126089096 f
+  U1209/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038507462
+                                                                 8.8164596558 r
+  U12364/Y (sky130_fd_sc_hd__o21ai_1)                 0.1005058289
+                                                                 8.9169654846 f
+  U12370/COUT (sky130_fd_sc_hd__fa_1)                 0.3639602661
+                                                                 9.2809257507 f
+  U12367/COUT (sky130_fd_sc_hd__fah_1)                0.2469129562
+                                                                 9.5278387070 f
+  U1197/Y (sky130_fd_sc_hd__inv_1)                    0.0581789017
+                                                                 9.5860176086 r
+  U12365/Y (sky130_fd_sc_hd__nand2_1)                 0.0430641174
+                                                                 9.6290817261 f
+  U12366/Y (sky130_fd_sc_hd__o21ai_1)                 0.0625534058
+                                                                 9.6916351318 r
+  VexRiscv_inst/execute_to_memory_MUL_LH_reg[33]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0034761429
+                                                                 9.6951112747 r
+  data arrival time                                              9.6951112747
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  VexRiscv_inst/execute_to_memory_MUL_LH_reg[33]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000
+                                                                 9.7500000000 r
+  library setup time                                  -0.0521710366
+                                                                 9.6978292465
+  data required time                                             9.6978292465
+  --------------------------------------------------------------------------
+  data required time                                             9.6978292465
+  data arrival time                                              -9.6951112747
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0027179718
+
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: VexRiscv_inst/execute_to_memory_MUL_LH_reg[32]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]/CLK (sky130_fd_sc_hd__dfxtp_4)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]/Q (sky130_fd_sc_hd__dfxtp_4)
+                                                      0.4211038947
+                                                                 0.4211038947 r
+  U2093/Y (sky130_fd_sc_hd__inv_2)                    0.0700922906
+                                                                 0.4911961854 f
+  U2239/Y (sky130_fd_sc_hd__nor2_1)                   0.1148561537
+                                                                 0.6060523391 r
+  U324/Y (sky130_fd_sc_hd__inv_1)                     0.0531626344
+                                                                 0.6592149734 f
+  U3090/Y (sky130_fd_sc_hd__nor2_1)                   0.1449072957
+                                                                 0.8041222692 r
+  U323/Y (sky130_fd_sc_hd__inv_1)                     0.0740640163
+                                                                 0.8781862855 f
+  U3091/Y (sky130_fd_sc_hd__nor2_1)                   0.2044227719
+                                                                 1.0826090574 r
+  U272/X (sky130_fd_sc_hd__clkbuf_1)                  0.3085539341
+                                                                 1.3911629915 r
+  U4086/Y (sky130_fd_sc_hd__a22oi_1)                  0.1098978519
+                                                                 1.5010608435 f
+  U4089/Y (sky130_fd_sc_hd__nand4_1)                  0.0932346582
+                                                                 1.5942955017 r
+  U4096/Y (sky130_fd_sc_hd__nor2_1)                   0.0523051023
+                                                                 1.6466006041 f
+  U4115/Y (sky130_fd_sc_hd__a31oi_1)                  0.1141741276
+                                                                 1.7607747316 r
+  U4116/Y (sky130_fd_sc_hd__o21ai_1)                  0.0947885513
+                                                                 1.8555632830 f
+  U4118/Y (sky130_fd_sc_hd__a21oi_2)                  0.3603667021
+                                                                 2.2159299850 r
+  U956/X (sky130_fd_sc_hd__buf_2)                     0.3265771866
+                                                                 2.5425071716 r
+  U11206/Y (sky130_fd_sc_hd__xnor2_1)                 0.2185897827
+                                                                 2.7610969543 r
+  U2307/Y (sky130_fd_sc_hd__nor2b_1)                  0.4997582436
+                                                                 3.2608551979 r
+  U740/Y (sky130_fd_sc_hd__clkinvlp_2)                0.2253310680
+                                                                 3.4861862659 f
+  U330/Y (sky130_fd_sc_hd__clkinvlp_2)                0.2022237778
+                                                                 3.6884100437 r
+  U12220/Y (sky130_fd_sc_hd__a222oi_1)                0.1065032482
+                                                                 3.7949132919 f
+  U12221/Y (sky130_fd_sc_hd__o21ai_1)                 0.1117434502
+                                                                 3.9066567421 r
+  U12222/X (sky130_fd_sc_hd__xor2_1)                  0.0946116447
+                                                                 4.0012683868 f
+  U12291/COUT (sky130_fd_sc_hd__ha_1)                 0.2234568596
+                                                                 4.2247252464 f
+  U12299/SUM (sky130_fd_sc_hd__fa_1)                  0.4998612404
+                                                                 4.7245864868 r
+  U12295/SUM (sky130_fd_sc_hd__fa_1)                  0.4254245758
+                                                                 5.1500110626 f
+  U1264/X (sky130_fd_sc_hd__or2_0)                    0.2277259827
+                                                                 5.3777370453 f
+  U12294/Y (sky130_fd_sc_hd__a21oi_1)                 0.2138490677
+                                                                 5.5915861130 r
+  U12303/Y (sky130_fd_sc_hd__o21ai_1)                 0.1312789917
+                                                                 5.7228651047 f
+  U12307/Y (sky130_fd_sc_hd__a21oi_1)                 0.2054963112
+                                                                 5.9283614159 r
+  U12309/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.0456976891 f
+  U12314/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.2495512962 r
+  U12316/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 6.3668851852 f
+  U1234/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 6.5707387924 r
+  U12322/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.6880750656 f
+  U12327/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.8919286728 r
+  U12329/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.0092649460 f
+  U12333/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 7.2131185532 r
+  U12335/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 7.3304524422 f
+  U1230/Y (sky130_fd_sc_hd__a21oi_1)                  0.2025518417
+                                                                 7.5330042839 r
+  U12340/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.6503405571 f
+  U12344/Y (sky130_fd_sc_hd__a21oi_1)                 0.2025518417
+                                                                 7.8528923988 r
+  U12346/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.9702286720 f
+  U1219/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038540840
+                                                                 8.1740827560 r
+  U12351/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173372269
+                                                                 8.2914199829 f
+  U12356/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038545609
+                                                                 8.4952745438 r
+  U12358/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173343658
+                                                                 8.6126089096 f
+  U1209/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038507462
+                                                                 8.8164596558 r
+  U12364/Y (sky130_fd_sc_hd__o21ai_1)                 0.1005058289
+                                                                 8.9169654846 f
+  U12370/COUT (sky130_fd_sc_hd__fa_1)                 0.3639602661
+                                                                 9.2809257507 f
+  U12367/SUM (sky130_fd_sc_hd__fah_1)                 0.2448110580
+                                                                 9.5257368088 f
+  U12368/Y (sky130_fd_sc_hd__nand2_1)                 0.0552740097
+                                                                 9.5810108185 r
+  U10685/Y (sky130_fd_sc_hd__o21ai_0)                 0.0691194534
+                                                                 9.6501302719 f
+  VexRiscv_inst/execute_to_memory_MUL_LH_reg[32]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0034875870
+                                                                 9.6536178589 f
+  data arrival time                                              9.6536178589
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  VexRiscv_inst/execute_to_memory_MUL_LH_reg[32]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000
+                                                                 9.7500000000 r
+  library setup time                                  -0.0914441943
+                                                                 9.6585559845
+  data required time                                             9.6585559845
+  --------------------------------------------------------------------------
+  data required time                                             9.6585559845
+  data arrival time                                              -9.6536178589
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0049381256
+
+
+  Startpoint: VexRiscv_inst/memory_to_writeBack_MUL_LOW_reg[51]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: VexRiscv_inst/execute_to_memory_MUL_HH_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/memory_to_writeBack_MUL_LOW_reg[51]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/memory_to_writeBack_MUL_LOW_reg[51]/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.5018997192
+                                                                 0.5018997192 r
+  U13240/Y (sky130_fd_sc_hd__clkinvlp_2)              0.2108973265
+                                                                 0.7127970457 f
+  U13246/Y (sky130_fd_sc_hd__clkinvlp_2)              0.1839603186
+                                                                 0.8967573643 r
+  U2443/Y (sky130_fd_sc_hd__nor2_1)                   0.0821818113
+                                                                 0.9789391756 f
+  U2444/Y (sky130_fd_sc_hd__nor2_1)                   0.1951987743
+                                                                 1.1741379499 r
+  U301/Y (sky130_fd_sc_hd__nand2_1)                   0.1017328501
+                                                                 1.2758708000 f
+  U245/Y (sky130_fd_sc_hd__nor2_1)                    0.3370821476
+                                                                 1.6129529476 r
+  U988/Y (sky130_fd_sc_hd__inv_2)                     0.0473200083
+                                                                 1.6602729559 f
+  U2642/Y (sky130_fd_sc_hd__o21ai_1)                  0.1623038054
+                                                                 1.8225767612 r
+  U2643/Y (sky130_fd_sc_hd__xnor2_1)                  0.1403907537
+                                                                 1.9629675150 r
+  U2644/Y (sky130_fd_sc_hd__nand2_1)                  0.0654960871
+                                                                 2.0284636021 f
+  U2648/Y (sky130_fd_sc_hd__nand2_1)                  0.1448178291
+                                                                 2.1732814312 r
+  U3184/Y (sky130_fd_sc_hd__o21ai_1)                  0.0779633522
+                                                                 2.2512447834 f
+  U199/Y (sky130_fd_sc_hd__a21oi_1)                   0.4562823772
+                                                                 2.7075271606 r
+  U1524/X (sky130_fd_sc_hd__buf_2)                    0.3551087379
+                                                                 3.0626358986 r
+  U12757/Y (sky130_fd_sc_hd__xnor2_1)                 0.2279307842
+                                                                 3.2905666828 r
+  U2339/Y (sky130_fd_sc_hd__nand2b_1)                 0.3063745499
+                                                                 3.5969412327 r
+  U12824/Y (sky130_fd_sc_hd__clkinv_1)                0.1229145527
+                                                                 3.7198557854 f
+  U12842/Y (sky130_fd_sc_hd__clkinvlp_2)              0.2046005726
+                                                                 3.9244563580 r
+  U13619/Y (sky130_fd_sc_hd__o21ai_1)                 0.0969040394
+                                                                 4.0213603973 f
+  U13620/X (sky130_fd_sc_hd__xor2_1)                  0.1750884056
+                                                                 4.1964488029 f
+  U411/COUT (sky130_fd_sc_hd__ha_2)                   0.2040472031
+                                                                 4.4004960060 f
+  U13661/SUM (sky130_fd_sc_hd__ha_1)                  0.2987155914
+                                                                 4.6992115974 f
+  U13663/SUM (sky130_fd_sc_hd__fa_1)                  0.5037293434
+                                                                 5.2029409409 r
+  U13769/SUM (sky130_fd_sc_hd__fa_1)                  0.4254288673
+                                                                 5.6283698082 f
+  U813/X (sky130_fd_sc_hd__or2_0)                     0.2277255058
+                                                                 5.8560953140 f
+  U13771/Y (sky130_fd_sc_hd__a21oi_1)                 0.2163953781
+                                                                 6.0724906921 r
+  U13773/Y (sky130_fd_sc_hd__o21ai_1)                 0.1171936989
+                                                                 6.1896843910 f
+  U2345/Y (sky130_fd_sc_hd__a21oi_1)                  0.2033643723
+                                                                 6.3930487633 r
+  U13779/Y (sky130_fd_sc_hd__o21ai_1)                 0.1291184425
+                                                                 6.5221672058 f
+  U13784/Y (sky130_fd_sc_hd__a21oi_2)                 0.1720652580
+                                                                 6.6942324638 r
+  U13786/Y (sky130_fd_sc_hd__o21ai_1)                 0.1137614250
+                                                                 6.8079938889 f
+  U13791/Y (sky130_fd_sc_hd__a21oi_2)                 0.1520404816
+                                                                 6.9600343704 r
+  U13793/Y (sky130_fd_sc_hd__o21ai_1)                 0.1070613861
+                                                                 7.0670957565 f
+  U316/Y (sky130_fd_sc_hd__a21oi_2)                   0.1708345413
+                                                                 7.2379302979 r
+  U13798/Y (sky130_fd_sc_hd__o21ai_1)                 0.1137614250
+                                                                 7.3516917229 f
+  U13802/Y (sky130_fd_sc_hd__a21oi_2)                 0.1720652580
+                                                                 7.5237569809 r
+  U13804/Y (sky130_fd_sc_hd__o21ai_1)                 0.1137614250
+                                                                 7.6375184059 f
+  U317/Y (sky130_fd_sc_hd__a21oi_2)                   0.1708345413
+                                                                 7.8083529472 r
+  U13809/Y (sky130_fd_sc_hd__o21ai_1)                 0.1031889915
+                                                                 7.9115419388 f
+  U12856/Y (sky130_fd_sc_hd__a21oi_1)                 0.2025461197
+                                                                 8.1140880585 r
+  U13815/Y (sky130_fd_sc_hd__o21ai_1)                 0.0836982727
+                                                                 8.1977863312 f
+  U318/COUT (sky130_fd_sc_hd__fah_1)                  0.2592716217
+                                                                 8.4570579529 f
+  U13822/COUT (sky130_fd_sc_hd__fa_2)                 0.3515739441
+                                                                 8.8086318970 f
+  U320/COUT (sky130_fd_sc_hd__fa_2)                   0.3337688446
+                                                                 9.1424007416 f
+  U2355/COUT (sky130_fd_sc_hd__fah_1)                 0.2588977814
+                                                                 9.4012985229 f
+  U307/Y (sky130_fd_sc_hd__xnor2_1)                   0.1602439880
+                                                                 9.5615425110 r
+  U13816/Y (sky130_fd_sc_hd__nand2_1)                 0.0631780624
+                                                                 9.6247205734 f
+  U13817/Y (sky130_fd_sc_hd__o21ai_1)                 0.0636749268
+                                                                 9.6883955002 r
+  VexRiscv_inst/execute_to_memory_MUL_HH_reg[31]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0034761429
+                                                                 9.6918716431 r
+  data arrival time                                              9.6918716431
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  VexRiscv_inst/execute_to_memory_MUL_HH_reg[31]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000
+                                                                 9.7500000000 r
+  library setup time                                  -0.0519112162
+                                                                 9.6980886459
+  data required time                                             9.6980886459
+  --------------------------------------------------------------------------
+  data required time                                             9.6980886459
+  data arrival time                                              -9.6918716431
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0062170029
+
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: VexRiscv_inst/execute_to_memory_MUL_HL_reg[33]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.5196997523
+                                                                 0.5196997523 r
+  U4581/Y (sky130_fd_sc_hd__clkinv_1)                 0.1989951730
+                                                                 0.7186949253 f
+  U3262/Y (sky130_fd_sc_hd__nor2_1)                   0.1853550076
+                                                                 0.9040499330 r
+  U3270/X (sky130_fd_sc_hd__and2_1)                   0.2108548284
+                                                                 1.1149047613 r
+  U4055/X (sky130_fd_sc_hd__clkbuf_1)                 0.2871047258
+                                                                 1.4020094872 r
+  U4127/Y (sky130_fd_sc_hd__nand2_1)                  0.0858693123
+                                                                 1.4878787994 f
+  U4129/Y (sky130_fd_sc_hd__nand4_1)                  0.1027653217
+                                                                 1.5906441212 r
+  U4135/Y (sky130_fd_sc_hd__nor2_1)                   0.0524015427
+                                                                 1.6430456638 f
+  U4157/Y (sky130_fd_sc_hd__nand4_1)                  0.0726209879
+                                                                 1.7156666517 r
+  U4158/Y (sky130_fd_sc_hd__o21ai_1)                  0.0650761127
+                                                                 1.7807427645 f
+  U4161/Y (sky130_fd_sc_hd__nor2_1)                   0.0917531252
+                                                                 1.8724958897 r
+  U6515/Y (sky130_fd_sc_hd__o21ai_0)                  0.1310625076
+                                                                 2.0035583973 f
+  U4164/Y (sky130_fd_sc_hd__inv_2)                    0.1623752117
+                                                                 2.1659336090 r
+  U436/X (sky130_fd_sc_hd__clkbuf_1)                  0.4433548450
+                                                                 2.6092884541 r
+  U12708/X (sky130_fd_sc_hd__xor2_1)                  0.2517466545
+                                                                 2.8610351086 r
+  U902/X (sky130_fd_sc_hd__or2_0)                     0.2085480690
+                                                                 3.0695831776 r
+  U2232/Y (sky130_fd_sc_hd__inv_2)                    0.0982425213
+                                                                 3.1678256989 f
+  U13027/Y (sky130_fd_sc_hd__nand2_1)                 0.0609207153
+                                                                 3.2287464142 r
+  U13028/Y (sky130_fd_sc_hd__o21ai_0)                 0.0971343517
+                                                                 3.3258807659 f
+  U13029/X (sky130_fd_sc_hd__xor2_1)                  0.1811857224
+                                                                 3.5070664883 f
+  U180/COUT (sky130_fd_sc_hd__ha_1)                   0.2324435711
+                                                                 3.7395100594 f
+  U13056/COUT (sky130_fd_sc_hd__ha_1)                 0.1967575550
+                                                                 3.9362676144 f
+  U13036/COUT (sky130_fd_sc_hd__ha_1)                 0.1894814968
+                                                                 4.1257491112 f
+  U2342/SUM (sky130_fd_sc_hd__fa_1)                   0.4463071823
+                                                                 4.5720562935 f
+  U1279/X (sky130_fd_sc_hd__or2_0)                    0.2282156944
+                                                                 4.8002719879 f
+  U13066/Y (sky130_fd_sc_hd__a21oi_1)                 0.1959714890
+                                                                 4.9962434769 r
+  U13076/Y (sky130_fd_sc_hd__o21ai_1)                 0.1312766075
+                                                                 5.1275200844 f
+  U13081/Y (sky130_fd_sc_hd__a21oi_1)                 0.2050065994
+                                                                 5.3325266838 r
+  U13083/Y (sky130_fd_sc_hd__o21ai_1)                 0.1160368919
+                                                                 5.4485635757 f
+  U13085/Y (sky130_fd_sc_hd__a21oi_1)                 0.2213611603
+                                                                 5.6699247360 r
+  U13087/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 5.7872586250 f
+  U2346/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 5.9911122322 r
+  U13093/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.1084485054 f
+  U13098/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.3123021126 r
+  U13100/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 6.4296360016 f
+  U1233/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 6.6334896088 r
+  U13106/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.7508258820 f
+  U13111/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.9546794891 r
+  U13113/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.0720157623 f
+  U13117/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 7.2758693695 r
+  U13119/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.3932056427 f
+  U2347/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 7.5970592499 r
+  U13124/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.7143955231 f
+  U13129/Y (sky130_fd_sc_hd__a21oi_1)                 0.2025518417
+                                                                 7.9169473648 r
+  U13131/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 8.0342836380 f
+  U2348/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038507462
+                                                                 8.2381343842 r
+  U13137/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173372269
+                                                                 8.3554716110 f
+  U13141/Y (sky130_fd_sc_hd__a21oi_1)                 0.1925544739
+                                                                 8.5480260849 r
+  U2080/Y (sky130_fd_sc_hd__o21ai_0)                  0.1010122299
+                                                                 8.6490383148 f
+  U13152/COUT (sky130_fd_sc_hd__fah_1)                0.2620487213
+                                                                 8.9110870361 f
+  U13149/COUT (sky130_fd_sc_hd__fa_1)                 0.3661003113
+                                                                 9.2771873474 f
+  U13146/COUT (sky130_fd_sc_hd__fah_1)                0.2469129562
+                                                                 9.5241003036 f
+  U1196/Y (sky130_fd_sc_hd__inv_1)                    0.0581789017
+                                                                 9.5822792053 r
+  U13144/Y (sky130_fd_sc_hd__nand2_1)                 0.0430641174
+                                                                 9.6253433228 f
+  U13145/Y (sky130_fd_sc_hd__o21ai_1)                 0.0637578964
+                                                                 9.6891012192 r
+  VexRiscv_inst/execute_to_memory_MUL_HL_reg[33]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0034761429
+                                                                 9.6925773621 r
+  data arrival time                                              9.6925773621
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  VexRiscv_inst/execute_to_memory_MUL_HL_reg[33]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000
+                                                                 9.7500000000 r
+  library setup time                                  -0.0511481091
+                                                                 9.6988515854
+  data required time                                             9.6988515854
+  --------------------------------------------------------------------------
+  data required time                                             9.6988515854
+  data arrival time                                              -9.6925773621
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0062742233
+
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[10]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[31]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[10]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[10]/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.3800454438
+                                                                 0.3800454438 f
+  U6186/Y (sky130_fd_sc_hd__nor2_1)                   0.1128330529
+                                                                 0.4928784966 r
+  U6187/Y (sky130_fd_sc_hd__inv_1)                    0.0660079122
+                                                                 0.5588864088 f
+  U750/Y (sky130_fd_sc_hd__a21oi_2)                   0.1505353451
+                                                                 0.7094217539 r
+  U6191/Y (sky130_fd_sc_hd__o21ai_1)                  0.1031718254
+                                                                 0.8125935793 f
+  U6193/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038516998
+                                                                 1.0164452791 r
+  U6195/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173342466
+                                                                 1.1337795258 f
+  U6197/Y (sky130_fd_sc_hd__a21oi_1)                  0.2025480270
+                                                                 1.3363275528 r
+  U6199/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173341274
+                                                                 1.4536616802 f
+  U6201/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038516998
+                                                                 1.6575133801 r
+  U6203/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173341274
+                                                                 1.7748475075 f
+  U6205/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038490772
+                                                                 1.9786965847 r
+  U6208/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173341274
+                                                                 2.0960307121 f
+  U6210/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038700581
+                                                                 2.2999007702 r
+  U6212/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173360348
+                                                                 2.4172368050 f
+  U6214/Y (sky130_fd_sc_hd__a21oi_1)                  0.1925730705
+                                                                 2.6098098755 r
+  U2249/Y (sky130_fd_sc_hd__o21ai_0)                  0.1474246979
+                                                                 2.7572345734 f
+  U6218/Y (sky130_fd_sc_hd__a21oi_1)                  0.2174715996
+                                                                 2.9747061729 r
+  U6220/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173360348
+                                                                 3.0920422077 f
+  U6222/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038700581
+                                                                 3.2959122658 r
+  U6224/Y (sky130_fd_sc_hd__o21ai_1)                  0.1005065441
+                                                                 3.3964188099 f
+  U6746/COUT (sky130_fd_sc_hd__fa_1)                  0.3856928349
+                                                                 3.7821116447 f
+  U6689/COUT (sky130_fd_sc_hd__fa_1)                  0.3913917542
+                                                                 4.1735033989 f
+  U6673/COUT (sky130_fd_sc_hd__fa_1)                  0.4159770012
+                                                                 4.5894804001 f
+  U1309/Y (sky130_fd_sc_hd__clkinv_1)                 0.0645871162
+                                                                 4.6540675163 r
+  U6698/Y (sky130_fd_sc_hd__o21ai_1)                  0.0652618408
+                                                                 4.7193293571 f
+  U6718/COUT (sky130_fd_sc_hd__fa_1)                  0.3856925964
+                                                                 5.1050219536 f
+  U6734/COUT (sky130_fd_sc_hd__fa_1)                  0.3913917542
+                                                                 5.4964137077 f
+  U6804/COUT (sky130_fd_sc_hd__fa_1)                  0.3913917542
+                                                                 5.8878054619 f
+  U6837/COUT (sky130_fd_sc_hd__fa_1)                  0.4112000465
+                                                                 6.2990055084 f
+  U14214/X (sky130_fd_sc_hd__a21o_1)                  0.1835474968
+                                                                 6.4825530052 f
+  U14331/COUT (sky130_fd_sc_hd__fa_1)                 0.3758654594
+                                                                 6.8584184647 f
+  U14332/X (sky130_fd_sc_hd__xor2_1)                  0.1552810669
+                                                                 7.0136995316 f
+  U14333/Y (sky130_fd_sc_hd__a222oi_1)                0.4163656235
+                                                                 7.4300651550 r
+  U14526/Y (sky130_fd_sc_hd__o211ai_2)                0.2729892731
+                                                                 7.7030544281 f
+  iBusAhbLite3_HADDR[31] (out)                        0.0402269363
+                                                                 7.7432813644 f
+  data arrival time                                              7.7432813644
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.7432813644
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0067186356
+
+
+  Startpoint: VexRiscv_inst/memory_DivPlugin_rs2_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: VexRiscv_inst/memory_DivPlugin_accumulator_reg[16]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/memory_DivPlugin_rs2_reg[1]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/memory_DivPlugin_rs2_reg[1]/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.4005489051
+                                                                 0.4005489051 r
+  U600/Y (sky130_fd_sc_hd__clkinvlp_2)                0.1196625531
+                                                                 0.5202114582 f
+  U10185/Y (sky130_fd_sc_hd__o21ai_1)                 0.1138702631
+                                                                 0.6340817213 r
+  U10186/Y (sky130_fd_sc_hd__o21ai_1)                 0.0874920487
+                                                                 0.7215737700 f
+  VexRiscv_inst/intadd_0/U22/COUT (sky130_fd_sc_hd__fa_1)
+                                                      0.3636668324
+                                                                 1.0852406025 f
+  VexRiscv_inst/intadd_0/U21/COUT (sky130_fd_sc_hd__fah_1)
+                                                      0.2681366205
+                                                                 1.3533772230 f
+  VexRiscv_inst/intadd_0/U20/COUT (sky130_fd_sc_hd__fa_2)
+                                                      0.3346811533
+                                                                 1.6880583763 f
+  VexRiscv_inst/intadd_0/U19/COUT (sky130_fd_sc_hd__fah_1)
+                                                      0.2426453829
+                                                                 1.9307037592 f
+  U14654/COUT (sky130_fd_sc_hd__fah_1)                0.2432118654
+                                                                 2.1739156246 f
+  U14653/COUT (sky130_fd_sc_hd__fah_1)                0.2432110310
+                                                                 2.4171266556 f
+  VexRiscv_inst/intadd_0/U16/COUT (sky130_fd_sc_hd__fah_1)
+                                                      0.2432110310
+                                                                 2.6603376865 f
+  U14652/COUT (sky130_fd_sc_hd__fah_1)                0.2432110310
+                                                                 2.9035487175 f
+  U14651/COUT (sky130_fd_sc_hd__fah_1)                0.2432110310
+                                                                 3.1467597485 f
+  U14650/COUT (sky130_fd_sc_hd__fah_1)                0.2432110310
+                                                                 3.3899707794 f
+  U14649/COUT (sky130_fd_sc_hd__fah_1)                0.2432110310
+                                                                 3.6331818104 f
+  U14648/COUT (sky130_fd_sc_hd__fah_1)                0.2432110310
+                                                                 3.8763928413 f
+  U14647/COUT (sky130_fd_sc_hd__fah_1)                0.2639522552
+                                                                 4.1403450966 f
+  U557/COUT (sky130_fd_sc_hd__fa_2)                   0.3488774300
+                                                                 4.4892225266 f
+  U2356/COUT (sky130_fd_sc_hd__fa_1)                  0.3653883934
+                                                                 4.8546109200 f
+  U14646/COUT (sky130_fd_sc_hd__fah_1)                0.2473983765
+                                                                 5.1020092964 f
+  U14645/COUT (sky130_fd_sc_hd__fah_1)                0.2432060242
+                                                                 5.3452153206 f
+  U14644/COUT (sky130_fd_sc_hd__fah_1)                0.2432112694
+                                                                 5.5884265900 f
+  U14643/COUT (sky130_fd_sc_hd__fah_1)                0.2432112694
+                                                                 5.8316378593 f
+  U14642/COUT (sky130_fd_sc_hd__fah_1)                0.2432112694
+                                                                 6.0748491287 f
+  U14641/COUT (sky130_fd_sc_hd__fah_1)                0.2914171219
+                                                                 6.3662662506 f
+  U6875/Y (sky130_fd_sc_hd__nor2_1)                   0.1017289162
+                                                                 6.4679951668 r
+  U6876/Y (sky130_fd_sc_hd__o2bb2ai_1)                0.0666222572
+                                                                 6.5346174240 f
+  U14655/COUT (sky130_fd_sc_hd__fah_1)                0.2376451492
+                                                                 6.7722625732 f
+  U14640/COUT (sky130_fd_sc_hd__fah_1)                0.2603015900
+                                                                 7.0325641632 f
+  U2357/COUT (sky130_fd_sc_hd__fa_1)                  0.3661022186
+                                                                 7.3986663818 f
+  U14639/COUT (sky130_fd_sc_hd__fah_1)                0.2473983765
+                                                                 7.6460647583 f
+  U14638/COUT (sky130_fd_sc_hd__fah_1)                0.2911200523
+                                                                 7.9371848106 f
+  U6859/Y (sky130_fd_sc_hd__o21ai_1)                  0.1290602684
+                                                                 8.0662450790 r
+  U6861/Y (sky130_fd_sc_hd__nand2_1)                  0.0902624130
+                                                                 8.1565074921 f
+  U2349/Y (sky130_fd_sc_hd__o2bb2ai_1)                0.1518650055
+                                                                 8.3083724976 f
+  U6862/Y (sky130_fd_sc_hd__o21ai_1)                  0.0844593048
+                                                                 8.3928318024 r
+  U6864/Y (sky130_fd_sc_hd__nand2_1)                  0.0738973618
+                                                                 8.4667291641 f
+  U6865/X (sky130_fd_sc_hd__xor2_1)                   0.1665935516
+                                                                 8.6333227158 r
+  U784/Y (sky130_fd_sc_hd__inv_1)                     0.0583314896
+                                                                 8.6916542053 f
+  U2368/Y (sky130_fd_sc_hd__nand2_1)                  0.1178245544
+                                                                 8.8094787598 r
+  U518/Y (sky130_fd_sc_hd__clkinvlp_2)                0.1415166855
+                                                                 8.9509954453 f
+  U1231/X (sky130_fd_sc_hd__clkbuf_1)                 0.1846513748
+                                                                 9.1356468201 f
+  U10112/Y (sky130_fd_sc_hd__a222oi_1)                0.3475208282
+                                                                 9.4831676483 r
+  U689/Y (sky130_fd_sc_hd__clkinvlp_2)                0.1523494720
+                                                                 9.6355171204 f
+  VexRiscv_inst/memory_DivPlugin_accumulator_reg[16]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0034875870
+                                                                 9.6390047073 f
+  data arrival time                                              9.6390047073
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  VexRiscv_inst/memory_DivPlugin_accumulator_reg[16]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000
+                                                                 9.7500000000 r
+  library setup time                                  -0.0997667611
+                                                                 9.6502332687
+  data required time                                             9.6502332687
+  --------------------------------------------------------------------------
+  data required time                                             9.6502332687
+  data arrival time                                              -9.6390047073
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0112285614
+
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[14]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.5196997523
+                                                                 0.5196997523 r
+  U3213/Y (sky130_fd_sc_hd__nand2_1)                  0.1127881408
+                                                                 0.6324878931 f
+  U3214/Y (sky130_fd_sc_hd__nor2_1)                   0.2072232962
+                                                                 0.8397111893 r
+  U3312/X (sky130_fd_sc_hd__and2_1)                   0.3599929810
+                                                                 1.1997041702 r
+  U1607/Y (sky130_fd_sc_hd__inv_2)                    0.1007391214
+                                                                 1.3004432917 f
+  U4449/X (sky130_fd_sc_hd__o22a_1)                   0.1617165804
+                                                                 1.4621598721 f
+  U4450/X (sky130_fd_sc_hd__and4_1)                   0.1893906593
+                                                                 1.6515505314 f
+  U4460/Y (sky130_fd_sc_hd__nand4_1)                  0.0861011744
+                                                                 1.7376517057 r
+  U4462/Y (sky130_fd_sc_hd__o211ai_1)                 0.1063907146
+                                                                 1.8440424204 f
+  U4464/Y (sky130_fd_sc_hd__a21oi_2)                  0.3728493452
+                                                                 2.2168917656 r
+  U5825/Y (sky130_fd_sc_hd__nand2_1)                  0.0901749134
+                                                                 2.3070666790 f
+  U5828/Y (sky130_fd_sc_hd__nand3_1)                  0.2175178528
+                                                                 2.5245845318 r
+  U5829/Y (sky130_fd_sc_hd__xnor2_1)                  0.1209557056
+                                                                 2.6455402374 f
+  U5836/Y (sky130_fd_sc_hd__nor2_1)                   0.2024376392
+                                                                 2.8479778767 r
+  U5848/Y (sky130_fd_sc_hd__nor2_1)                   0.0739140511
+                                                                 2.9218919277 f
+  U5874/Y (sky130_fd_sc_hd__a21oi_1)                  0.1891584396
+                                                                 3.1110503674 r
+  U5882/Y (sky130_fd_sc_hd__o21ai_1)                  0.1300792694
+                                                                 3.2411296368 f
+  U5884/Y (sky130_fd_sc_hd__a21oi_1)                  0.2021603584
+                                                                 3.4432899952 r
+  U5901/Y (sky130_fd_sc_hd__o21ai_1)                  0.1151568890
+                                                                 3.5584468842 f
+  U5907/Y (sky130_fd_sc_hd__a21oi_1)                  0.1996328831
+                                                                 3.7580797672 r
+  U5917/Y (sky130_fd_sc_hd__o21ai_1)                  0.1021964550
+                                                                 3.8602762222 f
+  U1299/Y (sky130_fd_sc_hd__a21oi_1)                  0.1979856491
+                                                                 4.0582618713 r
+  U1288/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173319817
+                                                                 4.1755938530 f
+  U819/Y (sky130_fd_sc_hd__a21oi_1)                   0.2029671669
+                                                                 4.3785610199 r
+  U1274/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173353195
+                                                                 4.4958963394 f
+  U155/Y (sky130_fd_sc_hd__a21oi_1)                   0.2042016983
+                                                                 4.7000980377 r
+  U153/Y (sky130_fd_sc_hd__o21ai_1)                   0.1292710304
+                                                                 4.8293690681 f
+  U5952/Y (sky130_fd_sc_hd__a21oi_2)                  0.1900691986
+                                                                 5.0194382668 r
+  U5954/Y (sky130_fd_sc_hd__o21ai_2)                  0.0927758217
+                                                                 5.1122140884 f
+  U5962/Y (sky130_fd_sc_hd__a21oi_2)                  0.1766228676
+                                                                 5.2888369560 r
+  U5964/Y (sky130_fd_sc_hd__o21ai_2)                  0.0927758217
+                                                                 5.3816127777 f
+  U5970/Y (sky130_fd_sc_hd__a21oi_2)                  0.1601839066
+                                                                 5.5417966843 r
+  U785/Y (sky130_fd_sc_hd__o21ai_1)                   0.1033687592
+                                                                 5.6451654434 f
+  U5978/X (sky130_fd_sc_hd__a21o_1)                   0.1813182831
+                                                                 5.8264837265 f
+  U319/COUT (sky130_fd_sc_hd__fa_2)                   0.3382883072
+                                                                 6.1647720337 f
+  U5979/X (sky130_fd_sc_hd__xor2_1)                   0.1736912727
+                                                                 6.3384633064 r
+  U2344/Y (sky130_fd_sc_hd__nand2_1)                  0.0887455940
+                                                                 6.4272089005 f
+  U5985/Y (sky130_fd_sc_hd__inv_1)                    0.0746703148
+                                                                 6.5018792152 r
+  U6053/Y (sky130_fd_sc_hd__nand2_1)                  0.0603513718
+                                                                 6.5622305870 f
+  U309/Y (sky130_fd_sc_hd__nand3_2)                   0.0813589096
+                                                                 6.6435894966 r
+  U6074/Y (sky130_fd_sc_hd__nand2_1)                  0.0753283501
+                                                                 6.7189178467 f
+  U6354/Y (sky130_fd_sc_hd__nor2_1)                   0.1796355247
+                                                                 6.8985533714 r
+  U757/Y (sky130_fd_sc_hd__inv_2)                     0.0450897217
+                                                                 6.9436430931 f
+  U6355/Y (sky130_fd_sc_hd__nor2_1)                   0.1241331100
+                                                                 7.0677762032 r
+  U6439/X (sky130_fd_sc_hd__buf_2)                    0.2062416077
+                                                                 7.2740178108 r
+  U6823/Y (sky130_fd_sc_hd__a22oi_1)                  0.0825238228
+                                                                 7.3565416336 f
+  U6825/Y (sky130_fd_sc_hd__o211ai_1)                 0.0965561867
+                                                                 7.4530978203 r
+  U2271/X (sky130_fd_sc_hd__buf_2)                    0.2443871498
+                                                                 7.6974849701 r
+  iBusAhbLite3_HADDR[14] (out)                        0.0402269363
+                                                                 7.7377119064 r
+  data arrival time                                              7.7377119064
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.7377119064
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0122880936
+
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: VexRiscv_inst/execute_to_memory_MUL_LL_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]/CLK (sky130_fd_sc_hd__dfxtp_4)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[17]/Q (sky130_fd_sc_hd__dfxtp_4)
+                                                      0.4211038947
+                                                                 0.4211038947 r
+  U2093/Y (sky130_fd_sc_hd__inv_2)                    0.0700922906
+                                                                 0.4911961854 f
+  U2239/Y (sky130_fd_sc_hd__nor2_1)                   0.1148561537
+                                                                 0.6060523391 r
+  U324/Y (sky130_fd_sc_hd__inv_1)                     0.0531626344
+                                                                 0.6592149734 f
+  U3090/Y (sky130_fd_sc_hd__nor2_1)                   0.1449072957
+                                                                 0.8041222692 r
+  U323/Y (sky130_fd_sc_hd__inv_1)                     0.0740640163
+                                                                 0.8781862855 f
+  U3177/Y (sky130_fd_sc_hd__nor2_1)                   0.2044227719
+                                                                 1.0826090574 r
+  U4813/X (sky130_fd_sc_hd__buf_2)                    0.2346687317
+                                                                 1.3172777891 r
+  U5536/Y (sky130_fd_sc_hd__a22oi_1)                  0.0820722580
+                                                                 1.3993500471 f
+  U5537/Y (sky130_fd_sc_hd__nand4_1)                  0.1093984842
+                                                                 1.5087485313 r
+  U5538/Y (sky130_fd_sc_hd__nor2_1)                   0.0468372107
+                                                                 1.5555857420 f
+  U5561/Y (sky130_fd_sc_hd__nand3_1)                  0.0764439106
+                                                                 1.6320296526 r
+  U5562/Y (sky130_fd_sc_hd__o211ai_1)                 0.0950559378
+                                                                 1.7270855904 f
+  U2343/Y (sky130_fd_sc_hd__a21oi_1)                  0.4196980000
+                                                                 2.1467835903 r
+  U5564/X (sky130_fd_sc_hd__buf_2)                    0.3422980309
+                                                                 2.4890816212 r
+  U11271/X (sky130_fd_sc_hd__xor2_1)                  0.3606326580
+                                                                 2.8497142792 r
+  U11272/Y (sky130_fd_sc_hd__inv_2)                   0.1449835300
+                                                                 2.9946978092 f
+  U11273/Y (sky130_fd_sc_hd__nand2_1)                 0.1084587574
+                                                                 3.1031565666 r
+  U1401/Y (sky130_fd_sc_hd__inv_2)                    0.0535860062
+                                                                 3.1567425728 f
+  U1355/Y (sky130_fd_sc_hd__inv_2)                    0.1064703465
+                                                                 3.2632129192 r
+  U11531/Y (sky130_fd_sc_hd__o22ai_1)                 0.0927286148
+                                                                 3.3559415340 f
+  U11533/SUM (sky130_fd_sc_hd__fa_1)                  0.5119242668
+                                                                 3.8678658009 r
+  U2340/SUM (sky130_fd_sc_hd__fa_1)                   0.4254295826
+                                                                 4.2932953835 f
+  U1313/X (sky130_fd_sc_hd__or2_0)                    0.2280707359
+                                                                 4.5213661194 f
+  U11575/Y (sky130_fd_sc_hd__a21oi_1)                 0.1984896660
+                                                                 4.7198557854 r
+  U11577/Y (sky130_fd_sc_hd__o21ai_1)                 0.1171936989
+                                                                 4.8370494843 f
+  U11582/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 5.0409030914 r
+  U11584/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 5.1582369804 f
+  U11588/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 5.3620905876 r
+  U11590/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 5.4794244766 f
+  U11595/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 5.6832780838 r
+  U11597/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 5.8006119728 f
+  U1235/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 6.0044655800 r
+  U11603/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.1218018532 f
+  U11608/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.3256554604 r
+  U11610/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.4429917336 f
+  U1232/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 6.6468453407 r
+  U11615/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.7641816139 f
+  U11619/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.9680352211 r
+  U11621/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.0853714943 f
+  U1229/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 7.2892251015 r
+  U11626/Y (sky130_fd_sc_hd__o21ai_1)                 0.1005048752
+                                                                 7.3897299767 f
+  U1225/COUT (sky130_fd_sc_hd__fa_1)                  0.3639659882
+                                                                 7.7536959648 f
+  U11657/COUT (sky130_fd_sc_hd__fah_1)                0.2681345940
+                                                                 8.0218305588 f
+  U11653/COUT (sky130_fd_sc_hd__fa_2)                 0.3488740921
+                                                                 8.3707046509 f
+  U11649/COUT (sky130_fd_sc_hd__fa_1)                 0.3653879166
+                                                                 8.7360925674 f
+  U11645/COUT (sky130_fd_sc_hd__fah_1)                0.2843780518
+                                                                 9.0204706192 f
+  U755/Y (sky130_fd_sc_hd__clkinv_1)                  0.0586509705
+                                                                 9.0791215897 r
+  U11628/Y (sky130_fd_sc_hd__o21ai_1)                 0.0526294708
+                                                                 9.1317510605 f
+  U11635/COUT (sky130_fd_sc_hd__fah_1)                0.2544841766
+                                                                 9.3862352371 f
+  U11631/Y (sky130_fd_sc_hd__xnor2_1)                 0.1363048553
+                                                                 9.5225400925 f
+  U11632/Y (sky130_fd_sc_hd__nand2_1)                 0.0553998947
+                                                                 9.5779399872 r
+  U11633/Y (sky130_fd_sc_hd__o21ai_1)                 0.0659008026
+                                                                 9.6438407898 f
+  VexRiscv_inst/execute_to_memory_MUL_LL_reg[31]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0034875870
+                                                                 9.6473283768 f
+  data arrival time                                              9.6473283768
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  VexRiscv_inst/execute_to_memory_MUL_LL_reg[31]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000
+                                                                 9.7500000000 r
+  library setup time                                  -0.0884754732
+                                                                 9.6615247726
+  data required time                                             9.6615247726
+  --------------------------------------------------------------------------
+  data required time                                             9.6615247726
+  data arrival time                                              -9.6473283768
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0141963959
+
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: VexRiscv_inst/execute_to_memory_MUL_HL_reg[32]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.5196997523
+                                                                 0.5196997523 r
+  U4581/Y (sky130_fd_sc_hd__clkinv_1)                 0.1989951730
+                                                                 0.7186949253 f
+  U3262/Y (sky130_fd_sc_hd__nor2_1)                   0.1853550076
+                                                                 0.9040499330 r
+  U3270/X (sky130_fd_sc_hd__and2_1)                   0.2108548284
+                                                                 1.1149047613 r
+  U4055/X (sky130_fd_sc_hd__clkbuf_1)                 0.2871047258
+                                                                 1.4020094872 r
+  U4127/Y (sky130_fd_sc_hd__nand2_1)                  0.0858693123
+                                                                 1.4878787994 f
+  U4129/Y (sky130_fd_sc_hd__nand4_1)                  0.1027653217
+                                                                 1.5906441212 r
+  U4135/Y (sky130_fd_sc_hd__nor2_1)                   0.0524015427
+                                                                 1.6430456638 f
+  U4157/Y (sky130_fd_sc_hd__nand4_1)                  0.0726209879
+                                                                 1.7156666517 r
+  U4158/Y (sky130_fd_sc_hd__o21ai_1)                  0.0650761127
+                                                                 1.7807427645 f
+  U4161/Y (sky130_fd_sc_hd__nor2_1)                   0.0917531252
+                                                                 1.8724958897 r
+  U6515/Y (sky130_fd_sc_hd__o21ai_0)                  0.1310625076
+                                                                 2.0035583973 f
+  U4164/Y (sky130_fd_sc_hd__inv_2)                    0.1623752117
+                                                                 2.1659336090 r
+  U436/X (sky130_fd_sc_hd__clkbuf_1)                  0.4433548450
+                                                                 2.6092884541 r
+  U12708/X (sky130_fd_sc_hd__xor2_1)                  0.2517466545
+                                                                 2.8610351086 r
+  U902/X (sky130_fd_sc_hd__or2_0)                     0.2085480690
+                                                                 3.0695831776 r
+  U2232/Y (sky130_fd_sc_hd__inv_2)                    0.0982425213
+                                                                 3.1678256989 f
+  U13027/Y (sky130_fd_sc_hd__nand2_1)                 0.0609207153
+                                                                 3.2287464142 r
+  U13028/Y (sky130_fd_sc_hd__o21ai_0)                 0.0971343517
+                                                                 3.3258807659 f
+  U13029/X (sky130_fd_sc_hd__xor2_1)                  0.1811857224
+                                                                 3.5070664883 f
+  U180/COUT (sky130_fd_sc_hd__ha_1)                   0.2324435711
+                                                                 3.7395100594 f
+  U13056/COUT (sky130_fd_sc_hd__ha_1)                 0.1967575550
+                                                                 3.9362676144 f
+  U13036/COUT (sky130_fd_sc_hd__ha_1)                 0.1894814968
+                                                                 4.1257491112 f
+  U2342/SUM (sky130_fd_sc_hd__fa_1)                   0.4463071823
+                                                                 4.5720562935 f
+  U1279/X (sky130_fd_sc_hd__or2_0)                    0.2282156944
+                                                                 4.8002719879 f
+  U13066/Y (sky130_fd_sc_hd__a21oi_1)                 0.1959714890
+                                                                 4.9962434769 r
+  U13076/Y (sky130_fd_sc_hd__o21ai_1)                 0.1312766075
+                                                                 5.1275200844 f
+  U13081/Y (sky130_fd_sc_hd__a21oi_1)                 0.2050065994
+                                                                 5.3325266838 r
+  U13083/Y (sky130_fd_sc_hd__o21ai_1)                 0.1160368919
+                                                                 5.4485635757 f
+  U13085/Y (sky130_fd_sc_hd__a21oi_1)                 0.2213611603
+                                                                 5.6699247360 r
+  U13087/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 5.7872586250 f
+  U2346/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 5.9911122322 r
+  U13093/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.1084485054 f
+  U13098/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.3123021126 r
+  U13100/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173338890
+                                                                 6.4296360016 f
+  U1233/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 6.6334896088 r
+  U13106/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 6.7508258820 f
+  U13111/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 6.9546794891 r
+  U13113/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.0720157623 f
+  U13117/Y (sky130_fd_sc_hd__a21oi_1)                 0.2038536072
+                                                                 7.2758693695 r
+  U13119/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.3932056427 f
+  U2347/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038536072
+                                                                 7.5970592499 r
+  U13124/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 7.7143955231 f
+  U13129/Y (sky130_fd_sc_hd__a21oi_1)                 0.2025518417
+                                                                 7.9169473648 r
+  U13131/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173362732
+                                                                 8.0342836380 f
+  U2348/Y (sky130_fd_sc_hd__a21oi_1)                  0.2038507462
+                                                                 8.2381343842 r
+  U13137/Y (sky130_fd_sc_hd__o21ai_1)                 0.1173372269
+                                                                 8.3554716110 f
+  U13141/Y (sky130_fd_sc_hd__a21oi_1)                 0.1925544739
+                                                                 8.5480260849 r
+  U2080/Y (sky130_fd_sc_hd__o21ai_0)                  0.1010122299
+                                                                 8.6490383148 f
+  U13152/COUT (sky130_fd_sc_hd__fah_1)                0.2620487213
+                                                                 8.9110870361 f
+  U13149/COUT (sky130_fd_sc_hd__fa_1)                 0.3661003113
+                                                                 9.2771873474 f
+  U13146/SUM (sky130_fd_sc_hd__fah_1)                 0.2936353683
+                                                                 9.5708227158 r
+  U13147/Y (sky130_fd_sc_hd__nand2_1)                 0.0473461151
+                                                                 9.6181688309 f
+  U13148/Y (sky130_fd_sc_hd__o21ai_1)                 0.0638198853
+                                                                 9.6819887161 r
+  VexRiscv_inst/execute_to_memory_MUL_HL_reg[32]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0034761429
+                                                                 9.6854648590 r
+  data arrival time                                              9.6854648590
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  VexRiscv_inst/execute_to_memory_MUL_HL_reg[32]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000
+                                                                 9.7500000000 r
+  library setup time                                  -0.0487188846
+                                                                 9.7012815475
+  data required time                                             9.7012815475
+  --------------------------------------------------------------------------
+  data required time                                             9.7012815475
+  data arrival time                                              -9.6854648590
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0158166885
+
+
+  Startpoint: VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[13]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.0000000000 #
+                                                                 0.0000000000 r
+  VexRiscv_inst/decode_to_execute_INSTRUCTION_reg[22]/Q (sky130_fd_sc_hd__dfxtp_1)
+                                                      0.5196997523
+                                                                 0.5196997523 r
+  U3213/Y (sky130_fd_sc_hd__nand2_1)                  0.1127881408
+                                                                 0.6324878931 f
+  U3214/Y (sky130_fd_sc_hd__nor2_1)                   0.2072232962
+                                                                 0.8397111893 r
+  U3312/X (sky130_fd_sc_hd__and2_1)                   0.3599929810
+                                                                 1.1997041702 r
+  U1607/Y (sky130_fd_sc_hd__inv_2)                    0.1007391214
+                                                                 1.3004432917 f
+  U4449/X (sky130_fd_sc_hd__o22a_1)                   0.1617165804
+                                                                 1.4621598721 f
+  U4450/X (sky130_fd_sc_hd__and4_1)                   0.1893906593
+                                                                 1.6515505314 f
+  U4460/Y (sky130_fd_sc_hd__nand4_1)                  0.0861011744
+                                                                 1.7376517057 r
+  U4462/Y (sky130_fd_sc_hd__o211ai_1)                 0.1063907146
+                                                                 1.8440424204 f
+  U4464/Y (sky130_fd_sc_hd__a21oi_2)                  0.3728493452
+                                                                 2.2168917656 r
+  U5825/Y (sky130_fd_sc_hd__nand2_1)                  0.0901749134
+                                                                 2.3070666790 f
+  U5828/Y (sky130_fd_sc_hd__nand3_1)                  0.2175178528
+                                                                 2.5245845318 r
+  U5829/Y (sky130_fd_sc_hd__xnor2_1)                  0.1209557056
+                                                                 2.6455402374 f
+  U5836/Y (sky130_fd_sc_hd__nor2_1)                   0.2024376392
+                                                                 2.8479778767 r
+  U5848/Y (sky130_fd_sc_hd__nor2_1)                   0.0739140511
+                                                                 2.9218919277 f
+  U5874/Y (sky130_fd_sc_hd__a21oi_1)                  0.1891584396
+                                                                 3.1110503674 r
+  U5882/Y (sky130_fd_sc_hd__o21ai_1)                  0.1300792694
+                                                                 3.2411296368 f
+  U5884/Y (sky130_fd_sc_hd__a21oi_1)                  0.2021603584
+                                                                 3.4432899952 r
+  U5901/Y (sky130_fd_sc_hd__o21ai_1)                  0.1151568890
+                                                                 3.5584468842 f
+  U5907/Y (sky130_fd_sc_hd__a21oi_1)                  0.1996328831
+                                                                 3.7580797672 r
+  U5917/Y (sky130_fd_sc_hd__o21ai_1)                  0.1021964550
+                                                                 3.8602762222 f
+  U1299/Y (sky130_fd_sc_hd__a21oi_1)                  0.1979856491
+                                                                 4.0582618713 r
+  U1288/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173319817
+                                                                 4.1755938530 f
+  U819/Y (sky130_fd_sc_hd__a21oi_1)                   0.2029671669
+                                                                 4.3785610199 r
+  U1274/Y (sky130_fd_sc_hd__o21ai_1)                  0.1173353195
+                                                                 4.4958963394 f
+  U155/Y (sky130_fd_sc_hd__a21oi_1)                   0.2042016983
+                                                                 4.7000980377 r
+  U153/Y (sky130_fd_sc_hd__o21ai_1)                   0.1292710304
+                                                                 4.8293690681 f
+  U5952/Y (sky130_fd_sc_hd__a21oi_2)                  0.1900691986
+                                                                 5.0194382668 r
+  U5954/Y (sky130_fd_sc_hd__o21ai_2)                  0.0927758217
+                                                                 5.1122140884 f
+  U5962/Y (sky130_fd_sc_hd__a21oi_2)                  0.1766228676
+                                                                 5.2888369560 r
+  U5964/Y (sky130_fd_sc_hd__o21ai_2)                  0.0927758217
+                                                                 5.3816127777 f
+  U5970/Y (sky130_fd_sc_hd__a21oi_2)                  0.1601839066
+                                                                 5.5417966843 r
+  U785/Y (sky130_fd_sc_hd__o21ai_1)                   0.1033687592
+                                                                 5.6451654434 f
+  U5978/X (sky130_fd_sc_hd__a21o_1)                   0.1813182831
+                                                                 5.8264837265 f
+  U319/COUT (sky130_fd_sc_hd__fa_2)                   0.3382883072
+                                                                 6.1647720337 f
+  U5979/X (sky130_fd_sc_hd__xor2_1)                   0.1736912727
+                                                                 6.3384633064 r
+  U2344/Y (sky130_fd_sc_hd__nand2_1)                  0.0887455940
+                                                                 6.4272089005 f
+  U5985/Y (sky130_fd_sc_hd__inv_1)                    0.0746703148
+                                                                 6.5018792152 r
+  U6053/Y (sky130_fd_sc_hd__nand2_1)                  0.0603513718
+                                                                 6.5622305870 f
+  U309/Y (sky130_fd_sc_hd__nand3_2)                   0.0813589096
+                                                                 6.6435894966 r
+  U6074/Y (sky130_fd_sc_hd__nand2_1)                  0.0753283501
+                                                                 6.7189178467 f
+  U6354/Y (sky130_fd_sc_hd__nor2_1)                   0.1796355247
+                                                                 6.8985533714 r
+  U757/Y (sky130_fd_sc_hd__inv_2)                     0.0450897217
+                                                                 6.9436430931 f
+  U6355/Y (sky130_fd_sc_hd__nor2_1)                   0.1241331100
+                                                                 7.0677762032 r
+  U6439/X (sky130_fd_sc_hd__buf_2)                    0.2062416077
+                                                                 7.2740178108 r
+  U6791/Y (sky130_fd_sc_hd__a22oi_1)                  0.0825238228
+                                                                 7.3565416336 f
+  U6793/Y (sky130_fd_sc_hd__o211ai_1)                 0.0955848694
+                                                                 7.4521265030 r
+  U2272/X (sky130_fd_sc_hd__buf_2)                    0.2378315926
+                                                                 7.6899580956 r
+  iBusAhbLite3_HADDR[13] (out)                        0.0402269363
+                                                                 7.7301850319 r
+  data arrival time                                              7.7301850319
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.7301850319
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0198149681
+
+
+1

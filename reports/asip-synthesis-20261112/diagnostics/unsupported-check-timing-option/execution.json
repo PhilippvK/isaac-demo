@@ -1,0 +1,27 @@
+{
+  "passed": false,
+  "status": "failed",
+  "pdk": "nangate45",
+  "core": "VEX_5S",
+  "clock_period_ns": 10.0,
+  "library": "/var/tmp/ga87puy/isaac-demo-new/install/asip-libs/nangate45/NangateOpenCellLibrary_typical.db",
+  "library_sha256": "41f6ff336695fd5ec34a1881badcba64deeeab972bb07c42db11d2b1a3bee629",
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v": "e845cb6fd1b77f012240b57b0b274a17270037a96099f9f8080dac8184de7d16",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv": "d5e5aced44ee750db8a528371165f7b5bed779ee6ed9e43b9a6e6e423c7f34be",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv": "af714ab977e7b5ea9e84bc3a485089633ff0bc093790797a3429142dae9898e9"
+  },
+  "constraints": "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/constraints.tcl",
+  "constraints_sha256": "26ce5c4689eb8aaab47a714787e3b1bcb8e24a35166de878b2605a2c7bb14ab6",
+  "synthesis_script_sha256": "f6fe96dcff5b8eafcf02578446cd7d01ad3d53537cd4f91b42f10086e31a9437",
+  "dc_shell": "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+  "boundary": "core and extension, external memory excluded",
+  "physical_design": false,
+  "command": [
+    "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+    "-f",
+    "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/synthesize.tcl"
+  ],
+  "error": "Design Compiler failed (1); see log/dc.log",
+  "elapsed_seconds": 209.39559045433998
+}

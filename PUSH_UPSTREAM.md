@@ -73,3 +73,14 @@ untouched. They are not included in these commits or in a normal push.
 
 No new FPGA-follow-up commits are needed in `isaac-docker-service`, `etiss`,
 `etiss_arch_riscv`, `mgclient`, or the registered LLVM19 `llvm-project` submodule.
+
+## ASIP synthesis follow-up
+
+Demo commit `faf4f15` adds reproducible Nangate45/Sky130 Design Compiler
+synthesis, library preparation, an opt-in Sky130 preset and tests. A separate
+evidence commit preserves the eight-run evaluation under
+`reports/asip-synthesis-20261112/`. These changes belong only in
+`Philippvk/isaac-demo`; no additional source-repository push is required.
+Open library downloads and compiled databases remain local in
+`install/asip-libs/` and can be regenerated with the documented helper.
+Concurrent submodule pointer edits were excluded from the ASIP commits.

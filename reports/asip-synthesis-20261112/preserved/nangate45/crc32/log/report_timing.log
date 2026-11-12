@@ -1,0 +1,2579 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 10
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:45:48 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[31]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4042/ZN (INV_X1)                     0.0244636536
+                                                                 6.0558037758 f
+  VexRiscv_inst/U4044/ZN (NAND2_X1)                   0.0285220146
+                                                                 6.0843257904 r
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0676193237
+                                                                 6.1519451141 f
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0575499535
+                                                                 6.2094950676 f
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0551166534
+                                                                 6.2646117210 f
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0548005104
+                                                                 6.3194122314 r
+  VexRiscv_inst/U4179/ZN (OR2_X1)                     0.0429940224
+                                                                 6.3624062538 r
+  VexRiscv_inst/U4180/ZN (NAND2_X1)                   0.0284147263
+                                                                 6.3908209801 f
+  VexRiscv_inst/U53/ZN (NAND2_X1)                     0.0336623192
+                                                                 6.4244832993 r
+  VexRiscv_inst/U155/ZN (INV_X1)                      0.0233464241
+                                                                 6.4478297234 f
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0640296936
+                                                                 6.5118594170 r
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0417871475
+                                                                 6.5536465645 f
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0533738136
+                                                                 6.6070203781 r
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0413374901
+                                                                 6.6483578682 f
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0535936356
+                                                                 6.7019515038 r
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0388331413
+                                                                 6.7407846451 f
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0604977608
+                                                                 6.8012824059 r
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0411190987
+                                                                 6.8424015045 f
+  VexRiscv_inst/U9/ZN (AOI21_X1)                      0.0559592247
+                                                                 6.8983607292 r
+  VexRiscv_inst/U70/ZN (OAI21_X1)                     0.0438041687
+                                                                 6.9421648979 f
+  VexRiscv_inst/U4285/ZN (NAND2_X1)                   0.0303268433
+                                                                 6.9724917412 r
+  VexRiscv_inst/U65/ZN (AND2_X1)                      0.0456652641
+                                                                 7.0181570053 r
+  VexRiscv_inst/U64/ZN (OAI21_X1)                     0.0341510773
+                                                                 7.0523080826 f
+  VexRiscv_inst/U4563/CO (FA_X1)                      0.0898118019
+                                                                 7.1421198845 f
+  VexRiscv_inst/U4636/CO (FA_X1)                      0.0943064690
+                                                                 7.2364263535 f
+  VexRiscv_inst/U4564/ZN (AOI22_X1)                   0.0637617111
+                                                                 7.3001880646 r
+  VexRiscv_inst/U4565/ZN (XNOR2_X1)                   0.0671372414
+                                                                 7.3673253059 r
+  VexRiscv_inst/U4566/ZN (NAND2_X1)                   0.0309448242
+                                                                 7.3982701302 f
+  VexRiscv_inst/U5/ZN (NAND2_X1)                      0.1083245277
+                                                                 7.5065946579 r
+  VexRiscv_inst/iBusAhbLite3_HADDR[31] (VexRiscv)     0.0000000000
+                                                                 7.5065946579 r
+  iBusAhbLite3_HADDR[31] (out)                        0.2374153137
+                                                                 7.7440099716 r
+  data arrival time                                              7.7440099716
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.7440099716
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0059900284
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[30]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0537080765
+                                                                 6.7882347107 r
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0398240089
+                                                                 6.8280587196 f
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0559387207
+                                                                 6.8839974403 r
+  VexRiscv_inst/U9/ZN (AOI21_X1)                      0.0406966209
+                                                                 6.9246940613 f
+  VexRiscv_inst/U70/ZN (OAI21_X1)                     0.0623083115
+                                                                 6.9870023727 r
+  VexRiscv_inst/U4285/ZN (NAND2_X1)                   0.0288619995
+                                                                 7.0158643723 f
+  VexRiscv_inst/U65/ZN (AND2_X1)                      0.0416722298
+                                                                 7.0575366020 f
+  VexRiscv_inst/U64/ZN (OAI21_X1)                     0.0519666672
+                                                                 7.1095032692 r
+  VexRiscv_inst/U4563/CO (FA_X1)                      0.0713396072
+                                                                 7.1808428764 r
+  VexRiscv_inst/U4636/CO (FA_X1)                      0.0710659027
+                                                                 7.2519087791 r
+  VexRiscv_inst/U4618/ZN (XNOR2_X1)                   0.0638427734
+                                                                 7.3157515526 r
+  VexRiscv_inst/U4905/ZN (NAND2_X1)                   0.0308470726
+                                                                 7.3465986252 f
+  VexRiscv_inst/U62/ZN (NAND2_X1)                     0.1102609634
+                                                                 7.4568595886 r
+  VexRiscv_inst/iBusAhbLite3_HADDR[30] (VexRiscv)     0.0000000000
+                                                                 7.4568595886 r
+  iBusAhbLite3_HADDR[30] (out)                        0.2374153137
+                                                                 7.6942749023 r
+  data arrival time                                              7.6942749023
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.6942749023
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0557250977
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[29]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0537080765
+                                                                 6.7882347107 r
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0398240089
+                                                                 6.8280587196 f
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0559387207
+                                                                 6.8839974403 r
+  VexRiscv_inst/U9/ZN (AOI21_X1)                      0.0406966209
+                                                                 6.9246940613 f
+  VexRiscv_inst/U70/ZN (OAI21_X1)                     0.0623083115
+                                                                 6.9870023727 r
+  VexRiscv_inst/U4285/ZN (NAND2_X1)                   0.0288619995
+                                                                 7.0158643723 f
+  VexRiscv_inst/U65/ZN (AND2_X1)                      0.0416722298
+                                                                 7.0575366020 f
+  VexRiscv_inst/U64/ZN (OAI21_X1)                     0.0519666672
+                                                                 7.1095032692 r
+  VexRiscv_inst/U4563/CO (FA_X1)                      0.0713396072
+                                                                 7.1808428764 r
+  VexRiscv_inst/U4636/S (FA_X1)                       0.1144332886
+                                                                 7.2952761650 f
+  VexRiscv_inst/U4901/ZN (NAND2_X1)                   0.0324993134
+                                                                 7.3277754784 r
+  VexRiscv_inst/U828/ZN (NAND2_X1)                    0.0985298157
+                                                                 7.4263052940 f
+  VexRiscv_inst/iBusAhbLite3_HADDR[29] (VexRiscv)     0.0000000000
+                                                                 7.4263052940 f
+  iBusAhbLite3_HADDR[29] (out)                        0.2374153137
+                                                                 7.6637206078 f
+  data arrival time                                              7.6637206078
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.6637206078
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.0862793922
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[28]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0537080765
+                                                                 6.7882347107 r
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0398240089
+                                                                 6.8280587196 f
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0559387207
+                                                                 6.8839974403 r
+  VexRiscv_inst/U9/ZN (AOI21_X1)                      0.0406966209
+                                                                 6.9246940613 f
+  VexRiscv_inst/U70/ZN (OAI21_X1)                     0.0623083115
+                                                                 6.9870023727 r
+  VexRiscv_inst/U4285/ZN (NAND2_X1)                   0.0288619995
+                                                                 7.0158643723 f
+  VexRiscv_inst/U65/ZN (AND2_X1)                      0.0416722298
+                                                                 7.0575366020 f
+  VexRiscv_inst/U64/ZN (OAI21_X1)                     0.0519666672
+                                                                 7.1095032692 r
+  VexRiscv_inst/U4563/S (FA_X1)                       0.1184701920
+                                                                 7.2279734612 f
+  VexRiscv_inst/U4298/ZN (NAND2_X1)                   0.0325012207
+                                                                 7.2604746819 r
+  VexRiscv_inst/U4299/ZN (NAND2_X1)                   0.0985298157
+                                                                 7.3590044975 f
+  VexRiscv_inst/iBusAhbLite3_HADDR[28] (VexRiscv)     0.0000000000
+                                                                 7.3590044975 f
+  iBusAhbLite3_HADDR[28] (out)                        0.2374153137
+                                                                 7.5964198112 f
+  data arrival time                                              7.5964198112
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.5964198112
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.1535801888
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[27]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0537080765
+                                                                 6.7882347107 r
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0398240089
+                                                                 6.8280587196 f
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0559387207
+                                                                 6.8839974403 r
+  VexRiscv_inst/U9/ZN (AOI21_X1)                      0.0406966209
+                                                                 6.9246940613 f
+  VexRiscv_inst/U70/ZN (OAI21_X1)                     0.0623083115
+                                                                 6.9870023727 r
+  VexRiscv_inst/U4285/ZN (NAND2_X1)                   0.0288619995
+                                                                 7.0158643723 f
+  VexRiscv_inst/U65/ZN (AND2_X1)                      0.0416722298
+                                                                 7.0575366020 f
+  VexRiscv_inst/U63/Z (XOR2_X1)                       0.0715270042
+                                                                 7.1290636063 f
+  VexRiscv_inst/U4289/ZN (NAND2_X1)                   0.0306434631
+                                                                 7.1597070694 r
+  VexRiscv_inst/U4290/ZN (NAND2_X1)                   0.0985298157
+                                                                 7.2582368851 f
+  VexRiscv_inst/iBusAhbLite3_HADDR[27] (VexRiscv)     0.0000000000
+                                                                 7.2582368851 f
+  iBusAhbLite3_HADDR[27] (out)                        0.2374153137
+                                                                 7.4956521988 f
+  data arrival time                                              7.4956521988
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.4956521988
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.2543478012
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[26]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0537080765
+                                                                 6.7882347107 r
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0398240089
+                                                                 6.8280587196 f
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0559387207
+                                                                 6.8839974403 r
+  VexRiscv_inst/U9/ZN (AOI21_X1)                      0.0406966209
+                                                                 6.9246940613 f
+  VexRiscv_inst/U70/ZN (OAI21_X1)                     0.0623083115
+                                                                 6.9870023727 r
+  VexRiscv_inst/U67/ZN (XNOR2_X1)                     0.0679621696
+                                                                 7.0549645424 r
+  VexRiscv_inst/U4280/ZN (NAND2_X1)                   0.0308523178
+                                                                 7.0858168602 f
+  VexRiscv_inst/U4281/ZN (NAND2_X1)                   0.1102609634
+                                                                 7.1960778236 r
+  VexRiscv_inst/iBusAhbLite3_HADDR[26] (VexRiscv)     0.0000000000
+                                                                 7.1960778236 r
+  iBusAhbLite3_HADDR[26] (out)                        0.2374153137
+                                                                 7.4334931374 r
+  data arrival time                                              7.4334931374
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.4334931374
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.3165068626
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[19]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U92/ZN (INV_X1)                       0.0460891724
+                                                                 6.7806158066 r
+  VexRiscv_inst/U13/ZN (AOI21_X1)                     0.0394353867
+                                                                 6.8200511932 f
+  VexRiscv_inst/U772/ZN (INV_X1)                      0.0354013443
+                                                                 6.8554525375 r
+  VexRiscv_inst/U8/ZN (AOI21_X1)                      0.0350623131
+                                                                 6.8905148506 f
+  VexRiscv_inst/U7/ZN (OAI21_X1)                      0.0450139046
+                                                                 6.9355287552 r
+  VexRiscv_inst/U66/ZN (XNOR2_X1)                     0.0631022453
+                                                                 6.9986310005 r
+  VexRiscv_inst/U4532/ZN (NAND2_X1)                   0.0308470726
+                                                                 7.0294780731 f
+  VexRiscv_inst/U4533/ZN (NAND2_X1)                   0.1102318764
+                                                                 7.1397099495 r
+  VexRiscv_inst/iBusAhbLite3_HADDR[19] (VexRiscv)     0.0000000000
+                                                                 7.1397099495 r
+  iBusAhbLite3_HADDR[19] (out)                        0.2374153137
+                                                                 7.3771252632 r
+  data arrival time                                              7.3771252632
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.3771252632
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.3728747368
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[25]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0537080765
+                                                                 6.7882347107 r
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0398240089
+                                                                 6.8280587196 f
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0559387207
+                                                                 6.8839974403 r
+  VexRiscv_inst/U9/ZN (AOI21_X1)                      0.0406966209
+                                                                 6.9246940613 f
+  VexRiscv_inst/U68/Z (XOR2_X1)                       0.0745182037
+                                                                 6.9992122650 f
+  VexRiscv_inst/U4272/ZN (NAND2_X1)                   0.0317425728
+                                                                 7.0309548378 r
+  VexRiscv_inst/U4273/ZN (NAND2_X1)                   0.0985298157
+                                                                 7.1294846535 f
+  VexRiscv_inst/iBusAhbLite3_HADDR[25] (VexRiscv)     0.0000000000
+                                                                 7.1294846535 f
+  iBusAhbLite3_HADDR[25] (out)                        0.2374153137
+                                                                 7.3668999672 f
+  data arrival time                                              7.3668999672
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.3668999672
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.3831000328
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[18]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4042/ZN (INV_X1)                     0.0244636536
+                                                                 6.0558037758 f
+  VexRiscv_inst/U4044/ZN (NAND2_X1)                   0.0285220146
+                                                                 6.0843257904 r
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0676193237
+                                                                 6.1519451141 f
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0575499535
+                                                                 6.2094950676 f
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0551166534
+                                                                 6.2646117210 f
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0548005104
+                                                                 6.3194122314 r
+  VexRiscv_inst/U4179/ZN (OR2_X1)                     0.0429940224
+                                                                 6.3624062538 r
+  VexRiscv_inst/U4180/ZN (NAND2_X1)                   0.0284147263
+                                                                 6.3908209801 f
+  VexRiscv_inst/U53/ZN (NAND2_X1)                     0.0336623192
+                                                                 6.4244832993 r
+  VexRiscv_inst/U155/ZN (INV_X1)                      0.0233464241
+                                                                 6.4478297234 f
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0640296936
+                                                                 6.5118594170 r
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0417871475
+                                                                 6.5536465645 f
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0533738136
+                                                                 6.6070203781 r
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0413374901
+                                                                 6.6483578682 f
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0535936356
+                                                                 6.7019515038 r
+  VexRiscv_inst/U92/ZN (INV_X1)                       0.0380940437
+                                                                 6.7400455475 f
+  VexRiscv_inst/U13/ZN (AOI21_X1)                     0.0556774139
+                                                                 6.7957229614 r
+  VexRiscv_inst/U772/ZN (INV_X1)                      0.0306091309
+                                                                 6.8263320923 f
+  VexRiscv_inst/U8/ZN (AOI21_X1)                      0.0544910431
+                                                                 6.8808231354 r
+  VexRiscv_inst/U69/Z (XOR2_X1)                       0.0810337067
+                                                                 6.9618568420 r
+  VexRiscv_inst/U4524/ZN (NAND2_X1)                   0.0313887596
+                                                                 6.9932456017 f
+  VexRiscv_inst/U4528/ZN (NAND2_X1)                   0.1082959175
+                                                                 7.1015415192 r
+  VexRiscv_inst/iBusAhbLite3_HADDR[18] (VexRiscv)     0.0000000000
+                                                                 7.1015415192 r
+  iBusAhbLite3_HADDR[18] (out)                        0.2374153137
+                                                                 7.3389568329 r
+  data arrival time                                              7.3389568329
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.3389568329
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.4110431671
+
+
+  Startpoint: dBusAhbLite3_HREADY
+              (input port clocked by clk)
+  Endpoint: iBusAhbLite3_HADDR[24]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                               0.0000000000
+                                                                 0.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 0.0000000000
+  input external delay                                2.0000000000
+                                                                 2.0000000000 r
+  dBusAhbLite3_HREADY (in)                            0.0136072636
+                                                                 2.0136072636 r
+  VexRiscv_inst/dBusAhbLite3_HREADY (VexRiscv)        0.0000000000
+                                                                 2.0136072636 r
+  VexRiscv_inst/U597/Z (CLKBUF_X1)                    0.0785405636
+                                                                 2.0921478271 r
+  VexRiscv_inst/U995/ZN (AND2_X1)                     0.0529835224
+                                                                 2.1451313496 r
+  VexRiscv_inst/U808/ZN (AND3_X1)                     0.0657637119
+                                                                 2.2108950615 r
+  VexRiscv_inst/U779/ZN (INV_X1)                      0.0319180489
+                                                                 2.2428131104 f
+  VexRiscv_inst/U4086/ZN (NOR2_X1)                    0.0843174458
+                                                                 2.3271305561 r
+  VexRiscv_inst/U4577/ZN (AND2_X1)                    0.0646464825
+                                                                 2.3917770386 r
+  VexRiscv_inst/RdMem_2_o[3] (VexRiscv)               0.0000000000
+                                                                 2.3917770386 r
+  U4519/ZN (OAI21_X1)                                 0.0340938568
+                                                                 2.4258708954 f
+  U4520/ZN (OAI211_X1)                                0.0386984348
+                                                                 2.4645693302 r
+  VexRiscv_inst/WrRD_3_i[3] (VexRiscv)                0.0000000000
+                                                                 2.4645693302 r
+  VexRiscv_inst/U2868/ZN (AOI22_X1)                   0.0306115150
+                                                                 2.4951808453 f
+  VexRiscv_inst/U2869/ZN (OAI211_X1)                  0.0448899269
+                                                                 2.5400707722 r
+  VexRiscv_inst/U2880/ZN (INV_X1)                     0.0289769173
+                                                                 2.5690476894 f
+  VexRiscv_inst/U3267/ZN (AOI22_X1)                   0.1594421864
+                                                                 2.7284898758 r
+  VexRiscv_inst/U3760/ZN (AOI22_X1)                   0.0416660309
+                                                                 2.7701559067 f
+  VexRiscv_inst/U3761/ZN (NAND2_X1)                   0.0619399548
+                                                                 2.8320958614 r
+  VexRiscv_inst/U3762/ZN (INV_X1)                     0.0453691483
+                                                                 2.8774650097 f
+  VexRiscv_inst/U3763/ZN (AOI22_X1)                   0.0736055374
+                                                                 2.9510705471 r
+  VexRiscv_inst/U3765/ZN (NOR2_X1)                    0.0328941345
+                                                                 2.9839646816 f
+  VexRiscv_inst/U3766/ZN (AOI21_X1)                   0.0660147667
+                                                                 3.0499794483 r
+  VexRiscv_inst/U3772/ZN (NOR2_X1)                    0.0305137634
+                                                                 3.0804932117 f
+  VexRiscv_inst/U3773/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.1460092068 r
+  VexRiscv_inst/U3777/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.1765217781 f
+  VexRiscv_inst/U3778/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.2420377731 r
+  VexRiscv_inst/U3783/ZN (NOR2_X1)                    0.0305647850
+                                                                 3.2726025581 f
+  VexRiscv_inst/U3784/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.3381185532 r
+  VexRiscv_inst/U3788/ZN (NOR2_X1)                    0.0305733681
+                                                                 3.3686919212 f
+  VexRiscv_inst/U3789/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.4342079163 r
+  VexRiscv_inst/U3793/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.4647204876 f
+  VexRiscv_inst/U3794/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.5302414894 r
+  VexRiscv_inst/U3824/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.5607540607 f
+  VexRiscv_inst/U3825/ZN (AOI21_X1)                   0.0655159950
+                                                                 3.6262700558 r
+  VexRiscv_inst/U3830/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.6567826271 f
+  VexRiscv_inst/U3831/ZN (AOI21_X1)                   0.0655210018
+                                                                 3.7223036289 r
+  VexRiscv_inst/U3836/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.7528162003 f
+  VexRiscv_inst/U3837/ZN (AOI21_X1)                   0.0657153130
+                                                                 3.8185315132 r
+  VexRiscv_inst/U3842/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.8490440845 f
+  VexRiscv_inst/U3843/ZN (AOI21_X1)                   0.0657165051
+                                                                 3.9147605896 r
+  VexRiscv_inst/U3848/ZN (NOR2_X1)                    0.0305125713
+                                                                 3.9452731609 f
+  VexRiscv_inst/U3849/ZN (AOI21_X1)                   0.0657169819
+                                                                 4.0109901428 r
+  VexRiscv_inst/U3854/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.0415024757 f
+  VexRiscv_inst/U3855/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.1072187424 r
+  VexRiscv_inst/U3860/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.1377310753 f
+  VexRiscv_inst/U3861/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.2034478188 r
+  VexRiscv_inst/U3866/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.2339601517 f
+  VexRiscv_inst/U3867/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.2996764183 r
+  VexRiscv_inst/U3896/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.3301887512 f
+  VexRiscv_inst/U3897/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.3959054947 r
+  VexRiscv_inst/U3902/ZN (NOR2_X1)                    0.0305757523
+                                                                 4.4264812469 f
+  VexRiscv_inst/U3903/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.4921979904 r
+  VexRiscv_inst/U3909/ZN (NOR2_X1)                    0.0306911469
+                                                                 4.5228891373 f
+  VexRiscv_inst/U3910/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.5886058807 r
+  VexRiscv_inst/U3915/ZN (NOR2_X1)                    0.0306997299
+                                                                 4.6193056107 f
+  VexRiscv_inst/U3916/ZN (AOI21_X1)                   0.0657167435
+                                                                 4.6850223541 r
+  VexRiscv_inst/U3921/ZN (NOR2_X1)                    0.0306210518
+                                                                 4.7156434059 f
+  VexRiscv_inst/U3922/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.7813582420 r
+  VexRiscv_inst/U3927/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.8118705750 f
+  VexRiscv_inst/U3928/ZN (AOI21_X1)                   0.0657148361
+                                                                 4.8775854111 r
+  VexRiscv_inst/U3933/ZN (NOR2_X1)                    0.0305123329
+                                                                 4.9080977440 f
+  VexRiscv_inst/U3934/ZN (AOI21_X1)                   0.0657162666
+                                                                 4.9738140106 r
+  VexRiscv_inst/U3939/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.0043263435 f
+  VexRiscv_inst/U3940/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.0700411797 r
+  VexRiscv_inst/U3945/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1005535126 f
+  VexRiscv_inst/U3946/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.1662683487 r
+  VexRiscv_inst/U3951/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.1967806816 f
+  VexRiscv_inst/U3952/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.2624969482 r
+  VexRiscv_inst/U3957/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.2930092812 f
+  VexRiscv_inst/U3958/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.3587241173 r
+  VexRiscv_inst/U3963/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.3892364502 f
+  VexRiscv_inst/U3964/ZN (AOI21_X1)                   0.0657148361
+                                                                 5.4549512863 r
+  VexRiscv_inst/U3969/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.4854636192 f
+  VexRiscv_inst/U3970/ZN (AOI21_X1)                   0.0657162666
+                                                                 5.5511798859 r
+  VexRiscv_inst/U3975/ZN (NOR2_X1)                    0.0305123329
+                                                                 5.5816922188 f
+  VexRiscv_inst/U3976/ZN (AOI21_X1)                   0.0599064827
+                                                                 5.6415987015 r
+  VexRiscv_inst/U3977/ZN (XNOR2_X1)                   0.0599079132
+                                                                 5.7015066147 r
+  VexRiscv_inst/U759/ZN (AND2_X1)                     0.0446934700
+                                                                 5.7462000847 r
+  VexRiscv_inst/U3978/ZN (XNOR2_X1)                   0.0661048889
+                                                                 5.8123049736 r
+  VexRiscv_inst/U175/ZN (NAND2_X1)                    0.0336222649
+                                                                 5.8459272385 f
+  VexRiscv_inst/U781/ZN (NAND2_X1)                    0.0408811569
+                                                                 5.8868083954 r
+  VexRiscv_inst/U3984/ZN (XNOR2_X1)                   0.0431690216
+                                                                 5.9299774170 f
+  VexRiscv_inst/U4037/ZN (AOI221_X1)                  0.1013627052
+                                                                 6.0313401222 r
+  VexRiscv_inst/U4038/ZN (NAND2_X1)                   0.0335860252
+                                                                 6.0649261475 f
+  VexRiscv_inst/U4040/ZN (NAND2_X1)                   0.0302643776
+                                                                 6.0951905251 r
+  VexRiscv_inst/U4041/ZN (NAND2_X1)                   0.0249114037
+                                                                 6.1201019287 f
+  VexRiscv_inst/U174/ZN (NAND4_X1)                    0.0482940674
+                                                                 6.1683959961 r
+  VexRiscv_inst/U745/ZN (AND2_X1)                     0.0543837547
+                                                                 6.2227797508 r
+  VexRiscv_inst/U751/ZN (AND2_X1)                     0.0691018105
+                                                                 6.2918815613 r
+  VexRiscv_inst/U4169/ZN (NAND2_X1)                   0.0552482605
+                                                                 6.3471298218 f
+  VexRiscv_inst/U4170/ZN (OR2_X1)                     0.0667629242
+                                                                 6.4138927460 f
+  VexRiscv_inst/U4173/ZN (NAND3_X1)                   0.0318493843
+                                                                 6.4457421303 r
+  VexRiscv_inst/U167/ZN (AND2_X1)                     0.0552148819
+                                                                 6.5009570122 r
+  VexRiscv_inst/U140/ZN (AOI21_X1)                    0.0388679504
+                                                                 6.5398249626 f
+  VexRiscv_inst/U21/ZN (OAI21_X1)                     0.0575242043
+                                                                 6.5973491669 r
+  VexRiscv_inst/U103/ZN (AOI21_X1)                    0.0394048691
+                                                                 6.6367540359 f
+  VexRiscv_inst/U102/ZN (OAI21_X1)                    0.0596070290
+                                                                 6.6963610649 r
+  VexRiscv_inst/U93/ZN (AOI21_X1)                     0.0381655693
+                                                                 6.7345266342 f
+  VexRiscv_inst/U91/ZN (OAI21_X1)                     0.0537080765
+                                                                 6.7882347107 r
+  VexRiscv_inst/U84/ZN (AOI21_X1)                     0.0398240089
+                                                                 6.8280587196 f
+  VexRiscv_inst/U83/ZN (OAI21_X1)                     0.0559387207
+                                                                 6.8839974403 r
+  VexRiscv_inst/U72/ZN (XNOR2_X1)                     0.0680236816
+                                                                 6.9520211220 r
+  VexRiscv_inst/U4263/ZN (NAND2_X1)                   0.0308470726
+                                                                 6.9828681946 f
+  VexRiscv_inst/U4264/ZN (NAND2_X1)                   0.1102609634
+                                                                 7.0931291580 r
+  VexRiscv_inst/iBusAhbLite3_HADDR[24] (VexRiscv)     0.0000000000
+                                                                 7.0931291580 r
+  iBusAhbLite3_HADDR[24] (out)                        0.2374153137
+                                                                 7.3305444717 r
+  data arrival time                                              7.3305444717
+
+  clock clk (rise edge)                               10.0000000000
+                                                                 10.0000000000
+  clock network delay (ideal)                         0.0000000000
+                                                                 10.0000000000
+  clock uncertainty                                   -0.2500000000
+                                                                 9.7500000000
+  output external delay                               -2.0000000000
+                                                                 7.7500000000
+  data required time                                             7.7500000000
+  --------------------------------------------------------------------------
+  data required time                                             7.7500000000
+  data arrival time                                              -7.3305444717
+  --------------------------------------------------------------------------
+  slack (MET)                                                    0.4194555283
+
+
+1

@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "status": "complete",
+  "pdk": "nangate45",
+  "core": "VEX_5S",
+  "clock_period_ns": 10.0,
+  "library": "/var/tmp/ga87puy/isaac-demo-new/install/asip-libs/nangate45/NangateOpenCellLibrary_typical.db",
+  "library_sha256": "41f6ff336695fd5ec34a1881badcba64deeeab972bb07c42db11d2b1a3bee629",
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/VexRiscv_5s/VexRiscv.v": "5b607e7acfe8de3a6783d9cc6937b10f56b5e07609c62a6c2efee2a8e676e2b2",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/VexRiscv_5s/Vex_top.sv": "34cf894798e687de5f63f54d563193c27145cf0d9a778322c4fd4cfad8bff6e5",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/VexRiscv_5s/CommonLogicModule.sv": "5893d3e070d184f69001bdb9e22586ea91e1d0f91eff449bfb53ab5e26dfc945",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/stores-fixed/ISAX_XStoreProbe.sv": "e227d0fe594317cf48a6fce563fbb6e3ac0375cf9c89d48fba63c529bcbc8f44"
+  },
+  "constraints": "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/constraints.tcl",
+  "constraints_sha256": "26ce5c4689eb8aaab47a714787e3b1bcb8e24a35166de878b2605a2c7bb14ab6",
+  "synthesis_script_sha256": "ef9a4ccced7c36d890d1dfa164f602fcf80e17114fdef18ace7610a141238085",
+  "dc_shell": "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+  "electrical_settings": {
+    "driver": "INV_X2",
+    "pin": "ZN",
+    "load": 33.4,
+    "dont_use": "NangateOpenCellLibrary/SDFF*"
+  },
+  "boundary": "core and extension, external memory excluded",
+  "physical_design": false,
+  "command": [
+    "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+    "-f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/asip-synthesis-20261112/evaluation/nangate45/stores/synthesize.tcl"
+  ],
+  "metrics": {
+    "cell_area": 23182.697845,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": 0.0071744919
+  },
+  "timing_met": false,
+  "elapsed_seconds": 178.4739818945527,
+  "hold_wns_ns": -0.16,
+  "hold_violating_paths": 2066,
+  "setup_timing_met": true,
+  "hold_timing_met": false,
+  "reports_revalidated": true,
+  "artifacts_sha256": {
+    "out/top.v": "fca629d86e3a4acc38f2f362eea4a4a7e0242c91e5a3d457fc6708363c103781",
+    "out/top.ddc": "5e089226919e9ebc144b60e5f508b1e719a9d2c88a0107a568f845c7190eba3f",
+    "out/top.sdf": "8a26700cc65e4597778a70dcc8006b3df55ca643757705fd969453c9ea156c36",
+    "out/top.sdc": "5585833dcae30bb73ff5aa6c966456a445a4d902fecb0c9e802a15651c9e73a9"
+  }
+}

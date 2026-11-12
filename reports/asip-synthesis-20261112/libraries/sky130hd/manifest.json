@@ -1,0 +1,9 @@
+{
+  "pdk": "sky130hd",
+  "source": "https://raw.githubusercontent.com/The-OpenROAD-Project/OpenROAD-flow-scripts/a47d4fdc6534cb3cdfdd9ff76737a899a5bb2ee0/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib",
+  "revision": "a47d4fdc6534cb3cdfdd9ff76737a899a5bb2ee0",
+  "liberty_sha256": "ec0e1067a35c8bf20b11e58d1e8ac53326067e4dac84a125cc1b917a3518d0d9",
+  "db_sha256": "52bc43694e1e79b68c06fb907bf84ee46ffe503c1d0bb98a95b3196dcc7c4425",
+  "lc_shell": "/nfs/tools/synopsys/lc/X-2025.06-SP3/bin/lc_shell",
+  "version": "X-2025.06-SP3 for linux64 - Jan 15, 2026"
+}

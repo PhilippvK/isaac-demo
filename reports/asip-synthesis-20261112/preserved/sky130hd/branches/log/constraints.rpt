@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:59:52 2026
+****************************************
+
+
+   max_transition
+
+                             Required        Actual
+   Net                      Transition     Transition        Slack
+   -----------------------------------------------------------------
+   dBusAhbLite3_HADDR[20]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[2]        0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[14]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[18]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[19]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[21]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[28]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[22]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[23]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[24]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[25]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+   dBusAhbLite3_HADDR[26]       0.75           0.75           0.00  (VIOLATED: increase significant digits)
+
+   -----------------------------------------------------------------
+   Total                      12                 -0.00  
+
+   max_fanout
+
+                             Required        Actual
+   Net                        Fanout         Fanout          Slack
+   -----------------------------------------------------------------
+   n496                        10.00          19.00          -9.00  (VIOLATED)
+
+   -----------------------------------------------------------------
+   Total                      1                  -9.00  
+
+   max_leakage_power
+
+                             Required        Actual
+   Design                   Leakage Power  Leakage Power     Slack
+   -----------------------------------------------------------------
+   top                          0.00          45.37         -45.37  (VIOLATED)
+
+
+1

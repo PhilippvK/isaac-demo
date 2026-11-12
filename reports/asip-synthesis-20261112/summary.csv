@@ -1,0 +1,9 @@
+pdk,variant,cell_area,clock_period_ns,setup_slack_ns,hold_wns_ns,hold_violating_paths,setup_timing_met,hold_timing_met,timing_met,area_ratio
+nangate45,baseline,22979.739843,10.0,0.0041708946,-0.16,2061,True,False,False,1.0
+nangate45,crc32,28706.985877,10.0,0.0059900284,-0.16,2149,True,False,False,1.2492302381632319
+nangate45,branches,23200.785838,10.0,0.0069556236,-0.16,2065,True,False,False,1.009619168733424
+nangate45,stores,23182.697845,10.0,0.0071744919,-0.16,2066,True,False,False,1.0088320408928313
+sky130hd,baseline,124566.966296,10.0,0.0002059937,-0.0,0,True,True,True,1.0
+sky130hd,crc32,158921.164092,10.0,0.0002527237,-0.0,0,True,True,True,1.27578898979017
+sky130hd,branches,126491.311835,10.0,0.0027179718,-0.0,0,True,True,True,1.0154482813238568
+sky130hd,stores,125781.881464,10.0,0.0010251999,-0.0,0,True,True,True,1.009753108742434

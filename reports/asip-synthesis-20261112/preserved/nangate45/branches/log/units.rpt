@@ -1,0 +1,16 @@
+************************************
+Report : units
+Design : top
+Version: W-2024.09-SP2
+Date   : Thu Nov 12 09:45:28 2026
+
+************************************
+Units
+------------------------------------
+Time_unit            : 1.0e-09 Second(ns)
+Capacitive_load_unit : 1.0e-15 Farad(fF)
+Resistance_unit      : 1.0e+6 Ohm(MOhm)
+Voltage_unit         : 1 Volt
+Power_unit           : N/A
+Current_unit         : 1.0e-03 Amp(mA)
+1

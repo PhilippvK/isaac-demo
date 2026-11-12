@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "status": "complete",
+  "pdk": "sky130hd",
+  "core": "VEX_5S",
+  "clock_period_ns": 10.0,
+  "library": "/var/tmp/ga87puy/isaac-demo-new/install/asip-libs/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.db",
+  "library_sha256": "52bc43694e1e79b68c06fb907bf84ee46ffe503c1d0bb98a95b3196dcc7c4425",
+  "rtl_sha256": {
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/VexRiscv.v": "eacac6e1583efe6c20f0c05003a48963e380befe2894db0928a80887ee7c4e00",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/Vex_top.sv": "f3632941d5a3638c4a7446dbd9473278585b6be3066a7cd98669fa36f7831450",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/VexRiscv_5s/CommonLogicModule.sv": "84ff3eeecf760284717e4a0a1a873ce4c956def9ff93521084b8b8c29b9ddad5",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/crc32-fixed/ISAX_XIsaac.sv": "4e364bf0af846a27bed46ade1e4351a04ed473de3acccc74f9c4c29d53c8bfe6"
+  },
+  "constraints": "/var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/constraints.tcl",
+  "constraints_sha256": "26ce5c4689eb8aaab47a714787e3b1bcb8e24a35166de878b2605a2c7bb14ab6",
+  "synthesis_script_sha256": "ef9a4ccced7c36d890d1dfa164f602fcf80e17114fdef18ace7610a141238085",
+  "dc_shell": "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+  "electrical_settings": {
+    "driver": "sky130_fd_sc_hd__inv_2",
+    "pin": "Y",
+    "load": 0.0334,
+    "dont_use": "*/sky130_fd_sc_hd__probe* */sky130_fd_sc_hd__lpflow*"
+  },
+  "boundary": "core and extension, external memory excluded",
+  "physical_design": false,
+  "command": [
+    "/nfs/tools/synopsys/syn/W-2024.09-SP2/bin/dc_shell",
+    "-f",
+    "/var/tmp/ga87puy/isaac-demo-new/reports/asip-synthesis-20261112/evaluation/sky130hd/crc32/synthesize.tcl"
+  ],
+  "hold_wns_ns": -0.0,
+  "hold_violating_paths": 0,
+  "metrics": {
+    "cell_area": 158921.164092,
+    "clock_period_ns": 10.0,
+    "setup_slack_ns": 0.0002527237
+  },
+  "setup_timing_met": true,
+  "hold_timing_met": true,
+  "timing_met": true,
+  "elapsed_seconds": 262.4185447394848,
+  "reports_revalidated": true,
+  "artifacts_sha256": {
+    "out/top.v": "a911661b994db53bc7b106d8a0e933e1ddbc1faf35c5c85bad88143bf76ab8c8",
+    "out/top.ddc": "3ea7a9a0b9e120587967e3544da895009349e651a5eb43efec65f354f9033b3b",
+    "out/top.sdf": "86e28d12cc713927807b72e4b81da6108f85bc9b0ced31f9d1216ade304e0506",
+    "out/top.sdc": "a375ddd48b08e5514aa2293cf835ba6af90ae19c2926c7db9e592a7ec8bee2f1"
+  }
+}

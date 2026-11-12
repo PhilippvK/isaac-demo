@@ -1,0 +1,7 @@
+#@ # 
+#@ # Running lc_shell Version X-2025.06-SP3 for linux64 -- Jan 15, 2026
+#@ # Date:   Thu Nov 12 09:32:37 2026
+#@ # Run by: ga87puy@ryloth.eda.cit.tum.de
+#@ 
+
+source -echo -verbose /var/tmp/ga87puy/isaac-demo-new/scripts/asip_syn/compile_library.tcl

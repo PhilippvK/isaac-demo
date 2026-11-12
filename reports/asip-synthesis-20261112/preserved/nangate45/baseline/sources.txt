@@ -1,0 +1,3 @@
+/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/VexRiscv.v
+/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/Vex_top.sv
+/var/tmp/ga87puy/isaac-demo-new/reports/vex-5s-hls-20261107/hls-run/baseline/VexRiscv_5s/CommonLogicModule.sv
