@@ -201,3 +201,34 @@ applied. These changes are local to the F4PGA target.
 Result validation uses core identity as well as backend, part, clock and board;
 a Vex baseline cannot be reused as CVA5. CVA5 synthesis support does not enable
 the separate Vex runtime-counter/MLonMCU execution adapter in `fpga_syn/run.py`.
+
+The adapter rewrites whole-array RAM initialization as element-wise loops so
+sv2v retains inferable memories, rather than packing them into large vectors.
+It similarly resets the two multiply-valid entries individually. The preserved
+`frontend-netlist.v` is exported after `splitnets -ports`: the pinned Yosys
+Verilog writer otherwise mis-emits references to ascending packed arrays, even
+though the internal netlist connections are correct. The exporter workaround
+is covered by a two-stage pipeline simulation regression.
+
+Each CVA5 local memory is split into two 32K-word banks, initialized from
+`firmware-0.hex` and `firmware-1.hex`. These are exact halves of the retained
+`firmware.hex`. This avoids the pinned flow's incompatible 64K-depth RAMB36
+cascade mapping, which can silently discard half of a large inferred memory.
+The mapped result is rejected unless cells belonging to the data RAM provide
+at least 256 KiB (64 RAMB36 or the equivalent RAMB18 capacity). Source RAM tests
+exercise byte writes and both ends of the address range.
+
+For a CPU/firmware smoke test, use a current Verilator installation from the
+completed build directory (so the firmware hex files resolve):
+
+```bash
+verilator -cc --exe --build -Wno-fatal --top-module cva5_arty_top \
+  frontend-netlist.v /absolute/repo/tests/rtl/cva5_clock_stubs.v \
+  /absolute/repo/tests/rtl/cva5_boot.cpp
+obj_dir/Vcva5_arty_top
+```
+
+The harness decodes the serial TX pin, requires a complete `PASS` line, fails
+on a firmware `FAIL` line, and has a ten-million-cycle limit. It provides ideal
+clock primitive stubs; it does not verify the PLL or replace post-mapping
+memory equivalence and physical FPGA execution tests.

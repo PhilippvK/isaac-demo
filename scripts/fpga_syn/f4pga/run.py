@@ -89,6 +89,31 @@ def strip_intel_ramstyle(text):
     return re.sub(r',\s*\bramstyle\s*=\s*"[^"]*"', '', text)
 
 
+def preserve_ram_arrays(name, text):
+    # Whole-array assignment patterns force sv2v to pack RAMs into giant vectors,
+    # defeating memory inference. Element-wise initializers are equivalent.
+    memories = {
+        'branch_predictor_ram.sv': ('branch_ram', 'C_DEPTH'),
+        'register_bank.sv': ('register_file_bank', '64'),
+        'ras.sv': ('lut_ram', 'CONFIG.BP.RAS_ENTRIES'),
+        'tag_bank.sv': ('tag_entry', 'LINES'),
+        'lutram_1w_1r.sv': ('ram', 'DEPTH'),
+    }
+    if name == 'mul_unit.sv':
+        text, count = re.subn(r"valid\s*<=\s*'\{default:\s*0\s*\};",
+                              "begin valid[0] <= 1'b0; valid[1] <= 1'b0; end", text)
+        if count != 1:
+            raise ValueError('Unexpected CVA5 multiply valid reset')
+    if name in memories:
+        memory, depth = memories[name]
+        pattern = r"initial\s+"+memory+r"\s*=\s*'\{default:\s*0\s*\};"
+        text, count = re.subn(pattern,
+            f"initial for (integer isaac_init = 0; isaac_init < {depth}; isaac_init = isaac_init+1) {memory}[isaac_init] = '0;", text)
+        if count != 1:
+            raise ValueError('Unexpected CVA5 memory initializer: '+name)
+    return text
+
+
 def prepare(rtl, out, binary=None, coe=None, core="VEX_5S"):
     """Stage portable board adapters without modifying generated HLS sources."""
     files = []
@@ -107,7 +132,7 @@ def prepare(rtl, out, binary=None, coe=None, core="VEX_5S"):
         hashes[str(p)] = sha(p)
         text = p.read_text()
         if core == 'CVA5':
-            text = strip_intel_ramstyle(text)
+            text = preserve_ram_arrays(p.name, strip_intel_ramstyle(text))
             if p.name in ('CVA5_top.v', 'scaiev_unit.sv'):
                 adapter = 'prepare_top.py' if p.name == 'CVA5_top.v' else 'prepare_scaiev.py'
                 subprocess.run([sys.executable, str(BOARD/adapter), str(p), str(staged/p.name)], check=True)
@@ -164,7 +189,12 @@ def prepare(rtl, out, binary=None, coe=None, core="VEX_5S"):
     if core == 'CVA5':
         shutil.copyfile(HERE/'axi_uart.sv', staged/'axi_uart.sv')
     shutil.copyfile(HERE / 'board.xdc', out / 'board.xdc')
-    (out / 'firmware.hex').write_text(firmware_image(binary, coe))
+    firmware = firmware_image(binary, coe)
+    (out / 'firmware.hex').write_text(firmware)
+    if core == 'CVA5':
+        words = firmware.splitlines(keepends=True)
+        for bank in range(2):
+            (out/f'firmware-{bank}.hex').write_text(''.join(words[bank*32768:(bank+1)*32768]))
     # Legacy wrappers split arguments internally: use simple relative names.
     ordered = [f'rtl/{p.name}' for p in files] + ['rtl/ram.sv', 'rtl/'+top+'.sv']
     if core == 'CVA5':
@@ -236,6 +266,14 @@ def validate_fasm(out):
         raise ValueError('F4PGA FASM lacks implemented logic/BRAM features; bitstream generation refused')
 
 
+def check_data_capacity(core, cells):
+    if core == 'CVA5':
+        capacity = sum((2 if c['type'].startswith('RAMB36') else 1) for name, c in cells.items()
+                       if 'data_bram' in name and c['type'].startswith(('RAMB18', 'RAMB36')))
+        if capacity < 128:
+            raise ValueError('Mapped CVA5 data RAM has less than 256 KiB capacity; cascade mapping is incompatible')
+
+
 def parse_results(out, require_bitstream=True):
     """Use actual mapped primitive counts, not estimates from RTL or LUT equations."""
     design = json.loads((out / (result_top(out)+'.json')).read_text())
@@ -249,6 +287,7 @@ def parse_results(out, require_bitstream=True):
     ff = count(r'(?:FD[A-Z0-9_]*|[DS]FF[A-Z0-9_]*)')
     ram18 = count(r'RAMB18[A-Z0-9_]*')
     ram36 = count(r'RAMB36[A-Z0-9_]*')
+    check_data_capacity('CVA5' if result_top(out) == TOPS['CVA5'] else 'VEX_5S', cells)
     if not lut or not ff or not (ram18 or ram36):
         raise ValueError(f'Cannot identify mapped LUT/FF/BRAM resources: {dict(counts)}')
     route = (out / 'route.log').read_text(errors='replace')
@@ -288,7 +327,7 @@ def validate(directory, part=PART, clock=50, core=None):
     required = {'metrics.json', 'route.log', 'constraints.sdc', 'clock-aliases.json'} | {
         result_top(directory)+'.'+suffix for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route', 'fasm', 'bit']}
     if meta['core'] == 'CVA5':
-        required |= {'converted.v', 'converted.raw.v', 'frontend.ys', 'firmware.hex', 'conversion.log', 'sv2v-version.log'}
+        required |= {'converted.v', 'converted.raw.v', 'frontend-netlist.v', 'frontend.ys', 'firmware.hex', 'conversion.log', 'sv2v-version.log', 'firmware-0.hex', 'firmware-1.hex'}
     if not required <= meta.get('artifacts_sha256', {}).keys():
         raise ValueError('Incomplete F4PGA artifact manifest')
     for name, digest in meta['artifacts_sha256'].items():
@@ -358,6 +397,7 @@ def run(args):
             shutil.copyfile(converted, out/'converted.raw.v')
             converted.write_text(normalize_constant_selects(converted.read_text()))
             frontend = frontend.replace(' '.join(sources), 'converted.v').replace('proc\ncheck', 'proc\nflatten\nopt\ncheck')
+            frontend += 'splitnets -ports\nwrite_verilog -noattr frontend-netlist.v\n'
         (out/'frontend.ys').write_text(frontend)
         invoke(['yosys', '-s', 'frontend.ys', '-l', 'frontend.log'], 'frontend.stdout.log')
         meta['frontend_checked'] = True
@@ -368,15 +408,17 @@ def run(args):
             invoke(cmd, step+'.stdout.log')
             if step == 'synth':
                 deduplicate_sdc(out)
+                mapped = json.loads((out/(TOPS[args.core]+'.json')).read_text())
+                check_data_capacity(args.core, mapped['modules'][TOPS[args.core]]['cells'])
             if step == 'write_fasm':
                 validate_fasm(out)
             meta['completed_steps'].append(step)
             write_json(out/'execution.json', meta)
         metrics = parse_results(out)
         write_json(out/'metrics.json', metrics)
-        final_names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'constraints.sdc', 'clock-aliases.json'} | {
+        final_names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'frontend-netlist.v', 'constraints.sdc', 'clock-aliases.json'} | {
             result_top(out)+'.'+suffix for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route', 'fasm', 'bit']}
-        artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in final_names or p.suffix == '.log')]
+        artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in final_names or p.suffix in ('.log', '.hex'))]
         artifacts += list((out/'rtl').iterdir())
         meta.pop('error', None)
         meta.update(passed=True, status='complete', setup_met=metrics['setup_met'], hold_met=metrics['hold_met'],
@@ -416,7 +458,7 @@ def resume_routed(args):
             validate(out, args.part, args.clock_ns)
         parse_results(out, require_bitstream=False)
         routed = [out/(result_top(out)+'.'+suffix) for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route']]
-        routed += [out/'constraints.sdc', out/'route.log', out/'firmware.hex', *[p for p in [out/'converted.v', out/'converted.raw.v'] if p.exists()], *list((out/'rtl').iterdir())]
+        routed += [out/'constraints.sdc', out/'route.log', *list(out.glob('firmware*.hex')), *[p for p in [out/'converted.v', out/'converted.raw.v'] if p.exists()], *list((out/'rtl').iterdir())]
         checkpoint = {str(p.relative_to(out)): sha(p) for p in routed if p.is_file()}
         # A resumed run pins its route; subsequent retries detect any changed checkpoint.
         if meta.get('routed_checkpoint_sha256') and meta['routed_checkpoint_sha256'] != checkpoint:
@@ -451,10 +493,10 @@ def resume_routed(args):
             write_json(out/'execution.json', meta)
         metrics = parse_results(out)
         write_json(out/'metrics.json', metrics)
-        names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'constraints.sdc',
+        names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'frontend-netlist.v', 'constraints.sdc',
                  'clock-aliases.json', 'execution-before-resume.json'} | {
                      result_top(out)+'.'+suffix for suffix in ['json','sdc','eblif','net','place','route','fasm','bit']}
-        artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in names or p.suffix == '.log')]
+        artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in names or p.suffix in ('.log', '.hex'))]
         artifacts += list((out/'rtl').iterdir())
         meta.pop('error', None)
         meta.update(passed=True, status='complete', setup_met=metrics['setup_met'], hold_met=metrics['hold_met'],

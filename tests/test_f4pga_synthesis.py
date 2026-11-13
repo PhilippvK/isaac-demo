@@ -356,6 +356,9 @@ def test_cva5_staging_and_disabled_cache_contract(tmp_path):
     out=tmp_path/'out';out.mkdir()
     sources, hashes=f4.prepare(rtl,out,core='CVA5')
     assert 'rtl/axi_uart.sv' in sources and 'rtl/cva5_arty_top.sv' in sources
+    words=(out/'firmware.hex').read_text().splitlines(keepends=True)
+    for bank in range(2):
+        assert (out/f'firmware-{bank}.hex').read_text()==''.join(words[bank*32768:(bank+1)*32768])
     assert '.addra(data_bram_addr[17:2])' in (out/'rtl/CVA5_top.v').read_text()
     assert 'execute_Instr[14:12]' in (out/'rtl/scaiev_unit.sv').read_text()
     assert (rtl/'CVA5_top.v').read_bytes()==original
@@ -367,7 +370,8 @@ def test_cva5_staging_and_disabled_cache_contract(tmp_path):
 
 def test_cva5_ram_write_first_byte_lanes_and_boundary(tmp_path):
     if not shutil.which('iverilog'): pytest.skip('Icarus is not installed')
-    (tmp_path/'firmware.hex').write_text('12345678\n'+'00000000\n'*65535)
+    (tmp_path/'firmware-0.hex').write_text('12345678\n'+'00000000\n'*32767)
+    (tmp_path/'firmware-1.hex').write_text('00000000\n'*32768)
     (tmp_path/'test.sv').write_text('''module tb;
 reg clk=0;always #5 clk=~clk;
 reg en=1;reg[3:0]we=0;reg[15:0]addr=0;reg[31:0]din=0;wire[31:0]dout;
@@ -401,3 +405,54 @@ def test_intel_hints_removed_and_xilinx_hints_retained():
     result=f4.strip_intel_ramstyle(source)
     assert 'ramstyle' not in result
     assert 'ram_style = "distributed"' in result and 'ram_style = "block"' in result
+
+
+def test_ram_initializers_preserve_memories():
+    result=f4.preserve_ram_arrays('branch_predictor_ram.sv', "initial branch_ram = '{default: 0};")
+    assert 'branch_ram[isaac_init]' in result and 'isaac_init < C_DEPTH' in result
+    result=f4.preserve_ram_arrays('mul_unit.sv', "valid <= '{default: 0};")
+    assert "valid[0] <= 1'b0" in result and "valid[1] <= 1'b0" in result
+    with pytest.raises(ValueError): f4.preserve_ram_arrays('branch_predictor_ram.sv', 'different layout')
+
+
+def test_ascending_array_export_regression(tmp_path):
+    if not shutil.which('yosys') or not shutil.which('iverilog'):
+        pytest.skip('Needs Yosys and Icarus for the exporter regression')
+    (tmp_path/'pipeline.v').write_text('''module pipeline(input clk,rst,request,output done);
+reg [0:1] valid;
+always @(posedge clk) if(rst) valid<=2'b0;
+else begin valid[0]<=request;valid[1]<=valid[0];end
+assign done=valid[1];endmodule''')
+    subprocess.run(['yosys','-Q','-p',
+                    'read_verilog pipeline.v; proc; opt; splitnets -ports; write_verilog lowered.v'],
+                   cwd=tmp_path,check=True,capture_output=True)
+    (tmp_path/'tb.v').write_text('''module tb;
+reg clk=0;always #5 clk=~clk;reg rst=1,request=0;wire done;
+pipeline dut(clk,rst,request,done);
+initial begin
+ #6;if(done!==0)$fatal(1,"reset");rst=0;request=1;
+ #10;if(done!==0)$fatal(1,"early completion");request=0;
+ #10;if(done!==1)$fatal(1,"missing completion");
+ #10;if(done!==0)$fatal(1,"completion did not clear");
+ $display("PASS");$finish;end
+endmodule''')
+    subprocess.run(['iverilog','-g2012','-s','tb','-o','sim','lowered.v','tb.v'],cwd=tmp_path,check=True)
+    result=subprocess.run(['vvp','sim'],cwd=tmp_path,capture_output=True,text=True,check=True)
+    assert 'PASS' in result.stdout
+
+
+def test_cva5_mapped_memory_capacity_guard(tmp_path):
+    native_outputs(tmp_path)
+    for p in list(tmp_path.glob('vex_arty_top.*')):
+        q=p.with_name(p.name.replace('vex_arty_top','cva5_arty_top'))
+        q.write_bytes(p.read_bytes().replace(b'vex_arty_top',b'cva5_arty_top'))
+        p.unlink()
+    (tmp_path/'execution.json').write_text(json.dumps({'core':'CVA5'}))
+    with pytest.raises(ValueError,match='256 KiB'): f4.parse_results(tmp_path)
+    p=tmp_path/'cva5_arty_top.json';design=json.loads(p.read_text())
+    cells=design['modules']['cva5_arty_top']['cells']
+    cells.update({f'cpu.data_bram.memory.{i}':{'type':'RAMB36E1_PRIM'} for i in range(64)})
+    p.write_text(json.dumps(design))
+    assert f4.parse_results(tmp_path)['brams_18k_equivalent']==130
+    del cells['cpu.data_bram.memory.63'];p.write_text(json.dumps(design))
+    with pytest.raises(ValueError,match='256 KiB'): f4.parse_results(tmp_path)
