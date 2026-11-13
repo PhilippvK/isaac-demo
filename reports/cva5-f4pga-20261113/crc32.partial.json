@@ -1,0 +1,30 @@
+{
+  "status": "interrupted",
+  "scope": "Synthesis, packing and placement complete; routing unfinished; no bitstream or final routed timing result",
+  "mapped_primitive_counts": {
+    "$lut": 45628,
+    "MUXF6": 8381,
+    "CARRY4_VPR": 1159,
+    "FDRE_ZINI": 5832,
+    "FDSE_ZINI": 30,
+    "FDPE_ZINI": 4,
+    "IBUF_VPR": 3,
+    "T_INV": 1,
+    "OBUFT_VPR": 1,
+    "CARRY_COUT_PLUG": 971,
+    "CE_VCC": 1331,
+    "SR_GND": 4767,
+    "PLLE2_ADV_VPR": 1,
+    "BUFGCTRL_VPR": 2,
+    "DPRAM32": 512,
+    "DRAM_8_OUTPUT_STUB": 64,
+    "RAMB18E1_VPR": 4,
+    "DPRAM64": 368,
+    "DRAM_4_OUTPUT_STUB": 64,
+    "RAMB36E1_PRIM": 93
+  },
+  "data_ram_ramb36": 64,
+  "last_completed_router_iteration": "  18  237.7    52.3   51 8.9e+08     653    2243     572 ( 0.011%) 2608409 (23.4%)   70.855     -4279.    -20.855      0.000      0.000       43",
+  "frontend_simulation_passed": true,
+  "reason": "Bounded full-set stress evaluation stopped: routing remained congested and estimated critical path exceeded 50 ns"
+}

@@ -1,0 +1,68 @@
+[F4PGA] Running (deprecated) write bitstream
+Writing bitstream ...
+Traceback (most recent call last):
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/bin/xcfasm", line 8, in <module>
+    sys.exit(main())
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/xc_fasm/xc_fasm.py", line 71, in main
+    emit_pudc_b_pullup=args.emit_pudc_b_pullup)
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/xc_fasm/fasm2frames.py", line 194, in fasm2frames
+    assembler.parse_fasm_filename(filename_in, extra_features=extra_features)
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/prjxray/fasm_assembler.py", line 184, in parse_fasm_filename
+    self.add_fasm_line(line, missing_features)
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/prjxray/fasm_assembler.py", line 177, in add_fasm_line
+    self.enable_feature(tile, feature, address, line_str)
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/prjxray/fasm_assembler.py", line 139, in enable_feature
+    update_segbit(bit)
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/prjxray/fasm_assembler.py", line 123, in update_segbit
+    self.frame_set(frame_addr, word_addr, bit_index, line)
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/prjxray/fasm_assembler.py", line 87, in frame_set
+    self.frames_line[key],
+prjxray.fasm_assembler.FasmInconsistentBits: FASM line "CLBLM_R_X47Y138.SLICEM_X0.BLUT.DI1MUX.BI" wanted to set bit (6016, 77, 20) but was cleared by FASM line "CLBLM_R_X47Y138.SLICEM_X0.BLUT.DI1MUX.DI_CMC31"
+Traceback (most recent call last):
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/bin/symbiflow_write_bitstream", line 8, in <module>
+    sys.exit(write_bitstream())
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/f4pga/wrappers/sh/__init__.py", line 650, in write_bitstream
+    """
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/site-packages/f4pga/wrappers/sh/__init__.py", line 57, in p_run_bash_cmds
+    check_call(cmds, env=env, shell=True, executable="/bin/bash")
+  File "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda/lib/python3.7/subprocess.py", line 363, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '
+set -e
+echo "Writing bitstream ..."
+FRM2BIT=""
+if [ ! -z ${FRAMES2BIT} ]; then FRM2BIT="--frm2bit ${FRAMES2BIT}"; fi
+
+eval set -- $(
+  getopt     --options=d:f:b:p:     --longoptions=device:,fasm:,bit:,part:     --name $0 -- -d artix7 -f cva5_arty_top.fasm -p xc7a100tcsg324-1 -b cva5_arty_top.bit
+)
+
+DEVICE=""
+FASM=""
+BIT=""
+PART=xc7a35tcpg236-1
+while true; do
+  case "$1" in
+    -d|--device) DEVICE=$2; shift 2; ;;
+    -p|--part)   PART=$2;   shift 2; ;;
+    -f|--fasm)   FASM=$2;   shift 2; ;;
+    -b|--bit)    BIT=$2;    shift 2; ;;
+    --) break ;;
+  esac
+done
+DATABASE_DIR=${DATABASE_DIR:-$(prjxray-config)}
+if [ -z $DEVICE ]; then
+  # Try to find device name. Accept only when exactly one is found
+  PART_DIRS=(${DATABASE_DIR}/*/${PART})
+  if [ ${#PART_DIRS[@]} -eq 1 ]; then
+    DEVICE=$(basename $(dirname "${PART_DIRS[0]}"))
+  else
+    echo "Please provide device name"
+    exit 1
+  fi
+fi
+DBROOT=`realpath ${DATABASE_DIR}/${DEVICE}`
+if [ -z $FASM ]; then echo "Please provide fasm file name"; exit 1; fi
+if [ -z $BIT ]; then echo "Please provide bit file name"; exit 1; fi
+xcfasm   --db-root ${DBROOT}   --part ${PART}   --part_file ${DBROOT}/${PART}/part.yaml   --sparse   --emit_pudc_b_pullup   --fn_in ${FASM}   --bit_out ${BIT} ${FRM2BIT}
+' returned non-zero exit status 1.

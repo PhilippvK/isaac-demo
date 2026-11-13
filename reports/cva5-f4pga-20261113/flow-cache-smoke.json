@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "entrypoint": "scripts/flow_syn.sh",
+  "mode": "reuse real completed CVA5 baseline, collect metrics, preserve checksummed artifacts",
+  "core": "CVA5",
+  "luts_total": 13553,
+  "preserved_artifacts": 126
+}

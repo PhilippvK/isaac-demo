@@ -7,9 +7,29 @@
     "sha256": "3a5fcdb0a4f96a30618dbb3d899a0612749d09885f8d384e29bc3df20918cd42",
     "bytes": 33922
   },
+  "baseline.flow.metrics.csv": {
+    "sha256": "1832e99ba239719ba67e06787ad68ecf3d7da42a11b38cc98b6560bee050788a",
+    "bytes": 506
+  },
   "baseline.metrics.json": {
     "sha256": "5733d4f14723aaf5d1aaf11882d2f5946b939c98c1a578c0c235cb5145643723",
     "bytes": 872
+  },
+  "crc32.partial.archive-verification.json": {
+    "sha256": "00e6611716fdf619f3c5765cc67f51406fc7925e993558b0cc919d6b6ce9e0a1",
+    "bytes": 135
+  },
+  "crc32.partial.json": {
+    "sha256": "8e1dc1b23b4a81008f180ed8e688e134e87b37ebe6c6aba75c59feb197c38544",
+    "bytes": 1006
+  },
+  "crc32.partial.sha256.json": {
+    "sha256": "0e11cd79caacad4e7a749cda8d3ad8063b1b6dc40f064f8a1edf1a861a518095",
+    "bytes": 1899
+  },
+  "diagnostics/ascending-array-export.tar.gz": {
+    "sha256": "67ddf4e2757f523345379f6b98114a8e5b4bb76fbf3bbdb216cc741c51ef4f83",
+    "bytes": 2893
   },
   "diagnostics/cascade-baseline.tar.gz": {
     "sha256": "69a7fc695e29698cb05996f6a524498b1b31d7f5cb32f96e74a0d7e7da5eb96b",
@@ -19,6 +39,14 @@
     "sha256": "f2b1741a87bed1ce12782ddb8d8b02f303b147af552760fae0a4d64987aa079c",
     "bytes": 4627785
   },
+  "diagnostics/lutram-mux-conflict.log": {
+    "sha256": "1ce5df6f44b1769f094e18e2f1f374493fa2434c67183573359c87a964e66509",
+    "bytes": 3926
+  },
+  "driver-load5-used.py": {
+    "sha256": "c7cf315e0af560cb7101e60d4672918009574ff198ed71290d29d57c5385a00c",
+    "bytes": 29862
+  },
   "driver-used.py": {
     "sha256": "c21778591fa26148ccf87d73c6dfc765188f7ba6d912acf57a5866456e98182f",
     "bytes": 29571
@@ -26,6 +54,14 @@
   "evidence/baseline.tar.gz": {
     "sha256": "f7d3000e3a81f95012c8711cf840a3258aa985da5d605d2254e24938dd770711",
     "bytes": 30203735
+  },
+  "evidence/crc32-partial.tar.gz": {
+    "sha256": "b71023d715c76d6ffdbe057fcf3bd75e119cb5f2a40fabdfcabba23b61b31216",
+    "bytes": 18272796
+  },
+  "evidence/load5.tar.gz": {
+    "sha256": "9bc255bbb85772cb550371e3394a50f09caada54769e5b3ed3877ecbffc6f0d0",
+    "bytes": 32486114
   },
   "firmware/baseline.bin": {
     "sha256": "8329b7b5b4c85d04328942f03163417eaa5792a0d8b200eb033c52ebeaae4317",
@@ -35,21 +71,61 @@
     "sha256": "4296a49e241b1712cf71b7da63a474327bfa55bb9db722f0b8cf41d80295d258",
     "bytes": 2037
   },
+  "firmware/load5.bin": {
+    "sha256": "97e13fdf1b6917d03f2940c4df00088662180b16b6708ad66d2c9157b3b46b91",
+    "bytes": 2041
+  },
+  "firmware/load5.build.json": {
+    "sha256": "c9bf6d26ae7ccbaa25749e5a213c2dfe99eb94721f508c07076e75ac6c0ccc13",
+    "bytes": 2141
+  },
+  "firmware/load5.memory.h": {
+    "sha256": "e60ceb981c549462490763a6fb90b49f2ce2347d4cf474312588dc0cc1603747",
+    "bytes": 869
+  },
+  "flow-cache-smoke.json": {
+    "sha256": "72ec20a19dd1dc3c0370c3361f4c41fd4f4b0a73d798a37e211f250090feba8f",
+    "bytes": 228
+  },
+  "flow-cache-smoke.log": {
+    "sha256": "41ced3eed9f692368e10869463c0e46abfbd1410e26c6a829bff71d7c4cda64d",
+    "bytes": 86
+  },
+  "load5.archive-verification.json": {
+    "sha256": "9e994d246fe7d9fb83cb8d37116e79a99dfacf41b5f7ce6dedf7ce38d25af52d",
+    "bytes": 132
+  },
+  "load5.execution.json": {
+    "sha256": "57e212d79d67f52c2204dcef803724d83b8add26e8a0a92391c10fbcd146f5c6",
+    "bytes": 45816
+  },
+  "load5.fasm-architecture.json": {
+    "sha256": "27ca829c1be4bc5135344a92870df5b6c2b684e2221b4cc1b0e78a7292f9e9cf",
+    "bytes": 2215
+  },
+  "load5.metrics.json": {
+    "sha256": "46d0564fb501049f52eb5c8e95c4fe00b6eb3512bb8be077fcc6ed04dd78a7b6",
+    "bytes": 872
+  },
+  "metrics.csv": {
+    "sha256": "bb1ce912487e8b8e660183bb6e1ecee357634ba894c765a0d729d3807ad9af7b",
+    "bytes": 1156
+  },
   "report.md": {
-    "sha256": "57f0c727c82515215e6e47faf185f1b577aa2497e2011239cb87c01f98b31e9b",
-    "bytes": 5846
+    "sha256": "0ec025f4c6e604b5d87be3a444f92549edf83be19e67d6ce4b4c2f730b2274d4",
+    "bytes": 8251
   },
   "reproduce.sh": {
-    "sha256": "1cdd602bebc3b3d5efbd6cc5b1355017de9fd6a31c7bc2e318213014db1cd915",
-    "bytes": 697
+    "sha256": "fedfff01ed97eb0d4531fbb84e1c50c1868faf6de1b96aa8d9d46f749deff137",
+    "bytes": 715
   },
   "rtl-inputs-sha256.json": {
-    "sha256": "6d3f5378efd68ca13e08ffd7c90ba0e314c201068c680895f0bf8c3207b67e2b",
-    "bytes": 17847
+    "sha256": "417fd4f437f44276b0092421c9ae443556e6247e6a2734ce509c61cb76d3180a",
+    "bytes": 26699
   },
   "rtl-inputs.tar.gz": {
-    "sha256": "fcaa76558c437d34253878b1cfc3fe564a237057d5ec8ffd8c8ec6edebfe92ee",
-    "bytes": 263421
+    "sha256": "8d00aea53c282e2bd5588391f50f9e8b45525a444e461d9a0c1ae743f97751d9",
+    "bytes": 365571
   },
   "runtime-env.sh": {
     "sha256": "04d5848e26ec0ca189d68ae1a6646cc30576b451dcd96b4e3ba33ae7cf9e505c",
@@ -79,20 +155,36 @@
     "sha256": "643ca0736468a6a41a0f2f47454f81b6f89c1711cfd8204b7c2be8f2fe3025cc",
     "bytes": 599
   },
+  "simulation/load5-boot-build.log": {
+    "sha256": "fdd8a637b6a65c5737922a1dfd20e59434f69fad7913cb1d5c25bff5eb2b4141",
+    "bytes": 13764
+  },
+  "simulation/load5-boot-generation.log": {
+    "sha256": "173700f00420f307afd1ddcc08c3e2d2b356dcef4fca6e5e5cf3388e90dc9a05",
+    "bytes": 45483
+  },
+  "simulation/load5-boot-uart.log": {
+    "sha256": "b984874980404f3e750a763fb3843d7006bdef54be4374f0624975368a1cbba5",
+    "bytes": 602
+  },
   "simulation/results.json": {
-    "sha256": "365d95021b84b309ef61e410d9fc37494dee457e0916319497bee94de5f055e4",
-    "bytes": 1862
+    "sha256": "affe1cdef1a45d0afd848f306d25164032abe62f95c2751691d5680f458c1423",
+    "bytes": 3173
   },
   "tests.log": {
-    "sha256": "adefb23e8312341083417aa5c911b9b7e03b518e174286052dbe63c96a847972",
+    "sha256": "05a508a235ef854e5e561aedc0400cf1e5c09dd9a95e54813c3015c8d33b069c",
     "bytes": 99
   },
   "toolchain.json": {
-    "sha256": "9a4e6e0f4ec8cbabb94e25ad335275811dca58e03aa13333722968c1ff5c8144",
-    "bytes": 938
+    "sha256": "a52b4ba2e007e9a1be15a33747f30a66c73271c4cff10e2b2fd0a110c099673b",
+    "bytes": 3631
   },
   "verify-evidence.py": {
     "sha256": "76c46e602e84a72ade9f648f0c0fc0f5a7474dd9421296e8798f5636b5bc8a91",
     "bytes": 1836
+  },
+  "write-fasm-first-fix.py": {
+    "sha256": "03eab56cba7f6e4d4ee1d9f9e8d47e1195b1d72bac09251e78a92044a387d1c3",
+    "bytes": 2902
   }
 }

@@ -1,0 +1,491 @@
+%Warning-WIDTHEXPAND: frontend-netlist.v:188119:309: Operator ADD expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.044
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188126:579: Operator ADD expects 32 bits on the LHS, but LHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188167:733: Operator ADD expects 32 bits on the LHS, but LHS's REPLICATE generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188172:579: Operator ADD expects 32 bits on the LHS, but LHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188173:576: Operator ADD expects 32 bits on the LHS, but LHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188178:541: Operator ADD expects 32 bits on the LHS, but LHS's REPLICATE generates 5 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188234:392: Operator AND expects 32 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper.cva5.fetch_block.attributes_fifo.gen_width_two.inflight_count[1]' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188234:392: Operator AND expects 32 bits on the RHS, but RHS's VARREF 'cpu.cva5.cva5_wrapper.cva5.fetch_block.fetch_attr[2]' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188490:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 2 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:188491:310: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 5 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:188505:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+188505 |   assign _04989_ = ! { \cpu.cva5.cva5_wrapper.cva5.gen_csrs.csr_unit_block.privilege_level[1] , \cpu.cva5.cva5_wrapper.cva5.gen_csrs.csr_unit_block.privilege_level[0]  };
+       |                    ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.044
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: frontend-netlist.v:188508:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 3 bits.
+188508 |   assign _05063_ = ! { \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.gen_decode_exceptions.illegal_op_check.instruction[14] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.gen_decode_exceptions.illegal_op_check.instruction[13] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.gen_decode_exceptions.illegal_op_check.instruction[12]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:188513:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 5 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:188530:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 12 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:188536:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 5 bits.
+188536 |   assign _05089_ = ! { \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue[27] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue[26] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue[25] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue[24] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue[23]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:188538:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 5 bits.
+188538 |   assign _05091_ = ! { \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[14] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[13] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[12] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[11] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[10]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:188555:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+188555 |   assign _05104_ = ! { \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.lsq_block.sq_block.sq_index[1] , \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.lsq_block.sq_block.sq_index[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:188565:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+188565 |   assign _05112_ = ! { \cpu.cva5.cva5_wrapper.cva5.dmmu.privilege[1] , \cpu.cva5.cva5_wrapper.cva5.dmmu.privilege[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:188566:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 8 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:188623:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 4 bits.
+188623 |   assign _05169_ = ! { \cpu.cva5.cva5_wrapper.cva5.id_block.gen_vanilla.id_block_vanilla.post_issue_count[3] , \cpu.cva5.cva5_wrapper.cva5.id_block.gen_vanilla.id_block_vanilla.post_issue_count[2] , \cpu.cva5.cva5_wrapper.cva5.id_block.gen_vanilla.id_block_vanilla.post_issue_count[1] , \cpu.cva5.cva5_wrapper.cva5.id_block.gen_vanilla.id_block_vanilla.post_issue_count[0]  };
+       |                    ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:188668:49: Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's LOGAND generates 1 bits.
+188668 |   assign { _05206_, _05205_, _05204_, _04589_ } = \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.ls_inputs[15]  && _05260_;
+       |                                                 ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:188786:63: Logical operator LOGOR expects 1 bit on the RHS, but RHS's SIGNED generates 32 bits.
+188786 |   assign \cpu.cva5.cva5_wrapper.scaiev.issue_stall  = _05299_ || $signed(32'd0);
+       |                                                               ^~
+%Warning-WIDTHTRUNC: frontend-netlist.v:188787:111: Logical operator LOGOR expects 1 bit on the RHS, but RHS's SIGNED generates 32 bits.
+188787 |   assign \cpu.cva5.cva5_wrapper.scaiev.execute_stall  = \cpu.cva5.cva5_wrapper.scaiev_glue.execute_stall_mem  || $signed(32'd0);
+       |                                                                                                               ^~
+%Warning-WIDTHTRUNC: frontend-netlist.v:188797:79: Logical operator LOGOR expects 1 bit on the RHS, but RHS's SIGNED generates 32 bits.
+188797 |   assign \cpu.cva5.cva5_wrapper.scaiev_glue.issue_stall_before_mem  = _05248_ || $signed(32'd0);
+       |                                                                               ^~
+%Warning-WIDTHTRUNC: frontend-netlist.v:188799:28: Logical operator LOGOR expects 1 bit on the RHS, but RHS's SIGNED generates 32 bits.
+188799 |   assign _05310_ = _05309_ || $signed(32'd0);
+       |                            ^~
+%Warning-WIDTHTRUNC: frontend-netlist.v:188800:84: Logical operator LOGOR expects 1 bit on the RHS, but RHS's SIGNED generates 32 bits.
+188800 |   assign _05311_ = \cpu.cva5.cva5_wrapper.scaiev_glue.mem_current_request_waiting  || $signed(32'd0);
+       |                                                                                    ^~
+%Warning-WIDTHTRUNC: frontend-netlist.v:188803:74: Logical operator LOGOR expects 1 bit on the RHS, but RHS's SIGNED generates 32 bits.
+188803 |   assign \cpu.cva5.cva5_wrapper.scaiev_glue.execute_stall_mem  = _05313_ || $signed(32'd0);
+       |                                                                          ^~
+%Warning-WIDTHTRUNC: frontend-netlist.v:188808:292: Operator ASSIGNW expects 31 bits on the Assign RHS, but Assign RHS's MUL generates 32 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:188809:292: Operator ASSIGNW expects 31 bits on the Assign RHS, but Assign RHS's MUL generates 32 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:188810:292: Operator ASSIGNW expects 31 bits on the Assign RHS, but Assign RHS's MUL generates 32 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:189219:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 4 bits.
+189219 |   assign _06457_ = ! { _03691_, _03688_, _03677_, _03666_ };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189281:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 5 bits.
+189281 |   assign _06490_ = ! { \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[9] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[8] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[7] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[6] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.issue_rs_addr[5]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189303:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189303 |   assign _06494_ = ! { \cpu.cva5.cva5_wrapper.cva5.renamer_block.spec_table_sel[1] , \cpu.cva5.cva5_wrapper.cva5.renamer_block.spec_table_sel[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189358:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189358 |   assign _06498_ = ! { \cpu.cva5.cva5_wrapper.cva5.fetch_block.pc_sel[1] , \cpu.cva5.cva5_wrapper.cva5.fetch_block.pc_sel[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189396:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189396 |   assign _06633_ = ! { _06140_, \cpu.cva5.cva5_wrapper.cva5.gen_div.div_unit_block.divider_block.sub_1x_overflow  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189441:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 32 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:189571:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189571 |   assign _06714_ = ! { \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.wb_attr[7] , \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.wb_attr[6]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189597:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 3 bits.
+189597 |   assign _06718_ = ! { \cpu.cva5.cva5_wrapper.sv2v_cast_3$func$converted.v:6131$15416.$result[2] , \cpu.cva5.cva5_wrapper.sv2v_cast_3$func$converted.v:6131$15416.$result[1] , \cpu.cva5.cva5_wrapper.sv2v_cast_3$func$converted.v:6131$15416.$result[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189635:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189635 |   assign _06725_ = ! { \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.lsq_block.sq_block.sq_oldest[1] , \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.lsq_block.sq_block.sq_oldest[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189668:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189668 |   assign _06735_ = ! { \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.ls_inputs[21] , \cpu.cva5.cva5_wrapper.cva5.load_store_unit_block.ls_inputs[20]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189705:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189705 |   assign _06742_ = ! { \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.alu_op_r[1] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.alu_op_r[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189708:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189708 |   assign _06743_ = ! { \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.alu_logic_op_r[1] , \cpu.cva5.cva5_wrapper.cva5.decode_and_issue_block.alu_logic_op_r[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:189900:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+189900 |   assign _06835_ = ! { \cpu.cva5.cva5_wrapper.cva5.bp_block.branch_metadata_ex[4] , \cpu.cva5.cva5_wrapper.cva5.bp_block.branch_metadata_ex[3]  };
+       |                    ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:189980:600: Operator SHIFTL expects 4 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper.l2_arb.input_fifos[0].push' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189980:949: Operator SHIFTR expects 4 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper.l2_arb.input_fifos[0].push' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189981:398: Operator SHIFTL expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189981:701: Operator SHIFTR expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189982:398: Operator SHIFTL expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189982:701: Operator SHIFTR expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189983:398: Operator SHIFTL expects 8 bits on the LHS, but LHS's CONST '1'h0' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189983:701: Operator SHIFTR expects 8 bits on the LHS, but LHS's CONST '1'h0' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189984:614: Operator SHIFTL expects 32 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189984:917: Operator SHIFTR expects 32 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189985:362: Operator SHIFTL expects 4 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189985:665: Operator SHIFTR expects 4 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189986:614: Operator SHIFTL expects 32 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189986:917: Operator SHIFTR expects 32 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189987:479: Operator SHIFTL expects 16 bits on the LHS, but LHS's CONST '4'hf' generates 4 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189987:791: Operator SHIFTR expects 16 bits on the LHS, but LHS's CONST '4'hf' generates 4 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189988:777: Operator SHIFTL expects 16 bits on the LHS, but LHS's REPLICATE generates 4 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189988:1387: Operator SHIFTR expects 16 bits on the LHS, but LHS's REPLICATE generates 4 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189989:443: Operator SHIFTL expects 12 bits on the LHS, but LHS's CONST '3'h7' generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189989:755: Operator SHIFTR expects 12 bits on the LHS, but LHS's CONST '3'h7' generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189990:792: Operator SHIFTL expects 12 bits on the LHS, but LHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189990:1453: Operator SHIFTR expects 12 bits on the LHS, but LHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189991:588: Operator SHIFTL expects 28 bits on the LHS, but LHS's CONST '7'h7f' generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189991:901: Operator SHIFTR expects 28 bits on the LHS, but LHS's CONST '7'h7f' generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189992:1045: Operator SHIFTL expects 28 bits on the LHS, but LHS's REPLICATE generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189992:1815: Operator SHIFTR expects 28 bits on the LHS, but LHS's REPLICATE generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189993:362: Operator SHIFTL expects 4 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189993:665: Operator SHIFTR expects 4 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189994:365: Operator SHIFTL expects 4 bits on the LHS, but LHS's VARREF '_04589_' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189994:671: Operator SHIFTR expects 4 bits on the LHS, but LHS's VARREF '_04589_' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189995:496: Operator SHIFTL expects 2 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper.l2_arb.mem_returndata.gen_width_3_plus.inflight_count[4]' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:189995:875: Operator SHIFTR expects 2 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper.l2_arb.mem_returndata.gen_width_3_plus.inflight_count[4]' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190084:309: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'cpu.cva5.cva5_wrapper.cva5.id_block.gen_vanilla.id_block_vanilla.phys_id_sel' generates 1 bits.
+190084 |   assign { _07554_, _07553_, _07551_, _07550_, _07549_, _07548_, _07547_, _07546_, _07545_, _07544_, _07543_, _07542_, _07540_, _07539_, _07538_, _07537_, _07536_, _07535_, _07534_, _07533_, _07532_, _07531_, _07561_, _07560_, _07559_, _07558_, _07557_, _07556_, _07555_, _07552_, _07541_, _07530_ } = 32'd1 - \cpu.cva5.cva5_wrapper.cva5.id_block.gen_vanilla.id_block_vanilla.phys_id_sel ;
+       |                                                                                                                                                                                                                                                                                                                     ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:190087:420: Operator SUB expects 32 bits on the LHS, but LHS's REPLICATE generates 2 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190092:309: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'cpu.cva5.cva5_wrapper.cva5.register_file_block.rs_wb_group[2]' generates 1 bits.
+190092 |   assign { _07632_, _07631_, _07629_, _07628_, _07627_, _07626_, _07625_, _07624_, _07623_, _07622_, _07621_, _07620_, _07618_, _07617_, _07616_, _07615_, _07614_, _07613_, _07612_, _07611_, _07610_, _07609_, _07639_, _07638_, _07637_, _07636_, _07635_, _07634_, _07633_, _07630_, _07619_, _07608_ } = 32'd1 - \cpu.cva5.cva5_wrapper.cva5.register_file_block.rs_wb_group[2] ;
+       |                                                                                                                                                                                                                                                                                                                     ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:190093:309: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'cpu.cva5.cva5_wrapper.cva5.register_file_block.rs_wb_group[1]' generates 1 bits.
+190093 |   assign { _07664_, _07663_, _07661_, _07660_, _07659_, _07658_, _07657_, _07656_, _07655_, _07654_, _07653_, _07652_, _07650_, _07649_, _07648_, _07647_, _07646_, _07645_, _07644_, _07643_, _07642_, _07641_, _07671_, _07670_, _07669_, _07668_, _07667_, _07666_, _07665_, _07662_, _07651_, _07640_ } = 32'd1 - \cpu.cva5.cva5_wrapper.cva5.register_file_block.rs_wb_group[1] ;
+       |                                                                                                                                                                                                                                                                                                                     ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:190094:309: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'cpu.cva5.cva5_wrapper.cva5.register_file_block.rs_wb_group[0]' generates 1 bits.
+190094 |   assign { _07696_, _07695_, _07693_, _07692_, _07691_, _07690_, _07689_, _07688_, _07687_, _07686_, _07685_, _07684_, _07682_, _07681_, _07680_, _07679_, _07678_, _07677_, _07676_, _07675_, _07674_, _07673_, _07703_, _07702_, _07701_, _07700_, _07699_, _07698_, _07697_, _07694_, _07683_, _07672_ } = 32'd1 - \cpu.cva5.cva5_wrapper.cva5.register_file_block.rs_wb_group[0] ;
+       |                                                                                                                                                                                                                                                                                                                     ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:190104:1054: Operator SUB expects 32 bits on the LHS, but LHS's REPLICATE generates 4 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:190557:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+190557 |   assign _09544_ = ! { \cpu.cva5.cva5_wrapper.cva5.gen_div.div_unit_block.dividend_CLZ[4] , \cpu.cva5.cva5_wrapper.cva5.gen_div.div_unit_block.dividend_CLZ[3]  };
+       |                    ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:190643:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190644:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190645:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190646:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190647:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190648:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190649:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190650:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:190686:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+190686 |   assign _10077_ = ! { \cpu.cva5.cva5_wrapper.cva5.gen_div.div_unit_block.divisor_CLZ[4] , \cpu.cva5.cva5_wrapper.cva5.gen_div.div_unit_block.divisor_CLZ[3]  };
+       |                    ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:190772:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190773:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190774:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190775:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190776:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190777:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190778:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190779:309: Operator SUB expects 32 bits on the RHS, but RHS's REPLICATE generates 3 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190823:407: Operator SHIFTL expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190823:719: Operator SHIFTR expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190824:555: Operator SHIFTL expects 8 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshzFTHEMsAnw3T3rz9mkeJ1NVkBwziTwBb1sAJp8ig' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190824:1015: Operator SHIFTR expects 8 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshzFTHEMsAnw3T3rz9mkeJ1NVkBwziTwBb1sAJp8ig' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190842:407: Operator SHIFTL expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190842:719: Operator SHIFTR expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190843:555: Operator SHIFTL expects 8 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshaOq0wEbFTdaGXw32pcmMgpsbd5jNBIw8xkaLKWC6' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190843:1015: Operator SHIFTR expects 8 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshaOq0wEbFTdaGXw32pcmMgpsbd5jNBIw8xkaLKWC6' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190861:407: Operator SHIFTL expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190861:719: Operator SHIFTR expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190862:555: Operator SHIFTL expects 8 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshyGUvLwEMVtBxV93EPkskOeeiThI9Pola443PynAH' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190862:1015: Operator SHIFTR expects 8 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshyGUvLwEMVtBxV93EPkskOeeiThI9Pola443PynAH' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190941:911: Operator SHIFTL expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190941:1223: Operator SHIFTR expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190942:1025: Operator SHIFTL expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshTHAQZSvVMRYtFtsF7PAMfxvycCSXZuNgvKdA7M8A' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190942:1451: Operator SHIFTR expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshTHAQZSvVMRYtFtsF7PAMfxvycCSXZuNgvKdA7M8A' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190968:911: Operator SHIFTL expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190968:1223: Operator SHIFTR expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190969:1025: Operator SHIFTL expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshuzxjopAHStS2w9drAODvSWTJgiXA20hOvna3pOTY' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190969:1451: Operator SHIFTR expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshuzxjopAHStS2w9drAODvSWTJgiXA20hOvna3pOTY' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190995:911: Operator SHIFTL expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190995:1223: Operator SHIFTR expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190996:1025: Operator SHIFTL expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshKdEb3hHAmyYeyeapQm1LJ5lncmHnRycehk0QmTZA' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:190996:1451: Operator SHIFTR expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshKdEb3hHAmyYeyeapQm1LJ5lncmHnRycehk0QmTZA' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191022:911: Operator SHIFTL expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191022:1223: Operator SHIFTR expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191023:1025: Operator SHIFTL expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshvfgALGnoFX2O68bIfVNTYwJo6FAsoLpdtze0wIPU' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191023:1451: Operator SHIFTR expects 64 bits on the LHS, but LHS's VARREF 'cpu.cva5.cva5_wrapper____VhshvfgALGnoFX2O68bIfVNTYwJo6FAsoLpdtze0wIPU' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191064:2352: Operator SHIFTL expects 224 bits on the LHS, but LHS's CONST '7'h7f' generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191064:2665: Operator SHIFTR expects 224 bits on the LHS, but LHS's CONST '7'h7f' generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191065:2874: Operator SHIFTL expects 224 bits on the LHS, but LHS's REPLICATE generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191065:3709: Operator SHIFTR expects 224 bits on the LHS, but LHS's REPLICATE generates 7 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191074:324: Operator OR expects 32 bits on the LHS, but LHS's REPLICATE generates 2 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191075:430: Operator OR expects 32 bits on the LHS, but LHS's REPLICATE generates 2 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:191327:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 32 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:191329:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 4 bits.
+191329 |   assign _16370_ = ! { \uart.tx_bits[3] , \uart.tx_bits[2] , \uart.tx_bits[1] , \uart.tx_bits[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:191331:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 5 bits.
+191331 |   assign _16375_ = ! { \uart.tx_count[4] , \uart.tx_count[3] , \uart.tx_count[2] , \uart.tx_count[1] , \uart.tx_count[0]  };
+       |                    ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:191333:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 32 bits.
+%Warning-WIDTHTRUNC: frontend-netlist.v:191334:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 4 bits.
+191334 |   assign _16380_ = ! { \uart.rx_bits[3] , \uart.rx_bits[2] , \uart.rx_bits[1] , \uart.rx_bits[0]  };
+       |                    ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:191363:123: Operator LT expects 32 bits on the LHS, but LHS's REPLICATE generates 5 bits.
+191363 |   assign _16396_ = { \uart.tx_count[4] , \uart.tx_count[3] , \uart.tx_count[2] , \uart.tx_count[1] , \uart.tx_count[0]  } < 32'd16;
+       |                                                                                                                           ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:191364:123: Operator LT expects 32 bits on the LHS, but LHS's REPLICATE generates 5 bits.
+191364 |   assign _16397_ = { \uart.rx_count[4] , \uart.rx_count[3] , \uart.rx_count[2] , \uart.rx_count[1] , \uart.rx_count[0]  } < 32'd16;
+       |                                                                                                                           ^
+%Warning-WIDTHTRUNC: frontend-netlist.v:191468:20: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's REPLICATE generates 2 bits.
+191468 |   assign _16372_ = ! { \cpu.cva5.cva5_wrapper.m_axi.araddr[3] , \cpu.cva5.cva5_wrapper.m_axi.araddr[2]  };
+       |                    ^
+%Warning-WIDTHEXPAND: frontend-netlist.v:191470:407: Operator SHIFTL expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191470:719: Operator SHIFTR expects 8 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191471:420: Operator SHIFTL expects 8 bits on the LHS, but LHS's VARREF 'uart.rx_sync[1]' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191471:745: Operator SHIFTR expects 8 bits on the LHS, but LHS's VARREF 'uart.rx_sync[1]' generates 1 bits.
+%Warning-WIDTHEXPAND: frontend-netlist.v:191476:382: Operator SUB expects 32 bits on the LHS, but LHS's REPLICATE generates 4 bits.
+191476 |   assign { _16828_, _16827_, _16825_, _16824_, _16823_, _16822_, _16821_, _16820_, _16819_, _16818_, _16817_, _16816_, _16814_, _16813_, _16812_, _16811_, _16810_, _16809_, _16808_, _16807_, _16806_, _16805_, _16836_, _16835_, _16834_, _16833_, _16832_, _16831_, _16830_, _16826_, _16815_, _16804_ } = { \uart.rx_bits[3] , \uart.rx_bits[2] , \uart.rx_bits[1] , \uart.rx_bits[0]  } - 32'd1;
+       |                                                                                                                                                                                                                                                                                                                                                                                              ^
+%Warning-CASEOVERLAP: frontend-netlist.v:189161:7: Case conditions overlap (example pattern 0x3)
+189161 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189159:7: ... Location of overlapping condition
+189159 |       2'b?1:
+       |       ^~~~~
+                      ... For warning description see https://verilator.org/warn/CASEOVERLAP?v=5.044
+                      ... Use "/* verilator lint_off CASEOVERLAP */" and lint_on around source to disable this message.
+%Warning-CASEOVERLAP: frontend-netlist.v:189176:7: Case conditions overlap (example pattern 0x3)
+189176 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189174:7: ... Location of overlapping condition
+189174 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189191:7: Case conditions overlap (example pattern 0x3)
+189191 |       7'b?????1?:
+       |       ^~~~~~~~~~
+                      frontend-netlist.v:189189:7: ... Location of overlapping condition
+189189 |       7'b??????1:
+       |       ^~~~~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189227:7: Case conditions overlap (example pattern 0x3)
+189227 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189225:7: ... Location of overlapping condition
+189225 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189242:7: Case conditions overlap (example pattern 0x3)
+189242 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189240:7: ... Location of overlapping condition
+189240 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189289:7: Case conditions overlap (example pattern 0x3)
+189289 |       4'b??1?:
+       |       ^~~~~~~
+                      frontend-netlist.v:189287:7: ... Location of overlapping condition
+189287 |       4'b???1:
+       |       ^~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189311:7: Case conditions overlap (example pattern 0x3)
+189311 |       4'b??1?:
+       |       ^~~~~~~
+                      frontend-netlist.v:189309:7: ... Location of overlapping condition
+189309 |       4'b???1:
+       |       ^~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189330:7: Case conditions overlap (example pattern 0x3)
+189330 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189328:7: ... Location of overlapping condition
+189328 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189344:7: Case conditions overlap (example pattern 0x3)
+189344 |       4'b??1?:
+       |       ^~~~~~~
+                      frontend-netlist.v:189342:7: ... Location of overlapping condition
+189342 |       4'b???1:
+       |       ^~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189388:7: Case conditions overlap (example pattern 0x3)
+189388 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189386:7: ... Location of overlapping condition
+189386 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189420:7: Case conditions overlap (example pattern 0x3)
+189420 |       8'b??????1?:
+       |       ^~~~~~~~~~~
+                      frontend-netlist.v:189418:7: ... Location of overlapping condition
+189418 |       8'b???????1:
+       |       ^~~~~~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189529:7: Case conditions overlap (example pattern 0x3)
+189529 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189527:7: ... Location of overlapping condition
+189527 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189563:7: Case conditions overlap (example pattern 0x3)
+189563 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189561:7: ... Location of overlapping condition
+189561 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189586:7: Case conditions overlap (example pattern 0x3)
+189586 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189584:7: ... Location of overlapping condition
+189584 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189606:7: Case conditions overlap (example pattern 0x3)
+189606 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189604:7: ... Location of overlapping condition
+189604 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189621:7: Case conditions overlap (example pattern 0x3)
+189621 |       4'b??1?:
+       |       ^~~~~~~
+                      frontend-netlist.v:189619:7: ... Location of overlapping condition
+189619 |       4'b???1:
+       |       ^~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189660:7: Case conditions overlap (example pattern 0x3)
+189660 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189658:7: ... Location of overlapping condition
+189658 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189676:7: Case conditions overlap (example pattern 0x3)
+189676 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189674:7: ... Location of overlapping condition
+189674 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189694:7: Case conditions overlap (example pattern 0x3)
+189694 |       3'b?1?:
+       |       ^~~~~~
+                      frontend-netlist.v:189692:7: ... Location of overlapping condition
+189692 |       3'b??1:
+       |       ^~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189718:7: Case conditions overlap (example pattern 0x3)
+189718 |       3'b?1?:
+       |       ^~~~~~
+                      frontend-netlist.v:189716:7: ... Location of overlapping condition
+189716 |       3'b??1:
+       |       ^~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189734:7: Case conditions overlap (example pattern 0x3)
+189734 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189732:7: ... Location of overlapping condition
+189732 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189749:7: Case conditions overlap (example pattern 0x3)
+189749 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189747:7: ... Location of overlapping condition
+189747 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189764:7: Case conditions overlap (example pattern 0x3)
+189764 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189762:7: ... Location of overlapping condition
+189762 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189779:7: Case conditions overlap (example pattern 0x3)
+189779 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189777:7: ... Location of overlapping condition
+189777 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189794:7: Case conditions overlap (example pattern 0x3)
+189794 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189792:7: ... Location of overlapping condition
+189792 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189817:7: Case conditions overlap (example pattern 0x3)
+189817 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:189815:7: ... Location of overlapping condition
+189815 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189838:7: Case conditions overlap (example pattern 0x3)
+189838 |       3'b?1?:
+       |       ^~~~~~
+                      frontend-netlist.v:189836:7: ... Location of overlapping condition
+189836 |       3'b??1:
+       |       ^~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:189886:7: Case conditions overlap (example pattern 0x3)
+189886 |       4'b??1?:
+       |       ^~~~~~~
+                      frontend-netlist.v:189884:7: ... Location of overlapping condition
+189884 |       4'b???1:
+       |       ^~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190543:7: Case conditions overlap (example pattern 0x3)
+190543 |       4'b??1?:
+       |       ^~~~~~~
+                      frontend-netlist.v:190541:7: ... Location of overlapping condition
+190541 |       4'b???1:
+       |       ^~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190565:7: Case conditions overlap (example pattern 0x3)
+190565 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190563:7: ... Location of overlapping condition
+190563 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190579:7: Case conditions overlap (example pattern 0x3)
+190579 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190577:7: ... Location of overlapping condition
+190577 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190593:7: Case conditions overlap (example pattern 0x3)
+190593 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190591:7: ... Location of overlapping condition
+190591 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190607:7: Case conditions overlap (example pattern 0x3)
+190607 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190605:7: ... Location of overlapping condition
+190605 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190672:7: Case conditions overlap (example pattern 0x3)
+190672 |       4'b??1?:
+       |       ^~~~~~~
+                      frontend-netlist.v:190670:7: ... Location of overlapping condition
+190670 |       4'b???1:
+       |       ^~~~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190694:7: Case conditions overlap (example pattern 0x3)
+190694 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190692:7: ... Location of overlapping condition
+190692 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190708:7: Case conditions overlap (example pattern 0x3)
+190708 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190706:7: ... Location of overlapping condition
+190706 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190722:7: Case conditions overlap (example pattern 0x3)
+190722 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190720:7: ... Location of overlapping condition
+190720 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:190736:7: Case conditions overlap (example pattern 0x3)
+190736 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:190734:7: ... Location of overlapping condition
+190734 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:191138:7: Case conditions overlap (example pattern 0x3)
+191138 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:191136:7: ... Location of overlapping condition
+191136 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:191200:7: Case conditions overlap (example pattern 0x3)
+191200 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:191198:7: ... Location of overlapping condition
+191198 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:191427:7: Case conditions overlap (example pattern 0x3)
+191427 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:191425:7: ... Location of overlapping condition
+191425 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:191443:7: Case conditions overlap (example pattern 0x3)
+191443 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:191441:7: ... Location of overlapping condition
+191441 |       2'b?1:
+       |       ^~~~~
+%Warning-CASEOVERLAP: frontend-netlist.v:191460:7: Case conditions overlap (example pattern 0x3)
+191460 |       2'b1?:
+       |       ^~~~~
+                      frontend-netlist.v:191458:7: ... Location of overlapping condition
+191458 |       2'b?1:
+       |       ^~~~~
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.040
+- Verilator: Built from 31.312 MB sources in 5 modules, into 7.969 MB in 14 C++ files needing 0.012 MB
+- Verilator: Walltime 19.509 s (elab=2.296, cvt=15.426, bld=0.000); cpu 19.508 s on 1 threads; alloced 1115.594 MB

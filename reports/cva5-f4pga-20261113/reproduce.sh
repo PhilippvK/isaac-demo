@@ -8,7 +8,7 @@ SV2V=${FPGA_SYN_F4PGA_SV2V:-sv2v}
 PYTHON_COMMAND=${FPGA_SYN_PYTHON:-python3}
 mkdir -p "$DEST/input"
 tar -xzf "$HERE/rtl-inputs.tar.gz" -C "$DEST/input"
-for variant in baseline crc32; do
+for variant in ${CVA5_VARIANTS:-baseline load5}; do
     "$PYTHON_COMMAND" "$ROOT/scripts/fpga_syn/f4pga/run.py" \
         "$DEST/$variant" "$DEST/input/$variant/CVA5" --core CVA5 \
         --env-script "$RUNTIME_ENV" --sv2v "$SV2V" \

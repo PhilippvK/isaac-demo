@@ -1,0 +1,6 @@
+{
+  "archive": "crc32-partial.tar.gz",
+  "scope": "incomplete implementation",
+  "checked_artifacts": 21,
+  "passed_integrity": true
+}

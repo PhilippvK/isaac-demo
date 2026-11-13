@@ -1,0 +1,2 @@
+variant,luts_total,ffs_total,brams_total,brams_18k_equivalent,dsps_total,setup_slack_ns,setup_met,hold_slack_ns,hold_met,resource_stage,timing_scope,luts_isax,luts_scaiev,ffs_isax,ffs_scaiev,brams_isax,brams_scaiev,dsps_isax,dsps_scaiev,tool,core,part,clock_period_ns
+baseline,13553,2732,97,190,0,0.0,True,0.0,True,F4PGA mapped LUT atoms before packing (not Vivado physical LUT sites),VPR constrained paths; native propagated clocks; asynchronous I/O unconstrained,,,,,,,,,f4pga,CVA5,xc7a100tcsg324-1,50.0
