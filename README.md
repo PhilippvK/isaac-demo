@@ -513,8 +513,10 @@ explains native/Docker setup, PDK requirements, metrics and preserved evidence.
 ### Open-source FPGA implementation
 
 `FPGA_SYN_TOOL=f4pga` (alias `symbiflow`) selects the independent Yosys/VPR/
-Project X-Ray backend in `syn_0`. The `vex_5s_arty_a7_100t_f4pga` preset targets
-VEX_5S on Arty A7-100T with open inferred RAM, separate work/evidence paths,
-validated baseline reuse and native resource/timing reports. See the
+Project X-Ray backend in `syn_0`. The `vex_5s_arty_a7_100t_f4pga` and
+`cva5_reuseio_arty_a7_100t_f4pga` presets target VEX_5S and CVA5 on
+Arty A7-100T with open RAM, separate work/evidence paths, validated baseline
+reuse and native resource/timing reports. CVA5 uses sv2v, banked local memory
+and an open AXI UART; it requires an embedded firmware image. See the
 [F4PGA guide](scripts/fpga_syn/f4pga/README.md) for runtime installation,
 firmware embedding, openFPGALoader execution and current support limits.

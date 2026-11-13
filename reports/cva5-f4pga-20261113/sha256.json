@@ -1,0 +1,98 @@
+{
+  "baseline.archive-verification.json": {
+    "sha256": "a6d33d42b5a7eea8f9413bea56a53d5ec56794d281eefa677c0150255e58baaa",
+    "bytes": 135
+  },
+  "baseline.execution.json": {
+    "sha256": "3a5fcdb0a4f96a30618dbb3d899a0612749d09885f8d384e29bc3df20918cd42",
+    "bytes": 33922
+  },
+  "baseline.metrics.json": {
+    "sha256": "5733d4f14723aaf5d1aaf11882d2f5946b939c98c1a578c0c235cb5145643723",
+    "bytes": 872
+  },
+  "diagnostics/cascade-baseline.tar.gz": {
+    "sha256": "69a7fc695e29698cb05996f6a524498b1b31d7f5cb32f96e74a0d7e7da5eb96b",
+    "bytes": 3044477
+  },
+  "diagnostics/cascade-crc32.tar.gz": {
+    "sha256": "f2b1741a87bed1ce12782ddb8d8b02f303b147af552760fae0a4d64987aa079c",
+    "bytes": 4627785
+  },
+  "driver-used.py": {
+    "sha256": "c21778591fa26148ccf87d73c6dfc765188f7ba6d912acf57a5866456e98182f",
+    "bytes": 29571
+  },
+  "evidence/baseline.tar.gz": {
+    "sha256": "f7d3000e3a81f95012c8711cf840a3258aa985da5d605d2254e24938dd770711",
+    "bytes": 30203735
+  },
+  "firmware/baseline.bin": {
+    "sha256": "8329b7b5b4c85d04328942f03163417eaa5792a0d8b200eb033c52ebeaae4317",
+    "bytes": 1081
+  },
+  "firmware/crc32.bin": {
+    "sha256": "4296a49e241b1712cf71b7da63a474327bfa55bb9db722f0b8cf41d80295d258",
+    "bytes": 2037
+  },
+  "report.md": {
+    "sha256": "57f0c727c82515215e6e47faf185f1b577aa2497e2011239cb87c01f98b31e9b",
+    "bytes": 5846
+  },
+  "reproduce.sh": {
+    "sha256": "1cdd602bebc3b3d5efbd6cc5b1355017de9fd6a31c7bc2e318213014db1cd915",
+    "bytes": 697
+  },
+  "rtl-inputs-sha256.json": {
+    "sha256": "6d3f5378efd68ca13e08ffd7c90ba0e314c201068c680895f0bf8c3207b67e2b",
+    "bytes": 17847
+  },
+  "rtl-inputs.tar.gz": {
+    "sha256": "fcaa76558c437d34253878b1cfc3fe564a237057d5ec8ffd8c8ec6edebfe92ee",
+    "bytes": 263421
+  },
+  "runtime-env.sh": {
+    "sha256": "04d5848e26ec0ca189d68ae1a6646cc30576b451dcd96b4e3ba33ae7cf9e505c",
+    "bytes": 354
+  },
+  "simulation/baseline-boot-build.log": {
+    "sha256": "274a2312e261e23455b7c5cfc8ff20891bee5763344e5d03435308da0e598cff",
+    "bytes": 13060
+  },
+  "simulation/baseline-boot-generation.log": {
+    "sha256": "6abe986a2f7184addcfe922b0a2285475fb77dea7824a354799d50a2e884d107",
+    "bytes": 42214
+  },
+  "simulation/baseline-boot-uart.log": {
+    "sha256": "9c843986001c4a4306dff8abe16c0d5c0055015416ff8098c2157908571ab152",
+    "bytes": 119
+  },
+  "simulation/crc32-boot-build.log": {
+    "sha256": "47648205eab172f636dc0787b1df41bf1e1582ffe3ee99ffe438b7e140c81198",
+    "bytes": 16622
+  },
+  "simulation/crc32-boot-generation.log": {
+    "sha256": "4c493585825bf9f60918c7d476c8456470c0b375632abfdf5f10fbd6c0456a65",
+    "bytes": 46181
+  },
+  "simulation/crc32-boot-uart.log": {
+    "sha256": "643ca0736468a6a41a0f2f47454f81b6f89c1711cfd8204b7c2be8f2fe3025cc",
+    "bytes": 599
+  },
+  "simulation/results.json": {
+    "sha256": "365d95021b84b309ef61e410d9fc37494dee457e0916319497bee94de5f055e4",
+    "bytes": 1862
+  },
+  "tests.log": {
+    "sha256": "adefb23e8312341083417aa5c911b9b7e03b518e174286052dbe63c96a847972",
+    "bytes": 99
+  },
+  "toolchain.json": {
+    "sha256": "9a4e6e0f4ec8cbabb94e25ad335275811dca58e03aa13333722968c1ff5c8144",
+    "bytes": 938
+  },
+  "verify-evidence.py": {
+    "sha256": "76c46e602e84a72ade9f648f0c0fc0f5a7474dd9421296e8798f5636b5bc8a91",
+    "bytes": 1836
+  }
+}

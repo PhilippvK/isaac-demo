@@ -1,0 +1,22 @@
+{
+  "sv2v": {
+    "version": "v0.0.13",
+    "archive_url": "https://github.com/zachjs/sv2v/releases/download/v0.0.13/sv2v-Linux.zip",
+    "archive_sha256": "552799a1d76cd177b9b4cc63a3e77823a3d2a6eb4ec006569288abeff28e1ff8",
+    "binary_sha256": "b80a8ac6212aa72a196d9d6129cda35f16dbfa799ec61848c46321f845b6b635"
+  },
+  "f4pga_runtime": "../f4pga-integration-20261112/report.md",
+  "simulation": {
+    "verilator_version": "5.044",
+    "image": "ghcr.io/librelane/librelane@sha256:4bc9042ba177f73f275b5b39e7d372a07d3f4043f548a0ba7f640097b7205051",
+    "cxx": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0",
+    "clock_model": "ideal primitives; PLL behavior unverified",
+    "netlist_stage": "optimized frontend, before technology mapping",
+    "harness": "../../tests/rtl/cva5_boot.cpp"
+  },
+  "source_commits": [
+    "81f1325",
+    "b1adcb0"
+  ],
+  "driver_used_sha256": "c21778591fa26148ccf87d73c6dfc765188f7ba6d912acf57a5866456e98182f"
+}

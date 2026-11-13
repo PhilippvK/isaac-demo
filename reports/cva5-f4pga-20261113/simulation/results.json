@@ -1,0 +1,66 @@
+{
+  "baseline": {
+    "passed": true,
+    "checksum": "65842ca9",
+    "verify": 11433,
+    "finish_cycle": 160883,
+    "load_checks": null,
+    "pairs": [],
+    "netlist_sha256": "18cd8b7d097eccfbb276a21e14c894ff2896b4fdd5ca7bb18378ef1e84cae848",
+    "hex_sha256": {
+      "firmware-1.hex": "de62cb8ba925453f7d3e9d2bb9cea50e9e9de4e51d703aa6b63fb7dbfadfe78a",
+      "firmware-0.hex": "9292893164d6f36a4230cf3a8885fe5e397a25825471a2fc88460bd491c92a54",
+      "firmware.hex": "bb5a49db72fbfe06e0c3549fb309279f90628d99b3d6fe6cecf0fd818be3d332"
+    }
+  },
+  "crc32": {
+    "passed": true,
+    "checksum": "65842ca9",
+    "verify": 11433,
+    "finish_cycle": 996561,
+    "load_checks": 1280,
+    "pairs": [
+      {
+        "run": 0,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15392,
+        "ise_cycles": 13348
+      },
+      {
+        "run": 1,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15384,
+        "ise_cycles": 13336
+      },
+      {
+        "run": 2,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15384,
+        "ise_cycles": 13336
+      },
+      {
+        "run": 3,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15384,
+        "ise_cycles": 13336
+      },
+      {
+        "run": 4,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15384,
+        "ise_cycles": 13336
+      }
+    ],
+    "netlist_sha256": "38998443feb7471e53bca68c27c2f7421a8f842573d0d487109d949bd9368d85",
+    "hex_sha256": {
+      "firmware-1.hex": "de62cb8ba925453f7d3e9d2bb9cea50e9e9de4e51d703aa6b63fb7dbfadfe78a",
+      "firmware-0.hex": "daf8efc1f654481fdde4fee740783d20a2c2950a2bb5fb20b3b4a2a2844bd92b",
+      "firmware.hex": "5a48f086d1b3f0e414a5db8592a924302db4c2b8565e51112d122b41d0c331c1"
+    }
+  }
+}

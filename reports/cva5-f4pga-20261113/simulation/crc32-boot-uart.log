@@ -1,0 +1,11 @@
+ISAAC CVA5 BOOT full
+RAM PASS
+CRC32=65842ca9 verify=00002ca9 cycles=00003c24
+MEMORY PASS checks=00000500
+PAIR run=00000000 native=65842ca9 ise=65842ca9 native_cycles=00003c20 ise_cycles=00003424
+PAIR run=00000001 native=65842ca9 ise=65842ca9 native_cycles=00003c18 ise_cycles=00003418
+PAIR run=00000002 native=65842ca9 ise=65842ca9 native_cycles=00003c18 ise_cycles=00003418
+PAIR run=00000003 native=65842ca9 ise=65842ca9 native_cycles=00003c18 ise_cycles=00003418
+PAIR run=00000004 native=65842ca9 ise=65842ca9 native_cycles=00003c18 ise_cycles=00003418
+PASS
+SIMULATION_PASS cycle=996561
