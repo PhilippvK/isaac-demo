@@ -179,7 +179,9 @@ for CRC32/SHA256 and generated memory ISE execution.
 
 For Vex Arty hardware execution, use `scripts/full_flow.sh crc32 latest fpga_run_0`
 after generating matching RTL and compiler artifacts. This explicit stage invokes
-MLonMCU firmware generation, Vivado synthesis, volatile programming and validation.
+MLonMCU firmware generation, FPGA synthesis, volatile programming and validation.
+Vivado is the default; the [F4PGA backend](scripts/fpga_syn/f4pga/README.md)
+provides an open-source alternative with explicit target and timing limits.
 See the same guide for board settings and the
 [hardware follow-up results](reports/vex-fpga-followup-20261110/report.md).
 
@@ -507,3 +509,12 @@ with `ASIP_SYN_TOOL=ol2` or `librelane`. Use the Vex `vex_5s_openlane2.env` or
 `vex_5s_librelane.env` preset and the normal `syn_0` stage. The
 [backend guide](scripts/asip_syn/README.md#independent-openlane2-and-librelane-target)
 explains native/Docker setup, PDK requirements, metrics and preserved evidence.
+
+### Open-source FPGA implementation
+
+`FPGA_SYN_TOOL=f4pga` (alias `symbiflow`) selects the independent Yosys/VPR/
+Project X-Ray backend in `syn_0`. The `vex_5s_arty_a7_100t_f4pga` preset targets
+VEX_5S on Arty A7-100T with open inferred RAM, separate work/evidence paths,
+validated baseline reuse and native resource/timing reports. See the
+[F4PGA guide](scripts/fpga_syn/f4pga/README.md) for runtime installation,
+firmware embedding, openFPGALoader execution and current support limits.

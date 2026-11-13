@@ -2,6 +2,25 @@
 
 set -e
 
+if [[ $# -lt 2 ]]; then echo "Usage: fpga_syn_script.sh OUTPUT RTL [CORE PART PERIOD_NS]" >&2; exit 2; fi
+
+# Independent backend dispatch happens before Vivado setup or IP generation.
+case "${FPGA_SYN_TOOL:-vivado}" in
+    f4pga|symbiflow)
+        backend_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+        args=("$1" "$2" --core "${3:-VEX_5S}" --part "${4:-xc7a100tcsg324-1}"
+              --clock-ns "${5:-50}" --board "${FPGA_SYN_BOARD:-arty_a7_100}"
+              --timeout "${FPGA_SYN_F4PGA_TIMEOUT:-7200}")
+        [[ ${FPGA_SYN_F4PGA_RESUME_ROUTED:-0} != 1 ]] || args+=(--resume-routed)
+        [[ -z ${FPGA_SYN_F4PGA_LAUNCHER:-} ]] || args+=(--launcher "$FPGA_SYN_F4PGA_LAUNCHER")
+        [[ -z ${FPGA_SYN_F4PGA_ENV_SCRIPT:-} ]] || args+=(--env-script "$FPGA_SYN_F4PGA_ENV_SCRIPT")
+        [[ -z ${FPGA_SYN_FIRMWARE_BIN:-} ]] || args+=(--firmware "$FPGA_SYN_FIRMWARE_BIN")
+        [[ -z ${FPGA_SYN_INIT_COE:-} ]] || args+=(--coe "$FPGA_SYN_INIT_COE")
+        exec "${FPGA_SYN_PYTHON:-python3}" "$backend_dir/fpga_syn/f4pga/run.py" "${args[@]}" ;;
+    vivado) ;;
+    *) echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL" >&2; exit 2 ;;
+esac
+
 export PATH=/nfs/tools/xilinx/Vivado/2024.1/bin:$PATH
 
 ROOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-${(%):-%N}}" )" &> /dev/null && pwd )/

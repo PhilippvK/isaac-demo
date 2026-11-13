@@ -14,10 +14,14 @@ import time
 import tty
 import tempfile
 
+from programmer import command as programming_command
+
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('bitstream',type=Path);p.add_argument('output',type=Path)
 p.add_argument('--board-serial',default='210319C08AE1')
 p.add_argument('--port',default='/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0')
+p.add_argument('--programmer',choices=['vivado','openfpgaloader'],default='vivado')
+p.add_argument('--openfpgaloader',default='openFPGALoader')
 p.add_argument('--vivado',default='/nfs/tools/xilinx/Vivado/2024.1/bin/vivado')
 p.add_argument('--uart-container',help='Existing image with Python3; pass only this UART into a non-root container')
 p.add_argument('--program-script',type=Path,help='Alternative guarded programming/debug Tcl script')
@@ -56,7 +60,7 @@ try:
   cfg[4]=cfg[5]=termios.B115200
   termios.tcsetattr(fd,termios.TCSANOW,cfg);termios.tcflush(fd,termios.TCIFLUSH)
  script=(a.program_script or Path(__file__).with_name('program_arty.tcl')).resolve()
- command=[a.vivado,'-mode','batch','-source',str(script),'-tclargs',a.board_serial,str(bit)]
+ command=programming_command(a.programmer,bit,a.board_serial,a.vivado,script,a.openfpgaloader)
  raw=bytearray();started=time.monotonic();finished=None
  with (out/'program.stdout.log').open('wb') as log:
   proc=subprocess.Popen(command,cwd=out,stdout=log,stderr=subprocess.STDOUT)
@@ -80,7 +84,7 @@ try:
    except subprocess.TimeoutExpired: proc.kill();proc.wait()
  text=raw.decode('utf-8',errors='replace');(out/'uart.log').write_text(text)
  lines=text.splitlines()
- programmed=proc.returncode==0 and 'ISAAC_PROGRAMMED=' in (out/'program.stdout.log').read_text(errors='replace')
+ programmed=proc.returncode==0 and (a.programmer=='openfpgaloader' or 'ISAAC_PROGRAMMED=' in (out/'program.stdout.log').read_text(errors='replace'))
  if a.protocol=='probe':
   passed=programmed and a.boot_banner in text and any(l.strip()=='PASS' for l in lines) and not any('FAIL' in l or 'TRAP' in l for l in lines)
  else:
@@ -96,7 +100,7 @@ try:
   numerical={'passed':valid,'outputs':values,'atol':atol,'rtol':rtol}
   passed=passed and valid
 
- report={'passed':passed,'protocol':a.protocol,'numerical':numerical,'program_returncode':proc.returncode,'board_serial':a.board_serial,'port':a.port,'baudrate':115200,'bitstream':str(bit),'uart':text,'elapsed_seconds':time.monotonic()-started,'programming':'volatile FPGA configuration; no flash'}
+ report={'passed':passed,'protocol':a.protocol,'numerical':numerical,'program_returncode':proc.returncode,'board_serial':a.board_serial,'port':a.port,'baudrate':115200,'bitstream':str(bit),'uart':text,'elapsed_seconds':time.monotonic()-started,'programming':'volatile FPGA configuration; no flash','programmer':a.programmer,'program_command':command}
  (out/'execution.json').write_text(json.dumps(report,indent=2)+'\n')
  print(text,flush=True)
  print(json.dumps({k:v for k,v in report.items() if k!='uart'},indent=2),flush=True)

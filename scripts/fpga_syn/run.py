@@ -3,6 +3,7 @@
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -21,11 +22,15 @@ def sha(path):
 def run(args):
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=True)
+    tool = getattr(args, 'tool', 'vivado')
+    if tool == 'symbiflow':
+        tool = 'f4pga'
     firmware = args.firmware.resolve()
     meta = {
         "passed": False,
         "status": "preparing",
         "execution": "fpga",
+        "tool": tool,
         "core": args.core,
         "board": "arty_a7_100",
         "clock_hz": 20000000,
@@ -75,7 +80,11 @@ def run(args):
             FPGA_SYN_INIT_COE=str(coe),
             FPGA_SYN_PYTHON=sys.executable,
             FPGA_SYN_VIVADO=args.vivado,
+            FPGA_SYN_TOOL=tool,
         )
+        if tool == 'f4pga':
+            env.pop('FPGA_SYN_INIT_COE', None)
+            env['FPGA_SYN_FIRMWARE_BIN'] = str(firmware)
         build = out / "synthesis"
         command = [
             "bash",
@@ -91,9 +100,17 @@ def run(args):
         bit = build / ("cva5_arty_top.bit" if args.core == "cva5" else "vex_arty_top.bit")
         meta["bitstream_sha256"] = sha(bit)
         # Check the actual routed result before allowing hardware programming.
-        timing = (build / "reports/timing_summary.rpt").read_text()
-        if "All user specified timing constraints are met." not in timing:
-            raise RuntimeError("Routed FPGA design does not meet timing")
+        if tool == 'f4pga':
+            spec = importlib.util.spec_from_file_location('f4pga_backend', ROOT/'scripts/fpga_syn/f4pga/run.py')
+            backend = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(backend)
+            timing = backend.validate(build)
+            if not timing['setup_met'] or timing['hold_met'] is not True:
+                raise RuntimeError('F4PGA hardware execution requires verified setup and hold timing')
+        else:
+            timing = (build / "reports/timing_summary.rpt").read_text()
+            if "All user specified timing constraints are met." not in timing:
+                raise RuntimeError("Routed FPGA design does not meet timing")
         board = out / "board"
         command = [
             sys.executable,
@@ -111,6 +128,8 @@ def run(args):
             "--timeout",
             str(max(1, args.timeout - (time.monotonic() - started) - 10)),
         ]
+        programmer = getattr(args, 'programmer', None) or ('openfpgaloader' if tool == 'f4pga' else 'vivado')
+        command += ['--programmer', programmer, '--openfpgaloader', getattr(args, 'openfpgaloader', 'openFPGALoader')]
         if args.uart_container:
             command += ["--uart-container", args.uart_container]
         invoke(command, out / "board.log")
@@ -136,6 +155,9 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--ram-size", type=int, default=262144)
     parser.add_argument("--timeout", type=float, default=1800)
+    parser.add_argument('--tool', choices=['vivado', 'f4pga', 'symbiflow'], default=os.environ.get('FPGA_SYN_TOOL', 'vivado'))
+    parser.add_argument('--programmer', choices=['vivado', 'openfpgaloader'])
+    parser.add_argument('--openfpgaloader', default='openFPGALoader')
     parser.add_argument("--vivado", default="/nfs/tools/xilinx/Vivado/2024.1/bin/vivado")
     parser.add_argument("--board-serial", default="210319C08AE1")
     parser.add_argument("--port", default="/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210319C08AE1-if01-port0")

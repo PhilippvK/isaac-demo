@@ -128,90 +128,67 @@ if [[ "$ASIP_SYN_ENABLE" == 1 ]]; then
     fi
 fi
 
-COLLECT_FPGA_ARGS=""
-if [[ "$FPGA_SYN_ENABLE" == 1 ]]
-then
-    if [[ "$FPGA_SYN_SKIP_BASELINE" == 0 ]]
-    then
-        if [[ "$FPGA_SYN_TOOL" == "vivado" ]]
-        then
-            if [[ "$FPGA_SYN_BASELINE_USE" != "" ]]
-            then
-                if [[ ! -d "$FPGA_SYN_BASELINE_USE" ]]
-                then
-                    echo "Missing: $FPGA_SYN_BASELINE_USE"
-                    exit 1
-                fi
-                COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --baseline-dir $FPGA_SYN_BASELINE_USE"
-                if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
-                then
-                    COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --baseline-dir $(realpath -s $FPGA_SYN_BASELINE_USE)_fmax"
-                fi
-            else
-                $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/baseline/ $WORK/docker/hls/baseline/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
-                COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --baseline-dir $WORK/docker/fpga_syn/baseline/"
-                if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
-                then
-                    echo "TODO"
-                    DSE_DIR=$WORK/docker/asip_syn/baseline_dse
-                    FMAX_DIR=$WORK/docker/asip_syn/baseline_fmax
-                    # TODO: copy fmax dir
-                    # TODO: cleanup dse dir
-                    COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --baseline-dir $FMAX_DIR"
-                fi
-            fi
+# FPGA backends share selection and collection; work paths retain backend identity.
+if [[ "$FPGA_SYN_ENABLE" == 1 ]]; then
+    case "$FPGA_SYN_TOOL" in
+        vivado)
+            fpga_backend_suffix=""
+            fpga_core=$FPGA_SYN_VIVADO_CORE_NAME
+            fpga_part=$FPGA_SYN_VIVADO_PART
+            fpga_clock=${FPGA_SYN_VIVADO_CLOCK_NS:-$FPGA_SYN_VIVADO_CLK_PERIOD} ;;
+        f4pga|symbiflow)
+            fpga_backend_suffix=_f4pga
+            fpga_core=${FPGA_SYN_F4PGA_CORE_NAME:-$FPGA_SYN_VIVADO_CORE_NAME}
+            fpga_part=${FPGA_SYN_F4PGA_PART:-xc7a100tcsg324-1}
+            fpga_clock=${FPGA_SYN_F4PGA_CLOCK_NS:-50} ;;
+        *) echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL" >&2; exit 2 ;;
+    esac
+    if [[ $FPGA_SYN_SEARCH_FMAX == 1 ]]; then
+        echo 'FPGA Fmax search is not implemented; run explicit period sweeps.' >&2; exit 2
+    fi
+    hls_mode=docker
+    [[ ${USE_HLS_DOCKER:-1} != 0 ]] || hls_mode=local
+    suffix=""
+    if [[ ${PRELIM:-0} == 1 ]]; then suffix=_prelim
+    elif [[ ${FINAL:-0} == 1 ]]; then suffix=_final
+    elif [[ ${FILTERED2:-0} == 1 ]]; then suffix=_filtered2
+    elif [[ ${FILTERED:-0} == 1 ]]; then suffix=_filtered; fi
+    if [[ ${SELECTED:-0} == 1 && ( $suffix == _filtered || $suffix == _filtered2 ) ]]; then suffix+=_selected; fi
+    fpga_hls=${FPGA_SYN_HLS_DIR:-$WORK/$hls_mode/hls$suffix}
+    fpga_output=${FPGA_SYN_OUTPUT_DIR:-$WORK/$hls_mode/fpga_syn$fpga_backend_suffix$suffix${EVAL_SUFFIX:-}}
+    collect_fpga_args=()
+    preserve_fpga_args=()
+    for variant in baseline default shared; do
+        case "$variant" in
+            baseline) [[ $FPGA_SYN_SKIP_BASELINE == 0 ]] || continue ;;
+            default) [[ $FPGA_SYN_SKIP_DEFAULT == 0 ]] || continue ;;
+            shared) [[ $FPGA_SYN_SKIP_SHARED == 0 && $HLS_TOOL == nailgun && $HLS_NAILGUN_SHARE_RESOURCES == 1 ]] || continue ;;
+        esac
+        destination=$fpga_output/$variant
+        if [[ $variant == baseline && -n $FPGA_SYN_BASELINE_USE ]]; then
+            destination=$FPGA_SYN_BASELINE_USE
         else
-            echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
-            exit 1
+            rtl=$fpga_hls/$variant/rtl
+            [[ -f $rtl/files.txt ]] || rtl=$fpga_hls/$variant/output
+            [[ -f $rtl/files.txt ]] || rtl=$fpga_hls/$variant
+            if [[ ! -f $rtl/files.txt ]]; then
+                case "$fpga_core" in VEX_5S) rtl=$rtl/VexRiscv_5s ;; CVA5) rtl=$rtl/CVA5 ;; esac
+            fi
+            FPGA_SYN_TOOL=$FPGA_SYN_TOOL bash "$SCRIPTS_DIR/fpga_syn_script.sh" \
+                "$destination" "$rtl" "$fpga_core" "$fpga_part" "$fpga_clock"
+        fi
+        collect_fpga_args+=(--"$variant"-dir "$destination")
+        preserve_fpga_args+=(--"$variant"-dir "$destination")
+    done
+    if [[ ${#collect_fpga_args[@]} != 0 ]]; then
+        mkdir -p "$fpga_output"
+        "${FPGA_SYN_PYTHON:-python3}" "$SCRIPTS_DIR/collect_fpga_syn_metrics.py" \
+            "${collect_fpga_args[@]}" --expected-tool "$FPGA_SYN_TOOL" \
+            --expected-part "$fpga_part" --expected-clock-ns "$fpga_clock" --output "$fpga_output/metrics.csv"
+        if [[ $fpga_backend_suffix == _f4pga ]]; then
+            "${FPGA_SYN_PYTHON:-python3}" "$FLOW_SCRIPTS_DIR/fpga_syn/f4pga/preserve.py" \
+                --metrics "$fpga_output/metrics.csv" "${preserve_fpga_args[@]}" \
+                --output "${FPGA_SYN_REPORT_DIR:-$DIR/fpga_syn_f4pga$suffix${EVAL_SUFFIX:-}}"
         fi
     fi
-    if [[ "$FPGA_SYN_SKIP_DEFAULT" == 0 ]]
-    then
-        if [[ "$FPGA_SYN_TOOL" == "vivado" ]]
-        then
-            $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/default/ $WORK/docker/hls/default/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
-            COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --default-dir $WORK/docker/fpga_syn/default/"
-            if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
-            then
-                echo "TODO"
-                DSE_DIR=$WORK/docker/asip_syn/default_dse
-                FMAX_DIR=$WORK/docker/asip_syn/default_fmax
-                # TODO: copy fmax dir
-                # TODO: cleanup dse dir
-                COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --default-dir $FMAX_DIR"
-            fi
-        else
-            echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
-            exit 1
-        fi
-    fi
-    if [[ "$FPGA_SYN_SKIP_SHARED" == 0 && $HLS_TOOL == "nailgun" && $HLS_NAILGUN_SHARE_RESOURCES == "1" ]]
-    then
-        if [[ "$FPGA_SYN_TOOL" == "vivado" ]]
-        then
-            $SCRIPTS_DIR/fpga_syn_script.sh $WORK/docker/fpga_syn/shared/ $WORK/docker/hls/shared/rtl $FPGA_SYN_VIVADO_CORE_NAME $FPGA_SYN_VIVADO_PART $FPGA_SYN_VIVADO_CLK_PERIOD
-            COLLECT_FPGA_ARGS="$COLLECT_FPGA_ARGS --shared-dir $WORK/docker/fpga_syn/shared/"
-            if [[ "$FPGA_SYN_SEARCH_FMAX" == "1" ]]
-            then
-                echo "TODO"
-                DSE_DIR=$WORK/docker/asip_syn/shared_dse
-                FMAX_DIR=$WORK/docker/asip_syn/shared_fmax
-                # TODO: copy fmax dir
-                # TODO: cleanup dse dir
-                COLLECT_FPGA_FMAX_ARGS="$COLLECT_FPGA_FMAX_ARGS --shared-dir $FMAX_DIR"
-            fi
-        else
-            echo "Unsupported FPGA_SYN_TOOL: $FPGA_SYN_TOOL"
-            exit 1
-        fi
-    fi
-fi
-
-if [[ "$COLLECT_FPGA_ARGS" != "" ]]
-then
-    python3 $SCRIPTS_DIR/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn/metrics.csv
-fi
-if [[ "$COLLECT_FPGA_FMAX_ARGS" != "" ]]
-then
-    python3 $SCRIPTS_DIR/collect_fpga_syn_metrics.py $COLLECT_FPGA_ARGS --out $WORK/docker/fpga_syn_fmax/metrics.csv
 fi

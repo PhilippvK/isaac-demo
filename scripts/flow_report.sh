@@ -50,3 +50,10 @@ for measurements in "$DIR"/asip_syn*/metrics.csv; do
     relative=${measurements#"$DIR"/}
     printf '\nASIP synthesis measurements: [%s](%s)\n' "$relative" "$relative" >> "$DIR/ci_report.md"
 done
+
+# Independent FPGA implementation results and retained bitstreams.
+for measurements in "$DIR"/fpga_syn*/metrics.csv; do
+    [[ -f "$measurements" ]] || continue
+    relative=${measurements#"$DIR"/}
+    printf '\nFPGA implementation measurements: [%s](%s)\n' "$relative" "$relative" >> "$DIR/ci_report.md"
+done
