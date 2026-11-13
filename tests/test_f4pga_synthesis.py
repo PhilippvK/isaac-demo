@@ -469,3 +469,41 @@ def test_interrupt_does_not_leave_running_or_success_metadata(tmp_path, monkeypa
     meta=json.loads((args.output/'execution.json').read_text())
     assert meta['passed'] is False and meta['status']=='interrupted'
     with pytest.raises(ValueError): f4.validate(args.output)
+
+
+def fasm_adapter():
+    spec=importlib.util.spec_from_file_location('f4_fasm',ROOT/'scripts/fpga_syn/f4pga/write_fasm.py')
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module
+
+
+def test_forwarded_distributed_ram_mux_emits_only_its_own_select():
+    adapter=fasm_adapter()
+    xml='''<architecture><pb_type name="BDI1MUX_ROUTING"><metadata>
+<meta name="fasm_mux">BDI1MUX_ROUTING.DI = BLUT.DI1MUX.DI_CMC31
+BDI1MUX_ROUTING.BI = BLUT.DI1MUX.BI</meta></metadata></pb_type>
+<pb_type name="ADI1MUX"><metadata><meta name="fasm_mux">'''+adapter.OLD+'''</meta></metadata></pb_type></architecture>'''
+    patched,applied=adapter.patch_architecture(xml)
+    assert applied and adapter.structural_xml(xml)==adapter.structural_xml(patched)
+    # Selecting BI at the actual B mux and forwarding it to A must not also
+    # request the contradictory DI selection. Selecting DI remains supported.
+    mappings={}
+    for meta in adapter.ET.fromstring(patched).iter('meta'):
+        for line in meta.text.splitlines():
+            key,value=line.strip().split(' = ')
+            mappings[key]=value.split(',')
+    for selection in ['BI','DI']:
+        own=mappings['BDI1MUX_ROUTING.'+selection]
+        forwarded=mappings['BDI1MUX_ROUTING.DI1']
+        features=[*own,*forwarded]
+        assert sum(f.startswith('BLUT.DI1MUX.') for f in features)==1
+    assert adapter.patch_architecture(patched)==(patched,False)
+    with pytest.raises(ValueError):adapter.patch_architecture('<architecture/>')
+    with pytest.raises(ValueError):adapter.patch_architecture(xml.replace(adapter.OLD,adapter.OLD+'\n'+adapter.OLD))
+
+
+def test_fasm_metadata_patch_requires_original_packed_architecture(tmp_path):
+    adapter=fasm_adapter();p=tmp_path/'top.net'
+    p.write_text('<block architecture_id="SHA256:abc"><block/></block>')
+    assert adapter.check_packed_architecture(p,'abc')=='SHA256:abc'
+    with pytest.raises(ValueError):adapter.check_packed_architecture(p,'changed')

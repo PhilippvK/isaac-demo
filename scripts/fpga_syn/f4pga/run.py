@@ -416,7 +416,7 @@ def run(args):
             write_json(out/'execution.json', meta)
         metrics = parse_results(out)
         write_json(out/'metrics.json', metrics)
-        final_names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'frontend-netlist.v', 'constraints.sdc', 'clock-aliases.json'} | {
+        final_names = {'metrics.json', 'arch-genfasm.xml', 'fasm-architecture.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'frontend-netlist.v', 'constraints.sdc', 'clock-aliases.json'} | {
             result_top(out)+'.'+suffix for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route', 'fasm', 'bit']}
         artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in final_names or p.suffix in ('.log', '.hex'))]
         artifacts += list((out/'rtl').iterdir())
@@ -495,7 +495,7 @@ def resume_routed(args):
             write_json(out/'execution.json', meta)
         metrics = parse_results(out)
         write_json(out/'metrics.json', metrics)
-        names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'frontend-netlist.v', 'constraints.sdc',
+        names = {'metrics.json', 'arch-genfasm.xml', 'fasm-architecture.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'frontend-netlist.v', 'constraints.sdc',
                  'clock-aliases.json', 'execution-before-resume.json'} | {
                      result_top(out)+'.'+suffix for suffix in ['json','sdc','eblif','net','place','route','fasm','bit']}
         artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in names or p.suffix in ('.log', '.hex'))]

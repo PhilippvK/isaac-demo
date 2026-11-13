@@ -55,7 +55,8 @@ For a failed final conversion after completed routing, set
 runtime environment and inputs. This verifies route completion, input/adapter
 hashes, timing and target identity, pins the routed checkpoint, and retries FASM
 and bitstream conversion. Original conversion evidence and resume commands are
-retained. Changed checkpoints or inputs are rejected.
+retained. Changed checkpoints or inputs are rejected. Interrupted runs record
+`status=interrupted` and cannot be reused as completed implementations.
 
 ## Board RTL and firmware
 
@@ -167,7 +168,8 @@ The CVA5 input directory contains its ordered `files.txt` and generated
 `CVA5_top.v`; sibling `ISAX_*.sv` files are included. Caches and the instruction
 bus must be disabled (`INCLUDE_ICACHE`, `INCLUDE_DCACHE`, `INCLUDE_IBUS` zero).
 Supervisor mode/MMUs may remain enabled. Firmware is mandatory because a blank,
-read-only instruction memory can optimize away meaningful CPU logic. Both
+read-only instruction memory can optimize away meaningful CPU logic. Custom instruction encodings may differ between generated instruction sets;
+firmware must match the synthesized set. Both
 independent 64K × 32 memories receive the same initial image, matching the
 original Vivado flow; each implements synchronous, byte-enabled WRITE_FIRST.
 
@@ -232,3 +234,13 @@ The harness decodes the serial TX pin, requires a complete `PASS` line, fails
 on a firmware `FAIL` line, and has a ten-million-cycle limit. It provides ideal
 clock primitive stubs; it does not verify the PLL or replace post-mapping
 memory equivalence and physical FPGA execution tests.
+
+The pinned XC7 architecture also has redundant FASM metadata on ADI1MUX's
+forwarding of BDI1MUX: it unconditionally requests `BLUT.DI1MUX.DI_CMC31`,
+even if BDI1MUX actually selected `BI`. The finalizer makes a local architecture
+copy and removes that redundant request. BDI1MUX's own routing selection emits
+the correct B-LUT feature. All architecture structure and timing remain
+identical, and the original architecture SHA-256 must match the packed-netlist
+header before export. `arch-genfasm.xml` and `fasm-architecture.json` preserve the
+corrected metadata, hashes and exact command. The installed architecture is
+unchanged. Export uses explicit SDC and propagates genfasm failures.
