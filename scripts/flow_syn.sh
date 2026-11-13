@@ -184,7 +184,7 @@ if [[ "$FPGA_SYN_ENABLE" == 1 ]]; then
         mkdir -p "$fpga_output"
         "${FPGA_SYN_PYTHON:-python3}" "$SCRIPTS_DIR/collect_fpga_syn_metrics.py" \
             "${collect_fpga_args[@]}" --expected-tool "$FPGA_SYN_TOOL" \
-            --expected-part "$fpga_part" --expected-clock-ns "$fpga_clock" --output "$fpga_output/metrics.csv"
+            --expected-core "$fpga_core" --expected-part "$fpga_part" --expected-clock-ns "$fpga_clock" --output "$fpga_output/metrics.csv"
         if [[ $fpga_backend_suffix == _f4pga ]]; then
             "${FPGA_SYN_PYTHON:-python3}" "$FLOW_SCRIPTS_DIR/fpga_syn/f4pga/preserve.py" \
                 --metrics "$fpga_output/metrics.csv" "${preserve_fpga_args[@]}" \

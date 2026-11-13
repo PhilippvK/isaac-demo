@@ -1,6 +1,7 @@
 """Collect native Vivado or validated F4PGA metrics with explicit backend identity."""
 import argparse
 import importlib.util
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -13,18 +14,17 @@ def load_f4pga():
     return module
 
 
-def collect(directory, tool='vivado', part=None, clock=None):
+def collect(directory, tool='vivado', part=None, clock=None, core=None):
     if tool in ('f4pga', 'symbiflow'):
         runner = load_f4pga()
-        data = runner.validate(directory, part or runner.PART, clock if clock is not None else 50)
+        data = runner.validate(directory, part or runner.PART, clock if clock is not None else 50, core)
         data.pop('primitive_counts', None)
         for metric in ('luts', 'ffs', 'brams', 'dsps'):
             for component in ('isax', 'scaiev'):
                 # The native F4PGA netlist is flattened: do not fabricate component counts.
                 data[f'{metric}_{component}'] = None
-        return dict(data, tool='f4pga', part=part or runner.PART, clock_period_ns=clock if clock is not None else 50)
+        return dict(data, tool='f4pga', core=json.loads((directory/'execution.json').read_text())['core'], part=part or runner.PART, clock_period_ns=clock if clock is not None else 50)
     if (directory/'execution.json').exists():
-        import json
         meta = json.loads((directory/'execution.json').read_text())
         if meta.get('tool') in ('f4pga', 'symbiflow'):
             raise ValueError('F4PGA result cannot be used as a Vivado baseline')
@@ -48,6 +48,7 @@ def main():
     for variant in ['baseline', 'default', 'shared']:
         parser.add_argument(f'--{variant}-dir', type=Path)
     parser.add_argument('--expected-tool', choices=['vivado', 'f4pga', 'symbiflow'], default='vivado')
+    parser.add_argument('--expected-core')
     parser.add_argument('--expected-part')
     parser.add_argument('--expected-clock-ns', type=float)
     args = parser.parse_args()
@@ -55,9 +56,11 @@ def main():
     for variant in ['baseline', 'default', 'shared']:
         directory = getattr(args, variant+'_dir')
         if directory is not None:
-            data.append(dict(variant=variant, **collect(directory, args.expected_tool, args.expected_part, args.expected_clock_ns)))
+            data.append(dict(variant=variant, **collect(directory, args.expected_tool, args.expected_part, args.expected_clock_ns, args.expected_core)))
     if not data:
         parser.error('At least one variant is required')
+    if len({row['core'] for row in data if row['tool'] == 'f4pga'}) > 1:
+        raise ValueError('Cannot compare different F4PGA cores as variants of one experiment')
     df = pd.DataFrame(data)
     if any(row['variant'] != 'baseline' for row in data):
         for metric in ['luts', 'ffs', 'brams', 'dsps']:

@@ -17,6 +17,15 @@ import time
 HERE = Path(__file__).resolve().parent
 BOARD = HERE.parent / 'boards/arty_a7_100'
 PART = 'xc7a100tcsg324-1'
+TOPS = {'VEX_5S': 'vex_arty_top', 'CVA5': 'cva5_arty_top'}
+
+
+def result_top(out):
+    path = out/'execution.json'
+    core = json.loads(path.read_text()).get('core', 'VEX_5S') if path.exists() else 'VEX_5S'
+    return TOPS[core]
+
+
 STEPS = ['synth', 'pack', 'place', 'route', 'write_fasm', 'write_bitstream']
 
 
@@ -53,8 +62,35 @@ def firmware_image(binary=None, coe=None):
     return ''.join(f'{word:08x}\n' for word in words)
 
 
-def prepare(rtl, out, binary=None, coe=None):
-    """Copy inputs; expose retirement explicitly because Yosys forbids cross-hierarchy taps."""
+def normalize_constant_selects(text):
+    """Fold sized-literal selects emitted by sv2v 0.0.13, unsupported by Yosys.
+
+    Only constant, in-range selects of fully known literals are rewritten.
+    Expressions and variable selects are left for the HDL frontend.
+    """
+    pattern = r"(\d+)'[sS]?([bBoOdDhH])([0-9a-fA-F_]+)\[(\d+)(?:(-:|:)(\d+))?\]"
+    def fold(match):
+        width, base, digits, high, kind, low = match.groups()
+        width, high = int(width), int(high)
+        low = high if kind is None else (high-int(low)+1 if kind == '-:' else int(low))
+        if not 0 <= low <= high < width:
+            raise ValueError('Out-of-range converted constant select: '+match[0])
+        value = int(digits.replace('_', ''), {'b': 2, 'o': 8, 'd': 10, 'h': 16}[base.lower()])
+        size = high-low+1
+        return str(size)+"'h"+format((value >> low) & ((1 << size)-1), 'x')
+    return re.sub(pattern, fold, text)
+
+
+def strip_intel_ramstyle(text):
+    # Yosys recognizes both spellings, so Intel's MLAB hint must not reach
+    # the Xilinx memory mapper. Preserve the independent ram_style hint.
+    text = re.sub(r'\(\*\s*ramstyle\s*=\s*"[^"]*"\s*\*\)', '', text)
+    text = re.sub(r'\bramstyle\s*=\s*"[^"]*"\s*,\s*', '', text)
+    return re.sub(r',\s*\bramstyle\s*=\s*"[^"]*"', '', text)
+
+
+def prepare(rtl, out, binary=None, coe=None, core="VEX_5S"):
+    """Stage portable board adapters without modifying generated HLS sources."""
     files = []
     for line in (rtl / 'files.txt').read_text().splitlines():
         if line.strip():
@@ -70,21 +106,35 @@ def prepare(rtl, out, binary=None, coe=None):
     for p in files:
         hashes[str(p)] = sha(p)
         text = p.read_text()
-        if p.name == 'VexRiscv.v':
+        if core == 'CVA5':
+            text = strip_intel_ramstyle(text)
+            if p.name in ('CVA5_top.v', 'scaiev_unit.sv'):
+                adapter = 'prepare_top.py' if p.name == 'CVA5_top.v' else 'prepare_scaiev.py'
+                subprocess.run([sys.executable, str(BOARD/adapter), str(p), str(staged/p.name)], check=True)
+                continue
+            if p.name in ('cva5.sv', 'writeback.sv', 'scaiev_glue.sv'):
+                subprocess.run([sys.executable, str(HERE/'cva5_defaults.py'), str(p), str(staged/p.name)], check=True)
+                continue
+            if p.name == 'cva5_config.sv':
+                for option in ('INCLUDE_ICACHE', 'INCLUDE_DCACHE', 'INCLUDE_IBUS'):
+                    if not re.search(r'\b'+option+r'\s*:\s*0\s*,', text):
+                        raise ValueError('CVA5 Arty requires '+option+' : 0')
+        if core == 'VEX_5S' and p.name == 'VexRiscv.v':
             text, n = re.subn(r'\bmodule\s+VexRiscv\s*\(', 'module VexRiscv (output wire isaac_retired,', text)
             if n != 1 or 'wire                writeBack_arbitration_isFiring;' not in text:
                 raise ValueError('Unexpected VexRiscv retirement interface')
             text = text.replace('wire                writeBack_arbitration_isFiring;',
                                 'wire writeBack_arbitration_isFiring;\n assign isaac_retired = writeBack_arbitration_isFiring;', 1)
-        elif p.name == 'Vex_top.sv':
+        elif core == 'VEX_5S' and p.name == 'Vex_top.sv':
             text, n = re.subn(r'\bmodule\s+top\s*\(', 'module top(output wire isaac_retired,', text)
             text, k = re.subn(r'\bVexRiscv\s+VexRiscv_inst\s*\(',
                               'VexRiscv VexRiscv_inst(.isaac_retired(isaac_retired),', text)
             if (n, k) != (1, 1):
                 raise ValueError('Unexpected Vex wrapper interface')
         (staged / p.name).write_text(text)
-    if not {'VexRiscv.v', 'Vex_top.sv'} <= {p.name for p in files}:
-        raise ValueError('VEX_5S requires VexRiscv.v and Vex_top.sv')
+    required = {'VexRiscv.v', 'Vex_top.sv'} if core == 'VEX_5S' else {'CVA5_top.v', 'cva5_config.sv', 'scaiev_unit.sv'}
+    if not required <= {p.name for p in files}:
+        raise ValueError(f'{core} requires {sorted(required)}')
     for directory in {p.parent for p in files}:
         for pattern in ['*.vh', '*.svh']:
             for p in directory.glob(pattern):
@@ -93,8 +143,9 @@ def prepare(rtl, out, binary=None, coe=None):
                     raise ValueError(f'Conflicting include header: {p}')
                 shutil.copyfile(p, target)
                 hashes[str(p)] = sha(p)
-    shell = (BOARD / 'vex_arty_top.sv').read_text()
-    if shell.count('dut.VexRiscv_inst.writeBack_arbitration_isFiring') != 1:
+    top = TOPS[core]
+    shell = (BOARD / (top+'.sv')).read_text()
+    if core == 'VEX_5S' and shell.count('dut.VexRiscv_inst.writeBack_arbitration_isFiring') != 1:
         raise ValueError('Unexpected board retirement tap')
     if shell.count('MMCME2_BASE #(') != 1 or shell.count('.CLKIN1(clk_input),') != 1:
         raise ValueError('Unexpected MMCM board interface')
@@ -108,19 +159,22 @@ def prepare(rtl, out, binary=None, coe=None):
                           '        .DADDR(7\'b0), .DCLK(1\'b0), .DEN(1\'b0), .DI(16\'b0), .DWE(1\'b0),')
     shell = shell.replace('dut.VexRiscv_inst.writeBack_arbitration_isFiring', 'isaac_retired')
     shell = shell.replace(' top dut(', ' wire isaac_retired;\n top dut(.isaac_retired(isaac_retired),')
-    (staged / 'vex_arty_top.sv').write_text(shell)
-    shutil.copyfile(HERE / 'ram.sv', staged / 'ram.sv')
+    (staged / (top+'.sv')).write_text(shell)
+    shutil.copyfile(HERE / ('ram.sv' if core == 'VEX_5S' else 'cva5_ram.sv'), staged / 'ram.sv')
+    if core == 'CVA5':
+        shutil.copyfile(HERE/'axi_uart.sv', staged/'axi_uart.sv')
     shutil.copyfile(HERE / 'board.xdc', out / 'board.xdc')
     (out / 'firmware.hex').write_text(firmware_image(binary, coe))
     # Legacy wrappers split arguments internally: use simple relative names.
-    ordered = [f'rtl/{p.name}' for p in files] + ['rtl/ram.sv', 'rtl/vex_arty_top.sv']
+    ordered = [f'rtl/{p.name}' for p in files] + ['rtl/ram.sv', 'rtl/'+top+'.sv']
+    if core == 'CVA5':
+        ordered += ['rtl/axi_uart.sv']
     if any(re.search(r'[^\w./-]', name) for name in ordered):
         raise ValueError('F4PGA wrapper source filenames must be simple paths')
     return ordered, hashes
 
 
-def commands(sources):
-    top = 'vex_arty_top'
+def commands(sources, top='vex_arty_top'):
     common = ['-e', top+'.eblif', '-d', 'xc7a100t_test']
     sdc = ['-s', 'constraints.sdc']
     return [
@@ -135,10 +189,10 @@ def commands(sources):
 
 def deduplicate_sdc(out):
     """Collapse duplicate clock aliases using actual synthesized net bit identities."""
-    netnames = json.loads((out/'vex_arty_top.json').read_text())['modules']['vex_arty_top']['netnames']
+    netnames = json.loads((out/(result_top(out)+'.json')).read_text())['modules'][result_top(out)]['netnames']
     groups = {}
     pattern = r'create_clock\s+-period\s+(\S+)(?:\s+-waveform\s+(\{[^}]+\}))?\s+(\S+)\s*'
-    for line in (out/'vex_arty_top.sdc').read_text().splitlines():
+    for line in (out/(result_top(out)+'.sdc')).read_text().splitlines():
         if not line.strip() or line.lstrip().startswith('#'):
             continue
         match = re.fullmatch(pattern, line)
@@ -168,7 +222,7 @@ def deduplicate_sdc(out):
 
 
 def validate_clocks(out):
-    for filename in ['vex_arty_top.sdc', 'constraints.sdc']:
+    for filename in [result_top(out)+'.sdc', 'constraints.sdc']:
         sdc = (out/filename).read_text()
         if ('create_clock' not in sdc or not re.search(r'-period\s+50(?:\.0*)?(?:\s|$)', sdc)
                 or 'clk20' not in sdc):
@@ -176,7 +230,7 @@ def validate_clocks(out):
 
 
 def validate_fasm(out):
-    path = out/'vex_arty_top.fasm'
+    path = out/(result_top(out)+'.fasm')
     text = path.read_text() if path.is_file() else ''
     if not re.search(r'^CLB', text, re.M) or not re.search(r'^BRAM', text, re.M):
         raise ValueError('F4PGA FASM lacks implemented logic/BRAM features; bitstream generation refused')
@@ -184,8 +238,8 @@ def validate_fasm(out):
 
 def parse_results(out, require_bitstream=True):
     """Use actual mapped primitive counts, not estimates from RTL or LUT equations."""
-    design = json.loads((out / 'vex_arty_top.json').read_text())
-    cells = design['modules']['vex_arty_top']['cells']
+    design = json.loads((out / (result_top(out)+'.json')).read_text())
+    cells = design['modules'][result_top(out)]['cells']
     counts = Counter(c['type'] for c in cells.values())
     if any(t.startswith('$') and t != '$lut' for t in counts):
         raise ValueError('Unmapped Yosys cells in final netlist')
@@ -207,9 +261,9 @@ def parse_results(out, require_bitstream=True):
     if not math.isfinite(setup) or (hold is not None and not math.isfinite(hold)):
         raise ValueError('Non-finite routed timing')
     validate_clocks(out)
-    required = ['vex_arty_top.eblif', 'vex_arty_top.net', 'vex_arty_top.place', 'vex_arty_top.route']
+    required = [result_top(out)+'.'+suffix for suffix in ['eblif', 'net', 'place', 'route']]
     if require_bitstream:
-        required += ['vex_arty_top.fasm', 'vex_arty_top.bit']
+        required += [result_top(out)+'.fasm', result_top(out)+'.bit']
     for name in required:
         if not (out/name).is_file() or not (out/name).stat().st_size:
             raise ValueError(f'Missing completed implementation artifact: {name}')
@@ -223,18 +277,18 @@ def parse_results(out, require_bitstream=True):
                 timing_scope='VPR constrained paths; native propagated clocks; asynchronous I/O unconstrained')
 
 
-def validate(directory, part=PART, clock=50):
+def validate(directory, part=PART, clock=50, core=None):
     meta = json.loads((directory/'execution.json').read_text())
     if (not meta.get('passed') or meta.get('status') != 'complete' or meta.get('tool') != 'f4pga'
-            or meta.get('completed_steps') != STEPS or meta.get('core') != 'VEX_5S'
+            or meta.get('completed_steps') != STEPS or meta.get('core') not in TOPS or (core is not None and meta.get('core') != core)
             or not meta.get('frontend_checked')):
         raise ValueError(f'Failed or incompatible F4PGA result: {directory}')
     if meta.get('part') != part or meta.get('clock_period_ns') != clock or meta.get('board') != 'arty_a7_100':
         raise ValueError('F4PGA baseline part/clock/board mismatch')
-    required = {'metrics.json', 'route.log', 'vex_arty_top.json', 'vex_arty_top.sdc',
-                'constraints.sdc', 'clock-aliases.json',
-                'vex_arty_top.eblif', 'vex_arty_top.net', 'vex_arty_top.place',
-                'vex_arty_top.route', 'vex_arty_top.fasm', 'vex_arty_top.bit'}
+    required = {'metrics.json', 'route.log', 'constraints.sdc', 'clock-aliases.json'} | {
+        result_top(directory)+'.'+suffix for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route', 'fasm', 'bit']}
+    if meta['core'] == 'CVA5':
+        required |= {'converted.v', 'converted.raw.v', 'frontend.ys', 'firmware.hex', 'conversion.log', 'sv2v-version.log'}
     if not required <= meta.get('artifacts_sha256', {}).keys():
         raise ValueError('Incomplete F4PGA artifact manifest')
     for name, digest in meta['artifacts_sha256'].items():
@@ -260,16 +314,18 @@ def run(args):
     try:
         if previous:
             raise ValueError('Output must be empty; use a new directory or explicit baseline reuse')
-        if args.core != 'VEX_5S' or args.board != 'arty_a7_100' or args.part != PART or args.clock_ns != 50:
-            raise ValueError('F4PGA currently supports VEX_5S on arty_a7_100, xc7a100tcsg324-1, 50 ns only')
-        sources, hashes = prepare(args.rtl.resolve(), out, args.firmware, args.coe)
+        if args.core not in TOPS or args.board != 'arty_a7_100' or args.part != PART or args.clock_ns != 50:
+            raise ValueError('F4PGA currently supports VEX_5S/CVA5 on arty_a7_100, xc7a100tcsg324-1, 50 ns only')
+        if args.core == 'CVA5' and not (args.firmware or args.coe):
+            raise ValueError('CVA5 requires firmware (--firmware/--coe): an empty instruction ROM can optimize away the CPU')
+        sources, hashes = prepare(args.rtl.resolve(), out, args.firmware, args.coe, args.core)
         meta['rtl_sha256'] = hashes
         meta['firmware_sha256'] = sha(out/'firmware.hex')
         meta['runner_sha256'] = sha(__file__)
         meta['fasm_driver_sha256'] = sha(HERE/'write_fasm.py')
-        meta['adapter_sha256'] = {str(p): sha(p) for p in [HERE/'ram.sv', HERE/'board.xdc', BOARD/'vex_arty_top.sv']}
+        meta['adapter_sha256'] = {str(p): sha(p) for p in ([HERE/'ram.sv'] if args.core == 'VEX_5S' else [HERE/'cva5_ram.sv', HERE/'axi_uart.sv', HERE/'cva5_defaults.py', BOARD/'prepare_top.py', BOARD/'prepare_scaiev.py']) + [HERE/'board.xdc', BOARD/(TOPS[args.core]+'.sv')]}
         prefix = shlex.split(args.launcher) if args.launcher else []
-        cmds = commands(sources)
+        cmds = commands(sources, TOPS[args.core])
         meta.update(status='running', commands=[prefix+c for c in cmds], completed_steps=[])
         write_json(out/'execution.json', meta)
         env = dict(os.environ, FPGA_FAM='xc7')
@@ -292,10 +348,22 @@ def run(args):
         frontend = ('read_verilog -lib +/xilinx/cells_sim.v\n'
                     'read_verilog -lib +/xilinx/cells_xtra.v\n'
                     'read_verilog -sv '+ ' '.join(sources)+ '\n'
-                    'hierarchy -check -top vex_arty_top\nproc\ncheck -assert\n')
+                    'hierarchy -check -top '+TOPS[args.core]+'\nproc\ncheck -assert\n')
+        if args.core == 'CVA5':
+            invoke([args.sv2v, '--version'], 'sv2v-version.log')
+            conversion = [args.sv2v, '-DSYNTHESIS', '--top='+TOPS[args.core], '--write=converted.v', *sources]
+            meta['conversion_command'] = prefix+conversion
+            invoke(conversion, 'conversion.log')
+            converted = out/'converted.v'
+            shutil.copyfile(converted, out/'converted.raw.v')
+            converted.write_text(normalize_constant_selects(converted.read_text()))
+            frontend = frontend.replace(' '.join(sources), 'converted.v').replace('proc\ncheck', 'proc\nflatten\nopt\ncheck')
         (out/'frontend.ys').write_text(frontend)
         invoke(['yosys', '-s', 'frontend.ys', '-l', 'frontend.log'], 'frontend.stdout.log')
         meta['frontend_checked'] = True
+        if args.core == 'CVA5':
+            cmds = commands(['converted.v'], TOPS[args.core])
+            meta['commands'] = [prefix+c for c in cmds]
         for step, cmd in zip(STEPS, cmds):
             invoke(cmd, step+'.stdout.log')
             if step == 'synth':
@@ -306,8 +374,8 @@ def run(args):
             write_json(out/'execution.json', meta)
         metrics = parse_results(out)
         write_json(out/'metrics.json', metrics)
-        final_names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'constraints.sdc', 'clock-aliases.json'} | {
-            'vex_arty_top.'+suffix for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route', 'fasm', 'bit']}
+        final_names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'constraints.sdc', 'clock-aliases.json'} | {
+            result_top(out)+'.'+suffix for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route', 'fasm', 'bit']}
         artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in final_names or p.suffix == '.log')]
         artifacts += list((out/'rtl').iterdir())
         meta.pop('error', None)
@@ -347,8 +415,8 @@ def resume_routed(args):
         if meta.get('passed'):
             validate(out, args.part, args.clock_ns)
         parse_results(out, require_bitstream=False)
-        routed = [out/('vex_arty_top.'+suffix) for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route']]
-        routed += [out/'constraints.sdc', out/'route.log', out/'firmware.hex', *list((out/'rtl').iterdir())]
+        routed = [out/(result_top(out)+'.'+suffix) for suffix in ['json', 'sdc', 'eblif', 'net', 'place', 'route']]
+        routed += [out/'constraints.sdc', out/'route.log', out/'firmware.hex', *[p for p in [out/'converted.v', out/'converted.raw.v'] if p.exists()], *list((out/'rtl').iterdir())]
         checkpoint = {str(p.relative_to(out)): sha(p) for p in routed if p.is_file()}
         # A resumed run pins its route; subsequent retries detect any changed checkpoint.
         if meta.get('routed_checkpoint_sha256') and meta['routed_checkpoint_sha256'] != checkpoint:
@@ -360,11 +428,11 @@ def resume_routed(args):
         prefix = shlex.split(args.launcher) if args.launcher else []
         if args.env_script:
             prefix = ['bash', '-c', 'set -e; source "$1"; shift; exec "$@"', 'f4pga-env', str(args.env_script.resolve())]+prefix
-        cmds = commands([])[4:]
+        cmds = commands([], TOPS[args.core])[4:]
         meta['resume_commands'] = [prefix+c for c in cmds]
         for step, cmd in zip(STEPS[4:], cmds):
             # Archive failed conversion evidence and prevent stale outputs from passing checks.
-            artifact = out/('vex_arty_top.'+('fasm' if step == 'write_fasm' else 'bit'))
+            artifact = out/(result_top(out)+'.'+('fasm' if step == 'write_fasm' else 'bit'))
             if artifact.exists():
                 shutil.copyfile(artifact, artifact.with_suffix(artifact.suffix+'.before-resume'))
                 artifact.unlink()
@@ -383,9 +451,9 @@ def resume_routed(args):
             write_json(out/'execution.json', meta)
         metrics = parse_results(out)
         write_json(out/'metrics.json', metrics)
-        names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'constraints.sdc',
+        names = {'metrics.json', 'firmware.hex', 'board.xdc', 'frontend.ys', 'converted.v', 'converted.raw.v', 'constraints.sdc',
                  'clock-aliases.json', 'execution-before-resume.json'} | {
-                     'vex_arty_top.'+suffix for suffix in ['json','sdc','eblif','net','place','route','fasm','bit']}
+                     result_top(out)+'.'+suffix for suffix in ['json','sdc','eblif','net','place','route','fasm','bit']}
         artifacts = [p for p in out.iterdir() if p.is_file() and (p.name in names or p.suffix == '.log')]
         artifacts += list((out/'rtl').iterdir())
         meta.pop('error', None)
@@ -410,6 +478,7 @@ def main():
     p.add_argument('--part', default=PART)
     p.add_argument('--clock-ns', type=float, default=50)
     p.add_argument('--timeout', type=float, default=7200)
+    p.add_argument('--sv2v', default=os.environ.get('FPGA_SYN_F4PGA_SV2V') or 'sv2v', help='CVA5 SystemVerilog converter executable')
     p.add_argument('--launcher', default='', help='Argument prefix, e.g. conda run --no-capture-output -n f4pga')
     p.add_argument('--env-script', type=Path)
     p.add_argument('--firmware', type=Path)

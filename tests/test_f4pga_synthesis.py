@@ -134,7 +134,7 @@ def test_stale_success_and_unsupported_target_fail_before_tools(tmp_path):
     args=SimpleNamespace(output=out,rtl=rtl,core='VEX_5S',board='arty_a7_100',part=f4.PART,clock_ns=50,timeout=10)
     assert not f4.run(args)
     assert not json.loads((out/'execution.json').read_text())['passed']
-    args.output=tmp_path/'unsupported';args.core='CVA5'
+    args.output=tmp_path/'unsupported';args.core='UNSUPPORTED'
     assert not f4.run(args)
     assert 'currently supports' in json.loads((args.output/'execution.json').read_text())['error']
 
@@ -151,7 +151,7 @@ def test_flow_cache_preservation_and_backend_mismatch(tmp_path):
     cache=tmp_path/'cache';completed(cache)
     output=tmp_path/'experiment'
     env=dict(os.environ,ASIP_SYN_ENABLE='0',FPGA_SYN_ENABLE='1',FPGA_SYN_TOOL='symbiflow',
-             FPGA_SYN_BASELINE_USE=str(cache),FPGA_SYN_SKIP_DEFAULT='1',FPGA_SYN_SKIP_SHARED='1',
+             FPGA_SYN_F4PGA_CORE_NAME='VEX_5S',FPGA_SYN_BASELINE_USE=str(cache),FPGA_SYN_SKIP_DEFAULT='1',FPGA_SYN_SKIP_SHARED='1',
              FPGA_SYN_PYTHON=sys.executable,USE_HLS_DOCKER='0',FILTERED2='1',SELECTED='1')
     result=subprocess.run(['bash',str(ROOT/'scripts/flow_syn.sh'),str(output)],env=env,capture_output=True,text=True)
     assert result.returncode==0,result.stdout+result.stderr
@@ -251,7 +251,7 @@ def test_clock_aliases_deduplicate_by_bits_and_reject_conflicts(tmp_path):
 def test_standalone_symbiflow_dispatch_rejects_unsupported_core_without_vivado(tmp_path):
     env=dict(os.environ,FPGA_SYN_TOOL='symbiflow',FPGA_SYN_PYTHON=sys.executable)
     result=subprocess.run(['bash',str(ROOT/'scripts/fpga_syn_script.sh'),str(tmp_path/'out'),
-                           str(tmp_path),'CVA5',f4.PART,'50'],env=env,capture_output=True,text=True)
+                           str(tmp_path),'UNSUPPORTED',f4.PART,'50'],env=env,capture_output=True,text=True)
     assert result.returncode!=0 and 'currently supports' in result.stderr
     assert json.loads((tmp_path/'out/execution.json').read_text())['tool']=='f4pga'
 
@@ -322,3 +322,82 @@ def test_resume_rejects_changed_inputs_before_tools(tmp_path,monkeypatch):
     monkeypatch.setattr(f4.subprocess,'run',lambda *a,**kw:pytest.fail('must not run tools'))
     assert not f4.resume_routed(args)
     assert 'Changed routed-build input' in json.loads((args.output/'execution.json').read_text())['error']
+
+
+def test_uart_protocol_and_serial_fifo(tmp_path):
+    if not shutil.which('iverilog'): pytest.skip('Icarus is not installed')
+    subprocess.run(['iverilog', '-g2012', '-s', 'tb', '-o', str(tmp_path/'sim'),
+                    str(ROOT/'scripts/fpga_syn/f4pga/axi_uart.sv'),
+                    str(ROOT/'tests/rtl/f4pga_uart_tb.sv')], check=True)
+    result = subprocess.run(['vvp', str(tmp_path/'sim')], capture_output=True, text=True, check=True)
+    assert 'PASS UART' in result.stdout
+
+
+def test_sv2v_constant_selects():
+    assert f4.normalize_constant_selects("3'b101[1:0] 8'hf3[6-:3] 2'b00[0]") == "2'h1 3'h7 1'h0"
+    assert f4.normalize_constant_selects("CONFIG[31-:32] data[index]") == "CONFIG[31-:32] data[index]"
+    with pytest.raises(ValueError): f4.normalize_constant_selects("2'h3[3:0]")
+
+
+def test_cannot_reuse_vex_as_cva5_baseline(tmp_path):
+    completed(tmp_path)
+    with pytest.raises(ValueError): f4.validate(tmp_path, core='CVA5')
+
+
+def test_cva5_staging_and_disabled_cache_contract(tmp_path):
+    rtl=tmp_path/'input';rtl.mkdir()
+    (rtl/'files.txt').write_text('CVA5_top.v\ncva5_config.sv\nscaiev_unit.sv\n')
+    (rtl/'CVA5_top.v').write_text('module cva5_top;\n'+''.join(
+        f'wire [29:0] {kind}_bram_addr;\nblk_mem_gen_0 {kind}(.addra({kind}_bram_addr));\n'
+        for kind in ['instruction','data'])+'endmodule\n')
+    (rtl/'cva5_config.sv').write_text('INCLUDE_ICACHE : 0, INCLUDE_DCACHE : 0, INCLUDE_IBUS : 0,')
+    (rtl/'scaiev_unit.sv').write_text('assign ls_inputs_scaiev.fn3 = LS_W_fn3; //Full word')
+    original=(rtl/'CVA5_top.v').read_bytes()
+    out=tmp_path/'out';out.mkdir()
+    sources, hashes=f4.prepare(rtl,out,core='CVA5')
+    assert 'rtl/axi_uart.sv' in sources and 'rtl/cva5_arty_top.sv' in sources
+    assert '.addra(data_bram_addr[17:2])' in (out/'rtl/CVA5_top.v').read_text()
+    assert 'execute_Instr[14:12]' in (out/'rtl/scaiev_unit.sv').read_text()
+    assert (rtl/'CVA5_top.v').read_bytes()==original
+    assert 'PLLE2_ADV' in (out/'rtl/cva5_arty_top.sv').read_text()
+    (rtl/'cva5_config.sv').write_text('INCLUDE_ICACHE : 1, INCLUDE_DCACHE : 0, INCLUDE_IBUS : 0,')
+    bad=tmp_path/'bad';bad.mkdir()
+    with pytest.raises(ValueError,match='INCLUDE_ICACHE'): f4.prepare(rtl,bad,core='CVA5')
+
+
+def test_cva5_ram_write_first_byte_lanes_and_boundary(tmp_path):
+    if not shutil.which('iverilog'): pytest.skip('Icarus is not installed')
+    (tmp_path/'firmware.hex').write_text('12345678\n'+'00000000\n'*65535)
+    (tmp_path/'test.sv').write_text('''module tb;
+reg clk=0;always #5 clk=~clk;
+reg en=1;reg[3:0]we=0;reg[15:0]addr=0;reg[31:0]din=0;wire[31:0]dout;
+blk_mem_gen_0 ram(clk,en,we,addr,din,dout);
+initial begin
+ #6;if(dout!==32'h12345678)$fatal(1,"firmware");
+ we=4'b0101;din=32'hdeadbeef;
+ #10;if(dout!==32'h12ad56ef)$fatal(1,"write first bytes");
+ en=0;addr=16'hffff;#10;if(dout!==32'h12ad56ef)$fatal(1,"disabled");
+ en=1;we=15;din=32'h87654321;#10;if(dout!==din)$fatal(1,"last address write");
+ addr=0;we=0;#10;if(dout!==32'h12ad56ef)$fatal(1,"address alias");
+ addr=16'hffff;#10;if(dout!==32'h87654321)$fatal(1,"last address read");
+ $display("PASS");$finish;end
+endmodule''')
+    subprocess.run(['iverilog','-g2012','-s','tb','-o','sim',str(ROOT/'scripts/fpga_syn/f4pga/cva5_ram.sv'),'test.sv'],cwd=tmp_path,check=True)
+    result=subprocess.run(['vvp','sim'],cwd=tmp_path,capture_output=True,text=True,check=True)
+    assert 'PASS' in result.stdout
+
+
+def test_cva5_empty_program_rejected_before_tools(tmp_path):
+    args=SimpleNamespace(output=tmp_path/'out',rtl=tmp_path,core='CVA5',board='arty_a7_100',
+                         part=f4.PART,clock_ns=50,timeout=10,firmware=None,coe=None)
+    assert not f4.run(args)
+    assert 'empty instruction ROM' in json.loads((args.output/'execution.json').read_text())['error']
+
+
+def test_intel_hints_removed_and_xilinx_hints_retained():
+    source='(* ramstyle = "MLAB, no_rw_check", ram_style = "distributed" *) reg a;\n'
+    source+='(* ram_style = "block", ramstyle = "no_rw_check" *) reg b;\n'
+    source+='(* ramstyle = "MLAB, no_rw_check" *) reg c;'
+    result=f4.strip_intel_ramstyle(source)
+    assert 'ramstyle' not in result
+    assert 'ram_style = "distributed"' in result and 'ram_style = "block"' in result
