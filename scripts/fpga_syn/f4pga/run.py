@@ -423,6 +423,8 @@ def run(args):
         meta.pop('error', None)
         meta.update(passed=True, status='complete', setup_met=metrics['setup_met'], hold_met=metrics['hold_met'],
                     artifacts_sha256={str(p.relative_to(out)): sha(p) for p in artifacts})
+    except KeyboardInterrupt:
+        meta.update(passed=False, status='interrupted', error='Interrupted before implementation completed')
     except (OSError, ValueError, KeyError, subprocess.SubprocessError) as exc:
         meta.update(passed=False, status='failed', error=str(exc))
     finally:
@@ -501,6 +503,8 @@ def resume_routed(args):
         meta.pop('error', None)
         meta.update(passed=True, status='complete', setup_met=metrics['setup_met'], hold_met=metrics['hold_met'],
                     artifacts_sha256={str(p.relative_to(out)): sha(p) for p in artifacts})
+    except KeyboardInterrupt:
+        meta.update(passed=False, status='interrupted', error='Interrupted before implementation completed')
     except (OSError, ValueError, KeyError, subprocess.SubprocessError) as exc:
         meta.update(passed=False, status='failed', error=str(exc))
         print(str(exc), file=sys.stderr)

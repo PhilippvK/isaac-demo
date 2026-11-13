@@ -456,3 +456,16 @@ def test_cva5_mapped_memory_capacity_guard(tmp_path):
     assert f4.parse_results(tmp_path)['brams_18k_equivalent']==130
     del cells['cpu.data_bram.memory.63'];p.write_text(json.dumps(design))
     with pytest.raises(ValueError,match='256 KiB'): f4.parse_results(tmp_path)
+
+
+def test_interrupt_does_not_leave_running_or_success_metadata(tmp_path, monkeypatch):
+    rtl=source_tree(tmp_path)
+    args=SimpleNamespace(output=tmp_path/'out',rtl=rtl,core='VEX_5S',board='arty_a7_100',
+                         part=f4.PART,clock_ns=50,timeout=10,firmware=None,coe=None,
+                         launcher='',env_script=None)
+    def interrupt(*args,**kwargs): raise KeyboardInterrupt
+    monkeypatch.setattr(f4.subprocess,'run',interrupt)
+    assert not f4.run(args)
+    meta=json.loads((args.output/'execution.json').read_text())
+    assert meta['passed'] is False and meta['status']=='interrupted'
+    with pytest.raises(ValueError): f4.validate(args.output)
