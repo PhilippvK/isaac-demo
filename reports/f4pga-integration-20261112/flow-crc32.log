@@ -1,0 +1,2 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/flow-crc32 DATE=flow-crc32 BENCH=f4pga-integration-20261112
+Missing routed VPR setup slack; inspect route.log

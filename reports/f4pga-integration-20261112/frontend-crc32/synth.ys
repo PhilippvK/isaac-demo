@@ -1,0 +1,8 @@
+read_verilog -lib +/xilinx/cells_sim.v
+read_verilog -lib +/xilinx/cells_xtra.v
+read_verilog -sv rtl/VexRiscv.v rtl/Vex_top.sv rtl/CommonLogicModule.sv rtl/ISAX_XIsaac.sv rtl/ram.sv rtl/vex_arty_top.sv
+hierarchy -check -top vex_arty_top
+synth_xilinx -top vex_arty_top -flatten
+check -assert
+tee -o stat.json stat -json
+write_json mapped.json

@@ -1,0 +1,88 @@
+Processing /tmp/isaac-f4pga-source/f4pga
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting prjxray (from -r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 21))
+  Cloning https://github.com/SymbiFlow/prjxray.git (to revision ae546d6b7648bf4df9cf63f0b25b2028b5623c43) to /tmp/pip-install-dojuhpfh/prjxray_69ca4aaaa9e948b9b928cc113276fb5d
+  Running command git clone --filter=blob:none --quiet https://github.com/SymbiFlow/prjxray.git /tmp/pip-install-dojuhpfh/prjxray_69ca4aaaa9e948b9b928cc113276fb5d
+  Running command git rev-parse -q --verify 'sha^ae546d6b7648bf4df9cf63f0b25b2028b5623c43'
+  Running command git fetch -q https://github.com/SymbiFlow/prjxray.git ae546d6b7648bf4df9cf63f0b25b2028b5623c43
+  Running command git checkout -q ae546d6b7648bf4df9cf63f0b25b2028b5623c43
+  Resolved https://github.com/SymbiFlow/prjxray.git to commit ae546d6b7648bf4df9cf63f0b25b2028b5623c43
+  Running command git submodule update --init --recursive -q
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting xc-fasm (from -r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 22))
+  Cloning https://github.com/symbiflow/xc-fasm.git (to revision 25dc605c9c0896204f0c3425b52a332034cf5e5c) to /tmp/pip-install-dojuhpfh/xc-fasm_26083ba32b5f474d81b39556f126e8ad
+  Running command git clone --filter=blob:none --quiet https://github.com/symbiflow/xc-fasm.git /tmp/pip-install-dojuhpfh/xc-fasm_26083ba32b5f474d81b39556f126e8ad
+  Running command git rev-parse -q --verify 'sha^25dc605c9c0896204f0c3425b52a332034cf5e5c'
+  Running command git fetch -q https://github.com/symbiflow/xc-fasm.git 25dc605c9c0896204f0c3425b52a332034cf5e5c
+  Resolved https://github.com/symbiflow/xc-fasm.git to commit 25dc605c9c0896204f0c3425b52a332034cf5e5c
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting python-constraint (from -r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/requirements.txt (line 17))
+  Downloading python-constraint-1.4.0.tar.bz2 (18 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting pyyaml (from -r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 19))
+  Downloading PyYAML-6.0.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+Collecting fasm (from -r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 20))
+  Downloading fasm-0.0.2.post88-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (3.2 kB)
+Collecting colorama (from f4pga==0.0.0+0723f9ca)
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting textx (from fasm->-r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 20))
+  Downloading textX-3.1.1-py2.py3-none-any.whl.metadata (8.1 kB)
+Collecting intervaltree (from prjxray->-r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 21))
+  Downloading intervaltree-3.2.1-py2.py3-none-any.whl.metadata (12 kB)
+Collecting numpy (from prjxray->-r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 21))
+  Downloading numpy-1.21.6-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (2.1 kB)
+Collecting pyjson5 (from prjxray->-r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 21))
+  Downloading pyjson5-1.6.9-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Collecting simplejson (from prjxray->-r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 21))
+  Downloading simplejson-3.20.2-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.2 kB)
+Collecting sortedcontainers (from intervaltree->prjxray->-r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 21))
+  Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+Collecting Arpeggio>=2.0.0 (from textx->fasm->-r /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/xc7_env/xc7_requirements.txt (line 20))
+  Downloading Arpeggio-2.0.3-py2.py3-none-any.whl.metadata (2.4 kB)
+Downloading PyYAML-6.0.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (670 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 670.1/670.1 kB 12.2 MB/s eta 0:00:00
+Downloading fasm-0.0.2.post88-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (767 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 767.3/767.3 kB 16.0 MB/s eta 0:00:00
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading intervaltree-3.2.1-py2.py3-none-any.whl (25 kB)
+Downloading numpy-1.21.6-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.7/15.7 MB 42.9 MB/s eta 0:00:00
+Downloading pyjson5-1.6.9-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (196 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.7/196.7 kB 4.7 MB/s eta 0:00:00
+Downloading simplejson-3.20.2-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (127 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 127.1/127.1 kB 4.6 MB/s eta 0:00:00
+Downloading textX-3.1.1-py2.py3-none-any.whl (67 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.8/67.8 kB 2.0 MB/s eta 0:00:00
+Downloading Arpeggio-2.0.3-py2.py3-none-any.whl (54 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.7/54.7 kB 619.9 kB/s eta 0:00:00
+Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+Building wheels for collected packages: f4pga, python-constraint, prjxray, xc-fasm
+  Building wheel for f4pga (pyproject.toml): started
+  Building wheel for f4pga (pyproject.toml): finished with status 'done'
+  Created wheel for f4pga: filename=f4pga-0.0.0+0723f9ca-py3-none-any.whl size=259538 sha256=a209be0619f72234ded7f08d2563945f2eb4ddce650b7b85716ffde040d363b7
+  Stored in directory: /tmp/pip-ephem-wheel-cache-hxc7u3eg/wheels/bf/84/e5/434e528c3edd7e93fc638701c48dd9dfd0b2df99c2e39a93b7
+  Building wheel for python-constraint (setup.py): started
+  Building wheel for python-constraint (setup.py): finished with status 'done'
+  Created wheel for python-constraint: filename=python_constraint-1.4.0-py2.py3-none-any.whl size=24057 sha256=91d4c416ae9127924d0abbc6a8d824622b207990d2347210480905fa10a5fc81
+  Stored in directory: /nas/ei/share/TUEIEDAscratch/ga87puy/.pipcache/wheels/07/27/db/1222c80eb1e431f3d2199c12569cb1cac60f562a451fe30479
+  Building wheel for prjxray (setup.py): started
+  Building wheel for prjxray (setup.py): finished with status 'done'
+  Created wheel for prjxray: filename=prjxray-0.0.1-py3-none-any.whl size=60901 sha256=5b2f38618943f32e86fe0ff3eb38bd00c28d76d79401cca146edc7662f25564a
+  Stored in directory: /nas/ei/share/TUEIEDAscratch/ga87puy/.pipcache/wheels/76/cb/64/744db61c8533117b9f53d3006a1a9d8f44140126cdf4cf2a51
+  Building wheel for xc-fasm (setup.py): started
+  Building wheel for xc-fasm (setup.py): finished with status 'done'
+  Created wheel for xc-fasm: filename=xc_fasm-0.0.1-py3-none-any.whl size=12057 sha256=984b4426df8c0b8a1cd2dcca052da543a4a000fe249b94f6319475a1e44d10cf
+  Stored in directory: /nas/ei/share/TUEIEDAscratch/ga87puy/.pipcache/wheels/f0/82/3a/b22618d43b66580fb812c5e54c8c6a4c2e27aee03df63093e6
+Successfully built f4pga python-constraint prjxray xc-fasm
+Installing collected packages: sortedcontainers, python-constraint, Arpeggio, textx, simplejson, pyyaml, pyjson5, numpy, intervaltree, colorama, fasm, f4pga, prjxray, xc-fasm
+Successfully installed Arpeggio-2.0.3 colorama-0.4.6 f4pga-0.0.0+0723f9ca fasm-0.0.2.post88 intervaltree-3.2.1 numpy-1.21.6 prjxray-0.0.1 pyjson5-1.6.9 python-constraint-1.4.0 pyyaml-6.0.1 simplejson-3.20.2 sortedcontainers-2.4.0 textx-3.1.1 xc-fasm-0.0.1

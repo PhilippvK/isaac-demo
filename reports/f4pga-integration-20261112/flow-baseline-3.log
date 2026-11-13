@@ -1,0 +1,2 @@
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/flow-baseline-3 DATE=flow-baseline-3 BENCH=f4pga-integration-20261112
+Command '['bash', '-c', 'set -e; source "$1"; shift; exec "$@"', 'f4pga-env', '/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/runtime-env.sh', 'symbiflow_pack', '-e', 'vex_arty_top.eblif', '-d', 'xc7a100t_test', '-s', 'vex_arty_top.sdc']' returned non-zero exit status 1.

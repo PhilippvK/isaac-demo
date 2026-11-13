@@ -1,0 +1,2 @@
+Executing: ./scripts/flow_syn.sh /var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/full-flow-smoke/crc32//20261113T112507
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/full-flow-smoke/crc32/20261113T112507 DATE=20261113T112507 BENCH=crc32

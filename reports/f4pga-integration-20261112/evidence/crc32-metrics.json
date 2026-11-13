@@ -1,0 +1,33 @@
+{
+  "luts_total": 9739,
+  "ffs_total": 1322,
+  "brams_total": 32,
+  "brams_18k_equivalent": 64,
+  "dsps_total": 0,
+  "setup_slack_ns": 0.0,
+  "setup_met": true,
+  "hold_slack_ns": 0.0,
+  "hold_met": true,
+  "resource_stage": "F4PGA mapped LUT atoms before packing (not Vivado physical LUT sites)",
+  "primitive_counts": {
+    "$lut": 9739,
+    "MUXF6": 1644,
+    "CARRY4_VPR": 241,
+    "FDRE_ZINI": 1229,
+    "FDSE_ZINI": 10,
+    "FDCE_ZINI": 74,
+    "FDPE_ZINI": 9,
+    "IBUF_VPR": 3,
+    "T_INV": 1,
+    "OBUFT_VPR": 1,
+    "CARRY_COUT_PLUG": 206,
+    "CE_VCC": 464,
+    "SR_GND": 1014,
+    "PLLE2_ADV_VPR": 1,
+    "BUFGCTRL_VPR": 2,
+    "DPRAM32": 96,
+    "DRAM_8_OUTPUT_STUB": 12,
+    "RAMB36E1_PRIM": 32
+  },
+  "timing_scope": "VPR constrained paths; native propagated clocks; asynchronous I/O unconstrained"
+}

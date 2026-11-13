@@ -1,0 +1,15 @@
+Arpeggio==2.0.3
+colorama==0.4.6
+f4pga @ file:///tmp/isaac-f4pga-source/f4pga
+fasm==0.0.2.post88
+intervaltree==3.2.1
+lxml @ file:///home/conda/feedstock_root/build_artifacts/lxml_1656759367847/work
+numpy==1.21.6
+prjxray @ git+https://github.com/SymbiFlow/prjxray.git@ae546d6b7648bf4df9cf63f0b25b2028b5623c43
+pyjson5==1.6.9
+python-constraint==1.4.0
+PyYAML==6.0.1
+simplejson==3.20.2
+sortedcontainers==2.4.0
+textX==3.1.1
+xc-fasm @ git+https://github.com/symbiflow/xc-fasm.git@25dc605c9c0896204f0c3425b52a332034cf5e5c

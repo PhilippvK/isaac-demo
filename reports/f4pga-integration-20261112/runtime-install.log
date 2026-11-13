@@ -1,0 +1,32 @@
+Retrieving notices: - done
+Channels:
+ - litex-hub
+Platform: linux-64
+Collecting package metadata (repodata.json): | / - \ | / - \ | / - \ done
+Solving environment: / - failed
+
+LibMambaUnsatisfiableError: Encountered problems while solving:
+  - unsupported request
+  - unsupported request
+  - unsupported request
+  - unsupported request
+  - nothing provides libgcc-ng >=11.2.0 needed by prjxray-tools-0.1_3015_gae546d6b-20220708_203356
+  - nothing provides libffi >=3.3,<3.4.0a0 needed by symbiflow-yosys-plugins-1.0.0_7_1027_g52cdcc4-20220720_081021
+  - nothing provides libgcc-ng >=11.2.0 needed by vtr-optimized-8.0.0_5699_g25e723a24-20220708_203356
+  - nothing provides libffi >=3.3,<3.4.0a0 needed by yosys-0.19_21_ga82eff2e2-20220720_081021_py37
+
+Could not solve for environment specs
+The following packages are incompatible
+├─ git =* * does not exist (perhaps a typo or a missing channel);
+├─ lxml =* * does not exist (perhaps a typo or a missing channel);
+├─ make =* * does not exist (perhaps a typo or a missing channel);
+├─ pip =* * does not exist (perhaps a typo or a missing channel);
+├─ prjxray-tools ==0.1.3015.0gae546d6b 20220708_203356 is not installable because it requires
+│  └─ libgcc-ng >=11.2.0 *, which does not exist (perhaps a missing channel);
+├─ symbiflow-yosys-plugins ==1.0.0.7.1027.0g52cdcc4 20220720_081021 is not installable because it requires
+│  └─ libffi >=3.3,<3.4.0a0 *, which does not exist (perhaps a missing channel);
+├─ vtr-optimized ==8.0.0.5699.0g25e723a24 20220708_203356 is not installable because it requires
+│  └─ libgcc-ng >=11.2.0 *, which does not exist (perhaps a missing channel);
+└─ yosys ==0.19.21.0ga82eff2e2 20220720_081021_py37 is not installable because it requires
+   └─ libffi >=3.3,<3.4.0a0 *, which does not exist (perhaps a missing channel).
+

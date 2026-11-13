@@ -1,0 +1,15 @@
+{
+  "controller_commit": "0723f9ca4ea4b686ff9c2e32c9cec56d40de1a62",
+  "architecture_base_url": "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/20220907-210059/",
+  "architecture_sha256": {
+    "symbiflow-arch-defs-install-xc7-66a976d.tar.xz": "8fa1aa9cfc033c9fef59c2ac19d4ff18568a66bc8ce15c3385cd9ec1d1901274",
+    "symbiflow-arch-defs-xc7a100t_test-66a976d.tar.xz": "49b355e8a442e46652c7b089c23dc020d4babb8009d8f4494e09d72e37b2e5ef"
+  },
+  "local_installation": "/nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga",
+  "local_database_copy": "install/f4pga-db/artix7",
+  "yosys": "0.29+34 / 57c9eb70f / 20230524_010725_py37",
+  "vpr": "8.1.0-dev / 8.0.0-5699-g25e723a24 / 20220708_203356",
+  "firmware": "zero-initialized RAM; no hardware firmware benchmark",
+  "clock": "100 MHz board oscillator; PLLE2_ADV 10/50 at 1 GHz VCO; 20 MHz core",
+  "validation": "Physical implementations completed with recorded pre-FASM controller; final FASM/bitstream steps resumed with the corrected finalizer and checked routed checkpoints."
+}

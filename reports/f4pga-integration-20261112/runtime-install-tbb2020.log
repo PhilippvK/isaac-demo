@@ -1,0 +1,17 @@
+Retrieving notices: - done
+Channels:
+ - litex-hub
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): | / - \ | / - \ | done
+Solving environment: - \ | failed
+
+LibMambaUnsatisfiableError: Encountered problems while solving:
+  - package vtr-optimized-8.0.0_5699_g25e723a24-20220708_203356 requires tbb >=2020.3, but none of the providers can be installed
+
+Could not solve for environment specs
+The following packages are incompatible
+├─ tbb =2020.2 * is requested and can be installed;
+└─ vtr-optimized ==8.0.0.5699.0g25e723a24 20220708_203356 is not installable because it requires
+   └─ tbb >=2020.3 *, which conflicts with any installable versions previously reported.
+

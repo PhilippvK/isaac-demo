@@ -65,3 +65,5 @@ FPGA target. Board-only selection is `cva5_reuseio_arty_a7_100t`.
 - [Nangate45 and Sky130 matched Design Compiler ASIP evaluation](asip-synthesis-20261112/report.md).
 
 - [Independent OpenLane2 and LibreLane ASIP synthesis, Sky130 evaluation and reproduction](openlane-asip-20261112/report.md).
+
+- [Independent F4PGA/SymbiFlow Arty A7-100T implementation, bitstreams and Vex CRC32 evaluation](f4pga-integration-20261112/report.md).

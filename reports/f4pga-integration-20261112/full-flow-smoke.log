@@ -1,0 +1,11 @@
+BENCH=crc32
+DATE=now
+STEPS=syn_0
+DATE=20261113T112507
+NEW=1
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/full-flow-smoke/crc32//20261113T112507
+Initialized directory: /var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/full-flow-smoke/crc32//20261113T112507
+STEPS=syn_0
+Running step: syn_0
+Executing: ./scripts/flow_syn.sh /var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/full-flow-smoke/crc32//20261113T112507
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/full-flow-smoke/crc32/20261113T112507 DATE=20261113T112507 BENCH=crc32

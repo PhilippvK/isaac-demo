@@ -1,0 +1,11 @@
+BENCH=crc32
+DATE=now
+STEPS=syn_0
+DATE=20261113T113636
+NEW=1
+OUT_DIR=/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/cache-integration/crc32//20261113T113636
+Initialized directory: /var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/cache-integration/crc32//20261113T113636
+STEPS=syn_0
+Running step: syn_0
+Executing: ./scripts/flow_syn.sh /var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/cache-integration/crc32//20261113T113636
+DIR=/var/tmp/ga87puy/isaac-demo-new/reports/f4pga-integration-20261112/cache-integration/crc32/20261113T113636 DATE=20261113T113636 BENCH=crc32

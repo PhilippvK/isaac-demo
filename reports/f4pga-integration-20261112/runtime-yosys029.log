@@ -1,0 +1,85 @@
+Channels:
+ - litex-hub
+ - conda-forge
+ - defaults
+Platform: linux-64
+Collecting package metadata (repodata.json): - \ | / - \ | / - \ done
+Solving environment: / - \ done
+
+
+==> WARNING: A newer version of conda exists. <==
+    current version: 26.1.1
+    latest version: 26.10.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+
+## Package Plan ##
+
+  environment location: /nas/ei/share/TUEIEDAscratch/ga87puy/work/isaac-f4pga/xc7/conda
+
+  added / updated specs:
+    - litex-hub::symbiflow-yosys-plugins==1.20230425_38_g38a8a5d=20230524_010725
+    - litex-hub::yosys==0.29_35_g57c9eb70f=20230524_010725_py37
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    libffi-3.4.8               |       h06d3fd0_3         137 KB
+    python-3.7.16              |       h7a1cb2a_0        44.8 MB
+    symbiflow-yosys-plugins-1.20230425_38_g38a8a5d|  20230524_010725        30.9 MB  litex-hub
+    yosys-0.29_35_g57c9eb70f   |20230524_010725_py37        10.9 MB  litex-hub
+    ------------------------------------------------------------
+                                           Total:        86.8 MB
+
+The following packages will be UPDATED:
+
+  libffi                 conda-forge::libffi-3.3-h58526e2_2 --> pkgs/main::libffi-3.4.8-h06d3fd0_3 
+  python                                  3.7.15-haa1d7c7_0 --> 3.7.16-h7a1cb2a_0 
+  symbiflow-yosys-p~  1.0.0_7_1027_g52cdcc4-20220720_081021 --> 1.20230425_38_g38a8a5d-20230524_010725 
+  yosys              0.19_21_ga82eff2e2-20220720_081021_py~ --> 0.29_35_g57c9eb70f-20230524_010725_py37 
+
+
+
+Downloading and Extracting Packages: ...working...python-3.7.16        | 44.8 MB   |            |   0% 
+symbiflow-yosys-plug | 30.9 MB   |            |   0% [A
+
+yosys-0.29_35_g57c9e | 10.9 MB   |            |   0% [A[A
+
+
+libffi-3.4.8         | 137 KB    |            |   0% [A[A[Apython-3.7.16        | 44.8 MB   |            |   0% 
+
+
+libffi-3.4.8         | 137 KB    | #1         |  12% [A[A[A
+
+
+libffi-3.4.8         | 137 KB    | ########## | 100% [A[A[Apython-3.7.16        | 44.8 MB   | #5         |  16% python-3.7.16        | 44.8 MB   | ####2      |  42% python-3.7.16        | 44.8 MB   | ######6    |  67% python-3.7.16        | 44.8 MB   | ########5  |  86% python-3.7.16        | 44.8 MB   | ########## | 100% 
+
+yosys-0.29_35_g57c9e | 10.9 MB   | ########## | 100% [A[A
+
+yosys-0.29_35_g57c9e | 10.9 MB   | ########## | 100% [A[A
+symbiflow-yosys-plug | 30.9 MB   | ########## | 100% [A
+symbiflow-yosys-plug | 30.9 MB   | ########## | 100% [A
+
+
+libffi-3.4.8         | 137 KB    | ########## | 100% [A[A[A
+
+
+libffi-3.4.8         | 137 KB    | ########## | 100% [A[A[A
+
+yosys-0.29_35_g57c9e | 10.9 MB   | ########## | 100% [A[A
+symbiflow-yosys-plug | 30.9 MB   | ########## | 100% [Apython-3.7.16        | 44.8 MB   | ########## | 100%                                                      
+                                                     [A
+
+                                                     [A[A
+
+
+                                                     [A[A[A done
+Preparing transaction: / - done
+Verifying transaction: | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | done
+Executing transaction: - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ done

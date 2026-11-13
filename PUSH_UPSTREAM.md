@@ -102,3 +102,23 @@ git push origin main
 
 No dependency commits or submodule pointer changes are included. The PDK,
 container image and isolated controller install remain local and are not pushed.
+
+## Independent F4PGA / SymbiFlow follow-up
+
+Demo commit `79a5523` adds the independent VEX_5S Arty A7-100T backend,
+open board adapters, checked baseline/route reuse, resource/timing reporting
+and an openFPGALoader execution path. A separate evidence commit retains
+baseline/CRC32 routed results and bitstreams under
+`reports/f4pga-integration-20261112/`. Both meet the 50 ns constrained-path
+setup/hold target; hardware execution and mapped-memory equivalence remain
+unverified. See the report for the PLL, memory-model and timing-scope limits.
+
+This follow-up requires only the demo repository push:
+
+```bash
+git push origin main
+```
+
+No F4PGA, Vivado, MLonMCU or other dependency source repository changed.
+Concurrent submodule edits remain excluded. The isolated tool installation and
+device database are local; the pinned installer recreates them.
