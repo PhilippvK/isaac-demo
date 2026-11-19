@@ -1,0 +1,68 @@
+{
+  "baseline": {
+    "passed": true,
+    "bitstream_sha256": "8cf6f7fd0ae097839ef1164345560f68214c798282cfecd20de3d7916409a1f9",
+    "implementation_execution": "../cva5-f4pga-20261113/baseline.execution.json",
+    "crc32": "65842ca9",
+    "verify": 11433,
+    "initial_crc_cycles": 15396,
+    "load_checks": null,
+    "pairs": []
+  },
+  "load5": {
+    "passed": true,
+    "bitstream_sha256": "89503e69dca898f933529bda732cc2f3f44a58ca16f92ee02888e8af76ebf47b",
+    "implementation_execution": "../cva5-f4pga-20261113/load5.execution.json",
+    "crc32": "65842ca9",
+    "verify": 11433,
+    "initial_crc_cycles": 15396,
+    "load_checks": 1280,
+    "pairs": [
+      {
+        "run": 0,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15392,
+        "ise_cycles": 13348,
+        "native_cycles_delta_from_simulation": 0,
+        "ise_cycles_delta_from_simulation": 0
+      },
+      {
+        "run": 1,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15388,
+        "ise_cycles": 13340,
+        "native_cycles_delta_from_simulation": 4,
+        "ise_cycles_delta_from_simulation": 4
+      },
+      {
+        "run": 2,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15388,
+        "ise_cycles": 13340,
+        "native_cycles_delta_from_simulation": 4,
+        "ise_cycles_delta_from_simulation": 4
+      },
+      {
+        "run": 3,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15388,
+        "ise_cycles": 13340,
+        "native_cycles_delta_from_simulation": 4,
+        "ise_cycles_delta_from_simulation": 4
+      },
+      {
+        "run": 4,
+        "native": 1703161001,
+        "ise": 1703161001,
+        "native_cycles": 15388,
+        "ise_cycles": 13340,
+        "native_cycles_delta_from_simulation": 4,
+        "ise_cycles_delta_from_simulation": 4
+      }
+    ]
+  }
+}
